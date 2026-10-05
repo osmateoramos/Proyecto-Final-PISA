@@ -106,7 +106,8 @@ Formato: **ID · fecha · decisión · alternativas · razón · estado** (propu
 
 ### D-07 · 2026-09-24 · Git + GitHub privado para compartir
 - **Razón:** historial de cambios, sin conflictos silenciosos; el crudo y los `.rds` quedan fuera (`.gitignore`).
-- **Estado:** ✅ aceptada. Configuración en el paso 0.2.
+- **Estado:** ✅ aceptada. Repositorio privado `Proyecto-Final-PISA` creado el 2026-10-04 (raíz: carpeta CONSULTORIA,
+  incluye el vault y el proyecto; los datos quedan fuera). Flujo de trabajo en `README.md`.
 
 ### D-08 · 2026-09-24 · Ocupación de los padres → prestigio ordinal + máximo de los dos padres
 - **Regla:** 1 agricultor/limpieza · 2 operario/vendedor/cuenta propia · 3 auxiliar/negocio pequeño ·

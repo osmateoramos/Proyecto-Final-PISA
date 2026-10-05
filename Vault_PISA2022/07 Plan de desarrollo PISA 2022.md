@@ -75,6 +75,9 @@ CONSULTORIA/
   empezando por las marcadas † en la matriz.
 - [ ] **0.3 Git + GitHub privado** (pasos en [[01 Plan paso a paso]], paso 0.2, que siguen vigentes). Revisar que
   el `.gitignore` excluya `Proyecto_PISA/datos/` (salvo scripts `.R`) antes del primer commit.
+  - *Avance 2026-10-04:* repositorio privado **Proyecto-Final-PISA** creado y subido
+    (https://github.com/osmateoramos/Proyecto-Final-PISA, rama `main`, 100 archivos, ningún dato de estudiantes).
+    Herramienta recomendada: GitHub Desktop (ver `README.md`). Pendiente: invitar a Vanessa como colaboradora.
 - [ ] **0.4 Carpeta `Proyecto_PISA/`** con la estructura de arriba.
 - [ ] **0.5 Preregistro.** Completar y fechar [[09 Hipótesis preregistradas]] **antes** de estimar cualquier modelo.
 - **Salida:** `.bib` sincronizado, vault en Git, nota 09 fechada.

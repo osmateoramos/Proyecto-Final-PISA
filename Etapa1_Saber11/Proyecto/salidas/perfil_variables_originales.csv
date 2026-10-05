@@ -1,0 +1,93 @@
+posicion,variable,clase_r,n_distintos,ejemplos,pct_na_total,pct_na_analit
+1,periodo,integer,1,20252,0,0
+2,estu_consecutivo,character,576211,SB11202530244351 | SB11202530244353 | SB11202530000001 | SB11202530000002,0,0
+3,estu_estudiante,character,2,ESTUDIANTE | INDIVIDUAL,0,0
+4,estu_tipodocumento,character,11,TI | CC | PPT | CR,0,0
+5,cole_area_ubicacion,character,3,URBANA | RURAL | URBANO,5,0
+6,cole_bilingue,character,2,N | S,24.1,19.9
+7,cole_calendario,character,3,A | OTRO | B,5,0
+8,cole_caracter,character,4,ACADÉMICO | TÉCNICO/ACADÉMICO | TÉCNICO | NO APLICA,9.5,4.6
+9,cole_cod_dane_establecimiento,integer64,10679,rango 105001000001 a 568432001300,5,0
+10,cole_cod_dane_sede,integer64,11917,rango 105001000001 a 818001100027,5,0
+11,cole_cod_depto_ubicacion,integer,33,rango 5 a 99,5,0
+12,cole_cod_mcpio_ubicacion,integer,1117,rango 5001 a 99773,5,0
+13,cole_codigo_icfes,integer,14066,rango 83 a 822940,5,0
+14,cole_depto_ubicacion,character,34,BOGOTÁ | ANTIOQUIA | CUNDINAMARCA | VALLE,5,0
+15,cole_genero,character,3,MIXTO | FEMENINO | MASCULINO,5,0
+16,cole_jornada,character,6,MAÑANA | UNICA | COMPLETA | TARDE,5,0
+17,cole_mcpio_ubicacion,character,1048,BOGOTÁ D.C. | MEDELLÍN | BARRANQUILLA | CALI,5,0
+18,cole_naturaleza,character,2,OFICIAL | NO OFICIAL,5,0
+19,cole_nombre_establecimiento,character,9689,INSTITUCION EDUCATIVA SIMON BOLIVAR | INSTITUCION EDUCATIVA SAN JOSE | INSTITUCION EDUCATIVA JORGE ELIECER GAITAN | INSTITUCION EDUCATIVA NUESTRA SEÑORA DEL CARMEN,5,0
+20,cole_nombre_sede,character,11182,SEDE PRINCIPAL | INSTITUTO TECNICO INDUSTRIAL | SIMON BOLIVAR | COL. MILITAR ALMIRANTE COLON,5,0
+21,cole_sede_principal,character,3,S | N | P,5,0
+22,desemp_c_naturales,integer,4,2 | 3 | 1 | 4,0,0
+23,desemp_ingles,character,5,A- | A1 | A2 | B1,1.4,1.5
+24,desemp_lectura_critica,integer,4,3 | 2 | 4 | 1,0,0
+25,desemp_matematicas,integer,4,3 | 2 | 1 | 4,0,0
+26,desemp_sociales_ciudadanas,integer,4,2 | 1 | 3 | 4,0,0
+27,estu_agregado,character,2,S | N,0,0
+28,estu_cod_depto_presentacion,integer,33,rango 5 a 99,0,0
+29,estu_cod_mcpio_presentacion,integer,560,rango 5001 a 99773,0,0
+30,estu_cod_reside_depto,integer,34,rango 5 a 99999,0,0
+31,estu_cod_reside_mcpio,integer,1119,rango 5001 a 99999,0,0
+32,estu_dedicacioninternet,character,5,Entre 1 y 3 horas | Entre 30 y 60 minutos | Más de 3 horas | 30 minutos o menos,16.2,2.8
+33,estu_dedicacionlecturadiaria,character,5,30 minutos o menos | No leo por entretenimiento | Entre 30 y 60 minutos | Entre 1 y 2 horas,16,2.6
+34,estu_depto_presentacion,character,33,BOGOTÁ | ANTIOQUIA | CUNDINAMARCA | VALLE,0,0
+35,estu_depto_reside,character,34,BOGOTÁ | ANTIOQUIA | CUNDINAMARCA | VALLE,0,0
+36,estu_discapacidad,character,2,N | S,0,0
+37,estu_etnia,character,130,Wayúu | Zenu (Senu) | Pasto | Nasa,96.1,96.4
+38,estu_fechanacimiento,character,11649,17/09/2008 | 12/12/2008 | 24/09/2008 | 26/09/2008,0,0
+39,estu_genero,character,2,F | M,0,0
+40,estu_grado,integer,3,11 | 26 | 25,4.9,0
+41,estu_horassemanatrabaja,character,5,0 | Menos de 10 horas | Entre 11 y 20 horas | Entre 21 y 30 horas,13.9,5.4
+42,estu_inse_individual,numeric,462697,rango 13.88276 a 88.36628,14,0
+43,estu_mcpio_presentacion,character,542,BOGOTÁ D.C. | MEDELLÍN | BARRANQUILLA | CALI,0,0
+44,estu_mcpio_reside,character,1036,BOGOTÁ D.C. | MEDELLÍN | BARRANQUILLA | CALI,0,0
+45,estu_nacionalidad,character,50,COLOMBIA | VENEZUELA | ECUADOR | VANUATU,0,0
+46,estu_nse_establecimiento,integer,4,2 | 3 | 4 | 1,5,0
+47,estu_nse_individual,integer,4,3 | 2 | 1 | 4,14,0
+48,estu_pais_reside,character,21,COLOMBIA | VENEZUELA | ECUADOR | ESPAÑA,0,0
+49,estu_privado_libertad,character,2,N | S,0,0
+50,estu_repite,integer,10933,rango 0 a 278859,0,0
+51,estu_tieneetnia,character,1,S,96.1,96.4
+52,estu_tiporemuneracion,character,4,"No | Si, en efectivo | Si, en especie | Si, en efectivo y especie",14,5.6
+53,fami_comecarnepescadohuevo,character,4,Todos o casi todos los días | 3 a 5 veces por semana | 1 o 2 veces por semana | Nunca o rara vez comemos eso,16.1,2.7
+54,fami_comecerealfrutoslegumbre,character,4,1 o 2 veces por semana | 3 a 5 veces por semana | Nunca o rara vez comemos eso | Todos o casi todos los días,16.3,2.9
+55,fami_comelechederivados,character,4,1 o 2 veces por semana | Todos o casi todos los días | 3 a 5 veces por semana | Nunca o rara vez comemos eso,16.7,3.4
+56,fami_cuartoshogar,character,6,Dos | Tres | Cuatro | Uno,12,3.3
+57,fami_educacionmadre,character,12,Secundaria (Bachillerato) completa | Educación profesional completa | Secundaria (Bachillerato) incompleta | Técnica o tecnológica completa,14,0.3
+58,fami_educacionpadre,character,12,Secundaria (Bachillerato) completa | Secundaria (Bachillerato) incompleta | Primaria incompleta | Educación profesional completa,13.9,0.3
+59,fami_estratovivienda,character,7,Estrato 2 | Estrato 1 | Estrato 3 | Estrato 4,15.1,1.6
+60,fami_numlibros,character,4,0 A 10 LIBROS | 11 A 25 LIBROS | 26 A 100 LIBROS | MÁS DE 100 LIBROS,16.3,3
+61,fami_personashogar,character,5,3 a 4 | 5 a 6 | 1 a 2 | 7 a 8,11.8,3.1
+62,fami_situacioneconomica,character,3,Igual | Mejor | Peor,14.4,6
+63,fami_tieneautomovil,character,2,No | Si,14,5.5
+64,fami_tienecomputador,character,2,Si | No,11.9,3.2
+65,fami_tieneconsolavideojuegos,character,2,No | Si,14.1,5.6
+66,fami_tienehornomicroogas,character,2,No | Si,13.5,4.9
+67,fami_tieneinternet,character,2,Si | No,15,1.4
+68,fami_tienelavadora,character,2,Si | No,12.8,4.2
+69,fami_tienemotocicleta,character,2,No | Si,13.9,5.4
+70,fami_tieneserviciotv,character,2,Si | No,15.4,1.9
+71,fami_trabajolabormadre,character,13,"Trabaja en el hogar, no trabaja o estudia | Trabaja como personal de limpieza, mantenimiento, seguridad o construcción | Es dueño de un negocio pequeño (tiene pocos empleados o no tiene, por ejemplo tienda, papelería, etc | Tiene un trabajo de tipo auxiliar administrativo (por ejemplo, secretario o asistente)",12,3.3
+72,fami_trabajolaborpadre,character,13,"Es agricultor, pesquero o jornalero | Trabaja por cuenta propia (por ejemplo plomero, electricista) | No sabe | Es operario de máquinas o conduce vehículos (taxita, chofer)",12,3.3
+73,percentil_c_naturales,integer,100,rango 1 a 100,0,0
+74,percentil_global,integer,100,rango 1 a 100,1.4,1.5
+75,percentil_ingles,integer,100,rango 1 a 100,1.4,1.5
+76,percentil_lectura_critica,integer,100,rango 1 a 100,0,0
+77,percentil_matematicas,integer,100,rango 1 a 100,0,0
+78,percentil_sociales_ciudadanas,integer,100,rango 1 a 100,0,0
+79,punt_c_naturales,integer,65,rango 0 a 100,0,0
+80,punt_global,integer,414,rango 0 a 500,0,0
+81,punt_ingles,integer,67,rango 0 a 100,1.4,1.5
+82,punt_lectura_critica,integer,66,rango 0 a 100,0,0
+83,punt_matematicas,integer,78,rango 0 a 100,0,0
+84,punt_sociales_ciudadanas,integer,72,rango 0 a 100,0,0
+85,estu_grupoetnia,character,6,NINGUNO | NEGRO AFRODESCENDIENTE | INDIGENA | RAIZAL,0,0
+86,fami_numhermanos,character,5,1 | 2 | 0 | 3,5.6,0.6
+87,estu_comunidadcampesina,character,2,NO | SI,5.6,0.6
+88,estu_numhijos,character,5,0 | 1 | 2 | 3,5.6,0.6
+89,estu_horastrabnoremu,character,5,0 | Menos de 10 horas | Entre 11 y 20 horas | Más de 30 horas,7,2.1
+90,fami_posicionhermanos,character,3,El/La mayor | El/La menor | En medio,26.2,22.4
+91,estu_tiempocasaacole,character,4,Menos de 15 minutos | Entre 15 y 30 minutos | Entre 30 minutos y una hora | Más de una hora,5.6,0.6
+92,estu_desplazacolegio,character,4,"Caminando o en bicicleta | En transporte escolar o particular | En bus o transporte público | Otro (burro o caballo, canoa, lancha, etc.)",5.6,0.6

@@ -1,0 +1,334 @@
+---
+title: "Nivel socioeconómico latente y desempeño matemático por competencias en PISA 2022: calificación con Teoría de Respuesta al Ítem multidimensional para Colombia"
+subtitle: "Anteproyecto — Consultoría Estadística (versión PISA 2022)"
+author: "Vanessa Acosta y Mateo Ramos"
+date: "Universidad Santo Tomás · 2026-II"
+lang: es
+bibliography: referencias.bib
+csl: apa.csl
+link-citations: true
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+    toc: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+**Proyecto integrador de las asignaturas:** Teoría de Respuesta al Ítem, Modelo de Ecuaciones Estructurales y
+Python para Desarrollo de APIs e Inteligencia Artificial, en el marco de Consultoría Estadística.
+**Tutores:** Javier Sierra y Juan Carlos Rubriche.
+
+> **Nota de versión.** Este documento reemplaza el anteproyecto entregado en el primer corte, que trabajaba con
+> Saber 11 (aplicación 2025-2). El cambio de fuente a PISA 2022 se explica en la sección 4. La versión anterior se
+> conserva como archivo del proyecto. Las afirmaciones marcadas **[VERIFICAR]** provienen de fuentes que el equipo
+> aún no ha cotejado contra el texto completo y se revisarán antes de la entrega.
+
+# Planteamiento del problema y contexto
+
+Colombia participa en el Programa para la Evaluación Internacional de Alumnos (PISA) de la OCDE, que evalúa a
+estudiantes de 15 años escolarizados. En el ciclo 2022, cuyo dominio principal fue matemáticas, la muestra
+colombiana fue de 7\,804 estudiantes evaluados por computador [@oecd2024pisa2022tr]. El informe nacional reporta
+que el estatus socioeconómico explica el 16 % de la variación del desempeño en matemáticas, lo que equivale a
+25 puntos en la escala, frente a 15 % en la OCDE y 13 % en Latinoamérica [@icfes2024pisa, p. 46]. El actor afectado
+es el conjunto de estudiantes colombianos de 15 años y, dentro de él, quienes provienen de hogares de menor nivel
+socioeconómico (NSE).
+
+Que el NSE se asocie con el desempeño no es lo que este proyecto busca redescubrir. El problema está en **dos
+decisiones de medición** que suelen tomarse sin discusión y que determinan la magnitud de la brecha que se reporta.
+
+**La primera es cómo se mide el NSE.** El índice oficial de PISA (ESCS) combina la ocupación de los padres, su
+educación y las posesiones del hogar; las posesiones se escalan con Teoría de Respuesta al Ítem (TRI), y la OCDE
+evalúa si los ítems funcionan igual **entre países y grupos de idioma** [@oecd2024pisa2022tr]. Lo que no se
+verifica es si el índice mide lo mismo **dentro de un país**, entre zonas rurales y urbanas, entre colegios públicos
+y privados o entre hombres y mujeres. En Colombia la medida oficial de Saber 11, el INSE, también asume una sola
+dimensión y solo evalúa funcionamiento diferencial entre periodos [@icfes2019inse].
+
+**La segunda es cómo se califica el desempeño.** El seguimiento público de las brechas se hace sobre puntajes
+agregados [@lee2024decada]. Saber 11 define competencias de matemáticas (interpretación y representación,
+formulación y ejecución, argumentación) [@icfes2022marcomat], pero no publica resultados por competencia para cada
+estudiante. PISA 2022 sí define cuatro procesos matemáticos —formular, emplear, interpretar y razonar— y publica
+puntajes por proceso, pero el informe nacional solo los reporta como promedios del país, sin cruzarlos con el NSE
+[@icfes2024pisa]. En este documento llamamos **competencias** a esos cuatro procesos.
+
+Una exploración propia de los microdatos de Colombia muestra por qué importa separar las competencias.^[Cálculos
+propios con `Proyecto_PISA/datos/revision_pisa2022_col.R` (pesos finales, 80 réplicas BRR con ajuste de Fay y
+10 valores plausibles), revisión del 29 de septiembre de 2026.] Las cuatro competencias correlacionan entre 0,70 y
+0,83 en Colombia, menos que el rango internacional de 0,79 a 0,87 [@oecd2024pisa2022tr]. Por cada unidad del ESCS,
+el desempeño sube 22,6 puntos en *emplear* y 26,6 en *interpretar*; la diferencia de 3,9 puntos (error estándar 1,5)
+sugiere que el NSE no pesa igual en todas las competencias. Además, los estudiantes del cuartil más bajo de ESCS dejan
+en blanco, en promedio, el 11,5 % de las preguntas que ven, frente a 8,0 % en el cuartil más alto; como PISA califica
+las omisiones como incorrectas, parte de la brecha podría deberse a cómo se califican las respuestas omitidas.
+
+Si nadie separa estas decisiones, la política educativa seguirá apoyándose en una brecha cuya magnitud depende de un
+índice de NSE no probado dentro del país y de un puntaje que mezcla competencias distintas. Este anteproyecto formula
+la siguiente pregunta estadística: **¿en qué medida el NSE —modelado como constructo latente cuya medición es igual
+entre grupos— explica el desempeño de los estudiantes colombianos en cada una de las cuatro competencias matemáticas
+de PISA 2022, calificadas con un modelo de TRI propio, y cuánto de la brecha observada depende de cómo se califica el
+desempeño?**
+
+# Estado del arte y antecedentes
+
+La revisión se organiza por enfoque y no por autor, para identificar qué supuesto asume cada familia de trabajos y
+ubicar el vacío que atiende el proyecto.
+
+## El desempeño como variable observada: el enfoque econométrico en Colombia
+
+La mayoría de estudios colombianos relacionan puntajes observados con covariables socioeconómicas mediante
+regresión. @collazos2021determinantes estiman, con mínimos cuadrados ordinarios sobre 3\,247\,429 evaluados de
+Saber 11 entre 2014 y 2019, efectos netos de estrato, educación materna y acceso a computador e internet;
+@zabala2019impacto encuentran asociaciones similares en Norte de Santander, con un efecto contraintuitivo del internet.
+Con PISA, @rodriguez2024rural descomponen la brecha rural–urbana de Colombia con datos de 2018 y atribuyen más del
+40 % a características de los colegios **[VERIFICAR]**, y @guerra2026digital analizan gradientes socioeconómicos en
+matemáticas para 13 países de América Latina y el Caribe con PISA 2022, mediante descomposición multinivel y
+aprendizaje automático, sin análisis por ítem, TRI ni modelos estructurales. Ninguno modela el error de medición del
+NSE ni verifica que sus indicadores se comporten igual en los grupos que comparan.
+
+## La medición del NSE: del índice compuesto al constructo latente
+
+En Colombia, @cruz2016construccion construyen un índice socioeconómico para Saber 11 por componentes principales,
+unidimensional por construcción, y el INSE del ICFES asume una sola dimensión [@icfes2019inse]. La literatura
+internacional muestra que el NSE tiene al menos una dimensión económica y otra cultural: @hernandez2011modelo las
+modelan como factores latentes correlacionados en México, con mayor peso del capital cultural sobre el logro, y
+@eriksson2021socioeconomic encuentran en PISA 2018 que, de seis dimensiones del NSE, solo los libros en casa y la
+ocupación de los padres predicen sustantivamente el logro. Sobre la comparabilidad, @rutkowski2013measuring muestran
+que el índice de posesiones de PISA tiene confiabilidad muy variable entre países, @rolfe2021tailoring prueban la
+invarianza de un modelo de NSE a lo largo de quince años de PISA en Suecia, y @mittal2022assessing evalúan la
+comparabilidad del índice de posesiones entre estudiantes con y sin origen inmigrante en Noruega y Suecia
+**[VERIFICAR]**. Es el único antecedente encontrado que prueba invarianza **dentro** de un país, y por un grupo
+distinto a los de este proyecto.
+
+## Matemáticas por competencias
+
+PISA 2022 incorporó el razonamiento matemático como cuarto proceso [@oecd2024pisa2022tr]. @ingram2024mathematical
+comparan perfiles de desempeño por proceso **entre países** y encuentran que en algunos el razonamiento es una
+fortaleza relativa y en otros una debilidad **[VERIFICAR]**, pero no analizan el NSE. @patsis2026instructional
+estiman modelos estructurales de dos niveles con datos TIMSS 2019 de Suecia y encuentran el NSE como predictor
+robusto del logro matemático total. En Colombia, las competencias de PISA solo se reportan como promedios nacionales
+[@icfes2024pisa].
+
+## Equidad de la prueba: funcionamiento diferencial del ítem
+
+El funcionamiento diferencial del ítem (DIF) por NSE en matemáticas está documentado en evaluaciones nacionales:
+@garcia2016analisis encuentran DIF severo por nivel socioeconómico en 18 de los 100 ítems del EXCALE de matemáticas
+de México, la mitad a favor de cada grupo, y @celik2025differential reportan DIF por NSE en lectura en PIRLS 2021,
+variable según país y método **[VERIFICAR]**. Con PISA, @liu2021differential usan el NSE solo como covariable para
+explicar el DIF por idioma en ítems de matemáticas de 2012 en Estados Unidos. En Colombia, el único análisis de DIF
+sobre una prueba nacional compara calendarios de Saber 11 y no NSE [@calderon2026differential].
+
+## Desenganche en la prueba
+
+@rios2022investigation documentan en PISA 2018 (ciencias) que el NSE está entre los moderadores de la respuesta
+rápida al azar y advierten que las comparaciones entre subgrupos pueden sesgarse por diferencias de esfuerzo
+**[VERIFICAR]**. @burns2026intest relacionan el esfuerzo autorreportado con el logro en PISA 2022 en 36 países de la
+OCDE **[VERIFICAR]**. Ninguno cuantifica cuánto cambia la brecha socioeconómica en matemáticas de Colombia según cómo
+se califiquen las omisiones.
+
+## Contraste entre enfoques y vacío
+
+```{r tabla-vacio}
+vacio <- data.frame(
+  Componente = c("NSE latente multidimensional", "Invarianza del NSE dentro del país",
+                 "Calificación por competencias", "DIF de matemáticas por NSE",
+                 "Omisiones y brecha"),
+  `Antecedente más cercano` = c("Hernández y González (México); Rolfe (Suecia)",
+                                "Mittal et al. (Noruega y Suecia, por inmigración)",
+                                "Icfes (promedios); Ingram et al. (entre países)",
+                                "García-Medina et al. (EXCALE, México)",
+                                "Rios y Soland (ciencias, PISA 2018)"),
+  `Vacío para Colombia` = c("Solo medidas unidimensionales (Cruz et al.; INSE)",
+                            "No probada por zona, sexo ni sector",
+                            "Sin puntajes propios por competencia ni cruce con NSE",
+                            "No estudiado en PISA ni en Colombia",
+                            "No cuantificado en matemáticas"),
+  check.names = FALSE)
+knitr::kable(vacio, caption = "Antecedentes más cercanos y vacío que atiende el proyecto.")
+```
+
+Ningún antecedente revisado combina las piezas que propone este proyecto: un NSE latente multidimensional con
+invarianza probada dentro de Colombia, una calificación propia por competencias con TRI multidimensional validada
+contra la medida oficial, y la verificación de que la brecha no dependa del funcionamiento de los ítems ni del
+tratamiento de las omisiones. Esa afirmación vale para esta revisión; se confirmará con una búsqueda sistemática en
+la fase de robustez.
+
+# Objetivos
+
+**Objetivo general.** Determinar en qué medida el nivel socioeconómico, medido como constructo latente con
+invarianza verificada entre grupos, explica el desempeño de los estudiantes colombianos de 15 años en las cuatro
+competencias matemáticas evaluadas por PISA 2022 (formular, emplear, interpretar y razonar), calificadas por
+competencia con un modelo de Teoría de Respuesta al Ítem multidimensional propio, y en qué medida la brecha
+socioeconómica observada depende del funcionamiento de los ítems y del tratamiento de las respuestas omitidas.
+
+**Objetivos específicos.**
+
+1. **Medir el NSE.** Estimar un modelo de medición del NSE como constructo latente, calibrando los ítems del
+   cuestionario con TRI (2PL y crédito parcial generalizado) y contrastando una estructura unidimensional contra una
+   de dos dimensiones (capital económico y cultural). Se declarará cumplido con los parámetros de los ítems, las
+   cargas y la confiabilidad, los índices de ajuste (CFI, TLI, RMSEA, SRMR), la prueba de una contra dos dimensiones
+   y la correlación con el ESCS oficial.
+2. **Verificar la invarianza del NSE.** Evaluar si la medición del NSE es invariante entre zona (rural, pueblo,
+   urbana), sexo y sector del colegio. Se declarará cumplido con la comparación secuencial de los modelos configural,
+   métrico y escalar (ΔCFI y ΔRMSEA) y la lista de indicadores no invariantes si la invarianza es parcial.
+3. **Calificar por competencias y verificar la equidad de la calificación.** Calibrar un modelo de TRI
+   multidimensional propio con las cuatro competencias como dimensiones, asignar a cada estudiante un puntaje por
+   competencia, validarlo contra los valores plausibles de la OCDE y verificar el funcionamiento diferencial por NSE y
+   la sensibilidad de la brecha al tratamiento de las omisiones. Se declarará cumplido con la comparación de los
+   modelos de una y cuatro dimensiones, la confiabilidad por competencia, la correlación entre el puntaje propio y el
+   oficial, la lista de ítems con DIF y la brecha bajo ambos tratamientos de las omisiones.
+4. **Explicar el desempeño por competencia.** Estimar el modelo estructural en el que el NSE latente predice cada
+   competencia calificada en el objetivo 3, y probar si su efecto es igual entre competencias y entre los grupos del
+   objetivo 2. Se declarará cumplido con los coeficientes por competencia y sus errores estándar (con pesos, réplicas
+   y valores plausibles), la prueba de igualdad de efectos y los índices de ajuste.
+5. **Poner los resultados a disposición.** Desarrollar una API REST en FastAPI y un tablero que expongan los parámetros
+   de TRI, los resultados de invarianza y DIF y los coeficientes por competencia y subgrupo, siempre agregados. Se
+   declarará cumplido con la documentación OpenAPI accesible, los servicios funcionando sobre resultados reales y
+   pruebas automáticas.
+
+La secuencia es acumulativa: el objetivo 1 construye la medida del NSE, el 2 verifica que compara de forma justa, el
+3 hace lo mismo con la medida de matemáticas, el 4 relaciona ambas y el 5 expone lo estimado.
+
+# Datos disponibles y aproximación metodológica preliminar
+
+**Procedencia y acceso.** Se usa la base pública de PISA 2022 publicada por la OCDE [@oecd2023pisadb]: el archivo
+del cuestionario de estudiantes (índices como ESCS, posesiones del hogar, valores plausibles por competencia, peso
+final y 80 pesos replicados), el archivo de ítems cognitivos (respuesta calificada, tiempo y número de acciones por
+ítem) y el archivo de colegios (zona y sector), en formato SPSS. El equipo ya descargó y abrió los tres archivos. Las
+condiciones de uso de la base se tomarán de la página oficial de la OCDE **[VERIFICAR]**. La documentación técnica es el
+PISA 2022 Technical Report [@oecd2024pisa2022tr] y su anexo A, que clasifica cada ítem de matemáticas por
+competencia, contenido, contexto y formato.
+
+**Por qué cambió la fuente.** El primer corte trabajaba con Saber 11. La auditoría de esa base mostró que no trae
+respuestas por ítem ni resultados por competencia, de modo que no permite calificar por competencias ni hacer TRI
+sobre las preguntas de la prueba. PISA 2022 tiene ambas cosas y además un diseño muestral documentado. Se descartó
+PISA 2025 porque en ese ciclo matemáticas es un dominio menor y no tiene puntajes por proceso.
+
+**Unidad de observación, periodo y volumen.** La unidad es el estudiante colombiano de 15 años evaluado en PISA 2022.
+Los datos de Colombia son 7\,804 estudiantes en filas contiguas de los archivos internacionales; 7\,459 tienen ESCS y
+7\,222 vieron al menos diez ítems de matemáticas. El archivo de colegios trae 262 colegios colombianos. Por zona hay
+1\,038 estudiantes rurales, 963 de pueblos y 5\,535 urbanos; por sector, 6\,114 de colegios públicos y 1\,590 de
+privados; y 4\,014 mujeres y 3\,790 hombres.^[Conteos propios con `Proyecto_PISA/datos/revision_pisa2022_col.R`.]
+
+**Diseño de la prueba de matemáticas.** La prueba usó un diseño adaptativo multietapa con 234 ítems, de los que cada
+estudiante respondió entre 28 y 30; el 25 % de los estudiantes fue asignado al azar a una ruta lineal y el 75 % a la
+ruta adaptativa [@oecd2024pisa2022tr]. En Colombia cada ítem tiene una mediana de 707 respuestas, y 175 de los 234
+ítems tienen al menos 100 respuestas tanto en el cuartil más bajo como en el más alto de ESCS, lo que hace viable el
+análisis de DIF. El anexo A del Technical Report clasifica por competencia 233 de los 234 ítems calificados de
+Colombia: emplear 75, interpretar 57, razonar 53 y formular 48. Esa clasificación es la que permite calificar por
+competencias.^[Conteo propio sobre el anexo A del PISA 2022 Technical Report (hoja *Mathematics-CBA*). El ítem
+`CMA112Q02S` no aparece en el anexo y se revisará.]
+
+```{r tabla-variables}
+vars <- data.frame(
+  Objetivo = c("1. NSE latente", "2. Invarianza", "3. Calificación por competencias", "4. Modelo estructural",
+               "5. API y tablero"),
+  Variables = c("27 ítems de posesiones del hogar (ST250, ST251, ST253–ST256, incluidos 8 tipos de libros); educación de los padres (ST005, ST007, HISCED); ocupación (HISEI); contraste: ESCS y HOMEPOS",
+                "Modelo del objetivo 1 + zona (SC001), sector (SCHLTYPE), sexo (ST004D01T)",
+                "Respuestas calificadas de los ítems de matemáticas, clasificación por competencia (anexo A), tiempos (TT), ruta adaptativa; contraste: PV1–10 de MPFS, MPEM, MPIN, MPRE",
+                "Puntajes del objetivo 3 y NSE del objetivo 1; peso W_FSTUWT y 80 réplicas; colegio (CNTSCHID)",
+                "No usa variables nuevas: expone resultados agregados de los objetivos 1 a 4"))
+knitr::kable(vars, caption = "Variables de la base de PISA 2022 por objetivo específico.")
+```
+
+**Ruta metodológica.** (1) Extracción del bloque de Colombia, limpieza y libro de códigos; (2) validación del
+procesamiento reproduciendo cifras publicadas por la OCDE para Colombia antes de cualquier modelo; (3) análisis
+factorial exploratorio y confirmatorio del NSE con estimador WLSMV y calibración TRI de sus ítems; (4) invarianza
+multigrupo; (5) calibración de un modelo TRI multidimensional confirmatorio de cuatro dimensiones (cada ítem carga
+solo en su competencia) frente al unidimensional, cálculo de puntajes por competencia, validación contra los valores
+plausibles de la OCDE, DIF por NSE y recalificación de las omisiones; (6) modelo estructural del NSE sobre las
+competencias, estimado con cada conjunto de puntajes plausibles y combinado con las reglas de Rubin, con pesos y
+conglomerado por colegio; (7) análisis de robustez; (8) API y tablero. Se usará R (`mirt`, `lavaan`, `lavaan.mi`,
+`semTools`) y Python (FastAPI).
+
+**Alternativas consideradas y descartadas.** (a) Usar solo los puntajes por competencia de la OCDE: se descartó como
+análisis principal porque no permite calibrar un modelo propio ni examinar los ítems, pero se conserva como criterio
+de validación. (b) Quedarse en Saber 11 con el puntaje total de matemáticas: descartada porque no permite calificar
+por competencias. (c) Combinar Saber 11 y PISA: descartada porque no cabe en el semestre.
+
+**Qué se hará si algo falla con los datos.** Los datos ya están descargados y verificados, de modo que el riesgo no es
+de acceso sino de potencia: si algún ítem tiene pocas respuestas en un grupo, se excluirá del DIF y, si fuera
+necesario, se agruparán países hispanohablantes como respaldo.
+
+**Tratamiento de datos personales.** La base es anónima, pero contiene información de menores. Toda salida se
+presentará agregada por grupo, conforme a la Ley 1581 de 2012; ningún resultado se publicará a nivel de estudiante.
+
+# Alcance, viabilidad y plan de trabajo
+
+**Qué incluye.** Un modelo de medición del NSE latente sobre PISA 2022 Colombia, su invarianza entre zona, sexo y
+sector, una calificación propia por competencias con TRI multidimensional validada contra la OCDE, el análisis de DIF
+y de omisiones, un modelo estructural por competencia y una API con tablero.
+
+**Qué no incluye, y por qué.** No se comparan países (solo Colombia, para que el proyecto quepa en el semestre); no se
+usa PISA 2025 (matemáticas es dominio menor y sin puntajes por proceso); no se usan los tres bienes del hogar propios de
+Colombia, porque la base pública no los incluye; no se hacen afirmaciones causales (un solo ciclo, diseño transversal).
+
+```{r tabla-cronograma}
+crono <- data.frame(
+  Semana = c("1 (5–11 oct)", "2 (12–18 oct)", "3 (19–25 oct)", "4 (26 oct–1 nov)", "5 (2–8 nov)",
+             "6 (9–15 nov)", "7 (16–22 nov)", "8 (23–29 nov)"),
+  Hito = c("Organización, extracción y libro de códigos", "Validación contra cifras OCDE; inicio NSE",
+           "Modelo de medición del NSE (objetivo 1)", "Invarianza (objetivo 2)",
+           "Calificación por competencias, validación y DIF (objetivo 3)", "Modelo estructural (objetivo 4)",
+           "Robustez y búsqueda formal de novedad; inicio API", "API, tablero, informe y sustentación (objetivo 5)"),
+  `Entregable verificable` = c("Base analítica y diccionario", "Tabla propia vs OCDE",
+                               "Parámetros, ajuste y decisión de dimensiones", "Tabla de modelos anidados",
+                               "Puntajes por competencia, correlación con la OCDE, lista de DIF",
+                               "Coeficientes y prueba de igualdad", "Tabla de robustez",
+                               "API documentada, tablero e informe"),
+  check.names = FALSE)
+knitr::kable(crono, caption = "Cronograma por hitos (8 semanas restantes).")
+```
+
+La holgura está en la semana 7: los análisis de robustez pueden reducirse al mínimo si las semanas anteriores se
+extienden.
+
+**Riesgos y contingencias.** (1) *El modelo de cuatro competencias no converge o no supera al unidimensional:* se
+estimará con métodos para alta dimensionalidad (cuasi Monte Carlo o MHRM) y, si las competencias resultan
+indistinguibles, se reportará como hallazgo y se continuará con la estructura mejor soportada. (2) *La invarianza
+escalar no se sostiene:* se trabajará con invarianza parcial y los indicadores no invariantes serán un resultado del
+objetivo 2. (3) *El software no admite pesos con el estimador para datos ordinales:* se usará una estrategia en dos
+pasos (puntajes del NSE y regresiones con réplicas BRR). (4) *La API resulta más exigente de lo previsto:* se
+priorizará una versión mínima que sirva tablas de resultados.
+
+# Declaración de uso de IA y reparto del trabajo
+
+**Uso de inteligencia artificial.** El equipo usó un asistente de IA generativa (Claude, de Anthropic) para: (i)
+auditar la base de Saber 11 y luego revisar la de PISA 2022 con scripts en R; (ii) buscar antecedentes y verificar
+metadatos bibliográficos en Crossref y en las páginas de las revistas; (iii) organizar la gestión de la información en
+Obsidian y Zotero con un protocolo de verificación, y (iv) redactar este borrador, que el equipo revisa sección por
+sección.
+
+El protocolo exige que toda cifra tenga su script y toda afirmación su fuente y página, y que solo un integrante del
+equipo marque algo como verificado. Ese protocolo detectó y corrigió errores de la IA, que dejamos registrados: una
+proporción de respuestas rápidas que mezclaba respuestas con omisiones (se corrigió al separarlas); números de
+capítulo del reporte técnico citados sin verificar (se eliminaron); iniciales de autores no confirmadas (se
+reemplazaron por los datos de Crossref); una cifra de brecha socioeconómica tomada de un fragmento de buscador (se
+retiró del documento); la versión de un programa y el nombre de un complemento desactualizados, y la omisión de dos
+preguntas del índice de posesiones del hogar (se corrigió al leer el reporte técnico de 2022).
+
+Dos propuestas de la IA que el equipo descartó: construir un sistema RAG para gestionar la información, que no se
+justifica con unas treinta fuentes (se dejó solo como posible producto del curso de Python), y combinar Saber 11 con
+PISA, que no cabe en el semestre.
+
+**Riesgos éticos.** Los datos son de menores: solo se publicarán resultados agregados. Existe además un riesgo de
+comunicación: un hallazgo de DIF o de no invarianza podría usarse para deslegitimar la prueba o para estigmatizar a
+estudiantes de menor NSE. El informe declarará los límites del alcance (un ciclo, un país, datos autorreportados).
+
+```{r tabla-reparto}
+reparto <- data.frame(
+  `Sección / fase` = c("Planteamiento del problema", "Estado del arte", "Objetivos",
+                       "Datos, NSE e invarianza (objetivos 1–2)", "Calificación por competencias y SEM (objetivos 3–4)",
+                       "API y tablero (objetivo 5)", "Gestión de la información y verificación"),
+  `Responsable principal` = c("Vanessa Acosta", "Mateo Ramos", "Ambos", "Mateo Ramos", "Vanessa Acosta",
+                              "Ambos", "Ambos"),
+  `Revisión cruzada` = c("Mateo Ramos", "Vanessa Acosta", "—", "Vanessa Acosta", "Mateo Ramos", "—", "—"),
+  check.names = FALSE)
+knitr::kable(reparto, caption = "Reparto del trabajo (basado en el del primer corte) [VERIFICAR con el equipo].")
+```
+
+# Referencias {-}
+
+::: {#refs}
+:::

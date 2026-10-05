@@ -1,0 +1,49 @@
+# =============================================================================
+# Proyecto Final PISA — qué NO se sube a GitHub
+# =============================================================================
+
+# --- Datos: pesados y con información de menores (Ley 1581 de 2012) ---------
+# Cada integrante descarga los datos de PISA 2022 de la OCDE (ver README.md).
+Proyecto_PISA/datos/*
+!Proyecto_PISA/datos/*.R
+*.SAV
+*.sav
+*.SAS7BDAT
+*.rds
+*.parquet
+# Etapa 1 (Saber 11): datos crudos y procesados
+Examen_Saber_11_*.txt
+Etapa1_Saber11/Proyecto/datos/
+
+# --- Hojas de cálculo: fuera, salvo la documentación oficial de PISA ----------
+*.xlsx
+!Proyecto_PISA/documentacion/PISA2022_TechnicalReport_AnexoA_clasificacion_items.xlsx
+
+# --- Documentación con derechos de autor (libros) y comprimidos pesados -------
+Proyecto_PISA/documentacion/*.pdf
+Proyecto_PISA/documentacion/*.zip
+Proyecto_PISA/documentacion/vault_exportaciones_antiguas/
+
+# --- Archivos intermedios al generar PDF con R Markdown -----------------------
+*.knit.md
+*.tex
+*.log
+*_files/
+
+# --- R --------------------------------------------------------------------------
+.Rhistory
+.RData
+.Rproj.user/
+
+# --- Python (fase API) ------------------------------------------------------------
+__pycache__/
+.venv/
+*.pyc
+
+# --- Configuración personal ----------------------------------------------------
+.claude/
+
+# --- Obsidian: estado de ventanas de cada uno, no contenido ---------------------
+Vault_PISA2022/.obsidian/workspace*
+Vault_PISA2022/.obsidian/cache
+Vault_PISA2022/.trash/

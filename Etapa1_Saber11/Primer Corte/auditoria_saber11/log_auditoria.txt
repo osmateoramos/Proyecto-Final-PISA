@@ -1,0 +1,197 @@
+
+
+==============================================================================
+0. CARGA E INTEGRIDAD DEL ARCHIVO
+==============================================================================
+
+--- Integridad de la descarga ---
+Tamano del archivo: 422,3 MB
+Termina en salto de linea: TRUE 
+Campos en la ultima linea: 92 (deberian ser 92)
+Archivo completo.
+
+Filas leidas: 576.213  Columnas: 92 
+Tiempo de carga: 3 seg
+Periodos presentes: 20252 
+
+--- Duplicados ---
+estu_consecutivo duplicados: 2 
+Filas completamente duplicadas: 0 
+
+
+==============================================================================
+1. OBJETIVO 1 - Hay respuestas item por item en este archivo?
+==============================================================================
+Columnas que podrian ser respuestas de item: NINGUNA 
+
+--- Todo lo que el archivo trae sobre desempeno en matematicas ---
+[1] "desemp_matematicas"    "percentil_matematicas" "punt_matematicas"     
+
+--- Familias de variables de resultado disponibles ---
+punt_       : punt_c_naturales, punt_global, punt_ingles, punt_lectura_critica, punt_matematicas, punt_sociales_ciudadanas
+desemp_     : desemp_c_naturales, desemp_ingles, desemp_lectura_critica, desemp_matematicas, desemp_sociales_ciudadanas
+percentil_  : percentil_c_naturales, percentil_global, percentil_ingles, percentil_lectura_critica, percentil_matematicas, percentil_sociales_ciudadanas
+
+VEREDICTO O1: el archivo entrega puntajes agregados por area (escala 0-100),
+niveles de desempeno (1-4) y percentiles. NO entrega respuestas por item.
+Sin matriz persona x item no se puede calibrar un modelo TRI propio.
+
+
+==============================================================================
+2. LA ANOMALIA DE ESTRATO (el supuesto bug de agrupamiento)
+==============================================================================
+
+--- Puntaje de matematicas por estrato (crudo, tal como viene el archivo) ---
+   fami_estratovivienda      n media_mat sd_mat media_inse pct_no_ofic
+                 <char>  <int>     <num>  <num>      <num>       <num>
+1:            Estrato 1 123579     51.87  12.71      46.24        12.1
+2:            Estrato 2 165210     53.32  12.55      51.75        19.2
+3:            Estrato 3 122396     54.05  13.13      56.76        32.8
+4:            Estrato 4  36109     53.35  14.91      59.80        45.8
+5:            Estrato 5  10403     51.68  15.88      59.49        46.7
+6:            Estrato 6   4455     47.77  16.23      56.61        37.5
+7:          Sin Estrato  26776     45.26  12.28      43.90        11.4
+8:                 <NA>  87285     48.87  13.79      49.97        20.8
+
+--- Contraste con el INSE del ICFES (indice construido, no autorreportado) ---
+    inse_decil     n media_mat
+        <fctr> <int>     <num>
+ 1:          1 49581     47.06
+ 2:          2 49581     48.53
+ 3:          3 49580     49.53
+ 4:          4 49581     50.28
+ 5:          5 49581     51.20
+ 6:          6 49580     52.10
+ 7:          7 49581     53.34
+ 8:          8 49580     54.80
+ 9:          9 49581     56.90
+10:         10 49581     61.83
+
+--- Correlaciones ---
+estrato ~ punt_matematicas :  0.024 
+INSE    ~ punt_matematicas :  0.316 
+estrato ~ INSE             :  0.468 
+
+Si estrato correlaciona debilmente incluso con el INSE del propio ICFES,
+el problema esta en el estrato, no en el puntaje.
+
+LECTURA: si el INSE es monotono y fuerte mientras el estrato no lo es, la
+anomalia no es un error de agrupamiento del script sino ruido de medicion en
+una variable autorreportada por un menor de edad. Eso es un ARGUMENTO A FAVOR
+de modelar el NSE como constructo latente en vez de usar estrato observado.
+
+
+==============================================================================
+3. OBJETIVO 3 - Viabilidad del DIF entre calendarios A y B
+==============================================================================
+
+--- Distribucion de cole_calendario ---
+   cole_calendario      n    pct media_mat
+            <char>  <int>  <num>     <num>
+1:               A 545036 94.589     52.15
+2:            <NA>  28926  5.020     50.45
+3:            OTRO   1642  0.285     46.38
+4:               B    609  0.106     49.80
+
+Calendario B: n = 609 
+ALERTA O3: el calendario B es marginal en esta aplicacion. Los colegios de
+calendario B presentan mayoritariamente en la aplicacion del PRIMER semestre
+(periodo 20251), no en esta. Comparar calendarios con este archivo solo no es
+viable; y aun uniendo ambos periodos, el calendario B es un grupo pequeno y
+muy seleccionado (privado, urbano, alto NSE), lo que confunde calendario con
+nivel socioeconomico.
+
+--- Perfil de los colegios de calendario B (para dimensionar la confusion) ---
+   cole_calendario      n pct_no_oficial pct_urbano media_inse
+            <char>  <int>          <num>      <num>      <num>
+1:               A 545036           22.5       80.6      51.94
+2:               B    609          100.0       96.9      57.67
+
+
+==============================================================================
+4. OBJETIVO 2 - Viabilidad del NSE latente (SEM)
+==============================================================================
+
+--- Faltantes en el bloque de indicadores candidatos ---
+                        variable pct_na
+                          <char>  <num>
+ 1:         fami_estratovivienda  15.15
+ 2:          fami_educacionmadre  13.96
+ 3:          fami_educacionpadre  13.91
+ 4:               fami_numlibros  16.31
+ 5:            fami_cuartoshogar  11.99
+ 6:           fami_personashogar  11.75
+ 7:          fami_tieneautomovil  14.05
+ 8:         fami_tienecomputador  11.92
+ 9:           fami_tieneinternet  14.97
+10:           fami_tienelavadora  12.79
+11:     fami_tienehornomicroogas  13.48
+12:         fami_tieneserviciotv  15.42
+13:        fami_tienemotocicleta  13.90
+14: fami_tieneconsolavideojuegos  14.07
+
+--- Casos completos en el bloque de medida ---
+Completos: 364.303 de 576.213 (63.2%)
+NOTA: con perdida por item cercana al 10% conviene FIML/WLSMV sobre datos
+parciales antes que listwise; el listwise descarta una fraccion no trivial.
+
+--- Correlacion policorica del bloque de medida (submuestra n=4000) ---
+            estrato_num educ_madre educ_padre libros cuartos b_automovil
+estrato_num        1.00       0.29       0.27   0.25    0.16        0.32
+educ_madre         0.29       1.00       0.67   0.32    0.09        0.35
+educ_padre         0.27       0.67       1.00   0.32    0.08        0.31
+libros             0.25       0.32       0.32   1.00    0.16        0.32
+cuartos            0.16       0.09       0.08   0.16    1.00        0.25
+b_automovil        0.32       0.35       0.31   0.32    0.25        1.00
+
+--- Adecuacion factorial ---
+KMO global: 0.895 
+Primeros 5 autovalores: 4.98, 1.32, 0.93, 0.89, 0.77 
+Varianza explicada por el 1er factor: 38.3%
+
+--- Cargas del factor unico (unidimensionalidad del NSE) ---
+               indicador carga
+                  <char> <num>
+ 1:         b_computador 0.799
+ 2:           b_internet 0.763
+ 3: b_consolavideojuegos 0.675
+ 4:     b_hornomicroogas 0.672
+ 5:          b_automovil 0.638
+ 6:           b_lavadora 0.617
+ 7:           educ_madre 0.582
+ 8:         b_serviciotv 0.568
+ 9:           educ_padre 0.538
+10:          estrato_num 0.467
+11:               libros 0.453
+12:              cuartos 0.307
+13:        b_motocicleta 0.115
+
+Indicadores con carga menor a 0.30 (candidatos a salir del modelo):
+       indicador carga
+          <char> <num>
+1: b_motocicleta 0.115
+
+
+==============================================================================
+5. RESUMEN PARA EL DOCUMENTO
+==============================================================================
+
+1. FUENTE DE DATOS. Archivo agregado de DataIcfes: 576.213 registros leidos y 92 variables, sin respuestas por item. El
+   anteproyecto describe 576.213 registros; este archivo (periodo 20252) tiene otro tamano, asi que hay que
+   declarar exactamente cual aplicacion se usa.
+
+2. OBJETIVO 1 (TRI propio). No ejecutable con esta fuente: no hay matriz de
+   respuestas. Se suma la reserva legal del banco de preguntas (Ley 1324 de 2009).
+   Reformular hacia analisis sobre los puntajes ya calibrados por el ICFES.
+
+3. ANOMALIA DE ESTRATO. Se reproduce desde el crudo, no es un bug del script.
+   Es ruido de medicion del autorreporte y sostiene el argumento del NSE latente.
+
+4. OBJETIVO 3 (DIF por calendario). Inviable con este archivo (calendario B
+   marginal) y confundido con NSE aunque se unan periodos.
+
+5. OBJETIVO 2 (NSE latente). Es el objetivo mas solido: el bloque de indicadores
+   existe, con faltantes manejables y estructura factorial evaluable.
+
+
+Salidas escritas en: C:\Users\dy2059\Mis Archivos\MATERIAL UNIVERSIDAD\CONSULTORIA\auditoria_saber11

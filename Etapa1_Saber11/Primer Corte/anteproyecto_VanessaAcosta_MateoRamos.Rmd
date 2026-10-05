@@ -1,0 +1,675 @@
+---
+title: "Nivel socioeconómico como constructo latente y desempeño en matemáticas en la prueba Saber 11"
+subtitle: "Anteproyecto — Entrega 1, Consultoría Estadística"
+author: "Vanessa Acosta y Mateo Ramos"
+date: "Universidad Santo Tomás · 2026-II"
+lang: es
+bibliography: referencias.bib
+csl: apa.csl
+link-citations: true
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+    toc: false
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+    number_sections: true
+    theme: readable
+    df_print: kable
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    number_sections: true
+    toc: false
+    keep_tex: false
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    theme: readable
+    df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+**Proyecto integrador de las asignaturas:**
+[Teoría de Respuesta al Ítem](https://aulavirtual.usantotomas.edu.co/course/view.php?id=18256),
+[Modelo de Ecuaciones Estructurales](https://aulavirtual.usantotomas.edu.co/course/view.php?id=18255)
+y
+[Python para Desarrollo de APIs e Inteligencia Artificial](https://aulavirtual.usantotomas.edu.co/course/view.php?id=18258),
+en el marco de Consultoría Estadística. **Tutores:** Javier Sierra y Juan
+Carlos Rubriche.
+
+# Planteamiento del problema y contexto
+
+En Colombia, la prueba Saber 11 del Instituto Colombiano para la Evaluación
+de la Educación (ICFES) es el examen estandarizado que toda persona debe
+presentar para culminar la educación media, y su puntaje es el insumo
+principal para el acceso a la educación superior: define el ranking en
+convocatorias de becas y créditos condonables y, en la práctica, funciona
+como filtro de admisión en buena parte de las instituciones de educación
+superior del país. El actor afectado es el conjunto de estudiantes de grado
+11 que presenta la prueba —del orden de varios cientos de miles por cada
+aplicación semestral; solo entre 2014 y 2019 se registraron 3\,247\,429
+evaluados [@collazos2021determinantes]— y, dentro de ese universo, en
+particular quienes provienen de hogares de menor nivel socioeconómico.
+
+Que el nivel socioeconómico (NSE) se asocia con el desempeño en Saber 11 es
+un hecho establecido y no es lo que este proyecto se propone redescubrir. El
+problema está un paso antes: **en cómo se mide el NSE y en qué desempeño se
+mide**. Ambas decisiones, que suelen tomarse sin discusión, determinan la
+magnitud de la brecha que se reporta y las conclusiones de política que de
+ella se derivan.
+
+Sobre la primera decisión, el ICFES no usa el estrato de la vivienda como
+medida de NSE. Construye un Índice de Nivel Socioeconómico (INSE) mediante
+un modelo de Teoría de Respuesta al Ítem sobre los ítems del cuestionario
+socioeconómico, previa verificación de que esos ítems apunten a **una sola
+dimensión**; el estrato queda explícitamente fuera del índice y se emplea
+solo como variable de validación externa [@icfes2019inse]. Esa decisión de
+unidimensionalidad no es neutra: la literatura internacional sobre medición
+del NSE viene mostrando, desde hace más de una década, que el constructo
+tiene al menos una dimensión económica y una cultural que no pesan igual
+sobre el logro [@hernandez2011modelo; @eriksson2021socioeconomic], y que una
+medida compuesta única puede no comportarse igual entre subgrupos
+[@rutkowski2013measuring].
+
+Una exploración propia sobre la base completa de la aplicación 2025-2
+muestra hasta qué punto la decisión de medida cambia el resultado. Sobre los
+576\,213 registros de esa aplicación, la correlación entre el estrato de
+vivienda declarado y el puntaje de matemáticas es de apenas $0{,}024$,
+mientras que la del INSE oficial con ese mismo puntaje es de $0{,}316$; el
+promedio en matemáticas crece de forma monótona de $47{,}06$ a $61{,}83$
+puntos entre el primer y el último decil de INSE, pero por estrato la
+relación no es monótona y el promedio del estrato 6 ($47{,}77$) queda por
+debajo del estrato 1 ($51{,}87$). Más revelador todavía: estrato e INSE, que supuestamente miden
+lo mismo, correlacionan solo $0{,}468$ entre sí. Dos investigadores que
+trabajen sobre el mismo archivo y la misma cohorte, uno usando estrato y
+otro usando INSE, llegarían a conclusiones incompatibles sobre la magnitud
+de la desigualdad educativa. El estrato autorreportado por un menor de edad
+arrastra un error de medición que ningún modelo de regresión sobre variables
+observadas puede separar del efecto que pretende estimar.
+
+Sobre la segunda decisión, el seguimiento público de las brechas en Colombia
+se hace predominantemente sobre el **puntaje global**. El informe que
+sintetiza una década de resultados reporta la brecha por nivel
+socioeconómico en esa escala agregada, y documenta además que dicha brecha
+pasó de superar los 60 puntos en los años iniciales de la serie a
+$11{,}3$ puntos en 2023, el valor más bajo del periodo analizado
+[@lee2024decada]. El puntaje global, sin embargo, es la suma de cinco
+pruebas que evalúan constructos distintos, y promedia precisamente aquello
+que podría diferenciarlas. Matemáticas es un caso de interés propio: el
+ICFES define para esa prueba tres competencias específicas —interpretación
+y representación, formulación y ejecución, y argumentación— sobre
+aproximadamente cincuenta ítems de selección múltiple
+[@icfes2022marcomat], y la literatura internacional analiza el logro
+matemático como desenlace separado justamente porque el gradiente
+socioeconómico no opera igual en todos los dominios
+[@eriksson2021socioeconomic; @patsis2026instructional]. Y la brecha en esa
+área es sustantiva: calculada por el equipo sobre el microdato de esta misma
+aplicación, la diferencia en matemáticas entre los niveles socioeconómicos
+extremos definidos por el propio ICFES es de $14{,}59$ puntos sobre una
+escala de 100 ($47{,}22$ en NSE 1 frente a $61{,}81$ en NSE 4).
+
+Si nadie separa estas dos decisiones, dos consecuencias se mantienen sin
+cuestionarse. Primero, decisiones de política educativa que se apoyan en una
+brecha cuya magnitud depende de un instrumento de medición del NSE que
+nunca se somete a prueba entre los grupos que se quieren comparar. Segundo,
+una lectura del desempeño matemático que queda subsumida en un agregado de
+cinco pruebas, de modo que no puede distinguirse si el NSE afecta al
+razonamiento matemático de manera particular o solo a través de su efecto
+sobre el rendimiento académico general.
+
+Este anteproyecto formula, entonces, la siguiente pregunta estadística
+respondible: **¿en qué medida el nivel socioeconómico —modelado como
+constructo latente multidimensional mediante un modelo de ecuaciones
+estructurales— explica el desempeño en matemáticas en Saber 11, y es esa
+medición invariante entre los grupos que la investigación educativa
+colombiana compara habitualmente?**
+
+# Estado del arte y antecedentes
+
+La revisión se organiza por decisión metodológica y no por autor, porque el
+objetivo es identificar qué supuestos asume cada familia de trabajos sobre
+la medición del NSE y sobre el desenlace, y desde ahí ubicar el vacío que
+atiende este proyecto.
+
+## El desempeño como variable observada: el enfoque econométrico dominante en Colombia
+
+La mayoría de los estudios colombianos sobre Saber 11 y NSE tratan el
+puntaje reportado como una variable observada más y lo relacionan con
+covariables socioeconómicas mediante regresión.
+@collazos2021determinantes emplean un modelo de combinación de corte
+transversal con mínimos cuadrados ordinarios sobre 3\,247\,429 estudiantes
+evaluados entre 2014 y 2019, e identifican efectos netos estadísticamente
+significativos de estrato (0,81 puntos adicionales en matemáticas para
+estrato medio frente a bajo, controlando por otras covariables), educación
+materna (hasta 7,44 puntos para posgrado) y acceso a computador (1,42
+puntos) e internet (1,14 puntos) en el hogar. Es, entre los antecedentes
+colombianos revisados, el que más se acerca al interés de este proyecto,
+porque sí reporta resultados sobre el puntaje de matemáticas y no solo sobre
+el global. En la misma línea, @zabala2019impacto aplican regresión lineal
+sobre datos de Norte de Santander del segundo semestre de 2019 y encuentran
+que el nivel socioeconómico del colegio y la posesión de computador se
+asocian con el desempeño, aunque reportan un efecto contraintuitivo del
+acceso a internet.
+
+Ese resultado contraintuitivo ilustra el límite estructural del enfoque:
+cuando el efecto de una variable no calza con la teoría, la regresión sobre
+variables observadas no puede distinguir si el problema está en el dato, en
+la especificación o en que la variable socioeconómica está mal medida.
+Ninguno de estos trabajos modela el error de medición del NSE, y ninguno
+verifica si sus indicadores socioeconómicos se comportan igual en los
+subgrupos que comparan.
+
+## La medición del NSE: del índice compuesto al constructo latente
+
+Un segundo grupo de estudios reconoce que el NSE no es directamente
+observable y propone medirlo como constructo.
+
+**En Colombia**, el antecedente directo es @cruz2016construccion, quienes
+construyen un índice socioeconómico familiar para estudiantes de Saber 11
+(2012, aproximadamente 425\,000 estudiantes) mediante análisis de
+componentes principales sobre variables categóricas del cuestionario,
+ponderadas con escalamiento óptimo, y encuentran una correlación positiva
+significativa entre ese índice y el desempeño. Es un antecedente
+metodológico valioso, pero su técnica asume por construcción una estructura
+unidimensional del NSE y no permite, por diseño, probar si esa medición
+funciona igual entre subgrupos.
+
+**En el ámbito internacional**, la literatura ha avanzado justamente sobre
+esos dos límites. @hernandez2011modelo, con un modelo de ecuaciones
+estructurales sobre cuestionarios a padres de 4\,911 estudiantes mexicanos,
+distinguen estatus cultural y económico como dos factores latentes
+correlacionados pero distintos, y encuentran que el factor cultural
+(coeficientes entre 0,28 y 0,34) pesa más sobre el logro que el
+estrictamente económico (entre 0,22 y 0,31). @eriksson2021socioeconomic
+llevan ese argumento a escala: sobre PISA 2018, con aproximadamente 600\,000
+estudiantes de 77 sociedades, descomponen el NSE en seis dimensiones usadas
+como predictores simultáneos —ocupación de los padres, nivel educativo de
+los padres, posesiones de riqueza, posesiones culturales, recursos
+educativos del hogar y libros en casa— en lugar del índice compuesto ESCS, y
+encuentran que solo dos de ellas predicen sustantivamente el logro: libros
+en casa, con el mayor efecto promedio, y ocupación de los padres. Las otras
+cuatro contribuyen poco o nada. Es evidencia directa de que colapsar el NSE
+en un solo número no solo pierde información, sino que puede diluir en el
+promedio las dimensiones que efectivamente importan.
+
+Sobre la invarianza, @rutkowski2013measuring muestran con métodos
+psicométricos que el índice de posesiones del hogar que PISA usa para medir
+NSE tiene confiabilidad muy variable entre países y comparabilidad cultural
+pobre, y concluyen que una sola medida compuesta no funciona igual en todos
+los contextos. @rolfe2021tailoring desarrolla la respuesta metodológica:
+construye un modelo de medición del NSE mediante análisis factorial
+confirmatorio sobre quince años de datos PISA suecos y lo somete a pruebas
+de invarianza de medición y al método de alineamiento (*alignment
+optimization*), mostrando que la invarianza a nivel métrico es alcanzable
+pero debe verificarse, no suponerse. Ninguno de los estudios colombianos
+revisados somete su medición del NSE a una prueba de este tipo.
+
+## Qué mide el ICFES cuando mide NSE: los supuestos del INSE
+
+Este proyecto no construye una medida de NSE en el vacío: el ICFES ya
+publica una, y documentarla es indispensable para delimitar qué aporta un
+modelo alternativo. Según el boletín técnico de la entidad
+[@icfes2019inse], desde 2012 el INSE se calcula mediante Teoría de
+Respuesta al Ítem sobre los ítems del cuestionario socioeconómico —modelo
+logístico de dos parámetros para los ítems dicotómicos y modelos de
+respuesta graduada o nominal para los politómicos—, se reescala al rango
+0–100 con media 50, y luego se discretiza en cuatro niveles (NSE 1 a NSE 4)
+mediante árboles de decisión. El propio documento precisa tres supuestos que
+resultan centrales para este anteproyecto.
+
+Primero, la **unidimensionalidad es un requisito previo, no un resultado**:
+se emplea análisis de componentes principales para seleccionar los ítems y
+descartar aquellos que apunten a otra dimensión, y solo una vez validado
+que los ítems miden un único atributo se estima el modelo TRI. La estructura
+multidimensional que la literatura internacional documenta queda, por
+diseño, fuera del índice.
+
+Segundo, el **estrato de la vivienda no entra en el índice**: se emplea
+únicamente como variable de control externo, bajo el supuesto de que a mayor
+estrato debería corresponder mayor INSE. La exploración propia reportada en
+la sección anterior muestra que esa validación externa es débil: la
+correlación entre ambos es de $0{,}468$.
+
+Tercero, y más relevante, el ICFES **sí realiza análisis de funcionamiento
+diferencial del ítem sobre los ítems del INSE, pero entre periodos**, con el
+fin de garantizar la comparabilidad temporal de la escala. No entre grupos
+de la misma cohorte. El boletín llega a ilustrar, con las curvas
+características del ítem "consola de videojuegos", que a igual nivel de INSE
+la probabilidad de poseer ese bien es mayor para los hombres que para las
+mujeres —la curva de las mujeres aparece desplazada a la derecha—, y lo
+presenta como una característica descriptiva del ítem, sin que ese
+comportamiento diferencial se corrija ni se propague a una revisión de la
+medida [@icfes2019inse]. Es, en los términos de @rutkowski2013measuring y
+@rolfe2021tailoring, exactamente el tipo de evidencia que motiva someter un
+modelo de medición a pruebas de invarianza entre grupos antes de usarlo para
+compararlos.
+
+## Por qué matemáticas y no el puntaje global
+
+El seguimiento público de las brechas socioeconómicas en Colombia se apoya
+mayoritariamente en el puntaje global [@lee2024decada], y los trabajos que
+sí desagregan por área lo hacen incluyendo matemáticas como una variable
+dependiente más dentro de un conjunto de regresiones paralelas
+[@collazos2021determinantes], sin modelar qué tiene de específico el
+desempeño matemático frente al rendimiento académico general del estudiante.
+
+Esa distinción importa por dos razones. La primera es sustantiva: el ICFES
+define la prueba de matemáticas sobre tres competencias propias
+—interpretación y representación, formulación y ejecución, y argumentación—
+que apuntan a un razonamiento matemático específico y no a una habilidad
+académica difusa [@icfes2022marcomat]. La segunda es empírica: la
+investigación internacional trata el logro matemático como desenlace
+separado porque el gradiente socioeconómico difiere entre dominios
+[@eriksson2021socioeconomic], y porque los mecanismos de aula que median esa
+relación se estudian específicamente para matemáticas
+[@patsis2026instructional]. Este último trabajo es además el antecedente
+metodológico más cercano al diseño aquí propuesto: @patsis2026instructional
+estiman modelos de ecuaciones estructurales de dos niveles sobre datos
+TIMSS 2019 de Suecia, con la calidad instruccional percibida modelada como
+constructo latente, para explicar disparidades socioeconómicas en logro
+matemático. Su resultado es una advertencia útil: el NSE se mantuvo como
+predictor robusto en ambos niveles, pero la evidencia de mediación fue
+limitada y los efectos indirectos intra-aula resultaron insignificantes.
+
+Conviene ser preciso sobre el alcance de este vacío. No es cierto que nadie
+haya analizado el puntaje de matemáticas en Colombia; sí lo es que el
+análisis dominante lo trata como un puntaje observado más, sin separar el
+componente específicamente matemático del desempeño académico general del
+estudiante, y sin ponerlo en relación con un modelo de medición del NSE
+sometido a prueba.
+
+## Contraste entre enfoques y vacío que atiende este proyecto
+
+El contraste entre los tres bloques sostiene la pertinencia del proyecto. El
+enfoque econométrico colombiano estima asociaciones sobre variables
+observadas, pero no modela el error de medición del NSE ni verifica la
+comparabilidad de sus indicadores entre grupos. El enfoque de variable
+latente ofrece las herramientas para hacerlo —estructura multidimensional y
+pruebas de invarianza— pero en Colombia solo se ha aplicado en su versión
+unidimensional y sin pruebas de invarianza, tanto en el antecedente
+académico [@cruz2016construccion] como en la medida oficial
+[@icfes2019inse]. Y el desenlace sobre el que se discute públicamente la
+desigualdad es un agregado de cinco pruebas que promedia lo que podría
+distinguirlas.
+
+Ningún antecedente revisado combina las tres piezas: (a) un modelo de
+medición del NSE como constructo latente **multidimensional**, estimado
+sobre los indicadores del cuestionario de Saber 11; (b) una prueba explícita
+de **invarianza de medición** de ese modelo entre los grupos que la
+investigación educativa colombiana compara de forma rutinaria —sector
+oficial y no oficial, zona urbana y rural, hombres y mujeres—; y (c) un
+desenlace que separe el **desempeño específicamente matemático** del
+rendimiento académico general. Ese es el vacío que este proyecto atiende.
+
+Cabe registrar, finalmente, un antecedente que delimita lo que este proyecto
+*no* hará. @calderon2026differential aplicaron el marco DFIT con el índice
+NCDIF y el procedimiento de Mantel-Haenszel, sobre un modelo logístico de
+dos parámetros, para comparar dos formas de la prueba de matemáticas de
+Saber 11 correspondientes a los dos calendarios académicos del país
+(aplicaciones 2018-2 y 2019-1; $n = 39\,377$ y $n = 1\,508$). De 22 ítems
+comunes, uno solo resultó con funcionamiento diferencial no despreciable
+tras aplicar los criterios de tamaño de efecto, y los autores concluyen que
+las comparaciones de puntajes entre esas formas son justas. Es, hasta donde
+este equipo pudo verificar, el único antecedente que aplica DIF sobre Saber
+11, y establece dos cosas relevantes aquí: que la equidad de la prueba a
+nivel de ítem entre calendarios ya fue examinada con rigor y no arrojó
+problemas sustantivos, y que ese tipo de análisis exige respuestas ítem por
+ítem, un dato que —como se detalla en la sección siguiente— no está
+disponible por el canal al que este equipo tiene acceso.
+
+# Objetivos
+
+**Objetivo general.** Determinar en qué medida el nivel socioeconómico,
+modelado como constructo latente multidimensional mediante un modelo de
+ecuaciones estructurales, explica el desempeño en matemáticas de los
+estudiantes que presentan la prueba Saber 11, evaluando si dicha medición
+es invariante entre grupos institucionales, geográficos y de sexo.
+
+**Objetivos específicos.**
+
+1. **Medir.** Especificar y estimar un modelo de medición del nivel
+   socioeconómico como constructo latente multidimensional —capital
+   económico y capital cultural— a partir de los indicadores del
+   cuestionario socioeconómico de Saber 11, y contrastarlo frente a la
+   especificación unidimensional que subyace al INSE oficial del ICFES. Se
+   declarará cumplido con las cargas factoriales estandarizadas, la
+   confiabilidad compuesta de cada dimensión, los índices de ajuste (CFI,
+   TLI, RMSEA, SRMR) y la comparación de ajuste entre ambos modelos
+   anidados.
+2. **Aislar el desenlace.** Estimar un modelo de medición del desempeño que
+   separe un factor de habilidad académica general —común a las cinco áreas
+   evaluadas— del componente específico de matemáticas. Se declarará
+   cumplido con las cargas del modelo y la proporción de varianza específica
+   atribuible al factor de matemáticas una vez descontado el factor general.
+3. **Explicar.** Estimar el modelo estructural en el que las dimensiones del
+   NSE latente predicen el componente matemático aislado en el objetivo 2,
+   incorporando naturaleza del colegio, zona y jornada como mediadores. Se
+   declarará cumplido con los coeficientes estandarizados, la descomposición
+   en efectos directos e indirectos y los índices de ajuste del modelo final.
+4. **Comparar.** Evaluar la invarianza de medición del modelo entre los
+   grupos que la investigación educativa colombiana compara de forma
+   rutinaria (oficial/no oficial, urbano/rural, hombres/mujeres). Se
+   declarará cumplido con la comparación secuencial de los modelos anidados
+   configural, métrico y escalar mediante $\Delta$CFI y $\Delta$RMSEA, y con
+   el listado de indicadores no invariantes en caso de invarianza parcial.
+5. **Poner a disposición.** Desarrollar una API en Python (FastAPI) y un
+   tablero que permitan consultar los coeficientes estimados y los
+   resultados de invarianza por subgrupo, de modo que las estimaciones sean
+   reutilizables sin reejecutar el análisis. Se declarará cumplido con la
+   documentación OpenAPI/Swagger accesible y el funcionamiento del tablero
+   sobre los resultados reales del modelo.
+
+La secuencia es acumulativa: el objetivo 1 construye el predictor, el 2
+construye el desenlace, el 3 los relaciona, el 4 somete a prueba la
+comparabilidad de esa relación entre grupos y el 5 expone lo estimado.
+
+# Datos disponibles y aproximación metodológica preliminar
+
+**Procedencia y acceso.** La fuente de datos es la base de resultados
+agregados de la prueba Saber 11 publicada por el ICFES —entidad responsable
+del examen y de la publicación— a través de su repositorio de datos abiertos
+DataIcfes, en la sección de acceso a bases de datos y diccionarios
+[@icfes2024acceso]. El equipo descargó el archivo correspondiente a la
+aplicación **2025, segundo semestre (2025-2)**, `Examen_Saber_11_20252`, en
+formato de texto plano delimitado por punto y coma, con codificación UTF-8 y
+**92 variables por registro**, una fila por evaluado, acompañado de su
+diccionario oficial de variables.
+
+**Licencia y condiciones de uso.** El repositorio se publica bajo el marco de
+datos abiertos del Estado colombiano (Ley 1712 de 2014 de transparencia y
+acceso a la información pública). La descarga no exige convenio, pero sí
+registro de usuario en el portal, y su uso queda sujeto a fines de
+investigación y análisis, con la restricción de no reidentificar a los
+evaluados: la base se distribuye anonimizada, con un consecutivo por
+estudiante (`estu_consecutivo`) y sin documento de identidad. Esta base es de
+naturaleza distinta a los microdatos de respuestas por ítem, que no son
+públicos y se rigen por la reserva legal del banco de preguntas (Ley 1324 de
+2009), como se detalla más abajo.
+
+**Por qué este problema no está ya resuelto con estos mismos datos.** La base
+es de uso frecuente en Colombia, de modo que la pertinencia no puede
+suponerse. Los trabajos revisados que la explotan lo hacen tratando el
+puntaje como variable observada y el nivel socioeconómico como covariable o
+índice compuesto [@collazos2021determinantes; @zabala2019impacto], o
+construyendo índices unidimensionales por componentes principales
+[@cruz2016construccion]; el seguimiento institucional de brechas se publica
+sobre el puntaje global [@lee2024decada]; y la propia medida oficial que
+viene en el archivo, el INSE, asume unidimensionalidad por construcción y no
+se somete a pruebas de invarianza entre grupos de una misma cohorte
+[@icfes2019inse]. Lo que este proyecto hace con esa base —modelo de medida
+multidimensional, separación del componente matemático respecto de la
+habilidad general y pruebas de invarianza multigrupo— no aparece en ninguno
+de los antecedentes revisados.
+
+**Precisión sobre el alcance de esta fuente.** Los puntajes que esta base
+reporta no son conteos de aciertos: son el producto de un modelo de Teoría
+de Respuesta al Ítem logístico de tres parámetros con el que el ICFES estima
+la habilidad de cada evaluado y la transforma a la escala publicada
+[@icfes2018puntajes]. El desenlace de este proyecto es, por tanto, una
+estimación de habilidad ya calibrada por la entidad, no una puntuación
+cruda, lo que es una fortaleza para el modelo estructural —la escala es
+comparable y está construida sobre un modelo psicométrico explícito— y a la
+vez una limitación que debe declararse: el error de medición de esa
+estimación no se publica por evaluado y no puede incorporarse al modelo.
+Esta base entrega, por
+estudiante, el puntaje en escala 0–100 de cada una de las cinco áreas
+(`punt_matematicas`, `punt_lectura_critica`, `punt_c_naturales`,
+`punt_sociales_ciudadanas`, `punt_ingles`), el puntaje global, el nivel de
+desempeño y el percentil correspondientes, además del cuestionario
+socioeconómico completo y el INSE ya calculado por el ICFES. **No contiene
+las respuestas ítem por ítem**, que son propiedad del ICFES y están sujetas
+a la reserva legal del banco de preguntas establecida por la Ley 1324 de
+2009. El estudio de @calderon2026differential, que sí realizó análisis a
+nivel de ítem, declara haber usado datos obtenidos bajo licencia del ICFES,
+no públicos, disponibles mediante solicitud razonable y permiso de la
+entidad a través de su Oficina de Gestión de Proyectos de Investigación. El
+equipo radicó una solicitud por ese canal; el diseño aquí presentado **no
+depende de su resultado**. Si la licencia se otorga dentro del semestre, las
+respuestas por ítem permitirían añadir un análisis de funcionamiento
+diferencial por grupo socioeconómico como extensión; si no se otorga, los
+cinco objetivos se cumplen íntegramente con la base agregada ya disponible.
+
+**Periodo, unidad de observación y volumen.** La unidad de observación es el
+estudiante que presenta la prueba en el periodo seleccionado. El archivo
+contiene **576\,213 registros**, verificados mediante un control de
+integridad que confirma que la descarga está completa: la última línea trae
+sus 92 campos y el archivo cierra con terminador de fin de línea. Conviene
+anotar una particularidad de nomenclatura: el archivo de microdatos
+identifica esta aplicación con el código de periodo `20252`, mientras que los
+cuadros de salida publicados por el ICFES la identifican como `20253` —la
+entidad emplea el último dígito para marcar particularidades de la
+aplicación, según advierte el propio cuadro—. Se trata de la misma
+aplicación, la segunda de 2025, y así se verificó al contrastar los
+promedios publicados con los calculados.
+
+**Muestra analítica y no respuesta al cuestionario.** De esos registros,
+80\,406 (el $14{,}0$ %) no tienen el cuestionario socioeconómico diligenciado
+y por tanto carecen de INSE; un $35{,}9$ % de ellos tampoco tiene
+establecimiento educativo asociado, lo que sugiere presentaciones
+individuales. Ese grupo obtiene $48{,}88$ puntos promedio en matemáticas
+frente a $52{,}56$ de quienes sí respondieron, de modo que **su exclusión no
+es aleatoria**. Los modelos se estimarán sobre los 495\,807 evaluados con
+cuestionario, y esta restricción se declarará como límite de validez externa
+de los resultados: lo estimado describe a quienes respondieron el
+cuestionario, no al total de evaluados.
+
+**Variables por objetivo.** Cada objetivo específico se responde con un
+bloque identificado de variables del archivo:
+
+| Objetivo | Variables del archivo |
+|---|---|
+| 1. Medida del NSE | `fami_estratovivienda`, `fami_educacionmadre`, `fami_educacionpadre`, `fami_numlibros`, `fami_cuartoshogar`, `fami_personashogar`, `fami_tienecomputador`, `fami_tieneinternet`, `fami_tienelavadora`, `fami_tienehornomicroogas`, `fami_tieneautomovil`, `fami_tieneserviciotv`, `fami_tieneconsolavideojuegos`. Contraste: `estu_inse_individual`, `estu_nse_individual` |
+| 2. Medida del desempeño | `punt_matematicas`, `punt_lectura_critica`, `punt_c_naturales`, `punt_sociales_ciudadanas`, `punt_ingles` |
+| 3. Modelo estructural | Las anteriores más los mediadores `cole_naturaleza`, `cole_area_ubicacion`, `cole_jornada` |
+| 4. Invarianza | Variables de agrupamiento `cole_naturaleza` (oficial/no oficial), `cole_area_ubicacion` (urbana/rural), `estu_genero` |
+| 5. API y tablero | No consume variables nuevas: expone las estimaciones de los objetivos 1 a 4 |
+
+La variable `fami_tienemotocicleta` se evaluó como indicador candidato y se
+excluye del modelo de medida por su carga insuficiente sobre el factor
+socioeconómico, según se detalla enseguida.
+
+**Verificación de viabilidad sobre el dato.** Antes de especificar cualquier
+modelo, el equipo auditó la base con un script propio en R que comprueba la
+integridad del archivo, la estructura de no respuesta, la adecuación
+factorial del bloque de indicadores y la viabilidad de cada objetivo. Los
+resultados respaldan el diseño. El bloque de indicadores socioeconómicos
+presenta faltantes por ítem entre $11{,}8$ % y $16{,}3$ %, manejables
+mediante estimación con información completa, aunque el descarte por lista
+reduciría la muestra al $63{,}2$ % de los casos. Sobre una submuestra de
+4\,000 casos completos, la matriz policórica arroja un KMO global de
+$0{,}895$ y una estructura con un primer autovalor de $4{,}98$ frente a
+$1{,}32$ del segundo: dominante pero no estrictamente unidimensional, lo que
+hace plausible la especificación de dos dimensiones correlacionadas. Las
+cargas sobre un factor único ordenan los indicadores de forma coherente con
+la literatura —computador ($0{,}80$), internet ($0{,}76$), consola
+($0{,}68$), horno ($0{,}67$), automóvil ($0{,}64$), lavadora ($0{,}62$),
+educación de la madre ($0{,}58$), televisión ($0{,}57$), educación del padre
+($0{,}54$), estrato ($0{,}47$), libros ($0{,}45$), cuartos ($0{,}31$)— con
+una única excepción, motocicleta ($0{,}12$), que se excluirá del modelo de
+medida. La correlación entre los puntajes de matemáticas y lectura crítica
+es de $0{,}760$, magnitud que sostiene la especificación de un factor de
+habilidad general del que separar el componente específico de matemáticas
+(objetivo 2).
+
+**Validación externa del procesamiento.** Para descartar errores de
+procesamiento antes de modelar, las cifras calculadas sobre el microdato se
+contrastaron contra los cuadros de salida oficiales que el ICFES publica
+para esta misma aplicación. El promedio en matemáticas del sector no oficial
+estimado por el equipo es de $56{,}15$ frente a $56{,}16$ publicado, y el del
+sector oficial de $51{,}03$ frente a $51{,}09$. La coincidencia confirma que
+la lectura del archivo, el tratamiento de los valores perdidos y las
+agregaciones reproducen los resultados oficiales, y respalda por extensión
+las cifras propias de este documento que no tienen equivalente publicado.
+
+**Ruta metodológica.** El flujo propuesto es: (1) extracción, limpieza y
+control de calidad, con recodificación ordinal explícita de los indicadores
+—tratando "No sabe" y "No Aplica" en educación de los padres como
+no-respuesta y no como el escalón más bajo de la escala, y "Sin Estrato"
+como valor perdido y no como estrato cero—; (2) análisis factorial
+exploratorio sobre correlaciones policóricas para contrastar la estructura
+dimensional; (3) análisis factorial confirmatorio del modelo de medida del
+NSE y del modelo de medida del desempeño; (4) estimación del modelo
+estructural con mediadores; (5) pruebas de invarianza multigrupo; (6)
+construcción de la API y el tablero sobre los resultados ya estimados. La
+estimación se hará con `lavaan` en R, con estimador WLSMV para los
+indicadores ordinales y estimación con información completa para los
+faltantes; se contrastará puntualmente con `semopy` en Python por
+continuidad con la asignatura de desarrollo, dejando declarada cualquier
+discrepancia en el informe final.
+
+**Condiciones de acceso y tratamiento de datos personales.** La base
+agregada es de acceso público, pero contiene información de menores y
+jóvenes protegida por la Ley 1581 de 2012. No se publicarán resultados a
+nivel de estudiante individual y toda salida del tablero se presentará
+agregada por grupo. El tratamiento se ajustará a esa ley y a la política de
+tratamiento de datos personales del ICFES.
+
+**Alternativa considerada y descartada.** Se consideró usar directamente el
+INSE oficial como medida de NSE, evitando estimar un modelo de medición
+propio. Se descartó porque el INSE asume unidimensionalidad por construcción
+y no se somete a pruebas de invarianza entre grupos de la misma cohorte
+[@icfes2019inse], que son precisamente los dos supuestos que este proyecto
+se propone examinar. El INSE se conserva, en cambio, como criterio de
+validación convergente del modelo estimado (objetivo 1), que es el uso para
+el que resulta apropiado.
+
+# Alcance, viabilidad y plan de trabajo
+
+**Qué sí incluye el proyecto.** Un modelo de medición del NSE como
+constructo latente multidimensional sobre la aplicación 2025-2 de Saber 11;
+su contraste contra la especificación unidimensional oficial; un modelo de
+medición que separa habilidad general y componente específico de
+matemáticas; un modelo estructural con mediadores institucionales; pruebas
+de invarianza multigrupo; y una API con un tablero que exponga los
+resultados estimados.
+
+**Qué no incluye, y por qué.** No se calibrará un modelo de Teoría de
+Respuesta al Ítem propio ni se realizará análisis de funcionamiento
+diferencial a nivel de ítem: ambos requieren la matriz de respuestas
+estudiante × ítem, que la base pública no contiene y cuyo acceso depende de
+una licencia del ICFES aún en trámite. Si esa licencia llega dentro del
+semestre, el análisis DIF por grupo socioeconómico se incorporará como
+extensión; en caso contrario quedará declarado como línea de trabajo futuro,
+sobre la base del procedimiento ya validado por @calderon2026differential.
+No se analizarán las demás áreas como desenlace principal: entran en el
+modelo únicamente como indicadores del factor de habilidad general. No se
+hará análisis longitudinal multi-periodo: comparar aplicaciones exigiría
+verificar la comparabilidad de la escala del INSE entre periodos, que excede
+el alcance disponible. No se desplegará la API en un servicio en la nube de
+acceso público: se entregará documentada y en ejecución local o en
+contenedor demostrativo.
+
+**Cronograma por hitos.** El anteproyecto y la obtención de los datos ya
+están resueltos, de modo que el cronograma cubre las **10 semanas
+restantes** del semestre.
+
+| Semanas | Hito | Entregable verificable |
+|---|---|---|
+| 1 | ETL, control de calidad y libro de códigos | Base verificada y recodificaciones documentadas |
+| 2 | Estructura dimensional del NSE (EFA policórico) | Solución factorial y decisión sobre número de dimensiones |
+| 3–4 | Modelos de medida: NSE y desempeño (objetivos 1–2) | Cargas, confiabilidades e índices de ajuste; contraste con el INSE |
+| 5–6 | Modelo estructural con mediadores (objetivo 3) | Coeficientes estandarizados y efectos directos e indirectos |
+| 7 | Pruebas de invarianza multigrupo (objetivo 4) | Tabla comparativa configural/métrico/escalar |
+| 8–9 | Desarrollo de la API (FastAPI) | Endpoints documentados en OpenAPI/Swagger |
+| 10 | Tablero, integración, informe final y sustentación | Tablero funcionando, informe final y presentación |
+
+La holgura queda embebida en las semanas 5–7. Si el modelo estructural o las
+pruebas de invarianza la consumen, la presión cae sobre la semana 10, por lo
+que el equipo fija de antemano un alcance mínimo viable para esa etapa (ver
+el tercer riesgo).
+
+**Riesgos y contingencias.**
+
+1. *El modelo de medida multidimensional no ajusta o las dos dimensiones
+   resultan empíricamente indistinguibles.* La auditoría preliminar indica
+   un primer autovalor dominante ($4{,}98$ frente a $1{,}32$), de modo que
+   este escenario es plausible. Contingencia: reportar el contraste entre la
+   solución de uno y dos factores como resultado sustantivo del objetivo 1
+   —una réplica independiente del supuesto del ICFES es un hallazgo, no un
+   fracaso— y continuar el modelo estructural con la especificación mejor
+   soportada por los datos.
+2. *La invarianza escalar no se sostiene entre alguno de los grupos.*
+   Contingencia: proceder con invarianza parcial, identificando y reportando
+   los indicadores no invariantes, que es en sí mismo el resultado de
+   interés del objetivo 4 y conecta directamente con el comportamiento
+   diferencial por sexo que el propio ICFES documenta sin corregir
+   [@icfes2019inse].
+3. *El desarrollo de la API y el tablero resulta más exigente de lo
+   previsto.* Contingencia: priorizar un tablero de alcance mínimo viable
+   —coeficientes del modelo y resultados de invarianza en tablas estáticas
+   servidas por la API— sobre extender el desarrollo más allá de la semana
+   10, dejando las vistas interactivas adicionales como trabajo futuro.
+4. *La licencia de microdatos del ICFES llega tarde o no llega.* Este riesgo
+   ya está mitigado por diseño: ninguno de los cinco objetivos depende de esa
+   licencia. Su llegada solo habilitaría una extensión opcional.
+
+# Declaración de uso de IA y reparto del trabajo
+
+**Uso de inteligencia artificial.** El equipo usó un asistente de IA
+generativa (Claude, de Anthropic) en cuatro momentos concretos: (i) para
+explorar y contrastar alternativas de diseño metodológico; (ii) para
+auditar la base de datos antes de especificar modelos, mediante un script en
+R que verificó la integridad del archivo, la estructura de faltantes, la
+adecuación factorial del bloque de indicadores y la viabilidad de cada
+objetivo propuesto; (iii) para buscar y verificar, fuente por fuente
+—abriendo cada artículo o informe y confirmando que autor, año y contenido
+citado coincidieran con lo que se afirma en este documento—, las referencias
+del estado del arte; y (iv) para generar una redacción inicial conforme a la
+rúbrica, que el equipo revisó sección por sección.
+
+Esa verificación fuente por fuente cambió el contenido del documento en
+varios puntos, y conviene dejarlo registrado. Una versión anterior de este
+anteproyecto describía el estudio de @calderon2026differential como un
+"modelo de respuesta graduada 2PL" y afirmaba que sus autores habían
+detectado un ítem con DIF, presentándolo como evidencia de inequidad de la
+prueba; la lectura del artículo completo mostró que el modelo es un 2PL
+dicotómico y que la conclusión de los autores es la contraria —que las
+comparaciones de puntajes entre formas son justas—, lo que obligó a
+reformular tanto la cita como el argumento que se apoyaba en ella. También
+se fechó explícitamente la brecha de más de 60 puntos reportada por
+@lee2024decada, que corresponde a los años iniciales de la serie y no al
+dato más reciente. Y la auditoría de la base descartó el diseño original del
+proyecto, que suponía disponibles unas respuestas ítem por ítem que la
+fuente accesible no contiene.
+
+Dos ejemplos de algo que la IA propuso y el equipo descartó: primero, la
+sugerencia de simular datos calibrados con parámetros tomados de informes
+técnicos del ICFES como plan alternativo para la parte de TRI, que se
+descartó por preferir un diseño ejecutable sobre datos reales antes que uno
+ambicioso sobre datos simulados; segundo, la propuesta de conservar el
+análisis DIF como objetivo central condicionado a la llegada de la licencia
+de microdatos, que se descartó por no comprometer el proyecto con un trámite
+de tiempos desconocidos dentro de un semestre de diez semanas.
+
+**Riesgos éticos propios de este proyecto.** Se trabaja con datos educativos
+de menores y jóvenes protegidos por la Ley 1581 de 2012; los resultados se
+presentarán siempre agregados por grupo. Existe además un riesgo de
+comunicación: los hallazgos sobre el peso del NSE o sobre la no invarianza
+de su medición podrían usarse, fuera de contexto, para deslegitimar la
+prueba o para estigmatizar a estudiantes de menor nivel socioeconómico. El
+informe final incluirá explícitamente las limitaciones de alcance —un solo
+periodo, un modelo de medida sobre indicadores autorreportados— para
+prevenir esa lectura.
+
+**Reparto del trabajo.**
+
+| Sección / fase | Responsable principal | Revisión cruzada |
+|---|---|---|
+| Planteamiento del problema (D1) | Vanessa Acosta | Mateo Ramos |
+| Estado del arte (D2) | Mateo Ramos | Vanessa Acosta |
+| Objetivos (D3) | Ambos | — |
+| Auditoría de datos y modelos de medida (objetivos 1–2) | Mateo Ramos | Vanessa Acosta |
+| Modelo estructural e invarianza (objetivos 3–4) | Vanessa Acosta | Mateo Ramos |
+| API y tablero (objetivo 5) | Ambos | — |
+| Alcance y cronograma (D5) | Ambos | — |
+
+# Referencias {-}
+
+::: {#refs}
+:::

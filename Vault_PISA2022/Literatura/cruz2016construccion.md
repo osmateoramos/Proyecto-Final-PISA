@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: cruz2016construccion
+zotero-key: 8UTA28TIg6703955
 clave_provisional: no
 titulo: "Construcción de un índice socioeconómico familiar para los estudiantes que presentan la prueba Saber 11"
 autores: "Cruz Castro, L. M.; Ortiz, F.; Lemus Polanía, D. F."

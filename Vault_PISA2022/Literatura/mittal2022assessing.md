@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: mittal2022assessing
+zotero-key: 2N78I2FSg6703955
 clave_provisional: no
 titulo: "Assessing the evidence for the comparability of socioeconomic status between students with and without immigrant background in Norway and Sweden"
 autores: "Mittal, O.; Scherer, R.; Nilsen, T."

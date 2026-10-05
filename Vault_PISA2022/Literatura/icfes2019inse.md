@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: icfes2019inse
+zotero-key: WWH6QFVHg6703955
 clave_provisional: no
 titulo: "¿Cómo se construye el Índice de Nivel Socioeconómico (INSE) en el contexto de las pruebas Saber?"
 autores: "ICFES"

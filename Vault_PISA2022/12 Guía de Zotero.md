@@ -59,15 +59,21 @@ navegador)         anotar con la página      datos y subrayados          cita c
   después se vinculan las notas de Obsidian con las referencias del grupo.
 
 ### Pasos (orden recomendado)
-1. [ ] Mateo y Vanessa crean su cuenta en zotero.org (gratis) e inician sesión en Zotero.
-2. [ ] Mateo crea el grupo **Proyecto Final PISA** (privado) en zotero.org → *Groups → Create a New Group* e invita a Vanessa.
-3. [ ] Mateo arrastra la colección **Proyecto PISA** de *Mi biblioteca* al grupo.
-4. [ ] Claude vincula las notas de `Literatura/` con las referencias del grupo (propiedad `zotero-key`), para que
-   ZotLit no cree notas duplicadas.
-5. [ ] Agregar al grupo las 14 fuentes nuevas (por DOI o Connector) con la misma clave de cita que su nota.
+1. [x] Mateo crea su cuenta en zotero.org e inicia sesión en Zotero (2026-10-05).
+   - [ ] Vanessa crea su cuenta, inicia sesión y acepta la invitación al grupo.
+2. [x] Mateo crea el grupo **Proyecto Final PISA** (privado; edición y archivos para todos los miembros).
+3. [x] Se importa `Proyecto_PISA/anteproyecto/referencias.bib` **directamente en el grupo** (colección *Proyecto PISA*,
+   26 referencias). Importar el `.bib` conserva las claves de cita; **arrastrar** desde *Mi biblioteca* no las conserva
+   (Better BibTeX les asignó claves largas nuevas; esas 14 copias quedaron en la papelera del grupo).
+4. [x] Las 26 notas de `Literatura/` quedaron vinculadas con su referencia del grupo (propiedad `zotero-key`).
+5. [ ] Agregar al grupo las fuentes que aún no están (`avvisati2024disengagement`, `oecd2023fichacolombia`,
+   `oecd2026pisa2025tr`) con la misma clave de cita que su nota, y adjuntar los PDF.
 
 ## Reglas para no equivocarse
-- **No crear con ZotLit una nota de una fuente que ya tiene nota** hasta que esté vinculada (paso 4): saldría duplicada.
+- **Fuentes nuevas: importarlas o capturarlas directamente en el grupo**, no en *Mi biblioteca* (al copiar entre
+  bibliotecas se pierde la clave de cita).
+- Las fuentes que ya tienen nota están vinculadas (`zotero-key`): ZotLit debería reconocerlas en lugar de duplicarlas.
+  Comprobarlo con una sola fuente antes de usarlo con todas.
 - **No cambiar las claves de cita** de las referencias que ya están en el anteproyecto.
 - Toda afirmación que se use en el documento debe tener su subrayado (página) en Zotero y su fila en la nota de la fuente.
 

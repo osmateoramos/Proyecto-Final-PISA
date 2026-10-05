@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: collazos2021determinantes
+zotero-key: PJYUHET4g6703955
 clave_provisional: no
 titulo: "Determinantes del rendimiento académico de la prueba Saber 11 en Colombia durante el periodo 2014-2019"
 autores: "Collazos Valenzuela, A. C.; Quintero Medina, M. V.; Trujillo Caicedo, K. N."

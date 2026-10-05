@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: hernandez2011modelo
+zotero-key: KIDYSR5Tg6703955
 clave_provisional: no
 titulo: "Modelo de ecuación estructural que evalúa las relaciones entre el estatus cultural y económico del estudiante y el logro educativo"
 autores: "Hernández Padilla, E.; González Montesinos, M. J."

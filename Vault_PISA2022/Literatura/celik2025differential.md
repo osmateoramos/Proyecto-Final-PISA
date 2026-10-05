@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: celik2025differential
+zotero-key: PU9HYIE3g6703955
 clave_provisional: no
 titulo: "Differential item functioning in PIRLS 2021: An examination of socioeconomic status-based differences in reading comprehension items"
 autores: "Çelik, İ.; Kaşık, A."

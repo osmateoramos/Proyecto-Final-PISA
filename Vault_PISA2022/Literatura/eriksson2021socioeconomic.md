@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: eriksson2021socioeconomic
+zotero-key: G5BKIMWAg6703955
 clave_provisional: no
 titulo: "Socioeconomic status as a multidimensional predictor of student achievement in 77 societies"
 autores: "Eriksson, K.; Lindvall, J.; Helenius, O.; Ryve, A."

@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: calderon2026differential
+zotero-key: 542SVUWIg6703955
 clave_provisional: no
 titulo: "Differential item functioning analysis in large scale assessments: a case study for DIF in SABER 11"
 autores: "Calderón, J. A.; Rodríguez, N. A.; Cervantes, V. H."

@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: rutkowski2013measuring
+zotero-key: 2D5PE2GKg6703955
 clave_provisional: no
 titulo: "Measuring socioeconomic background in PISA: one size might not fit all"
 autores: "Rutkowski, D.; Rutkowski, L."

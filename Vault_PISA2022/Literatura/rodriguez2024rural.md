@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: rodriguez2024rural
+zotero-key: DZF4B9IXg6703955
 clave_provisional: no
 titulo: "The rural-urban student performance gap in Colombia"
 autores: "Rodríguez-Gómez, W. F.; Rodríguez Gómez, E. Y.; Gómez-González, J. E."

@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: patsis2026instructional
+zotero-key: 675VD4YDg6703955
 clave_provisional: no
 titulo: "The role of instructional quality in explaining socioeconomic disparities in mathematics achievement: a multilevel SEM of Swedish TIMSS 2019 data"
 autores: "Patsis, P.; Yang Hansen, K.; Klapp, A."

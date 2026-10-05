@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: rolfe2021tailoring
+zotero-key: YU325ACYg6703955
 clave_provisional: no
 titulo: "Tailoring a measurement model of socioeconomic status: Applying the alignment optimization method to 15 years of PISA"
 autores: "Rolfe, V."

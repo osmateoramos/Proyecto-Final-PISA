@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: zabala2019impacto
+zotero-key: P4D3N9VRg6703955
 clave_provisional: no
 titulo: "El impacto de las condiciones socioeconómicas en el rendimiento académico (ICFES Saber 11) de los estudiantes de Norte de Santander"
 autores: "Zabala Vega, O. J.; León Archila, B. F.; Hernández Casadiegos, J. D."

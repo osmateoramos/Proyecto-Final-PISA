@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: oecd2024pisa2022tr
+zotero-key: A5GFC6CZg6703955
 clave_provisional: sí (confirmar al importar a Zotero)
 titulo: "PISA 2022 Technical Report"
 autores: "OECD"

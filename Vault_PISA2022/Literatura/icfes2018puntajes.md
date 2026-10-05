@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: icfes2018puntajes
+zotero-key: LJ7FELJNg6703955
 clave_provisional: no
 titulo: "¿Cómo se generan los puntajes en las pruebas Saber del Icfes?"
 autores: "ICFES"

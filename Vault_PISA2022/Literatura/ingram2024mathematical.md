@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: ingram2024mathematical
+zotero-key: DAZ39YAYg6703955
 clave_provisional: no
 titulo: "Mathematical reasoning and problem-solving in PISA 2022 – how do performance profiles vary across countries?"
 autores: "Ingram, J.; Lee, G.; Stiff, J."

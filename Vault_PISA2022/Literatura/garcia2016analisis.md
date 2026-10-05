@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: garcia2016analisis
+zotero-key: SCGTEPL6g6703955
 clave_provisional: no
 titulo: "Análisis del funcionamiento diferencial de los ítems del Excale de Matemáticas para tercero de secundaria"
 autores: "García-Medina, A. M.; Martínez Rizo, F.; Cordero Arroyo, G."

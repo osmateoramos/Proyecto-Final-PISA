@@ -1,6 +1,7 @@
 ---
 tipo: fuente
 clave_bib: guerra2026digital
+zotero-key: UXRVK9VMg6703955
 clave_provisional: no
 titulo: "Digital equity and socioeconomic gradients in PISA 2022 mathematics: an integrated equity-diagnostic framework for Latin America and the Caribbean"
 autores: "Guerra, J.; Roblez, G.; Vargas, V.; Meneses, M.; Basantes-Andrade, A."

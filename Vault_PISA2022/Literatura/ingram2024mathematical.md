@@ -11,7 +11,7 @@ doi_url: https://ora.ox.ac.uk/objects/uuid:13c97a71-afa1-4343-ab46-6b614247ea21
 bloque: "C. Matemáticas por proceso"
 metadatos: "repositorio ORA de Oxford (consultado 2026-10-04)"
 estado: por_verificar
-lectura: "IA: solo resumen/fragmento"
+lectura: "IA: solo resumen oficial (ORA, consultado 2026-10-05); PDF de acceso abierto en ORA, no leído"
 pdf_en_zotero: no
 verificado_por:
 fecha_verificacion:
@@ -19,7 +19,7 @@ fecha_verificacion:
 
 # Mathematical reasoning and problem-solving in PISA 2022 – how do performance profiles vary across countries?
 
-Volver a [[Literatura/Matriz estado del arte]] · Protocolo en [[11 Protocolo de verificación]]
+Volver a [[Literatura/Matriz estado del arte]] · Protocolo en [[11 Protocolo de verificación]] · Revisión en [[13 Revisión de literatura]]
 
 ## Qué hace
 Compara perfiles de desempeño por proceso matemático entre países.
@@ -32,7 +32,7 @@ Compara perfiles de desempeño por proceso matemático entre países.
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | En algunos países el razonamiento es fortaleza relativa y en otros debilidad | pendiente | | por_verificar · origen: IA: solo resumen/fragmento |
+| 1 | En algunos países el razonamiento es fortaleza relativa y en otros debilidad | resumen (ORA) | "in other countries, this is an area of relative weakness" | por_verificar · origen: IA, solo resumen (2026-10-05); coincide con el anteproyecto |
 
 ## Qué NO dice (para no citarlo mal)
 No usa NSE ni analiza diferencias dentro de un país.

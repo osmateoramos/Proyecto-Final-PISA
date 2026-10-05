@@ -14,8 +14,9 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 - [[10 Gestión de la información]] — Zotero + Obsidian, instalación y reglas
 - [[11 Protocolo de verificación]] — **empezar aquí**: cómo se marca qué está verificado y qué no
 - [[12 Guía de Zotero]] — qué hace Zotero, el ciclo de una fuente y cómo compartir con un grupo
+- [[13 Revisión de literatura]] — revisión del 2026-10-05: qué quitar, qué se comprobó, qué agregar y cambios propuestos al anteproyecto
 - [[Literatura/Matriz estado del arte]] — antecedentes vs este proyecto (cada fila enlaza a su nota de fuente)
-- [[Literatura/_Léeme]] — las 27 fuentes con su estado de verificación
+- [[Literatura/_Léeme]] — las 38 fuentes con su estado de verificación
 - [[Datos/PISA2022 - Diccionario de variables]] — variables de PISA 2022 que usa el proyecto (etiquetas oficiales)
 - [[03 Registro de decisiones]] — toda decisión, con fecha y razón (desde D-11 corresponde a PISA)
 - Proyecto: `CONSULTORIA/Proyecto_PISA/` — anteproyecto vigente, datos (`revision_pisa2022_col.R` y cachés de Colombia),

@@ -2,7 +2,7 @@
 tipo: fuente
 clave_bib: oecd2024pisa2022tr
 zotero-key: A5GFC6CZg6703955
-clave_provisional: sí (confirmar al importar a Zotero)
+clave_provisional: no
 titulo: "PISA 2022 Technical Report"
 autores: "OECD"
 año: "2024 (por verificar: el PDF muestra © 2024 y © 2025)"
@@ -37,7 +37,7 @@ Documenta muestreo, escalamiento, índices del cuestionario y datos de PISA 2022
 | 4 | No es apropiado correlacionar subescalas de proceso con las de contenido ni con la escala total | pendiente | | por_verificar · origen: IA: resumen automático del texto completo |
 | 5 | Colombia: 7,6 % de estudiantes excedió el tiempo límite | pendiente | | por_verificar · origen: IA: resumen automático del texto completo |
 | 6 | Bienes nacionales de Colombia en HOMEPOS: televisor, nevera, consola (Anexo D); no están en la base pública | pendiente | | por_verificar · origen: IA: resumen automático del texto completo |
-| 7 | Media de Colombia en matemáticas 382,70 (EE 3,03). Orden de columnas inferido comparando con Australia: VERIFICAR | pendiente | | por_verificar · origen: IA: resumen automático del texto completo |
+| 7 | Media de Colombia en matemáticas 382,70 (EE 3,03). Orden de columnas inferido comparando con Australia | pendiente | | por_verificar · origen: IA: resumen automático del texto completo · el valor 382,70 coincide con [[Literatura/burns2026intest]] (tabla 2, p. 9), lo que apoya el orden de columnas; falta la página del TR |
 | 9 | Anexo A (Excel `5nw02t.xlsx`, hoja *Mathematics-CBA*): clasifica 234 ítems de matemáticas por proceso, contenido, contexto y formato, con parámetros internacionales; 233 coinciden con los ítems de Colombia (emplear 75, interpretar 57, razonar 53, formular 48) | anexo A (Excel) | | por_verificar · conteo de Claude 2026-10-04; copia en `Proyecto_PISA/documentacion/` |
 | 8 | Sufijos de variables cognitivas: S calificada, C codificada, R respuesta, TT tiempo total, F primera acción, A acciones, V visitas | pendiente | | por_verificar · origen: IA: resumen automático del texto completo |
 

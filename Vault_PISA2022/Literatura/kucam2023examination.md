@@ -1,7 +1,7 @@
 ---
 tipo: fuente
 clave_bib: kucam2023examination
-clave_provisional: "sí (fuente nueva, aún no está en referencias.bib ni en Zotero)"
+clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
 titulo: "Examination of Differential Item Functioning in PISA 2018 Mathematics Literacy Test with Different Methods"
 autores: "Kucam, Emre; Gülleroğlu, Hamide Deniz"
 año: "2023"
@@ -39,3 +39,5 @@ La muestra es pequeña (521) y el NSE es solo la educación de los padres; no es
 
 ## Dónde se usa
 O3: antecedente de DIF por un componente del NSE en matemáticas de PISA.
+
+**En el anteproyecto (2026-10-05):** citada en §2.4 (DIF), con marca [VERIFICAR] hasta que el equipo coteje.

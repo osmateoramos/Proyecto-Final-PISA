@@ -1,7 +1,7 @@
 ---
 tipo: fuente
 clave_bib: pohl2014dealing
-clave_provisional: "sí (fuente nueva, aún no está en referencias.bib ni en Zotero)"
+clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
 titulo: "Dealing With Omitted and Not-Reached Items in Competence Tests"
 autores: "Pohl, Steffi; Gräfe, Linda; Rose, Norman"
 año: "2014"
@@ -39,3 +39,5 @@ No es PISA; no usa tiempos de respuesta; no estudia brechas por NSE.
 
 ## Dónde se usa
 O3, H4 y D-14. **Contrapeso** a H4: si ignorar las omisiones basta para los parámetros, el efecto sobre la brecha podría ser pequeño. No cambia H4 (ya está preregistrada); se discute en el informe.
+
+**En el anteproyecto (2026-10-05):** citada en §2.5 (desenganche), con marca [VERIFICAR] hasta que el equipo coteje.

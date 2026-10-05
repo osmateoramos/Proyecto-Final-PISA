@@ -1,14 +1,14 @@
 ---
 tipo: fuente
 clave_bib: brandt2017calibracion
-clave_provisional: "sí (fuente nueva, aún no está en referencias.bib ni en Zotero)"
+clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
 titulo: "Calibración concurrente unidimensional y multidimensional dentro de la teoría de respuesta del Ítem"
 autores: "Brandt, Steffen"
-año: "2017 (por verificar: el volumen 54(2) y el DOI indican 2017; Crossref registra publicación en línea el 2020-12-02)"
+año: "2017"
 publicacion: "Pensamiento Educativo, Revista de Investigación Educacional Latinoamericana, 54(2), 1–16"
 doi_url: https://doi.org/10.7764/pel.54.2.2017.4
 bloque: "C. Matemáticas por proceso / dimensionalidad"
-metadatos: "Crossref (consultado 2026-10-05)"
+metadatos: "Crossref y página de la revista (consultados 2026-10-05): Vol. 54 Núm. 2 (2017); publicado en línea el 2020-12-02"
 estado: por_verificar
 lectura: "IA: solo resumen (OpenAlex); acceso abierto"
 pdf_en_zotero: no
@@ -39,3 +39,5 @@ Por el resumen no sabemos de qué ciclo de PISA habla ni si las cuatro subescala
 
 ## Dónde se usa
 F5.3 (calibración unidimensional vs de 4 dimensiones): justifica comparar los dos modelos y reportar ambos. Es una revista latinoamericana.
+
+**En el anteproyecto (2026-10-05):** citada en §2.3 (matemáticas por competencias), con marca [VERIFICAR] hasta que el equipo coteje.

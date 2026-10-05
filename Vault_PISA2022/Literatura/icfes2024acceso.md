@@ -38,3 +38,5 @@ Canal oficial de datos abiertos y de solicitud de microdatos.
 
 ## Dónde se usa
 Etapa Saber 11 (archivo)
+
+**2026-10-05:** retirada de `referencias.bib` porque el anteproyecto no la cita (revisión de literatura, [[13 Revisión de literatura]]). La nota se conserva como archivo de la etapa Saber 11.

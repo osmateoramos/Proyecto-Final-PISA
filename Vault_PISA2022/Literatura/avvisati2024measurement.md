@@ -1,7 +1,7 @@
 ---
 tipo: fuente
 clave_bib: avvisati2024measurement
-clave_provisional: "sí (fuente nueva, aún no está en referencias.bib ni en Zotero)"
+clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
 titulo: "The Measurement of Socio-economic Status in PISA"
 autores: "Avvisati, Francesco; Wuyts, Celine"
 año: "2024"
@@ -43,3 +43,5 @@ No evalúa la invarianza de HOMEPOS dentro de un país ni propone un NSE de dos 
 
 ## Dónde se usa
 O1 y H1: la fila 6 es el argumento más fuerte para construir un NSE latente con teoría y validación propias. La fila 5 sugiere revisar la calidad del reporte de educación de los padres en Colombia (ST005, ST007) en F1–F3 (interpretación de Claude, por discutir).
+
+**En el anteproyecto (2026-10-05):** citada en §2.2 (medición del NSE), con pp. 11 y 48, con marca [VERIFICAR] hasta que el equipo coteje.

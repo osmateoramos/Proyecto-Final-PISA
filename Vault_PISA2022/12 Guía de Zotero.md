@@ -68,6 +68,13 @@ navegador)         anotar con la página      datos y subrayados          cita c
 4. [x] Las 26 notas de `Literatura/` quedaron vinculadas con su referencia del grupo (propiedad `zotero-key`).
 5. [ ] Agregar al grupo las fuentes que aún no están (`avvisati2024disengagement`, `oecd2023fichacolombia`,
    `oecd2026pisa2025tr`) con la misma clave de cita que su nota, y adjuntar los PDF.
+6. [ ] **Referencias nuevas de la revisión de literatura (2026-10-05).** En Zotero, seleccionar la colección *Proyecto PISA*
+   del grupo → *Archivo → Importar…* → *Un archivo* → elegir
+   `Proyecto_PISA/anteproyecto/importar_zotero_2026-10-05.bib` (solo trae las 12 nuevas, para no duplicar las 26
+   que ya están). Comprobar que las claves coinciden con las de las notas. Después de importarlo, ese archivo ya no
+   hace falta: puedes borrarlo tú.
+7. [ ] `icfes2018puntajes` e `icfes2024acceso` salieron de `referencias.bib`, pero siguen en el grupo. Si quieren,
+   muévanlas a una subcolección *Archivo Saber 11*; no hace falta borrarlas.
 
 ## Reglas para no equivocarse
 - **Fuentes nuevas: importarlas o capturarlas directamente en el grupo**, no en *Mi biblioteca* (al copiar entre

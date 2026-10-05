@@ -1,14 +1,14 @@
 ---
 tipo: fuente
 clave_bib: ekmekci2013mathematical
-clave_provisional: "sí (fuente nueva, aún no está en referencias.bib ni en Zotero)"
+clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
 titulo: "Mathematical literacy assessment design: a dimensionality analysis of Programme for International Student Assessment (PISA) mathematics framework"
 autores: "Ekmekci, Adem"
 año: "2013"
 publicacion: "Disertación, The University of Texas at Austin (repositorio Texas ScholarWorks)"
 doi_url: http://hdl.handle.net/2152/21338
 bloque: "C. Matemáticas por proceso / dimensionalidad"
-metadatos: "OpenAlex (consultado 2026-10-05); sin DOI"
+metadatos: "OpenAlex (consultado 2026-10-05); sin DOI. El tipo de grado no se confirmó: el repositorio de UT Austin bloqueó la consulta (error 403); se cita como Disertación, que es como se describe en su resumen"
 estado: por_verificar
 lectura: "IA: solo resumen (OpenAlex)"
 pdf_en_zotero: no
@@ -40,3 +40,5 @@ No incluye PISA 2022, que agregó razonar como cuarto proceso y el diseño adapt
 
 ## Dónde se usa
 F5.3 y riesgo para O3/O4: puede que el modelo de 4 dimensiones no supere claramente al unidimensional (en Colombia las correlaciones preliminares entre procesos son 0,70–0,83; dato del script de revisión, por verificar). No cambia ninguna hipótesis: el plan ya compara 1 vs 4 dimensiones.
+
+**En el anteproyecto (2026-10-05):** citada en §2.3 (matemáticas por competencias), con marca [VERIFICAR] hasta que el equipo coteje.

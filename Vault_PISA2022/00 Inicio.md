@@ -7,7 +7,7 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 
 - [[06 Objetivos PISA 2022]] — pregunta, objetivo general y O1–O5
 - **Anteproyecto vigente (PISA 2022):** `Proyecto_PISA/anteproyecto/anteproyecto_VanessaAcosta_MateoRamos.pdf`
-  (fuente `.Rmd` y `referencias.bib` en la misma carpeta; 8 marcas [VERIFICAR] por revisar antes de entregar)
+  (fuente `.Rmd` y `referencias.bib` en la misma carpeta; 15 marcas [VERIFICAR] por revisar antes de entregar; ver [[13 Revisión de literatura]])
 - [[07 Plan de desarrollo PISA 2022]] — paso a paso por semanas, desde la limpieza hasta la API
 - [[08 Rúbrica de desarrollo]] — cómo autoevaluarse, puertas de fase y criterio de hallazgo innovador
 - [[09 Hipótesis preregistradas]] — H1–H6, se congelan antes de modelar
@@ -16,7 +16,7 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 - [[12 Guía de Zotero]] — qué hace Zotero, el ciclo de una fuente y cómo compartir con un grupo
 - [[13 Revisión de literatura]] — revisión del 2026-10-05: qué quitar, qué se comprobó, qué agregar y cambios propuestos al anteproyecto
 - [[Literatura/Matriz estado del arte]] — antecedentes vs este proyecto (cada fila enlaza a su nota de fuente)
-- [[Literatura/_Léeme]] — las 38 fuentes con su estado de verificación
+- [[Literatura/_Léeme]] — las 43 fuentes con su estado de verificación
 - [[Datos/PISA2022 - Diccionario de variables]] — variables de PISA 2022 que usa el proyecto (etiquetas oficiales)
 - [[03 Registro de decisiones]] — toda decisión, con fecha y razón (desde D-11 corresponde a PISA)
 - Proyecto: `CONSULTORIA/Proyecto_PISA/` — anteproyecto vigente, datos (`revision_pisa2022_col.R` y cachés de Colombia),

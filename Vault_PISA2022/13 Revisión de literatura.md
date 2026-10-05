@@ -30,7 +30,7 @@ Volver a [[00 Inicio]] · Matriz en [[Literatura/Matriz estado del arte]] · Pro
 |---|---|---|
 | `icfes2018puntajes` | Está en `referencias.bib`, pero el anteproyecto no la cita; es de la etapa Saber 11 | Quitarla del `.bib`; la nota se conserva como archivo |
 | `icfes2024acceso` | Igual que la anterior | Quitarla del `.bib`; la nota se conserva |
-| `zabala2019impacto` | Sí se cita (bloque A), pero es un informe regional de Saber 11 sin revisión por pares. Collazos et al. ya cubren el enfoque econométrico con más de 3 millones de evaluados | **Opcional:** quitar la frase y la referencia. Lo decide el equipo |
+| `zabala2019impacto` | Sí se cita (bloque A), pero es un informe regional de Saber 11 sin revisión por pares. Collazos et al. ya cubren el enfoque econométrico con más de 3 millones de evaluados | **Se conserva** (decisión de Mateo, 2026-10-05) |
 
 ## 2. Qué se comprobó (Claude contra la fuente; sigue `por_verificar`)
 
@@ -110,7 +110,9 @@ Lo que sigue es interpretación de Claude, para discutir con los tutores.
 
 **No se cambió ninguna hipótesis ni decisión.**
 
-## 5. Cambios propuestos al anteproyecto y al `.bib` (pendientes de aprobación)
+## 5. Cambios propuestos al anteproyecto y al `.bib`
+
+> **Estado (2026-10-05):** Mateo aprobó las 8 propuestas, **excepto quitar `zabala2019impacto`, que se conserva**. Aplicadas el mismo día en el `.Rmd` y en `referencias.bib`; el PDF se regeneró (10 páginas, 36 referencias). Las fuentes nuevas entraron con marca [VERIFICAR]: el anteproyecto pasó de 8 a 15 marcas. Claude agregó además, y lo avisó, este error a la declaración de uso de IA y cambió "unas treinta fuentes" por "menos de cuarenta fuentes".
 
 1. **Rodríguez-Gómez** (estado del arte, enfoque econométrico).
    - *Cambiar:* "atribuyen más del 40 % a características de los colegios [VERIFICAR]".
@@ -141,5 +143,6 @@ Lo que sigue es interpretación de Claude, para discutir con los tutores.
 - [ ] Rodríguez-Gómez: abrir el PDF (págs. 59–75) y ver cuál versión del 40 % es la correcta.
 - [ ] Conseguir los textos completos de Goh et al. (¿en coreano?) y de Rios y Soland, por la biblioteca de la USTA.
 - [ ] Pista secundaria: Odabaşı (2019), DIF por NSE con PISA 2015 de Turquía, citado por Çelik y Kaşık (p. 640). No se ha buscado.
-- [ ] Aprobar, cambiar o rechazar las propuestas de la sección 5.
+- [x] Aprobar, cambiar o rechazar las propuestas de la sección 5 (aprobadas el 2026-10-05, sin quitar a Zabala).
+- [ ] Importar al grupo de Zotero las 12 referencias nuevas con `Proyecto_PISA/anteproyecto/importar_zotero_2026-10-05.bib` (pasos en [[12 Guía de Zotero]]).
 - [ ] En F7, repetir la búsqueda formal de novedad, sobre todo en DIF por NSE con PISA 2022.

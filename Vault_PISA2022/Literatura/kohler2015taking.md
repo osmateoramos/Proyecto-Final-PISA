@@ -1,7 +1,7 @@
 ---
 tipo: fuente
 clave_bib: kohler2015taking
-clave_provisional: "sí (fuente nueva, aún no está en referencias.bib ni en Zotero)"
+clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
 titulo: "Taking the Missing Propensity Into Account When Estimating Competence Scores"
 autores: "Köhler, Carmen; Pohl, Steffi; Carstensen, Claus H."
 año: "2015"
@@ -39,3 +39,5 @@ No es PISA; no usa tiempos de respuesta; no estudia brechas por NSE.
 
 ## Dónde se usa
 O3 y D-14: sería una tercera alternativa (modelar la propensión a omitir) para la robustez de F7. Agregarla es decisión del equipo.
+
+**En el anteproyecto (2026-10-05):** citada en §2.5 (desenganche), con marca [VERIFICAR] hasta que el equipo coteje.

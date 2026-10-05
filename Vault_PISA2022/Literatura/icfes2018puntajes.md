@@ -38,3 +38,5 @@ Explica cómo el ICFES estima los puntajes de Saber.
 
 ## Dónde se usa
 Etapa Saber 11 (archivo); contexto del cambio de fuente
+
+**2026-10-05:** retirada de `referencias.bib` porque el anteproyecto no la cita (revisión de literatura, [[13 Revisión de literatura]]). La nota se conserva como archivo de la etapa Saber 11.

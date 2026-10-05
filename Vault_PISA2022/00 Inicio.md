@@ -13,6 +13,7 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 - [[09 Hipótesis preregistradas]] — H1–H6, se congelan antes de modelar
 - [[10 Gestión de la información]] — Zotero + Obsidian, instalación y reglas
 - [[11 Protocolo de verificación]] — **empezar aquí**: cómo se marca qué está verificado y qué no
+- [[12 Guía de Zotero]] — qué hace Zotero, el ciclo de una fuente y cómo compartir con un grupo
 - [[Literatura/Matriz estado del arte]] — antecedentes vs este proyecto (cada fila enlaza a su nota de fuente)
 - [[Literatura/_Léeme]] — las 27 fuentes con su estado de verificación
 - [[Datos/PISA2022 - Diccionario de variables]] — variables de PISA 2022 que usa el proyecto (etiquetas oficiales)

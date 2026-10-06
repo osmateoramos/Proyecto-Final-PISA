@@ -101,6 +101,12 @@ cat("\n--- Respuestas por item en Colombia ---\n")
 print(summary(n_item))
 cat("Items con menos de 200:", sum(n_item < 200), "| menos de 500:", sum(n_item < 500),
     "| 1000 o mas:", sum(n_item >= 1000), "\n")
+cat("Items sin ninguna respuesta en Colombia:", paste(names(n_item)[n_item == 0], collapse = ", "), "\n")
+# Unidad = estimulo comun (mismo codigo antes de 'Q'): posible dependencia local entre sus items
+unidad <- sub("Q[0-9]+[SC]$", "", sub("^D", "C", calif))
+tam_u  <- table(unidad)
+cat("Unidades:", length(tam_u), "| con 2 o mas items:", sum(tam_u >= 2),
+    "| items en esas unidades:", sum(tam_u[tam_u >= 2]), "\n")
 k <- rowSums(!is.na(S))
 cat("Items respondidos por estudiante (quienes tuvieron matematicas):\n"); print(summary(k[k > 0]))
 cat("Proporcion de credito (>0) por item:\n"); print(summary(colMeans(S > 0, na.rm = TRUE)))

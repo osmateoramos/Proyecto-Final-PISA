@@ -101,4 +101,5 @@ resultados de invarianza y DIF (O2, O3) y los coeficientes y puntajes agregados 
 - **Afirmaciones causales:** diseño transversal de un solo ciclo.
 
 ## Pendiente de verificar
-- Resuelto el 2026-10-05: `CMA112Q02` figura en la hoja *Mathematics-CBA* del anexo A como *(Dropped)*: competencia razonar, opción múltiple compleja, retirado de la escala internacional y sin parámetros. Qué hacer con él: propuesta D-09 en [[03 Registro de decisiones]].
+- Resuelto el 2026-10-05: `CMA112Q02` figura en la hoja *Mathematics-CBA* del anexo A como *(Dropped)*: competencia razonar, opción múltiple compleja, retirado de la escala internacional y sin parámetros. Qué hacer con él: propuesta D-09 en [[03 Registro de decisiones]]. En Colombia, ese ítem y `CMA143Q01S` no tienen
+  respuestas: quedan 232 ítems calibrables (formular 47).

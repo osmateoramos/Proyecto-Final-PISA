@@ -133,6 +133,7 @@ Script: `02_validacion_ocde.R` — reutiliza `pendiente()` y `estimar_pv()` de `
 
 > [!info] Teoría previa
 > Correlación policórica, análisis paralelo, AFE / AFC, 2PL y GPCM, función de información, omega.
+> **Lectura:** [[Literatura/deayala2009theory|de Ayala]] caps. 4, 5 y 8 y pp. 131–133 · [[Literatura/chen2024structural|Chen y Yung]] caps. 2 y 5 (detalle en [[14 Libros de TRI y SEM]]).
 
 Script: `03_nse_medicion.R` · paquetes `psych`, `mirt`, `lavaan`, `semTools`.
 
@@ -156,6 +157,7 @@ Script: `03_nse_medicion.R` · paquetes `psych`, `mirt`, `lavaan`, `semTools`.
 
 > [!info] Teoría previa
 > Invarianza configural / umbrales / métrica / escalar para indicadores ordinales; invarianza parcial; DIF.
+> **Lectura:** [[Literatura/chen2024structural|Chen y Yung]] cap. 7 · [[Literatura/deayala2009theory|de Ayala]] cap. 12.
 
 Script: `04_invarianza.R`.
 
@@ -174,12 +176,15 @@ Script: `04_invarianza.R`.
 > [!info] Teoría previa
 > TRI multidimensional (estructura entre ítems), 2PL y GPCM, calibración con datos faltantes por diseño, diseño
 > adaptativo multietapa, puntajes EAP y valores plausibles, DIF basado en TRI, comparaciones múltiples.
+> **Lectura:** [[Literatura/deayala2009theory|de Ayala]] cap. 10, pp. 148–151 (respuestas faltantes), cap. 11 (enlace), cap. 12 (DIF) y apéndice D.
 
 Script: `05_tri_competencias.R` · `mirt`.
 
 - [ ] **5.1 Clasificación de ítems por competencia.** Tabla ítem → competencia / contenido / formato desde la hoja
   *Mathematics-CBA* del anexo A del Technical Report 2022 (`Proyecto_PISA/documentacion/PISA2022_TechnicalReport_AnexoA_clasificacion_items.xlsx`):
   233 de 234 ítems con parámetros; `CMA112Q02S` figura como *Dropped* (retirado de la escala internacional; ver D-09).
+  En Colombia, `CMA112Q02S` y `CMA143Q01S` no tienen ninguna respuesta: **quedan 232 calibrables** (emplear 75,
+  interpretar 57, razonar 53, formular 47; `revision_pisa2022_col.R`, 2026-10-05).
   Guardar `salidas/items_competencia.csv`.
 - [ ] **5.2 Matriz de respuestas:** 7.222 estudiantes × ítems clasificados (S y C); categorías parciales para los
   politómicos. Las celdas vacías por la ruta adaptativa se dejan `NA` (la ruta depende de respuestas observadas:
@@ -208,6 +213,7 @@ Script: `05_tri_competencias.R` · `mirt`.
 
 > [!info] Teoría previa
 > Modelo estructural, valores plausibles como imputación múltiple, pesos y conglomerados en SEM.
+> **Lectura:** [[Literatura/chen2024structural|Chen y Yung]] caps. 8 y 11. Pesos y valores plausibles: Technical Report (los libros no los tratan).
 
 Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 

@@ -235,7 +235,8 @@ análisis de DIF. El anexo A del Technical Report clasifica por competencia los 
 uno de ellos fue retirado de la escala internacional, de modo que quedan 233 con parámetros: emplear 75, interpretar
 57, razonar 53 y formular 48. Esa clasificación es la que permite calificar por competencias.^[Conteo propio sobre el
 anexo A del PISA 2022 Technical Report (hoja *Mathematics-CBA*). El ítem retirado es `CMA112Q02` (razonar), marcado
-*Dropped* y sin parámetros internacionales; se propone excluirlo de la calibración, como hace la OCDE.]
+*Dropped* y sin parámetros internacionales; se propone excluirlo de la calibración, como hace la OCDE. Además,
+`CMA143Q01S` (formular) no tiene respuestas en Colombia, de modo que la calibración usará 232 ítems.]
 
 ```{r tabla-variables}
 vars <- data.frame(

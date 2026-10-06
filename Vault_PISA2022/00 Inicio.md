@@ -20,6 +20,7 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 - [[10 Gestión de la información]] — Zotero + Obsidian, instalación y reglas
 - [[12 Guía de Zotero]] — qué hace Zotero, el ciclo de una fuente y cómo compartir con un grupo
 - [[13 Revisión de literatura]] — revisión del 2026-10-05: qué se quitó, qué se comprobó y qué se agregó
+- [[14 Libros de TRI y SEM]] — qué leer de de Ayala y de Chen y Yung en cada fase, y mejoras propuestas al plan
 - [[Literatura/Matriz estado del arte]] — antecedentes vs este proyecto (cada fila enlaza a su nota de fuente)
 - [[Literatura/_Léeme]] — todas las fuentes con su estado de verificación
 - [[Datos/PISA2022 - Diccionario de variables]] — variables de PISA 2022 que usa el proyecto (etiquetas oficiales)

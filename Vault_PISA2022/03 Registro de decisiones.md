@@ -82,4 +82,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   (fuente: `Proyecto_PISA/documentacion/PISA2022_TechnicalReport_AnexoA_clasificacion_items.xlsx`).
 - **Alternativas:** (a) excluirlo de la calibración, como la OCDE; (b) incluirlo en razonar y estimar sus parámetros.
 - **Propuesta:** (a), para que la calificación propia sea comparable con la de la OCDE (H7); (b) solo como robustez.
+- **Dato (2026-10-05):** en Colombia el ítem no tiene ninguna respuesta, igual que `CMA143Q01S` (que sí tiene parámetros
+  internacionales). Ninguno de los dos se puede calibrar con datos de Colombia: quedan 232 ítems
+  (`revision_pisa2022_col.R`). La alternativa (b) deja de aplicar.
 - **Estado:** propuesta — decidir antes de F5 (paso 5.1).

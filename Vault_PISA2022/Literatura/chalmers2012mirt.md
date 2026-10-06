@@ -1,7 +1,8 @@
 ---
 tipo: fuente
 clave_bib: chalmers2012mirt
-clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
+zotero-key: ALAJS3IRg6703955
+clave_provisional: no
 titulo: "mirt: A Multidimensional Item Response Theory Package for the R Environment"
 autores: "Chalmers, R. Philip"
 año: "2012"

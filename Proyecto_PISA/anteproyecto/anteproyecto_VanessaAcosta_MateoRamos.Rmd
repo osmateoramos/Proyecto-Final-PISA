@@ -1,6 +1,6 @@
 ---
 title: "Nivel socioeconómico latente y desempeño matemático por competencias en PISA 2022: calificación con Teoría de Respuesta al Ítem multidimensional para Colombia"
-subtitle: "Anteproyecto — Consultoría Estadística (versión PISA 2022)"
+subtitle: "Anteproyecto — Consultoría Estadística"
 author: "Vanessa Acosta y Mateo Ramos"
 date: "Universidad Santo Tomás · 2026-II"
 lang: es
@@ -22,10 +22,8 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 Python para Desarrollo de APIs e Inteligencia Artificial, en el marco de Consultoría Estadística.
 **Tutores:** Javier Sierra y Juan Carlos Rubriche.
 
-> **Nota de versión.** Este documento reemplaza el anteproyecto entregado en el primer corte, que trabajaba con
-> Saber 11 (aplicación 2025-2). El cambio de fuente a PISA 2022 se explica en la sección 4. La versión anterior se
-> conserva como archivo del proyecto. Las afirmaciones marcadas **[VERIFICAR]** provienen de fuentes que el equipo
-> aún no ha cotejado contra el texto completo y se revisarán antes de la entrega.
+> **Nota.** Las afirmaciones marcadas **[VERIFICAR]** provienen de fuentes que el equipo aún no ha cotejado contra el
+> texto completo y se revisarán antes de la entrega.
 
 # Planteamiento del problema y contexto
 
@@ -218,10 +216,10 @@ condiciones de uso de la base se tomarán de la página oficial de la OCDE **[VE
 PISA 2022 Technical Report [@oecd2024pisa2022tr] y su anexo A, que clasifica cada ítem de matemáticas por
 competencia, contenido, contexto y formato.
 
-**Por qué cambió la fuente.** El primer corte trabajaba con Saber 11. La auditoría de esa base mostró que no trae
-respuestas por ítem ni resultados por competencia, de modo que no permite calificar por competencias ni hacer TRI
-sobre las preguntas de la prueba. PISA 2022 tiene ambas cosas y además un diseño muestral documentado. Se descartó
-PISA 2025 porque en ese ciclo matemáticas es un dominio menor y no tiene puntajes por proceso.
+**Por qué PISA 2022.** Calificar por competencias y hacer TRI sobre las preguntas de la prueba exige respuestas por
+ítem y una clasificación de los ítems por competencia. PISA 2022 tiene ambas cosas, además de un diseño muestral
+documentado, y es el último ciclo con matemáticas como dominio principal. Se descartó PISA 2025 porque en ese ciclo
+matemáticas es un dominio menor y no tiene puntajes por proceso.
 
 **Unidad de observación, periodo y volumen.** La unidad es el estudiante colombiano de 15 años evaluado en PISA 2022.
 Los datos de Colombia son 7\,804 estudiantes en filas contiguas de los archivos internacionales; 7\,459 tienen ESCS y
@@ -233,10 +231,11 @@ privados; y 4\,014 mujeres y 3\,790 hombres.^[Conteos propios con `Proyecto_PISA
 estudiante respondió entre 28 y 30; el 25 % de los estudiantes fue asignado al azar a una ruta lineal y el 75 % a la
 ruta adaptativa [@oecd2024pisa2022tr]. En Colombia cada ítem tiene una mediana de 707 respuestas, y 175 de los 234
 ítems tienen al menos 100 respuestas tanto en el cuartil más bajo como en el más alto de ESCS, lo que hace viable el
-análisis de DIF. El anexo A del Technical Report clasifica por competencia 233 de los 234 ítems calificados de
-Colombia: emplear 75, interpretar 57, razonar 53 y formular 48. Esa clasificación es la que permite calificar por
-competencias.^[Conteo propio sobre el anexo A del PISA 2022 Technical Report (hoja *Mathematics-CBA*). El ítem
-`CMA112Q02S` no aparece en el anexo y se revisará.]
+análisis de DIF. El anexo A del Technical Report clasifica por competencia los 234 ítems calificados de Colombia;
+uno de ellos fue retirado de la escala internacional, de modo que quedan 233 con parámetros: emplear 75, interpretar
+57, razonar 53 y formular 48. Esa clasificación es la que permite calificar por competencias.^[Conteo propio sobre el
+anexo A del PISA 2022 Technical Report (hoja *Mathematics-CBA*). El ítem retirado es `CMA112Q02` (razonar), marcado
+*Dropped* y sin parámetros internacionales; se propone excluirlo de la calibración, como hace la OCDE.]
 
 ```{r tabla-variables}
 vars <- data.frame(
@@ -263,8 +262,8 @@ competencias, estimado con cada conjunto de puntajes plausibles y combinado con 
 
 **Alternativas consideradas y descartadas.** (a) Usar solo los puntajes por competencia de la OCDE: se descartó como
 análisis principal porque no permite calibrar un modelo propio ni examinar los ítems, pero se conserva como criterio
-de validación. (b) Quedarse en Saber 11 con el puntaje total de matemáticas: descartada porque no permite calificar
-por competencias. (c) Combinar Saber 11 y PISA: descartada porque no cabe en el semestre.
+de validación. (b) Usar Saber 11, sola o combinada con PISA: descartada porque no publica respuestas por ítem ni
+resultados por competencia, y la combinación no cabe en el semestre.
 
 **Qué se hará si algo falla con los datos.** Los datos ya están descargados y verificados, de modo que el riesgo no es
 de acceso sino de potencia: si algún ítem tiene pocas respuestas en un grupo, se excluirá del DIF y, si fuera
@@ -314,7 +313,7 @@ priorizará una versión mínima que sirva tablas de resultados.
 # Declaración de uso de IA y reparto del trabajo
 
 **Uso de inteligencia artificial.** El equipo usó un asistente de IA generativa (Claude, de Anthropic) para: (i)
-auditar la base de Saber 11 y luego revisar la de PISA 2022 con scripts en R; (ii) buscar antecedentes y verificar
+revisar la base de PISA 2022 con scripts en R; (ii) buscar antecedentes y verificar
 metadatos bibliográficos en Crossref y en las páginas de las revistas; (iii) organizar la gestión de la información en
 Obsidian y Zotero con un protocolo de verificación, y (iv) redactar este borrador, que el equipo revisa sección por
 sección.
@@ -328,9 +327,8 @@ retiró del documento); la versión de un programa y el nombre de un complemento
 preguntas del índice de posesiones del hogar (se corrigió al leer el reporte técnico de 2022), y la afirmación de que
 el DIF por NSE en matemáticas no se había estudiado con PISA (se corrigió en la revisión de literatura).
 
-Dos propuestas de la IA que el equipo descartó: construir un sistema RAG para gestionar la información, que no se
-justifica con menos de cuarenta fuentes (se dejó solo como posible producto del curso de Python), y combinar Saber 11 con
-PISA, que no cabe en el semestre.
+Una propuesta de la IA que el equipo descartó: construir un sistema RAG para gestionar la información, que no se
+justifica con menos de cuarenta fuentes (se dejó solo como posible producto del curso de Python).
 
 **Riesgos éticos.** Los datos son de menores: solo se publicarán resultados agregados. Existe además un riesgo de
 comunicación: un hallazgo de DIF o de no invarianza podría usarse para deslegitimar la prueba o para estigmatizar a
@@ -345,7 +343,7 @@ reparto <- data.frame(
                               "Ambos", "Ambos"),
   `Revisión cruzada` = c("Mateo Ramos", "Vanessa Acosta", "—", "Vanessa Acosta", "Mateo Ramos", "—", "—"),
   check.names = FALSE)
-knitr::kable(reparto, caption = "Reparto del trabajo (basado en el del primer corte) [VERIFICAR con el equipo].")
+knitr::kable(reparto, caption = "Reparto del trabajo [VERIFICAR con el equipo].")
 ```
 
 # Referencias {-}

@@ -9,13 +9,13 @@ fecha_verificacion:
 
 # Gestión de la información
 
-Volver a [[00 Inicio]] · Decisiones D-02, D-12 y D-13 en [[03 Registro de decisiones]]
+Volver a [[00 Inicio]] · Decisiones D-03, D-04 y D-06 en [[03 Registro de decisiones]]
 
 ## La recomendación en una frase
 
 **Zotero guarda las fuentes y Obsidian guarda lo que sabemos, pensamos y decidimos, con su origen y su estado.**
 La IA (Claude) trabaja leyendo directamente el vault, siguiendo `CLAUDE.md` y [[11 Protocolo de verificación]].
-Un RAG **no** hace falta para gestionar la información de este proyecto (decisión D-15).
+Un RAG **no** hace falta para gestionar la información de este proyecto (decisión D-06).
 
 | Capa | Herramienta | Para qué | Costo |
 |---|---|---|---|
@@ -26,7 +26,7 @@ Un RAG **no** hace falta para gestionar la información de este proyecto (decisi
 | Apoyo puntual | NotebookLM | Exploración rápida de un PDF | Gratis, **no** para citar |
 
 **Por qué no un RAG para gestionar la información:** un RAG resuelve el problema de buscar en colecciones que no
-caben en el contexto de un modelo (miles de documentos, muchos usuarios). Este proyecto tiene ~27 fuentes y unas
+caben en el contexto de un modelo (miles de documentos, muchos usuarios). Este proyecto tiene unas 40 fuentes y unas
 decenas de notas: un modelo actual las puede leer completas. Lo que evita errores no es el RAG sino que **cada
 afirmación tenga origen y estado** (ver el protocolo). Un RAG mal alimentado repite errores con apariencia de cita.
 **Por qué no NotebookLM como base:** no es reproducible, no se integra con Zotero y se reportan errores de lectura;
@@ -35,27 +35,24 @@ cualquier dato que salga de ahí se verifica en el PDF antes de usarlo.
 ## Instalación (fase F0, ~1 hora)
 
 ### Zotero
-- [ ] Instalar **Zotero 10** (versión vigente al 2026-10-01; https://www.zotero.org/download/) y el **Zotero Connector** del navegador (misma página).
-  > [!warning] Compatibilidad (consultada el 2026-10-01)
-  > Las notas de la última versión de Better BibTeX (v9.0.68) mencionan Zotero 8 y 9; en GitHub hay reportes de fallas de
-  > carga y lentitud con Zotero 10 (issues #3583 y #3602). Si Better BibTeX no carga, avisar antes de seguir: el plan B es
-  > exportar el `.bib` con la función nativa de Zotero.
-- [ ] Instalar el plugin **Better BibTeX** (Herramientas → Plugins).
-- [ ] Crear la colección **`Proyecto PISA`** e importar las referencias:
-  - las 14 del anteproyecto (`Etapa1_Saber11/Primer Corte/referencias.bib`: Archivo → Importar — hecho el 2026-10-04);
-  - las de la [[Literatura/Matriz estado del arte|matriz]], con sus PDF.
-- [ ] **Conservar las claves actuales** (`collazos2021determinantes`, `icfes2019inse`, …): en cada referencia
-  importada, campo *Extra* → `Citation Key: <clave>` (Better BibTeX la fija).
-- [ ] Clic derecho en la colección → *Exportar colección* → formato **Better BibTeX** → marcar **Mantener
-  actualizado** → guardar en `Proyecto_PISA/informe/referencias.bib`.
-- [ ] Compartir: grupo de Zotero entre los dos, o cada uno con su biblioteca y el `.bib` en Git.
+- [x] **Zotero 10.0.5**, Zotero Connector, **Better BibTeX** y ZotLit Companion instalados (Mateo, 2026-10-04).
+  Descarga: https://www.zotero.org/download/ (Vanessa).
+- [x] Grupo privado **Proyecto Final PISA**, colección *Proyecto PISA*, con las referencias de
+  `Proyecto_PISA/anteproyecto/referencias.bib` importadas con sus claves de cita (2026-10-05). Paso a paso,
+  reglas y pendientes en [[12 Guía de Zotero]].
+- [ ] **`referencias.bib`** vive en `Proyecto_PISA/anteproyecto/` y por ahora se mantiene a mano, con metadatos de
+  Crossref. Si más adelante activan la exportación automática de Better BibTeX (*Exportar colección* → *Mantener
+  actualizado*), debe apuntar a ese mismo archivo y exportar la colección del grupo, para no tener dos `.bib` distintos.
+- **No cambiar las claves de cita** que ya usa el anteproyecto (`oecd2024pisa2022tr`, `goh2024detection`, …).
 
 ### Obsidian
-- [ ] Abrir el vault (*Open folder as vault* → `CONSULTORIA/Vault_PISA2022`).
-- [ ] Ajustes → *Community plugins* → instalar **ZotLit**, **Git** (Vinzent03) y **Dataview** (para las tablas de pendientes del [[11 Protocolo de verificación]]).
-- [ ] **ZotLit:** carpeta de notas = `Literatura/`; plantilla basada en [[Plantillas/Nota de lectura]] (autores,
-  año, clave bib, anotaciones resaltadas).
-- [ ] **Git (Vinzent03):** "Pull on startup" activado; commit y push manuales al terminar cada sesión.
+- [x] Abrir el vault (*Open folder as vault* → `CONSULTORIA/Vault_PISA2022`).
+- [x] Complementos de la comunidad: **ZotLit**, **Git** (Vinzent03) y **Dataview** (para las tablas de pendientes del
+  [[11 Protocolo de verificación]]).
+- [x] **ZotLit:** carpeta de notas = `Literatura/`; cada nota de fuente tiene la propiedad `zotero-key` que la une con
+  su referencia del grupo.
+- [ ] **Git:** el flujo oficial es **GitHub Desktop** (ver `README.md`). El complemento Git de Obsidian es opcional; si
+  lo usan, sin commits automáticos, para no mezclar cambios a medio hacer.
 - [ ] **Templates** (núcleo): carpeta de plantillas = `Plantillas`.
 
 ## Reglas de trabajo
@@ -68,7 +65,7 @@ cualquier dato que salga de ahí se verifica en el PDF antes de usarlo.
 6. **Hallazgos** → nota `Hallazgos.md` con el criterio de [[08 Rúbrica de desarrollo]].
 7. **Nada de datos de estudiantes** en el vault ni en el RAG (Ley 1581 de 2012): solo resultados agregados.
 
-## RAG del proyecto (fase F8, solo si el curso de Python lo pide) — decisiones D-13 y D-15
+## RAG del proyecto (fase F8, solo si el curso de Python lo pide) — decisiones D-04 y D-06
 
 - **Corpus:** notas del vault + PDF de la colección de Zotero + Technical Report de PISA 2022.
 - **Cómo:** fragmentar por encabezados → embeddings locales (gratis) → Chroma → recuperar los fragmentos más

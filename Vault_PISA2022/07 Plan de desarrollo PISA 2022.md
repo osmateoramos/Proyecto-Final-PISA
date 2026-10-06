@@ -36,10 +36,11 @@ Hipótesis a probar en [[09 Hipótesis preregistradas]] · Herramientas en [[10 
 
 La holgura está en F7 (se puede recortar a los análisis de sensibilidad mínimos) y en el RAG (opcional).
 
-## Estructura de carpetas (reorganizada el 2026-10-04, decisión D-17)
+## Estructura de carpetas (reorganizada el 2026-10-04, decisión D-08)
 
 ```
 CONSULTORIA/
+├── README.md                 ← guía del repositorio y flujo de trabajo con GitHub Desktop
 ├── CLAUDE.md                 ← reglas para Claude
 ├── .gitignore
 ├── Vault_PISA2022/           ← este vault (fuente de verdad)
@@ -52,9 +53,6 @@ CONSULTORIA/
 │   ├── salidas/              ← tablas .csv, figuras .png, resultados .json (van a Git)
 │   ├── informe/              ← informe final .Rmd
 │   └── api/                  ← FastAPI (+ tablero)
-└── Etapa1_Saber11/           ← archivo de la etapa con Saber 11 (no se modifica)
-    ├── Primer Corte/         ← anteproyecto entregado en el 1.er corte, auditoría, datos Saber 11
-    └── Proyecto/             ← ETL y diccionarios de Saber 11
 ```
 
 ---
@@ -64,21 +62,18 @@ CONSULTORIA/
 > [!info] Teoría previa
 > Ninguna. Leer [[10 Gestión de la información]].
 
-- [ ] **0.1 Zotero + Better BibTeX.** Instalar, crear la colección `Proyecto PISA`, importar las 14 referencias del
-  anteproyecto y las de la [[Literatura/Matriz estado del arte|matriz]]. Fijar las claves actuales (campo *Extra*:
-  `Citation Key: collazos2021determinantes`, etc.). Exportación automática a `Proyecto_PISA/informe/referencias.bib`.
-  - *Avance 2026-10-04:* Zotero 10.0.5 + Better BibTeX 9.0.68 + ZotLit Companion instalados; colección **Proyecto PISA**
-    con las 14 referencias de `Etapa1_Saber11/Primer Corte/referencias.bib`; las 14 claves (campo nativo *Citation Key*) coinciden con
-    el `.bib` y con las notas de `Literatura/` (comprobado leyendo una copia de `zotero.sqlite`). Pendiente: las 13
-    fuentes nuevas, adjuntar PDF y la exportación automática (cuando exista `Proyecto_PISA/`).
-- [ ] **0.2 Obsidian.** Abrir el vault; instalar ZotLit, Git (Vinzent03) y Templates. Una nota de lectura por fuente,
-  empezando por las marcadas † en la matriz.
-- [ ] **0.3 Git + GitHub privado** (pasos en [[01 Plan paso a paso]], paso 0.2, que siguen vigentes). Revisar que
-  el `.gitignore` excluya `Proyecto_PISA/datos/` (salvo scripts `.R`) antes del primer commit.
-  - *Avance 2026-10-04:* repositorio privado **Proyecto-Final-PISA** creado y subido
-    (https://github.com/osmateoramos/Proyecto-Final-PISA, rama `main`, 100 archivos, ningún dato de estudiantes).
-    Herramienta recomendada: GitHub Desktop (ver `README.md`). Pendiente: invitar a Vanessa como colaboradora.
-- [ ] **0.4 Carpeta `Proyecto_PISA/`** con la estructura de arriba.
+- [x] **0.1 Zotero + Better BibTeX.** Zotero 10.0.5 + Better BibTeX + ZotLit Companion instalados (2026-10-04).
+  Grupo privado **Proyecto Final PISA**, colección *Proyecto PISA*, con las referencias de `referencias.bib` importadas
+  con sus claves (2026-10-05). Detalle y pendientes en [[12 Guía de Zotero]]:
+  - [ ] Vanessa: crear su cuenta de Zotero y aceptar la invitación al grupo.
+  - [ ] Enviar a la papelera del grupo `icfes2018puntajes` e `icfes2024acceso` (ya no forman parte del proyecto).
+  - [ ] Adjuntar los PDF a medida que se verifiquen las fuentes.
+- [x] **0.2 Obsidian.** Vault abierto con Dataview, ZotLit (carpeta `Literatura`) y Git (Vinzent03). Las notas de
+  fuente ya existen; se verifican siguiendo [[11 Protocolo de verificación]].
+- [x] **0.3 Git + GitHub privado.** Repositorio **Proyecto-Final-PISA** (https://github.com/osmateoramos/Proyecto-Final-PISA,
+  rama `main`), sin datos de estudiantes (`.gitignore`). Flujo de trabajo en `README.md` (GitHub Desktop).
+  - [ ] Vanessa: aceptar la invitación de GitHub, clonar el repositorio y seguir la sección *Primera vez* del `README.md`.
+- [x] **0.4 Carpeta `Proyecto_PISA/`** con la estructura de arriba (2026-10-04).
 - [ ] **0.5 Preregistro.** Completar y fechar [[09 Hipótesis preregistradas]] **antes** de estimar cualquier modelo.
 - **Salida:** `.bib` sincronizado, vault en Git, nota 09 fechada.
 - **Autoevaluación:** ¿Por qué se escriben las hipótesis antes de modelar? ¿Qué pasaría con H5 si no?
@@ -96,7 +91,7 @@ Script: `Proyecto_PISA/scripts/01_etl_pisa.R` — parte de `datos/revision_pisa2
   - *Por qué:* NSE y pesos están en el cuestionario; ítems y tiempos en el cognitivo; zona y sector en el de colegios.
 - [ ] **1.2 Recuperar los códigos de faltante.** Releer las columnas de ítems con `haven::read_sav(..., user_na = TRUE)`
   y revisar `attr(x, "labels")` para distinguir **omitido**, **no alcanzado** y **no administrado**.
-  - *Por qué:* hoy esos tres quedan como `NA`; O3 necesita separarlos (D-14).
+  - *Por qué:* hoy esos tres quedan como `NA`; O3 necesita separarlos (D-05).
 - [ ] **1.3 Recodificar.**
   - Sexo: `ST004D01T` → Mujer / Hombre.
   - Zona: `SC001Q01TA` 1 → Rural (<3.000), 2 → Pueblo (3–15 mil), 3–6 → Urbana.
@@ -107,8 +102,8 @@ Script: `Proyecto_PISA/scripts/01_etl_pisa.R` — parte de `datos/revision_pisa2
   - Educación: `ST005Q01JA`, `ST007Q01JA` y `HISCED`; ocupación: `HISEI`.
   - Etiquetas de "Valid Skip", "Not Applicable", "Invalid", "No Response" → `NA`.
 - [ ] **1.4 Diccionario.** Completar [[Datos/PISA2022 - Diccionario de variables]] (versión inicial del 2026-10-04,
-  con `Proyecto_PISA/datos/diccionario_pisa2022.R`), agregando las variables recodificadas —antes `Datos/Diccionario PISA.md` (variable original → nueva, regla, % NA), con el
-  mismo formato que [[Archivo Saber 11/Saber11 - Diccionario de variables recodificadas]].
+  con `Proyecto_PISA/datos/diccionario_pisa2022.R`) con una tabla de variables recodificadas: variable original →
+  variable nueva, regla de recodificación y % de `NA`.
 - [ ] **1.5 Muestra analítica.** Definir y contar: con ESCS (7.459); con ≥10 ítems de matemáticas vistos (7.222);
   intersección. Comparar el puntaje medio de incluidos vs excluidos (¿la exclusión es aleatoria?).
 - **Salida:** `Proyecto_PISA/datos/COL_analitica.rds` (no va a Git), `salidas/conteos_muestra.csv`, diccionario.
@@ -124,7 +119,8 @@ Script: `Proyecto_PISA/scripts/01_etl_pisa.R` — parte de `datos/revision_pisa2
 Script: `02_validacion_ocde.R` — reutiliza `pendiente()` y `estimar_pv()` de `Proyecto_PISA/datos/revision_pisa2022_col.R`.
 
 - [ ] **2.1 Media de matemáticas de Colombia** con 10 PV + `W_FSTUWT` + 80 replicados. Objetivo publicado: **382,7
-  (EE 3,0)** ([[Literatura/oecd2024pisa2022tr]]; orden de columnas por verificar).
+  (EE 3,0)** ([[Literatura/oecd2024pisa2022tr]]; el valor 382,70 coincide con [[Literatura/burns2026intest]], tabla 2,
+  p. 9; falta la página del Technical Report).
 - [ ] **2.2 Brecha por ESCS:** diferencia entre el cuartil más alto y el más bajo. Objetivo: **79 puntos** — ⚠️ cifra `sin_origen` hasta abrir [[Literatura/oecd2023fichacolombia]].
 - [ ] **2.3 Varianza explicada por ESCS:** objetivo publicado **16 %** ([[Literatura/icfes2024pisa]]).
 - [ ] **2.4 Alternativa de contraste:** repetir 2.1 con `EdSurvey` (su soporte de PISA 2022 es contribuido y no
@@ -142,11 +138,11 @@ Script: `03_nse_medicion.R` · paquetes `psych`, `mirt`, `lavaan`, `semTools`.
 
 - [ ] **3.1 Dividir la muestra** en dos mitades aleatorias estratificadas por colegio (`set.seed(2026)`):
   *exploración* y *confirmación*.
-- [ ] **3.2 Exploración:** matriz policórica de los 18 ítems de posesiones + educación + ocupación (categorizada);
+- [ ] **3.2 Exploración:** matriz policórica de los 27 ítems de posesiones + educación + ocupación (categorizada);
   `psych::fa.parallel(cor = "poly")`; AFE con 1–3 factores (`oblimin`, `fm = "wls"`). ¿Aparece una dimensión
   económica y otra cultural (libros, educación, ocupación)?
-- [ ] **3.3 TRI:** `mirt` con `itemtype` por columna (`"2PL"` para ST250, `"graded"` o `"gpcm"` para ST251, ST254,
-  ST255 y educación). Tabla de parámetros (`coef(m, IRTpars = TRUE, simplify = TRUE)`), `itemfit()` (S-X²),
+- [ ] **3.3 TRI:** `mirt` con `itemtype` por columna (`"2PL"` para ST250, que es Sí/No; `"graded"` o `"gpcm"` para
+  ST251, ST253, ST254, ST255 y ST256, que preguntan cantidades, y para educación). Tabla de parámetros (`coef(m, IRTpars = TRUE, simplify = TRUE)`), `itemfit()` (S-X²),
   curvas de información. ¿En qué rango del NSE mide bien la escala?
 - [ ] **3.4 AFC en la mitad de confirmación:** 1 vs 2 factores con `estimator = "WLSMV"`, `ordered = …`; ajuste,
   `lavTestLRT()`, `semTools::compRelSEM()`. Con n ≈ 3.700 el χ² rechaza: reportarlo y usar CFI/RMSEA/SRMR.
@@ -183,7 +179,8 @@ Script: `05_tri_competencias.R` · `mirt`.
 
 - [ ] **5.1 Clasificación de ítems por competencia.** Tabla ítem → competencia / contenido / formato desde la hoja
   *Mathematics-CBA* del anexo A del Technical Report 2022 (`Proyecto_PISA/documentacion/PISA2022_TechnicalReport_AnexoA_clasificacion_items.xlsx`):
-  233 de 234 ítems (falta `CMA112Q02S`). Guardar `salidas/items_competencia.csv`.
+  233 de 234 ítems con parámetros; `CMA112Q02S` figura como *Dropped* (retirado de la escala internacional; ver D-09).
+  Guardar `salidas/items_competencia.csv`.
 - [ ] **5.2 Matriz de respuestas:** 7.222 estudiantes × ítems clasificados (S y C); categorías parciales para los
   politómicos. Las celdas vacías por la ruta adaptativa se dejan `NA` (la ruta depende de respuestas observadas:
   es ignorable si se calibra con todas las etapas juntas).
@@ -198,7 +195,7 @@ Script: `05_tri_competencias.R` · `mirt`.
 - [ ] **5.6 DIF por NSE dentro de cada competencia:** cuartil bajo vs alto de ESCS (o del NSE de O1); solo ítems con
   ≥100 respuestas por grupo (175 en la revisión); `multipleGroup` con anclas + `DIF()`; Benjamini-Hochberg; tamaño del
   efecto. ¿En qué competencia se concentra? → **H3**.
-- [ ] **5.7 Omisiones (D-14):** calificar dos veces — (a) omitida = 0 (criterio OCDE); (b) omisión rápida (NT10) = `NA`
+- [ ] **5.7 Omisiones (D-05):** calificar dos veces — (a) omitida = 0 (criterio OCDE); (b) omisión rápida (NT10) = `NA`
   — y comparar la brecha Q4–Q1 por competencia en desviaciones estándar → **H4**.
 - **Salida:** `salidas/items_competencia.csv`, `salidas/mat_parametros_mirt.csv`, `salidas/puntajes_competencia.rds`
   (no va a Git), `salidas/validacion_ocde_competencias.csv`, `salidas/mat_dif.csv`, `salidas/brecha_omisiones.csv`.
@@ -254,7 +251,7 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
   Ley 1581 de 2012).
 - [ ] **8.3 Pruebas** con `pytest` (un test por endpoint con datos reales).
 - [ ] **8.4 Tablero** (Streamlit) que consume la API.
-- [ ] **8.5 RAG (opcional, D-13):** LlamaIndex + Chroma; corpus = notas del vault + PDF de Zotero + Technical Report;
+- [ ] **8.5 RAG (opcional, D-04):** LlamaIndex + Chroma; corpus = notas del vault + PDF de Zotero + Technical Report;
   embeddings locales; endpoint `/preguntar` que responde citando la fuente; evaluación con 15 preguntas cuya
   respuesta ya conocen.
 - **Listo cuando:** `/docs` funciona, pruebas pasan, tablero muestra resultados reales.

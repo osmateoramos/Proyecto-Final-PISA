@@ -31,8 +31,8 @@ Explica disparidades socioeconómicas en matemáticas con calidad instruccional 
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | El NSE se mantuvo como predictor robusto en ambos niveles | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
-| 2 | La evidencia de mediación fue limitada; efectos indirectos intra-aula insignificantes | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
+| 1 | El NSE se mantuvo como predictor robusto en ambos niveles | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| 2 | La evidencia de mediación fue limitada; efectos indirectos intra-aula insignificantes | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
 
 ## Qué NO dice (para no citarlo mal)
 No es PISA ni analiza procesos matemáticos.

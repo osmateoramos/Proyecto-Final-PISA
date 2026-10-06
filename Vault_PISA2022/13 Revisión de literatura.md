@@ -28,8 +28,8 @@ Volver a [[00 Inicio]] · Matriz en [[Literatura/Matriz estado del arte]] · Pro
 
 | Clave | Por qué | Propuesta |
 |---|---|---|
-| `icfes2018puntajes` | Está en `referencias.bib`, pero el anteproyecto no la cita; es de la etapa Saber 11 | Quitarla del `.bib`; la nota se conserva como archivo |
-| `icfes2024acceso` | Igual que la anterior | Quitarla del `.bib`; la nota se conserva |
+| `icfes2018puntajes` | Está en `referencias.bib`, pero el anteproyecto no la cita | Quitarla del `.bib` (hecho el 2026-10-05; la nota también salió del vault) |
+| `icfes2024acceso` | Igual que la anterior | Quitarla del `.bib` (hecho el 2026-10-05; la nota también salió del vault) |
 | `zabala2019impacto` | Sí se cita (bloque A), pero es un informe regional de Saber 11 sin revisión por pares. Collazos et al. ya cubren el enfoque econométrico con más de 3 millones de evaluados | **Se conserva** (decisión de Mateo, 2026-10-05) |
 
 ## 2. Qué se comprobó (Claude contra la fuente; sigue `por_verificar`)
@@ -59,8 +59,8 @@ Quitar una marca [VERIFICAR] le corresponde al equipo, después de cotejar la p�
 |---|---|---|
 | [[Literatura/goh2024detection\|Goh et al. (2024)]] | **DIF por NSE en matemáticas de PISA 2022** (Corea, árboles de Rasch, 2 subpruebas). Es el antecedente más cercano a O3 y **obliga a acotar la novedad** | O3, H3 |
 | [[Literatura/avvisati2024measurement\|Avvisati y Wuyts (2024, OCDE)]] | La misma OCDE dice que HOMEPOS se escala como unidimensional (p. 11) y que una amenaza es "the lack of a theoretical framework for item selection and scale validation" (p. 48). También muestra una anomalía de Colombia en la educación de los padres (p. 20) | O1, H1 |
-| [[Literatura/pohl2014dealing\|Pohl, Gräfe y Rose (2014)]] | Omisiones y no alcanzados: la tendencia a omitir se correlaciona con la habilidad, pero en sus datos ignorarla bastó para estimar los parámetros. **Contrapeso a H4** | O3, H4, D-14 |
-| [[Literatura/kohler2015taking\|Köhler, Pohl y Carstensen (2015)]] | Modelo con propensión latente a omitir: cambia las estimaciones de habilidad | O3, D-14 |
+| [[Literatura/pohl2014dealing\|Pohl, Gräfe y Rose (2014)]] | Omisiones y no alcanzados: la tendencia a omitir se correlaciona con la habilidad, pero en sus datos ignorarla bastó para estimar los parámetros. **Contrapeso a H4** | O3, H4, D-05 |
+| [[Literatura/kohler2015taking\|Köhler, Pohl y Carstensen (2015)]] | Modelo con propensión latente a omitir: cambia las estimaciones de habilidad | O3, D-05 |
 | [[Literatura/ekmekci2013mathematical\|Ekmekci (2013)]] | Dimensionalidad de matemáticas de PISA 2003–2009: la evidencia favorece más a 1 dimensión | F5.3 |
 | [[Literatura/brandt2017calibracion\|Brandt (2017)]] | Crítica a que PISA use un modelo unidimensional para el total y uno multidimensional para las subescalas. Revista latinoamericana | F5.3 |
 
@@ -105,7 +105,7 @@ Lo que sigue es interpretación de Claude, para discutir con los tutores.
   resultado, no un fracaso. El plan ya compara 1 y 4 dimensiones en el paso 5.3.
 - **H4.** Pohl et al. sugieren que el efecto de las omisiones podría ser pequeño. **H4 no se cambia**, porque está
   preregistrada; se discute en el informe.
-- **D-14.** Köhler et al. ofrecen una tercera alternativa: modelar la propensión a omitir. Si el equipo la quiere, se
+- **D-05.** Köhler et al. ofrecen una tercera alternativa: modelar la propensión a omitir. Si el equipo la quiere, se
   registra como decisión antes de programarla.
 
 **No se cambió ninguna hipótesis ni decisión.**

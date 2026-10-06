@@ -1,7 +1,8 @@
 ---
 tipo: fuente
 clave_bib: brandt2017calibracion
-clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
+zotero-key: T23VN3UPg6703955
+clave_provisional: no
 titulo: "Calibración concurrente unidimensional y multidimensional dentro de la teoría de respuesta del Ítem"
 autores: "Brandt, Steffen"
 año: "2017"

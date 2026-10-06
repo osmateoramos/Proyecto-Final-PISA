@@ -1,7 +1,8 @@
 ---
 tipo: fuente
 clave_bib: rosseel2012lavaan
-clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
+zotero-key: QMYB9ZGYg6703955
+clave_provisional: no
 titulo: "lavaan: An R Package for Structural Equation Modeling"
 autores: "Rosseel, Yves"
 año: "2012"

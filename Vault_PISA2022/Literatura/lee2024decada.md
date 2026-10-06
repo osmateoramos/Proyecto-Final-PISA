@@ -31,8 +31,8 @@ Sintetiza una década de resultados de Saber 11, incluida la brecha por NSE.
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | La brecha por NSE se reporta sobre el puntaje global | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
-| 2 | La brecha pasó de más de 60 puntos en los años iniciales a 11,3 puntos en 2023 | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
+| 1 | La brecha por NSE se reporta sobre el puntaje global | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| 2 | La brecha pasó de más de 60 puntos en los años iniciales a 11,3 puntos en 2023 | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
 
 ## Qué NO dice (para no citarlo mal)
 No desagrega por competencia de matemáticas.

@@ -31,7 +31,7 @@ Construye un modelo de medición del NSE con AFC y prueba invarianza a lo largo 
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | La invarianza métrica es alcanzable pero debe verificarse, no suponerse | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
+| 1 | La invarianza métrica es alcanzable pero debe verificarse, no suponerse | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
 
 ## Qué NO dice (para no citarlo mal)
 No compara grupos dentro de una cohorte (zona, sexo).

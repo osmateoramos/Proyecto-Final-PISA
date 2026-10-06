@@ -11,7 +11,7 @@ fecha_verificacion:
 Volver a [[00 Inicio]] · Objetivos en [[06 Objetivos PISA 2022]] · Se actualiza en F7 ([[07 Plan de desarrollo PISA 2022]])
 
 **Leyenda:** ✓ sí · ◐ parcial · ✗ no · — no aplica · ? no verificado
-**Leída:** ✓ = texto completo (por el equipo en el anteproyecto, o por Claude: ver la propiedad `lectura` de cada nota) · ◐ = texto completo consultado por búsqueda de secciones, sin leerlo entero · † = solo resumen o fragmentos. **Ninguna fila está `verificada` todavía** según [[11 Protocolo de verificación]]: falta cotejar página y cita en el PDF.
+**Leída:** ✓ = texto completo (por el equipo o por Claude: ver la propiedad `lectura` de cada nota) · ◐ = texto completo consultado por búsqueda de secciones, sin leerlo entero · † = solo resumen o fragmentos. **Ninguna fila está `verificada` todavía** según [[11 Protocolo de verificación]]: falta cotejar página y cita en el PDF.
 
 Cuando se lea una fuente †: crear su nota en `Literatura/` (ZotLit), cambiar † por ✓ y corregir cualquier "?" o ✗.
 
@@ -56,8 +56,8 @@ Cuando se lea una fuente †: crear su nota en `Literatura/` (ZotLit), cambiar �
 | [[Literatura/kohler2015taking\|Köhler, Pohl y Carstensen (2015)]] | † | NEPS; 15.396 escolares y 7.256 adultos | — | — | — | ✓ (propensión latente a omitir) | ✗ | ✓ (omisiones, con modelo) | ✗ | ✗ |
 | **ESTE PROYECTO** | | **PISA 2022 Colombia; 7.804** | **Latente 1 vs 2 dim. (TRI + AFC)** | **✓ zona, sexo, sector** | **4 procesos** | **✓ calibración propia** | **✓ Q1 vs Q4** | **✓ omisiones rápidas (tiempos)** | **✓ NSE → procesos, PV + pesos** | **✓** |
 
-> Nota: las filas marcadas ✓ en "Leída" que vienen del anteproyecto fueron verificadas por el equipo en el primer
-> corte; las del bloque C–E se revisaron en septiembre de 2026 (artículo completo o resumen, según la columna).
+> Nota: las filas de los bloques A y B marcadas ✓ las leyó el equipo en texto completo; las del bloque C–E
+> se revisaron en septiembre de 2026 (artículo completo o resumen, según la columna).
 > Revisión del 2026-10-05 (ver [[13 Revisión de literatura]]): se agregaron 9 fuentes y se actualizaron 5.
 
 ## Qué queda sin hacer (el vacío)

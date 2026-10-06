@@ -19,7 +19,6 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 │   ├── documentacion/       ← anexo A del Technical Report 2022 (clasificación de ítems), rúbrica
 │   ├── scripts/ · salidas/ · informe/ · api/
 │   └── Proyecto_PISA.Rproj
-└── Etapa1_Saber11/          ← archivo de la etapa con Saber 11 (no se modifica)
 ```
 
 Empezar por `Vault_PISA2022/00 Inicio.md` (en Obsidian) y por el anteproyecto en `Proyecto_PISA/anteproyecto/`.

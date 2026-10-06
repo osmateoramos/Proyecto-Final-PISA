@@ -31,8 +31,8 @@ Relaciona condiciones socioeconómicas con el puntaje de Saber 11 en Norte de Sa
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | El NSE del colegio y la posesión de computador se asocian con el desempeño | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
-| 2 | Reporta un efecto contraintuitivo del acceso a internet | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
+| 1 | El NSE del colegio y la posesión de computador se asocian con el desempeño | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| 2 | Reporta un efecto contraintuitivo del acceso a internet | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
 
 ## Qué NO dice (para no citarlo mal)
 No usa NSE latente ni analiza matemáticas por competencia.

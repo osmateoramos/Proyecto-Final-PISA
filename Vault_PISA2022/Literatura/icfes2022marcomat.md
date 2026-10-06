@@ -31,8 +31,8 @@ Define qué evalúa la prueba de matemáticas de Saber 11.
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | Tres competencias: interpretación y representación; formulación y ejecución; argumentación | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
-| 2 | Aproximadamente cincuenta ítems de selección múltiple | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
+| 1 | Tres competencias: interpretación y representación; formulación y ejecución; argumentación | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| 2 | Aproximadamente cincuenta ítems de selección múltiple | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
 
 ## Qué NO dice (para no citarlo mal)
 Los resultados por competencia no se publican por estudiante.

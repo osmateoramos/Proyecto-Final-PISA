@@ -1,7 +1,8 @@
 ---
 tipo: fuente
 clave_bib: wu2016identification
-clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
+zotero-key: 6K78WKLTg6703955
+clave_provisional: no
 titulo: "Identification of Confirmatory Factor Analysis Models of Different Levels of Invariance for Ordered Categorical Outcomes"
 autores: "Wu, Hao; Estabrook, Ryne"
 año: "2016"

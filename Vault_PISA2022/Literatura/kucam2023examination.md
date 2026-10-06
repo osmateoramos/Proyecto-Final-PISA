@@ -1,7 +1,8 @@
 ---
 tipo: fuente
 clave_bib: kucam2023examination
-clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
+zotero-key: NPYLJ79Yg6703955
+clave_provisional: no
 titulo: "Examination of Differential Item Functioning in PISA 2018 Mathematics Literacy Test with Different Methods"
 autores: "Kucam, Emre; Gülleroğlu, Hamide Deniz"
 año: "2023"

@@ -31,8 +31,8 @@ Analiza DIF entre dos formas de la prueba de matemáticas de Saber 11 (calendari
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | Un solo ítem de 22 con DIF no despreciable; concluyen que las comparaciones entre formas son justas | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
-| 2 | Usó datos con licencia del ICFES (no públicos) | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
+| 1 | Un solo ítem de 22 con DIF no despreciable; concluyen que las comparaciones entre formas son justas | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| 2 | Usó datos con licencia del ICFES (no públicos) | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
 
 ## Qué NO dice (para no citarlo mal)
 No analiza DIF por NSE.

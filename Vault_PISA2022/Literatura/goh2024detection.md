@@ -1,7 +1,8 @@
 ---
 tipo: fuente
 clave_bib: goh2024detection
-clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
+zotero-key: 685SGR7Eg6703955
+clave_provisional: no
 titulo: "Detection of differential item functioning in PISA 2022 mathematics test using the Rasch tree method"
 autores: "Goh, Sugyung; Woo, Yejin; Lee, Ji-Yoon; Choi, Hanna; Choi, Youn-Jeog"
 año: "2024"

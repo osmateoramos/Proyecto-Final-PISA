@@ -1,7 +1,8 @@
 ---
 tipo: fuente
 clave_bib: ekmekci2013mathematical
-clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
+zotero-key: GMP28DI5g6703955
+clave_provisional: no
 titulo: "Mathematical literacy assessment design: a dimensionality analysis of Programme for International Student Assessment (PISA) mathematics framework"
 autores: "Ekmekci, Adem"
 año: "2013"

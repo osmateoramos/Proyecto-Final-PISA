@@ -10,7 +10,7 @@ fecha_verificacion:
 # Objetivos — PISA 2022 Colombia
 
 Volver a [[00 Inicio]] · Plan en [[07 Plan de desarrollo PISA 2022]] · Hipótesis en [[09 Hipótesis preregistradas]]
-Decisión de fuente: D-11 en [[03 Registro de decisiones]]
+Decisión de fuente: D-01 en [[03 Registro de decisiones]]
 
 ## Pregunta de investigación
 
@@ -55,13 +55,13 @@ y contrastando una estructura unidimensional contra una de dos dimensiones (capi
 ### O3. Calificar por competencias y verificar que la calificación es justa — `[TRI]`
 **Calibrar un modelo de TRI multidimensional propio con las cuatro competencias matemáticas como dimensiones,
 asignar a cada estudiante un puntaje por competencia, validarlo contra los valores plausibles de la OCDE y
-verificar su equidad (DIF por NSE y sensibilidad al tratamiento de las omisiones).** (Decisión D-16.)
+verificar su equidad (DIF por NSE y sensibilidad al tratamiento de las omisiones).** (Decisión D-07.)
 - **Datos:** ítems de matemáticas de Colombia (234 calificados; **233 clasificados por competencia** en la hoja
-  *Mathematics-CBA* del anexo A del Technical Report 2022: emplear 75, interpretar 57, razonar 53, formular 48; falta
-  `CMA112Q02S`). Valores plausibles OCDE `PV1–10 MPFS/MPEM/MPIN/MPRE`; tiempos (`TT`).
+  *Mathematics-CBA* del anexo A del Technical Report 2022: emplear 75, interpretar 57, razonar 53, formular 48; el ítem 234,
+  `CMA112Q02S`, figura como retirado — *Dropped* — de la escala internacional, propuesta D-09). Valores plausibles OCDE `PV1–10 MPFS/MPEM/MPIN/MPRE`; tiempos (`TT`).
 - **Método:** MIRT confirmatorio entre ítems (cada ítem carga en su competencia; 2PL/GPCM) con `mirt`, contra el modelo
   unidimensional; puntajes EAP/PV por competencia; validez convergente con los PV de la OCDE; DIF cuartil bajo vs alto
-  de NSE dentro de cada competencia; recalificación de omisiones rápidas (D-14).
+  de NSE dentro de cada competencia; recalificación de omisiones rápidas (D-05).
 - **Cumplido cuando:** comparación 1 vs 4 dimensiones (AIC/BIC, ajuste), confiabilidad por competencia, correlación
   puntaje propio–PV OCDE por competencia, lista de ítems con DIF y brecha bajo ambos tratamientos de las omisiones.
 
@@ -81,7 +81,7 @@ resultados de invarianza y DIF (O2, O3) y los coeficientes y puntajes agregados 
 - **Cumplido cuando:** documentación OpenAPI/Swagger accesible, endpoints funcionando sobre resultados reales y
   pruebas automáticas.
 - **Extensión opcional:** módulo de consulta en lenguaje natural (RAG) sobre el vault y los documentos de la OCDE
-  (D-02, D-13).
+  (D-03, D-04).
 
 ## Viabilidad ya verificada en los datos (revisión del 2026-09-29)
 
@@ -99,7 +99,6 @@ resultados de invarianza y DIF (O2, O3) y los coeficientes y puntajes agregados 
 - **PISA 2025:** matemáticas es dominio menor, sin subescalas de proceso.
 - **Los 3 bienes nacionales de Colombia** (televisor, nevera, consola): no están en la base pública.
 - **Afirmaciones causales:** diseño transversal de un solo ciclo.
-- **Saber 11:** queda como antecedente y motivación (no publica resultados por competencias).
 
 ## Pendiente de verificar
-- El ítem `CMA112Q02S` no aparece en el anexo A 2022: revisar si cambió de código o si se excluyó del escalamiento.
+- Resuelto el 2026-10-05: `CMA112Q02` figura en la hoja *Mathematics-CBA* del anexo A como *(Dropped)*: competencia razonar, opción múltiple compleja, retirado de la escala internacional y sin parámetros. Qué hacer con él: propuesta D-09 en [[03 Registro de decisiones]].

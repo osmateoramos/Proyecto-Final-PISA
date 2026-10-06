@@ -31,8 +31,8 @@ Construye un índice socioeconómico familiar para Saber 11.
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | Índice por ACP sobre variables categóricas, unidimensional por construcción | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
-| 2 | Correlación positiva significativa entre el índice y el desempeño | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
+| 1 | Índice por ACP sobre variables categóricas, unidimensional por construcción | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| 2 | Correlación positiva significativa entre el índice y el desempeño | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
 
 ## Qué NO dice (para no citarlo mal)
 No prueba invarianza entre subgrupos ni estructura multidimensional.

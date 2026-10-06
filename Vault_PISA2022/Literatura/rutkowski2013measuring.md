@@ -31,7 +31,7 @@ Evalúa la confiabilidad y comparabilidad del índice de posesiones del hogar en
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | El índice de posesiones tiene confiabilidad muy variable entre países y comparabilidad pobre | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
+| 1 | El índice de posesiones tiene confiabilidad muy variable entre países y comparabilidad pobre | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
 
 ## Qué NO dice (para no citarlo mal)
 No evalúa invarianza dentro de un país.

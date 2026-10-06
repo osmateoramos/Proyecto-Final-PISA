@@ -31,8 +31,8 @@ navegador)         anotar con la página      datos y subrayados          cita c
 2. **Leer y subrayar.** Doble clic en el PDF dentro de Zotero. Lo que se resalta queda guardado **con su página**:
    es la evidencia que pide el protocolo de verificación (página + cita textual).
 3. **Llevar a Obsidian.** ZotLit crea la nota de la fuente en `Literatura/` y trae los subrayados.
-4. **Citar.** Cada referencia tiene una **clave de cita** fija (ej. `icfes2019inse`). Better BibTeX la mantiene y
-   genera `referencias.bib`, que usa el anteproyecto: en el `.Rmd` se escribe `[@icfes2019inse]`.
+4. **Citar.** Cada referencia tiene una **clave de cita** fija (ej. `oecd2024pisa2022tr`). Better BibTeX la mantiene y
+   genera `referencias.bib`, que usa el anteproyecto: en el `.Rmd` se escribe `[@oecd2024pisa2022tr]`.
 
 ## Qué hace cada pieza que instalamos
 
@@ -73,8 +73,8 @@ navegador)         anotar con la página      datos y subrayados          cita c
    `Proyecto_PISA/anteproyecto/importar_zotero_2026-10-05.bib` (solo trae las 12 nuevas, para no duplicar las 26
    que ya están). Comprobar que las claves coinciden con las de las notas. Después de importarlo, ese archivo ya no
    hace falta: puedes borrarlo tú.
-7. [ ] `icfes2018puntajes` e `icfes2024acceso` salieron de `referencias.bib`, pero siguen en el grupo. Si quieren,
-   muévanlas a una subcolección *Archivo Saber 11*; no hace falta borrarlas.
+7. [ ] `icfes2018puntajes` e `icfes2024acceso` ya no forman parte del proyecto (no están en `referencias.bib` ni
+   tienen nota). Enviarlas a la papelera del grupo: clic derecho → *Mover elemento a la papelera*.
 
 ## Reglas para no equivocarse
 - **Fuentes nuevas: importarlas o capturarlas directamente en el grupo**, no en *Mi biblioteca* (al copiar entre

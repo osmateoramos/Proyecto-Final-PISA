@@ -11,18 +11,16 @@ Proyecto_PISA/datos/*
 *.SAS7BDAT
 *.rds
 *.parquet
-# Etapa 1 (Saber 11): datos crudos y procesados
-Examen_Saber_11_*.txt
-Etapa1_Saber11/Proyecto/datos/
 
 # --- Hojas de cálculo: fuera, salvo la documentación oficial de PISA ----------
 *.xlsx
 !Proyecto_PISA/documentacion/PISA2022_TechnicalReport_AnexoA_clasificacion_items.xlsx
 
-# --- Documentación con derechos de autor (libros) y comprimidos pesados -------
-Proyecto_PISA/documentacion/*.pdf
+# --- PDF y comprimidos: fuera (derechos de autor y peso), salvo los PDF propios -
+*.pdf
+!Proyecto_PISA/anteproyecto/*.pdf
+!Proyecto_PISA/informe/*.pdf
 Proyecto_PISA/documentacion/*.zip
-Proyecto_PISA/documentacion/vault_exportaciones_antiguas/
 
 # --- Archivos intermedios al generar PDF con R Markdown -----------------------
 *.knit.md

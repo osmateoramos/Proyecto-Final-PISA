@@ -31,9 +31,9 @@ Estima determinantes del puntaje de Saber 11 con variables socioeconómicas obse
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | Usa MCO sobre 3.247.429 estudiantes evaluados entre 2014 y 2019 | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
-| 2 | Efecto neto de estrato medio frente a bajo: +0,81 puntos en matemáticas | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
-| 3 | Educación materna: hasta +7,44 puntos (posgrado); computador +1,42; internet +1,14 | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
+| 1 | Usa MCO sobre 3.247.429 estudiantes evaluados entre 2014 y 2019 | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| 2 | Efecto neto de estrato medio frente a bajo: +0,81 puntos en matemáticas | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| 3 | Educación materna: hasta +7,44 puntos (posgrado); computador +1,42; internet +1,14 | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
 
 ## Qué NO dice (para no citarlo mal)
 No modela el error de medición del NSE ni prueba invarianza entre grupos.

@@ -7,15 +7,15 @@
 #   2. Lee unicamente ese bloque de filas y las columnas de matematicas:
 #      respuesta calificada (S o C), tiempo total (TT, en ms), tiempo a la
 #      primera accion (F), numero de acciones (A) y la ruta adaptativa.
-#   3. Guarda un unico cache: COL_matematicas_cog.rds (en esta misma carpeta).
+#   3. Guarda el cache COL_matematicas_cog.rds (en esta misma carpeta).
 #      Las siguientes corridas leen el cache y no vuelven a abrir el .SAV.
 #   4. Imprime el perfil: rutas, respuestas por item y respuestas rapidas.
+#   5. Hace lo mismo con el cuestionario de estudiantes (CY08MSP_STU_QQQ.SAV:
+#      ESCS, posesiones del hogar, valores plausibles, pesos, sexo) y guarda
+#      COL_estudiantes_qqq.rds; une zona y sector desde CY08MSP_SCH_QQQ.SAV.
 #
 # Como correrlo (desde la carpeta datos/, o abriendo el script en RStudio):
 #   & "C:\Program Files\R\R-4.4.1\bin\Rscript.exe" revision_pisa2022_col.R
-#
-# Lo que este archivo NO trae (esta en CY08MSP_STU_QQQ, aun no descargado):
-#   ESCS, posesiones del hogar, puntajes por proceso (PV), pesos, sexo.
 # =============================================================================
 
 options(stringsAsFactors = FALSE, scipen = 999)
@@ -32,7 +32,10 @@ DIR     <- carpeta_script()
 ARCHIVO <- file.path(DIR, "CY08MSP_STU_COG.SAV")
 CACHE   <- file.path(DIR, "COL_matematicas_cog.rds")
 PAIS    <- "COL"
-REHACER <- FALSE   # TRUE para volver a leer el .SAV aunque exista el cache
+# Rehacer un cache aunque exista: cambiar a TRUE, o definir la variable de entorno
+# (REHACER_COG=1 / REHACER_QQQ=1) antes de correr el script.
+REHACER     <- FALSE || Sys.getenv("REHACER_COG") == "1"   # items cognitivos (lee el .SAV de 3,7 GB)
+REHACER_QQQ <- FALSE || Sys.getenv("REHACER_QQQ") == "1"   # cuestionario de estudiantes
 
 # =============================================================================
 # 1. CONSTRUIR O LEER EL CACHE
@@ -44,7 +47,7 @@ if (file.exists(CACHE) && !REHACER) {
   if (!file.exists(ARCHIVO)) stop("No encuentro ", ARCHIVO)
   nombres <- names(read_sav(ARCHIVO, n_max = 0))
 
-  # Items de matematicas. Codificacion OCDE (Technical Report, anexo 12):
+  # Items de matematicas. Codificacion OCDE (PISA 2022 Technical Report):
   #   CM...S  = item calificado automaticamente (CMA = items nuevos de 2022)
   #   DM...C  = item corregido por codificador humano
   #   CM...TT = tiempo total; F = primera accion; A = numero de acciones.
@@ -157,7 +160,7 @@ if (!file.exists(CACHE_QQQ) && !file.exists(ARCHIVO_QQQ)) {
   cat("\nFalta CY08MSP_STU_QQQ.SAV: se omite la parte de cuestionario.\n")
   quit(save = "no")
 }
-if (file.exists(CACHE_QQQ) && !REHACER) {
+if (file.exists(CACHE_QQQ) && !REHACER_QQQ) {
   q <- readRDS(CACHE_QQQ)
   cat("\nCache leido:", CACHE_QQQ, "-", nrow(q), "filas x", ncol(q), "columnas\n")
 } else {
@@ -262,11 +265,11 @@ cat("\n--- Idea 4: items de posesiones del hogar disponibles para Colombia ---\n
 disp <- pos[sapply(pos, function(v) mean(!is.na(q[[v]])) > 0.5)]
 cat(length(disp), "items con datos:", paste(disp, collapse = ", "), "\n")
 # Los 3 bienes nacionales de Colombia (televisor, nevera, consola; Technical
-# Report, anexo D) NO estan en la base publica: la OCDE excluye las
-# adaptaciones nacionales del PUF (Technical Report, cap. 25/12).
+# Report, anexo D, por verificar) NO estan en la base publica: las adaptaciones
+# nacionales no se incluyen en el archivo de uso publico (PUF).
 cat("Bienes nacionales de Colombia en la base publica:",
     if (length(intersect(c("ST250Q06JA", "ST250Q07JA", "ST251Q08JA", "ST251Q09JA"), names(q))))
-      "si" else "NO (excluidos del PUF; solo se pueden usar los 18 internacionales)", "\n")
+      "si" else "NO (excluidos del PUF; solo se usan los items internacionales)", "\n")
 cat("HOMEPOS medio (ponderado) por zona y por sexo:\n")
 print(q[!is.na(HOMEPOS), .(n = .N, HOMEPOS = round(weighted.mean(HOMEPOS, W_FSTUWT), 2)), by = zona][order(zona)])
 print(q[!is.na(HOMEPOS), .(n = .N, HOMEPOS = round(weighted.mean(HOMEPOS, W_FSTUWT), 2)), by = .(sexo = ST004D01T)])

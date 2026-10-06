@@ -13,7 +13,7 @@ Cursos integrados: Teoría de Respuesta al Ítem · Ecuaciones Estructurales · 
 - Fuentes bibliográficas: una nota por fuente en `Vault_PISA2022/Literatura/` (con su estado).
 - Proyecto actual: `Proyecto_PISA/` → `anteproyecto/` (documento vigente), `datos/` (PISA 2022 .SAV + cachés de
   Colombia + `revision_pisa2022_col.R`), `scripts/`, `salidas/`, `informe/`, `api/`, `documentacion/`.
-- `Etapa1_Saber11/` es archivo de la etapa con Saber 11 (decisión D-11): no se modifica.
+- La única fuente de datos es PISA 2022 (decisión D-01). No hay material de otras etapas en esta carpeta.
 
 ## Reglas de veracidad (obligatorias)
 1. **Toda cifra** se acompaña de su origen: script + archivo de salida, o fuente + página. Si la cifra no se

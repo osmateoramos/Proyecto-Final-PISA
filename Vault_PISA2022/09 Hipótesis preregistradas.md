@@ -23,7 +23,7 @@ Volver a [[00 Inicio]] · Objetivos en [[06 Objetivos PISA 2022]] · Criterio de
 | **H1** | O1 | El NSE de los estudiantes colombianos se representa mejor con **dos dimensiones** (económica y cultural) que con una | AFC 1 vs 2 factores en la mitad de confirmación | Se acepta si el modelo de 2 factores mejora CFI en ≥ 0,01 y la correlación entre factores es < 0,90 | pendiente |
 | **H2** | O2 | **No hay invarianza escalar entre zona rural y urbana**: al menos un bien del hogar funciona distinto | Secuencia de invarianza + DIF de posesiones | Se acepta si el paso escalar empeora CFI en > 0,01 o RMSEA en > 0,015, y al menos un ítem tiene DIF con efecto no despreciable | pendiente |
 | **H3** | O3 | Existen ítems de matemáticas con **DIF por NSE** no despreciable, concentrados en las competencias **interpretar y formular** | DIF cuartil bajo vs alto + tabla por proceso | Se acepta la primera parte si ≥ 1 ítem tiene DIF significativo (Benjamini-Hochberg 5 %) con efecto no despreciable; la segunda si la proporción de DIF en interpretar + formular es mayor que en emplear (prueba de independencia, α = 0,05) | pendiente |
-| **H4** | O3 | Tratar las **omisiones rápidas** como faltantes (en vez de incorrectas) **reduce la brecha** entre el cuartil alto y el bajo de NSE | Recalificación (D-14) y comparación de brechas | Se acepta si la brecha baja en ≥ 0,05 DE y la reducción es significativa | pendiente |
+| **H4** | O3 | Tratar las **omisiones rápidas** como faltantes (en vez de incorrectas) **reduce la brecha** entre el cuartil alto y el bajo de NSE | Recalificación (D-05) y comparación de brechas | Se acepta si la brecha baja en ≥ 0,05 DE y la reducción es significativa | pendiente |
 | **H5** | O4 | El efecto del NSE es **mayor en interpretar que en emplear** | Prueba de igualdad de efectos en el SEM (puntajes propios y PV OCDE) | Se acepta si la diferencia es positiva y significativa (α = 0,05) en el modelo completo y en la mitad de confirmación | pendiente |
 | **H6** | O4 | El efecto del NSE **difiere entre sectores o zonas** | Modelo multigrupo (si F4 lo permite) | Se acepta si liberar el efecto entre grupos mejora el ajuste (prueba de diferencia, α = 0,05) | pendiente |
 | **H7** | O3 | Los **puntajes propios por competencia** son válidos: correlacionan con los valores plausibles de la OCDE de la misma competencia | Correlación ponderada puntaje propio – PV OCDE, por competencia | Se acepta si la correlación es ≥ 0,80 en las cuatro competencias y mayor con su propia competencia que con las otras | pendiente |
@@ -35,5 +35,5 @@ Volver a [[00 Inicio]] · Objetivos en [[06 Objetivos PISA 2022]] · Criterio de
 > confirmación. Así debe declararse en el informe.
 
 > [!note] H7 y H8
-> Agregadas el 2026-10-04 al definir que el proyecto califica por competencias (D-16), **antes** de estimar cualquier
+> Agregadas el 2026-10-04 al definir que el proyecto califica por competencias (D-07), **antes** de estimar cualquier
 > modelo de TRI. La fecha de congelamiento de todas las hipótesis sigue pendiente (paso 0.5).

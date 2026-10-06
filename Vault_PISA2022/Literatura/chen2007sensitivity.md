@@ -1,7 +1,8 @@
 ---
 tipo: fuente
 clave_bib: chen2007sensitivity
-clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
+zotero-key: K7455AKYg6703955
+clave_provisional: no
 titulo: "Sensitivity of Goodness of Fit Indexes to Lack of Measurement Invariance"
 autores: "Chen, Fang Fang"
 año: "2007"

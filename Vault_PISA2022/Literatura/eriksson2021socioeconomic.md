@@ -31,8 +31,8 @@ Descompone el NSE en seis dimensiones como predictores simultáneos del logro en
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | Solo dos dimensiones predicen sustantivamente: libros en casa (mayor efecto) y ocupación de los padres | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
-| 2 | Colapsar el NSE en un índice puede diluir las dimensiones que importan | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
+| 1 | Solo dos dimensiones predicen sustantivamente: libros en casa (mayor efecto) y ocupación de los padres | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| 2 | Colapsar el NSE en un índice puede diluir las dimensiones que importan | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
 
 ## Qué NO dice (para no citarlo mal)
 No es un modelo de medición latente ni se enfoca en Colombia.

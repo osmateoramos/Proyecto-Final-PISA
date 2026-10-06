@@ -1,7 +1,8 @@
 ---
 tipo: fuente
 clave_bib: avvisati2024measurement
-clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
+zotero-key: 6L8TQFS7g6703955
+clave_provisional: no
 titulo: "The Measurement of Socio-economic Status in PISA"
 autores: "Avvisati, Francesco; Wuyts, Celine"
 año: "2024"

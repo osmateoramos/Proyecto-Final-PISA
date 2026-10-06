@@ -31,10 +31,10 @@ Documenta la construcción del INSE oficial del ICFES.
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | La unidimensionalidad se verifica antes de estimar (ACP para seleccionar ítems) | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
-| 2 | Se reescala a 0–100 con media 50 y se discretiza en NSE 1–4 con árboles de decisión | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
-| 3 | El estrato no entra al índice; se usa como validación externa | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
-| 4 | Hace DIF entre periodos, no entre grupos de una misma cohorte; ilustra la consola de videojuegos con curva desplazada para mujeres | pendiente | | por_verificar · origen: anteproyecto (equipo, 1.er corte) |
+| 1 | La unidimensionalidad se verifica antes de estimar (ACP para seleccionar ítems) | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| 2 | Se reescala a 0–100 con media 50 y se discretiza en NSE 1–4 con árboles de decisión | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| 3 | El estrato no entra al índice; se usa como validación externa | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| 4 | Hace DIF entre periodos, no entre grupos de una misma cohorte; ilustra la consola de videojuegos con curva desplazada para mujeres | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
 
 ## Qué NO dice (para no citarlo mal)
 No prueba invarianza entre grupos de la misma cohorte.

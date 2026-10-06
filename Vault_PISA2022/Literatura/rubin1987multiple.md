@@ -1,7 +1,8 @@
 ---
 tipo: fuente
 clave_bib: rubin1987multiple
-clave_provisional: "no (en referencias.bib desde 2026-10-05; falta importarla al grupo de Zotero)"
+zotero-key: B4NGP9SXg6703955
+clave_provisional: no
 titulo: "Multiple Imputation for Nonresponse in Surveys"
 autores: "Rubin, Donald B."
 año: "1987"

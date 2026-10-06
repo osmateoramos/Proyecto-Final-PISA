@@ -33,7 +33,7 @@ rastreable** y que **los errores se detecten antes de llegar al informe**.
 | `sin_origen` | Afirmación sin fuente ni script | No. Buscar el origen o descartar |
 | `descartado` | Se comprobó que era falso o no aplica | No (se conserva tachado, con la razón) |
 
-**Claude nunca marca nada como `verificado`.** Solo Vanessa o Mateo, poniendo su nombre y la fecha.
+**Claude nunca marca nada como `verificado`.** Solo un integrante del equipo (Vanessa, Mateo o Brayan), poniendo su nombre y la fecha.
 
 ## Propiedades de cada nota
 

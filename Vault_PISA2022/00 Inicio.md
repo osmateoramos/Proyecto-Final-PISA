@@ -1,6 +1,6 @@
 # Proyecto PISA 2022 Colombia — NSE latente y competencias matemáticas
 
-Vanessa Acosta · Mateo Ramos · Consultoría Estadística USTA 2026-II
+Vanessa Acosta · Mateo Ramos · Brayan David Barreto · Consultoría Estadística USTA 2026-II
 Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales · Python para APIs e IA
 
 ## Por dónde empezar
@@ -9,6 +9,17 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 2. [[06 Objetivos PISA 2022]] — pregunta, objetivo general y O1–O5.
 3. [[07 Plan de desarrollo PISA 2022]] — paso a paso por semanas. **Estamos en la semana 1:** F0 casi cerrada
    (falta congelar las hipótesis, paso 0.5) y sigue F1 (datos y ETL).
+
+## Equipo y reparto (propuesta, por confirmar)
+
+| Persona | Responsable de | Revisa |
+|---|---|---|
+| Mateo Ramos | O1–O2: medir el NSE e invarianza | O3 y O5 |
+| Vanessa Acosta | O3: calificar por competencias y DIF | O4 |
+| Brayan David Barreto | O4–O5: modelo estructural, API y tablero | O1–O2 |
+
+La verificación de las 43 fuentes se reparte entre los tres. Cada uno trabaja en sus notas y scripts; *pull* antes de
+empezar (ver `README.md`).
 
 ## Notas del proyecto
 

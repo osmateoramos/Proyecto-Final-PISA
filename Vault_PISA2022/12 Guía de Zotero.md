@@ -50,10 +50,10 @@ navegador)         anotar con la página      datos y subrayados          cita c
 - Una fuente puede estar en varias colecciones sin duplicarse.
 - **Etiquetas** útiles: `por_verificar`, `verificado`, y el objetivo que sustenta (`O1`…`O5`).
 
-## Compartir con la compañera: grupo de Zotero
+## Compartir con el equipo: grupo de Zotero
 
 - Un **grupo** es una biblioteca compartida: lo que uno agrega o subraya allí lo ve la otra persona.
-- Las dos personas necesitan **cuenta de Zotero** (zotero.org) e iniciar sesión en Zotero (*Editar → Configuración → Sincronización*).
+- Los tres necesitan **cuenta de Zotero** (zotero.org) e iniciar sesión en Zotero (*Editar → Configuración → Sincronización*).
 - Los PDF del grupo **cuentan contra el almacenamiento del dueño del grupo** (según la ayuda oficial de Zotero).
 - Lo que se arrastra de *Mi biblioteca* al grupo queda como **copia separada**: por eso primero se arma el grupo y
   después se vinculan las notas de Obsidian con las referencias del grupo.
@@ -61,6 +61,7 @@ navegador)         anotar con la página      datos y subrayados          cita c
 ### Pasos (orden recomendado)
 1. [x] Mateo crea su cuenta en zotero.org e inicia sesión en Zotero (2026-10-05).
    - [ ] Vanessa crea su cuenta, inicia sesión y acepta la invitación al grupo.
+   - [ ] Brayan crea su cuenta, inicia sesión y acepta la invitación al grupo (Mateo lo invita desde la página del grupo en zotero.org).
 2. [x] Mateo crea el grupo **Proyecto Final PISA** (privado; edición y archivos para todos los miembros).
 3. [x] Se importa `Proyecto_PISA/anteproyecto/referencias.bib` **directamente en el grupo** (colección *Proyecto PISA*,
    26 referencias). Importar el `.bib` conserva las claves de cita; **arrastrar** desde *Mi biblioteca* no las conserva

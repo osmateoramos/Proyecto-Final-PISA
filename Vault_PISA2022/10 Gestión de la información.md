@@ -36,7 +36,7 @@ cualquier dato que salga de ahí se verifica en el PDF antes de usarlo.
 
 ### Zotero
 - [x] **Zotero 10.0.5**, **Better BibTeX** y ZotLit Companion instalados (Mateo, 2026-10-04).
-  Descarga: https://www.zotero.org/download/ (Vanessa).
+  Descarga: https://www.zotero.org/download/ (Vanessa y Brayan).
 - [ ] **Zotero Connector** (extensión del navegador, misma página de descarga): confirmar si está instalado.
 - [x] Grupo privado **Proyecto Final PISA**, colección *Proyecto PISA*, con las referencias de
   `Proyecto_PISA/anteproyecto/referencias.bib` importadas con sus claves de cita (2026-10-05). Paso a paso,

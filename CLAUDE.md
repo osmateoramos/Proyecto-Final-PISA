@@ -1,6 +1,6 @@
 # Instrucciones para Claude — Proyecto PISA 2022 Colombia
 
-Equipo: Vanessa Acosta y Mateo Ramos · Consultoría Estadística USTA 2026-II
+Equipo: Vanessa Acosta, Mateo Ramos y Brayan David Barreto · Consultoría Estadística USTA 2026-II
 Cursos integrados: Teoría de Respuesta al Ítem · Ecuaciones Estructurales · Python para APIs e IA
 
 ## Idioma

@@ -2,7 +2,7 @@
 
 **Nivel socioeconómico latente y desempeño matemático por competencias en PISA 2022 (Colombia)**
 
-Vanessa Acosta · Mateo Ramos — Consultoría Estadística, Universidad Santo Tomás, 2026-II
+Vanessa Acosta · Mateo Ramos · Brayan David Barreto — Consultoría Estadística, Universidad Santo Tomás, 2026-II
 Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales · Python para APIs e IA
 
 ---
@@ -47,13 +47,14 @@ Empezar por `Vault_PISA2022/00 Inicio.md` (en Obsidian) y por el anteproyecto en
 
 | Momento | Qué hacer en GitHub Desktop | Para qué |
 |---|---|---|
-| Al empezar | **Fetch origin → Pull origin** | Traer los cambios de la compañera |
+| Al empezar | **Fetch origin → Pull origin** | Traer los cambios de los demás |
 | Mientras trabajan | Nada: escribir notas, correr scripts, editar el anteproyecto | — |
 | Al terminar | Escribir un resumen corto y **Commit to main**, luego **Push origin** | Guardar y subir los cambios |
 
 - Si dos personas cambian **las mismas líneas** sin hacer *pull* antes, GitHub Desktop muestra un **conflicto** y
   pide elegir qué versión queda. Para evitarlo: *pull* al empezar y repartirse las notas o secciones.
-- Si no estás segura de algo, **no fuerces nada**: avisa a la compañera antes de resolver un conflicto.
+- Si no estás seguro de algo, **no fuerces nada**: avisa al equipo antes de resolver un conflicto.
+- Con tres personas: cada quien trabaja en sus notas y scripts, y nadie edita el mismo archivo que otro al mismo tiempo.
 
 ## Reglas del proyecto
 

@@ -17,7 +17,8 @@ Hipótesis a probar en [[09 Hipótesis preregistradas]] · Herramientas en [[10 
 - Cada paso tiene: **Teoría previa** (qué deben haber visto en clase) · **Por qué** (para defenderlo en la
   sustentación) · **Paso a paso** · **Salida** (archivo que lo demuestra) · **Listo cuando** · **Autoevaluación**.
 - Un paso no se marca `[x]` sin su salida. Toda cifra nueva se anota con el script que la produce.
-- Los dos hacen todos los pasos (uno maneja, el otro revisa). Toda decisión va primero a [[03 Registro de decisiones]].
+- Cada paso tiene un responsable y otro integrante lo revisa (reparto propuesto en [[00 Inicio]]). Toda decisión va
+  primero a [[03 Registro de decisiones]].
 - Al cerrar cada fase se pasa su **puerta** (ver [[08 Rúbrica de desarrollo]]): si no se cumple, no se avanza.
 - Cursos: `[TRI]` · `[SEM]` · `[PY]` Python/APIs · `[CONS]` Consultoría.
 
@@ -65,14 +66,15 @@ CONSULTORIA/
 - [x] **0.1 Zotero + Better BibTeX.** Zotero 10.0.5 + Better BibTeX + ZotLit Companion instalados (2026-10-04).
   Grupo privado **Proyecto Final PISA**, colección *Proyecto PISA*, con las referencias de `referencias.bib` importadas
   con sus claves (2026-10-05). Detalle y pendientes en [[12 Guía de Zotero]]:
-  - [ ] Vanessa: crear su cuenta de Zotero y aceptar la invitación al grupo.
+  - [ ] Vanessa y Brayan: crear su cuenta de Zotero y aceptar la invitación al grupo.
   - [ ] Enviar a la papelera del grupo `icfes2018puntajes` e `icfes2024acceso` (ya no forman parte del proyecto).
   - [ ] Adjuntar los PDF a medida que se verifiquen las fuentes.
 - [x] **0.2 Obsidian.** Vault abierto con Dataview, ZotLit (carpeta `Literatura`) y Git (Vinzent03). Las notas de
   fuente ya existen; se verifican siguiendo [[11 Protocolo de verificación]].
 - [x] **0.3 Git + GitHub privado.** Repositorio **Proyecto-Final-PISA** (https://github.com/osmateoramos/Proyecto-Final-PISA,
   rama `main`), sin datos de estudiantes (`.gitignore`). Flujo de trabajo en `README.md` (GitHub Desktop).
-  - [ ] Vanessa: aceptar la invitación de GitHub, clonar el repositorio y seguir la sección *Primera vez* del `README.md`.
+  - [ ] Vanessa y Brayan: aceptar la invitación de GitHub, clonar el repositorio y seguir la sección *Primera vez* del
+    `README.md` (Mateo invita a Brayan: *Settings → Collaborators* en GitHub).
 - [x] **0.4 Carpeta `Proyecto_PISA/`** con la estructura de arriba (2026-10-04).
 - [ ] **0.5 Preregistro.** Completar y fechar [[09 Hipótesis preregistradas]] **antes** de estimar cualquier modelo.
 - **Salida:** `.bib` sincronizado, vault en Git, nota 09 fechada.
@@ -267,5 +269,5 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 - [ ] **9.1 Informe** en `Proyecto_PISA/informe/informe.Rmd` con citas de `referencias.bib`; cada cifra con su
   script y salida.
 - [ ] **9.2 Declaración de uso de IA** y reparto del trabajo (igual que en el anteproyecto).
-- [ ] **9.3 Ensayo cruzado:** cada uno expone la parte que no hizo; el otro pregunta con las autoevaluaciones de
+- [ ] **9.3 Ensayo cruzado:** cada uno expone una parte que no hizo; los otros dos preguntan con las autoevaluaciones de
   esta guía.

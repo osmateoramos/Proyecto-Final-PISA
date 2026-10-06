@@ -1,7 +1,7 @@
 ---
 title: "Nivel socioeconómico latente y desempeño matemático por competencias en PISA 2022: calificación con Teoría de Respuesta al Ítem multidimensional para Colombia"
 subtitle: "Anteproyecto — Consultoría Estadística"
-author: "Vanessa Acosta y Mateo Ramos"
+author: "Vanessa Acosta, Mateo Ramos y Brayan David Barreto"
 date: "Universidad Santo Tomás · 2026-II"
 lang: es
 bibliography: referencias.bib
@@ -338,13 +338,15 @@ estudiantes de menor NSE. El informe declarará los límites del alcance (un cic
 ```{r tabla-reparto}
 reparto <- data.frame(
   `Sección / fase` = c("Planteamiento del problema", "Estado del arte", "Objetivos",
-                       "Datos, NSE e invarianza (objetivos 1–2)", "Calificación por competencias y SEM (objetivos 3–4)",
-                       "API y tablero (objetivo 5)", "Gestión de la información y verificación"),
-  `Responsable principal` = c("Vanessa Acosta", "Mateo Ramos", "Ambos", "Mateo Ramos", "Vanessa Acosta",
-                              "Ambos", "Ambos"),
-  `Revisión cruzada` = c("Mateo Ramos", "Vanessa Acosta", "—", "Vanessa Acosta", "Mateo Ramos", "—", "—"),
+                       "Datos, NSE e invarianza (objetivos 1–2)", "Calificación por competencias y DIF (objetivo 3)",
+                       "Modelo estructural (objetivo 4)", "API y tablero (objetivo 5)",
+                       "Gestión de la información y verificación de fuentes"),
+  `Responsable principal` = c("Vanessa Acosta", "Mateo Ramos", "Los tres", "Mateo Ramos", "Vanessa Acosta",
+                              "Brayan David Barreto", "Brayan David Barreto", "Los tres"),
+  `Revisión cruzada` = c("Mateo Ramos", "Brayan David Barreto", "—", "Brayan David Barreto", "Mateo Ramos",
+                         "Vanessa Acosta", "Mateo Ramos", "—"),
   check.names = FALSE)
-knitr::kable(reparto, caption = "Reparto del trabajo [VERIFICAR con el equipo].")
+knitr::kable(reparto, caption = "Reparto del trabajo (propuesta) [VERIFICAR con el equipo].")
 ```
 
 # Referencias {-}

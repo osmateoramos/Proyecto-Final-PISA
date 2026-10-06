@@ -26,12 +26,12 @@ knitr::opts_chunk$set(echo = FALSE)
 \begin{center}
 {\LARGE\bfseries Gestión de la información del proyecto}\\[3pt]
 {\large Proyecto Final PISA 2022 Colombia}\\[2pt]
-{\small Vanessa Acosta y Mateo Ramos · Consultoría Estadística, Universidad Santo Tomás · 2026-II · 6 de octubre de 2026}
+{\small Vanessa Acosta, Mateo Ramos y Brayan David Barreto · Consultoría Estadística, Universidad Santo Tomás · 2026-II · 6 de octubre de 2026}
 \end{center}
 
 ## 1. Por qué necesitamos gestionar la información
 
-Somos dos personas trabajando ocho semanas con unas cuarenta fuentes, casi 6 GB de datos de la OCDE, decenas de
+Somos tres personas trabajando ocho semanas con unas cuarenta fuentes, casi 6 GB de datos de la OCDE, decenas de
 decisiones metodológicas y un asistente de inteligencia artificial. Sin un sistema, los riesgos son concretos: cifras
 que nadie sabe de dónde salieron, dos versiones distintas del mismo documento, citas atribuidas a la página equivocada
 y datos de menores expuestos. Por eso trabajamos con **tres reglas**:
@@ -54,7 +54,7 @@ Y una regla sobre la IA: **solo una persona del equipo marca algo como verificad
 | **ZotLit** (Obsidian y Zotero) | Conecta cada referencia de Zotero con su nota en Obsidian (36 ya conectadas) y trae los subrayados. |
 | **Dataview** (Obsidian) | Tablas automáticas, por ejemplo la lista de fuentes con su estado de verificación. |
 | **R 4.4.1**, RStudio, R Markdown | Leer PISA solo para Colombia, calcular y escribir el anteproyecto con citas automáticas. |
-| **Git + GitHub** Desktop | Historial de cambios y sincronización de los dos en un **repositorio privado**. Datos y libros **no se suben**. |
+| **Git + GitHub** Desktop | Historial de cambios y sincronización de los tres en un **repositorio privado**. Datos y libros **no se suben**. |
 | **Claude** (IA) | Revisa datos y fuentes y redacta borradores con las reglas de `CLAUDE.md`. Propone; el equipo verifica y decide. |
 
 \endgroup
@@ -128,8 +128,10 @@ números de capítulo citados sin verificar, una cifra tomada de un buscador sin
   {\textbf{Git + GitHub} (repositorio privado): vault, scripts, salidas y anteproyecto \quad·\quad sin datos de estudiantes ni libros};
 \draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}, line width=0.7pt, gris] (git.south west) ++(1.4,0) -- ++(0,-0.5)
   node[below, font=\footnotesize] {\textbf{Mateo}: pull / push};
-\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}, line width=0.7pt, gris] (git.south east) ++(-1.4,0) -- ++(0,-0.5)
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}, line width=0.7pt, gris] (git.south) -- ++(0,-0.5)
   node[below, font=\footnotesize] {\textbf{Vanessa}: pull / push};
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}, line width=0.7pt, gris] (git.south east) ++(-1.4,0) -- ++(0,-0.5)
+  node[below, font=\footnotesize] {\textbf{Brayan}: pull / push};
 \end{tikzpicture}
 \end{center}
 
@@ -148,22 +150,22 @@ anotamos qué afirmación usamos, en qué página y con qué estado. (4) En el d
 las filas de Colombia, guarda un caché local y produce tablas en `salidas/`. Ningún número entra al documento sin el
 script que lo produce.
 
-## 5. Cómo trabajamos los dos
+## 5. Cómo trabajamos los tres
 
 \begingroup\small
 
 | Momento | Qué hacemos | Para qué |
 |:----------------|:----------------------------------------------------------------|:------------------------------|
-| **Al empezar** | En GitHub Desktop: *Fetch origin* → *Pull origin* | Traer el avance del otro |
+| **Al empezar** | En GitHub Desktop: *Fetch origin* → *Pull origin* | Traer el avance de los demás |
 | **Mientras trabajamos** | Notas en Obsidian, fuentes en el grupo de Zotero, scripts y anteproyecto en RStudio | Zotero se sincroniza solo |
 | **Al terminar** | *Commit* con un resumen corto → *Push origin* | Guardar y compartir el avance |
 
 \endgroup
 
-- **Uno maneja y el otro revisa**: cada paso del plan lo hace uno y lo revisa el otro, y en la sustentación cada uno
-  expone lo que no hizo.
-- **Para no pisarnos**: *pull* antes de empezar y repartir notas o secciones. Si GitHub Desktop muestra un conflicto,
-  lo resolvemos juntos.
+- **Cada uno tiene su parte y otro la revisa** (reparto propuesto): Mateo, O1 y O2; Vanessa, O3; Brayan, O4 y O5.
+  La verificación de las fuentes se reparte entre los tres, y en la sustentación cada uno expone una parte que no hizo.
+- **Para no pisarnos**: *pull* antes de empezar, cada quien en sus notas y scripts, y nadie edita el mismo archivo que
+  otro al mismo tiempo. Si GitHub Desktop muestra un conflicto, lo resolvemos juntos.
 - **Las fuentes nuevas se agregan directamente en el grupo** de Zotero (no en *Mi biblioteca*), para que conserven su
   clave de cita.
 - **Lo que nunca se sube**: datos de estudiantes (Ley 1581 de 2012) y libros con derechos de autor. El archivo

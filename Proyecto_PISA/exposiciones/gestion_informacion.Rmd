@@ -1,0 +1,229 @@
+---
+lang: es
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: false
+geometry: "letterpaper, margin=1.7cm"
+fontsize: 10pt
+header-includes:
+  - \usepackage{tikz}
+  - \usetikzlibrary{arrows.meta,positioning,fit,backgrounds}
+  - \usepackage{xcolor}
+  - \definecolor{azul}{HTML}{1F5A96}
+  - \definecolor{verde}{HTML}{2E7D4F}
+  - \definecolor{naranja}{HTML}{B5651D}
+  - \definecolor{gris}{HTML}{555555}
+  - \pagestyle{plain}
+  - \setlength{\parskip}{3pt}
+  - \setlength{\parindent}{0pt}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+\begin{center}
+{\LARGE\bfseries Gestión de la información del proyecto}\\[3pt]
+{\large Proyecto Final PISA 2022 Colombia}\\[2pt]
+{\small Vanessa Acosta y Mateo Ramos · Consultoría Estadística, Universidad Santo Tomás · 2026-II · 6 de octubre de 2026}
+\end{center}
+
+## 1. Por qué necesitamos gestionar la información
+
+Somos dos personas trabajando ocho semanas con unas cuarenta fuentes, casi 6 GB de datos de la OCDE, decenas de
+decisiones metodológicas y un asistente de inteligencia artificial. Sin un sistema, los riesgos son concretos: cifras
+que nadie sabe de dónde salieron, dos versiones distintas del mismo documento, citas atribuidas a la página equivocada
+y datos de menores expuestos. Por eso trabajamos con **tres reglas**:
+
+1. **Toda cifra tiene su script**: si un número va al documento, sabemos qué código y qué archivo lo producen.
+2. **Toda afirmación tiene su fuente y su página**, con un estado de verificación (ver la sección 3).
+3. **Toda decisión se registra antes de programarla**, con fecha, alternativas y razón.
+
+Y una regla sobre la IA: **solo una persona del equipo marca algo como verificado**, cotejándolo contra el original.
+
+## 2. Las herramientas y para qué sirve cada una
+
+\begingroup\small
+
+| Herramienta | Para qué la usamos |
+|:------------------------|:--------------------------------------------------------------------------------------|
+| **Zotero 10** + Zotero Connector | Biblioteca de fuentes: cada artículo o libro con sus datos correctos (autores, año, DOI), su PDF y los subrayados **con su página**. Trabajamos en un **grupo compartido**, *Proyecto Final PISA*. |
+| **Better BibTeX** (en Zotero) | Da a cada fuente una **clave de cita fija** (por ejemplo, `oecd2024pisa2022tr`), la misma en Zotero, en Obsidian y en el documento. De ahí sale `referencias.bib`. |
+| **Obsidian** | El cuaderno del proyecto y **única fuente de verdad** (60 notas): objetivos, plan, decisiones, hipótesis, protocolo y **una nota por fuente** con lo que usamos, la página y su estado. |
+| **ZotLit** (Obsidian y Zotero) | Conecta cada referencia de Zotero con su nota en Obsidian (36 ya conectadas) y trae los subrayados. |
+| **Dataview** (Obsidian) | Tablas automáticas, por ejemplo la lista de fuentes con su estado de verificación. |
+| **R 4.4.1**, RStudio, R Markdown | Leer PISA solo para Colombia, calcular y escribir el anteproyecto con citas automáticas. |
+| **Git + GitHub** Desktop | Historial de cambios y sincronización de los dos en un **repositorio privado**. Datos y libros **no se suben**. |
+| **Claude** (IA) | Revisa datos y fuentes y redacta borradores con las reglas de `CLAUDE.md`. Propone; el equipo verifica y decide. |
+
+\endgroup
+
+**¿Y un sistema RAG?** Lo evaluamos y lo descartamos para gestionar la información (decisión D-06): con unas cuarenta
+fuentes, un vault ordenado y un protocolo de verificación evitan más errores que un buscador automático. El RAG queda
+como posible producto del curso de Python, en la fase final.
+
+## 3. El protocolo de verificación
+
+\begingroup\small
+
+| Estado | Qué significa y si puede ir al documento |
+|:------------------------|:--------------------------------------------------------------------------------------|
+| **verificado** | Lo comprobó una persona del equipo contra el original (página o script). **Puede ir.** |
+| **por verificar** | Tiene origen, pero nadie lo ha cotejado; todo lo que aporta la IA empieza así. Solo va marcado [VERIFICAR]. |
+| **sin origen** | No tiene fuente ni script. **No va**: se busca el origen o se descarta. |
+| **descartado** | Se comprobó que es falso o que no aplica. **No va**; se conserva tachado, con la razón. |
+
+\endgroup
+
+El protocolo ya demostró su utilidad: **11 errores de la IA** fueron detectados, corregidos y registrados. Por ejemplo,
+números de capítulo citados sin verificar, una cifra tomada de un buscador sin fuente, y la afirmación de que un análisis
+"no se había hecho en PISA" cuando sí existía. La tarea pendiente del equipo es verificar las 43 fuentes contra sus PDF.
+
+\newpage
+
+## 4. Cómo fluye la información entre las herramientas
+
+\begin{center}
+\begin{tikzpicture}[
+  font=\footnotesize,
+  caja/.style={draw, rounded corners=2pt, align=center, minimum height=1.0cm, inner sep=3pt, line width=0.6pt},
+  fuente/.style={caja, draw=azul, fill=azul!8, text width=2.6cm},
+  saber/.style={caja, draw=verde, fill=verde!8, text width=2.6cm},
+  dato/.style={caja, draw=naranja, fill=naranja!8, text width=2.6cm},
+  flecha/.style={-{Stealth[length=2.2mm]}, line width=0.7pt, gris},
+  etq/.style={font=\scriptsize\itshape, text=gris, fill=white, inner sep=1pt}
+]
+% Fila 1: fuentes
+\node[fuente] (art) at (0,0) {Artículo o libro\\\scriptsize se captura con\\\scriptsize Zotero Connector};
+\node[fuente] (zot) at (3.45,0) {\textbf{Zotero}\\grupo compartido};
+\node[fuente] (bbt) at (6.9,0) {\textbf{Better BibTeX}\\clave de cita};
+\node[fuente] (bib) at (10.35,0) {\texttt{referencias.bib}};
+\node[caja, draw=gris, fill=gris!8, text width=2.7cm, minimum height=3.2cm] (doc) at (15.0,-2.0)
+  {\textbf{Anteproyecto}\\\textbf{e informe}\\R~Markdown\\$\rightarrow$ PDF\\[4pt]\scriptsize citas automáticas;\\\scriptsize cifras con su script};
+% Fila 2: conocimiento
+\node[saber] (ia) at (0,-2.0) {\textbf{Claude (IA)}\\lee el vault y\\sigue \texttt{CLAUDE.md}};
+\node[saber, text width=2.9cm] (nota) at (4.6,-2.0) {\textbf{Obsidian}\\nota de fuente:\\afirmación, página\\y estado};
+\node[saber] (vault) at (10.35,-2.0) {\textbf{Obsidian}\\decisiones, plan,\\hipótesis y matriz};
+% Fila 3: datos
+\node[dato] (sav) at (0,-4.0) {\textbf{Datos OCDE}\\PISA 2022 (.SAV)};
+\node[dato] (r) at (3.45,-4.0) {\textbf{Script R}\\solo Colombia};
+\node[dato] (rds) at (6.9,-4.0) {Caché \texttt{.rds}\\(local)};
+\node[dato] (sal) at (10.35,-4.0) {\texttt{salidas/}\\tablas y figuras};
+% Flechas
+\draw[flecha] (art) -- (zot);
+\draw[flecha] (zot) -- (bbt);
+\draw[flecha] (bbt) -- (bib);
+\draw[flecha] (bib.east) -| ([xshift=-5mm]doc.north);
+\draw[flecha] (zot.south) -- node[etq, left=2pt, pos=0.45] {ZotLit} (zot.south |- nota.north);
+\draw[flecha] (nota) -- (vault);
+\draw[flecha] (vault) -- node[etq, above=2pt] {verificado} (doc);
+\draw[flecha, dashed] (ia) -- node[etq, above=2pt] {propone} (nota);
+\draw[flecha] (sav) -- (r);
+\draw[flecha] (r) -- (rds);
+\draw[flecha] (rds) -- (sal);
+\draw[flecha] (sal.east) -| ([xshift=-5mm]doc.south);
+% Git
+\node[caja, draw=black, fill=black!4, minimum width=17.6cm, minimum height=0.8cm] (git) at (7.6,-5.65)
+  {\textbf{Git + GitHub} (repositorio privado): vault, scripts, salidas y anteproyecto \quad·\quad sin datos de estudiantes ni libros};
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}, line width=0.7pt, gris] (git.south west) ++(1.4,0) -- ++(0,-0.5)
+  node[below, font=\footnotesize] {\textbf{Mateo}: pull / push};
+\draw[{Stealth[length=2mm]}-{Stealth[length=2mm]}, line width=0.7pt, gris] (git.south east) ++(-1.4,0) -- ++(0,-0.5)
+  node[below, font=\footnotesize] {\textbf{Vanessa}: pull / push};
+\end{tikzpicture}
+\end{center}
+
+\vspace{-6pt}
+\begin{center}\small
+\textcolor{azul}{\textbf{Azul}}: fuentes \quad·\quad \textcolor{verde}{\textbf{Verde}}: conocimiento y decisiones \quad·\quad
+\textcolor{naranja}{\textbf{Naranja}}: datos \quad·\quad \textbf{Negro}: control de versiones
+\end{center}
+
+**El ciclo de una fuente.** (1) Se captura en Zotero desde el navegador, directamente en el grupo. (2) Se lee y se
+subraya en el lector de Zotero: cada subrayado guarda su página. (3) ZotLit crea o actualiza su nota en Obsidian, donde
+anotamos qué afirmación usamos, en qué página y con qué estado. (4) En el documento se cita con su clave, por ejemplo
+`[@oecd2024pisa2022tr]`, y R Markdown arma la bibliografía en formato APA.
+
+**El ciclo de una cifra.** Los datos de PISA nunca se suben: cada uno los descarga de la OCDE. Un script en R lee solo
+las filas de Colombia, guarda un caché local y produce tablas en `salidas/`. Ningún número entra al documento sin el
+script que lo produce.
+
+## 5. Cómo trabajamos los dos
+
+\begingroup\small
+
+| Momento | Qué hacemos | Para qué |
+|:----------------|:----------------------------------------------------------------|:------------------------------|
+| **Al empezar** | En GitHub Desktop: *Fetch origin* → *Pull origin* | Traer el avance del otro |
+| **Mientras trabajamos** | Notas en Obsidian, fuentes en el grupo de Zotero, scripts y anteproyecto en RStudio | Zotero se sincroniza solo |
+| **Al terminar** | *Commit* con un resumen corto → *Push origin* | Guardar y compartir el avance |
+
+\endgroup
+
+- **Uno maneja y el otro revisa**: cada paso del plan lo hace uno y lo revisa el otro, y en la sustentación cada uno
+  expone lo que no hizo.
+- **Para no pisarnos**: *pull* antes de empezar y repartir notas o secciones. Si GitHub Desktop muestra un conflicto,
+  lo resolvemos juntos.
+- **Las fuentes nuevas se agregan directamente en el grupo** de Zotero (no en *Mi biblioteca*), para que conserven su
+  clave de cita.
+- **Lo que nunca se sube**: datos de estudiantes (Ley 1581 de 2012) y libros con derechos de autor. El archivo
+  `.gitignore` los excluye automáticamente.
+
+\newpage
+
+## 6. Qué vamos a hacer: resumen del proyecto
+
+**Pregunta.** ¿En qué medida el nivel socioeconómico (NSE), medido como variable latente que funciona igual en todos
+los grupos, explica el desempeño de los estudiantes colombianos en cada una de las cuatro competencias matemáticas de
+PISA 2022 (formular, emplear, interpretar y razonar), calificadas con un modelo de TRI propio? ¿Y cuánto de la brecha
+depende de cómo se califica?
+
+**Datos.** PISA 2022 para Colombia: **7.804 estudiantes**, **232 ítems de matemáticas** que se pueden calibrar y
+**27 preguntas de posesiones del hogar** para medir el NSE.
+
+\begingroup\small
+
+| Objetivo | Qué haremos | Curso |
+|:------------------------------|:----------------------------------------------------------------|:-----------|
+| **O1. Medir el NSE** | Modelo de TRI y análisis factorial sobre las posesiones del hogar y la educación y ocupación de los padres; comparar una dimensión contra dos (económica y cultural) | TRI · SEM |
+| **O2. Verificar que se mide igual** | Invarianza de medición por zona, sexo y sector del colegio | SEM · TRI |
+| **O3. Calificar por competencias** | TRI multidimensional propio con las 4 competencias, validado contra los puntajes oficiales de la OCDE; revisar si algún ítem favorece a un grupo socioeconómico (DIF) y cómo cambia la brecha según se traten las preguntas omitidas | TRI |
+| **O4. Explicar el desempeño** | Modelo de ecuaciones estructurales del NSE sobre cada competencia, con pesos muestrales y valores plausibles | SEM |
+| **O5. Poner los resultados a disposición** | API en FastAPI y tablero con resultados agregados (nunca individuales) | Python |
+
+\endgroup
+
+\begingroup\small
+
+| Semana | Fechas | Fase | Control al cerrar la fase |
+|:-------|:---------------|:----------------------------------------------------------------|:------------------------------|
+| 1 | 5–11 oct | Organización (casi cerrada) · limpieza y unión de los datos | — |
+| 2 | 12–18 oct | Reproducir las cifras publicadas por la OCDE para Colombia | Si no coinciden, no se avanza |
+| 3 | 19–25 oct | O1: medición del NSE | Ajuste aceptable o explicado |
+| 4 | 26 oct–1 nov | O2: invarianza | — |
+| 5 | 2–8 nov | O3: calificación por competencias y DIF | Ítems con datos suficientes |
+| 6 | 9–15 nov | O4: modelo estructural por competencia | — |
+| 7 | 16–22 nov | Robustez y búsqueda formal de novedad | Resultados congelados |
+| 8 | 23–29 nov | O5: API y tablero · informe y sustentación | — |
+
+\endgroup
+
+**Dónde estamos hoy.**
+
+- **Ya registrado:** 9 decisiones y 8 hipótesis. Las hipótesis se congelan con fecha **antes** de estimar cualquier
+  modelo, para que los resultados no las acomoden.
+- **Anteproyecto:** 36 referencias y 15 afirmaciones marcadas [VERIFICAR], pendientes de cotejar.
+- **Siguiente paso:** congelar las hipótesis y empezar la limpieza de los datos.
+
+**Qué tiene de nuevo.** Hay estudios del NSE con PISA y de ítems que favorecen a un grupo socioeconómico, pero no
+encontramos ninguno que combine, para Colombia, un NSE latente con invarianza probada, una calificación propia por
+competencias y la revisión de cómo la calificación de los ítems y de las omisiones cambia la brecha. Eso se confirmará
+con una búsqueda formal en la semana 7.
+
+\vfill
+\begingroup\footnotesize\color{gris}
+\textbf{Origen de las cifras.} Estudiantes, ítems y preguntas de posesiones: \texttt{Proyecto\_PISA/datos/revision\_pisa2022\_col.R}
+(corrida del 5 de octubre de 2026). Notas, fuentes, decisiones, hipótesis y errores: conteo sobre \texttt{Vault\_PISA2022}
+el 6 de octubre de 2026. Tamaño de los datos: archivos .SAV de la OCDE en \texttt{Proyecto\_PISA/datos/}. Calendario y
+objetivos: notas 06 y 07 del vault.
+\endgroup

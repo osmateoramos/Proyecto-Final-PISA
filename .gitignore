@@ -20,6 +20,7 @@ Proyecto_PISA/datos/*
 *.pdf
 !Proyecto_PISA/anteproyecto/*.pdf
 !Proyecto_PISA/informe/*.pdf
+!Proyecto_PISA/exposiciones/*.pdf
 Proyecto_PISA/documentacion/*.zip
 
 # --- Archivos intermedios al generar PDF con R Markdown -----------------------

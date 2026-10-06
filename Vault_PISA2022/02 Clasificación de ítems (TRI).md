@@ -35,7 +35,7 @@ también son ítems. El ICFES construye el INSE justamente aplicando TRI sobre e
 
 Categorías y faltantes calculados sobre los 495.807 evaluados con cuestionario.
 Los % NA de estas tablas son **antes** de convertir "No sabe"/"Sin Estrato"/"hogar" en NA;
-los faltantes definitivos están en [[Datos/Saber11 - Diccionario de variables recodificadas]].
+los faltantes definitivos están en [[Archivo Saber 11/Saber11 - Diccionario de variables recodificadas]].
 
 ### A. Bienes del hogar (capital económico)
 | Ítem | Categorías | % NA | Nota |
@@ -89,7 +89,7 @@ No entraron en la auditoría: hay que probar si cargan en NSE o forman un factor
 `estu_tiporemuneracion`. Son hábitos del estudiante, no del hogar: pueden usarse como
 mediadores en el modelo estructural, no como indicadores del NSE.
 
-### G. Candidatos nuevos (aparecieron al armar [[Datos/Saber11 - Variables originales ICFES]], D-10)
+### G. Candidatos nuevos (aparecieron al armar [[Archivo Saber 11/Saber11 - Variables originales ICFES]], D-10)
 | Ítem | Categorías | Formato | Hipótesis |
 |---|---|---|---|
 | `estu_tiempocasaacole` | 4 | ordinal | acceso / ruralidad |

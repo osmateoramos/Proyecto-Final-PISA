@@ -30,13 +30,14 @@ Primer corte y trabajo hasta el 29/09, cuando se decidió cambiar de fuente (D-1
 - [[02 Clasificación de ítems (TRI)]] — clasificación del cuestionario de Saber 11
 - [[04 Pendientes del primer corte]] — correcciones al anteproyecto
 - [[05 Mapa teoría → proyecto]] — conceptos de TRI y SEM (sigue siendo útil para PISA)
-- [[Datos/Saber11 - Variables originales ICFES]] y [[Datos/Saber11 - Diccionario de variables recodificadas]] — variables de Saber 11 (archivo)
+- [[Archivo Saber 11/Saber11 - Variables originales ICFES]] y [[Archivo Saber 11/Saber11 - Diccionario de variables recodificadas]] — variables de Saber 11 (archivo)
 
 ## Carpetas
 
 - `Literatura/` — una nota por fuente (ZotLit o `Plantillas/Nota de lectura`)
 - `Reuniones/` — una nota por reunión con tutores o entre ustedes
-- `Datos/` — diccionarios de variables
+- `Datos/` — diccionario de variables de PISA 2022
+- `Archivo Saber 11/` — diccionarios de Saber 11 (etapa 1, solo consulta; movidos aquí el 2026-10-05 para no confundirlos con los de PISA)
 
 ## Reglas del vault
 

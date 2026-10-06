@@ -142,7 +142,7 @@ Revisen en la salida las tablas cruzadas "original → nueva". Cada regla está 
 
 ### 1.4–1.5 Guardar y libro de códigos
 - **Salida:** `datos/procesados/saber11_analitica.rds` (no va a Git), `salidas/diccionario.csv`
-  (sí va a Git) y la nota [[Datos/Saber11 - Diccionario de variables recodificadas]].
+  (sí va a Git) y la nota [[Archivo Saber 11/Saber11 - Diccionario de variables recodificadas]].
 
 ### 1.6 Contraste con el anteproyecto
 - **OK:** 495.807; NSE 1 = 47,22; NSE 4 = 61,81; correlación matemáticas–lectura 0,757 (el documento dice 0,760).

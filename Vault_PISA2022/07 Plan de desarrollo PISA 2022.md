@@ -108,7 +108,7 @@ Script: `Proyecto_PISA/scripts/01_etl_pisa.R` — parte de `datos/revision_pisa2
   - Etiquetas de "Valid Skip", "Not Applicable", "Invalid", "No Response" → `NA`.
 - [ ] **1.4 Diccionario.** Completar [[Datos/PISA2022 - Diccionario de variables]] (versión inicial del 2026-10-04,
   con `Proyecto_PISA/datos/diccionario_pisa2022.R`), agregando las variables recodificadas —antes `Datos/Diccionario PISA.md` (variable original → nueva, regla, % NA), con el
-  mismo formato que [[Datos/Saber11 - Diccionario de variables recodificadas]].
+  mismo formato que [[Archivo Saber 11/Saber11 - Diccionario de variables recodificadas]].
 - [ ] **1.5 Muestra analítica.** Definir y contar: con ESCS (7.459); con ≥10 ítems de matemáticas vistos (7.222);
   intersección. Comparar el puntaje medio de incluidos vs excluidos (¿la exclusión es aleatoria?).
 - **Salida:** `Proyecto_PISA/datos/COL_analitica.rds` (no va a Git), `salidas/conteos_muestra.csv`, diccionario.

@@ -4,7 +4,7 @@ library (mirt)
 
 # Diccionario de las 92 variables originales
 
-Volver a [[00 Inicio]] · Variables nuevas en [[Datos/Saber11 - Diccionario de variables recodificadas]] · Ítems en [[02 Clasificación de ítems (TRI)]]
+Volver a [[00 Inicio]] · Variables nuevas en [[Archivo Saber 11/Saber11 - Diccionario de variables recodificadas]] · Ítems en [[02 Clasificación de ítems (TRI)]]
 
 Base: `Examen_Saber_11_20252.txt` tal como la entrega el ICFES. Generado con `Etapa1_Saber11/Proyecto/scripts/00_perfil_variables.R`
 (estadísticas) y clasificado a mano (bloque, medida, rol). Si cambian una clasificación, editen aquí y anótenlo en

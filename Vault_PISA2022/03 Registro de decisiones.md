@@ -118,7 +118,7 @@ Formato: **ID · fecha · decisión · alternativas · razón · estado** (propu
 - **Estado:** propuesta — discutir entre los dos (y con el profesor de TRI si aplica el modelo nominal).
 
 ### D-10 · 2026-09-24 · Preguntas del cuestionario no consideradas hasta ahora
-- **Hallazgo:** al armar [[Datos/Saber11 - Variables originales ICFES]] aparecieron `estu_tiempocasaacole`,
+- **Hallazgo:** al armar [[Archivo Saber 11/Saber11 - Variables originales ICFES]] aparecieron `estu_tiempocasaacole`,
   `estu_desplazacolegio`, `estu_horastrabnoremu`, `estu_comunidadcampesina`, `estu_numhijos`.
 - **Propuesta:** incluir las tres primeras en el AFE de la fase 2 para ver si cargan en NSE o forman
   un factor de ruralidad/acceso; las otras dos como contexto.

@@ -19,7 +19,7 @@ total o por subescala?
 
 ## Tratamiento A — Claude sin contexto
 
-- **Herramienta y versión / modelo:** Claude (chat) — *modelo por confirmar por Brayan*
+- **Herramienta y versión / modelo:** Claude (chat) — Claude Extra 5.5 (según Brayan)
 - **Fecha y hora:** 2026-10-12, noche — *hora por confirmar*
 - **Condiciones:** chat nuevo, sin proyecto, sin búsqueda web — *Brayan confirma si fue incógnito o sin memoria*
 - **Prompt exacto:** el texto base de arriba, sin cambios.
@@ -54,7 +54,7 @@ Para verificar y ampliar, te sirven tres cosas: la revista Large-scale Assessmen
 
 ## Tratamiento B — Zotero + Obsidian (Claude con el vault)
 
-- **Herramienta y versión / modelo:** Claude Code (app de escritorio) — *modelo por confirmar por Brayan (el mismo de A)*
+- **Herramienta y versión / modelo:** Claude Code (app de escritorio) — Claude Extra 5.5, el mismo de A (según Brayan)
 - **Fecha y hora:** 2026-10-12, noche — *hora por confirmar*
 - **Condiciones:** sesión nueva de Claude Code abierta en `Vault_PISA2022`; protocolo v1 pegado antes del texto base;
   sin web. Nota: el vault incluye las notas de la actividad (15, 16 y 17), que la sesión puede leer; no contienen las
@@ -101,6 +101,8 @@ Ninguna de estas referencias es una cita de segundo nivel: todas tienen nota pro
 
 ## Tratamiento C — NotebookLM
 
+### Corrida 1 — cuaderno incompleto (no se usa para el experimento; se conserva como evidencia)
+
 - **Herramienta y versión / modelo:** NotebookLM (cuaderno compartido del equipo)
 - **Fecha y hora:** 2026-10-12, noche — *hora por confirmar*
 - **Condiciones:** protocolo v1 en *Configurar chat* (cargado por Vanessa). Fuentes en el cuaderno según la captura
@@ -125,4 +127,75 @@ Ninguna de estas referencias es una cita de segundo nivel: todas tienen nota pro
 
 ```
 No está en las fuentes.
+```
+
+### Corrida 2 — cuaderno con el corpus (la que cuenta para el experimento)
+
+- **Herramienta y versión / modelo:** NotebookLM (cuaderno compartido del equipo)
+- **Fecha y hora:** 2026-10-13, madrugada — *hora por confirmar*
+- **Condiciones:** el mismo cuaderno, después de subir los PDF del corpus que faltaban desde `corpus/` (orden del
+  plan: tema O4, tema de Mateo, tema de Vanessa, resto). N.º de fuentes cargadas: 27 (según Brayan).
+  Protocolo v1 en *Configurar chat*.
+- **Prompt exacto:** el texto base.
+- **Resultado:** abstención parcial: dice que ninguna fuente cumple a la vez todos los criterios, pero presenta 5
+  investigaciones «que más se aproximan» y 2 «complementarias», cada una con contenido atribuido. Con la regla del
+  equipo se cuentan las 7 (`referencias_Brayan.csv`, id_local 19–25).
+- **Nota de formato:** los números pegados al final de algunas frases y referencias (por ejemplo «14:1712»,
+  «731634910») son los marcadores de cita de NotebookLM que se copiaron junto con el texto; los enlaces
+  `google.com/url?...` son como NotebookLM muestra los DOI.
+
+- **Respuesta completa** (pegada por Brayan, sin editar):
+
+```
+En las fuentes del cuaderno no existen cinco estudios que cumplan simultáneamente y de forma estricta todos los criterios solicitados (es decir: modelamiento por ecuaciones estructurales [SEM], uso explícito de valores plausibles y pesos muestrales de PISA, y estimación específica del efecto del nivel socioeconómico [SES] sobre el rendimiento en matemáticas en total o por subescalas).
+Las fuentes disponibles incluyen investigaciones que abordan estos elementos de manera desagregada o aproximada (por ejemplo, estudios que aplican SEM con pesos y valores plausibles pero sobre un factor latente general de logro o en evaluaciones distintas a PISA, o estudios en PISA que modelan el rendimiento matemático a partir del SES pero utilizando regresiones múltiples o modelos multinivel en lugar de SEM).
+A continuación se presentan las investigaciones del cuaderno que más se aproximan a estos criterios metodológicos y temáticos, detallando su alcance, especificación técnica y hallazgos:
+1. Burns et al. (2026)
+
+* Referencia bibliográfica: Burns et al. (2026). In-test effort and achievement in PISA 2022. Large-scale Assessments in Education, 14:1712.
+* Metodología y datos: Utiliza microdatos de PISA 2022 de 36 países de la OCDE (289.044 estudiantes en 10.910 escuelas)3. Estima un modelo de ecuaciones estructurales multinivel de tres niveles doblemente latente (doubly latent three-level SEM) ejecutado en Mplus v8.8 (`type = threelevel`)45. Incorpora los pesos muestrales a nivel de estudiante (`weight`) y de escuela (`b2weight`), y gestiona los 10 valores plausibles mediante imputación múltiple (`type = imputation`)46.
+* Particularidad del modelo: El desenlace no son las matemáticas de forma aislada, sino una variable latente general de rendimiento académico, donde los valores plausibles de matemáticas, lectura y ciencias actúan simultáneamente como indicadores continuos debido a su alta correlación ($r > 0.81$)7.
+* Hallazgos sobre el nivel socioeconómico: En el nivel 1 (estudiante), el estatus socioeconómico (SES) mostró un efecto estandarizado positivo y estadísticamente significativo sobre el rendimiento académico general ($\beta = 0.21, p < .001$), situándose como uno de los predictores individuales más determinantes junto al esfuerzo en la prueba ($\beta = 0.18, p < .001$)8.
+
+2. Eriksson, Lindvall, Helenius y Ryve (2021)
+
+* Referencia bibliográfica: Eriksson, K., Lindvall, J., Helenius, O., & Ryve, A. (2021). Socioeconomic Status as a Multidimensional Predictor of Student Achievement in 77 Societies. Frontiers in Education, 6:731634. DOI: [10.3389/feduc.2021.731634](https://www.google.com/url?sa=E&q=https%3A%2F%2Fdoi.org%2F10.3389%2Ffeduc.2021.731634)910.
+* Metodología y datos: Analiza casi 600.000 estudiantes de 77 países y economías en PISA 2018911. Implementa el software IDB Analyzer para respetar el diseño complejo de muestreo mediante pesos de los estudiantes y los 10 valores plausibles de matemáticas, lectura y ciencias1213.
+* Diferencia metodológica: No utiliza modelos de ecuaciones estructurales (SEM), sino regresiones lineales múltiples y descomposiciones de varianza tratando al SES como un predictor multidimensional compuesto por seis variables913.
+* Hallazgos sobre el nivel socioeconómico en matemáticas:
+   * Los dos predictores del SES con mayor peso independiente sobre el rendimiento matemático son los libros en el hogar (coeficiente medio estandarizado de $0.20$) y la ocupación más alta de los padres ($0.17$)1415.
+   * El índice compuesto tradicional de PISA (ESCS) explica en promedio el 13% de la varianza en matemáticas ($R^2 = 0.13$), mientras que el modelo con múltiples predictores socioeconómicos desagregados explica el 17% ($R^2 = 0.17$)16.
+   * Las posesiones materiales de riqueza exhiben un efecto independiente cercano a cero o levemente negativo en países con alto índice de desarrollo humano, pero fuertemente positivo en las sociedades menos desarrolladas917.
+
+3. Guerra, Roblez, Vargas, Meneses y Basantes-Andrade (2026)
+
+* Referencia bibliográfica: Guerra, J., Roblez, G., Vargas, V., Meneses, M., & Basantes-Andrade, A. (2026). Digital equity and socioeconomic gradients in PISA 2022 mathematics: an integrated equity-diagnostic framework for Latin America and the Caribbean. Frontiers in Education, 11:1810210. DOI: [10.3389/feduc.2026.1810210](https://www.google.com/url?sa=E&q=https%3A%2F%2Fdoi.org%2F10.3389%2Ffeduc.2026.1810210)1819.
+* Metodología y datos: Evalúa 613.744 estudiantes en 80 países en PISA 2022, enfocándose en matemáticas19. Considera el diseño muestral complejo mediante el peso final del estudiante (`W_FSTUWT`) y los 80 pesos de replicación con el método BRR y ajuste de Fay20. El desenlace se mide a través del promedio de los 10 valores plausibles (`MATH_MEAN`)2122.
+* Diferencia metodológica: No emplea SEM; utiliza regresiones lineales ponderadas con BRR-Fay, modelos multinivel jerárquicos anidados y algoritmos de machine learning explicable (LightGBM/SHAP)2324.
+* Hallazgos sobre el nivel socioeconómico en matemáticas:
+   * En América Latina y el Caribe, el gradiente socioeconómico en matemáticas ($\beta_{ESCS}$) presenta una marcada dispersión: va desde pendientes pronunciadas en Chile ($\beta = 25.5$ puntos por unidad de ESCS), Uruguay ($\beta = 24.0$) y Argentina ($\beta = 20.0$), hasta asociaciones considerablemente más débiles en Guatemala ($\beta = 5.5$) y Paraguay ($\beta = 4.9$)25.
+   * La descomposición de varianza indica que la mayor proporción de la desigualdad en matemáticas radica a nivel intraescolar e interescolar más que a nivel puramente de país2627.
+
+4. Patsis, Yang Hansen y Klapp (2026)
+
+* Referencia bibliográfica: Patsis, P., Yang Hansen, K., & Klapp, A. (2026). The role of instructional quality in explaining socioeconomic disparities in mathematics achievement: a multilevel structural equation modeling of Swedish TIMSS 2019 data. Large-scale Assessments in Education, 14:34. DOI: [10.1186/s40536-026-00307-9](https://www.google.com/url?sa=E&q=https%3A%2F%2Fdoi.org%2F10.1186%2Fs40536-026-00307-9)28.
+* Metodología y datos: Utiliza una muestra representativa de 3.996 estudiantes de 8.º grado en 227 aulas29. Aplica modelos de ecuaciones estructurales multinivel (MSEM) en Mplus 8.6 con estimador MLR, utilizando los pesos muestrales de los estudiantes (`HOUWGT`) y los 5 valores plausibles de matemáticas mediante imputación múltiple (`TYPE = IMPUTATION`)30more_horiz.
+* Diferencia respecto a la consulta: Utiliza datos de TIMSS 2019, no de PISA2930.
+* Hallazgos sobre el nivel socioeconómico en matemáticas:
+   * El estatus socioeconómico (medido a través de los recursos educativos en el hogar, HER) tuvo un efecto positivo y estadísticamente significativo sobre el rendimiento en matemáticas tanto a nivel intra-aula ($\gamma = 18.62, p < .001$) como a nivel inter-aula ($\beta = 35.362, p < .001$)3435.
+   * En el modelo de pendientes aleatorias, la varianza de la pendiente del SES no fue estadísticamente significativa entre aulas ($\tau_s = 20.28, p = .13$), lo que demuestra que la relación entre el nivel socioeconómico y el desempeño en matemáticas permanece estable entre los distintos salones de clase3436.
+
+5. Hernández Padilla y González Montesinos (2011)
+
+* Referencia bibliográfica: Hernández, E., & González Montesinos, M. J. (2011). Modelo de ecuación estructural que evalúa las relaciones entre el estatus cultural y económico del estudiante y el logro educativo. Revista Electrónica de Investigación Educativa, 13(2), 188-203. URL: http://redie.uabc.mx/vol13no2/contenido-hernandezglezmontesinos.html37.
+* Metodología y datos: Aplica un modelo de ecuaciones estructurales (SEM) estimado en el software EQS 6.1 que incorpora cinco valores plausibles como indicadores observables del logro escolar3839.
+* Diferencia respecto a la consulta: No utiliza datos de PISA ni evalúa matemáticas; se basa en la evaluación Excale-00 (tercer grado de preescolar en México) en el área de Lenguaje y comunicación4041.
+* Hallazgos sobre el nivel socioeconómico: Descompone el estatus social, cultural y económico (ESCE) en dos variables latentes: Capital Cultural Escolar (CCE) y Nivel Económico (NSE)4243. Aunque ambos factores tienen un efecto positivo y significativo sobre el aprendizaje, el capital cultural ejerce una influencia sustancialmente mayor que el nivel económico de posesiones materiales4043.
+
+Otras investigaciones complementarias en el repositorio
+
+* Rodríguez et al. (2024): Utiliza los 10 valores plausibles y ponderaciones muestrales de PISA 2018 (Colombia) para evaluar determinantes del logro en matemáticas y la brecha rural-urbana mediante regresiones cuantílicas y descomposición Oaxaca-Blinder (no SEM)44more_horiz. Encuentra que las posesiones del hogar tienen una asociación positiva y significativa con matemáticas ($\beta = 30.30$ en rural y $58.43$ en urbano), mientras que los años de educación parental pierden significancia al controlar por otros recursos47.
+* Mittal, Scherer y Nilsen (2022): Utiliza Mplus 8.5, pesos muestrales y los 10 valores plausibles de PISA 2018 en Noruega y Suecia (`Large-scale Assessments in Education`, 10:13, DOI: [10.1186/s40536-022-00132-w])4849. No obstante, su objetivo es evaluar la invarianza de medición y el funcionamiento diferencial de ítems (DIF) de la escala HOMEPOS entre estudiantes nativos e inmigrantes usando modelos MIMIC/TRI, y no estimar un modelo estructural del efecto global del SES sobre matemáticas5051.
+
+Tus fuentes actuales no contienen otros artículos empíricos que modelen simultáneamente el efecto del SES sobre matemáticas en PISA bajo modelos de ecuaciones estructurales con valores plausibles y pesos muestrales. ¿Deseas que realice una búsqueda en la web para identificar estudios adicionales publicados en la literatura internacional que cumplan exactamente con esos criterios metodológicos?
 ```

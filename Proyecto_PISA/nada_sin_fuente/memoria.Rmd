@@ -49,14 +49,56 @@ if (is.null(d)) knitr::asis_output("*Pendiente: falta `salidas/nsf_proporciones.
 
 # El sistema
 
-*(Pendiente — Mateo.)* Cómo quedó montado y por qué así:
+```{r sistema-datos}
+proc <- leer("corpus/procedencia.csv")
+n_fuentes <- if (is.null(proc)) NA else nrow(proc)
+n_obt     <- if (is.null(proc)) NA else sum(proc$en_carpeta %in% c("si", "sí"))
+n_traz    <- sum(vapply(c("Brayan", "Mateo", "Vanessa"), function(p) {
+  d <- leer(sprintf("trazabilidad/trazabilidad_%s.csv", p)); if (is.null(d)) 0L else nrow(d) }, 0L))
+```
 
-- biblioteca en el grupo de Zotero;
-- corpus con README de procedencia;
-- tabla de trazabilidad;
-- protocolo v1 y, si existe, v2;
-- ruta de abstención;
-- vía empaquetada y su techo de nota.
+<!-- Borrador redactado con Claude (2026-10-12); Mateo lo revisa antes del Knit final. -->
+
+Tomamos la **vía empaquetada**: no construimos un índice propio. El sistema une tres herramientas que ya usábamos en el
+proyecto:
+
+- **Zotero**, donde viven las fuentes;
+- **Obsidian**, donde está el vault con lo que sabemos de cada fuente;
+- **Claude**, que en el tratamiento B responde leyendo solo el vault.
+
+NotebookLM quedó como la alternativa comparada (tratamiento C). Por ser la vía empaquetada, el criterio C3 llega como
+máximo a *Competente* y la nota global queda topada en 4,8. Lo aceptamos: preferimos dedicar el tiempo a verificar fuentes y a medir
+los tratamientos en vez de construir un índice propio.
+
+1. **Biblioteca.** Las `r n_fuentes` fuentes del estado del arte están en el grupo de Zotero *Proyecto Final PISA*.
+   Cada una tiene una clave fija (Better BibTeX), la misma que cita el anteproyecto, y se resuelve por DOI o URL. El
+   PDF va adjunto cuando existe.
+2. **Carpeta con procedencia.**
+   - Cada PDF se guarda como `corpus/{clave}.pdf`, fuera de Git por derechos de autor.
+   - `procedencia.csv` registra licencia, quién verificó y notas de acceso. A partir de ahí, `nsf_procedencia.R`
+     genera `README_procedencia.md` con los campos que pide el enunciado.
+   - Hay `r n_obt` de `r n_fuentes` documentos obtenidos. Los que faltan son de acceso cerrado o no son texto (la base
+     de datos de PISA): se piden por la biblioteca o salen del corpus, y se declara.
+   - No hay acta de contraparte porque todo el corpus es público.
+3. **Tabla de trazabilidad.**
+   - `nsf_trazabilidad.R` creó una fila por cada oración citada del anteproyecto: `r n_traz` en total, repartidas
+     entre los tres.
+   - Cada fila trae una pista de ubicación tomada de la nota del vault y de una búsqueda en el PDF.
+   - La pista no vale como verificación. Solo un integrante, con el documento abierto, llena la ubicación, si la
+     afirmación se sostiene y su nombre.
+4. **Protocolo versionado.**
+   - La v1 está congelada en `protocolo/protocolo_consulta_v1.md`. Fija el rol, las fuentes permitidas (en B, solo
+     el vault; en C, solo los PDF del cuaderno), la cita con documento y página, y la frase exacta de abstención:
+     «No está en las fuentes.».
+   - Si cambia, se crea una v2 con el motivo, y la v1 no se borra.
+   - En B la sesión se abre en la carpeta del vault, para que no pueda leer las respuestas de A que están en el
+     repositorio.
+5. **Ruta de abstención.** La prueban las tres preguntas del banco cuya respuesta no está en el corpus (sección de
+   Evaluación).
+
+Debajo de las cinco piezas está la regla que las sostiene. Cada nota de fuente en el vault tiene un estado:
+`por_verificar`, `verificado` o `sin_origen`. La IA nunca marca nada como verificado. Además, cada error de la IA que
+detectamos se registra en el protocolo de verificación del vault, con cómo se detectó y cómo se corrigió.
 
 ```{r traz}
 tabla("../salidas/nsf_trazabilidad_resumen.csv", "Estado de la tabla de trazabilidad por integrante.")
@@ -80,7 +122,47 @@ if (is.null(d)) knitr::asis_output("*Pendiente: falta `salidas/nsf_banco_por_tra
 
 # Qué corregimos de nuestro anteproyecto
 
-*(Pendiente — Mateo.)* Con nombre y apellido: qué afirmación no tenía de dónde salir y cómo quedó.
+<!-- Borrador redactado con Claude (2026-10-12). Lo marcado [POR CONFIRMAR] sale de búsquedas en el PDF y se
+     confirma al firmar la trazabilidad; si una fila no se confirma, se quita de aquí. -->
+
+Al buscar en el PDF cada oración citada del anteproyecto aparecieron dos tipos de problema:
+
+- afirmaciones más fuertes que lo que dice la fuente;
+- afirmaciones con una parte que no sale de la fuente citada.
+
+**[POR CONFIRMAR]** Los casos encontrados hasta ahora:
+
+- **Icfes (2019), INSE** (T-Mat-04).
+  - *Dijimos:* el Icfes solo evalúa el funcionamiento diferencial entre periodos.
+  - *La fuente:* también compara por sexo la curva de un ítem.
+  - *Queda:* «lo evalúa entre periodos y lo ilustra por sexo con un ítem».
+- **Icfes (2022), marco de matemáticas** (T-Mat-06).
+  - *Dijimos:* el ICFES no publica resultados por competencia para cada estudiante.
+  - *La fuente:* el marco no dice eso.
+  - *Queda:* se busca otra fuente o se quita esa parte.
+- **OCDE (2024), reporte técnico** (T-Mat-08).
+  - *Dijimos:* las correlaciones entre competencias en Colombia van de 0,70 a 0,83.
+  - *La fuente:* el reporte no lo dice. Es un dato nuestro.
+  - *Queda:* se cita el script que lo calcula.
+- **Hernández y González (2011)** (T-Mat-11).
+  - *Dijimos:* dos factores latentes correlacionados con efecto sobre el logro.
+  - *La fuente:* es un modelo jerárquico, y los coeficientes son de Lenguaje y comunicación.
+  - *Queda:* redacción ajustada.
+- **Eriksson et al. (2021)** (T-Mat-12).
+  - *Dijimos:* solo dos componentes predicen el logro.
+  - *La fuente:* esos dos superan claramente al resto.
+  - *Queda:* se quita «solo».
+- **Collazos et al. (2021)** (T-Bra-01). El método no es mínimos cuadrados ordinarios sino un modelo de combinación de
+  corte transversal.
+- **Zabala et al.** (T-Bra-02). El año de la referencia no coincide con el documento.
+- **Reporte técnico de la OCDE** (T-Bra-13). «Entre 28 y 30 ítems por estudiante» no aparece. Si sale de nuestros
+  datos, se cita el script.
+
+*(Vanessa: agregar aquí los casos de su trazabilidad.)*
+
+Hubo además un error del propio sistema: el enlace anotado para García-Medina et al. (2016) descargaba otro artículo.
+Lo detectamos al comparar la primera página del PDF con el título de la nota, y después comparamos así todos los PDF
+del corpus.
 
 ```{r correcciones}
 d <- leer("trazabilidad/trazabilidad_completa.csv")

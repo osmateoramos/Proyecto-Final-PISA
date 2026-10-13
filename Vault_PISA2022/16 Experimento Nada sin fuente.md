@@ -2,7 +2,7 @@
 tipo: guia
 estado: por_verificar
 lectura: "redactado por Claude junto con Vanessa, en vivo; falta revisión del resto del equipo"
-pendientes: "Correr Tratamiento A y B; completar clasificación de Ercikan, Roth y Asil (2009); sumar las consultas de Mateo y Brayan"
+pendientes: "Ninguno de esta nota: describe el piloto del 2026-10-12. El experimento definitivo está en Proyecto_PISA/nada_sin_fuente/"
 verificado_por:
 fecha_verificacion:
 ---
@@ -10,6 +10,11 @@ fecha_verificacion:
 # Experimento — actividad "Nada sin fuente"
 
 Volver a [[00 Inicio]] · Bitácora de IA en [[15 Bitácora de uso de IA]] · Actividad: `Rubrica_Segundo_Corte.txt`
+
+> **Esta nota describe el piloto** (tratamiento C con 4 PDF, 2026-10-12) y el caso de fallo que salió de él. El
+> experimento definitivo de los tres integrantes está en `Proyecto_PISA/nada_sin_fuente/`: consultas y respuestas en
+> `experimento/consulta_{persona}.md`, clasificación en `experimento/clasificacion_{persona}.csv` y resultados en
+> `Proyecto_PISA/salidas/nsf_*.csv`. Actualizada el 2026-10-13.
 
 ## Consulta de Vanessa (O3: competencias y DIF)
 
@@ -24,11 +29,14 @@ Kucam y Gülleroğlu 2023).
 
 | Tratamiento | Herramienta | Estado |
 |---|---|---|
-| A — sin fuentes | Pendiente | no corrido todavía |
-| B — buscador conectado | Pendiente | no corrido todavía |
-| C — contexto cerrado | **NotebookLM**, con 4 PDF (Liu y Bradley 2021, Kucam y Gülleroğlu 2023, Çelik y Kaşık 2025, Calderón et al. 2026) | corrido el 2026-10-12 |
+| A — sin fuentes | Claude sin contexto (Claude Opus 5.5) | corrido el 2026-10-12; ver `experimento/consulta_Vanessa.md` |
+| B — Zotero + Obsidian (Claude con el vault); el equipo no usó buscador bibliográfico y lo declara | Claude Code (Claude Opus 5.5) | corrido el 2026-10-12; ver `experimento/consulta_Vanessa.md` |
+| C — contexto cerrado | **NotebookLM**, con 4 PDF (Liu y Bradley 2021, Kucam y Gülleroğlu 2023, Çelik y Kaşık 2025, Calderón et al. 2026) | piloto corrido el 2026-10-12; la corrida con el cuaderno completo está en `experimento/consulta_Vanessa.md` |
 
 ## Clasificación de referencias (Tratamiento C, NotebookLM)
+
+Es la clasificación del piloto. La definitiva de Vanessa, sobre las 67 referencias de los tres, está en
+`experimento/clasificacion_Vanessa.csv` (2026-10-13).
 
 | # | Referencia | Clasificación | Evidencia |
 |---|---|---|---|
@@ -66,8 +74,11 @@ es de segundo nivel.
 
 ## Pendiente
 
-- Correr Tratamiento A (chat sin fuentes) y B (buscador conectado a bases reales) con la misma consulta.
-- Confirmar la clasificación de Ercikan, Roth y Asil (2009) contra el PDF real.
-- Correr el mismo Tratamiento C en un segundo candidato (Proyecto de Claude/ChatGPT con los mismos PDF), para la
-  tabla de decisión de los 6 criterios.
-- Sumar las consultas de Mateo (O1–O2) y Brayan (O4–O5), cada uno clasificando sin consultarse.
+Estado al 2026-10-13 de lo que esta nota tenía pendiente:
+
+- Tratamientos A y B: corridos el 2026-10-12 (`experimento/consulta_Vanessa.md`, con los desvíos declarados).
+- Ercikan, Roth y Asil (2009): en la clasificación definitiva quedó como utilizable (R016), deducida de la nota
+  verificada de Çelik y Kaşık (p. 640); el documento original no se abrió.
+- Segundo candidato de contexto cerrado (Proyecto de Claude o ChatGPT): no se hizo. La tabla de decisión compara
+  A, B y C.
+- Consultas de Mateo y Brayan: hechas; las 67 referencias las clasificaron los tres por separado.

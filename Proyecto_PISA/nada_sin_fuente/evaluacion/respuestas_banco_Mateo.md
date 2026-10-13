@@ -4,7 +4,7 @@ Preguntas M01–M06 de `banco_Mateo.csv`, pegadas juntas en una sola conversaci�
 `prompts_banco_Mateo.md`). Mateo corrió las tres y pegó las respuestas; Claude las pasó a `banco_Mateo.csv` y las
 comparó con la respuesta conocida y su página (ya verificadas por Mateo en su trazabilidad).
 
-- **Quién juzga *sostenida* y *correcta*:** Mateo, a partir de la propuesta de Claude.
+- **Quién juzga *sostenida* y *correcta*:** Mateo, a partir de la propuesta de Claude; las confirmó el 2026-10-13.
 - **Convención** (la misma de Brayan):
   - sin cita no hay fragmento que sostenga la respuesta, así que *sostenida* es «no»;
   - si se abstiene, *sostenida* y *correcta* son «no aplica».
@@ -40,7 +40,7 @@ M06. No conozco un estudio que haya evaluado la invarianza de HOMEPOS entre estu
   - protocolo v2 más el bloque de preguntas;
   - hacia las 13:25 (aproximada).
   - La respuesta declara que no abrió nada fuera del vault ni modificó archivos.
-  - *Mateo: confirmar modelo (Opus 5.5, Alto) y que no hubo solicitudes de permiso.*
+  - Opus 5.5, esfuerzo Alto; sin acceso a archivos fuera del vault ni a la web (confirmado por Mateo).
 
 ```
 Respuestas con base solo en las notas de `Vault_PISA2022/`
@@ -77,7 +77,7 @@ No abrí nada fuera del vault ni modifiqué archivos. Si esta corrida es parte d
   - protocolo v1 en *Personalizar cuaderno*;
   - bloque de preguntas;
   - hacia las 13:20 (aproximada).
-  - *Mateo: anotar cuántas fuentes tenía el cuaderno.*
+  - 36 fuentes en el cuaderno; el propio cuaderno marca algunas como repetidas: 32 sin repetir (según Mateo).
 - **Copia de la respuesta:** los números pegados al final de las frases (por ejemplo «12», «34», «more_horiz») son las
   marcas de cita del cuaderno, que se pegaron como texto.
 

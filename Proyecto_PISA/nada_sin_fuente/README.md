@@ -104,6 +104,7 @@ Cada uno debe poder responder sobre la parte de los otros.
 | Caso de fallo | `evaluacion/caso_fallo.md` |
 | Experimento y decisión (2 págs.) | `experimento_decision.Rmd` → PDF |
 | Memoria (2–4 págs.) | `memoria.Rmd` → PDF |
+| Presentación de la sustentación (10 min, Beamer) | `presentacion.Rmd` → PDF |
 
 ## Scripts (desde `Proyecto_PISA/scripts/`)
 

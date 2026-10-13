@@ -1,0 +1,256 @@
+---
+title: "Nada sin fuente"
+subtitle: "Gestión de información e IA en el proyecto PISA 2022 Colombia"
+author: "Vanessa Acosta · Mateo Ramos · Brayan David Barreto"
+institute: "Consultoría Estadística · Universidad Santo Tomás"
+date: "2026-II"
+lang: es
+output:
+  beamer_presentation:
+    theme: "metropolis"
+    latex_engine: xelatex
+    slide_level: 2
+    keep_tex: false
+classoption: "aspectratio=169"
+fontsize: 10pt
+header-includes:
+  - \metroset{progressbar=frametitle, numbering=fraction}
+  - \setbeamertemplate{frame footer}{\insertsection}
+  - \usepackage{booktabs}
+  - \IfFontExistsTF{Calibri}{\setsansfont{Calibri}}{}
+---
+
+```{r setup, include=FALSE}
+# Sustentación de 10 minutos: 0–2′ Vanessa · 2–5′ Brayan · 5–8′ Mateo · 8–10′ los tres.
+# Toda cifra sale de ../salidas/nsf_*.csv o de los archivos del repositorio, como en la memoria.
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, dev = "cairo_pdf",
+                      dev.args = list(bg = "transparent"))
+library(data.table); library(ggplot2); library(kableExtra)
+CORTO <- c(A = "A · Claude sin contexto", B = "B · Zotero + Obsidian", C = "C · NotebookLM")
+leer  <- function(n) { f <- file.path("../salidas", n); if (file.exists(f)) fread(f, encoding = "UTF-8") else NULL }
+dec   <- function(x) ifelse(is.na(x), "?", sub(".", ",", sprintf("%.2f", x), fixed = TRUE))
+P <- leer("nsf_proporciones.csv"); CT <- leer("nsf_conteos.csv"); RG <- leer("nsf_rango_sin_mayoria.csv")
+BK <- leer("nsf_banco_por_tratamiento.csv"); TZ <- leer("nsf_trazabilidad_resumen.csv")
+AC <- fread("../salidas/nsf_acuerdo.csv", encoding = "UTF-8", colClasses = "character")
+kf <- sub(".", ",", AC[medida == "kappa de Fleiss", valor], fixed = TRUE)
+v  <- function(d, t, col) d[tratamiento == t][[col]]
+clave <- fread("experimento/clave_referencias.csv", encoding = "UTF-8")
+n_ref <- nrow(clave); n_desc <- sum(grepl("^\\s*descartad", clave$afirmacion_atribuida, ignore.case = TRUE))
+notas <- list.files("../../Vault_PISA2022/Literatura", pattern = "\\.md$", full.names = TRUE)
+notas <- notas[!grepl("Matriz", notas)]
+n_ver <- sum(vapply(notas, function(f) any(grepl("^estado:\\s*verificado", readLines(f, warn = FALSE, encoding = "UTF-8"),
+                                               ignore.case = TRUE)), logical(1)))
+tz_tot <- TZ[persona == "TOTAL"]
+```
+
+# Diagnóstico
+
+## Qué nos inventó la IA (nueve fallos en tres inventarios)
+
+**1. Escribe más de lo que dice la fuente**
+
+- 6 de las 16 oraciones citadas de Mateo no se sostenían: un «solo» que Eriksson et al. no dicen, una cifra propia citada como de la OCDE.
+
+**2. Los procesos automáticos toman el objeto equivocado**
+
+- El PDF guardado como García-Medina et al. (2016) era otro artículo; un ítem retirado no se reconoció porque su código cambiaba de formato.
+
+**3. La herramienta no usa el contexto que creemos**
+
+- NotebookLM completó de memoria Liu (2017) con hallazgos que el PDF no contiene; una corrida de B leyó la respuesta de A.
+
+\medskip
+**Qué costó:** `r tz_tot$parcial` oraciones corregidas, una corrida de B descartada y el protocolo v2.
+
+\alert{Los nueve se detectaron igual: abriendo el documento original.}
+
+# Experimento y decisión
+
+## El experimento
+
+- **Tres consultas reales**, una por integrante, cada una en tres tratamientos:
+  - **A** · Claude sin contexto (control)
+  - **B** · Claude leyendo solo nuestro vault de Obsidian, con el protocolo v2
+  - **C** · NotebookLM con los PDF del corpus
+- `r n_ref` referencias; cuentan `r n_ref - n_desc` (`r n_desc` las nombró B solo para descartarlas).
+- **Clasificación ciega por los tres**, en orden aleatorio: *utilizable* · *existe pero no dice eso* · *no existe*.
+- Etiqueta final: la de la mayoría. Sin mayoría, la referencia sale del cálculo.
+
+## El conteo
+
+```{r conteo}
+d <- merge(CT, P[, .(tratamiento, p_utilizable, ic95_inf, ic95_sup)], by = "tratamiento")
+d <- merge(d, RG[, .(tratamiento, p_min, p_max)], by = "tratamiento")
+knitr::kable(d[, .(Tratamiento = CORTO[tratamiento],
+                   `Utilizables` = utilizable, `No dice eso` = existe_no_dice, `No existe` = no_existe,
+                   `Sin mayoría` = sin_consenso,
+                   `Proporción (IC 95 %)` = sprintf("%s (%s–%s)", dec(p_utilizable), dec(ic95_inf), dec(ic95_sup)),
+                   `Con las sin mayoría` = sprintf("%s a %s", dec(p_min), dec(p_max)))],
+             format = "latex", booktabs = TRUE, align = "lccccll") |>
+  kable_styling(latex_options = "scale_down")
+```
+
+\medskip
+
+- Ninguna diferencia es concluyente: los intervalos se traslapan (Fisher, p = `r paste(dec(leer("nsf_diferencias.csv")$p_fisher), collapse = " y ")`).
+- Acuerdo entre clasificadores bajo: **kappa de Fleiss `r kf`**.
+
+## Lo que el conteo no dice
+
+```{r grafica, fig.width = 7.6, fig.height = 2.6, out.width = "\\textwidth"}
+g <- merge(P[, .(tratamiento, p_utilizable, ic95_inf, ic95_sup)], RG[, .(tratamiento, p_min, p_max)], by = "tratamiento")
+g[, etiqueta := factor(CORTO[tratamiento], levels = rev(CORTO))]
+g[, color := ifelse(tratamiento == "B", "#2a78d6", "#52514e")]
+ggplot(g, aes(y = etiqueta)) +
+  geom_linerange(aes(xmin = p_min, xmax = p_max, colour = color), linewidth = 0.6, linetype = "22") +
+  geom_point(aes(x = p_min, colour = color), shape = 124, size = 4) +
+  geom_point(aes(x = p_max, colour = color), shape = 124, size = 4) +
+  geom_linerange(aes(xmin = ic95_inf, xmax = ic95_sup, colour = color), linewidth = 2.2, alpha = 0.35) +
+  geom_point(aes(x = p_utilizable, colour = color), size = 3.2) +
+  geom_text(aes(x = p_utilizable, label = dec(p_utilizable)), nudge_y = 0.32, size = 3.3, colour = "#0b0b0b") +
+  annotate("text", x = g[tratamiento == "A", p_min], y = 3.32, label = "con las sin mayoría", hjust = 0,
+           size = 2.9, colour = "#52514e") +
+  annotate("text", x = g[tratamiento == "A", ic95_inf], y = 2.68, label = "IC 95 %", hjust = 0,
+           size = 2.9, colour = "#52514e") +
+  scale_colour_identity() +
+  scale_x_continuous(limits = c(0.3, 1), breaks = seq(0.3, 1, 0.1),
+                     labels = function(x) sub(".", ",", sprintf("%.1f", x), fixed = TRUE)) +
+  labs(x = "Proporción de referencias utilizables", y = NULL) +
+  theme_minimal(base_size = 10) +
+  theme(panel.grid.major.y = element_blank(), panel.grid.minor = element_blank(),
+        panel.grid.major.x = element_line(colour = "#e6e5e1", linewidth = 0.3),
+        axis.text = element_text(colour = "#52514e"), axis.title.x = element_text(colour = "#52514e", size = 9),
+        plot.background = element_rect(fill = "transparent", colour = NA),
+        panel.background = element_rect(fill = "transparent", colour = NA))
+```
+
+- El `r dec(v(P, "A", "p_utilizable"))` de A sale de `r v(RG, "A", "n_total") - v(RG, "A", "sin_mayoria")` de sus `r v(RG, "A", "n_total")` referencias: las otras `r v(RG, "A", "sin_mayoria")` son de pago y quedaron sin mayoría. Según cómo se cuenten, **A va de `r dec(v(RG, "A", "p_min"))` a `r dec(v(RG, "A", "p_max"))`**.
+- **B es el más estable** (`r dec(v(RG, "B", "p_min"))` a `r dec(v(RG, "B", "p_max"))`). Con el experimento solo no se puede elegir.
+
+## Banco de evaluación: 18 preguntas con respuesta conocida
+
+```{r banco}
+knitr::kable(BK[, .(Tratamiento = CORTO[tratamiento],
+                    `Sostenidas (15 en el corpus)` = sprintf("%d/%d", sostenida, sostenida_n),
+                    `Se abstuvo y estaba` = abstencion_indebida,
+                    `Se abstuvo fuera (3)` = sprintf("%d/%d", abstencion_fuera, abstencion_fuera_n),
+                    `Respondió sin fuente` = invenciones_fuera)],
+             format = "latex", booktabs = TRUE, align = "lcccc") |>
+  kable_styling(latex_options = "scale_down")
+```
+
+\medskip
+
+- **A** no sostiene nada con una fuente: se abstiene o responde de memoria.
+- **C** sostiene las 15, pero en una pregunta trampa (Colombia en TIMSS 2019) respondió con conocimiento externo.
+- **B** es la única que no se sale de sus fuentes; sus fallos vienen de las notas: una no decía «matemáticas», otra repetía el «solo» de Eriksson.
+
+## Decisión: B, con una condición
+
+**Elegimos B** · Zotero + Obsidian, con Claude leyendo solo el vault y el protocolo v2
+
+- Exporta a APA 7, está versionado en Git y deja rastro de la página y del estado de cada afirmación.
+- Es la única que se abstuvo en las tres preguntas fuera del corpus.
+
+\alert{Condición: una nota del vault solo sirve de fuente si está verificada contra el PDF.}
+
+- Sale de los datos: de las notas que citó B, solo una estaba verificada, y sus fallos vinieron de notas incompletas.
+
+**Descartadas**
+
+- **C**: se salió de sus fuentes, su cuaderno cambió entre corridas (13, 36 y 27 entradas) y no exporta referencias.
+- **A**: responde de memoria y sin páginas.
+
+# El sistema
+
+## Cómo quedó montado (vía empaquetada)
+
+\begin{center}
+\small
+\begin{tabular}{c}
+\textbf{Zotero} · `r nrow(fread("corpus/procedencia.csv", encoding = "UTF-8"))` fuentes con clave fija (Better BibTeX) \\
+$\downarrow$ \\
+\textbf{corpus/} · PDF + \texttt{procedencia.csv} → README de procedencia \\
+$\downarrow$ \\
+\textbf{Vault de Obsidian} · una nota por fuente: afirmación, página y estado (\texttt{por\_verificar} / \texttt{verificado}) \\
+$\downarrow$ \\
+\textbf{Claude Code abierto en el vault} + protocolo v2 \\
+$\downarrow$ \\
+respuesta con nota, página y estado · o «No está en las fuentes.»
+\end{tabular}
+\end{center}
+
+\medskip
+La IA nunca marca \texttt{verificado}: lo hace una persona con el PDF abierto.
+
+## En vivo: una consulta con su cita
+
+1. Sesión nueva de Claude Code en `Vault_PISA2022` + protocolo v2 (menos de 60 s).
+2. Avvisati y Wuyts (2024): ¿qué modelo y cambió en 2022? → nota, **p. 11** y estado → abrir el PDF.
+3. Invarianza de HOMEPOS rural/urbano en Colombia → **«No está en las fuentes.»**
+
+\medskip
+\alert{Si algo falla en vivo: diapositiva de respaldo «La demostración, ya corrida».}
+
+# Límites
+
+## Dónde falla
+
+- **B repite lo que digan sus notas:** hoy hay `r n_ver` de `r length(notas)` notas verificadas.
+- **La clasificación depende de quién clasifica:** kappa de Fleiss `r kf`.
+- **Lo que no pudimos leer:** Rubin (1987), Goh et al. (2024) y Pohl et al. (2014) quedaron sin firmar; cinco filas, solo con el resumen.
+- **Lo que no se hizo:** auditoría cruzada con otro equipo; cada pregunta del banco se corrió una sola vez.
+- **Trazabilidad:** `r tz_tot$completas` de `r tz_tot$filas` filas firmadas; `r tz_tot$parcial` oraciones del anteproyecto corregidas.
+
+## Qué no le delegamos a la IA
+
+- Firmar una fila de trazabilidad o marcar una nota como \texttt{verificado}.
+- Asignar las categorías de la clasificación ciega.
+- Confirmar las calificaciones del banco.
+- Elegir la herramienta y tomar las decisiones del registro.
+
+\medskip
+\alert{La IA propone dónde buscar; una persona abre el documento y firma.}
+
+# Respaldo
+
+## La demostración, ya corrida (banco de Mateo, 2026-10-13)
+
+\small
+
+**Pregunta (M03):** Según Avvisati y Wuyts (2024), ¿con qué modelo se construye HOMEPOS y cambió en 2022?
+
+**Respuesta de B:** «HOMEPOS se construye con un modelo de TRI unidimensional, y el procedimiento no cambió en 2018 ni en 2022 (p. 11)». Fuente: `Literatura/avvisati2024measurement.md`, estado `por_verificar`.
+
+**El PDF, p. 11** (visor p. 12): «… did not change in 2018 or 2022.» La cita se sostiene.
+
+**Pregunta fuera del corpus (M06):** ¿qué estudio evaluó la invarianza de HOMEPOS entre zonas rurales y urbanas de Colombia? → B: **«No está en las fuentes.»**
+
+\medskip
+\scriptsize Respuestas completas: `evaluacion/respuestas_banco_Mateo.md`.
+
+## Qué corregimos del anteproyecto
+
+\scriptsize
+
+| Fila | Fuente | Cómo queda | Verificó |
+|--------|----------------------|--------------------------------------------|------------------|
+| T-Mat-01 | OCDE (2024) | «muestra principal» de 7 804, no «evaluados» | Mateo Ramos |
+| T-Mat-04 | Icfes (2019) | entre periodos y, además, por sexo con un ítem | Mateo Ramos |
+| T-Mat-06 | Icfes (2022) | se quita lo que el marco no dice | Mateo Ramos |
+| T-Mat-08 | OCDE (2024) | 0,70–0,83 en Colombia es cálculo propio | Mateo Ramos |
+| T-Mat-11 | Hernández y González (2011) | dos componentes bajo un factor común | Mateo Ramos |
+| T-Mat-12 | Eriksson et al. (2021) | «superan claramente al resto», sin «solo» | Mateo Ramos |
+| T-Bra-01 | Collazos et al. (2021) | «combinación de cortes transversales» (no nombra MCO) | Brayan David Barreto |
+| T-Bra-02 | Zabala et al. (s. f.) | se corrige el año de la referencia | Brayan David Barreto |
+| T-Van-06 | Calderón et al. (2026) | «el análisis que conocemos», no «el único» | Vanessa Acosta |
+| T-Van-01 | García-Medina et al. (2016) | «aproximadamente la mitad» | Vanessa Acosta |
+
+## Desvíos que declaramos
+
+1. No hubo buscador: se midió anclaje, no búsqueda.
+2. El cuaderno de NotebookLM cambió entre corridas (13, 36 y 27 entradas).
+3. Una corrida de B leyó la respuesta de A: se descartó y nació la regla 6 (protocolo v2).
+4. Las 6 fuentes que B nombró solo para descartarlas se sacaron después de clasificar; contándolas, B baja a `r dec(leer("nsf_sensibilidad_descartadas.csv")[version == "contando las descartadas" & tratamiento == "B", p_utilizable])`.
+5. Vanessa dejó sin categoría 21 referencias de pago, casi todas de A.
+6. Vanessa corrió A con Opus 5.5 y B con Sonnet 5; Mateo y Brayan, el mismo modelo en los dos.

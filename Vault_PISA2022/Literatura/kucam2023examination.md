@@ -11,7 +11,7 @@ doi_url: https://doi.org/10.21031/epod.1122857
 bloque: "D. Equidad de la prueba (DIF)"
 metadatos: "Crossref (consultado 2026-10-05)"
 estado: por_verificar
-lectura: "IA: solo resumen (OpenAlex); PDF en acceso abierto"
+lectura: "IA: texto completo (Claude, 2026-10-12)"
 pdf_en_zotero: sí (Vanessa, 2026-10-12)
 verificado_por:
 fecha_verificacion:
@@ -32,8 +32,8 @@ DIF en ítems de matemáticas de PISA 2018 por sexo y por educación de los padr
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | Analiza DIF en matemáticas de PISA por sexo y por educación de los padres | resumen | "according to gender and parental education level" | por_verificar · origen: IA, solo resumen (2026-10-05) |
-| 2 | Encuentra un ítem que funciona distinto según la educación de la madre | resumen | "an item in booklet 1 was easy for students whose mother's education" | por_verificar · origen: IA, solo resumen (2026-10-05) |
+| 1 | Analiza DIF en matemáticas de PISA por sexo y por educación de los padres | p. 128 (Abstract) | "according to gender and parental education level" | por_verificar · confirmado contra el texto completo (Claude, 2026-10-12); falta firma del equipo |
+| 2 | Encuentra un ítem (CM305Q01S) que funciona distinto según la educación de la madre | p. 128 (Abstract); p. 145-146 (ítem CM305Q01S, Apéndice C) | "an item in booklet 1 was easy for students whose mother's education" | por_verificar · confirmado contra el texto completo (Claude, 2026-10-12); falta firma del equipo |
 
 ## Qué NO dice (para no citarlo mal)
 La muestra es pequeña (521) y el NSE es solo la educación de los padres; no es Colombia ni PISA 2022.

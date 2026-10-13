@@ -38,18 +38,22 @@ TRATAMIENTOS <- c(A = "Claude sin contexto", B = "Zotero + Obsidian (Claude con 
                   C = "NotebookLM")
 
 # --- CSV -----------------------------------------------------------------------
+# Se lee con read.table y no con fread: fread dejaba las comillas dobles escapadas ("") como dos
+# comillas, y cada lectura + escritura las duplicaba (error reportado por Vanessa el 2026-10-12).
+# read.table convierte "" en " dentro de un campo entre comillas y acepta saltos de línea dentro de él.
 leer_csv <- function(ruta) {
-  d <- fread(ruta, sep = "auto", encoding = "UTF-8", colClasses = "character",
-             na.strings = c("", "NA"), fill = TRUE)
-  txt <- unlist(lapply(d, function(x) x[!is.na(x)]), use.names = FALSE)
-  if (length(txt) && !all(validUTF8(txt))) {
-    d <- fread(ruta, sep = "auto", encoding = "Latin-1", colClasses = "character",
-               na.strings = c("", "NA"), fill = TRUE)
-    for (v in names(d)) set(d, j = v, value = enc2utf8(d[[v]]))
-    setnames(d, enc2utf8(names(d)))
-    message("Aviso: ", basename(ruta), " no estaba en UTF-8; se leyó como Latin-1. ",
-            "En Excel: Guardar como -> CSV UTF-8.")
-  }
+  bytes <- readBin(ruta, "raw", file.size(ruta))
+  texto <- rawToChar(bytes); Encoding(texto) <- "UTF-8"
+  utf8 <- validUTF8(texto)
+  if (!utf8) message("Aviso: ", basename(ruta), " no estaba en UTF-8; se leyó como Latin-1. ",
+                     "En Excel: Guardar como -> CSV UTF-8.")
+  cabecera <- sub("^﻿", "", strsplit(if (utf8) texto else iconv(texto, "latin1", "UTF-8"), "\r?\n")[[1]][1])
+  cuenta <- vapply(c(";", ",", "\t"), function(s) lengths(regmatches(cabecera, gregexpr(s, cabecera, fixed = TRUE))), 0L)
+  d <- utils::read.table(ruta, sep = names(which.max(cuenta)), quote = "\"", header = TRUE,
+                         colClasses = "character", na.strings = c("", "NA"), fill = TRUE,
+                         comment.char = "", check.names = FALSE, strip.white = FALSE,
+                         fileEncoding = if (utf8) "UTF-8-BOM" else "latin1", encoding = "UTF-8")
+  d <- as.data.table(d)
   setnames(d, trimws(sub("^﻿", "", names(d))))
   d[]
 }

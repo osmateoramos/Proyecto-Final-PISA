@@ -42,3 +42,6 @@ No es PISA; no usa tiempos de respuesta; no estudia brechas por NSE.
 O3 y D-05: sería una tercera alternativa (modelar la propensión a omitir) para la robustez de F7. Agregarla es decisión del equipo.
 
 **En el anteproyecto (2026-10-05):** citada en §2.5 (desenganche), con marca [VERIFICAR] hasta que el equipo coteje.
+
+## Acceso al PDF (revisión 2026-10-12)
+Vanessa lo intentó para "Nada sin fuente" y encontró acceso restringido. Esto **contradice** lo que dice arriba `lectura: "texto completo en PubMed Central"` (anotado el 2026-10-05, sin verificar entonces) — alguien del equipo debe confirmar si el PMCID correcto sigue abierto o si esa nota estaba equivocada, antes de dar por cerrado el acceso.

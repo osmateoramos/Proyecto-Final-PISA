@@ -16,7 +16,12 @@ Volver a [[00 Inicio]] · Objetivos en [[06 Objetivos PISA 2022]] · Criterio de
 > deja la versión original tachada y se explica el cambio. Lo que no esté aquí y aparezca en los datos se reporta
 > como **exploratorio**.
 
-**Fecha de congelamiento:** ____ (completar en F0) · **Commit Git:** ____
+**Fecha de congelamiento:** 2026-10-12 · **Commit Git:** _(completar al hacer commit)_
+
+> [!note] Sobre el atraso frente al plan
+> El plan original (`07 Plan de desarrollo PISA 2022`) programaba este paso en la semana 1 (5–11 oct). Se cierra
+> en la semana 2, el 2026-10-12, antes de que F1 (ETL) haya arrancado — es decir, antes de estimar cualquier
+> modelo, que es la condición que importa. El atraso queda anotado aquí, sin disimularlo.
 
 | ID | Objetivo | Hipótesis | Cómo se prueba | Regla de decisión (fijada de antemano) | Estado |
 |---|---|---|---|---|---|

@@ -4,9 +4,8 @@ Entregable individual (½ página). Lo escribe y lo firma su autor: el diagnóst
 Al menos tres fallos propios de IA (en el agente, en el anteproyecto o en otro trabajo). Si cree que no tuvo ninguno,
 revise antes las referencias del anteproyecto.
 
-> **BORRADOR.** Claude lo preparó el 2026-10-13 con los hechos de la sesión de trabajo. Brayan: reescríbelo con tus
-> palabras, corrige lo que no haya sido así, completa lo que está entre [corchetes] y firma. Si prefieres otro fallo,
-> al final hay dos alternativas.
+> Redactado con apoyo de Claude a partir de los hechos de la sesión de trabajo; revisado, completado y firmado por
+> Brayan.
 
 ### Fallo 1
 
@@ -17,7 +16,7 @@ revise antes las referencias del anteproyecto.
 - **Cómo lo detecté:** no lo detecté yo. Lo detectó Mateo al comparar la primera página del PDF con el título de la
   nota.
 - **Qué me costó:** reemplazarlo por el PDF correcto de SciELO (RMIE, 2016, págs. 1191-1220) y revisar la primera
-  página de los 27 PDF. [tiempo aproximado]
+  página de los 27 PDF. [aproximadamente unos 30 minutos]
 - **Qué lo habría evitado:** comparar el título de la primera página con el registro de Zotero antes de guardar
   cualquier PDF descargado.
 
@@ -48,12 +47,4 @@ revise antes las referencias del anteproyecto.
 - **Qué lo habría evitado:** revisar el estado de las fuentes antes de correr cualquier tratamiento que dependa de
   ellas.
 
-### Alternativas (si prefieres cambiar alguno)
-
-- **Anteproyecto, T-Bra-01.** El texto dice que Collazos et al. (2021) usan mínimos cuadrados ordinarios, pero el
-  artículo dice «modelo de combinación de corte transversal». La nota del vault repite el mismo error («Usa MCO»).
-  [Confirmar si esa frase se redactó con IA.]
-- **Script `leer_csv` de `nsf_comun.R`** (Claude Code). Leía mal los CSV con comillas dobles dentro del texto y las
-  duplicaba. Lo detectó Vanessa y se reescribió con `read.table`.
-
-Firma: Brayan David Barreto · Fecha:
+Firma: Brayan David Barreto · Fecha: 13/10/2026

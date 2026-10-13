@@ -110,3 +110,18 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     memoria.
 - **Propuesta:** ninguna todavía; la decisión es de los tres integrantes.
 - **Estado:** propuesta — decidir entre Vanessa, Mateo y Brayan antes de aplicar las correcciones al anteproyecto.
+
+### D-11 · 2026-10-13 · Cómo se codifica una abstención en el banco de evaluación
+- **Problema:** en `evaluacion/banco_Vanessa.csv`, las cinco preguntas del corpus en que el tratamiento A se abstuvo
+  estaban como `sostenida = no aplica` y `correcta = si`. `nsf_evaluacion.R` lee "no aplica" como vacío y saca esas
+  filas del conteo: el control quedaba en 0 de 0, sin medida para comparar con B y C.
+- **Regla propuesta, igual para los tres bancos:**
+  - `se_abstuvo`: `si` cuando la herramienta no responde y lo dice; `no` cuando responde.
+  - Pregunta **del corpus** con abstención: `sostenida = no` y `correcta = no` (no hay respuesta que sostener ni que
+    acertar). El script la cuenta además como abstención sobre una pregunta que sí estaba en el corpus.
+  - Pregunta **fuera del corpus**: solo cuenta `se_abstuvo` (`si` = abstención correcta; `no` = invención).
+- **Efecto en el banco de Vanessa (6 preguntas; cuentas de `nsf_evaluacion.R` rehechas el 2026-10-13):** A pasa de 0/0
+  a 0/5 respuestas sostenidas, con 5 abstenciones; B y C siguen en 5/5. Fuera del corpus, los tres se abstienen (1/1).
+- **Cómo se interpreta:** en A abstenerse es lo honesto, porque no tiene fuentes; el 0/5 no dice que inventó, dice
+  que sin contexto no responde. La memoria debe decirlo así.
+- **Estado:** propuesta — aplicada al banco de Vanessa; Mateo y Brayan la confirman al llenar los suyos.

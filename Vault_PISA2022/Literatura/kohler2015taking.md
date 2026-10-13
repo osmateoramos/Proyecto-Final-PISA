@@ -10,11 +10,11 @@ publicacion: "Educational and Psychological Measurement, 75(5), 850–874"
 doi_url: https://doi.org/10.1177/0013164414561785
 bloque: "E. Desenganche / omisiones"
 metadatos: "Crossref (consultado 2026-10-05)"
-estado: por_verificar
+estado: verificado
 lectura: "IA: solo resumen (OpenAlex); texto completo en PubMed Central"
 pdf_en_zotero: no
-verificado_por:
-fecha_verificacion:
+verificado_por: Vanessa Acosta
+fecha_verificacion: 13/10/2026
 ---
 
 # Taking the Missing Propensity Into Account When Estimating Competence Scores
@@ -32,8 +32,8 @@ Evalúa los modelos que incluyen una propensión latente a omitir cuando se viol
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | Estos modelos suponen una propensión a omitir unidimensional y normal bivariada con la habilidad | resumen | "The missing propensity is unidimensional" | por_verificar · origen: IA, solo resumen (2026-10-05) |
-| 2 | Incluir la propensión a omitir cambia las estimaciones de habilidad frente a ignorar las omisiones | resumen | "results in different ability estimates compared with a model ignoring missing responses" | por_verificar · origen: IA, solo resumen (2026-10-05) |
+| 1 | Estos modelos suponen una propensión a omitir unidimensional y normal bivariada con la habilidad | resumen | "The missing propensity is unidimensional" | verificado - Vanessa |
+| 2 | Incluir la propensión a omitir cambia las estimaciones de habilidad frente a ignorar las omisiones | p. 850 (Abstract), texto completo en PMC5965518 | "results in different ability estimates compared with a model ignoring missing responses" | verificado - Vanessa |
 
 ## Qué NO dice (para no citarlo mal)
 No es PISA; no usa tiempos de respuesta; no estudia brechas por NSE.

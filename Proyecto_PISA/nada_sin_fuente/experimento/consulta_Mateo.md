@@ -19,13 +19,12 @@ medición o funcionamiento diferencial de sus ítems)?
 ## Tratamiento A — Claude sin contexto
 
 - **Herramienta y versión / modelo:** Claude, app de escritorio (pestaña Chat) · Opus 5.5, esfuerzo Alto
-- **Fecha y hora:** 2026-10-12, hacia las 23:30 *(Mateo: ajustar la hora exacta)*
+- **Fecha y hora:** 2026-10-12, hacia las 23:25 (aproximada: unos 10 minutos antes de registrar la respuesta)
 - **Condiciones:**
-  - chat nuevo, sin proyecto ni carpeta;
-  - Investigación y Memoria apagadas;
+  - chat **incógnito** nuevo, sin proyecto ni carpeta;
+  - Investigación y Memoria apagadas; conectores apagados (Google Drive, Claude in Chrome, Filesystem);
   - mismo inicio que el A de Vanessa: «sin buscar en internet»;
   - la respuesta no muestra búsqueda web.
-  - *Mateo: confirmar si apagó los conectores (Google Drive, Claude in Chrome, Filesystem) y si usó chat incógnito.*
   - La respuesta se copió como texto plano desde la app, así que se perdieron negritas y viñetas; el texto es el
     mismo.
 - **Prompt exacto:**
@@ -63,14 +62,14 @@ En síntesis, la evidencia apunta de forma consistente a que HOMEPOS y, por exte
 ## Tratamiento B — Zotero + Obsidian (Claude con el vault)
 
 - **Herramienta y versión / modelo:** Claude Code (app de escritorio, pestaña Code) · Opus 5.5, esfuerzo Alto
-- **Fecha y hora:** 2026-10-12, hacia las 23:50
+- **Fecha y hora:** 2026-10-12, hacia las 23:45 (aproximada: unos 10 minutos antes de registrar la respuesta)
 - **Condiciones:**
   - sesión nueva abierta en `Vault_PISA2022`, en modo **Plan** (solo lectura);
   - protocolo **v2** (la v1 más la regla 6) pegado antes del texto base;
   - sin web.
   - La respuesta cita solo archivos del vault y dice que no modificó ningún archivo del proyecto. Dejó una copia en el
     archivo de plan de la app, fuera del repositorio.
-  - *Mateo: confirmar si apareció alguna solicitud de permiso y qué respondió.*
+  - no pidió ningún permiso durante la corrida (confirmado por Mateo).
 - **Prompt exacto:**
 
 ```
@@ -127,7 +126,7 @@ Descartadas: `icfes2019inse` no es PISA y su DIF es entre periodos. `avvisati202
 Todas las afirmaciones siguen en estado `por_verificar`. Para encontrar más fuentes habría que buscar fuera del vault, y el protocolo no lo permite. No modifiqué ningún archivo del proyecto; la respuesta completa quedó en el archivo del plan.
 ```
 
-### Corrida de B descartada (2026-10-12, hacia las 23:45)
+### Corrida de B descartada (2026-10-12, hacia las 23:35, aproximada)
 
 Se descarta por la regla del README: leyó fuera del vault.
 - **Qué leyó de más:** antes de responder abrió `Proyecto_PISA/nada_sin_fuente/experimento/consulta_Mateo.md`, que ya
@@ -195,7 +194,7 @@ Avisos para el registro
 ## Tratamiento C — NotebookLM
 
 - **Herramienta y versión / modelo:** Gemini Notebook (antes NotebookLM), cuaderno compartido «Proyecto Final»
-- **Fecha y hora:** 2026-10-13, hacia las 00:30
+- **Fecha y hora:** 2026-10-13, hacia las 00:20 (aproximada: unos 10 minutos antes de registrar la respuesta)
 - **Condiciones:**
   - cuaderno compartido con **36 fuentes**: las 20 que ya tenía (con PDF repetidos de Kucam, Calderón, Çelik y Liu,
     que el equipo decidió dejar) más 16 de Mateo subidas antes de la corrida;

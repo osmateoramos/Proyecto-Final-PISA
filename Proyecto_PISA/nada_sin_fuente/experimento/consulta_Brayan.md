@@ -54,19 +54,47 @@ Para verificar y ampliar, te sirven tres cosas: la revista Large-scale Assessmen
 
 ## Tratamiento B — Zotero + Obsidian (Claude con el vault)
 
-- **Herramienta y versión / modelo:**
-- **Fecha y hora:**
-- **Condiciones:** sesión nueva de Claude Code abierta en `Vault_PISA2022`; protocolo v1 pegado antes del texto base; sin web
-- **Prompt exacto:**
+- **Herramienta y versión / modelo:** Claude Code (app de escritorio) — *modelo por confirmar por Brayan (el mismo de A)*
+- **Fecha y hora:** 2026-10-12, noche — *hora por confirmar*
+- **Condiciones:** sesión nueva de Claude Code abierta en `Vault_PISA2022`; protocolo v1 pegado antes del texto base;
+  sin web. Nota: el vault incluye las notas de la actividad (15, 16 y 17), que la sesión puede leer; no contienen las
+  respuestas ni las referencias del tratamiento A de Brayan.
+- **Prompt exacto:** texto de `protocolo/protocolo_consulta_v1.md` («Texto para pegar») seguido del texto base.
+- **Resultado:** **abstención** («No está en las fuentes.»), con una lista de fuentes del vault que cumplen solo una
+  parte de la pregunta.
+
+- **Respuesta completa** (pegada por Brayan, sin editar):
 
 ```
-(pegar)
-```
+No está en las fuentes.
 
-- **Respuesta completa:**
+Ninguna fuente del vault reúne a la vez las tres condiciones: modelo de ecuaciones estructurales, valores plausibles y pesos de PISA, y efecto del NSE sobre matemáticas. Por eso no puedo darte cinco referencias. La propia matriz dice lo mismo: pone "NSE → procesos, PV + pesos" como aporte de este proyecto y, en el vacío, "Combinación: Ninguno en esta revisión" (Matriz estado del arte.md:57 y :72).
 
-```
-(pegar sin editar)
+Lo más cercano: cumple solo una parte, no responde la pregunta
+Burns, Thorvaldson, Martin y Ginns (2026). "In-test effort in PISA achievement: it makes a difference for students and schools, but not countries". Large-scale Assessments in Education, 14(1), 17. https://doi.org/10.1186/s40536-026-00288-9 · nota
+Qué cumple: usa PISA 2022 e incluye a Colombia, n = 7.804 (tabla 1, p. 8). Ajusta un modelo multinivel doblemente latente de 3 niveles, con un análisis por cada valor plausible combinado por imputación múltiple (p. 9).
+Qué no cumple: estudia el esfuerzo en la prueba; el NSE solo entra como covariable de control (p. 1, resumen). La nota no registra el coeficiente del NSE ni el uso de pesos muestrales.
+Estado: Vanessa la marcó como verificada el 12/10/2026, pero sus filas cotejadas son las de p. 1, 8 y 9 (tabla 2). El dato de los valores plausibles está en "Datos y método", no en esas filas. Claude leyó el resumen, la muestra y las tablas 1–2.
+Patsis, Yang Hansen y Klapp (2026). "The role of instructional quality in explaining socioeconomic disparities in mathematics achievement: a multilevel SEM of Swedish TIMSS 2019 data". Large-scale Assessments in Education. https://doi.org/10.1186/s40536-026-00307-9 · nota
+Qué cumple: es un SEM de dos niveles sobre matemáticas. El NSE "se mantuvo como predictor robusto en ambos niveles" y la mediación fue limitada (página pendiente).
+Qué no cumple: los datos son de TIMSS 2019 Suecia, no de PISA. La nota no menciona valores plausibles ni pesos.
+Estado: por_verificar; el equipo leyó el texto completo.
+Hernández Padilla y González Montesinos (2011). "Modelo de ecuación estructural que evalúa las relaciones entre el estatus cultural y económico del estudiante y el logro educativo". REDIE, 13(2), 188–203. La nota no tiene DOI, solo el enlace de SciELO México. · nota
+Qué cumple: es un SEM con estatus cultural y económico como factores latentes. El factor cultural pesa más sobre el logro (0,28–0,34) que el económico (0,22–0,31) (página pendiente).
+Qué no cumple: son datos de México (cuestionarios a padres de 4.911 estudiantes), no PISA. El desenlace es "logro", y la nota no dice que sea matemáticas.
+Estado: por_verificar; el equipo leyó el texto completo.
+Ekmekci (2013). Disertación de la University of Texas at Austin. No tiene DOI; el enlace es http://hdl.handle.net/2152/21338 · nota
+Qué cumple: aplica AFC y SEM a los ítems de matemáticas de PISA 2003–2009, y la evidencia favorece una sola dimensión.
+Qué no cumple: no incluye el NSE. Solo se leyó el resumen (OpenAlex).
+Con PISA y NSE → matemáticas, pero sin SEM:
+
+Guerra et al. (2026), https://doi.org/10.3389/feduc.2026.1810210. Usa BRR, multinivel y LightGBM. Promedia los valores plausibles y lo reconoce como limitación. Es un resumen automático de la IA. nota
+Icfes (2024). El ESCS explica el 16 % de la variación en matemáticas en Colombia (p. 46 del PDF). No hace SEM. nota
+Eriksson et al. (2021), https://doi.org/10.3389/feduc.2021.731634. Usa PISA 2018 y 6 dimensiones del NSE, pero no es un modelo latente. nota
+Mittal et al. (2022), https://doi.org/10.1186/s40536-022-00132-w. No se sabe qué modelo usa porque solo se leyó el resumen. nota
+Para los métodos: el manual de Chen y Yung (2024) trae un SEM multinivel con NSE latente (pp. 370–375). Su nota aclara que no trata pesos, réplicas BRR ni valores plausibles (nota).
+
+Ninguna de estas referencias es una cita de segundo nivel: todas tienen nota propia en el vault. Si esta es tu consulta para el experimento "Nada sin fuente" (O4–O5), puedo registrarla en la nota 16 con este resultado.
 ```
 
 ## Tratamiento C — NotebookLM

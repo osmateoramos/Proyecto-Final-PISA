@@ -43,3 +43,6 @@ No es Colombia; analiza dos subpruebas, no todo el banco de 234 ítems; por el r
 O3 y H3: **es el antecedente más cercano** (DIF por NSE en matemáticas de PISA 2022). Obliga a acotar la novedad: ya no se puede decir que el DIF por NSE "no se ha estudiado en PISA". Ver [[13 Revisión de literatura]].
 
 **En el anteproyecto (2026-10-05):** citada en §2.4 (DIF) y tabla de vacío, con marca [VERIFICAR] hasta que el equipo coteje.
+
+## Acceso al PDF (revisión 2026-10-12)
+Vanessa intentó descargarlo para la actividad "Nada sin fuente": la revista cobra por el PDF (no es de acceso abierto). Sigue como `pdf_en_zotero: no`; la verificación de la tabla de trazabilidad queda limitada al resumen hasta conseguir el texto completo por otra vía (biblioteca de la universidad, contacto con los autores).

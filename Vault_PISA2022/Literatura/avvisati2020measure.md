@@ -1,14 +1,14 @@
 ---
 tipo: fuente
 clave_bib: avvisati2020measure
-clave_provisional: "sí (fuente nueva, aún no está en referencias.bib ni en Zotero)"
+clave_provisional: sí (fuente nueva, aún no está en referencias.bib ni en Zotero)
 titulo: "The measure of socio-economic status in PISA: a review and some suggested improvements"
-autores: "Avvisati, Francesco"
+autores: Avvisati, Francesco
 año: "2020"
-publicacion: "Large-scale Assessments in Education, 8(1), 8"
+publicacion: Large-scale Assessments in Education, 8(1), 8
 doi_url: https://doi.org/10.1186/s40536-020-00086-x
-bloque: "B. Medición del NSE"
-metadatos: "Crossref (consultado 2026-10-05)"
+bloque: B. Medición del NSE
+metadatos: Crossref (consultado 2026-10-05)
 estado: por_verificar
 lectura: "IA: solo resumen (OpenAlex); PDF en acceso abierto"
 pdf_en_zotero: no

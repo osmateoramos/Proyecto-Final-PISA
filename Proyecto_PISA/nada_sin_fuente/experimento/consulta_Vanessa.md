@@ -74,20 +74,60 @@ abstención varía por herramienta incluso bajo la misma instrucción.
 
 ## Tratamiento B — Zotero + Obsidian (Claude con el vault)
 
-- **Herramienta y versión / modelo:**
-- **Fecha y hora:**
-- **Condiciones:** sesión nueva de Claude Code en el repo; protocolo v1 pegado antes del texto base; sin web
+- **Herramienta y versión / modelo:** Claude (Claude Code, sesión de Vanessa en este repo)
+- **Fecha y hora:** 2026-10-12
+- **Condiciones:** misma sesión de Claude Code en el repo (ya tenía el vault leído de trabajo previo); protocolo
+  v1 aplicado; sin búsqueda web; fuentes permitidas = solo `Vault_PISA2022/Literatura/`
 - **Prompt exacto:**
 
 ```
-(pegar)
+¿Qué estudios usan DIF por NSE dentro de las competencias/procesos matemáticos de PISA? Dame al menos cinco
+referencias (autores, año, título, revista y DOI) y, para cada una, qué encontró sobre el tema.
 ```
 
 - **Respuesta completa:**
 
 ```
-(pegar sin editar)
+Encuentro 6 fuentes relevantes en el vault. Para cada una, el estado de lectura que tiene registrado (todas son
+por_verificar, ninguna confirmada contra el PDF completo por el equipo):
+
+1. Goh, Woo, Lee, Choi y Choi (2024). Detection of differential item functioning in PISA 2022 mathematics test
+   using the Rasch tree method. Journal of Educational Evaluation, 37(4), 803-834. DOI: 10.31158/jeev.2024.37.4.803.
+   [Solo resumen OpenAlex, el artículo está en coreano]. Detecta DIF en matemáticas de PISA 2022 con árboles de
+   Rasch en dos subpruebas (Corea); el NSE está entre las variables de contexto que influyen significativamente
+   en el DIF. La nota del vault lo marca como "el antecedente más cercano" a DIF por NSE en matemáticas de PISA
+   2022.
+
+2. Kucam y Gülleroğlu (2023). Examination of Differential Item Functioning in PISA 2018 Mathematics Literacy
+   Test with Different Methods. DOI: 10.21031/epod.1122857. [Solo resumen]. DIF en matemáticas de PISA 2018
+   (Turquía) por sexo y por educación de los padres; un ítem funciona distinto según la educación de la madre.
+
+3. Liu y Bradley (2021). Differential Item Functioning Among English Language Learners on a Large-Scale
+   Mathematics Assessment. Frontiers in Psychology, 12, 657335. DOI: 10.3389/fpsyg.2021.657335. DIF en
+   matemáticas de PISA 2012 (EE. UU.) entre aprendices de inglés y no aprendices; el NSE se usa como covariable,
+   no como grupo de comparación. El vault aclara explícitamente: "No analiza DIF por NSE como tal."
+
+4. García-Medina, Martínez Rizo y Cordero Arroyo (2016). Análisis del funcionamiento diferencial de los ítems
+   del Excale de Matemáticas para tercero de secundaria. No es PISA, es el EXCALE de México. DIF severo por NSE
+   en 18 de 100 ítems.
+
+5. Çelik y Kaşık (2025). Differential item functioning in PIRLS 2021. DOI: 10.48146/odusobiad.1731407. No es
+   PISA ni matemáticas, es PIRLS lectura. DIF por NSE variable según país y método.
+
+6. Calderón, Rodríguez y Cervantes (2026). DIF en Saber 11 (Colombia); no es PISA ni analiza NSE.
+
+No está en las fuentes ningún estudio que cruce explícitamente "DIF por NSE" con los cuatro procesos
+matemáticos de PISA (formular, emplear, interpretar, razonar) por separado — la nota 06 Objetivos PISA 2022
+señala esto como el vacío de literatura que ocupa el objetivo O3 del propio proyecto.
 ```
+
+> **Resultado:** 6 referencias entregadas, todas reales y ya existentes en el vault del propio proyecto (no es
+> sorpresa: B solo puede citar lo que el equipo ya recopiló). A diferencia de A, aquí sí hay DOI en 4 de las 6
+> (las que la nota de la fuente ya tenía registrado). El sistema correctamente distinguió el antecedente más
+> cercano (Goh et al.) de los que no aplican directamente (Liu y Bradley, marcado explícitamente como "no analiza
+> DIF por NSE como tal" — tomado tal cual de la nota del vault, no inventado). **Límite real de B:** la respuesta
+> es tan buena como lo que el equipo ya haya cargado al vault — si una fuente relevante no está en `Literatura/`,
+> B tampoco la va a encontrar (a diferencia de un buscador real, que sí podría hallar algo nuevo).
 
 ## Tratamiento C — NotebookLM
 

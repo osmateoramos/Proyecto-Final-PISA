@@ -4,11 +4,11 @@
 3;A;"Grisay y Monseur (2007)";;"Equivalencia de dificultad de ítems entre versiones lingüísticas de PISA, principalmente lectura (no NSE directamente)";Claude;2026-10-12
 4;A;"Kreiner y Christensen (2014)";;"Crítica al modelo de escalamiento de PISA lectura; muestra DIF por país (no NSE, no matemáticas)";Claude;2026-10-12
 5;A;"Wu y Adams (2006)";;"Modelo IRT multidimensional para ítems de resolución de problemas matemáticos de PISA (no es DIF ni NSE)";Claude;2026-10-12
-6;B;;;;;
-7;B;;;;;
-8;B;;;;;
-9;B;;;;;
-10;B;;;;;
+6;B;"Goh, Woo, Lee, Choi y Choi (2024)";https://doi.org/10.31158/jeev.2024.37.4.803;"DIF en matemáticas PISA 2022 (Corea) con árboles de Rasch; NSE entre las variables de contexto asociadas al DIF";"Claude (vault)";2026-10-12
+7;B;"Kucam y Gülleroğlu (2023)";https://doi.org/10.21031/epod.1122857;"DIF en matemáticas PISA 2018 (Turquía) por sexo y educación de los padres";"Claude (vault)";2026-10-12
+8;B;"Liu y Bradley (2021)";https://doi.org/10.3389/fpsyg.2021.657335;"DIF en matemáticas PISA 2012 (EE. UU.) entre ELL/no ELL; NSE como covariable, no como grupo de comparación";"Claude (vault)";2026-10-12
+9;B;"García-Medina, Martínez Rizo y Cordero Arroyo (2016)";;"DIF severo por NSE en 18 de 100 ítems del EXCALE de matemáticas, México (no es PISA)";"Claude (vault)";2026-10-12
+10;B;"Çelik y Kaşık (2025)";https://doi.org/10.48146/odusobiad.1731407;"DIF por NSE en PIRLS 2021, lectura (no PISA, no matemáticas)";"Claude (vault)";2026-10-12
 11;C;Kucam y Gülleroğlu (2023);https://doi.org/10.21031/epod.1122857;"DIF por educación de los padres en PISA 2018 matemáticas (Turquía); ítem CM305Q01S con DIF por educación materna, p. 145";NotebookLM;2026-10-12
 12;C;Liu y Bradley (2021);https://doi.org/10.3389/fpsyg.2021.657335;"NSE/ESCS como predictor de DIF en 4 de 10 ítems de matemáticas, PISA 2012 EE. UU., HGLM, p. 204-207";NotebookLM;2026-10-12
 13;C;"Kamata y Binici (2003) [cita indirecta, dentro de Çelik y Kaşık 2025]";;"DIF por grupos de NSE en matemáticas de TIMSS 2003 EE. UU., 8 ítems; documento original no verificado";NotebookLM;2026-10-12
@@ -16,3 +16,4 @@
 15;C;"Odabaşı (2019) [cita indirecta, dentro de Çelik y Kaşık 2025]";;"DIF por NSE en PISA 2015 ciencias, Turquía, 5 ítems; documento original no verificado";NotebookLM;2026-10-12
 16;C;"Ercikan, Roth y Asil (2009) [cita indirecta, dentro de Çelik y Kaşık 2025]";;"DIF por NSE en PISA 2006 lectura (Canadá, Corea, Hong Kong); documento original no verificado";NotebookLM;2026-10-12
 17;C;"Martiniello (2008) [cita indirecta, dentro de Çelik y Kaşík 2025]";;"Problemas verbales de matemáticas y NSE en aprendices de inglés en EE. UU.; no se especifica si es PISA; documento original no verificado";NotebookLM;2026-10-12
+18;B;"Calderón, Rodríguez y Cervantes (2026)";https://doi.org/10.1186/s40536-026-00294-x;"DIF en Saber 11 Colombia; no analiza NSE";"Claude (vault)";2026-10-12

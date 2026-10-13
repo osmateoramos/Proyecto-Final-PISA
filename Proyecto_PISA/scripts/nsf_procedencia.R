@@ -8,7 +8,7 @@
 #
 # El script mantiene corpus/procedencia.csv:
 #   - columnas automáticas: título, autores, año, origen (DOI/URL) desde la nota
-#     del vault; si el PDF está en la carpeta y su fecha de obtención está vacía,
+#     del vault; si el PDF está en la carpeta local y su fecha de obtención está vacía,
 #     usa la fecha del archivo;
 #   - columnas a mano (se conservan al volver a correr): fecha_obtencion,
 #     licencia_o_permiso, verificado_por, notas.
@@ -58,14 +58,17 @@ claves <- sort(unique(c(claves, pdfs)))
 
 p <- rbindlist(lapply(claves, function(k) c(list(clave = k), frontmatter(k))))
 p[, archivo := paste0(clave, ".pdf")]
-p[, en_carpeta := ifelse(file.exists(file.path(DIR_C, archivo)), "si", "falta")]
 
 # Conservar lo que se llenó a mano
 previo <- if (file.exists(PROC)) leer_csv(PROC)[, c("clave", MANUAL), with = FALSE] else
           data.table(clave = character())[, (MANUAL) := character()]
 p <- merge(p, previo, by = "clave", all.x = TRUE, sort = TRUE)
-auto_fecha <- p$en_carpeta == "si" & is.na(p$fecha_obtencion)
+local_pdf <- file.exists(file.path(DIR_C, p$archivo))
+auto_fecha <- local_pdf & is.na(p$fecha_obtencion)
 p$fecha_obtencion[auto_fecha] <- format(file.mtime(file.path(DIR_C, p$archivo[auto_fecha])), "%Y-%m-%d")
+# "Obtenido" no depende de la máquina: basta con que alguien lo haya bajado y anotado la fecha.
+# Así, quien corra el script sin los PDF en su carpeta no borra lo que otro ya consiguió.
+p[, en_carpeta := ifelse(local_pdf | !is.na(fecha_obtencion), "si", "falta")]
 escribir_csv(p[, c("clave", "archivo", "en_carpeta", "titulo", "autores", "año", "doi_url", MANUAL), with = FALSE], PROC)
 
 # --- README en Markdown -------------------------------------------------------------------
@@ -77,14 +80,14 @@ md <- c(
   "- **Convención de nombres:** `{clave_bib}.pdf` (la misma clave de `referencias.bib`, de Zotero y de la nota en `Vault_PISA2022/Literatura/`).",
   "- **Dónde viven los PDF:** copia oficial en el grupo de Zotero *Proyecto Final PISA*; copia local en esta carpeta. No van a Git (derechos de autor).",
   "- **Datos de la contraparte:** ninguno. Todo el corpus es público (OCDE, Icfes y artículos publicados).", "",
-  sprintf("Documentos: %d · en la carpeta: %d · faltan: %d", nrow(p), sum(p$en_carpeta == "si"), sum(p$en_carpeta == "falta")), "",
-  "| Archivo | En carpeta | Origen (DOI / URL) | Fecha de obtención | Licencia o permiso | Quién lo verificó | Notas |",
+  sprintf("Documentos: %d · obtenidos: %d · faltan: %d", nrow(p), sum(p$en_carpeta == "si"), sum(p$en_carpeta == "falta")), "",
+  "| Archivo | Obtenido | Origen (DOI / URL) | Fecha de obtención | Licencia o permiso | Quién lo verificó | Notas |",
   "|---|---|---|---|---|---|---|",
   sprintf("| %s | %s | %s | %s | %s | %s | %s |", p$archivo, p$en_carpeta, esc(p$doi_url), esc(p$fecha_obtencion),
           esc(p$licencia_o_permiso), esc(p$verificado_por), esc(p$notas)))
 writeLines(md, file.path(DIR_C, "README_procedencia.md"))
 
-cat("Corpus:", nrow(p), "documentos | en la carpeta:", sum(p$en_carpeta == "si"),
+cat("Corpus:", nrow(p), "documentos | obtenidos:", sum(p$en_carpeta == "si"),
     "| sin DOI/URL:", sum(is.na(p$doi_url)), "\n")
 if (length(extra)) cat("PDF que no corresponden a ninguna fuente citada:", paste(extra, collapse = ", "), "\n")
 falta_manual <- p[en_carpeta == "si" & (is.na(licencia_o_permiso) | is.na(verificado_por)), clave]

@@ -2,11 +2,11 @@
 
 Preguntas B01–B06 de `banco_Brayan.csv`, pegadas juntas en una sola conversación por tratamiento (textos en
 `prompts_banco_Brayan.md`). Brayan corrió las tres y pegó las respuestas; Claude las pasó a `banco_Brayan.csv` y
-comprobó cada cifra en los PDF del corpus. Quién juzga *sostenida* y *correcta*: Brayan, con la propuesta de Claude.
+comprobó cada cifra en los PDF del corpus. Quién juzga *sostenida* y *correcta*: Brayan, con la propuesta de Claude; las confirmó el 2026-10-13.
 
 ## A · Claude sin contexto
 
-- **Condiciones:** claude.ai en chat incógnito, sin proyecto y sin búsqueda web. *Modelo: por confirmar (Brayan).*
+- **Condiciones:** claude.ai en chat incógnito, sin proyecto y sin búsqueda web. **Modelo: Opus 5.5 Extra** (según Brayan).
 
 ```
 Respondo sin buscar en internet. Varias de estas preguntas piden cifras de documentos concretos que no puedo verificar de memoria, así que indico cuándo no tengo el dato en lugar de inventarlo.
@@ -28,8 +28,8 @@ Si tienes los PDF de estos documentos, puedes subirlos y te extraigo las respues
 
 ## B · Zotero + Obsidian (Claude Code con el vault)
 
-- **Condiciones:** sesión nueva de Claude Code abierta en `Vault_PISA2022`, protocolo v2. *Modelo: por confirmar
-  (Brayan).* La respuesta declara que solo abrió archivos del vault y que no buscó en internet.
+- **Condiciones:** sesión nueva de Claude Code abierta en `Vault_PISA2022`, protocolo v2. **Modelo: Opus 5.5
+  Extra** (según Brayan). La respuesta declara que solo abrió archivos del vault y que no buscó en internet.
 
 ```
 Busco en el vault los datos que faltan: diseño adaptativo de PISA 2022 (B03) y TIMSS (B06).

@@ -22,7 +22,7 @@ B06. ¿Cuántos estudiantes colombianos participaron en TIMSS 2019 y qué efecto
 ## A · Claude sin contexto
 
 - Chat nuevo en claude.ai, **sin proyecto** y **sin búsqueda web**.
-- Mismo modelo que en la consulta del experimento (Claude Extra 5.5).
+- Mismo modelo que en la consulta del experimento (Opus 5.5 Extra).
 - Se pega solo el bloque de las 6 preguntas.
 
 ## B · Zotero + Obsidian (Claude Code con el vault)

@@ -61,7 +61,7 @@ original. La etiqueta final es la de la mayoría.
 
 En `experimento/consulta_{persona}.md` consta, para cada corrida, el modelo, la versión del protocolo y las fuentes.
 
-*(Pendiente: Mateo y Vanessa confirman el modelo de A y B; Brayan usó Claude Extra 5.5 en los dos.)*
+*(Pendiente: Mateo y Vanessa confirman el modelo de A y B; Brayan usó Opus 5.5 Extra en los dos.)*
 
 # Resultados
 

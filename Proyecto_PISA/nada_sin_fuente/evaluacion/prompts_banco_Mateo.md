@@ -7,11 +7,13 @@ Al terminar cada tratamiento, copiar la respuesta completa y pasársela a Claude
 modelo y la hora.
 
 M01 se cambió antes de correr el banco: la versión anterior (el 16 % del informe nacional) repetía la B04 de Brayan.
+A diferencia del banco de Brayan, el bloque empieza con «Sin buscar en internet», igual que la consulta A de Mateo; se
+declara como diferencia de condiciones.
 
 ## Las 6 preguntas (las mismas en A, B y C)
 
 ```
-Responde cada pregunta por separado, numerada:
+Sin buscar en internet, responde cada pregunta por separado, numerada:
 
 M01. Según el reporte técnico de PISA 2022 de la OCDE, ¿cuáles son los tres componentes del índice de estatus económico, social y cultural (ESCS)?
 M02. Según el reporte técnico de la OCDE, ¿cuántos estudiantes y cuántas escuelas tuvo la muestra principal de Colombia en PISA 2022?

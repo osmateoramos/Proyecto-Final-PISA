@@ -1,6 +1,6 @@
 # Guion de la sustentación completa (10 minutos + 15 de preguntas)
 
-Presentación: `presentacion.pdf`. Los números de diapositiva son los del pie de página (1/13 … 13/13). Las portadas de
+Presentación: `presentacion.pdf`. Los números de diapositiva son los del pie de página (1/14 … 14/14). Las portadas de
 sección («Diagnóstico», «Experimento y decisión», etc.) no llevan nombres y son el pase entre expositores: se dejan 1 o 2 segundos y se avanza.
 Detalle de cada bloque: `guion_Brayan.md` (2–5′) y `guion_Mateo.md` (5–8′). Cifras de `salidas/` al 2026-10-13.
 
@@ -10,7 +10,7 @@ Detalle de cada bloque: `guion_Brayan.md` (2–5′) y `guion_Mateo.md` (5–8�
 | 2:00–5:00 | Brayan | 3–7 | El conteo en pantalla, el rango de A, el banco y la decisión |
 | 5:00–8:00 | Mateo | 8–9 y **demostración en vivo** | Una consulta con su cita y una abstención |
 | 8:00–10:00 | Los tres | 10–11 | Dónde falla y qué no le delegamos |
-| Preguntas | Cada uno, 5 min | 12–13 de respaldo | Correcciones del anteproyecto y desvíos |
+| Preguntas | Cada uno, 5 min | 12–14 de respaldo | Demostración ya corrida, correcciones del anteproyecto y desvíos |
 
 ## Antes de entrar (dejar abierto en el computador que proyecta)
 

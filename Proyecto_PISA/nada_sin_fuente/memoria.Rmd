@@ -200,8 +200,12 @@ Al buscar en el PDF cada oración citada del anteproyecto aparecieron dos tipos 
 - afirmaciones más fuertes que lo que dice la fuente;
 - afirmaciones con una parte que no sale de la fuente citada.
 
-**[POR CONFIRMAR]** Los casos encontrados hasta ahora:
+Los casos encontrados (los de Mateo los confirmó él con el PDF abierto el 2026-10-13):
 
+- **OCDE (2024), reporte técnico** (T-Mat-01).
+  - *Dijimos:* 7 804 estudiantes «evaluados».
+  - *La fuente:* la tabla reporta la muestra principal (p. 244).
+  - *Queda:* «la muestra principal de Colombia fue de 7 804 estudiantes».
 - **Icfes (2019), INSE** (T-Mat-04).
   - *Dijimos:* el Icfes solo evalúa el funcionamiento diferencial entre periodos.
   - *La fuente:* también compara por sexo la curva de un ítem.
@@ -231,6 +235,11 @@ Al buscar en el PDF cada oración citada del anteproyecto aparecieron dos tipos 
 - **Zabala et al.** (T-Bra-02, confirmado por Brayan). El año de la referencia no coincide con el documento.
 
 *(Vanessa: agregar aquí los casos de su trazabilidad.)*
+
+Dos fuentes del estado del arte no se pudieron leer completas: Rutkowski y Rutkowski (2013), de acceso cerrado, y
+Rolfe (2021). Sus filas (T-Mat-14 y T-Mat-15) se verificaron solo con el resumen, y así quedó escrito en la tabla. Al
+hacerlo apareció otro error: sus notas en el vault decían que el equipo había leído el texto completo, y B lo repitió en
+su respuesta. Se corrigieron a «solo resumen».
 
 Hubo además un error del propio sistema: el enlace anotado para García-Medina et al. (2016) descargaba otro artículo.
 Lo detectamos al comparar la primera página del PDF con el título de la nota, y después comparamos así todos los PDF

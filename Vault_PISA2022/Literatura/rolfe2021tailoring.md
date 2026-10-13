@@ -10,7 +10,7 @@ publicacion: "International Journal of Educational Research, 106, 101723"
 doi_url: https://doi.org/10.1016/j.ijer.2020.101723
 bloque: "B. Medición del NSE"
 estado: por_verificar
-lectura: "equipo: texto completo"
+lectura: "equipo: solo resumen (Mateo, 2026-10-13); sin PDF, el texto completo no se ha leído"
 pdf_en_zotero: no
 verificado_por:
 fecha_verificacion:
@@ -31,7 +31,7 @@ Construye un modelo de medición del NSE con AFC y prueba invarianza a lo largo 
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | La invarianza métrica es alcanzable pero debe verificarse, no suponerse | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| 1 | La invarianza métrica es alcanzable pero debe verificarse, no suponerse | pendiente | | por_verificar · origen: sin confirmar (no hay PDF; el 2026-10-13 Mateo solo vio el resumen) |
 
 ## Qué NO dice (para no citarlo mal)
 No compara grupos dentro de una cohorte (zona, sexo).

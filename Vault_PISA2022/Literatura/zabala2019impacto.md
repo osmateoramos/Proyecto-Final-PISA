@@ -5,7 +5,8 @@ zotero-key: P4D3N9VRg6703955
 clave_provisional: no
 titulo: "El impacto de las condiciones socioeconómicas en el rendimiento académico (ICFES Saber 11) de los estudiantes de Norte de Santander"
 autores: "Zabala Vega, O. J.; León Archila, B. F.; Hernández Casadiegos, J. D."
-año: "2019"
+año: "s. f."
+nota_fecha: "El documento no trae fecha: usa datos de Saber 11 2019-2 y el PDF se creó en septiembre de 2023 (T-Bra-02). En APA 7 se cita (s. f.); decidido por Mateo el 2026-10-13. La clave bibliográfica no cambia."
 publicacion: "Universidad de Pamplona (informe)"
 doi_url: https://www.unipamplona.edu.co/unipamplona/portalIG/home_72/recursos/2021/12092023/condsocioecsaber11.pdf
 bloque: "A. Enfoque econométrico"

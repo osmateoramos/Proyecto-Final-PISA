@@ -1,16 +1,19 @@
 ﻿id_local;tratamiento;referencia;doi_url;afirmacion_atribuida;herramienta;fecha
-1;A;;;;;
-2;A;;;;;
-3;A;;;;;
-4;A;;;;;
-5;A;;;;;
-6;B;;;;;
-7;B;;;;;
-8;B;;;;;
+1;A;Lenkeit, J., Caro, D. H., & Strand, S. (2015). Tackling the remaining attainment gap between students with and without immigrant background: An investigation into the equivalence of SES constructs. Educational Research and Evaluation, 21(1), 60–83.;10.1080/13803611.2015.1009915;"Con datos de PISA evalúa si los constructos de NSE, incluidas las posesiones del hogar, son equivalentes entre estudiantes con y sin trasfondo migratorio dentro de países; la invarianza completa no se sostiene y algunos indicadores funcionan distinto; ignorarlo puede distorsionar la brecha.";Claude Opus 5.5 (chat, sin contexto);2026-10-12
+2;A;Rutkowski, L., & Rutkowski, D. (2013). Measuring socioeconomic background in PISA: One size might not fit all. Research in Comparative and International Education, 8(3), 259–278.;10.2304/rcie.2013.8.3.259;"Entre países: el modelo de medición de HOMEPOS ajusta mal en muchos sistemas, sobre todo fuera de la OCDE; varios ítems tienen propiedades distintas según el contexto; propone ítems específicos por país y modelos menos rígidos.";Claude Opus 5.5 (chat, sin contexto);2026-10-12
+3;A;Traynor, A., & Raykov, T. (2013). Household possessions indices as wealth measures: A validity evaluation. Comparative Education Review, 57(4), 662–688.;10.1086/671423;"Entre países: evalúa la validez de los índices de posesiones del hogar como medidas de riqueza; problemas de dimensionalidad y confiabilidad en varios países; no se cumple la invarianza necesaria para comparar puntajes.";Claude Opus 5.5 (chat, sin contexto);2026-10-12
+4;A;Pokropek, A., Borgonovi, F., & McCormick, C. (2017). On the cross-country comparability of indicators of socioeconomic resources in PISA. Applied Measurement in Education, 30(4), 243–258.;10.1080/08957347.2017.1353985;Entre países: con AFC multigrupo e invarianza parcial o aproximada, los ítems de HOMEPOS no son estrictamente invariantes, pero las comparaciones y ordenamientos de países cambian poco al corregirlo.;Claude Opus 5.5 (chat, sin contexto);2026-10-12
+5;A;Rolfe, V. (2021). Tailoring a measurement model of socioeconomic status: Applying the alignment optimization method to 15 years of PISA. International Journal of Educational Research, 106, 101723.;10.1016/j.ijer.2020.101723;"Entre países y ciclos: aplica alineamiento a HOMEPOS; falta de invarianza considerable en muchos ítems, sobre todo posesiones culturales y tecnológicas; propone un modelo de medición ajustado.";Claude Opus 5.5 (chat, sin contexto);2026-10-12
+6;A;Avvisati, F. (2020). The measure of socio-economic status in PISA: A review and some suggested improvements. Large-scale Assessments in Education, 8, Article 8.;10.1186/s40536-020-00086-x;"Revisión metodológica: cómo se construye el ESCS y sus límites de comparabilidad (incluida la falta de invarianza de los ítems de posesiones); propone dar más peso a educación y ocupación de los padres y revisar los ítems del hogar.";Claude Opus 5.5 (chat, sin contexto);2026-10-12
+7;A;Caro, D. H., Sandoval-Hernández, A., & Lüdtke, O. (2014). Cultural, social, and economic capital constructs in international assessments: An evaluation using exploratory structural equation modeling. School Effectiveness and School Improvement, 25(3), 433–450.;10.1080/09243453.2013.812568;"Entre países: con ESEM evalúa la estructura de capital cultural, social y económico; la estructura se sostiene solo en parte y la invarianza entre países es limitada. La herramienta dice no estar segura de si usó PISA o PIRLS.";Claude Opus 5.5 (chat, sin contexto);2026-10-12
+8;A;Sandoval-Hernández, A., Rutkowski, D., Matta, T., & Miranda, D. (2019). Back to the drawing board: Can we compare socioeconomic background scales? Revista de Educación, 383, 37–61.;10.4438/1988-592X-RE-2019-383-400;"Entre países: las escalas de NSE de varias evaluaciones internacionales, incluida PISA, en general no alcanzan invarianza escalar; comparar medias entre países es problemático. La herramienta marca el DOI como «verificar».";Claude Opus 5.5 (chat, sin contexto);2026-10-12
 9;B;;;;;
 10;B;;;;;
-11;C;;;;;
-12;C;;;;;
-13;C;;;;;
+11;B;;;;;
+12;B;;;;;
+13;B;;;;;
 14;C;;;;;
 15;C;;;;;
+16;C;;;;;
+17;C;;;;;
+18;C;;;;;

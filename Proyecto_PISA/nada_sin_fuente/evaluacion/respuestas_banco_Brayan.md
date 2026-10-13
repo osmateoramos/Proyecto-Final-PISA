@@ -94,7 +94,7 @@ B06. Colombia no participó en TIMSS 2019, por lo que cero estudiantes colombian
 
 | Pregunta | A | B | C |
 |---|---|---|---|
-| B01 | Se abstuvo | Se abstuvo: la nota del vault no dice «matemáticas» (y dice «MCO»); el PDF sí lo dice (pág. PDF 14) | 1,14 (pág. PDF 14) y 0,523 (Tabla 7, pág. PDF 18): correctos |
+| B01 | Se abstuvo | Se abstuvo: la nota del vault no dice «matemáticas» (y dice «MCO», que el artículo no nombra); el PDF sí lo dice (pág. PDF 14) | 1,14 (pág. PDF 14) y 0,523 (Tabla 7, pág. PDF 18): correctos |
 | B02 | Se abstuvo | «Más del 20 %»: correcto (pág. PDF 3) | 7,761 de 30,74 y 6,513 / 8,845 en la tabla de la pág. PDF 8; los porcentajes los calcula y cuadran |
 | B03 | Se abstuvo | 234 ítems y 28-30 por estudiante: correctos (pág. PDF 35); las 99 unidades no las da | Todo correcto (págs. PDF 35, 71 y 72) |
 | B04 | Se abstuvo | Correcto (pág. PDF 46) | Correcto (pág. PDF 46) |

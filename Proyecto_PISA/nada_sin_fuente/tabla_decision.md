@@ -35,7 +35,7 @@ corpus respondió con conocimiento externo en vez de abstenerse, que es justo lo
 salió de sus fuentes, y sus fallos vinieron de notas incompletas, que es lo que corrige la condición.
 
 **La condición sale del experimento:** B respondió con notas `por_verificar` (0 de 43 verificadas en ese momento), así
-que heredó lo que dijeran las notas. El banco lo confirma: la nota de Collazos dice «MCO» y no dice que el +1,14
+que heredó lo que dijeran las notas. El banco lo confirma: la nota de Collazos dice «MCO», que el artículo no nombra, y no dice que el +1,14
 sea en matemáticas, y B se abstuvo por eso. Por eso la tabla de trazabilidad se firma abriendo el PDF y no la nota.
 
 **Descartadas y en qué criterio perdieron:**

@@ -222,8 +222,12 @@ Al buscar en el PDF cada oración citada del anteproyecto aparecieron dos tipos 
   - *Dijimos:* solo dos componentes predicen el logro.
   - *La fuente:* esos dos superan claramente al resto.
   - *Queda:* se quita «solo».
-- **Collazos et al. (2021)** (T-Bra-01, confirmado por Brayan). El método no es mínimos cuadrados ordinarios sino un modelo de combinación de
-  corte transversal.
+- **Collazos et al. (2021)** (T-Bra-01, confirmado por Brayan).
+  - *Dijimos:* estiman «con mínimos cuadrados ordinarios».
+  - *La fuente:* describe un modelo de combinación de cortes transversales (2014-2019) estimado en STATA, con su
+    R², pero no nombra el estimador. Lo usual en ese diseño es MCO, así que no es falso, pero es una inferencia
+    nuestra y no algo que diga el artículo.
+  - *Queda:* «con un modelo de combinación de cortes transversales», como lo describe el artículo.
 - **Zabala et al.** (T-Bra-02, confirmado por Brayan). El año de la referencia no coincide con el documento.
 
 *(Vanessa: agregar aquí los casos de su trazabilidad.)*

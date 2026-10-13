@@ -21,7 +21,8 @@ PDF y las volvió a comprobar el 2026-10-13: **son pistas**. Solo se firma lo qu
 - [ ] **T-Bra-01 · collazos2021determinantes.pdf**
   - Pág. 2: «combinación de corte transversal» · pág. 11: «3.247.429» · pág. 14: «1,14 puntos», «0,81», «7,44» ·
     pág. 15: «1,42».
-  - Pista: **parcial**. Las cifras están, pero el artículo no dice «mínimos cuadrados ordinarios».
+  - Pista: **parcial**. Las cifras están, pero el artículo no nombra el estimador: dice «modelo de combinación de corte
+    transversal» (estimado en STATA, con R²). MCO es lo usual en ese diseño, pero es una inferencia nuestra.
   - Corrección: cambiar «con mínimos cuadrados ordinarios» por «con un modelo de combinación de cortes transversales».
 - [ ] **T-Bra-02 · zabala2019impacto.pdf**
   - Pág. 1 (resumen): «negativo y significativo» (internet y escolaridad de los padres) y «Norte de Santander».

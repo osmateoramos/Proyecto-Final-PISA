@@ -11,7 +11,7 @@ doi_url: https://doi.org/10.1080/15305058.2022.2036161
 bloque: "E. Desenganche"
 metadatos: "Crossref (consultado 2026-10-04)"
 estado: por_verificar
-lectura: "IA: solo resumen oficial (vía OpenAlex y Semantic Scholar). Hay un preprint gratuito en OSF (https://osf.io/pvmbf), que puede diferir de la versión publicada; la versión de la revista no es de acceso abierto"
+lectura: "IA: texto completo del preprint de OSF (2026-10-12; puede diferir de la versión publicada en la revista, que no es de acceso abierto)"
 pdf_en_zotero: sí (Vanessa, 2026-10-12)
 verificado_por:
 fecha_verificacion:
@@ -32,12 +32,12 @@ Correlatos de ítem, evaluado y país de la respuesta rápida al azar (rapid gue
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | Más de la mitad de los evaluados respondió rápido al azar, en promedio en 1 de cada 10 ítems | resumen | "engaged in RG on an average proportion of one in 10 items" | por_verificar · origen: IA, solo resumen (2026-10-05) |
-| 2 | El NSE está entre los moderadores de la respuesta rápida | resumen | "sex, linguistic background, SES, and self-rated reading comprehension" | por_verificar · origen: IA, solo resumen (2026-10-05) |
-| 3 | Las comparaciones entre subgrupos pueden sesgarse por diferencias de esfuerzo | resumen | "subgroup comparisons within and across nations may be biased by differential test-taking effort" | por_verificar · origen: IA, solo resumen (2026-10-05) |
+| 1 | Más de la mitad de los evaluados respondió rápido al azar, en promedio en 1 de cada 10 ítems | p. 2 (Abstract) | "engaged in RG on an average proportion of one in 10 items" | por_verificar · confirmado contra el texto completo del preprint (Claude, 2026-10-12); falta firma del equipo |
+| 2 | El NSE está entre los moderadores de la respuesta rápida | p. 2 (Abstract) | "sex, linguistic background, SES, and self-rated reading comprehension" | por_verificar · confirmado contra el texto completo del preprint (Claude, 2026-10-12); falta firma del equipo |
+| 3 | Las comparaciones entre subgrupos pueden sesgarse por diferencias de esfuerzo | p. 2 (Abstract) | "subgroup comparisons within and across nations may be biased by differential test-taking effort" | por_verificar · confirmado contra el texto completo del preprint (Claude, 2026-10-12); falta firma del equipo |
 
 ## Qué NO dice (para no citarlo mal)
-No es matemáticas ni PISA 2022; no cuantifica el efecto sobre la brecha en Colombia; no sabemos si Colombia está entre los 71 países.
+No es matemáticas ni PISA 2022; no cuantifica el efecto sobre la brecha en Colombia; no sabemos si Colombia está entre los 71 países (lista de 71 países no revisada).
 
 ## Dónde se usa
-Fundamento de H4. Las tres filas coinciden con el resumen oficial; falta la página en el texto completo (pedirlo por la biblioteca).
+Fundamento de H4. Las tres filas se confirmaron contra el texto completo del preprint (coinciden exactamente con el Abstract, p. 2) — pendiente que alguien del equipo las coteje también contra la versión publicada de la revista, por si difiere.

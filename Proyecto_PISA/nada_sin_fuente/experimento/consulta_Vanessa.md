@@ -217,3 +217,11 @@ Revista: Frontiers in Psychology, 12, artículo 657335
 > documento y página en cada afirmación directa, y aplicó bien la regla 5 del protocolo en las 5 citas indirectas
 > (algo que el piloto de 4 PDF no hizo con Liu 2017). Confirma que la causa de la abstención oficial fue
 > puramente la falta de la palabra "NSE" en el prompt, no un problema del corpus ni del cuaderno.
+>
+> **Actualización (2026-10-12, verificación posterior):** se abrió el texto completo de Çelik y Kaşık (2025) y de
+> Rios y Soland (2022) para la trazabilidad. Las 4 citas de segundo nivel que NotebookLM marcó como "no
+> verificadas" (Kamata y Binici 2003, Liu 2017, Odabaşı 2019, Ercikan/Roth/Asil 2009) **sí están descritas tal
+> cual** en el texto completo de Çelik, p. 639-640 — ver el detalle completo en
+> [[Literatura/celik2025differential]]. Siguen sin verificarse contra el documento *original* de cada cita
+> secundaria (eso lo decide quien haga la clasificación ciega), pero ya no hay duda de que Çelik las describe
+> exactamente así.

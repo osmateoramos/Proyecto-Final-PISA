@@ -1,0 +1,118 @@
+---
+title: "Nada sin fuente: experimento y decisión"
+subtitle: "Consultoría Estadística — Proyecto PISA 2022 Colombia"
+author: "Vanessa Acosta, Mateo Ramos y Brayan David Barreto"
+date: "Universidad Santo Tomás · 2026-II"
+lang: es
+bibliography: ../anteproyecto/referencias.bib
+csl: ../anteproyecto/apa.csl
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+    toc: false
+geometry: margin=2.2cm
+fontsize: 11pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(data.table)
+CORTO <- c(A = "A · Claude sin contexto", B = "B · Zotero + Obsidian", C = "C · NotebookLM")
+salida <- function(nombre) file.path("..", "salidas", nombre)
+pendiente <- function(nombre) knitr::asis_output(sprintf("*Pendiente: falta `salidas/%s`.*\n\n", nombre))
+tabla <- function(nombre, caption, ...) {
+  f <- salida(nombre)
+  if (!file.exists(f)) return(pendiente(nombre))
+  knitr::kable(fread(f, encoding = "UTF-8"), caption = caption, ...)
+}
+```
+
+<!-- Responsable: Brayan (bloque 4). Máximo 2 páginas. Toda cifra sale de salidas/nsf_*.csv. -->
+
+# Diseño
+
+*(Pendiente — Brayan.)* Tres consultas bibliográficas reales, una por integrante (zonas O1–O2, O3 y O4 del proyecto),
+corridas en tres tratamientos:
+
+- **A** = Claude sin contexto (control);
+- **B** = Zotero + Obsidian, con Claude respondiendo solo con el vault y el protocolo v1;
+- **C** = NotebookLM con los PDF del corpus y el protocolo v1.
+
+De cada respuesta se tomaron al menos cinco referencias. Cada integrante las clasificó por separado, sin ver el
+tratamiento y en orden aleatorio, en *utilizable*, *existe pero no dice eso* o *no existe*. La etiqueta final es la
+de la mayoría.
+
+**Desvío declarado:** el experimento no incluye un buscador conectado a bases bibliográficas. Mide **anclaje**
+(control frente a dos vías de contexto cerrado), no búsqueda.
+
+# Resultados
+
+```{r conteos}
+if (!file.exists(salida("nsf_conteos.csv"))) pendiente("nsf_conteos.csv") else {
+  d <- fread(salida("nsf_conteos.csv"), encoding = "UTF-8")
+  setnames(d, c("tratamiento", "utilizable", "existe_no_dice", "no_existe", "sin_consenso"),
+           c("Tratamiento", "Utilizable", "Existe pero no dice eso", "No existe", "Sin mayoría"), skip_absent = TRUE)
+  d[, Tratamiento := CORTO[Tratamiento]]
+  knitr::kable(d, caption = "Etiqueta final (mayoría de los tres clasificadores) por tratamiento.")
+}
+```
+
+```{r proporciones}
+if (!file.exists(salida("nsf_proporciones.csv"))) pendiente("nsf_proporciones.csv") else {
+  d <- fread(salida("nsf_proporciones.csv"), encoding = "UTF-8")
+  knitr::kable(d[, .(Tratamiento = CORTO[tratamiento], n, Utilizables = utilizables,
+                     `Proporción` = sprintf("%.2f", p_utilizable),
+                     `IC 95 % (Wilson)` = sprintf("%.2f – %.2f", ic95_inf, ic95_sup))],
+               caption = "Proporción de referencias utilizables por tratamiento.")
+}
+```
+
+```{r diferencias}
+if (!file.exists(salida("nsf_diferencias.csv"))) pendiente("nsf_diferencias.csv") else {
+  d <- fread(salida("nsf_diferencias.csv"), encoding = "UTF-8")
+  knitr::kable(d[, .(`Comparación` = comparacion, Diferencia = sprintf("%+.2f", diferencia),
+                     `IC 95 % (Newcombe)` = sprintf("%+.2f a %+.2f", ic95_inf, ic95_sup),
+                     `p (Fisher)` = sprintf("%.3f", p_fisher))],
+               caption = "Diferencia en la proporción de utilizables frente al control A.")
+}
+```
+
+*(Pendiente — Brayan: qué dicen estos intervalos con $n \approx 15$ por tratamiento, y por qué las referencias de una
+misma consulta no son independientes.)*
+
+# Acuerdo de la clasificación
+
+```{r acuerdo}
+# Versión compacta; el detalle completo queda en salidas/nsf_acuerdo.csv
+if (!file.exists(salida("nsf_acuerdo.csv"))) pendiente("nsf_acuerdo.csv") else {
+  a <- fread(salida("nsf_acuerdo.csv"), encoding = "UTF-8", colClasses = "character")
+  v <- function(patron) { x <- a[grepl(patron, medida), valor]; if (length(x)) x[1] else "" }
+  par <- a[grepl("^kappa de Cohen", medida)]
+  inv <- a[grepl("^desacuerdos que involucran", medida)]
+  d <- data.table(
+    Medida = c("Referencias clasificadas por los tres", "Referencias con desacuerdo", "Acuerdo total",
+               "Kappa de Fleiss", "Kappa de Cohen por pares", "Categorías en juego en los desacuerdos"),
+    Valor = c(v("^referencias clasificadas"), v("^referencias con desacuerdo"), paste0(v("^acuerdo total"), " %"),
+              v("^kappa de Fleiss"),
+              paste(sub("^kappa de Cohen ", "", par$medida), par$valor, collapse = "; "),
+              paste(sub("^desacuerdos que involucran ", "", inv$medida), inv$valor, collapse = "; ")))
+  knitr::kable(d[nzchar(Valor) & Valor != " %"], caption = "Acuerdo entre los clasificadores.")
+}
+```
+
+*(Pendiente: en qué no coincidieron y por qué. Ver `salidas/nsf_desacuerdos.csv`.)*
+
+# Decisión
+
+```{r decision, results='asis'}
+# Se toma la tabla de tabla_decision.md sin la columna "La pregunta que responde" (por espacio)
+if (file.exists("tabla_decision.md")) {
+  l <- readLines("tabla_decision.md", encoding = "UTF-8")
+  filas <- l[grepl("^\\|", l)]
+  filas <- vapply(strsplit(filas, "|", fixed = TRUE), function(c) paste0(paste(c[-3], collapse = "|"), "|"), "")
+  cat(filas, sep = "\n")
+  cat("\n\n")
+  cat(l[grepl("^\\*\\*", l)], sep = "\n\n")
+}
+```

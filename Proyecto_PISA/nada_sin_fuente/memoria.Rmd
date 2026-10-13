@@ -1,0 +1,108 @@
+---
+title: "Nada sin fuente: gestión de información e IA en el proyecto PISA 2022"
+subtitle: "Memoria — Consultoría Estadística"
+author: "Vanessa Acosta, Mateo Ramos y Brayan David Barreto"
+date: "Universidad Santo Tomás · 2026-II"
+lang: es
+bibliography: ../anteproyecto/referencias.bib
+csl: ../anteproyecto/apa.csl
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+    toc: false
+geometry: margin=2.2cm
+fontsize: 11pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(data.table)
+CORTO <- c(A = "A · Claude sin contexto", B = "B · Zotero + Obsidian", C = "C · NotebookLM")
+leer <- function(ruta) if (file.exists(ruta)) fread(ruta, encoding = "UTF-8") else NULL
+tabla <- function(ruta, caption, ...) {
+  d <- leer(ruta)
+  if (is.null(d)) return(knitr::asis_output(sprintf("*Pendiente: falta `%s`.*\n\n", ruta)))
+  knitr::kable(d, caption = caption, ...)
+}
+```
+
+<!-- Memoria de 2 a 4 páginas, seis apartados. Quien genera el PDF: Mateo (RStudio -> Knit). -->
+
+# Diagnóstico
+
+*(Pendiente — Vanessa, a partir de los tres inventarios en `inventarios/`.)* Qué nos inventó la IA y qué nos costó.
+
+# Experimento y decisión
+
+*(Pendiente — Brayan, resumen de `experimento_decision`.)* El conteo y la herramienta elegida frente a las
+descartadas. Incluye el desvío declarado: no hubo tratamiento de buscador bibliográfico.
+
+```{r prop}
+d <- leer("../salidas/nsf_proporciones.csv")
+if (is.null(d)) knitr::asis_output("*Pendiente: falta `salidas/nsf_proporciones.csv`.*") else
+  knitr::kable(d[, .(Tratamiento = CORTO[tratamiento], n, Utilizables = utilizables,
+                     `Proporción` = sprintf("%.2f", p_utilizable),
+                     `IC 95 % (Wilson)` = sprintf("%.2f – %.2f", ic95_inf, ic95_sup))],
+               caption = "Referencias utilizables por tratamiento.")
+```
+
+# El sistema
+
+*(Pendiente — Mateo.)* Cómo quedó montado y por qué así:
+
+- biblioteca en el grupo de Zotero;
+- corpus con README de procedencia;
+- tabla de trazabilidad;
+- protocolo v1 y, si existe, v2;
+- ruta de abstención;
+- vía empaquetada y su techo de nota.
+
+```{r traz}
+tabla("../salidas/nsf_trazabilidad_resumen.csv", "Estado de la tabla de trazabilidad por integrante.")
+```
+
+# Evaluación
+
+*(Pendiente — Brayan.)* La medición por tratamiento con el banco de 18 preguntas (15 dentro del corpus y 3 fuera), el
+caso de fallo con su causa (`evaluacion/caso_fallo.md`) y lo que no se hizo: no hubo auditoría cruzada con otro
+equipo.
+
+```{r banco}
+d <- leer("../salidas/nsf_banco_por_tratamiento.csv")
+if (is.null(d)) knitr::asis_output("*Pendiente: falta `salidas/nsf_banco_por_tratamiento.csv`.*") else
+  knitr::kable(d[, .(Tratamiento = CORTO[tratamiento], Sostenidas = sprintf("%s/%s", sostenida, sostenida_n),
+                     `IC 95 %` = sprintf("%.2f – %.2f", sostenida_ic95_inf, sostenida_ic95_sup),
+                     `Se abstuvo (fuera)` = sprintf("%s/%s", abstencion_fuera, abstencion_fuera_n),
+                     `Inventó (fuera)` = invenciones_fuera)],
+               caption = "Fidelidad por tratamiento en el banco de evaluación.")
+```
+
+# Qué corregimos de nuestro anteproyecto
+
+*(Pendiente — Mateo.)* Con nombre y apellido: qué afirmación no tenía de dónde salir y cómo quedó.
+
+```{r correcciones}
+d <- leer("trazabilidad/trazabilidad_completa.csv")
+if (is.null(d)) knitr::asis_output("*Pendiente: correr `nsf_trazabilidad.R unir`.*") else {
+  d <- d[se_sostiene %in% c("no", "parcial"), .(ID = id, Fuente = fuente, `Corrección` = correccion_propuesta,
+                                               `Verificó` = verificado_por)]
+  if (nrow(d)) knitr::kable(d, caption = "Afirmaciones del anteproyecto que no se sostenían.") else
+    knitr::asis_output("*Ninguna fila marcada como no sostenida.*")
+}
+```
+
+# Declaración de uso de IA
+
+*(Pendiente — los tres, desde la bitácora `Vault_PISA2022/15 Bitácora de uso de IA.md`.)*
+
+- **Herramientas usadas:** (cuáles, y en qué versión si aplica)
+- **Para qué las usamos:**
+  - Gestión de fuentes:
+  - Código del sistema: scripts `Proyecto_PISA/scripts/nsf_*.R`
+  - Redacción de la memoria:
+  - Otros:
+- **Herramienta de gestión elegida:** (cuál, y contra cuáles la comparamos)
+- **Alternativas descartadas y por qué:**
+- **Qué NO usamos IA para:**
+- **Qué tuvimos que corregir de lo que generó:**

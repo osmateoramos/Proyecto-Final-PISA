@@ -114,7 +114,7 @@ Cada uno debe poder responder sobre la parte de los otros.
 
 ## Arrancar el sistema en menos de 60 segundos (sustentación)
 
-- **B:** abrir Claude (pestaña Code) en la carpeta del repositorio, sesión nueva, pegar el protocolo v1 y la pregunta.
+- **B:** abrir Claude (pestaña Code) en la carpeta `Vault_PISA2022`, sesión nueva, pegar el protocolo v2 y la pregunta.
 - **C:** abrir el cuaderno compartido de NotebookLM; el protocolo ya está en *Configurar chat*.
 - **"Reindexar":**
   - B no tiene índice: lee los archivos del vault tal como están (`git pull` y sesión nueva);

@@ -1,7 +1,7 @@
 # PROTOCOLO DE CONSULTA — v2
 
-Responsable del protocolo: Vanessa. Esta v2 la propuso Mateo el 2026-10-12, y Vanessa la revisa. La v1
-(`protocolo_consulta_v1.md`) no se borra.
+Responsable del protocolo: Vanessa. Esta v2 la propuso Mateo el 2026-10-12; Vanessa la revisó y la aprobó el
+2026-10-13, sin cambiar el texto que se pega. La v1 (`protocolo_consulta_v1.md`) no se borra.
 
 - **Rol:** igual que en la v1.
 - **Fuentes permitidas:** igual que en la v1. Para B se agrega una regla explícita: no abrir archivos fuera de
@@ -40,3 +40,21 @@ Reglas:
    Proyecto_PISA/ ni en la raíz del repositorio) y no busques en internet. Si algo no está en el vault, aplica la
    regla 4.
 ```
+
+## Límites conocidos de esta versión
+
+Revisión de Vanessa del 2026-10-13. Estos puntos no se resuelven en la v2: las corridas del experimento y del banco ya
+se hicieron con la v1 y la v2, y una regla nueva sería una v3 sin probar. Quedan como candidatos para esa v3.
+
+1. **La regla 6 no se puede comprobar desde la respuesta.** El protocolo no pide listar los archivos abiertos. Hoy se
+   controla abriendo la sesión en `Vault_PISA2022` y revisando a mano si la herramienta leyó algo de fuera.
+2. **No pide decir el estado de la nota citada.** En B la fuente es una nota del vault, que puede estar
+   `por_verificar`; la respuesta no siempre lo aclara.
+3. **No dice qué hacer cuando falta un solo dato de la referencia**, por ejemplo el DOI.
+4. **La frase de abstención no es única en B.** `CLAUDE.md` se carga solo y pide «no está en el vault»; el protocolo
+   pide «No está en las fuentes.». Al calificar el banco, las dos cuentan como abstención correcta (decisión D-11).
+5. **Abstención de más.** Al exigir que la respuesta esté «literalmente» en las fuentes, el sistema puede abstenerse
+   aunque la respuesta exista con otro término: en la consulta de Vanessa, C respondió «No está en las fuentes»
+   porque la pregunta decía «NSE» y el documento «educación de los padres» (`experimento/consulta_Vanessa.md`).
+
+Estos puntos salen de `protocolo/propuesta_v1_Mateo.md` (1 a 4) y de la consulta de Vanessa (5).

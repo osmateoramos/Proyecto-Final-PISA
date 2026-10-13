@@ -6,6 +6,7 @@ No editar este archivo: se editan las columnas a mano de `procedencia.csv` y se 
 - **Convención de nombres:** `{clave_bib}.pdf` (la misma clave de `referencias.bib`, de Zotero y de la nota en `Vault_PISA2022/Literatura/`).
 - **Dónde viven los PDF:** copia oficial en el grupo de Zotero *Proyecto Final PISA*; copia local en esta carpeta. No van a Git (derechos de autor).
 - **Datos de la contraparte:** ninguno. Todo el corpus es público (OCDE, Icfes y artículos publicados).
+- **Para registrar un PDF obtenido:** guardarlo como `corpus/{clave_bib}.pdf` y correr `nsf_procedencia.R`; la columna «Obtenido» y la fecha se llenan solas. No se editan a mano en `procedencia.csv`: si varias personas editan ese archivo a la vez, Git choca. Las columnas a mano (licencia, verificador, notas) las mantiene Mateo.
 
 Documentos: 36 · obtenidos: 27 · faltan: 9
 

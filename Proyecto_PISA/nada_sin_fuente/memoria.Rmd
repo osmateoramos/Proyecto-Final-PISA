@@ -149,6 +149,10 @@ detectamos se registra en el protocolo de verificación del vault, con cómo se 
 tabla("../salidas/nsf_trazabilidad_resumen.csv", "Estado de la tabla de trazabilidad por integrante.")
 ```
 
+Algunas fuentes no se pudieron leer completas. T-Bra-09, T-Bra-14 y T-Bra-15 se verificaron solo con el resumen; en
+T-Bra-09 el resumen se leyó en OpenAlex, porque el repositorio de la universidad no abrió. Rubin (1987), T-Bra-16, es
+un libro de acceso cerrado y quedó sin firmar.
+
 # Evaluación
 
 <!-- Borrador de Brayan redactado con Claude (2026-10-13). Se revisa cuando estén los tres bancos. -->
@@ -216,9 +220,9 @@ Al buscar en el PDF cada oración citada del anteproyecto aparecieron dos tipos 
   - *Dijimos:* solo dos componentes predicen el logro.
   - *La fuente:* esos dos superan claramente al resto.
   - *Queda:* se quita «solo».
-- **Collazos et al. (2021)** (T-Bra-01). El método no es mínimos cuadrados ordinarios sino un modelo de combinación de
+- **Collazos et al. (2021)** (T-Bra-01, confirmado por Brayan). El método no es mínimos cuadrados ordinarios sino un modelo de combinación de
   corte transversal.
-- **Zabala et al.** (T-Bra-02). El año de la referencia no coincide con el documento.
+- **Zabala et al.** (T-Bra-02, confirmado por Brayan). El año de la referencia no coincide con el documento.
 
 *(Vanessa: agregar aquí los casos de su trazabilidad.)*
 

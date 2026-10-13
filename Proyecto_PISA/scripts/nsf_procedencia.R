@@ -54,15 +54,25 @@ traz <- traz[file.exists(traz)]
 claves <- unique(unlist(lapply(traz, function(a) leer_csv(a)$fuente)))
 pdfs <- sub("\\.pdf$", "", list.files(DIR_C, pattern = "\\.pdf$", ignore.case = TRUE))
 extra <- setdiff(pdfs, claves)
-claves <- sort(unique(c(claves, pdfs)))
+AUTO <- c("titulo", "autores", "año", "doi_url")
+previo_todo <- if (file.exists(PROC)) leer_csv(PROC) else NULL
+# Las filas que ya están en procedencia.csv se conservan aunque no salgan de la trazabilidad
+# (por ejemplo, un documento que alguien agregó al corpus a mano).
+claves <- sort(unique(c(claves, pdfs, previo_todo$clave)))
 
 p <- rbindlist(lapply(claves, function(k) c(list(clave = k), frontmatter(k))))
 p[, archivo := paste0(clave, ".pdf")]
 
-# Conservar lo que se llenó a mano
-previo <- if (file.exists(PROC)) leer_csv(PROC)[, c("clave", MANUAL), with = FALSE] else
-          data.table(clave = character())[, (MANUAL) := character()]
+# Conservar lo que se llenó a mano; si la fuente no tiene nota en el vault, conservar también
+# título, autores, año y DOI escritos a mano.
+previo <- if (!is.null(previo_todo)) previo_todo[, intersect(c("clave", MANUAL, AUTO), names(previo_todo)), with = FALSE] else
+          data.table(clave = character())[, c(MANUAL, AUTO) := character()]
+setnames(previo, AUTO, paste0(AUTO, "_previo"), skip_absent = TRUE)
 p <- merge(p, previo, by = "clave", all.x = TRUE, sort = TRUE)
+for (v in AUTO) {
+  pv <- paste0(v, "_previo")
+  if (pv %in% names(p)) { p[is.na(get(v)), (v) := get(pv)]; p[, (pv) := NULL] }
+}
 local_pdf <- file.exists(file.path(DIR_C, p$archivo))
 auto_fecha <- local_pdf & is.na(p$fecha_obtencion)
 p$fecha_obtencion[auto_fecha] <- format(file.mtime(file.path(DIR_C, p$archivo[auto_fecha])), "%Y-%m-%d")

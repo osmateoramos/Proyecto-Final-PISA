@@ -57,11 +57,11 @@ Si una fila no se pudo comprobar (sin PDF), se deja **sin firmar** y se declara 
   - Buscar: «Annex A. Item Pool Classification tables».
   - Pista: **sí**.
 - [ ] **T-Bra-13 · oecd2024pisa2022tr.pdf** — págs. PDF 35 y 36 (impresas 33 y 34)
-  - Buscar: «three stages and 234 mathematics items from a total of 99 units» · «testlets of nine or 10 items» ·
-    «adaptive parts - taken by 75%» / «linear parts - taken by 25%».
-  - Pista: **parcial**. «Entre 28 y 30 ítems por estudiante» no aparece; tres etapas de 9 o 10 dan 27 a 30.
-  - Corrección sugerida: «entre 27 y 30 (tres etapas de 9 o 10 ítems)», o citar `revision_pisa2022_col.R` si la
-    cifra sale de los datos de Colombia.
+  - Buscar: «three stages and 234 mathematics items from a total of 99 units» · «the total number of mathematics
+    items taken by each student ranged from 28-30» (los dos en la pág. PDF 35) · «adaptive parts - taken by 75%» /
+    «linear parts - taken by 25%» (pág. PDF 36).
+  - Pista: **sí**. *Corregido el 2026-10-13: la versión anterior de esta lista decía que «28 a 30» no aparecía, y
+    sí aparece.*
 - [ ] **T-Bra-17 · chalmers2012mirt.pdf** — pág. 1
   - Buscar: «mirt: A Multidimensional Item Response Theory Package for the R Environment». Pista: **sí**.
 - [ ] **T-Bra-18 · rosseel2012lavaan.pdf** — pág. 1

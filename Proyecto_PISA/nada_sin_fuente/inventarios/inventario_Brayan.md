@@ -50,10 +50,9 @@ revise antes las referencias del anteproyecto.
 
 ### Alternativas (si prefieres cambiar alguno)
 
-- **Anteproyecto, T-Bra-01 y T-Bra-13.** El texto dice que Collazos et al. (2021) usan mínimos cuadrados ordinarios,
-  pero el artículo dice «modelo de combinación de corte transversal». También dice «entre 28 y 30 ítems por
-  estudiante», y eso no aparece en el reporte técnico, donde son tres etapas de 9 o 10 ítems. [Confirmar si esas
-  frases se redactaron con IA.]
+- **Anteproyecto, T-Bra-01.** El texto dice que Collazos et al. (2021) usan mínimos cuadrados ordinarios, pero el
+  artículo dice «modelo de combinación de corte transversal». La nota del vault repite el mismo error («Usa MCO»).
+  [Confirmar si esa frase se redactó con IA.]
 - **Script `leer_csv` de `nsf_comun.R`** (Claude Code). Leía mal los CSV con comillas dobles dentro del texto y las
   duplicaba. Lo detectó Vanessa y se reescribió con `read.table`.
 

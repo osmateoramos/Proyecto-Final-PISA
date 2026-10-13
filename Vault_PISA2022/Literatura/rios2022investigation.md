@@ -11,7 +11,7 @@ doi_url: https://doi.org/10.1080/15305058.2022.2036161
 bloque: "E. Desenganche"
 metadatos: "Crossref (consultado 2026-10-04)"
 estado: por_verificar
-lectura: "IA: solo resumen oficial (vía OpenAlex y Semantic Scholar); sin texto completo en acceso abierto"
+lectura: "IA: solo resumen oficial (vía OpenAlex y Semantic Scholar). Hay un preprint gratuito en OSF (https://osf.io/pvmbf), que puede diferir de la versión publicada; la versión de la revista no es de acceso abierto"
 pdf_en_zotero: no
 verificado_por:
 fecha_verificacion:

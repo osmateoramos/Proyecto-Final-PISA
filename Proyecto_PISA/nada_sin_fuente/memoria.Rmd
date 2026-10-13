@@ -182,7 +182,20 @@ Al buscar en el PDF cada oración citada del anteproyecto aparecieron dos tipos 
 - **Reporte técnico de la OCDE** (T-Bra-13). «Entre 28 y 30 ítems por estudiante» no aparece. Si sale de nuestros
   datos, se cita el script.
 
-*(Vanessa: agregar aquí los casos de su trazabilidad.)*
+De las diez filas de Vanessa (secciones de DIF y desenganche), que ella cotejó abriendo cada fuente, seis se sostienen
+tal cual, dos llevan un ajuste de redacción y dos quedan abiertas:
+
+- **Calderón et al. (2026)** (T-Van-06).
+  - *Dijimos:* es el único análisis de DIF sobre una prueba nacional en Colombia.
+  - *La fuente:* sostiene que compara calendarios de Saber 11 y no NSE; que sea el «único» no sale de ella.
+  - *Queda:* «el análisis de DIF que conocemos sobre una prueba nacional».
+- **García-Medina et al. (2016)** (T-Van-01).
+  - *Dijimos:* la mitad de los 18 ítems con DIF severo favorece a cada grupo.
+  - *La fuente:* «aproximadamente la mitad».
+  - *Queda:* se agrega «aproximadamente».
+- **Goh et al. (2024) y Pohl et al. (2014)** (T-Van-04 y T-Van-09). El texto completo es de pago y no lo pudimos abrir.
+  Siguen sin verificar: el equipo decide si se declaran como citas apoyadas solo en el resumen o si se quitan
+  (decisión D-10 del registro).
 
 Hubo además un error del propio sistema: el enlace anotado para García-Medina et al. (2016) descargaba otro artículo.
 Lo detectamos al comparar la primera página del PDF con el título de la nota, y después comparamos así todos los PDF

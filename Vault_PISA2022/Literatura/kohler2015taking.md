@@ -45,3 +45,11 @@ O3 y D-05: sería una tercera alternativa (modelar la propensión a omitir) para
 
 ## Acceso al PDF (revisión 2026-10-12)
 Vanessa lo intentó para "Nada sin fuente" y encontró acceso restringido. Esto **contradice** lo que dice arriba `lectura: "texto completo en PubMed Central"` (anotado el 2026-10-05, sin verificar entonces) — alguien del equipo debe confirmar si el PMCID correcto sigue abierto o si esa nota estaba equivocada, antes de dar por cerrado el acceso.
+
+## Acceso al texto completo (revisión 2026-10-13)
+La contradicción queda resuelta: el texto completo sí está abierto en PubMed Central
+(https://pmc.ncbi.nlm.nih.gov/articles/PMC5965518/; OpenAlex y Europe PMC lo registran, consultados por Claude el
+2026-10-13). Vanessa lo abrió ese día y ubicó la afirmación 2 en el resumen (p. 850): "Using this model for ability
+estimation results in different ability estimates compared with a model ignoring missing responses" (trazabilidad
+T-Van-10). El PDF todavía no está adjunto en Zotero, y el estado de esta nota sigue `por_verificar` hasta que un
+integrante lo cambie.

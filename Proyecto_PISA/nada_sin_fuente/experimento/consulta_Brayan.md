@@ -19,7 +19,7 @@ total o por subescala?
 
 ## Tratamiento A — Claude sin contexto
 
-- **Herramienta y versión / modelo:** Claude (chat) — Claude Extra 5.5 (según Brayan)
+- **Herramienta y versión / modelo:** Claude (chat) — Opus 5.5 Extra (según Brayan)
 - **Fecha y hora:** 2026-10-12, noche — *hora por confirmar*
 - **Condiciones:** chat nuevo, sin proyecto, sin búsqueda web — *Brayan confirma si fue incógnito o sin memoria*
 - **Prompt exacto:** el texto base de arriba, sin cambios.
@@ -54,7 +54,7 @@ Para verificar y ampliar, te sirven tres cosas: la revista Large-scale Assessmen
 
 ## Tratamiento B — Zotero + Obsidian (Claude con el vault)
 
-- **Herramienta y versión / modelo:** Claude Code (app de escritorio) — Claude Extra 5.5, el mismo de A (según Brayan)
+- **Herramienta y versión / modelo:** Claude Code (app de escritorio) — Opus 5.5 Extra, el mismo de A (según Brayan)
 - **Fecha y hora:** 2026-10-12, noche — *hora por confirmar*
 - **Condiciones:** sesión nueva de Claude Code abierta en `Vault_PISA2022`; protocolo v1 pegado antes del texto base;
   sin web. Nota: el vault incluye las notas de la actividad (15, 16 y 17), que la sesión puede leer; no contienen las

@@ -59,8 +59,31 @@ exige declarar las citas indirectas como tales (regla 5, `protocolo/protocolo_co
 
 # Experimento y decisión
 
-*(Pendiente — Brayan, resumen de `experimento_decision`.)* El conteo y la herramienta elegida frente a las
-descartadas. Incluye el desvío declarado: no hubo tratamiento de buscador bibliográfico.
+<!-- Borrador de Brayan redactado con Claude (2026-10-13). Las cifras salen de salidas/; se revisa cuando estén
+     la clasificación de Vanessa y los tres bancos. -->
+
+```{r exp-datos}
+P  <- leer("../salidas/nsf_proporciones.csv")
+rango_n <- if (is.null(P)) "pocas" else paste(range(P$n), collapse = " a ")
+```
+
+Comparamos tres tratamientos con tres consultas bibliográficas reales, una por integrante: A, Claude sin contexto
+(control); B, Zotero + Obsidian, con Claude respondiendo solo desde el vault; y C, NotebookLM con los PDF del corpus.
+No hubo tratamiento de buscador, así que el experimento mide anclaje, no búsqueda. El diseño, la regla de conteo y los
+desvíos están en `experimento_decision.pdf`.
+
+Ninguna diferencia entre tratamientos es concluyente: con `r rango_n` referencias por tratamiento los intervalos se
+traslapan y el acuerdo entre los tres clasificadores fue bajo. A parece tan bueno como B, pero su proporción sale solo
+de las referencias en que hubo mayoría. Las que quedaron sin mayoría se concentran en A: son de pago y nadie pudo leer
+el texto completo. Contándolas, A podría quedar muy por debajo de B. B es el resultado más estable. A tampoco da páginas, y en el banco no respondió ninguna pregunta
+concreta del corpus. **Elegimos B**, con la sesión abierta en el vault y el protocolo v2: es la única
+que exporta a APA 7, está versionada en Git y deja rastro de la página y del estado de verificación de cada
+afirmación. **Descartamos C** por el límite de fuentes del cuaderno, los duplicados y la falta de versiones, y **A**
+porque responde de memoria.
+
+El experimento dejó una condición para B. B responde con lo que dicen las notas del vault, y durante el experimento
+ninguna estaba verificada (0 de 43). Por eso una nota solo se usa como fuente cuando su estado es `verificado`, y la
+tabla de trazabilidad se firma abriendo el PDF, no la nota.
 
 ```{r prop}
 d <- leer("../salidas/nsf_proporciones.csv")
@@ -128,21 +151,44 @@ detectamos se registra en el protocolo de verificación del vault, con cómo se 
 tabla("../salidas/nsf_trazabilidad_resumen.csv", "Estado de la tabla de trazabilidad por integrante.")
 ```
 
+Algunas fuentes no se pudieron leer completas. T-Bra-09, T-Bra-14 y T-Bra-15 se verificaron solo con el resumen; en
+T-Bra-09 el resumen se leyó en OpenAlex, porque el repositorio de la universidad no abrió. Rubin (1987), T-Bra-16, es
+un libro de acceso cerrado y quedó sin firmar.
+
 # Evaluación
 
-*(Pendiente — Brayan.)* La medición por tratamiento con el banco de 18 preguntas (15 dentro del corpus y 3 fuera), el
-caso de fallo con su causa (`evaluacion/caso_fallo.md`) y lo que no se hizo: no hubo auditoría cruzada con otro
-equipo.
+<!-- Borrador de Brayan redactado con Claude (2026-10-13). Se revisa cuando estén los tres bancos. -->
+
+Cada integrante escribió seis preguntas sobre sus propias fuentes, cinco con respuesta en el corpus y una fuera de
+él, con la respuesta y la página anotadas antes de correrlas: 18 en total, 15 dentro y 3 fuera. Cada banco se corrió
+una vez en A, B y C. Una respuesta es *sostenida* si la cita que da lleva a un fragmento real que dice eso; dentro del
+corpus, abstenerse cuenta como abstención indebida, y fuera de él, responder algo en lugar de abstenerse cuenta como respuesta sin fuente.
 
 ```{r banco}
 d <- leer("../salidas/nsf_banco_por_tratamiento.csv")
 if (is.null(d)) knitr::asis_output("*Pendiente: falta `salidas/nsf_banco_por_tratamiento.csv`.*") else
   knitr::kable(d[, .(Tratamiento = CORTO[tratamiento], Sostenidas = sprintf("%s/%s", sostenida, sostenida_n),
-                     `IC 95 %` = sprintf("%.2f – %.2f", sostenida_ic95_inf, sostenida_ic95_sup),
+                     `IC 95 %` = ifelse(sostenida_n > 0, sprintf("%.2f–%.2f", sostenida_ic95_inf, sostenida_ic95_sup), "—"),
+                     `Se abstuvo (dentro)` = abstencion_indebida,
                      `Se abstuvo (fuera)` = sprintf("%s/%s", abstencion_fuera, abstencion_fuera_n),
-                     `Inventó (fuera)` = invenciones_fuera)],
+                     `Respondió sin fuente (fuera)` = invenciones_fuera)],
                caption = "Fidelidad por tratamiento en el banco de evaluación.")
 ```
+
+*(Provisional: faltan las 6 preguntas de Mateo.)* A no inventa, pero tampoco sirve para datos puntuales: se
+abstiene incluso cuando la respuesta está en el corpus, porque no conoce los artículos. C fue la más completa dentro
+del corpus, pero en una pregunta fuera de él (Colombia en TIMSS 2019) respondió con conocimiento externo en vez de
+abstenerse. B no se salió de sus fuentes, pero repitió sus huecos: se abstuvo en una pregunta que sí estaba en el
+corpus porque la nota de Collazos no decía que el dato fuera de matemáticas.
+
+**Caso de fallo** (`evaluacion/caso_fallo.md`). En el piloto de C, NotebookLM describió bien el artículo de Kucam y
+Gülleroğlu (2023), pero le atribuyó a Liu (2017), que ese artículo solo cita por un punto metodológico, hallazgos sobre
+NSE, género, etnia y TIMSS 2011 que el PDF no contiene. La causa fue que el modelo completó de memoria una cita de
+segundo nivel. Se detectó abriendo el PDF y comparando la oración exacta (p. 146), y por este caso la regla 5 del
+protocolo obliga a declarar las citas indirectas.
+
+**Lo que no se hizo.** No hubo auditoría cruzada con otro equipo. Cada pregunta se corrió una sola vez por
+tratamiento, y quien juzgó si la respuesta se sostenía fue quien escribió la pregunta.
 
 # Qué corregimos de nuestro anteproyecto
 
@@ -176,11 +222,9 @@ Al buscar en el PDF cada oración citada del anteproyecto aparecieron dos tipos 
   - *Dijimos:* solo dos componentes predicen el logro.
   - *La fuente:* esos dos superan claramente al resto.
   - *Queda:* se quita «solo».
-- **Collazos et al. (2021)** (T-Bra-01). El método no es mínimos cuadrados ordinarios sino un modelo de combinación de
+- **Collazos et al. (2021)** (T-Bra-01, confirmado por Brayan). El método no es mínimos cuadrados ordinarios sino un modelo de combinación de
   corte transversal.
-- **Zabala et al.** (T-Bra-02). El año de la referencia no coincide con el documento.
-- **Reporte técnico de la OCDE** (T-Bra-13). «Entre 28 y 30 ítems por estudiante» no aparece. Si sale de nuestros
-  datos, se cita el script.
+- **Zabala et al.** (T-Bra-02, confirmado por Brayan). El año de la referencia no coincide con el documento.
 
 *(Vanessa: agregar aquí los casos de su trazabilidad.)*
 
@@ -208,7 +252,10 @@ if (is.null(d)) knitr::asis_output("*Pendiente: correr `nsf_trazabilidad.R unir`
   - Código del sistema: scripts `Proyecto_PISA/scripts/nsf_*.R`
   - Redacción de la memoria:
   - Otros: en la clasificación de Mateo, un script consultó en Crossref y DataCite el DOI o el título de cada referencia
-    y anotó lo encontrado en la columna `evidencia`; la categoría la asignó Mateo.
+    y anotó lo encontrado en la columna `evidencia`; la categoría la asignó Mateo. En la de Brayan, un script escrito
+    con Claude consultó Crossref y dejó lo encontrado en `evidencia`; la categoría la asignó Brayan. Con referencias
+    de una sola palabra («Collazos», «Cruz») Crossref devolvió coincidencias que no tenían nada que ver, lo que
+    contribuyó a marcar como «no existe» documentos que sí existen (desvío 4 del experimento).
 - **Herramienta de gestión elegida:** (cuál, y contra cuáles la comparamos)
 - **Alternativas descartadas y por qué:**
 - **Qué NO usamos IA para:**

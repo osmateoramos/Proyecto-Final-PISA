@@ -66,12 +66,15 @@ fila_ic <- function(x, n, nombre) {
   setNames(list(x, n, round(w[["p"]], 3), round(w[["li"]], 3), round(w[["ls"]], 3)),
            paste0(nombre, c("", "_n", "_p", "_ic95_inf", "_ic95_sup")))
 }
+# Dentro del corpus, una abstención no es respuesta: cuenta como abstención indebida y no como sostenida ni
+# correcta, aunque la hoja diga "no aplica" en sostenida o "si" en correcta.
 res <- b[, {
-  dentro <- .SD[en_corpus == "si" & !is.na(sostenida)]
+  dentro <- .SD[en_corpus == "si" & (!is.na(sostenida) | !is.na(se_abstuvo))]
+  respondio <- !(dentro$se_abstuvo %in% "si")
   fuera  <- .SD[en_corpus == "no" & !is.na(se_abstuvo)]
-  c(fila_ic(sum(dentro$sostenida == "si"), nrow(dentro), "sostenida"),
-    fila_ic(sum(dentro$correcta == "si", na.rm = TRUE), sum(!is.na(dentro$correcta)), "correcta"),
-    list(correcta_parcial = sum(dentro$correcta == "parcial", na.rm = TRUE),
+  c(fila_ic(sum(respondio & dentro$sostenida %in% "si"), nrow(dentro), "sostenida"),
+    fila_ic(sum(respondio & dentro$correcta %in% "si"), nrow(dentro), "correcta"),
+    list(correcta_parcial = sum(respondio & dentro$correcta %in% "parcial"),
          abstencion_indebida = sum(dentro$se_abstuvo == "si", na.rm = TRUE)),
     fila_ic(sum(fuera$se_abstuvo == "si"), nrow(fuera), "abstencion_fuera"),
     list(invenciones_fuera = sum(fuera$se_abstuvo == "no")))

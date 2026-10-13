@@ -33,7 +33,7 @@ DIF entre aprendices de inglés y nativos en ítems de matemáticas de PISA 2012
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
 | 1 | El NSE es covariable para explicar el DIF por idioma, no grupo de DIF | pendiente | | por_verificar · origen: IA: resumen automático del texto completo |
-| 2 | El NSE predijo 4 de 10 ítems con DIF; 7 siguieron con DIF tras controles | pendiente | | por_verificar · origen: IA: resumen automático del texto completo |
+| 2 | El NSE predijo 4 de 10 ítems con DIF; 7 siguieron con DIF tras controlar a la vez autoeficacia, idioma y NSE (el control es conjunto, no exclusivo del NSE: precisión de Vanessa en la trazabilidad T-Van-03, 2026-10-12) | p. 8 (resultados del Modelo 2), según T-Van-03 | | por_verificar · origen: IA: resumen automático del texto completo |
 
 ## Qué NO dice (para no citarlo mal)
 No analiza DIF por NSE como tal.

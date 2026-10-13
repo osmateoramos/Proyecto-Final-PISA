@@ -32,8 +32,8 @@ Analiza DIF por sexo y por NSE en los 100 ítems de matemáticas del EXCALE de 9
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | Ningún ítem con DIF por sexo; 18 con DIF severo por NSE | pendiente | | por_verificar · origen: IA: resumen automático del texto completo |
-| 2 | Aproximadamente la mitad favorece a NSE alto y la mitad a NSE bajo | pendiente | | por_verificar · origen: IA: resumen automático del texto completo |
+| 1 | Ningún ítem con DIF por sexo; 18 con DIF severo por NSE | Resumen y Conclusiones (cuadro 2); versión web sin paginación. Ubicado por Vanessa el 2026-10-13 (trazabilidad T-Van-01) | "se diagnosticaron 18 con DIF severo por nivel socioeconómico" | por_verificar · origen: IA: resumen automático del texto completo |
+| 2 | Aproximadamente la mitad favorece a NSE alto y la mitad a NSE bajo | Texto que describe el cuadro 2; versión web sin paginación. Ubicado por Vanessa el 2026-10-13 (trazabilidad T-Van-01) | "aproximadamente la mitad de los reactivos favorecen a los alumnos de NSE alto" | por_verificar · origen: IA: resumen automático del texto completo |
 | 3 | Vocabulario no matemático poco familiar perjudica a NSE bajo (ej. 'descendió' vs 'bajó') | pendiente | | por_verificar · origen: IA: resumen automático del texto completo |
 
 ## Qué NO dice (para no citarlo mal)

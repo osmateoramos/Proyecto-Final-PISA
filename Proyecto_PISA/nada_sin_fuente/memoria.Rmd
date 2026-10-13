@@ -234,7 +234,20 @@ Los casos encontrados (los de Mateo los confirmó él con el PDF abierto el 2026
   - *Queda:* «con un modelo de combinación de cortes transversales», como lo describe el artículo.
 - **Zabala et al.** (T-Bra-02, confirmado por Brayan). El año de la referencia no coincide con el documento.
 
-*(Vanessa: agregar aquí los casos de su trazabilidad.)*
+De las diez filas de Vanessa (secciones de DIF y desenganche), que ella cotejó abriendo cada fuente, seis se sostienen
+tal cual, dos llevan un ajuste de redacción y dos quedan abiertas:
+
+- **Calderón et al. (2026)** (T-Van-06).
+  - *Dijimos:* es el único análisis de DIF sobre una prueba nacional en Colombia.
+  - *La fuente:* sostiene que compara calendarios de Saber 11 y no NSE; que sea el «único» no sale de ella.
+  - *Queda:* «el análisis de DIF que conocemos sobre una prueba nacional».
+- **García-Medina et al. (2016)** (T-Van-01).
+  - *Dijimos:* la mitad de los 18 ítems con DIF severo favorece a cada grupo.
+  - *La fuente:* «aproximadamente la mitad».
+  - *Queda:* se agrega «aproximadamente».
+- **Goh et al. (2024) y Pohl et al. (2014)** (T-Van-04 y T-Van-09). El texto completo es de pago y no lo pudimos abrir.
+  Siguen sin verificar: el equipo decide si se declaran como citas apoyadas solo en el resumen o si se quitan
+  (decisión D-10 del registro).
 
 Dos fuentes del estado del arte no se pudieron leer completas: Rutkowski y Rutkowski (2013), de acceso cerrado, y
 Rolfe (2021). Sus filas (T-Mat-14 y T-Mat-15) se verificaron solo con el resumen, y así quedó escrito en la tabla. Al

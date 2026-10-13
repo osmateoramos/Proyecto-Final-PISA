@@ -13,11 +13,17 @@
 #   nsf_diferencias.csv               B - A y C - A: diferencia con IC de Newcombe y Fisher
 #   nsf_acuerdo.csv                   acuerdo entre clasificadores (%, kappa de Cohen y de Fleiss)
 #   nsf_desacuerdos.csv               referencias en que no coincidieron, para discutir
+#   nsf_descartadas.csv               referencias que la herramienta nombró solo para descartarlas
+#   nsf_sensibilidad_descartadas.csv  proporciones sin y con las descartadas
 #
 # Etiqueta final: la categoría que eligió la mayoría (2 de 3). Si no hay mayoría,
 # queda "sin_consenso" y no entra a las proporciones, salvo que se resuelva en
 # clasificacion_consenso.csv. Las referencias de una misma consulta no son
 # independientes: los IC son orientativos (se declara en la memoria).
+#
+# Descartadas (aclaración de la regla de conteo, 2026-10-13): si la afirmación atribuida empieza por
+# "Descartada", la herramienta nombró la fuente solo para decir que no sirve; no es una fuente ofrecida.
+# Se conservan sus clasificaciones, pero no entran a conteos, proporciones ni acuerdo.
 #
 # Cómo correrlo (desde Proyecto_PISA/scripts/):
 #   & "C:\Program Files\R\R-4.4.1\bin\Rscript.exe" nsf_experimento.R
@@ -35,7 +41,10 @@ suppressPackageStartupMessages(library(irr))
 DIR_E <- file.path(DIR_NSF, "experimento")
 CATS  <- c("utilizable", "existe_no_dice", "no_existe")
 
-clave <- leer_csv(file.path(DIR_E, "clave_referencias.csv"))[, .(id, persona_consulta = persona, tratamiento)]
+clave <- leer_csv(file.path(DIR_E, "clave_referencias.csv"))[
+  , .(id, persona_consulta = persona, tratamiento, referencia, afirmacion_atribuida)]
+clave[, descartada := grepl("^\\s*descartad[ao]", afirmacion_atribuida, ignore.case = TRUE)]
+n_analisis <- clave[descartada == FALSE, .N]
 
 # --- Clasificaciones ---------------------------------------------------------------------
 archivos <- file.path(DIR_E, sprintf("clasificacion_%s.csv", PERSONAS))
@@ -48,12 +57,13 @@ cl <- cl[!is.na(categoria)]
 fuera <- setdiff(cl$id, clave$id)
 if (length(fuera)) stop("Clasificaciones con id que no está en la clave: ", paste(fuera, collapse = ", "))
 CLASIF <- sort(unique(cl$clasificador))
-cat("Clasificaciones por integrante:\n"); print(cl[, .N, by = clasificador])
-avance <- cl[, .(clasificadas = .N), by = clasificador][, total := nrow(clave)]
-if (any(avance$clasificadas < nrow(clave))) cat("AVISO: hay hojas incompletas; el análisis usa lo que hay.\n")
+cl <- merge(cl, clave[, .(id, tratamiento, descartada)], by = "id")
+cat("Clasificaciones por integrante (sin las descartadas):\n"); print(cl[descartada == FALSE, .N, by = clasificador])
+avance <- cl[descartada == FALSE, .(clasificadas = .N), by = clasificador]
+if (length(CLASIF) < length(PERSONAS) || any(avance$clasificadas < n_analisis))
+  cat("AVISO: hay hojas incompletas; el análisis usa lo que hay.\n")
 
-cl <- merge(cl, clave, by = "id")
-ancho <- dcast(cl, id + tratamiento ~ clasificador, value.var = "categoria")
+ancho_todo <- dcast(cl, id + tratamiento + descartada ~ clasificador, value.var = "categoria")
 
 # --- Conteos por clasificador -------------------------------------------------------------
 tabla_cruzada <- function(d, filas, col, niveles) {
@@ -61,7 +71,7 @@ tabla_cruzada <- function(d, filas, col, niveles) {
   f <- as.formula(paste(paste(filas, collapse = " + "), "~", col))
   dcast(d, f, fun.aggregate = length, value.var = col, drop = c(TRUE, FALSE))
 }
-por_clasif <- tabla_cruzada(cl, c("clasificador", "tratamiento"), "categoria", CATS)
+por_clasif <- tabla_cruzada(cl[descartada == FALSE], c("clasificador", "tratamiento"), "categoria", CATS)
 escribir_csv(por_clasif, file.path(DIR_SALIDAS, "nsf_conteos_por_clasificador.csv"))
 
 # --- Etiqueta final por mayoría ---------------------------------------------------------------
@@ -71,27 +81,43 @@ mayoria <- function(v) {
   t <- sort(table(v), decreasing = TRUE)
   if (t[[1]] > length(v) / 2) names(t)[1] else "sin_consenso"
 }
-ancho[, final := apply(.SD, 1, mayoria), .SDcols = CLASIF]
+ancho_todo[, final := apply(.SD, 1, mayoria), .SDcols = CLASIF]
 cons_f <- file.path(DIR_E, "clasificacion_consenso.csv")
 if (file.exists(cons_f)) {
   cons <- leer_csv(cons_f)[, .(id, cat_cons = normalizar_categoria(categoria, cons_f))][!is.na(cat_cons)]
-  ancho <- merge(ancho, cons, by = "id", all.x = TRUE)
-  ancho[!is.na(cat_cons), final := cat_cons][, cat_cons := NULL]
+  ancho_todo <- merge(ancho_todo, cons, by = "id", all.x = TRUE)
+  ancho_todo[!is.na(cat_cons), final := cat_cons][, cat_cons := NULL]
   cat("Consenso aplicado a", nrow(cons), "referencias\n")
 }
-sin_clasificar <- clave[!id %in% ancho$id]
+ancho <- ancho_todo[descartada == FALSE]
+sin_clasificar <- clave[descartada == FALSE & !id %in% ancho$id]
 
 conteos <- tabla_cruzada(ancho, "tratamiento", "final", c(CATS, "sin_consenso"))
 escribir_csv(conteos, file.path(DIR_SALIDAS, "nsf_conteos.csv"))
 
+# --- Descartadas: se listan aparte, con lo que les asignó cada clasificador ----------------------------
+descartadas <- merge(clave[descartada == TRUE, .(id, persona_consulta, tratamiento, referencia,
+                                                motivo = afirmacion_atribuida)],
+                     ancho_todo[descartada == TRUE, c("id", CLASIF), with = FALSE], by = "id", all.x = TRUE)
+escribir_csv(descartadas, file.path(DIR_SALIDAS, "nsf_descartadas.csv"))
+
 # --- Proporciones con IC de Wilson ----------------------------------------------------------------
-prop <- ancho[final != "sin_consenso", {
-  n <- .N; x <- sum(final == "utilizable"); w <- wilson(x, n)
-  .(n = n, utilizables = x, existe_no_dice = sum(final == "existe_no_dice"), no_existe = sum(final == "no_existe"),
-    p_utilizable = round(w[["p"]], 3), ic95_inf = round(w[["li"]], 3), ic95_sup = round(w[["ls"]], 3))
-}, by = tratamiento][order(tratamiento)]
-prop[, herramienta := TRATAMIENTOS[tratamiento]]
+proporciones <- function(d) {
+  p <- d[final != "sin_consenso", {
+    n <- .N; x <- sum(final == "utilizable"); w <- wilson(x, n)
+    .(n = n, utilizables = x, existe_no_dice = sum(final == "existe_no_dice"), no_existe = sum(final == "no_existe"),
+      p_utilizable = round(w[["p"]], 3), ic95_inf = round(w[["li"]], 3), ic95_sup = round(w[["ls"]], 3))
+  }, by = tratamiento][order(tratamiento)]
+  p[, herramienta := TRATAMIENTOS[tratamiento]]
+}
+prop <- proporciones(ancho)
 escribir_csv(prop, file.path(DIR_SALIDAS, "nsf_proporciones.csv"))
+
+# Sensibilidad: la aclaración se decidió después de clasificar, así que se reporta también contándolas
+sens <- rbind(prop[, .(version = "sin descartadas (análisis)", tratamiento, n, utilizables, p_utilizable)],
+              proporciones(ancho_todo)[, .(version = "contando las descartadas", tratamiento, n, utilizables,
+                                           p_utilizable)])
+escribir_csv(sens, file.path(DIR_SALIDAS, "nsf_sensibilidad_descartadas.csv"))
 
 # --- Diferencias frente al control A ------------------------------------------------------------------
 dif <- rbindlist(lapply(intersect(c("B", "C"), prop$tratamiento), function(t) {
@@ -143,4 +169,6 @@ print(prop[, .(tratamiento, herramienta, n, utilizables, p_utilizable, ic95_inf,
 if (nrow(dif)) { cat("\n--- Diferencia frente al control A (IC de Newcombe 95 %) ---\n"); print(dif) }
 cat("\n--- Acuerdo entre clasificadores ---\n"); print(acuerdo)
 if (nrow(sin_clasificar)) cat("\nReferencias que nadie ha clasificado:", nrow(sin_clasificar), "\n")
+cat("\nDescartadas por la herramienta (fuera del análisis):", nrow(descartadas), "\n")
+cat("\n--- Sensibilidad: proporción de utilizables sin y con las descartadas ---\n"); print(sens)
 cat("\nListo: salidas/nsf_*.csv\n")

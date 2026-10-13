@@ -50,6 +50,14 @@ algún contenido, también las que presenta como «cercanas», «que no cumplen 
 herramienta se abstiene («No está en las fuentes»), la abstención se anota como resultado aparte y se cuentan igual
 las referencias que haya dado. La misma regla vale para A, B y C y para los tres integrantes.
 
+**Aclaración (2026-10-13): las referencias «descartadas» no se cuentan.** Si la herramienta nombra una fuente solo
+para decir que no sirve («Descartada: …»), no la está ofreciendo como fuente: se lista aparte, como la abstención
+(`salidas/nsf_descartadas.csv`). Pasó con 6 referencias de B en la consulta de Mateo (R004, R011, R017, R039, R040,
+R066). Ya estaban en la hoja ciega y se clasificaron; las clasificaciones se dejan como están, pero
+`nsf_experimento.R` las saca de los conteos, de las proporciones y del acuerdo. La decisión se tomó después de
+clasificar, así que se declara y se reporta también el resultado contándolas (`salidas/nsf_sensibilidad_descartadas.csv`).
+Quien todavía no haya clasificado puede dejar esas 6 en blanco.
+
 De cada respuesta:
 - pegar el prompt y la respuesta completa en `experimento/consulta_{persona}.md`;
 - pasar al menos 5 referencias por tratamiento a `experimento/referencias_{persona}.csv`, con la afirmación que la

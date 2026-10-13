@@ -41,7 +41,9 @@ para el efecto del NSE en matemáticas (Brayan, O4). Cada una se corrió con el 
 - **C** = NotebookLM: cuaderno compartido con PDF del corpus y el protocolo en *Configurar chat*.
 
 **Qué se contó.** Toda referencia a la que la herramienta le atribuye algún contenido, también las que presenta como
-«cercanas»; si se abstiene («No está en las fuentes»), la abstención se anota aparte. Los tres integrantes
+«cercanas»; si se abstiene («No está en las fuentes»), la abstención se anota aparte. Tampoco se cuentan las
+referencias que la herramienta nombra solo para descartarlas («Descartada: …»): no las ofrece como fuente, así que se
+listan aparte, como la abstención (desvío 4). Los tres integrantes
 clasificaron todas las referencias por separado, sin ver el tratamiento y en orden aleatorio, en *utilizable*,
 *existe pero no dice eso* o *no existe*, abriendo el documento original. La etiqueta final es la de la mayoría.
 
@@ -56,6 +58,11 @@ clasificaron todas las referencias por separado, sin ver el tratamiento y en ord
 3. Una corrida de B leyó archivos fuera del vault (entre ellos la respuesta de A) y se descartó. Desde entonces B se
    corre con la sesión abierta en `Vault_PISA2022` y con el protocolo v2 (regla 6); la versión usada en cada corrida
    está en `experimento/consulta_{persona}.md`.
+4. La regla de conteo no decía qué hacer con las fuentes que la herramienta descarta. En la consulta de Mateo, B
+   listó seis documentos del vault como descartados, con el motivo. Entraron a la hoja ciega solo con el apellido o la
+   clave del archivo, sin título, y por eso los clasificadores marcaron casi todos como «no existe», aunque los seis
+   existen en el vault. Después de clasificar se decidió sacarlos del análisis sin cambiar las clasificaciones. Como
+   la decisión se tomó viendo los datos, la tabla de sensibilidad muestra también el resultado contándolos.
 
 *(Pendiente: Mateo y Vanessa confirman el modelo de A y B; Brayan usó Claude Extra 5.5 en los dos.)*
 
@@ -78,6 +85,19 @@ if (!file.exists(salida("nsf_proporciones.csv"))) pendiente("nsf_proporciones.cs
                      `Proporción` = sprintf("%.2f", p_utilizable),
                      `IC 95 % (Wilson)` = sprintf("%.2f – %.2f", ic95_inf, ic95_sup))],
                caption = "Proporción de referencias utilizables por tratamiento.")
+}
+```
+
+```{r sensibilidad}
+if (!file.exists(salida("nsf_sensibilidad_descartadas.csv"))) pendiente("nsf_sensibilidad_descartadas.csv") else {
+  d <- fread(salida("nsf_sensibilidad_descartadas.csv"), encoding = "UTF-8")
+  d <- dcast(d, tratamiento ~ version, value.var = c("n", "p_utilizable"))
+  sin <- "sin descartadas (análisis)"; con <- "contando las descartadas"
+  knitr::kable(d[, .(Tratamiento = CORTO[tratamiento],
+                     `Sin descartadas` = sprintf("%.2f (n = %d)", get(paste0("p_utilizable_", sin)), get(paste0("n_", sin))),
+                     `Contando las descartadas` = sprintf("%.2f (n = %d)", get(paste0("p_utilizable_", con)),
+                                                          get(paste0("n_", con))))],
+               caption = "Sensibilidad: proporción de utilizables sin y con las referencias descartadas por la herramienta.")
 }
 ```
 

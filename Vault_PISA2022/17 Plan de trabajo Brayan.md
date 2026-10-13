@@ -157,7 +157,8 @@ Revisión del repositorio del 2026-10-12. Nada de esto se corrigió desde esta r
 
 ## 5. Sesiones de IA por pasar a la bitácora
 
-Formato de `15 Bitácora de uso de IA` (rama `Vanessa`). Se trasladan cuando esa nota llegue a `main`.
+**Trasladadas el 2026-10-13** a [[15 Bitácora de uso de IA]], junto con las demás sesiones de Brayan. Se dejan aquí
+como registro.
 
 | Fecha | Integrante | Para qué se usó la IA | Qué generó exactamente | Qué se corrigió / ajustó | Estado |
 |---|---|---|---|---|---|

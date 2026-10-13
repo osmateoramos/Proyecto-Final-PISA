@@ -101,17 +101,28 @@ Ninguna de estas referencias es una cita de segundo nivel: todas tienen nota pro
 
 ## Tratamiento C — NotebookLM
 
-- **Herramienta y versión / modelo:**
-- **Fecha y hora:**
-- **Condiciones:** cuaderno compartido; n.º de fuentes cargadas: ; protocolo v1 en Configurar chat
-- **Prompt exacto:**
+- **Herramienta y versión / modelo:** NotebookLM (cuaderno compartido del equipo)
+- **Fecha y hora:** 2026-10-12, noche — *hora por confirmar*
+- **Condiciones:** protocolo v1 en *Configurar chat* (cargado por Vanessa). Fuentes en el cuaderno según la captura
+  de Brayan: **13 entradas, 9 documentos distintos** (4 duplicados):
+  - `10.21031-epod.1122857-2453716.pdf` ×2 → kucam2023examination
+  - `10.48146-odusobiad.1731407-50089….pdf` ×2 → celik2025differential
+  - `fpsyg-12-657335.pdf` ×2 → liu2021differential
+  - `s40536-026-00294-x.pdf` ×2 → calderon2026differential
+  - «DETERMINANTES DEL RENDIMIENT…» → collazos2021determinantes
+  - `pcerda,+8,+CALIBRACIÓN+CONCU….pdf` → brandt2017calibracion
+  - `v48i02.pdf` → rosseel2012lavaan
+  - `s40536-020-00086-x.pdf` → avvisati2020measure (no está entre las 36 fuentes del corpus)
+  - `7abea67b-en.pdf` → documento de la OCDE sin identificar
+
+  El cuaderno **no** tiene la mayoría del corpus: faltan, entre otras, las fuentes de esta zona (Patsis 2026,
+  Burns 2026, Hernández 2011, Guerra 2026, Eriksson 2021, el Technical Report y el informe del Icfes 2024).
+- **Prompt exacto:** el texto base; Brayan lo pegó sin el signo «¿» inicial.
+- **Resultado:** **abstención**, sin referencias. Con la regla del equipo, C aporta 0 referencias para esta consulta.
+  Parte de la abstención se explica porque las fuentes relevantes no estaban cargadas en el cuaderno.
+
+- **Respuesta completa** (pegada por Brayan, sin editar):
 
 ```
-(pegar)
-```
-
-- **Respuesta completa:**
-
-```
-(pegar sin editar)
+No está en las fuentes.
 ```

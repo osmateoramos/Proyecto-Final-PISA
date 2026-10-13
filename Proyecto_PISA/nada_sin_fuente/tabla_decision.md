@@ -3,8 +3,8 @@
 Responsable: Brayan (bloque 3). Borrador del 2026-10-12, actualizado el 2026-10-13, redactado con Claude a partir de
 lo observado en las corridas del equipo (`experimento/consulta_*.md`). Cada celda lleva evidencia, no opinión. Las
 filas *Experimento* y *Banco* salen de `Proyecto_PISA/salidas/nsf_proporciones.csv` y
-`nsf_banco_por_tratamiento.csv`. El experimento ya tiene los tres clasificadores; el banco tiene las preguntas de
-Vanessa y de Brayan (**faltan las 6 de Mateo**). Descartar bien se califica igual que
+`nsf_banco_por_tratamiento.csv`. El experimento ya tiene los tres clasificadores; el banco, los tres (18 preguntas: 15
+dentro del corpus y 3 fuera). Descartar bien se califica igual que
 elegir bien.
 
 | Criterio | A · Claude sin contexto | B · Zotero + Obsidian (Claude con el vault) | C · NotebookLM |
@@ -15,12 +15,12 @@ elegir bien.
 | **Costo** | Incluido en el plan de Claude que ya usa el equipo | Zotero, Obsidian y Git gratis; Claude Code requiere el plan de Claude | Gratis, pero con **límite de fuentes por cuaderno**: el cuaderno compartido se llenó con 13 entradas visibles (4 duplicadas) y no dejó subir el resto del corpus |
 | **Exportación a APA 7** | No: hay que rehacer cada referencia a mano y verificarla | Sí: Zotero + Better BibTeX + `apa.csl` generan las referencias del anteproyecto | No exporta referencias |
 | **Reproducibilidad** | Baja: sin fuentes y respuesta variable | Media: el vault está versionado en Git y el protocolo también, pero el modelo no es determinista y la sesión puede cargar contexto de la máquina (memoria de Claude Code, `CLAUDE.md`) | Baja: el cuaderno no está versionado, tuvo duplicados y fuentes ajenas al corpus (Avvisati 2020, un PDF de la OCDE sin identificar), y su contenido cambió entre corridas |
-| **Base verificada** | No aplica: no lee fuentes | Depende del vault: responde con lo que dicen las notas, no con el PDF. Durante el experimento 0 de 43 notas estaban verificadas; hoy 4 de 44. Lo que esté mal en una nota, B lo repite | Lee el PDF cargado: no hereda errores de las notas, pero sí los del cuaderno (duplicados, documentos ajenos al corpus) |
+| **Base verificada** | No aplica: no lee fuentes | Depende del vault: responde con lo que dicen las notas, no con el PDF. Durante el experimento 0 de 43 notas estaban verificadas; hoy 8 de 45. Lo que esté mal en una nota, B lo repite | Lee el PDF cargado: no hereda errores de las notas, pero sí los del cuaderno (duplicados, documentos ajenos al corpus) |
 | *Abstención observada* | No se abstuvo (consulta de Brayan): dio 6 referencias más 3 «cercanas» | Se abstuvo en la consulta de Brayan y listó 9 fuentes «cercanas» del vault. En la de Mateo dio 5 y descartó otras 6 explicando por qué (no cuentan en el experimento) | Se abstuvo en las consultas de Brayan y de Vanessa (oficial); en la de Brayan, en parte porque las fuentes no estaban cargadas |
 | *Experimento* | Referencias utilizables: 11/13 = 0,85 (IC 95 %: 0,58–0,96), pero 9 de sus 22 quedaron sin mayoría: según cómo se cuenten, entre 0,50 y 0,91 | 15/18 = 0,83 (0,61–0,94); diferencia con A −0,01 (−0,26 a +0,28). Con las 2 sin mayoría, entre 0,75 y 0,85 | 12/17 = 0,71 (0,47–0,87); diferencia con A −0,14 (−0,40 a +0,17). Con las 2 sin mayoría, entre 0,63 y 0,74 |
-| *Banco* | Dentro del corpus: 0/10 sostenidas; se abstuvo en las 10 (no conoce los artículos). Fuera: se abstuvo en 1 de 2; en la otra respondió de memoria | Dentro: 9/10 sostenidas; se abstuvo en una que sí estaba en el corpus porque la nota de Collazos no decía «matemáticas», y dejó dos incompletas por notas incompletas. Fuera: se abstuvo 2/2 | Dentro: 10/10 sostenidas, con más detalle que B (leyó hasta tablas en imagen). Fuera: se abstuvo en 1 de 2; en la de Brayan respondió con conocimiento externo (Colombia en TIMSS 2019), sin fuente |
+| *Banco* | Dentro del corpus: 0/15 sostenidas (IC 95 %: 0–0,20). Se abstuvo en 11 (no conoce los artículos) y en las otras 4 respondió de memoria, sin cita. Fuera: se abstuvo en 2 de 3; en la otra respondió de memoria | Dentro: 12/15 sostenidas (0,80; 0,55–0,93). Se abstuvo en 3 que sí estaban en el corpus porque la nota no tenía el dato, y en otra repitió el «solo» de la nota de Eriksson, el mismo error del anteproyecto (T-Mat-12). Fuera: se abstuvo 3/3, la única sin fallos | Dentro: 15/15 sostenidas (1,00; 0,80–1,00), con más detalle que B (leyó hasta tablas en imagen). Fuera: se abstuvo en 2 de 3; en la de Brayan respondió con conocimiento externo (Colombia en TIMSS 2019), sin fuente |
 
-**Herramienta elegida:** *(propuesta, a confirmar con los conteos finales)* B · Zotero + Obsidian, con la sesión
+**Herramienta elegida:** B · Zotero + Obsidian, con la sesión
 abierta en `Vault_PISA2022`, el protocolo v2 y **una condición: solo se usa una nota del vault como fuente cuando su
 estado es `verificado`**.
 
@@ -29,14 +29,14 @@ página y del estado de verificación de cada afirmación; no depende del límit
 experimento ninguna diferencia es concluyente y el acuerdo entre clasificadores fue bajo (kappa de Fleiss 0,06). El
 0,85 de A sale solo de 13 de sus 22 referencias: las otras 9 son de pago y quedaron sin mayoría. Según cómo se
 cuenten, A va de 0,50 a 0,91, mientras que B se mueve poco (0,75 a 0,85). Además,
-A no da páginas; en el banco, A no pudo
-responder ninguna pregunta concreta del corpus. En el banco C fue la más completa, pero en una pregunta fuera del
-corpus respondió con conocimiento externo en vez de abstenerse, que es justo lo que el protocolo prohíbe; B no se
-salió de sus fuentes, y sus fallos vinieron de notas incompletas, que es lo que corrige la condición.
+A no da páginas, y en el banco no sostuvo con una fuente ninguna de sus 15 respuestas del corpus. En el banco C fue
+la más completa (15/15 frente a 12/15 de B), pero en una pregunta fuera del corpus respondió con conocimiento externo
+en vez de abstenerse, que es justo lo que el protocolo prohíbe. B fue la única que se abstuvo en las tres preguntas
+fuera del corpus, y sus fallos dentro vinieron de notas incompletas o con errores, que es lo que corrige la condición.
 
 **La condición sale del experimento:** B respondió con notas `por_verificar` (0 de 43 verificadas en ese momento), así
 que heredó lo que dijeran las notas. El banco lo confirma: la nota de Collazos dice «MCO», que el artículo no nombra, y no dice que el +1,14
-sea en matemáticas, y B se abstuvo por eso. Por eso la tabla de trazabilidad se firma abriendo el PDF y no la nota.
+sea en matemáticas, y B se abstuvo por eso; la de Eriksson dice «solo», y B lo repitió. Por eso la tabla de trazabilidad se firma abriendo el PDF y no la nota.
 
 **Descartadas y en qué criterio perdieron:**
 

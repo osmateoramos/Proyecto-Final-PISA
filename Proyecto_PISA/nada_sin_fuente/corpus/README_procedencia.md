@@ -7,7 +7,7 @@ No editar este archivo: se editan las columnas a mano de `procedencia.csv` y se 
 - **Dónde viven los PDF:** copia oficial en el grupo de Zotero *Proyecto Final PISA*; copia local en esta carpeta. No van a Git (derechos de autor).
 - **Datos de la contraparte:** ninguno. Todo el corpus es público (OCDE, Icfes y artículos publicados).
 
-Documentos: 36 · obtenidos: 24 · faltan: 12
+Documentos: 36 · obtenidos: 26 · faltan: 10
 
 | Archivo | Obtenido | Origen (DOI / URL) | Fecha de obtención | Licencia o permiso | Quién lo verificó | Notas |
 |---|---|---|---|---|---|---|
@@ -22,7 +22,7 @@ Documentos: 36 · obtenidos: 24 · faltan: 12
 | cruz2016construccion.pdf | si | https://dialnet.unirioja.es/servlet/articulo?codigo=7396911 | 2026-10-12 | Acceso abierto; licencia por verificar en el documento |  | PDF abierto, comprobado el 2026-10-12: https://dialnet.unirioja.es/descarga/articulo/7396911.pdf |
 | ekmekci2013mathematical.pdf | falta | http://hdl.handle.net/2152/21338 |  | Acceso abierto; licencia por verificar en el documento |  | Acceso abierto, pero el sitio bloquea descargas automáticas: abrir desde el navegador |
 | eriksson2021socioeconomic.pdf | si | https://doi.org/10.3389/feduc.2021.731634 | 2026-10-12 | CC BY (según OpenAlex, 2026-10-12; confirmar en el PDF) |  | PDF abierto, comprobado el 2026-10-12: https://www.frontiersin.org/articles/10.3389/feduc.2021.731634/pdf |
-| garcia2016analisis.pdf | falta | https://www.redalyc.org/journal/140/14047430009/html/ |  | Acceso abierto; licencia por verificar en el documento |  | PDF abierto, comprobado el 2026-10-12: http://www.redalyc.org/pdf/778/77812441008.pdf |
+| garcia2016analisis.pdf | si | https://www.redalyc.org/journal/140/14047430009/html/ | 2026-10-12 | Acceso abierto; licencia por verificar en el documento |  | PDF abierto en SciELO México, comprobado el 2026-10-12: https://www.scielo.org.mx/pdf/rmie/v21n71/1405-6666-rmie-21-71-01191.pdf (corregido: el enlace de Redalyc anotado antes era otro artículo, Gómez-Benito et al. 2010, citado en sus referencias) |
 | goh2024detection.pdf | falta | https://doi.org/10.31158/jeev.2024.37.4.803 |  | Acceso cerrado: copia por la biblioteca USTA, uso académico personal |  | Cerrado: pedir por la biblioteca USTA; si no se consigue, sale del corpus (declararlo) |
 | guerra2026digital.pdf | si | https://doi.org/10.3389/feduc.2026.1810210 | 2026-10-12 | CC BY (según OpenAlex, 2026-10-12; confirmar en el PDF) |  | PDF abierto, comprobado el 2026-10-12: https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2026.1810210/pdf |
 | hernandez2011modelo.pdf | si | https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S1607-40412011000200011 | 2026-10-12 | Acceso abierto; licencia por verificar en el documento |  | PDF abierto, comprobado el 2026-10-12: http://www.scielo.org.mx/pdf/redie/v13n2/v13n2a11.pdf |
@@ -39,7 +39,7 @@ Documentos: 36 · obtenidos: 24 · faltan: 12
 | oecd2024pisa2022tr.pdf | si | https://www.oecd.org/content/dam/oecd/en/publications/reports/2024/03/pisa-2022-technical-report_599753f0/01820d6d-en.pdf | 2026-10-12 | Documento público de OCDE; sin licencia declarada en OpenAlex (por verificar en el documento) |  | PDF abierto, comprobado el 2026-10-12: https://www.oecd.org/content/dam/oecd/en/publications/reports/2024/03/pisa-2022-technical-report_599753f0/01820d6d-en.pdf |
 | patsis2026instructional.pdf | si | https://doi.org/10.1186/s40536-026-00307-9 | 2026-10-12 | CC BY (según OpenAlex, 2026-10-12; confirmar en el PDF) |  | PDF abierto, comprobado el 2026-10-12: https://link.springer.com/content/pdf/10.1186/s40536-026-00307-9.pdf |
 | pohl2014dealing.pdf | falta | https://doi.org/10.1177/0013164413504926 |  | Acceso cerrado: copia por la biblioteca USTA, uso académico personal |  | Cerrado: pedir por la biblioteca USTA; si no se consigue, sale del corpus (declararlo) |
-| rios2022investigation.pdf | falta | https://doi.org/10.1080/15305058.2022.2036161 |  | Dominio público (según OpenAlex, 2026-10-12; confirmar en el PDF) |  | Solo preprint gratuito (puede diferir de la versión publicada): https://osf.io/pvmbf/download |
+| rios2022investigation.pdf | si | https://doi.org/10.1080/15305058.2022.2036161 | 2026-10-12 | Dominio público (según OpenAlex, 2026-10-12; confirmar en el PDF) |  | Solo preprint gratuito (puede diferir de la versión publicada): https://osf.io/pvmbf/download |
 | rodriguez2024rural.pdf | si | https://doi.org/10.13043/dys.97.3 | 2026-10-12 | CC BY-NC-ND (según OpenAlex, 2026-10-12; confirmar en el PDF) |  | PDF abierto, comprobado el 2026-10-12: https://revistas.uniandes.edu.co/index.php/dys/article/download/1585/9496 |
 | rolfe2021tailoring.pdf | falta | https://doi.org/10.1016/j.ijer.2020.101723 |  | CC BY (según OpenAlex, 2026-10-12; confirmar en el PDF) |  | Acceso abierto, pero el sitio bloquea descargas automáticas: abrir desde el navegador |
 | rosseel2012lavaan.pdf | si | https://doi.org/10.18637/jss.v048.i02 | 2026-10-12 | CC BY (según OpenAlex, 2026-10-12; confirmar en el PDF) |  | PDF abierto, comprobado el 2026-10-12: https://www.jstatsoft.org/v48/i02/paper |

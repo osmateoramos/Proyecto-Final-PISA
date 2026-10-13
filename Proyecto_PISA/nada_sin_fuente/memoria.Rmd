@@ -72,9 +72,10 @@ Comparamos tres tratamientos con tres consultas bibliográficas reales, una por 
 No hubo tratamiento de buscador, así que el experimento mide anclaje, no búsqueda. El diseño, la regla de conteo y los
 desvíos están en `experimento_decision.pdf`.
 
-A tuvo la proporción más alta de referencias utilizables, pero con `r rango_n` referencias por tratamiento los
-intervalos se traslapan y ninguna diferencia es concluyente. Además, A no da páginas y en el banco no respondió
-ninguna pregunta concreta del corpus. **Elegimos B**, con la sesión abierta en el vault y el protocolo v2: es la única
+A y B quedaron prácticamente iguales en la proporción de referencias utilizables y C un poco más abajo, pero con
+`r rango_n` referencias por tratamiento los intervalos se traslapan y ninguna diferencia es concluyente; además, el
+acuerdo entre los tres clasificadores fue bajo. A tampoco da páginas, y en el banco no respondió ninguna pregunta
+concreta del corpus. **Elegimos B**, con la sesión abierta en el vault y el protocolo v2: es la única
 que exporta a APA 7, está versionada en Git y deja rastro de la página y del estado de verificación de cada
 afirmación. **Descartamos C** por el límite de fuentes del cuaderno, los duplicados y la falta de versiones, y **A**
 porque responde de memoria.

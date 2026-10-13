@@ -3,8 +3,8 @@
 Responsable: Brayan (bloque 3). Borrador del 2026-10-12, actualizado el 2026-10-13, redactado con Claude a partir de
 lo observado en las corridas del equipo (`experimento/consulta_*.md`). Cada celda lleva evidencia, no opinión. Las
 filas *Experimento* y *Banco* salen de `Proyecto_PISA/salidas/nsf_proporciones.csv` y
-`nsf_banco_por_tratamiento.csv`. **Son provisionales:** el experimento tiene dos clasificadores (falta Vanessa) y el
-banco tiene las preguntas de Vanessa y de Brayan (faltan las 6 de Mateo). Descartar bien se califica igual que
+`nsf_banco_por_tratamiento.csv`. El experimento ya tiene los tres clasificadores; el banco tiene las preguntas de
+Vanessa y de Brayan (**faltan las 6 de Mateo**). Descartar bien se califica igual que
 elegir bien.
 
 | Criterio | A · Claude sin contexto | B · Zotero + Obsidian (Claude con el vault) | C · NotebookLM |
@@ -17,7 +17,7 @@ elegir bien.
 | **Reproducibilidad** | Baja: sin fuentes y respuesta variable | Media: el vault está versionado en Git y el protocolo también, pero el modelo no es determinista y la sesión puede cargar contexto de la máquina (memoria de Claude Code, `CLAUDE.md`) | Baja: el cuaderno no está versionado, tuvo duplicados y fuentes ajenas al corpus (Avvisati 2020, un PDF de la OCDE sin identificar), y su contenido cambió entre corridas |
 | **Base verificada** | No aplica: no lee fuentes | Depende del vault: responde con lo que dicen las notas, no con el PDF. Durante el experimento 0 de 43 notas estaban verificadas; hoy 4 de 44. Lo que esté mal en una nota, B lo repite | Lee el PDF cargado: no hereda errores de las notas, pero sí los del cuaderno (duplicados, documentos ajenos al corpus) |
 | *Abstención observada* | No se abstuvo (consulta de Brayan): dio 6 referencias más 3 «cercanas» | Se abstuvo en la consulta de Brayan y listó 9 fuentes «cercanas» del vault. En la de Mateo dio 5 y descartó otras 6 explicando por qué (no cuentan en el experimento) | Se abstuvo en las consultas de Brayan y de Vanessa (oficial); en la de Brayan, en parte porque las fuentes no estaban cargadas |
-| *Experimento* | Referencias utilizables: 9/10 = 0,90 (IC 95 %: 0,60–0,98) | 8/11 = 0,73 (0,43–0,90); diferencia con A −0,17 (−0,48 a +0,18) | 8/13 = 0,62 (0,36–0,82); diferencia con A −0,28 (−0,56 a +0,08) |
+| *Experimento* | Referencias utilizables: 11/13 = 0,85 (IC 95 %: 0,58–0,96) | 15/18 = 0,83 (0,61–0,94); diferencia con A −0,01 (−0,26 a +0,28) | 12/17 = 0,71 (0,47–0,87); diferencia con A −0,14 (−0,40 a +0,17) |
 | *Banco* | Dentro del corpus: 0/10 sostenidas; se abstuvo en las 10 (no conoce los artículos). Fuera: se abstuvo en 1 de 2; en la otra respondió de memoria | Dentro: 9/10 sostenidas; se abstuvo en una que sí estaba en el corpus porque la nota de Collazos no decía «matemáticas», y dejó dos incompletas por notas incompletas. Fuera: se abstuvo 2/2 | Dentro: 10/10 sostenidas, con más detalle que B (leyó hasta tablas en imagen). Fuera: se abstuvo en 1 de 2; en la de Brayan respondió con conocimiento externo (Colombia en TIMSS 2019), sin fuente |
 
 **Herramienta elegida:** *(propuesta, a confirmar con los conteos finales)* B · Zotero + Obsidian, con la sesión
@@ -26,8 +26,9 @@ estado es `verificado`**.
 
 **Por qué:** es la única de las tres que exporta a APA 7, que tiene el sistema versionado (Git) y que deja rastro de la
 página y del estado de verificación de cada afirmación; no depende del límite de fuentes de NotebookLM. En el
-experimento A tuvo la proporción más alta de referencias utilizables, pero los intervalos se traslapan (ninguna
-diferencia es concluyente con unas 10 a 13 referencias por tratamiento) y A no da páginas; en el banco, A no pudo
+experimento A y B quedaron prácticamente iguales (0,85 y 0,83) y C un poco más abajo (0,71), pero los intervalos se
+traslapan, ninguna diferencia es concluyente y el acuerdo entre clasificadores fue bajo (kappa de Fleiss 0,06). Además,
+A no da páginas; en el banco, A no pudo
 responder ninguna pregunta concreta del corpus. En el banco C fue la más completa, pero en una pregunta fuera del
 corpus respondió con conocimiento externo en vez de abstenerse, que es justo lo que el protocolo prohíbe; B no se
 salió de sus fuentes, y sus fallos vinieron de notas incompletas, que es lo que corrige la condición.

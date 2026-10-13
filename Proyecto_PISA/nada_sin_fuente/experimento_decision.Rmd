@@ -42,9 +42,9 @@ para el efecto del NSE en matemáticas (Brayan, O4). Cada una se corrió con el 
 
 **Qué se contó.** Toda referencia a la que la herramienta le atribuye algún contenido, también las que presenta como
 «cercanas». La abstención («No está en las fuentes») y las fuentes que la herramienta nombra solo para descartarlas
-(«Descartada: …») se anotan aparte. Los tres integrantes clasificaron todas las referencias por separado, sin ver el
-tratamiento y en orden aleatorio, en *utilizable*, *existe pero no dice eso* o *no existe*, abriendo el documento
-original. La etiqueta final es la de la mayoría.
+(«Descartada: …») se anotan aparte. Los tres integrantes clasificaron las referencias por separado, sin ver el
+tratamiento y en orden aleatorio, en *utilizable*, *existe pero no dice eso* o *no existe*. La etiqueta final es la de
+la mayoría de quienes clasificaron; si no hay mayoría, la referencia queda fuera de las proporciones (desvío 5).
 
 **Desvíos que declaramos.**
 
@@ -58,6 +58,9 @@ original. La etiqueta final es la de la mayoría.
    vault explicando por qué; llegaron a la hoja ciega sin título y casi todos se marcaron «no existe», aunque existen.
    Se sacaron del análisis después de clasificar, sin cambiar las clasificaciones, y por eso se informa también el
    resultado contándolos.
+5. Los criterios de clasificación no fueron iguales. Vanessa dejó sin categoría las 21 referencias cuyo texto
+   completo es de pago, y la mayoría eran de A; Brayan y Mateo sí las clasificaron. En esas referencias la etiqueta sale solo de Brayan y Mateo y cuenta únicamente si coinciden. Por eso
+   A tiene más referencias sin mayoría.
 
 En `experimento/consulta_{persona}.md` consta, para cada corrida, el modelo, la versión del protocolo y las fuentes.
 
@@ -119,8 +122,11 @@ más anchos. Por eso la decisión se apoya también en el banco y en los criteri
 referencias hubo desacuerdo en `r n_des` (acuerdo total `r sub("\\.", ",", ac("^acuerdo total"))` %; kappa de
 `r kappas`). De esos desacuerdos, `r n_ue` son entre «utilizable» y «existe pero no dice eso»: casi nunca se discutió
 si la referencia existe, sino si el documento dice lo que la herramienta le atribuye. Esa frontera depende de cuánta
-paráfrasis acepta cada clasificador, y es la que se resuelve por mayoría o en la hoja de consenso. El detalle está en
-`salidas/nsf_acuerdo.csv` y `nsf_desacuerdos.csv`. *(Se revisa cuando clasifique Vanessa.)*
+paráfrasis acepta cada clasificador. El acuerdo es apenas mayor que el del azar: Vanessa marcó como utilizables casi
+todas las que clasificó, y Brayan fue el más estricto. Con un acuerdo tan bajo, las proporciones del experimento
+dependen de quién clasifica, y la decisión no puede descansar solo en ellas. Las referencias sin mayoría quedaron en
+`experimento/clasificacion_consenso.csv` para decidirlas en conjunto; el detalle está en `salidas/nsf_acuerdo.csv` y
+`nsf_desacuerdos.csv`.
 
 # Decisión
 

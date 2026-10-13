@@ -1,7 +1,7 @@
-﻿id;persona_consulta;tratamiento;referencia;motivo;Brayan;Mateo
-R004;Mateo;B;Collazos;Descartada: la nota dice expresamente que no prueba invarianza.;no_existe;no_existe
-R011;Mateo;B;Cruz;Descartada: la nota dice expresamente que no prueba invarianza.;no_existe;no_existe
-R017;Mateo;B;Hernández;Descartada: la nota dice expresamente que no prueba invarianza.;no_existe;no_existe
-R039;Mateo;B;icfes2024pisa;Descartada: la nota dice expresamente que no prueba invarianza.;no_existe;existe_no_dice
-R040;Mateo;B;icfes2019inse;Descartada: no es PISA y su DIF es entre periodos.;no_existe;no_existe
-R066;Mateo;B;avvisati2020measure;Descartada: solo se leyó el resumen y no trata la invarianza dentro de un país.;no_existe;existe_no_dice
+﻿id;persona_consulta;tratamiento;referencia;motivo;Brayan;Mateo;Vanessa
+R004;Mateo;B;Collazos;Descartada: la nota dice expresamente que no prueba invarianza.;no_existe;no_existe;utilizable
+R011;Mateo;B;Cruz;Descartada: la nota dice expresamente que no prueba invarianza.;no_existe;no_existe;utilizable
+R017;Mateo;B;Hernández;Descartada: la nota dice expresamente que no prueba invarianza.;no_existe;no_existe;utilizable
+R039;Mateo;B;icfes2024pisa;Descartada: la nota dice expresamente que no prueba invarianza.;no_existe;existe_no_dice;utilizable
+R040;Mateo;B;icfes2019inse;Descartada: no es PISA y su DIF es entre periodos.;no_existe;no_existe;utilizable
+R066;Mateo;B;avvisati2020measure;Descartada: solo se leyó el resumen y no trata la invarianza dentro de un país.;no_existe;existe_no_dice;existe_no_dice

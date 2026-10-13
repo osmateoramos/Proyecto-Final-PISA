@@ -60,6 +60,8 @@ tz_tot <- TZ[persona == "TOTAL"]
 - NotebookLM completó de memoria Liu (2017) con hallazgos que el PDF no contiene; una corrida de B leyó la respuesta de A.
 
 \medskip
+**Qué costó:** `r tz_tot$parcial` oraciones corregidas, una corrida de B descartada y el protocolo v2.
+
 \alert{Los nueve se detectaron igual: abriendo el documento original.}
 
 # Experimento y decisión
@@ -183,20 +185,12 @@ La IA nunca marca \texttt{verificado}: lo hace una persona con el PDF abierto.
 
 ## En vivo: una consulta con su cita
 
-\small
+1. Sesión nueva de Claude Code en `Vault_PISA2022` + protocolo v2 (menos de 60 s).
+2. Avvisati y Wuyts (2024): ¿qué modelo y cambió en 2022? → nota, **p. 11** y estado → abrir el PDF.
+3. Invarianza de HOMEPOS rural/urbano en Colombia → **«No está en las fuentes.»**
 
-**Arranque en menos de 60 segundos**
-
-1. Claude, pestaña Code → sesión nueva en la carpeta `Vault_PISA2022` (modo que pide permiso).
-2. Pegar el protocolo v2 (`protocolo/protocolo_consulta_v2.md`) y la pregunta.
-3. Abrir la nota y el PDF que cita, en la página que dice.
-
-**Las dos preguntas de la demostración**
-
-- «Según Avvisati y Wuyts (2024), ¿con qué modelo se construye HOMEPOS y cambió en 2022?» → nota, p. 11 y estado.
-- «¿Qué estudio evaluó la invarianza de HOMEPOS entre zonas rurales y urbanas de Colombia?» → «No está en las fuentes.»
-
-**Si el profesor señala una frase del anteproyecto:** su fila en `trazabilidad/trazabilidad.md` (fuente, página, cita y quién la verificó).
+\medskip
+\alert{Si algo falla en vivo: diapositiva de respaldo «La demostración, ya corrida».}
 
 # Límites
 
@@ -219,6 +213,21 @@ La IA nunca marca \texttt{verificado}: lo hace una persona con el PDF abierto.
 \alert{La IA propone dónde buscar; una persona abre el documento y firma.}
 
 # Respaldo
+
+## La demostración, ya corrida (banco de Mateo, 2026-10-13)
+
+\small
+
+**Pregunta (M03):** Según Avvisati y Wuyts (2024), ¿con qué modelo se construye HOMEPOS y cambió en 2022?
+
+**Respuesta de B:** «HOMEPOS se construye con un modelo de TRI unidimensional, y el procedimiento no cambió en 2018 ni en 2022 (p. 11)». Fuente: `Literatura/avvisati2024measurement.md`, estado `por_verificar`.
+
+**El PDF, p. 11** (visor p. 12): «… did not change in 2018 or 2022.» La cita se sostiene.
+
+**Pregunta fuera del corpus (M06):** ¿qué estudio evaluó la invarianza de HOMEPOS entre zonas rurales y urbanas de Colombia? → B: **«No está en las fuentes.»**
+
+\medskip
+\scriptsize Respuestas completas: `evaluacion/respuestas_banco_Mateo.md`.
 
 ## Qué corregimos del anteproyecto
 

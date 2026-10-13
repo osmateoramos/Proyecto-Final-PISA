@@ -45,6 +45,11 @@ Texto base, el mismo en A, B y C:
 | **B** | Sesión **nueva** de Claude Code (app de escritorio, pestaña Code) abierta en la carpeta **`Vault_PISA2022`**, no en la raíz del repositorio. El `CLAUDE.md` de la raíz se carga igual | Texto de `protocolo/protocolo_consulta_v1.md` + texto base | La v1 dice «los archivos de esta carpeta»: abrir la sesión en el vault hace que esa carpeta sea solo el vault y no `Proyecto_PISA/`, donde están las respuestas de A. Si pide permiso para buscar en internet o para leer fuera del vault, **negar**; si lo hizo, descartar y repetir |
 | **C** | Cuaderno compartido de NotebookLM con los PDF del corpus. Protocolo v1 en *Configurar chat* | Texto base | Anotar cuántas fuentes tenía el cuaderno ese día |
 
+**Qué referencias se cuentan (regla del equipo, 2026-10-12):** toda referencia a la que la herramienta le atribuye
+algún contenido, también las que presenta como «cercanas», «que no cumplen todos los criterios» o «para leer». Si la
+herramienta se abstiene («No está en las fuentes»), la abstención se anota como resultado aparte y se cuentan igual
+las referencias que haya dado. La misma regla vale para A, B y C y para los tres integrantes.
+
 De cada respuesta:
 - pegar el prompt y la respuesta completa en `experimento/consulta_{persona}.md`;
 - pasar al menos 5 referencias por tratamiento a `experimento/referencias_{persona}.csv`, con la afirmación que la

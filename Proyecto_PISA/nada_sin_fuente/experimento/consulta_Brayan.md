@@ -23,10 +23,10 @@ total o por subescala?
 - **Fecha y hora:** 2026-10-12, noche — *hora por confirmar*
 - **Condiciones:** chat nuevo, sin proyecto, sin búsqueda web — *Brayan confirma si fue incógnito o sin memoria*
 - **Prompt exacto:** el texto base de arriba, sin cambios.
-- **Referencias tomadas para el experimento:** las 6 de la lista numerada (`referencias_Brayan.csv`, id_local 1–6).
-  Los trabajos que la respuesta menciona después, como «cercanos que no cumplen los criterios» (Gustafsson et al.,
-  2018; Caro et al., 2014) o como lectura (Hopfenbeck et al., 2018), no se cuentan, porque la herramienta no los
-  propuso como respuesta.
+- **Referencias tomadas para el experimento:** 9 (`referencias_Brayan.csv`, id_local 1–9): las 6 de la lista
+  numerada y las 3 que la respuesta menciona después con algún contenido atribuido (Gustafsson et al., 2018; Caro
+  et al., 2014; Hopfenbeck et al., 2018). Regla del equipo (2026-10-12): se cuenta toda referencia a la que la
+  herramienta le atribuye algo, también las «cercanas»; la abstención se reporta aparte.
 
 - **Respuesta completa** (pegada por Brayan, sin editar):
 
@@ -62,6 +62,8 @@ Para verificar y ampliar, te sirven tres cosas: la revista Large-scale Assessmen
 - **Prompt exacto:** texto de `protocolo/protocolo_consulta_v1.md` («Texto para pegar») seguido del texto base.
 - **Resultado:** **abstención** («No está en las fuentes.»), con una lista de fuentes del vault que cumplen solo una
   parte de la pregunta.
+- **Referencias tomadas para el experimento:** 9 (`referencias_Brayan.csv`, id_local 10–18): las 8 «más cercanas» y
+  el manual de Chen y Yung, cada una con lo que la respuesta le atribuye (regla del equipo, ver tratamiento A).
 
 - **Respuesta completa** (pegada por Brayan, sin editar):
 

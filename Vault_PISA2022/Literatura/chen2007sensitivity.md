@@ -32,3 +32,6 @@ Sensibilidad de los índices de ajuste a la falta de invarianza.
 
 ## Dónde se usa
 Criterios de cambio en CFI y RMSEA para O2 (§4). Los umbrales concretos se toman del artículo al verificarlo.
+
+## Acceso al PDF (revisión 2026-10-12)
+Vanessa lo intentó para "Nada sin fuente": la revista cobra por el PDF (no es de acceso abierto). Sigue como `pdf_en_zotero: no`.

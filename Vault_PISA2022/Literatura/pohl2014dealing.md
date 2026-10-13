@@ -42,3 +42,6 @@ No es PISA; no usa tiempos de respuesta; no estudia brechas por NSE.
 O3, H4 y D-05. **Contrapeso** a H4: si ignorar las omisiones basta para los parámetros, el efecto sobre la brecha podría ser pequeño. No cambia H4 (ya está preregistrada); se discute en el informe.
 
 **En el anteproyecto (2026-10-05):** citada en §2.5 (desenganche), con marca [VERIFICAR] hasta que el equipo coteje.
+
+## Acceso al PDF (revisión 2026-10-12)
+Vanessa lo intentó para "Nada sin fuente": acceso restringido. Sigue como `pdf_en_zotero: no`; verificación limitada al resumen hasta conseguir el texto completo por otra vía.

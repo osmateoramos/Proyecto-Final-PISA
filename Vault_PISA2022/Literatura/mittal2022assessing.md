@@ -32,9 +32,9 @@ Evalúa si el índice de posesiones del hogar (HOMEPOS) es comparable entre estu
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | Evalúa la invarianza de HOMEPOS y el DIF de sus ítems según condición de inmigrante | p. 1 (resumen) | "tested the PISA 2018 HOMEPOS scale for the overall measurement invariance" | por_verificar · origen: IA, texto completo (2026-10-05) |
-| 2 | Varios ítems de HOMEPOS presentan DIF dentro de esos países | p. 1 (resumen) | "Several HOMEPOS items exhibited DIF within these countries" | por_verificar · origen: IA, texto completo (2026-10-05) |
-| 3 | En inmigrantes, la fuerza de la asociación HOMEPOS–logro depende de cómo se traten los ítems con DIF | p. 1 (resumen) | "sensitive to the choice of approach for 15-year-old immigrant students" | por_verificar · origen: IA, texto completo (2026-10-05) |
+| 1 | Evalúa la invarianza de HOMEPOS y el DIF de sus ítems según condición de inmigrante | p. 1 (resumen) | "tested the PISA 2018 HOMEPOS scale for the overall measurement invariance" | por_verificar · origen: IA, resumen dentro del PDF (2026-10-05) |
+| 2 | Varios ítems de HOMEPOS presentan DIF dentro de esos países | p. 1 (resumen) | "Several HOMEPOS items exhibited DIF within these countries" | por_verificar · origen: IA, resumen dentro del PDF (2026-10-05) |
+| 3 | En inmigrantes, la fuerza de la asociación HOMEPOS–logro depende de cómo se traten los ítems con DIF | p. 1 (resumen) | "sensitive to the choice of approach for 15-year-old immigrant students" | por_verificar · origen: IA, resumen dentro del PDF (2026-10-05) |
 
 ## Qué NO dice (para no citarlo mal)
 No evalúa zona, sexo ni sector; no es Colombia. No se ha leído el cuerpo: no sabemos aún qué modelo usa (la columna SEM de la matriz sigue en ?).

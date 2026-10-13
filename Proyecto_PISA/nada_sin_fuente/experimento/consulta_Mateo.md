@@ -64,7 +64,8 @@ En síntesis, la evidencia apunta de forma consistente a que HOMEPOS y, por exte
 
 - **Herramienta y versión / modelo:**
 - **Fecha y hora:**
-- **Condiciones:** sesión nueva de Claude Code en el repo; protocolo v1 pegado antes del texto base; sin web
+- **Condiciones:** sesión nueva de Claude Code abierta en `Vault_PISA2022`; protocolo **v2** (v1 + regla 6) pegado antes del texto base;
+  sin web; sin leer fuera del vault
 - **Prompt exacto:**
 
 ```
@@ -75,6 +76,71 @@ En síntesis, la evidencia apunta de forma consistente a que HOMEPOS y, por exte
 
 ```
 (pegar sin editar)
+```
+
+### Corrida de B descartada (2026-10-12, hacia las 23:45)
+
+Se descarta por la regla del README: leyó fuera del vault.
+- **Qué leyó de más:** antes de responder abrió `Proyecto_PISA/nada_sin_fuente/experimento/consulta_Mateo.md`, que ya
+  tenía la respuesta de A, y `corpus/procedencia.csv`. Lo declaró ella misma en su aviso 1.
+- **Modelo:** Opus 5.5.
+- **Carpeta de la sesión:** *Mateo: anotar cuál quedó abierta, la raíz o `Vault_PISA2022`.*
+- **Para qué sirve:** se guarda como evidencia de un fallo de las condiciones del tratamiento, no como dato del
+  experimento.
+- **Un aviso útil:** señaló una contradicción real en la nota `mittal2022assessing`, que ya se corrigió.
+
+```
+Respuesta
+Fuentes consultadas: solo las notas de `Vault_PISA2022/Literatura/`, sin búsqueda web. Ninguna fuente está `verificada` por el equipo. El estado de cada una va indicado.
+Aviso: en las fuentes hay un solo estudio que evalúa si HOMEPOS o el ESCS de PISA mide lo mismo en distintos grupos de estudiantes dentro de un país. No puedo dar cinco que cumplan esa condición. Separo la respuesta en tres partes: (A) el que cumple, (B) los que evalúan la invarianza o la comparabilidad del NSE de PISA pero no entre grupos dentro de un país, y (C) los descartados.
+A. Cumple la condición
+
+1. Mittal, O., Scherer, R., & Nilsen, T. (2022). Assessing the evidence for the comparability of socioeconomic status between students with and without immigrant background in Norway and Sweden. Large-scale Assessments in Education, 10(1), 13. DOI: 10.1186/s40536-022-00132-w
+   * Qué evalúa: la invarianza de medición de la escala HOMEPOS de PISA 2018 y el DIF de sus ítems. Compara tres grupos dentro de Noruega y de Suecia: primera generación de inmigrantes, segunda generación y estudiantes sin origen inmigrante. También compara cuatro estrategias para tratar los ítems con DIF (`mittal2022assessing.md`, p. 1).
+   * Qué encontró:
+      * Varios ítems de HOMEPOS presentan DIF dentro de esos países: “Several HOMEPOS items exhibited DIF within these countries” (p. 1, resumen).
+      * En los estudiantes inmigrantes, la fuerza de la asociación entre HOMEPOS y el logro depende de cómo se traten los ítems con DIF: “sensitive to the choice of approach for 15-year-old immigrant students” (p. 1, resumen).
+   * Tipo de fuente: solo el resumen del artículo (abstract en la p. 1 del PDF). El cuerpo no se ha leído, así que no se sabe qué modelo usa. Estado: `por_verificar`.
+
+B. Evalúan la invarianza o la comparabilidad del NSE de PISA, pero no entre grupos dentro de un país
+
+2. Rolfe, V. (2021). Tailoring a measurement model of socioeconomic status: Applying the alignment optimization method to 15 years of PISA. International Journal of Educational Research, 106, 101723. DOI: 10.1016/j.ijer.2020.101723
+   * Qué hace: construye un modelo de medición del NSE con AFC y prueba su invarianza a lo largo de 15 años de PISA en Suecia, con el método de alineamiento. Es dentro de un país, pero entre ciclos. La nota aclara que no compara grupos dentro de una cohorte (zona, sexo).
+   * Qué encontró, según la nota: la invarianza métrica es alcanzable, pero debe verificarse en lugar de suponerse.
+   * Página: no consta en la nota (pendiente).
+   * Lectura: el equipo leyó el texto completo. Estado: `por_verificar`.
+3. Rutkowski, D., & Rutkowski, L. (2013). Measuring socioeconomic background in PISA: one size might not fit all. Research in Comparative and International Education, 8(3), 259–278. DOI: 10.2304/rcie.2013.8.3.259
+   * Qué hace: evalúa la confiabilidad y la comparabilidad del índice de posesiones del hogar entre países, con TRI.
+   * Qué encontró, según la nota: la confiabilidad del índice varía mucho entre países y su comparabilidad es pobre.
+   * Página: no consta en la nota (pendiente).
+   * Lo que no hace, según la nota: no evalúa la invarianza dentro de un país.
+   * Lectura: el equipo leyó el texto completo. Estado: `por_verificar`.
+4. Avvisati, F., & Wuyts, C. (2024). The Measurement of Socio-economic Status in PISA. OECD Education Working Papers, No. 321. DOI: 10.1787/0c5b793c-en
+   * No es un artículo de revista: es un documento de trabajo de la OCDE.
+   * Qué dice:
+      * HOMEPOS se calcula como una escala TRI unidimensional (p. 11).
+      * En 2022 la escala de tendencia usa parámetros parcialmente invariantes, internacionales y por país-idioma: “a trend scale based on partially invariant parameters” (p. 21).
+      * Señala como amenaza la falta de un marco teórico para elegir los ítems y validar la escala (p. 48).
+   * Lo que no hace, según la nota: no evalúa la invarianza de HOMEPOS dentro de un país.
+   * Lectura: la IA buscó en el texto extraído del PDF, sin leerlo completo. Estado: `por_verificar`.
+5. OECD (2024). PISA 2022 Technical Report. OECD Publishing.
+   * DOI: No está en las fuentes. La nota solo registra la URL del PDF.
+   * Alcance, según la nota: trata la invarianza del NSE solo entre países e idiomas, no dentro de un país.
+   * Qué encontró sobre la invarianza de HOMEPOS o del ESCS: No está en las fuentes.
+   * Lectura: la IA buscó en el texto extraído. Estado: `por_verificar`.
+
+C. Descartadas
+
+* ICFES (2019), INSE: hace DIF entre periodos, sobre el índice de las pruebas Saber, no sobre el de PISA. Según su nota, no prueba la invarianza entre grupos de una misma cohorte.
+* Avvisati (2020): de esta fuente solo se leyó el resumen, y la nota no registra nada sobre invarianza. Solo registra los cambios de instrumentos y de escalamiento del ESCS.
+* Citas de segundo nivel: ninguna nota del vault cita otros estudios sobre la invarianza de HOMEPOS o del ESCS.
+
+Síntesis: en las fuentes, el único precedente de invarianza del NSE de PISA entre grupos dentro de un país es Mittal et al. (2022), con grupos definidos por origen inmigrante. Además, de ese estudio solo se ha leído el resumen. La matriz del vault (`Matriz estado del arte.md`, sección «Qué queda sin hacer») llega a lo mismo y deja como vacío la invarianza por zona, sexo o sector, y en Colombia.
+Avisos para el registro
+
+1. Condiciones del tratamiento: antes de responder leí `consulta_Mateo.md`, que incluye la respuesta del Tratamiento A, para entender en qué consistía el B. También leí corpus/procedencia.csv. Conviene anotarlo en «Condiciones», porque la respuesta de B pudo verse influida por haber visto la de A.
+2. Inconsistencia en el vault: en `mittal2022assessing.md`, la propiedad `lectura` dice «resumen…; el cuerpo no se ha leído», pero las tres filas de la tabla dicen «origen: IA, texto completo». Hay que corregir una de las dos. Además, la matriz pone «Lectura» como desenlace de ese estudio, y la nota no lo respalda.
+3. Puedo anotar el Tratamiento B en `consulta_Mateo.md` y las filas 9–13 de `referencias_Mateo.csv`, como se hizo con A.
 ```
 
 ## Tratamiento C — NotebookLM

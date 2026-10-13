@@ -62,20 +62,69 @@ En síntesis, la evidencia apunta de forma consistente a que HOMEPOS y, por exte
 
 ## Tratamiento B — Zotero + Obsidian (Claude con el vault)
 
-- **Herramienta y versión / modelo:**
-- **Fecha y hora:**
-- **Condiciones:** sesión nueva de Claude Code abierta en `Vault_PISA2022`; protocolo **v2** (v1 + regla 6) pegado antes del texto base;
-  sin web; sin leer fuera del vault
+- **Herramienta y versión / modelo:** Claude Code (app de escritorio, pestaña Code) · Opus 5.5, esfuerzo Alto
+- **Fecha y hora:** 2026-10-12, hacia las 23:50
+- **Condiciones:**
+  - sesión nueva abierta en `Vault_PISA2022`, en modo **Plan** (solo lectura);
+  - protocolo **v2** (la v1 más la regla 6) pegado antes del texto base;
+  - sin web.
+  - La respuesta cita solo archivos del vault y dice que no modificó ningún archivo del proyecto. Dejó una copia en el
+    archivo de plan de la app, fuera del repositorio.
+  - *Mateo: confirmar si apareció alguna solicitud de permiso y qué respondió.*
 - **Prompt exacto:**
 
 ```
-(pegar)
+Eres un asistente que responde preguntas sobre el proyecto de investigación PISA 2022 Colombia (nivel
+socioeconómico, TRI, SEM, competencias matemáticas).
+
+Reglas:
+1. Responde solo con información que esté literalmente en las fuentes que se te dieron (los documentos de este
+   cuaderno / los archivos de esta carpeta). No uses conocimiento general ni completes con lo que "sueles saber"
+   sobre el tema.
+2. Cada afirmación debe ir acompañada del documento y la página (o sección) exacta de donde sale.
+3. Si una fuente es un resumen o abstract (no el texto completo), dilo explícitamente.
+4. Si la respuesta no está en las fuentes que se te dieron, responde exactamente: "No está en las fuentes." No la
+   completes de memoria ni inventes una página aproximada.
+5. Si citas una referencia que a su vez aparece mencionada dentro de otra (una cita de segundo nivel), aclara que
+   es una cita indirecta y que no verificaste el documento original.
+6. Solo puedes abrir archivos dentro de la carpeta Vault_PISA2022. No abras ningún archivo fuera de ella (nada en
+   Proyecto_PISA/ ni en la raíz del repositorio) y no busques en internet. Si algo no está en el vault, aplica la
+   regla 4.
+
+¿Qué estudios evalúan si el índice de posesiones del hogar (HOMEPOS) o el índice socioeconómico (ESCS) de PISA mide lo mismo en distintos grupos de estudiantes dentro de un país (invarianza de medición o funcionamiento diferencial de sus ítems)? Dame al menos cinco referencias (autores, año, título, revista y DOI) y, para cada una, qué encontró sobre el tema.
 ```
 
 - **Respuesta completa:**
 
 ```
-(pegar sin editar)
+Revisé las notas de la carpeta Vault_PISA2022. No puedo darte cinco: en el vault hay solo una fuente que evalúa la invarianza de HOMEPOS entre grupos de estudiantes dentro de un mismo país. El propio vault la describe como “el único antecedente que prueba invarianza entre grupos de estudiantes dentro de un país” (`13 Revisión de literatura.md`, §5, propuesta 4).
+La que sí responde a tu pregunta
+
+1. Mittal, Scherer y Nilsen (2022). Assessing the evidence for the comparability of socioeconomic status between students with and without immigrant background in Norway and Sweden. Large-scale Assessments in Education, 10(1), 13. DOI 10.1186/s40536-022-00132-w.
+   * Solo se leyó el resumen (p. 1).
+   * Usa PISA 2018 de Noruega y Suecia y compara a estudiantes inmigrantes de primera y segunda generación con los no inmigrantes.
+   * Encontró que varios ítems de HOMEPOS tienen DIF dentro de esos países.
+   * En los inmigrantes, la fuerza de la relación entre HOMEPOS y el logro depende de cómo se traten los ítems con DIF.
+   * Fuente: Literatura/mittal2022assessing.md, filas 1–3.
+
+Relacionadas, pero comparan entre países, idiomas o ciclos, no grupos dentro de un país
+2. Rutkowski y Rutkowski (2013). Research in Comparative and International Education, 8(3), 259–278. DOI 10.2304/rcie.2013.8.3.259, tomado de la URL que trae la nota.
+
+* El equipo lo leyó completo, pero la página no está registrada.
+* Encontró que la confiabilidad del índice de posesiones varía mucho entre países y que su comparabilidad es pobre.
+
+3. Rolfe (2021). International Journal of Educational Research, 106, 101723. DOI 10.1016/j.ijer.2020.101723.
+   * Texto completo, sin página registrada.
+   * Prueba la invarianza del NSE en Suecia a lo largo de los ciclos de PISA, con el método de alineamiento. Concluye que la invarianza métrica se puede alcanzar, pero hay que comprobarla.
+4. Avvisati y Wuyts (2024). OECD Education Working Papers, No. 321. DOI 10.1787/0c5b793c-en. Es un documento de trabajo, no un artículo de revista.
+   * Dice que HOMEPOS 2022 usa parámetros parcialmente invariantes por país e idioma (p. 21).
+   * La nota aclara que no evalúa la invarianza dentro de un país.
+5. OECD (2024), PISA 2022 Technical Report.
+   * El vault no tiene su DOI, solo la URL del PDF, y el año también está por verificar.
+   * Evalúa la invarianza solo entre países e idiomas.
+
+Descartadas: `icfes2019inse` no es PISA y su DIF es entre periodos. `avvisati2020measure` solo tiene leído el resumen y no trata la invarianza dentro de un país. Las notas de Cruz, Collazos, Hernández e `icfes2024pisa` dicen expresamente que no prueban invarianza.
+Todas las afirmaciones siguen en estado `por_verificar`. Para encontrar más fuentes habría que buscar fuera del vault, y el protocolo no lo permite. No modifiqué ningún archivo del proyecto; la respuesta completa quedó en el archivo del plan.
 ```
 
 ### Corrida de B descartada (2026-10-12, hacia las 23:45)

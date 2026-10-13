@@ -66,8 +66,11 @@ revisa O1–O2.
 
 ### 3.1 F0 — pendientes de Brayan
 
-- [ ] Crear la cuenta de Zotero y aceptar la invitación al grupo (ver [[12 Guía de Zotero]]).
-- [ ] Instalar Obsidian y abrir `Vault_PISA2022` como vault.
+- [x] Instalar Zotero: 10.0.6 con `winget`, hash verificado (2026-10-12). Mateo tiene la 10.0.5.
+- [ ] Crear la cuenta de Zotero, iniciar sesión y aceptar la invitación al grupo (ver [[12 Guía de Zotero]]).
+- [ ] Instalar en Zotero **Better BibTeX** y **ZotLit Companion**, y en el navegador el **Zotero Connector**.
+- [x] Instalar Obsidian: 1.14.4 con `winget`, hash verificado (2026-10-12).
+- [ ] Abrir `Vault_PISA2022` como vault y activar los complementos de la comunidad.
 - [x] Clonar el repositorio (2026-10-12, rama `Brayan`).
 - [ ] Hacer los pasos de *Primera vez* del `README.md`: descargar PISA 2022 y correr
   `revision_pisa2022_col.R`.

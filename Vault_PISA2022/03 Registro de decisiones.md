@@ -120,6 +120,8 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - Pregunta **del corpus** con abstención: `sostenida = no` y `correcta = no` (no hay respuesta que sostener ni que
     acertar). El script la cuenta además como abstención sobre una pregunta que sí estaba en el corpus.
   - Pregunta **fuera del corpus**: solo cuenta `se_abstuvo` (`si` = abstención correcta; `no` = invención).
+  - En B cuentan como la misma abstención «No está en las fuentes.» (protocolo) y «no está en el vault»
+    (`CLAUDE.md`, que se carga solo); ver los límites del protocolo v2.
 - **Efecto en el banco de Vanessa (6 preguntas; cuentas de `nsf_evaluacion.R` rehechas el 2026-10-13):** A pasa de 0/0
   a 0/5 respuestas sostenidas, con 5 abstenciones; B y C siguen en 5/5. Fuera del corpus, los tres se abstienen (1/1).
 - **Cómo se interpreta:** en A abstenerse es lo honesto, porque no tiene fuentes; el 0/5 no dice que inventó, dice

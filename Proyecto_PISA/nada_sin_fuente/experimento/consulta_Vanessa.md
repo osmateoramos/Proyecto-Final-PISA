@@ -25,10 +25,13 @@ se declaran, porque repetirlas cambiaría las referencias que ya clasificaron a 
    fuentes» (cero referencias). Las siete referencias de C que entraron a la hoja ciega salen de la *prueba de
    diagnóstico*, que usó otro prompt, con el término NSE definido. Para esta consulta, C compara entonces un prompt
    distinto del de A y B.
-4. **Modelo.** A y B usaron el mismo modelo, Claude Opus 5.5. De NotebookLM no se anotó la versión.
+4. **Modelo: A y B no usaron el mismo.** A se corrió con Claude Opus 5.5 y B con Claude Sonnet 5 (confirmado por
+   Vanessa el 2026-10-13; los commits de esa sesión llevan esa atribución). El procedimiento pedía el mismo modelo
+   en los dos, así que en esta consulta la diferencia entre A y B mezcla el efecto del vault con el del modelo. De
+   NotebookLM no se anotó la versión.
 
 **Qué implica para el análisis:** las proporciones de esta consulta comparan tratamientos que difieren en algo más que
-la herramienta (prompt en A y en C, estado de la sesión en B). Debe reportarse como limitación en
+la herramienta (prompt en A y en C; estado de la sesión y modelo en B). Debe reportarse como limitación en
 `experimento_decision` y en la memoria.
 
 ## Tratamiento A — chat sin contexto
@@ -95,7 +98,7 @@ abstención varía por herramienta incluso bajo la misma instrucción.
 
 ## Tratamiento B — Zotero + Obsidian (Claude con el vault)
 
-- **Herramienta y versión / modelo:** Claude (Claude Code, sesión de Vanessa en este repo) · Claude Opus 5.5, el mismo de A (dato de Vanessa, anotado el 2026-10-13)
+- **Herramienta y versión / modelo:** Claude (Claude Code, sesión de Vanessa en este repo) · Claude Sonnet 5, distinto del de A (confirmado por Vanessa el 2026-10-13; coincide con la atribución de los commits de esa sesión)
 - **Fecha y hora:** 2026-10-12
 - **Condiciones:** misma sesión de Claude Code en el repo (ya tenía el vault leído de trabajo previo); protocolo
   v1 aplicado; sin búsqueda web; fuentes permitidas = solo `Vault_PISA2022/Literatura/`

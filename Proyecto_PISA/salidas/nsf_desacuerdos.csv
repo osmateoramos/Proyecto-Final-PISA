@@ -13,7 +13,7 @@ R024;B;utilizable;existe_no_dice;sin_consenso
 R025;B;existe_no_dice;utilizable;sin_consenso
 R026;A;no_existe;utilizable;sin_consenso
 R027;B;existe_no_dice;utilizable;sin_consenso
-R030;B;existe_no_dice;utilizable;sin_consenso
+R030;B;no_existe;utilizable;sin_consenso
 R034;A;existe_no_dice;utilizable;sin_consenso
 R035;C;existe_no_dice;no_existe;sin_consenso
 R036;A;utilizable;existe_no_dice;sin_consenso

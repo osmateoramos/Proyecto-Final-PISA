@@ -1,5 +1,5 @@
 ﻿id_pregunta;pregunta;respuesta_conocida;donde_esta;en_corpus;tratamiento;respuesta_obtenida;cita_dada;sostenida;correcta;se_abstuvo;fecha
-M01;Según el informe nacional del Icfes sobre PISA 2022, ¿qué porcentaje de la variación del desempeño en matemáticas de Colombia explica el estatus socioeconómico y a cuántos puntos equivale?;16 %, equivalente a 25 puntos (frente a 15 % en la OCDE y 13 % en Latinoamérica).;icfes2024pisa, p. 46;sí;A;;;;;;
+M01;Según el reporte técnico de PISA 2022 de la OCDE, ¿cuáles son los tres componentes del índice de estatus económico, social y cultural (ESCS)?;La ocupación más alta de los padres (HISEI), la educación más alta de los padres en años (PAREDINT) y las posesiones del hogar (HOMEPOS).;oecd2024pisa2022tr, p. 401 (PDF 403), «Components of ESCS»;sí;A;;;;;;
 M01;;;;;B;;;;;;
 M01;;;;;C;;;;;;
 M02;Según el reporte técnico de la OCDE, ¿cuántos estudiantes y cuántas escuelas tuvo la muestra principal de Colombia en PISA 2022?;7.804 estudiantes y 262 escuelas (prueba por computador, en español).;oecd2024pisa2022tr, Annex Table 11.A.2, p. 244 (PDF 246);sí;A;;;;;;

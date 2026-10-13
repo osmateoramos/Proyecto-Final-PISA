@@ -2,7 +2,7 @@
 tipo: guia
 estado: por_verificar
 lectura: "redactado por Claude con Brayan; falta revisión del equipo"
-pendientes: "Equipo: aceptar o ajustar las propuestas de las secciones B, C.2 y 3"
+pendientes: "Equipo: aceptar o ajustar las propuestas de las secciones 2, 3.2 y 4"
 verificado_por:
 fecha_verificacion:
 ---

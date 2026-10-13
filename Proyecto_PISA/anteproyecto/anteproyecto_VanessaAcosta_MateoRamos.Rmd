@@ -22,14 +22,15 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 Python para Desarrollo de APIs e Inteligencia Artificial, en el marco de Consultoría Estadística.
 **Tutores:** Javier Sierra y Juan Carlos Rubriche.
 
-> **Nota.** Las afirmaciones marcadas **[VERIFICAR]** provienen de fuentes que el equipo aún no ha cotejado contra el
-> texto completo y se revisarán antes de la entrega.
+> **Nota (versión corregida, 2026-10-13).** Cada oración citada se cotejó con el documento original en la tabla de
+> trazabilidad (`Proyecto_PISA/nada_sin_fuente/trazabilidad/`). Las que se verificaron solo con el resumen lo dicen en
+> el texto, y las que siguen marcadas **[VERIFICAR]** no se han podido cotejar.
 
 # Planteamiento del problema y contexto
 
 Colombia participa en el Programa para la Evaluación Internacional de Alumnos (PISA) de la OCDE, que evalúa a
 estudiantes de 15 años escolarizados. En el ciclo 2022, cuyo dominio principal fue matemáticas, la muestra
-colombiana fue de 7\,804 estudiantes evaluados por computador [@oecd2024pisa2022tr]. El informe nacional reporta
+principal de Colombia fue de 7\,804 estudiantes, con prueba por computador [@oecd2024pisa2022tr, p. 244]. El informe nacional reporta
 que el estatus socioeconómico explica el 16 % de la variación del desempeño en matemáticas, lo que equivale a
 25 puntos en la escala, frente a 15 % en la OCDE y 13 % en Latinoamérica [@icfes2024pisa, p. 46]. El actor afectado
 es el conjunto de estudiantes colombianos de 15 años y, dentro de él, quienes provienen de hogares de menor nivel
@@ -43,19 +44,20 @@ educación y las posesiones del hogar; las posesiones se escalan con Teoría de 
 evalúa si los ítems funcionan igual **entre países y grupos de idioma** [@oecd2024pisa2022tr]. Lo que no se
 verifica es si el índice mide lo mismo **dentro de un país**, entre zonas rurales y urbanas, entre colegios públicos
 y privados o entre hombres y mujeres. En Colombia la medida oficial de Saber 11, el INSE, también asume una sola
-dimensión y solo evalúa funcionamiento diferencial entre periodos [@icfes2019inse].
+dimensión; compara el funcionamiento de los ítems entre periodos y lo ilustra por sexo con un solo ítem
+[@icfes2019inse].
 
 **La segunda es cómo se califica el desempeño.** El seguimiento público de las brechas se hace sobre puntajes
 agregados [@lee2024decada]. Saber 11 define competencias de matemáticas (interpretación y representación,
-formulación y ejecución, argumentación) [@icfes2022marcomat], pero no publica resultados por competencia para cada
-estudiante. PISA 2022 sí define cuatro procesos matemáticos —formular, emplear, interpretar y razonar— y publica
+formulación y ejecución, argumentación) [@icfes2022marcomat, p. 6].
+PISA 2022 también define cuatro procesos matemáticos —formular, emplear, interpretar y razonar— y publica
 puntajes por proceso, pero el informe nacional solo los reporta como promedios del país, sin cruzarlos con el NSE
 [@icfes2024pisa]. En este documento llamamos **competencias** a esos cuatro procesos.
 
 Una exploración propia de los microdatos de Colombia muestra por qué importa separar las competencias.^[Cálculos
 propios con `Proyecto_PISA/datos/revision_pisa2022_col.R` (pesos finales, 80 réplicas BRR con ajuste de Fay y
 10 valores plausibles), revisión del 29 de septiembre de 2026.] Las cuatro competencias correlacionan entre 0,70 y
-0,83 en Colombia, menos que el rango internacional de 0,79 a 0,87 [@oecd2024pisa2022tr]. Por cada unidad del ESCS,
+0,83 en Colombia (cálculo propio), menos que el rango internacional de 0,79 a 0,87 [@oecd2024pisa2022tr, p. 305]. Por cada unidad del ESCS,
 el desempeño sube 22,6 puntos en *emplear* y 26,6 en *interpretar*; la diferencia de 3,9 puntos (error estándar 1,5)
 sugiere que el NSE no pesa igual en todas las competencias. Además, los estudiantes del cuartil más bajo de ESCS dejan
 en blanco, en promedio, el 11,5 % de las preguntas que ven, frente a 8,0 % en el cuartil más alto; como PISA califica
@@ -76,11 +78,11 @@ ubicar el vacío que atiende el proyecto.
 ## El desempeño como variable observada: el enfoque econométrico en Colombia
 
 La mayoría de estudios colombianos relacionan puntajes observados con covariables socioeconómicas mediante
-regresión. @collazos2021determinantes estiman, con mínimos cuadrados ordinarios sobre 3\,247\,429 evaluados de
+regresión. @collazos2021determinantes estiman, con un modelo de combinación de cortes transversales sobre 3\,247\,429 evaluados de
 Saber 11 entre 2014 y 2019, efectos netos de estrato, educación materna y acceso a computador e internet;
 @zabala2019impacto encuentran asociaciones similares en Norte de Santander, con un efecto contraintuitivo del internet.
 Con PISA, @rodriguez2024rural descomponen la brecha rural–urbana de Colombia con datos de 2018 y encuentran que se
-explica sobre todo por características observables de los colegios y de las familias **[VERIFICAR]**, y
+explica sobre todo por características observables de los colegios y de las familias, y
 @guerra2026digital analizan gradientes socioeconómicos en
 matemáticas para 13 países de América Latina y el Caribe con PISA 2022, mediante descomposición multinivel y
 aprendizaje automático, sin análisis por ítem, TRI ni modelos estructurales. Ninguno modela el error de medición del
@@ -90,56 +92,55 @@ NSE ni verifica que sus indicadores se comporten igual en los grupos que compara
 
 En Colombia, @cruz2016construccion construyen un índice socioeconómico para Saber 11 por componentes principales,
 unidimensional por construcción, y el INSE del ICFES asume una sola dimensión [@icfes2019inse]. La literatura
-internacional muestra que el NSE tiene al menos una dimensión económica y otra cultural: @hernandez2011modelo las
-modelan como factores latentes correlacionados en México, con mayor peso del capital cultural sobre el logro, y
-@eriksson2021socioeconomic encuentran en PISA 2018 que, de seis dimensiones del NSE, solo los libros en casa y la
-ocupación de los padres predicen sustantivamente el logro. La propia OCDE reconoce que su índice de posesiones del
+internacional muestra que el NSE tiene al menos una dimensión económica y otra cultural: @hernandez2011modelo [p. 197]
+las modelan en México como dos componentes latentes, cultural y económico, bajo un factor común, con mayor peso del
+capital cultural sobre el logro en Lenguaje y comunicación, y @eriksson2021socioeconomic [p. 1] encuentran en PISA 2018
+que, de seis componentes del NSE, los libros en casa y la ocupación de los padres superan claramente al resto como
+predictores del logro. La propia OCDE reconoce que su índice de posesiones del
 hogar se escala como una medida unidimensional y que una amenaza para su calidad es la falta de un marco teórico para
-elegir los ítems y validar la escala [@avvisati2024measurement, pp. 11, 48] **[VERIFICAR]**. Sobre la
-comparabilidad, @rutkowski2013measuring muestran
-que el índice de posesiones de PISA tiene confiabilidad muy variable entre países, @rolfe2021tailoring prueban la
-invarianza de un modelo de NSE a lo largo de quince años de PISA en Suecia, y @mittal2022assessing evalúan la
-comparabilidad del índice de posesiones entre estudiantes con y sin origen inmigrante en Noruega y Suecia
-**[VERIFICAR]**. Es el único antecedente encontrado que prueba invarianza **entre grupos de estudiantes dentro** de
+elegir los ítems y validar la escala [@avvisati2024measurement, pp. 11, 48]. Sobre la
+comparabilidad, @rutkowski2013measuring muestran,
+según su resumen, que el índice de posesiones de PISA tiene confiabilidad muy variable entre países;
+@rolfe2021tailoring prueban, también según su resumen, la invarianza de un modelo de NSE a lo largo de quince años de
+PISA en Suecia, y @mittal2022assessing evalúan la comparabilidad del índice de posesiones entre estudiantes con y sin
+origen inmigrante en Noruega y Suecia. Es el único antecedente encontrado que prueba invarianza **entre grupos de estudiantes dentro** de
 un país, y por un grupo distinto a los de este proyecto.
 
 ## Matemáticas por competencias
 
 PISA 2022 incorporó el razonamiento matemático como cuarto proceso [@oecd2024pisa2022tr]. @ingram2024mathematical
 comparan perfiles de desempeño por proceso **entre países** y encuentran que en algunos el razonamiento es una
-fortaleza relativa y en otros una debilidad **[VERIFICAR]**, pero no analizan el NSE. @patsis2026instructional
+fortaleza relativa y en otros una debilidad, pero no analizan el NSE. @patsis2026instructional
 estiman modelos estructurales de dos niveles con datos TIMSS 2019 de Suecia y encuentran el NSE como predictor
 robusto del logro matemático total. En Colombia, las competencias de PISA solo se reportan como promedios nacionales
 [@icfes2024pisa].
 
 Que las competencias puedan calificarse por separado no está garantizado. Con análisis factorial confirmatorio sobre
-los ítems de matemáticas de PISA 2003, 2006 y 2009, @ekmekci2013mathematical encontró más evidencia a favor de una sola
-dimensión que de varias **[VERIFICAR]**, y @brandt2017calibracion señala la tensión de que PISA califique matemáticas
-con un modelo unidimensional y sus subescalas con uno multidimensional **[VERIFICAR]**. Por eso el proyecto compara
+los ítems de matemáticas de PISA 2003, 2006 y 2009, @ekmekci2013mathematical encontró, según su resumen, más
+evidencia a favor de una sola dimensión que de varias, y @brandt2017calibracion señala la tensión de que PISA califique matemáticas
+con un modelo unidimensional y sus subescalas con uno multidimensional. Por eso el proyecto compara
 ambos modelos antes de calificar por competencias.
 
 ## Equidad de la prueba: funcionamiento diferencial del ítem
 
 El funcionamiento diferencial del ítem (DIF) por NSE en matemáticas está documentado en evaluaciones nacionales:
 @garcia2016analisis encuentran DIF severo por nivel socioeconómico en 18 de los 100 ítems del EXCALE de matemáticas
-de México, la mitad a favor de cada grupo, y @celik2025differential reportan DIF por NSE en lectura en PIRLS 2021,
-variable según país y método **[VERIFICAR]**. Con PISA, @liu2021differential usan el NSE solo como covariable para
+de México, aproximadamente la mitad a favor de cada grupo, y @celik2025differential reportan DIF por NSE en lectura en PIRLS 2021,
+variable según país y método. Con PISA, @liu2021differential usan el NSE solo como covariable para
 explicar el DIF por idioma en ítems de matemáticas de 2012 en Estados Unidos. El antecedente más cercano es el de
 @goh2024detection, que con árboles de Rasch sobre dos subpruebas de matemáticas de PISA 2022 en Corea encuentran que
 el NSE está entre las variables de contexto asociadas al DIF **[VERIFICAR]**; @kucam2023examination, por su parte,
-hallan en PISA 2018 (Turquía) un ítem de matemáticas que funciona distinto según la educación de la madre
-**[VERIFICAR]**. Ninguno analiza Colombia, el banco completo de ítems del diseño adaptativo ni si el DIF se concentra
-en alguna competencia. En Colombia, el único análisis de DIF sobre una prueba nacional compara calendarios de Saber 11
+hallan en PISA 2018 (Turquía) un ítem de matemáticas que funciona distinto según la educación de la madre. Ninguno analiza Colombia, el banco completo de ítems del diseño adaptativo ni si el DIF se concentra
+en alguna competencia. En Colombia, el análisis de DIF que conocemos sobre una prueba nacional compara calendarios de Saber 11
 y no NSE [@calderon2026differential].
 
 ## Desenganche en la prueba
 
 @rios2022investigation documentan en PISA 2018 (ciencias) que el NSE está entre los moderadores de la respuesta
-rápida al azar y advierten que las comparaciones entre subgrupos pueden sesgarse por diferencias de esfuerzo
-**[VERIFICAR]**. @burns2026intest relacionan el esfuerzo autorreportado con el logro en PISA 2022 en 36 países de la
-OCDE **[VERIFICAR]**. En el plano metodológico, @pohl2014dealing muestran que la tendencia a omitir se correlaciona
+rápida al azar y advierten que las comparaciones entre subgrupos pueden sesgarse por diferencias de esfuerzo. @burns2026intest relacionan el esfuerzo autorreportado con el logro en PISA 2022 en 36 países de la
+OCDE. En el plano metodológico, @pohl2014dealing muestran que la tendencia a omitir se correlaciona
 con la habilidad, aunque en sus datos ignorar las omisiones bastó para estimar los parámetros **[VERIFICAR]**, y
-@kohler2015taking modelan una propensión latente a omitir que cambia las estimaciones de habilidad **[VERIFICAR]**.
+@kohler2015taking modelan una propensión latente a omitir que cambia las estimaciones de habilidad.
 Ninguno cuantifica cuánto cambia la brecha socioeconómica en matemáticas de Colombia según cómo se califiquen las
 omisiones.
 

@@ -12,36 +12,20 @@
 
 ## Tratamiento A — Claude sin contexto
 
-- **Herramienta y versión / modelo:** Claude (Claude Code, sesión de Vanessa en este repo)
-- **Fecha y hora:** 2026-10-12
-- **Condiciones:** ⚠️ **NO es un control limpio** — esta sesión ya había leído a fondo Kucam, Liu y Bradley,
-  Goh et al. y otras fuentes reales antes de esta corrida, así que su "memoria" está contaminada por ese
-  contexto previo. Se deja documentada por transparencia, pero **no debe usarse como el dato oficial de
-  Tratamiento A** en la tabla de conteos — hace falta una corrida en una sesión que de verdad no haya visto
-  estos PDF (otra persona del equipo, o un chat nuevo sin este historial).
+- **Herramienta y versión / modelo:**
+- **Fecha y hora:**
+- **Condiciones:** chat nuevo, sin proyecto, sin búsqueda web
 - **Prompt exacto:**
 
 ```
-¿Qué estudios usan DIF por NSE dentro de las competencias/procesos matemáticos de PISA? Dame al menos cinco
-referencias (autores, año, título, revista y DOI) y, para cada una, qué encontró sobre el tema.
+(pegar)
 ```
 
 - **Respuesta completa:**
 
 ```
-No tengo cinco referencias que pueda darte con autores, año, título, revista y DOI exactos y con confianza
-real de que sean correctos — si te los diera ahora mismo estaría inventando el nivel de detalle que pides. Lo
-que sí puedo decirte, con menos precisión: existe investigación sobre funcionamiento diferencial del ítem (DIF)
-en PISA matemáticas, usualmente analizada por sexo, idioma o estatus de inmigrante más que por NSE como
-variable principal; recuerdo líneas de trabajo sobre invarianza de medición del índice socioeconómico de PISA
-(ESCS/HOMEPOS) que tocan preguntas parecidas; y es plausible que haya estudios recientes (2022-2024) usando
-árboles de Rasch para detectar DIF en PISA matemáticas por covariables de contexto, aunque no podría asegurarte
-autor ni revista exacta sin consultarlo. No doy DOIs: cualquiera que diera ahora sería inventado.
+(pegar sin editar)
 ```
-
-> **Nota:** esta respuesta es atípicamente cautelosa para un "chat sin fuentes" real — la mayoría sí inventaría
-> los 5 DOIs con confianza. No sirve como ejemplo representativo del control; sirve solo para no mentir en este
-> documento. Pendiente: correr A de verdad en una sesión limpia.
 
 ## Tratamiento B — Zotero + Obsidian (Claude con el vault)
 

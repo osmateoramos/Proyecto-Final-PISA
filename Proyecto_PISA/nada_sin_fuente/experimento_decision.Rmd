@@ -111,6 +111,24 @@ if (is.null(P) || is.null(CT)) pendiente("nsf_proporciones.csv") else {
 
 Contando las seis referencias descartadas (desvío 4), B pasaría a `r sens_B`; A y C no cambian.
 
+```{r rango}
+RG <- leer_s("nsf_rango_sin_mayoria.csv")
+rg <- function(t, col, fmt = "%.2f") if (is.null(RG)) "?" else sprintf(fmt, RG[tratamiento == t][[col]])
+if (is.null(RG)) pendiente("nsf_rango_sin_mayoria.csv") else
+  knitr::kable(RG[, .(Tratamiento = CORTO[tratamiento], `Sin mayoría` = sprintf("%d de %d", sin_mayoria, n_total),
+                      `Solo con etiqueta (análisis)` = sprintf("%.2f", p_analisis),
+                      `Si no fueran utilizables` = sprintf("%.2f", p_min),
+                      `Si fueran utilizables` = sprintf("%.2f", p_max))],
+               caption = "Proporción de utilizables según cómo se cuenten las referencias sin mayoría.")
+```
+
+**Las referencias sin mayoría no se reparten igual.** En A son `r rg("A", "sin_mayoria", "%d")` de
+`r rg("A", "n_total", "%d")`. Son de pago, Vanessa no pudo abrirlas y Brayan y Mateo no coincidieron. Como salen del
+cálculo, la proporción de A se calcula solo con sus referencias menos discutidas. Según cómo se cuenten, A queda entre
+`r rg("A", "p_min")` y `r rg("A", "p_max")`; B se mueve entre `r rg("B", "p_min")` y `r rg("B", "p_max")`, y C entre
+`r rg("C", "p_min")` y `r rg("C", "p_max")`. El experimento no permite decir que A supere a B: lo que muestra es que el
+resultado de B es el que menos depende de la clasificación.
+
 **Qué dicen los intervalos.** Cada proporción sale de `r rango_n` referencias (solo las que tienen etiqueta de
 mayoría): un intervalo de Wilson llega a medir `r ancho_ic` de ancho, los tres se traslapan y las diferencias frente
 a A incluyen el cero (Fisher: p = `r p_fisher`). El orden es una tendencia, no una diferencia demostrada. Además, las

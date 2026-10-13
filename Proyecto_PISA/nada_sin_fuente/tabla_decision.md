@@ -17,7 +17,7 @@ elegir bien.
 | **Reproducibilidad** | Baja: sin fuentes y respuesta variable | Media: el vault está versionado en Git y el protocolo también, pero el modelo no es determinista y la sesión puede cargar contexto de la máquina (memoria de Claude Code, `CLAUDE.md`) | Baja: el cuaderno no está versionado, tuvo duplicados y fuentes ajenas al corpus (Avvisati 2020, un PDF de la OCDE sin identificar), y su contenido cambió entre corridas |
 | **Base verificada** | No aplica: no lee fuentes | Depende del vault: responde con lo que dicen las notas, no con el PDF. Durante el experimento 0 de 43 notas estaban verificadas; hoy 4 de 44. Lo que esté mal en una nota, B lo repite | Lee el PDF cargado: no hereda errores de las notas, pero sí los del cuaderno (duplicados, documentos ajenos al corpus) |
 | *Abstención observada* | No se abstuvo (consulta de Brayan): dio 6 referencias más 3 «cercanas» | Se abstuvo en la consulta de Brayan y listó 9 fuentes «cercanas» del vault. En la de Mateo dio 5 y descartó otras 6 explicando por qué (no cuentan en el experimento) | Se abstuvo en las consultas de Brayan y de Vanessa (oficial); en la de Brayan, en parte porque las fuentes no estaban cargadas |
-| *Experimento* | Referencias utilizables: 11/13 = 0,85 (IC 95 %: 0,58–0,96) | 15/18 = 0,83 (0,61–0,94); diferencia con A −0,01 (−0,26 a +0,28) | 12/17 = 0,71 (0,47–0,87); diferencia con A −0,14 (−0,40 a +0,17) |
+| *Experimento* | Referencias utilizables: 11/13 = 0,85 (IC 95 %: 0,58–0,96), pero 9 de sus 22 quedaron sin mayoría: según cómo se cuenten, entre 0,50 y 0,91 | 15/18 = 0,83 (0,61–0,94); diferencia con A −0,01 (−0,26 a +0,28). Con las 2 sin mayoría, entre 0,75 y 0,85 | 12/17 = 0,71 (0,47–0,87); diferencia con A −0,14 (−0,40 a +0,17). Con las 2 sin mayoría, entre 0,63 y 0,74 |
 | *Banco* | Dentro del corpus: 0/10 sostenidas; se abstuvo en las 10 (no conoce los artículos). Fuera: se abstuvo en 1 de 2; en la otra respondió de memoria | Dentro: 9/10 sostenidas; se abstuvo en una que sí estaba en el corpus porque la nota de Collazos no decía «matemáticas», y dejó dos incompletas por notas incompletas. Fuera: se abstuvo 2/2 | Dentro: 10/10 sostenidas, con más detalle que B (leyó hasta tablas en imagen). Fuera: se abstuvo en 1 de 2; en la de Brayan respondió con conocimiento externo (Colombia en TIMSS 2019), sin fuente |
 
 **Herramienta elegida:** *(propuesta, a confirmar con los conteos finales)* B · Zotero + Obsidian, con la sesión
@@ -26,8 +26,9 @@ estado es `verificado`**.
 
 **Por qué:** es la única de las tres que exporta a APA 7, que tiene el sistema versionado (Git) y que deja rastro de la
 página y del estado de verificación de cada afirmación; no depende del límite de fuentes de NotebookLM. En el
-experimento A y B quedaron prácticamente iguales (0,85 y 0,83) y C un poco más abajo (0,71), pero los intervalos se
-traslapan, ninguna diferencia es concluyente y el acuerdo entre clasificadores fue bajo (kappa de Fleiss 0,06). Además,
+experimento ninguna diferencia es concluyente y el acuerdo entre clasificadores fue bajo (kappa de Fleiss 0,06). El
+0,85 de A sale solo de 13 de sus 22 referencias: las otras 9 son de pago y quedaron sin mayoría. Según cómo se
+cuenten, A va de 0,50 a 0,91, mientras que B se mueve poco (0,75 a 0,85). Además,
 A no da páginas; en el banco, A no pudo
 responder ninguna pregunta concreta del corpus. En el banco C fue la más completa, pero en una pregunta fuera del
 corpus respondió con conocimiento externo en vez de abstenerse, que es justo lo que el protocolo prohíbe; B no se

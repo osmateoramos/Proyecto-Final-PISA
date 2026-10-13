@@ -15,6 +15,8 @@
 #   nsf_desacuerdos.csv               referencias en que no coincidieron, para discutir
 #   nsf_descartadas.csv               referencias que la herramienta nombró solo para descartarlas
 #   nsf_sensibilidad_descartadas.csv  proporciones sin y con las descartadas
+#   nsf_rango_sin_mayoria.csv         proporción si las referencias sin mayoría fueran todas no utilizables
+#                                     (mínimo) o todas utilizables (máximo)
 #
 # Etiqueta final: la categoría que eligió la mayoría (2 de 3). Si no hay mayoría,
 # queda "sin_consenso" y no entra a las proporciones, salvo que se resuelva en
@@ -119,6 +121,15 @@ sens <- rbind(prop[, .(version = "sin descartadas (análisis)", tratamiento, n, 
                                            p_utilizable)])
 escribir_csv(sens, file.path(DIR_SALIDAS, "nsf_sensibilidad_descartadas.csv"))
 
+# Las referencias sin mayoría salen de las proporciones; si se concentran en un tratamiento, su proporción puede
+# quedar inflada. El rango va de contarlas todas como no utilizables a contarlas todas como utilizables.
+rango <- ancho[, .(n_total = .N, utilizables = sum(final == "utilizable"), sin_mayoria = sum(final == "sin_consenso")),
+               by = tratamiento][order(tratamiento)]
+rango[, `:=`(p_analisis = round(utilizables / (n_total - sin_mayoria), 3),
+             p_min = round(utilizables / n_total, 3),
+             p_max = round((utilizables + sin_mayoria) / n_total, 3))]
+escribir_csv(rango, file.path(DIR_SALIDAS, "nsf_rango_sin_mayoria.csv"))
+
 # --- Diferencias frente al control A ------------------------------------------------------------------
 dif <- rbindlist(lapply(intersect(c("B", "C"), prop$tratamiento), function(t) {
   if (!"A" %in% prop$tratamiento) return(NULL)
@@ -171,4 +182,5 @@ cat("\n--- Acuerdo entre clasificadores ---\n"); print(acuerdo)
 if (nrow(sin_clasificar)) cat("\nReferencias que nadie ha clasificado:", nrow(sin_clasificar), "\n")
 cat("\nDescartadas por la herramienta (fuera del análisis):", nrow(descartadas), "\n")
 cat("\n--- Sensibilidad: proporción de utilizables sin y con las descartadas ---\n"); print(sens)
+cat("\n--- Rango según cómo se cuenten las referencias sin mayoría ---\n"); print(rango)
 cat("\nListo: salidas/nsf_*.csv\n")

@@ -12,8 +12,14 @@
 11;B;Rolfe (2021). International Journal of Educational Research, 106, 101723.;10.1016/j.ijer.2020.101723;"Prueba la invarianza del NSE en Suecia a lo largo de los ciclos de PISA con alineamiento; la invarianza métrica se puede alcanzar pero hay que comprobarla. Sin página registrada.";Claude Opus 5.5 (Claude Code con el vault, protocolo v2);2026-10-12
 12;B;Avvisati y Wuyts (2024). OECD Education Working Papers, No. 321 (documento de trabajo).;10.1787/0c5b793c-en;"HOMEPOS 2022 usa parámetros parcialmente invariantes por país e idioma (p. 21); no evalúa la invarianza dentro de un país.";Claude Opus 5.5 (Claude Code con el vault, protocolo v2);2026-10-12
 13;B;OECD (2024). PISA 2022 Technical Report.;;Evalúa la invarianza solo entre países e idiomas. La herramienta dice que el DOI no está en el vault (solo la URL del PDF) y que el año está por verificar.;Claude Opus 5.5 (Claude Code con el vault, protocolo v2);2026-10-12
-14;C;;;;;
-15;C;;;;;
-16;C;;;;;
-17;C;;;;;
-18;C;;;;;
+14;B;icfes2019inse;;Descartada: no es PISA y su DIF es entre periodos.;Claude Opus 5.5 (Claude Code con el vault, protocolo v2);2026-10-12
+15;B;avvisati2020measure;;Descartada: solo se leyó el resumen y no trata la invarianza dentro de un país.;Claude Opus 5.5 (Claude Code con el vault, protocolo v2);2026-10-12
+16;B;Cruz;;Descartada: la nota dice expresamente que no prueba invarianza.;Claude Opus 5.5 (Claude Code con el vault, protocolo v2);2026-10-12
+17;B;Collazos;;Descartada: la nota dice expresamente que no prueba invarianza.;Claude Opus 5.5 (Claude Code con el vault, protocolo v2);2026-10-12
+18;B;Hernández;;Descartada: la nota dice expresamente que no prueba invarianza.;Claude Opus 5.5 (Claude Code con el vault, protocolo v2);2026-10-12
+19;B;icfes2024pisa;;Descartada: la nota dice expresamente que no prueba invarianza.;Claude Opus 5.5 (Claude Code con el vault, protocolo v2);2026-10-12
+20;C;;;;;
+21;C;;;;;
+22;C;;;;;
+23;C;;;;;
+24;C;;;;;

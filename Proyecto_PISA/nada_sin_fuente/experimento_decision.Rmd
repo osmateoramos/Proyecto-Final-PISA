@@ -50,12 +50,14 @@ clasificaron todas las referencias por separado, sin ver el tratamiento y en ord
 1. No hubo tratamiento de buscador bibliográfico: el experimento mide **anclaje** (control frente a dos vías de
    contexto cerrado), no búsqueda.
 2. El cuaderno de NotebookLM llegó a su límite de fuentes con 13 entradas, 4 de ellas duplicadas, y sin la mayoría
-   del corpus; las abstenciones de C deben leerse con eso en mente.
+   del corpus. Una corrida de C hecha en ese estado (consulta de Brayan) se abstuvo sin referencias; se repitió
+   después de completar el cuaderno y cuenta la segunda. En `experimento/consulta_{persona}.md` consta con qué
+   fuentes se corrió cada C.
 3. Una corrida de B leyó archivos fuera del vault (entre ellos la respuesta de A) y se descartó. Desde entonces B se
    corre con la sesión abierta en `Vault_PISA2022` y con el protocolo v2 (regla 6); la versión usada en cada corrida
    está en `experimento/consulta_{persona}.md`.
 
-*(Pendiente — Brayan: confirmar que A y B usaron el mismo modelo.)*
+*(Pendiente: Mateo y Vanessa confirman el modelo de A y B; Brayan usó Claude Extra 5.5 en los dos.)*
 
 # Resultados
 

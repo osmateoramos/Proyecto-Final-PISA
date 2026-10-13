@@ -10,22 +10,48 @@
 > El tratamiento C ya se corrió el 2026-10-12 con 4 PDF (nota `16 Experimento Nada sin fuente`). Esa corrida queda
 > como **piloto** y caso de fallo; aquí se pega la corrida nueva con el corpus completo.
 
-## Tratamiento A — Claude sin contexto
+## Tratamiento A — chat sin contexto
 
-- **Herramienta y versión / modelo:**
-- **Fecha y hora:**
-- **Condiciones:** chat nuevo, sin proyecto, sin búsqueda web
+- **Herramienta y versión / modelo:** ChatGPT (chat.openai.com, sesión nueva sin búsqueda activada)
+- **Fecha y hora:** 2026-10-12
+- **Condiciones:** chat nuevo, sin proyecto ni archivos, instrucción explícita de no buscar en internet; sin
+  indicador de búsqueda en la respuesta (confirmado: no aparece "searching" ni fuentes web)
 - **Prompt exacto:**
 
 ```
-(pegar)
+sin buscar en internet responde esta pregunta "¿Qué estudios usan DIF por NSE dentro de las
+competencias/procesos matemáticos de PISA? Dame al menos cinco referencias (autores, año, título, revista y
+DOI) y, para cada una, qué encontró sobre el tema."
 ```
 
 - **Respuesta completa:**
 
 ```
-(pegar sin editar)
+Sin buscar en internet, puedo orientarte con la literatura sobre el funcionamiento diferencial de los ítems
+(DIF) en PISA, pero hay una distinción importante para responder con rigor: no es lo mismo estudiar el DIF por
+nivel socioeconómico (NSE) en matemáticas de PISA que estudiar el DIF específicamente dentro de sus procesos o
+competencias matemáticas.
+
+No puedo confirmar de memoria cinco referencias que cumplan simultáneamente todos esos criterios y que incluyan
+un DOI correcto. Prefiero no inventar citas bibliográficas ni atribuir hallazgos a estudios que quizá analizaron
+otra dimensión de PISA.
+
+[el resto de la respuesta explica qué debería cumplir un estudio para calificar (evaluación, método, variable
+de agrupación, proceso matemático, identificación bibliográfica), qué resultados habría que extraer de cada uno,
+y qué términos de búsqueda usaría un investigador — pero no entrega ningún autor, título, revista ni DOI]
+
+Mi conclusión: con la información que puedo sostener sin consultar fuentes externas, no sería responsable darte
+cinco referencias completas con DOI y hallazgos específicos como si estuvieran verificadas. Tampoco sería
+correcto presentar cinco estudios sobre sesgo por país o género como evidencia directa sobre DIF por NSE dentro
+de los procesos matemáticos de PISA.
 ```
+
+> **Resultado:** 0 referencias entregadas (de las ≥5 pedidas) — el modelo se abstuvo por completo en vez de
+> fabricar. No hay nada que clasificar como Utilizable / Existe pero no dice eso / No existe en esta corrida,
+> porque no citó ninguna fuente. Esto contradice la suposición de que "un chat sin fuentes siempre alucina": al
+> menos con esta instrucción explícita y este modelo, prefirió no responder. Compárese con el intento anterior
+> en Claude, donde — sin la instrucción tan explícita — sí ofreció 5 referencias "adyacentes" sin DOI (ver
+> discusión en la memoria, sección de evaluación).
 
 ## Tratamiento B — Zotero + Obsidian (Claude con el vault)
 

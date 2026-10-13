@@ -21,6 +21,8 @@ Proyecto_PISA/datos/*
 !Proyecto_PISA/anteproyecto/*.pdf
 !Proyecto_PISA/informe/*.pdf
 !Proyecto_PISA/exposiciones/*.pdf
+# Nada sin fuente: solo la memoria y el documento de experimento (los PDF de corpus/ siguen fuera)
+!Proyecto_PISA/nada_sin_fuente/*.pdf
 Proyecto_PISA/documentacion/*.zip
 
 # --- Archivos intermedios al generar PDF con R Markdown -----------------------
@@ -46,3 +48,5 @@ __pycache__/
 Vault_PISA2022/.obsidian/workspace*
 Vault_PISA2022/.obsidian/cache
 Vault_PISA2022/.trash/
+# Si Obsidian se abre sobre la raíz del repositorio (y no sobre Vault_PISA2022) crea esta carpeta
+/.obsidian/

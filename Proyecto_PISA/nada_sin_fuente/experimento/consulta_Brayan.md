@@ -134,7 +134,7 @@ No está en las fuentes.
 - **Herramienta y versión / modelo:** NotebookLM (cuaderno compartido del equipo)
 - **Fecha y hora:** 2026-10-13, madrugada — *hora por confirmar*
 - **Condiciones:** el mismo cuaderno, después de subir los PDF del corpus que faltaban desde `corpus/` (orden del
-  plan: tema O4, tema de Mateo, tema de Vanessa, resto). N.º de fuentes cargadas: *por confirmar por Brayan*.
+  plan: tema O4, tema de Mateo, tema de Vanessa, resto). N.º de fuentes cargadas: 27 (según Brayan).
   Protocolo v1 en *Configurar chat*.
 - **Prompt exacto:** el texto base.
 - **Resultado:** abstención parcial: dice que ninguna fuente cumple a la vez todos los criterios, pero presenta 5

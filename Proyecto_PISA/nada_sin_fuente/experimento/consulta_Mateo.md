@@ -1,10 +1,19 @@
 # Consulta de Mateo Ramos — zona O1–O2 (medición del NSE e invarianza)
 
-**Consulta bibliográfica:** (escribirla en el bloque 0, antes de correr nada)
+**Consulta bibliográfica:** ¿Qué estudios evalúan si el índice de posesiones del hogar (HOMEPOS) o el índice
+socioeconómico (ESCS) de PISA mide lo mismo en distintos grupos de estudiantes dentro de un país (invarianza de
+medición o funcionamiento diferencial de sus ítems)?
+
+> Propuesta redactada con Claude el 2026-10-12; Mateo la confirma o la cambia **antes** de correr A.
+> Otras candidatas descartadas: (a) «¿Qué estudios modelan el NSE como variable latente de dos o más dimensiones
+> con datos de PISA?» y (b) «¿Qué evidencia hay sobre la confiabilidad del índice de posesiones del hogar de PISA en
+> América Latina?». Se eligió la principal porque es el centro de O2 y el equipo ya tiene fuentes para contrastar.
 
 **Texto base** (idéntico en A, B y C):
 
-> (consulta). Dame al menos cinco referencias (autores, año, título, revista y DOI) y, para cada una, qué encontró
+> ¿Qué estudios evalúan si el índice de posesiones del hogar (HOMEPOS) o el índice socioeconómico (ESCS) de PISA mide
+> lo mismo en distintos grupos de estudiantes dentro de un país (invarianza de medición o funcionamiento diferencial
+> de sus ítems)? Dame al menos cinco referencias (autores, año, título, revista y DOI) y, para cada una, qué encontró
 > sobre el tema.
 
 ## Tratamiento A — Claude sin contexto

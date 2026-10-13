@@ -2,6 +2,17 @@
 
 > **Borrador redactado con Claude el 2026-10-12.** Vanessa lo revisa, lo ajusta y copia lo que decida a
 > `protocolo_consulta_v1.md`, que es su archivo. Este borrador no es la v1 y no se congela.
+>
+> **Actualización (2026-10-12, 21:30):** Vanessa congeló la v1 en `main` (commit 450bdde) antes de ver este borrador.
+> La v1 no se toca. Si el equipo decide una v2, estos son los puntos que la v1 no cubre:
+> 1. **«Los archivos de esta carpeta» en B es toda la carpeta del repositorio.** Incluye
+>    `experimento/consulta_*.md`, con las respuestas de A. Conviene limitar B a `Vault_PISA2022/` y pedir al final
+>    la lista de archivos abiertos.
+> 2. **No pide decir el estado de la nota** (`por_verificar`, `verificado`, `sin_origen`).
+> 3. **No dice qué hacer cuando falta un solo dato de la referencia**, como el DOI. Propuesta: que ese campo diga
+>    «no está en las fuentes».
+> 4. **La frase de abstención choca con `CLAUDE.md`.** En B, `CLAUDE.md` pide «no está en el vault»; la v1 pide
+>    «No está en las fuentes.». Al calificar el banco, contar las dos como abstención correcta.
 
 Se basa en tres fuentes:
 - las «Reglas para cualquier IA que use el vault» de `Vault_PISA2022/11 Protocolo de verificación.md`;

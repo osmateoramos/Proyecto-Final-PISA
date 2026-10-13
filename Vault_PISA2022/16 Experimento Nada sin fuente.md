@@ -30,7 +30,7 @@ Kucam y Gülleroğlu 2023).
 | Tratamiento | Herramienta | Estado |
 |---|---|---|
 | A — sin fuentes | Claude sin contexto (Claude Opus 5.5) | corrido el 2026-10-12; ver `experimento/consulta_Vanessa.md` |
-| B — Zotero + Obsidian (Claude con el vault); el equipo no usó buscador bibliográfico y lo declara | Claude Code (Claude Opus 5.5) | corrido el 2026-10-12; ver `experimento/consulta_Vanessa.md` |
+| B — Zotero + Obsidian (Claude con el vault); el equipo no usó buscador bibliográfico y lo declara | Claude Code (Claude Sonnet 5) | corrido el 2026-10-12; ver `experimento/consulta_Vanessa.md` |
 | C — contexto cerrado | **NotebookLM**, con 4 PDF (Liu y Bradley 2021, Kucam y Gülleroğlu 2023, Çelik y Kaşık 2025, Calderón et al. 2026) | piloto corrido el 2026-10-12; la corrida con el cuaderno completo está en `experimento/consulta_Vanessa.md` |
 
 ## Clasificación de referencias (Tratamiento C, NotebookLM)

@@ -12,7 +12,7 @@ bloque: "E. Desenganche"
 metadatos: "Crossref (consultado 2026-10-04)"
 estado: por_verificar
 lectura: "IA: texto completo (PDF de acceso abierto, 22 págs.); leídos resumen, muestra y tablas 1–2"
-pdf_en_zotero: no
+pdf_en_zotero: sí (Vanessa, 2026-10-12)
 verificado_por:
 fecha_verificacion:
 ---

@@ -11,7 +11,7 @@ doi_url: https://doi.org/10.1186/s40536-026-00294-x
 bloque: "D. Equidad de la prueba (DIF)"
 estado: por_verificar
 lectura: "equipo: texto completo"
-pdf_en_zotero: no
+pdf_en_zotero: sí (Vanessa, 2026-10-12)
 verificado_por:
 fecha_verificacion:
 ---

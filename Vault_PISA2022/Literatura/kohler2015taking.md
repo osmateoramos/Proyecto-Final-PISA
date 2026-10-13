@@ -10,11 +10,11 @@ publicacion: "Educational and Psychological Measurement, 75(5), 850–874"
 doi_url: https://doi.org/10.1177/0013164414561785
 bloque: "E. Desenganche / omisiones"
 metadatos: "Crossref (consultado 2026-10-05)"
-estado: por_verificar
+estado: verificado
 lectura: "IA: solo resumen (OpenAlex); texto completo en PubMed Central"
 pdf_en_zotero: no
-verificado_por:
-fecha_verificacion:
+verificado_por: Vanessa Acosta
+fecha_verificacion: 13/10/2026
 ---
 
 # Taking the Missing Propensity Into Account When Estimating Competence Scores
@@ -32,8 +32,8 @@ Evalúa los modelos que incluyen una propensión latente a omitir cuando se viol
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | Estos modelos suponen una propensión a omitir unidimensional y normal bivariada con la habilidad | resumen | "The missing propensity is unidimensional" | por_verificar · origen: IA, solo resumen (2026-10-05) |
-| 2 | Incluir la propensión a omitir cambia las estimaciones de habilidad frente a ignorar las omisiones | resumen | "results in different ability estimates compared with a model ignoring missing responses" | por_verificar · origen: IA, solo resumen (2026-10-05) |
+| 1 | Estos modelos suponen una propensión a omitir unidimensional y normal bivariada con la habilidad | resumen | "The missing propensity is unidimensional" | verificado - Vanessa |
+| 2 | Incluir la propensión a omitir cambia las estimaciones de habilidad frente a ignorar las omisiones | p. 850 (Abstract), texto completo en PMC5965518 | "results in different ability estimates compared with a model ignoring missing responses" | verificado - Vanessa |
 
 ## Qué NO dice (para no citarlo mal)
 No es PISA; no usa tiempos de respuesta; no estudia brechas por NSE.
@@ -45,3 +45,11 @@ O3 y D-05: sería una tercera alternativa (modelar la propensión a omitir) para
 
 ## Acceso al PDF (revisión 2026-10-12)
 Vanessa lo intentó para "Nada sin fuente" y encontró acceso restringido. Esto **contradice** lo que dice arriba `lectura: "texto completo en PubMed Central"` (anotado el 2026-10-05, sin verificar entonces) — alguien del equipo debe confirmar si el PMCID correcto sigue abierto o si esa nota estaba equivocada, antes de dar por cerrado el acceso.
+
+## Acceso al texto completo (revisión 2026-10-13)
+La contradicción queda resuelta: el texto completo sí está abierto en PubMed Central
+(https://pmc.ncbi.nlm.nih.gov/articles/PMC5965518/; OpenAlex y Europe PMC lo registran, consultados por Claude el
+2026-10-13). Vanessa lo abrió ese día y ubicó la afirmación 2 en el resumen (p. 850): "Using this model for ability
+estimation results in different ability estimates compared with a model ignoring missing responses" (trazabilidad
+T-Van-10). El PDF todavía no está adjunto en Zotero, y el estado de esta nota sigue `por_verificar` hasta que un
+integrante lo cambie.

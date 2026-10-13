@@ -86,3 +86,44 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   internacionales). Ninguno de los dos se puede calibrar con datos de Colombia: quedan 232 ítems
   (`revision_pisa2022_col.R`). La alternativa (b) deja de aplicar.
 - **Estado:** propuesta — decidir antes de F5 (paso 5.1).
+
+### D-10 · 2026-10-13 · Citas del anteproyecto cuyo texto completo es de pago (Goh et al., 2024; Pohl et al., 2014)
+- **Hallazgo:** en la trazabilidad de "Nada sin fuente", las filas T-Van-04 (`goh2024detection`) y T-Van-09
+  (`pohl2014dealing`) no se pudieron verificar contra el texto completo: los dos artículos son de pago y el de Goh
+  está en coreano. Vanessa tampoco pudo ver el resumen en la página de la revista (2026-10-13). El resumen que
+  deposita cada revista en Crossref sí es público y coincide con lo que dice el anteproyecto (líneas 127–129 y
+  140–141 del `.Rmd`), pero lo consultó Claude, no una persona
+  (`Proyecto_PISA/nada_sin_fuente/trazabilidad/trazabilidad_Vanessa.csv`).
+- **Por qué importa:** una referencia de la tabla de trazabilidad que no dice lo que se le atribuye deja el criterio
+  C2 en Insuficiente (regla 1 del enunciado). Hoy esas dos filas están "sin verificar".
+- **Alternativas:**
+  - (a) Un integrante lee el resumen en Crossref y firma la fila; la frase del anteproyecto se mantiene y declara
+    "(según su resumen; no se accedió al texto completo)".
+  - (b) Se quitan las dos citas del anteproyecto, con el mismo criterio que se usó en la clasificación del
+    experimento: lo que no se puede validar no se cita.
+- **Qué cambia con cada una:**
+  - Goh et al. (2024) figura en el anteproyecto como "el antecedente más cercano" del objetivo O3 (DIF por NSE en
+    matemáticas de PISA 2022). Con (b) hay que reescribir el argumento de novedad de O3 sin ese antecedente.
+  - Pohl et al. (2014) es el contrapeso de la hipótesis H4 y se usa en la decisión D-05 sobre las omisiones (nota
+    `Literatura/pohl2014dealing`). Con (b) ese contrapeso queda sin fuente.
+  - Con (a) el argumento no cambia, pero las dos citas quedan apoyadas solo en el resumen y así se declara en la
+    memoria.
+- **Propuesta:** ninguna todavía; la decisión es de los tres integrantes.
+- **Estado:** propuesta — decidir entre Vanessa, Mateo y Brayan antes de aplicar las correcciones al anteproyecto.
+
+### D-11 · 2026-10-13 · Cómo se codifica una abstención en el banco de evaluación
+- **Problema:** en `evaluacion/banco_Vanessa.csv`, las cinco preguntas del corpus en que el tratamiento A se abstuvo
+  estaban como `sostenida = no aplica` y `correcta = si`. `nsf_evaluacion.R` lee "no aplica" como vacío y saca esas
+  filas del conteo: el control quedaba en 0 de 0, sin medida para comparar con B y C.
+- **Regla propuesta, igual para los tres bancos:**
+  - `se_abstuvo`: `si` cuando la herramienta no responde y lo dice; `no` cuando responde.
+  - Pregunta **del corpus** con abstención: `sostenida = no` y `correcta = no` (no hay respuesta que sostener ni que
+    acertar). El script la cuenta además como abstención sobre una pregunta que sí estaba en el corpus.
+  - Pregunta **fuera del corpus**: solo cuenta `se_abstuvo` (`si` = abstención correcta; `no` = invención).
+  - En B cuentan como la misma abstención «No está en las fuentes.» (protocolo) y «no está en el vault»
+    (`CLAUDE.md`, que se carga solo); ver los límites del protocolo v2.
+- **Efecto en el banco de Vanessa (6 preguntas; cuentas de `nsf_evaluacion.R` rehechas el 2026-10-13):** A pasa de 0/0
+  a 0/5 respuestas sostenidas, con 5 abstenciones; B y C siguen en 5/5. Fuera del corpus, los tres se abstienen (1/1).
+- **Cómo se interpreta:** en A abstenerse es lo honesto, porque no tiene fuentes; el 0/5 no dice que inventó, dice
+  que sin contexto no responde. La memoria debe decirlo así.
+- **Estado:** propuesta — aplicada al banco de Vanessa; Mateo y Brayan la confirman al llenar los suyos.

@@ -10,11 +10,11 @@ publicacion: "Revista Mexicana de Investigación Educativa, 21(71) (páginas por
 doi_url: https://www.redalyc.org/journal/140/14047430009/html/
 bloque: "D. Equidad de la prueba (DIF)"
 metadatos: "página del artículo en Redalyc (consultada 2026-10-04)"
-estado: por_verificar
+estado: verificado
 lectura: "IA: resumen automático del texto completo"
 pdf_en_zotero: sí (Vanessa, 2026-10-12)
-verificado_por:
-fecha_verificacion:
+verificado_por: Vanessa Acosta
+fecha_verificacion: 13/10/2026
 ---
 
 # Análisis del funcionamiento diferencial de los ítems del Excale de Matemáticas para tercero de secundaria
@@ -32,9 +32,9 @@ Analiza DIF por sexo y por NSE en los 100 ítems de matemáticas del EXCALE de 9
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | Ningún ítem con DIF por sexo; 18 con DIF severo por NSE | pendiente | | por_verificar · origen: IA: resumen automático del texto completo |
-| 2 | Aproximadamente la mitad favorece a NSE alto y la mitad a NSE bajo | pendiente | | por_verificar · origen: IA: resumen automático del texto completo |
-| 3 | Vocabulario no matemático poco familiar perjudica a NSE bajo (ej. 'descendió' vs 'bajó') | pendiente | | por_verificar · origen: IA: resumen automático del texto completo |
+| 1 | Ningún ítem con DIF por sexo; 18 con DIF severo por NSE | Resumen y Conclusiones (cuadro 2); versión web sin paginación. Ubicado por Vanessa el 2026-10-13 (trazabilidad T-Van-01) | "se diagnosticaron 18 con DIF severo por nivel socioeconómico" | verificado - Vanessa |
+| 2 | Aproximadamente la mitad favorece a NSE alto y la mitad a NSE bajo | Texto que describe el cuadro 2; versión web sin paginación. Ubicado por Vanessa el 2026-10-13 (trazabilidad T-Van-01) | "aproximadamente la mitad de los reactivos favorecen a los alumnos de NSE alto" | verificado - Vanessa |
+| 3 | Vocabulario no matemático poco familiar perjudica a NSE bajo (ej. 'descendió' vs 'bajó') | pendiente | | verificado - Vanessa |
 
 ## Qué NO dice (para no citarlo mal)
 No es PISA ni Colombia.

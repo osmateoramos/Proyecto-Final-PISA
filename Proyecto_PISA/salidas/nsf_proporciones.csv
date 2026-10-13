@@ -1,0 +1,4 @@
+﻿tratamiento;n;utilizables;existe_no_dice;no_existe;p_utilizable;ic95_inf;ic95_sup;herramienta
+A;13;11;2;0;0.846;0.578;0.957;Claude sin contexto
+B;18;15;2;1;0.833;0.608;0.942;Zotero + Obsidian (Claude con el vault)
+C;17;12;5;0;0.706;0.469;0.867;NotebookLM

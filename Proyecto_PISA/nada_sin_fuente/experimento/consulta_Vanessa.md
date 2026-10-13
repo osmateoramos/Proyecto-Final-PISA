@@ -10,9 +10,33 @@
 > El tratamiento C ya se corrió el 2026-10-12 con 4 PDF (nota `16 Experimento Nada sin fuente`). Esa corrida queda
 > como **piloto** y caso de fallo; aquí se pega la corrida nueva con el corpus completo.
 
+## Desvíos frente al procedimiento común (declarados el 2026-10-13)
+
+Las tres corridas de esta consulta no siguieron exactamente el procedimiento del `README.md`. Se dejan como están y
+se declaran, porque repetirlas cambiaría las referencias que ya clasificaron a ciegas los tres integrantes.
+
+1. **A — el prompt no es idéntico al texto base.** Lleva delante la instrucción «sin buscar en internet responde esta
+   pregunta». Se agregó porque un primer intento sí buscó en la web y se descartó. Esa instrucción pudo volver más
+   cauta la respuesta: el modelo no dio ningún DOI y advirtió que no podía verificarlos.
+2. **B — no fue una sesión nueva.** Se corrió en la misma sesión de Claude Code en que ya se había trabajado con el
+   vault, con el protocolo **v1** y sin la regla 6 de la v2 (no abrir archivos fuera de `Vault_PISA2022`). No consta
+   que se usara `--disallowedTools`; la respuesta no muestra búsqueda web.
+3. **C — las referencias no salen de la corrida oficial.** Con el texto base, NotebookLM respondió «No está en las
+   fuentes» (cero referencias). Las siete referencias de C que entraron a la hoja ciega salen de la *prueba de
+   diagnóstico*, que usó otro prompt, con el término NSE definido. Para esta consulta, C compara entonces un prompt
+   distinto del de A y B.
+4. **Modelo: A y B no usaron el mismo.** A se corrió con Claude Opus 5.5 y B con Claude Sonnet 5 (confirmado por
+   Vanessa el 2026-10-13; los commits de esa sesión llevan esa atribución). El procedimiento pedía el mismo modelo
+   en los dos, así que en esta consulta la diferencia entre A y B mezcla el efecto del vault con el del modelo. De
+   NotebookLM no se anotó la versión.
+
+**Qué implica para el análisis:** las proporciones de esta consulta comparan tratamientos que difieren en algo más que
+la herramienta (prompt en A y en C; estado de la sesión y modelo en B). Debe reportarse como limitación en
+`experimento_decision` y en la memoria.
+
 ## Tratamiento A — chat sin contexto
 
-- **Herramienta y versión / modelo:** Claude (claude.ai, chat nuevo)
+- **Herramienta y versión / modelo:** Claude (claude.ai, chat nuevo) · Claude Opus 5.5 (dato de Vanessa, anotado el 2026-10-13)
 - **Fecha y hora:** 2026-10-12
 - **Condiciones:** chat nuevo, sin proyecto ni archivos, instrucción explícita de no buscar en internet; sin
   indicador de búsqueda en la respuesta (no aparece "buscando" ni fuentes web, a diferencia del primer intento
@@ -74,7 +98,7 @@ abstención varía por herramienta incluso bajo la misma instrucción.
 
 ## Tratamiento B — Zotero + Obsidian (Claude con el vault)
 
-- **Herramienta y versión / modelo:** Claude (Claude Code, sesión de Vanessa en este repo)
+- **Herramienta y versión / modelo:** Claude (Claude Code, sesión de Vanessa en este repo) · Claude Sonnet 5, distinto del de A (confirmado por Vanessa el 2026-10-13; coincide con la atribución de los commits de esa sesión)
 - **Fecha y hora:** 2026-10-12
 - **Condiciones:** misma sesión de Claude Code en el repo (ya tenía el vault leído de trabajo previo); protocolo
   v1 aplicado; sin búsqueda web; fuentes permitidas = solo `Vault_PISA2022/Literatura/`

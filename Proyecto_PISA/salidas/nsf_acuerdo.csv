@@ -1,0 +1,15 @@
+﻿medida;valor
+clasificadores;Brayan, Mateo, Vanessa
+referencias clasificadas por todos;40
+referencias con desacuerdo;23
+acuerdo total (%);42.5
+acuerdo Brayan-Mateo (%);60
+kappa de Cohen Brayan-Mateo;0.232
+acuerdo Brayan-Vanessa (%);50
+kappa de Cohen Brayan-Vanessa;-0.04
+acuerdo Mateo-Vanessa (%);70
+kappa de Cohen Mateo-Vanessa;0.155
+kappa de Fleiss;0.062
+desacuerdos que involucran existe_no_dice;22
+desacuerdos que involucran no_existe;3
+desacuerdos que involucran utilizable;23

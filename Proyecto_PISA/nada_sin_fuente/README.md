@@ -42,8 +42,21 @@ Texto base, el mismo en A, B y C:
 | | Dónde | Qué se pega | Cuidado |
 |---|---|---|---|
 | **A** | Chat nuevo de Claude, **sin proyecto** y **sin búsqueda web** | Solo el texto base | Anotar el modelo y la versión. Debe ser el mismo modelo que en B |
-| **B** | Sesión **nueva** de Claude Code (app de escritorio, pestaña Code) con la carpeta del repositorio. `CLAUDE.md` se carga solo | `protocolo/protocolo_consulta_v1.md` + texto base | Si pide permiso para buscar en internet, **negar**. Si usó web, descartar y repetir. Fuentes permitidas: solo `Vault_PISA2022/` |
+| **B** | Sesión **nueva** de Claude Code (app de escritorio, pestaña Code) abierta en la carpeta **`Vault_PISA2022`**, no en la raíz del repositorio. El `CLAUDE.md` de la raíz se carga igual | Texto de `protocolo/protocolo_consulta_v1.md` + texto base | La v1 dice «los archivos de esta carpeta»: abrir la sesión en el vault hace que esa carpeta sea solo el vault y no `Proyecto_PISA/`, donde están las respuestas de A. Si pide permiso para buscar en internet o para leer fuera del vault, **negar**; si lo hizo, descartar y repetir |
 | **C** | Cuaderno compartido de NotebookLM con los PDF del corpus. Protocolo v1 en *Configurar chat* | Texto base | Anotar cuántas fuentes tenía el cuaderno ese día |
+
+**Qué referencias se cuentan (regla del equipo, 2026-10-12):** toda referencia a la que la herramienta le atribuye
+algún contenido, también las que presenta como «cercanas», «que no cumplen todos los criterios» o «para leer». Si la
+herramienta se abstiene («No está en las fuentes»), la abstención se anota como resultado aparte y se cuentan igual
+las referencias que haya dado. La misma regla vale para A, B y C y para los tres integrantes.
+
+**Aclaración (2026-10-13): las referencias «descartadas» no se cuentan.** Si la herramienta nombra una fuente solo
+para decir que no sirve («Descartada: …»), no la está ofreciendo como fuente: se lista aparte, como la abstención
+(`salidas/nsf_descartadas.csv`). Pasó con 6 referencias de B en la consulta de Mateo (R004, R011, R017, R039, R040,
+R066). Ya estaban en la hoja ciega y se clasificaron; las clasificaciones se dejan como están, pero
+`nsf_experimento.R` las saca de los conteos, de las proporciones y del acuerdo. La decisión se tomó después de
+clasificar, así que se declara y se reporta también el resultado contándolas (`salidas/nsf_sensibilidad_descartadas.csv`).
+Quien todavía no haya clasificado puede dejar esas 6 en blanco.
 
 De cada respuesta:
 - pegar el prompt y la respuesta completa en `experimento/consulta_{persona}.md`;
@@ -109,7 +122,8 @@ Cada uno debe poder responder sobre la parte de los otros.
 
 ## Arrancar el sistema en menos de 60 segundos (sustentación)
 
-- **B:** abrir Claude (pestaña Code) en la carpeta del repositorio, sesión nueva, pegar el protocolo v1 y la pregunta.
+- **B:** `git pull`, abrir Claude (pestaña Code) en la carpeta **`Vault_PISA2022`**, sesión nueva, pegar el texto de
+  `protocolo/protocolo_consulta_v2.md` y la pregunta.
 - **C:** abrir el cuaderno compartido de NotebookLM; el protocolo ya está en *Configurar chat*.
 - **"Reindexar":**
   - B no tiene índice: lee los archivos del vault tal como están (`git pull` y sesión nueva);

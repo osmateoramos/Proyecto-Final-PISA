@@ -43,7 +43,7 @@ n_ver <- sum(vapply(notas, function(f) any(grepl("^estado:\\s*verificado", readL
 tz_tot <- TZ[persona == "TOTAL"]
 ```
 
-# Diagnóstico · Vanessa
+# Diagnóstico
 
 ## Qué nos inventó la IA (nueve fallos en tres inventarios)
 
@@ -62,7 +62,7 @@ tz_tot <- TZ[persona == "TOTAL"]
 \medskip
 \alert{Los nueve se detectaron igual: abriendo el documento original.}
 
-# Experimento y decisión · Brayan
+# Experimento y decisión
 
 ## El experimento
 
@@ -159,7 +159,7 @@ knitr::kable(BK[, .(Tratamiento = CORTO[tratamiento],
 - **C**: se salió de sus fuentes, su cuaderno cambió entre corridas (13, 36 y 27 entradas) y no exporta referencias.
 - **A**: responde de memoria y sin páginas.
 
-# El sistema · Mateo
+# El sistema
 
 ## Cómo quedó montado (vía empaquetada)
 
@@ -198,7 +198,7 @@ La IA nunca marca \texttt{verificado}: lo hace una persona con el PDF abierto.
 
 **Si el profesor señala una frase del anteproyecto:** su fila en `trazabilidad/trazabilidad.md` (fuente, página, cita y quién la verificó).
 
-# Límites · los tres
+# Límites
 
 ## Dónde falla
 

@@ -1,7 +1,7 @@
 # Guion de la sustentación completa (10 minutos + 15 de preguntas)
 
 Presentación: `presentacion.pdf`. Los números de diapositiva son los del pie de página (1/13 … 13/13). Las portadas de
-sección («Diagnóstico · Vanessa», etc.) son el pase entre expositores: se dejan 1 o 2 segundos y se avanza.
+sección («Diagnóstico», «Experimento y decisión», etc.) no llevan nombres y son el pase entre expositores: se dejan 1 o 2 segundos y se avanza.
 Detalle de cada bloque: `guion_Brayan.md` (2–5′) y `guion_Mateo.md` (5–8′). Cifras de `salidas/` al 2026-10-13.
 
 | Minuto | Quién | Diapositivas | Qué se muestra |

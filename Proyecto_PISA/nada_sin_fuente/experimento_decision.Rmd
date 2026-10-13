@@ -11,8 +11,8 @@ output:
     latex_engine: xelatex
     number_sections: true
     toc: false
-geometry: margin=2.2cm
-fontsize: 11pt
+geometry: margin=2cm
+fontsize: 10pt
 ---
 
 ```{r setup, include=FALSE}
@@ -41,111 +41,116 @@ para el efecto del NSE en matemáticas (Brayan, O4). Cada una se corrió con el 
 - **C** = NotebookLM: cuaderno compartido con PDF del corpus y el protocolo en *Configurar chat*.
 
 **Qué se contó.** Toda referencia a la que la herramienta le atribuye algún contenido, también las que presenta como
-«cercanas»; si se abstiene («No está en las fuentes»), la abstención se anota aparte. Tampoco se cuentan las
-referencias que la herramienta nombra solo para descartarlas («Descartada: …»): no las ofrece como fuente, así que se
-listan aparte, como la abstención (desvío 4). Los tres integrantes
-clasificaron todas las referencias por separado, sin ver el tratamiento y en orden aleatorio, en *utilizable*,
-*existe pero no dice eso* o *no existe*, abriendo el documento original. La etiqueta final es la de la mayoría.
+«cercanas». La abstención («No está en las fuentes») y las fuentes que la herramienta nombra solo para descartarlas
+(«Descartada: …») se anotan aparte. Los tres integrantes clasificaron todas las referencias por separado, sin ver el
+tratamiento y en orden aleatorio, en *utilizable*, *existe pero no dice eso* o *no existe*, abriendo el documento
+original. La etiqueta final es la de la mayoría.
 
 **Desvíos que declaramos.**
 
 1. No hubo tratamiento de buscador bibliográfico: el experimento mide **anclaje** (control frente a dos vías de
    contexto cerrado), no búsqueda.
-2. El cuaderno de NotebookLM llegó a su límite de fuentes con 13 entradas, 4 de ellas duplicadas, y sin la mayoría
-   del corpus. Una corrida de C hecha en ese estado (consulta de Brayan) se abstuvo sin referencias; se repitió
-   después de completar el cuaderno y cuenta la segunda. En `experimento/consulta_{persona}.md` consta con qué
-   fuentes se corrió cada C.
+2. El cuaderno de NotebookLM llegó a su límite de fuentes (13 entradas, 4 duplicadas). La C de Brayan corrida en ese
+   estado se abstuvo; se repitió con el cuaderno completo y cuenta la segunda.
 3. Una corrida de B leyó archivos fuera del vault (entre ellos la respuesta de A) y se descartó. Desde entonces B se
-   corre con la sesión abierta en `Vault_PISA2022` y con el protocolo v2 (regla 6); la versión usada en cada corrida
-   está en `experimento/consulta_{persona}.md`.
-4. La regla de conteo no decía qué hacer con las fuentes que la herramienta descarta. En la consulta de Mateo, B
-   listó seis documentos del vault como descartados, con el motivo. Entraron a la hoja ciega solo con el apellido o la
-   clave del archivo, sin título, y por eso los clasificadores marcaron casi todos como «no existe», aunque los seis
-   existen en el vault. Después de clasificar se decidió sacarlos del análisis sin cambiar las clasificaciones. Como
-   la decisión se tomó viendo los datos, la tabla de sensibilidad muestra también el resultado contándolos.
+   corre con la sesión abierta en `Vault_PISA2022` y el protocolo v2 (regla 6).
+4. La regla no decía qué hacer con las fuentes descartadas. En la consulta de Mateo, B descartó seis documentos del
+   vault explicando por qué; llegaron a la hoja ciega sin título y casi todos se marcaron «no existe», aunque existen.
+   Se sacaron del análisis después de clasificar, sin cambiar las clasificaciones, y por eso se informa también el
+   resultado contándolos.
+
+En `experimento/consulta_{persona}.md` consta, para cada corrida, el modelo, la versión del protocolo y las fuentes.
 
 *(Pendiente: Mateo y Vanessa confirman el modelo de A y B; Brayan usó Claude Extra 5.5 en los dos.)*
 
 # Resultados
 
-```{r conteos}
-if (!file.exists(salida("nsf_conteos.csv"))) pendiente("nsf_conteos.csv") else {
-  d <- fread(salida("nsf_conteos.csv"), encoding = "UTF-8")
-  setnames(d, c("tratamiento", "utilizable", "existe_no_dice", "no_existe", "sin_consenso"),
-           c("Tratamiento", "Utilizable", "Existe pero no dice eso", "No existe", "Sin mayoría"), skip_absent = TRUE)
-  d[, Tratamiento := CORTO[Tratamiento]]
-  knitr::kable(d, caption = "Etiqueta final (mayoría de los tres clasificadores) por tratamiento.")
+```{r numeros}
+leer_s <- function(n) if (file.exists(salida(n))) fread(salida(n), encoding = "UTF-8") else NULL
+P <- leer_s("nsf_proporciones.csv"); D <- leer_s("nsf_diferencias.csv"); CT <- leer_s("nsf_conteos.csv")
+S <- leer_s("nsf_sensibilidad_descartadas.csv"); DES <- leer_s("nsf_desacuerdos.csv")
+AC <- if (file.exists(salida("nsf_acuerdo.csv")))
+  fread(salida("nsf_acuerdo.csv"), encoding = "UTF-8", colClasses = "character") else NULL
+ac <- function(patron) { x <- if (is.null(AC)) character(0) else AC[grepl(patron, medida), valor]
+                         if (length(x)) x[1] else "?" }
+rango_n  <- if (is.null(P)) "pocas" else paste(range(P$n), collapse = " a ")
+ancho_ic <- if (is.null(P)) "?" else sprintf("%.2f", max(P$ic95_sup - P$ic95_inf))
+p_fisher <- if (is.null(D)) "?" else paste(sprintf("%.2f", D$p_fisher), collapse = " y ")
+sens_B   <- if (is.null(S)) "?" else
+  S[version == "contando las descartadas" & tratamiento == "B", sprintf("%.2f (n = %d)", p_utilizable, n)]
+cols_cl  <- if (is.null(DES)) character(0) else setdiff(names(DES), c("id", "tratamiento", "descartada", "final"))
+n_des    <- if (is.null(DES)) 0L else nrow(DES)
+n_ue     <- if (!n_des) 0L else sum(apply(as.matrix(DES[, ..cols_cl]), 1, function(v)
+              setequal(unique(na.omit(v)), c("utilizable", "existe_no_dice"))))
+kappas   <- if (is.null(AC)) "?" else {
+  k <- AC[grepl("^kappa de (Cohen|Fleiss)", medida)]
+  paste(sprintf("%s = %s", sub("^kappa de ", "", k$medida), sub("\\.", ",", k$valor)), collapse = "; ") }
+```
+
+```{r resultados}
+if (is.null(P) || is.null(CT)) pendiente("nsf_proporciones.csv") else {
+  d <- merge(CT, P[, .(tratamiento, p_utilizable, ic95_inf, ic95_sup)], by = "tratamiento")
+  dd <- if (is.null(D)) data.table(tratamiento = character(0), diferencia = numeric(0), d_inf = numeric(0),
+                                    d_sup = numeric(0), p_f = numeric(0)) else
+    D[, .(tratamiento = sub(" - A$", "", comparacion), diferencia, d_inf = ic95_inf, d_sup = ic95_sup, p_f = p_fisher)]
+  d <- merge(d, dd, by = "tratamiento", all.x = TRUE)
+  knitr::kable(d[, .(Tratamiento = CORTO[tratamiento], U = utilizable, E = existe_no_dice, N = no_existe,
+                     `Sin mayoría` = sin_consenso,
+                     `Utilizables (IC 95 %)` = sprintf("%.2f (%.2f–%.2f)", p_utilizable, ic95_inf, ic95_sup),
+                     `Diferencia con A (IC 95 %); p` = ifelse(is.na(diferencia), "—",
+                       sprintf("%+.2f (%+.2f a %+.2f); %.2f", diferencia, d_inf, d_sup, p_f)))],
+               caption = paste("Etiqueta final por mayoría (U utilizable, E existe pero no dice eso, N no existe),",
+                               "proporción de utilizables con IC de Wilson y diferencia frente a A con IC de",
+                               "Newcombe y p de la prueba exacta de Fisher. Sin las referencias descartadas."))
 }
 ```
 
-```{r proporciones}
-if (!file.exists(salida("nsf_proporciones.csv"))) pendiente("nsf_proporciones.csv") else {
-  d <- fread(salida("nsf_proporciones.csv"), encoding = "UTF-8")
-  knitr::kable(d[, .(Tratamiento = CORTO[tratamiento], n, Utilizables = utilizables,
-                     `Proporción` = sprintf("%.2f", p_utilizable),
-                     `IC 95 % (Wilson)` = sprintf("%.2f – %.2f", ic95_inf, ic95_sup))],
-               caption = "Proporción de referencias utilizables por tratamiento.")
-}
-```
+Contando las seis referencias descartadas (desvío 4), B pasaría a `r sens_B`; A y C no cambian.
 
-```{r sensibilidad}
-if (!file.exists(salida("nsf_sensibilidad_descartadas.csv"))) pendiente("nsf_sensibilidad_descartadas.csv") else {
-  d <- fread(salida("nsf_sensibilidad_descartadas.csv"), encoding = "UTF-8")
-  d <- dcast(d, tratamiento ~ version, value.var = c("n", "p_utilizable"))
-  sin <- "sin descartadas (análisis)"; con <- "contando las descartadas"
-  knitr::kable(d[, .(Tratamiento = CORTO[tratamiento],
-                     `Sin descartadas` = sprintf("%.2f (n = %d)", get(paste0("p_utilizable_", sin)), get(paste0("n_", sin))),
-                     `Contando las descartadas` = sprintf("%.2f (n = %d)", get(paste0("p_utilizable_", con)),
-                                                          get(paste0("n_", con))))],
-               caption = "Sensibilidad: proporción de utilizables sin y con las referencias descartadas por la herramienta.")
-}
-```
+**Qué dicen los intervalos.** Cada proporción sale de `r rango_n` referencias (solo las que tienen etiqueta de
+mayoría): un intervalo de Wilson llega a medir `r ancho_ic` de ancho, los tres se traslapan y las diferencias frente
+a A incluyen el cero (Fisher: p = `r p_fisher`). El orden es una tendencia, no una diferencia demostrada. Además, las
+referencias de una misma consulta no son independientes, porque comparten respuesta, tema y modelo. El número
+efectivo de observaciones está más cerca de las tres consultas por tratamiento, así que los intervalos reales serían
+más anchos. Por eso la decisión se apoya también en el banco y en los criterios cualitativos.
 
-```{r diferencias}
-if (!file.exists(salida("nsf_diferencias.csv"))) pendiente("nsf_diferencias.csv") else {
-  d <- fread(salida("nsf_diferencias.csv"), encoding = "UTF-8")
-  knitr::kable(d[, .(`Comparación` = comparacion, Diferencia = sprintf("%+.2f", diferencia),
-                     `IC 95 % (Newcombe)` = sprintf("%+.2f a %+.2f", ic95_inf, ic95_sup),
-                     `p (Fisher)` = sprintf("%.3f", p_fisher))],
-               caption = "Diferencia en la proporción de utilizables frente al control A.")
-}
-```
-
-*(Pendiente — Brayan: qué dicen estos intervalos con $n \approx 15$ por tratamiento, y por qué las referencias de una
-misma consulta no son independientes.)*
-
-# Acuerdo de la clasificación
-
-```{r acuerdo}
-# Versión compacta; el detalle completo queda en salidas/nsf_acuerdo.csv
-if (!file.exists(salida("nsf_acuerdo.csv"))) pendiente("nsf_acuerdo.csv") else {
-  a <- fread(salida("nsf_acuerdo.csv"), encoding = "UTF-8", colClasses = "character")
-  v <- function(patron) { x <- a[grepl(patron, medida), valor]; if (length(x)) x[1] else "" }
-  par <- a[grepl("^kappa de Cohen", medida)]
-  inv <- a[grepl("^desacuerdos que involucran", medida)]
-  d <- data.table(
-    Medida = c("Referencias clasificadas por los tres", "Referencias con desacuerdo", "Acuerdo total",
-               "Kappa de Fleiss", "Kappa de Cohen por pares", "Categorías en juego en los desacuerdos"),
-    Valor = c(v("^referencias clasificadas"), v("^referencias con desacuerdo"), paste0(v("^acuerdo total"), " %"),
-              v("^kappa de Fleiss"),
-              paste(sub("^kappa de Cohen ", "", par$medida), par$valor, collapse = "; "),
-              paste(sub("^desacuerdos que involucran ", "", inv$medida), inv$valor, collapse = "; ")))
-  knitr::kable(d[nzchar(Valor) & Valor != " %"], caption = "Acuerdo entre los clasificadores.")
-}
-```
-
-*(Pendiente: en qué no coincidieron y por qué. Ver `salidas/nsf_desacuerdos.csv`.)*
+**Acuerdo de la clasificación.** Clasificaron `r ac("^clasificadores$")`. De `r ac("^referencias clasificadas")`
+referencias hubo desacuerdo en `r n_des` (acuerdo total `r sub("\\.", ",", ac("^acuerdo total"))` %; kappa de
+`r kappas`). De esos desacuerdos, `r n_ue` son entre «utilizable» y «existe pero no dice eso»: casi nunca se discutió
+si la referencia existe, sino si el documento dice lo que la herramienta le atribuye. Esa frontera depende de cuánta
+paráfrasis acepta cada clasificador, y es la que se resuelve por mayoría o en la hoja de consenso. El detalle está en
+`salidas/nsf_acuerdo.csv` y `nsf_desacuerdos.csv`. *(Se revisa cuando clasifique Vanessa.)*
 
 # Decisión
 
-```{r decision, results='asis'}
-# Se toma la tabla de tabla_decision.md sin la columna "La pregunta que responde" (por espacio)
+```{r decision-tabla}
+# Versión corta de tabla_decision.md (la completa, con la evidencia de cada celda, queda en ese archivo)
+B_ <- leer_s("nsf_banco_por_tratamiento.csv")
+exp_txt <- function(t) if (is.null(P) || !t %in% P$tratamiento) "pendiente" else
+  P[tratamiento == t, sprintf("%d/%d = %.2f", utilizables, n, p_utilizable)]
+banco_txt <- function(t) if (is.null(B_) || !t %in% B_$tratamiento) "pendiente" else
+  B_[tratamiento == t, sprintf("dentro: %d/%d sostenidas; fuera: %d/%d abstenciones", sostenida, sostenida_n,
+                               abstencion_fuera, abstencion_fuera_n)]
+d <- data.table(
+  Criterio = c("Contexto cerrado", "Cita con localización", "Base verificada", "Privacidad", "Costo",
+               "Exportación a APA 7", "Reproducibilidad", "Utilizables (experimento)", "Banco"),
+  A = c("No: responde de memoria", "DOI, sin página", "No lee fuentes", "La pregunta va a Anthropic",
+        "Plan de Claude", "No", "Baja", exp_txt("A"), banco_txt("A")),
+  B = c("Sí, con la sesión en el vault (v2)", "Nota, página y estado", "Solo si la nota está verificada",
+        "Las notas van a Anthropic; los PDF quedan locales", "Gratis + plan de Claude", "Sí (Zotero + Better BibTeX)",
+        "Media (vault y protocolo en Git)", exp_txt("B"), banco_txt("B")),
+  C = c("Sí: solo el cuaderno", "Documento; página variable", "Lee el PDF cargado", "Los PDF se suben a Google",
+        "Gratis, con límite de fuentes", "No", "Baja (cuaderno sin versiones)", exp_txt("C"), banco_txt("C")))
+d[, Criterio := paste0("\\hspace{0pt}", Criterio)]  # deja a LaTeX partir la primera palabra de la celda
+setnames(d, c("A", "B", "C"), CORTO)
+knitr::kable(d, caption = "Tabla de decisión resumida (la completa está en tabla_decision.md).")
+```
+
+```{r decision-texto, results='asis'}
+# La elección y las descartadas se toman de tabla_decision.md, desde "Herramienta elegida" hasta el final
 if (file.exists("tabla_decision.md")) {
   l <- readLines("tabla_decision.md", encoding = "UTF-8")
-  filas <- l[grepl("^\\|", l)]
-  filas <- vapply(strsplit(filas, "|", fixed = TRUE), function(c) paste0(paste(c[-3], collapse = "|"), "|"), "")
-  cat(filas, sep = "\n")
-  cat("\n\n")
-  cat(l[grepl("^\\*\\*", l)], sep = "\n\n")
+  i <- grep("^\\*\\*Herramienta elegida", l)
+  if (length(i)) cat(l[i[1]:length(l)], sep = "\n")
 }
 ```

@@ -194,17 +194,66 @@ Avisos para el registro
 
 ## Tratamiento C — NotebookLM
 
-- **Herramienta y versión / modelo:**
-- **Fecha y hora:**
-- **Condiciones:** cuaderno compartido; n.º de fuentes cargadas: ; protocolo v1 en Configurar chat
+- **Herramienta y versión / modelo:** Gemini Notebook (antes NotebookLM), cuaderno compartido «Proyecto Final»
+- **Fecha y hora:** 2026-10-13, hacia las 00:30
+- **Condiciones:**
+  - cuaderno compartido con **36 fuentes**: las 20 que ya tenía (con PDF repetidos de Kucam, Calderón, Çelik y Liu,
+    que el equipo decidió dejar) más 16 de Mateo subidas antes de la corrida;
+  - protocolo v1 en *Personalizar cuaderno*;
+  - texto base solo.
+  - *Mateo: confirmar el número de fuentes que mostraba el cuaderno y si el protocolo v1 ya estaba o tuvo que
+    pegarlo.*
 - **Prompt exacto:**
 
 ```
-(pegar)
+¿Qué estudios evalúan si el índice de posesiones del hogar (HOMEPOS) o el índice socioeconómico (ESCS) de PISA mide lo mismo en distintos grupos de estudiantes dentro de un país (invarianza de medición o funcionamiento diferencial de sus ítems)? Dame al menos cinco referencias (autores, año, título, revista y DOI) y, para cada una, qué encontró sobre el tema.
 ```
 
-- **Respuesta completa:**
+- **Respuesta completa:** *(Mateo: confirmar que está completa; el último párrafo termina sin punto final.)*
 
 ```
-(pegar sin editar)
+En los documentos proporcionados en este cuaderno, existe únicamente un estudio primario completo que evalúa de forma directa la invarianza de medición y el funcionamiento diferencial de los ítems (DIF) de las escalas socioeconómicas de PISA (HOMEPOS / ESCS) entre distintos subgrupos de estudiantes dentro de un país. Las demás referencias solicitadas corresponden a citas indirectas (de segundo nivel) que aparecen mencionadas en las revisiones de la literatura de los documentos de la carpeta.
+Si la instrucción exige encontrar cinco estudios primarios completos y directos dentro de la carpeta sobre este tema específico, la respuesta exacta es: "No está en las fuentes."
+A continuación, se detalla el estudio primario disponible en la carpeta y cuatro estudios referenciados de manera indirecta en el texto de las fuentes:
+1. Estudio primario directo en las fuentes
+
+* Autores: Oleksandra Mittal, Ronny Scherer y Trude Nilsen
+* Año: 2022
+* Título: Assessing the evidence for the comparability of socioeconomic status between students with and without immigrant background in Norway and Sweden
+* Revista: Large-scale Assessments in Education, vol. 10, artículo 13
+* DOI: `10.1186/s40536-022-00132-w`
+* Documento de origen: Documento completo `mittal2022assessing.pdf` (Abstract, p. 2; Sección "Introduction", pp. 2-3; Sección "Results", pp. 15-18; Sección "Discussion", pp. 19-23).
+* Hallazgos: Evaluó la escala de posesiones del hogar (HOMEPOS) de PISA 2018 (22 ítems internacionales) entre estudiantes nativos, de primera generación y de segunda generación de inmigrantes en Noruega y Suecia. Mostró una falta de invarianza métrica y escalar completa para la escala HOMEPOS entre los grupos de origen migratorio en ambos países. En Noruega, 14 ítems mostraron DIF uniforme, y en Suecia, 19 ítems presentaron DIF uniforme y 8 ítems mostraron DIF no uniforme. Al eliminar o ajustar los ítems con DIF, la relación entre HOMEPOS y el rendimiento en lectura varió para los estudiantes inmigrantes, mientras que se mantuvo estable y moderada para los estudiantes nativos.
+
+2. Referencias indirectas (Citas de segundo nivel en el texto de las fuentes)
+Aclaración sobre las fuentes 2 a 5: Las siguientes referencias son citas indirectas que aparecen mencionadas dentro del texto o marco teórico de `mittal2022assessing.pdf`, `s40536-020-00086-x.pdf` y `eriksson2021socioeconomic.pdf`. No se verificó el documento original de cada una.
+
+* Autores: Julia Lenkeit, David H. Caro y Steve Strand
+* Año: 2015
+* Título: Tackling the remaining attainment gap between students with and without immigrant background: An investigation into the equivalence of SES constructs
+* Revista: Educational Research and Evaluation, 21(1), 60–83
+* DOI: `10.1080/13803611.2015.1009915`
+* Documento de origen: Mencionado en `mittal2022assessing.pdf` (Sección "Introduction", p. 3; "Discussion", p. 19; "References", p. 27).
+* Hallazgos (según la fuente secundaria): Investigó la equivalencia de las escalas de nivel socioeconómico (NSE/SES) entre estudiantes nativos e inmigrantes. Advirtió que la falta de comparabilidad/invarianza en las medidas de NSE provoca que dos estudiantes con el mismo nivel real de NSE reciban puntajes diferentes según su origen migratorio, lo que sesga las comparaciones.
+* Autores: Artur Pokropek, Francesca Borgonovi y Chase McCormick
+* Año: 2017
+* Título: On the Cross-Country Comparability of Indicators of Socioeconomic Resources in PISA
+* Revista: Applied Measurement in Education, 30(4), 243–258
+* DOI: `10.1080/08957347.2017.1353985`
+* Documento de origen: Mencionado en `s40536-020-00086-x.pdf` (p. 2, p. 37), `mittal2022assessing.pdf` (p. 28) y `eriksson2021socioeconomic.pdf` (p. 115).
+* Hallazgos (según las fuentes secundarias): Analizó la comparabilidad de los indicadores de recursos socioeconómicos en PISA, demostrando limitaciones en la invarianza de la escala de posesiones del hogar (HOMEPOS) al aplicarla en distintos contextos culturales.
+* Autores: David Rutkowski y Leslie Rutkowski
+* Año: 2013
+* Título: Measuring socioeconomic background in PISA: One size might not fit all
+* Revista: Research in Comparative and International Education, 8(3), 259–278
+* DOI: `10.2304/rcie.2013.8.3.259`
+* Documento de origen: Mencionado en `s40536-020-00086-x.pdf` (p. 2, p. 37) y `mittal2022assessing.pdf` (p. 28).
+* Hallazgos (según las fuentes secundarias): Cuestionó la premisa de que una misma escala de posesiones del hogar funcione de manera equivalente para todos los grupos o países, concluyendo que un modelo único de medición de antecedentes socioeconómicos no se ajusta a todas las poblaciones.
+* Autores: Alejandro Sandoval-Hernández, David Rutkowski, Tomas Matta y Daniel Miranda
+* Año: 2019
+* Título: Back to the drawing board: Can we compare socioeconomic background scales? [Pensémoslo de nuevo: ¿Podemos comparar las escalas de antecedentes socioeconómicos?]
+* Revista: Revista de Educación, 383, 37–61
+* DOI: `10.4438/1988-592X-RE-2019-383-400`
+* Documento de origen: Mencionado en `mittal2022assessing.pdf` (Sección "Discussion", p. 19; "References", p. 28).
+* Hallazgos (según la fuente secundaria): Evaluó los desafíos de la comparabilidad de las escalas socioeconómicas, evidenciando las dificultades metodológicas para sostener la invarianza de medición en constructos de antecedente socioeconómico
 ```

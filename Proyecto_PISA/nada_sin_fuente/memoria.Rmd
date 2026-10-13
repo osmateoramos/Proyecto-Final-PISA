@@ -31,7 +31,31 @@ tabla <- function(ruta, caption, ...) {
 
 # Diagnóstico
 
-*(Pendiente — Vanessa, a partir de los tres inventarios en `inventarios/`.)* Qué nos inventó la IA y qué nos costó.
+*(Falta incorporar los inventarios de Mateo y Brayan cuando los firmen — siguen como plantilla en
+`inventarios/inventario_Mateo.md` e `inventario_Brayan.md`. Lo que sigue se basa solo en el inventario firmado de
+Vanessa, `inventarios/inventario_Vanessa.md`.)*
+
+Las fallas de IA que detectamos caen en tres patrones.
+
+El primero es el cruce de identificadores entre fuentes con formatos distintos: Claude no reconoció el ítem
+`CMA112Q02S` como retirado de la escala internacional porque el Technical Report lo codifica como `CMA112Q02
+(Dropped)`. El mismo caso quedó registrado también en la bitácora general del proyecto
+(`Vault_PISA2022/11 Protocolo de verificación.md`), lo que confirma que no fue un error aislado sino un patrón
+recurrente con los cruces automáticos entre documentos. Costó repetir el conteo de ítems calibrables de las cuatro
+competencias antes de seguir.
+
+El segundo es cerrar una revisión de literatura sin repasar lo que el equipo ya tenía agregado: la matriz llegó a
+afirmar que el DIF matemático por NSE "no se ha estudiado en PISA", pasando por alto tres fuentes que el propio
+equipo ya había clasificado (Liu y Bradley, 2021; Goh et al., 2024; Kucam y Gülleroğlu, 2023). Costó corregir la
+matriz y replantear cómo se justificaba la novedad de esa parte del proyecto.
+
+El tercero, y el más delicado, es el anclaje parcial en citas de segundo nivel: en el tratamiento C del experimento
+de esta actividad, NotebookLM describió correctamente el artículo de Kucam y Gülleroğlu (2023), pero al resumir una
+referencia que ese artículo solo cita de pasada —Liu (2017), citada únicamente por un punto metodológico— completó
+la descripción con conocimiento de su entrenamiento en lugar de limitarse a lo que decía el PDF, atribuyéndole
+hallazgos sobre NSE, género, etnia y TIMSS 2011 que el documento no contiene. No llegó a usarse la cita, pero habría
+pasado desapercibida sin abrir el PDF y compararla palabra por palabra — razón directa por la que el protocolo v1
+exige declarar las citas indirectas como tales (regla 5, `protocolo/protocolo_consulta_v1.md`).
 
 # Experimento y decisión
 

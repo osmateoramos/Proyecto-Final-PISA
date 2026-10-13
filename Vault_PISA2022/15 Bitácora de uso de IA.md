@@ -2,7 +2,7 @@
 tipo: guia
 estado: por_verificar
 lectura: "redactado por Claude junto con Vanessa, en vivo; falta revisión del resto del equipo"
-pendientes: "Vanessa completa sus columnas «qué revisó»; Mateo revisa sus filas (borradores de Claude); las de Brayan están revisadas"
+pendientes: "Vanessa completa sus columnas «qué revisó»; las de Brayan y Mateo están revisadas"
 verificado_por:
 fecha_verificacion:
 ---

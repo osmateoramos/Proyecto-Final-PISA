@@ -183,16 +183,20 @@ La IA nunca marca \texttt{verificado}: lo hace una persona con el PDF abierto.
 
 ## En vivo: una consulta con su cita
 
+\small
+
 **Arranque en menos de 60 segundos**
 
-1. Claude, pestaña Code → sesión nueva en la carpeta `Vault_PISA2022`.
+1. Claude, pestaña Code → sesión nueva en la carpeta `Vault_PISA2022` (modo que pide permiso).
 2. Pegar el protocolo v2 (`protocolo/protocolo_consulta_v2.md`) y la pregunta.
 3. Abrir la nota y el PDF que cita, en la página que dice.
 
-\medskip
-**Si el profesor señala una frase del anteproyecto**
+**Las dos preguntas de la demostración**
 
-- Buscar su fila en `trazabilidad/trazabilidad.md`: fuente, página, cita textual y quién la verificó.
+- «Según Avvisati y Wuyts (2024), ¿con qué modelo se construye HOMEPOS y cambió en 2022?» → nota, p. 11 y estado.
+- «¿Qué estudio evaluó la invarianza de HOMEPOS entre zonas rurales y urbanas de Colombia?» → «No está en las fuentes.»
+
+**Si el profesor señala una frase del anteproyecto:** su fila en `trazabilidad/trazabilidad.md` (fuente, página, cita y quién la verificó).
 
 # Límites · los tres
 

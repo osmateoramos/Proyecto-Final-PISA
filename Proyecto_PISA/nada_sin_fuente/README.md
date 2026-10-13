@@ -42,7 +42,7 @@ Texto base, el mismo en A, B y C:
 | | Dónde | Qué se pega | Cuidado |
 |---|---|---|---|
 | **A** | Chat nuevo de Claude, **sin proyecto** y **sin búsqueda web** | Solo el texto base | Anotar el modelo y la versión. Debe ser el mismo modelo que en B |
-| **B** | Sesión **nueva** de Claude Code (app de escritorio, pestaña Code) con la carpeta del repositorio. `CLAUDE.md` se carga solo | `protocolo/protocolo_consulta_v1.md` + texto base | Si pide permiso para buscar en internet, **negar**. Si usó web, descartar y repetir. Fuentes permitidas: solo `Vault_PISA2022/` |
+| **B** | Sesión **nueva** de Claude Code (app de escritorio, pestaña Code) abierta en la carpeta **`Vault_PISA2022`**, no en la raíz del repositorio. El `CLAUDE.md` de la raíz se carga igual | Texto de `protocolo/protocolo_consulta_v1.md` + texto base | La v1 dice «los archivos de esta carpeta»: abrir la sesión en el vault hace que esa carpeta sea solo el vault y no `Proyecto_PISA/`, donde están las respuestas de A. Si pide permiso para buscar en internet o para leer fuera del vault, **negar**; si lo hizo, descartar y repetir |
 | **C** | Cuaderno compartido de NotebookLM con los PDF del corpus. Protocolo v1 en *Configurar chat* | Texto base | Anotar cuántas fuentes tenía el cuaderno ese día |
 
 De cada respuesta:

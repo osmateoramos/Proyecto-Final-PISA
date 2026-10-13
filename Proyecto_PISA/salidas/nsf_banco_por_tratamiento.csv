@@ -1,4 +1,4 @@
 ﻿tratamiento;sostenida;sostenida_n;sostenida_p;sostenida_ic95_inf;sostenida_ic95_sup;correcta;correcta_n;correcta_p;correcta_ic95_inf;correcta_ic95_sup;correcta_parcial;abstencion_indebida;abstencion_fuera;abstencion_fuera_n;abstencion_fuera_p;abstencion_fuera_ic95_inf;abstencion_fuera_ic95_sup;invenciones_fuera;herramienta
-A;0;10;0;0;0.278;0;10;0;0;0.278;0;10;1;2;0.5;0.095;0.905;1;Claude sin contexto
-B;9;10;0.9;0.596;0.982;7;10;0.7;0.397;0.892;2;1;2;2;1;0.342;1;0;Zotero + Obsidian (Claude con el vault)
-C;10;10;1;0.722;1;10;10;1;0.722;1;0;0;1;2;0.5;0.095;0.905;1;NotebookLM
+A;0;15;0;0;0.204;1;15;0.067;0.012;0.298;3;11;2;3;0.667;0.208;0.939;1;Claude sin contexto
+B;12;15;0.8;0.548;0.93;9;15;0.6;0.357;0.802;3;3;3;3;1;0.439;1;0;Zotero + Obsidian (Claude con el vault)
+C;15;15;1;0.796;1;14;15;0.933;0.702;0.988;1;0;2;3;0.667;0.208;0.939;1;NotebookLM

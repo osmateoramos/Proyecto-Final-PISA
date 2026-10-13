@@ -207,7 +207,8 @@ if (is.null(d)) knitr::asis_output("*Pendiente: correr `nsf_trazabilidad.R unir`
   - Gestión de fuentes:
   - Código del sistema: scripts `Proyecto_PISA/scripts/nsf_*.R`
   - Redacción de la memoria:
-  - Otros:
+  - Otros: en la clasificación de Mateo, un script consultó en Crossref y DataCite el DOI o el título de cada referencia
+    y anotó lo encontrado en la columna `evidencia`; la categoría la asignó Mateo.
 - **Herramienta de gestión elegida:** (cuál, y contra cuáles la comparamos)
 - **Alternativas descartadas y por qué:**
 - **Qué NO usamos IA para:**

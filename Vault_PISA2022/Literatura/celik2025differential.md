@@ -4,17 +4,17 @@ clave_bib: celik2025differential
 zotero-key: PU9HYIE3g6703955
 clave_provisional: no
 titulo: "Differential item functioning in PIRLS 2021: An examination of socioeconomic status-based differences in reading comprehension items"
-autores: "Çelik, İ.; Kaşık, A."
+autores: Çelik, İ.; Kaşık, A.
 año: "2025"
-publicacion: "ODÜ Sosyal Bilimler Araştırmaları Dergisi (ODÜSOBİAD), 15 (ISRIS 2025), 638–672"
+publicacion: ODÜ Sosyal Bilimler Araştırmaları Dergisi (ODÜSOBİAD), 15 (ISRIS 2025), 638–672
 doi_url: https://doi.org/10.48146/odusobiad.1731407
-bloque: "D. Equidad de la prueba (DIF)"
-metadatos: "Crossref (consultado 2026-10-04)"
-estado: por_verificar
+bloque: D. Equidad de la prueba (DIF)
+metadatos: Crossref (consultado 2026-10-04)
+estado: Verificado
 lectura: "IA: texto completo (Claude, 2026-10-12)"
 pdf_en_zotero: sí (Vanessa, 2026-10-12)
-verificado_por:
-fecha_verificacion:
+verificado_por: Vanessa Acosta
+fecha_verificacion: 12/10/2026
 ---
 
 # Differential item functioning in PIRLS 2021: An examination of socioeconomic status-based differences in reading comprehension items
@@ -30,10 +30,10 @@ DIF por NSE en ítems de comprensión lectora de PIRLS 2021.
 
 ## Afirmaciones que usamos en el proyecto
 
-| # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
-|---|---|---|---|---|
-| 1 | El DIF por NSE varía según país, pasaje y método | p. 638 (Abstract) | "varied significantly across countries, passages, and DIF detection methods" | por_verificar · confirmado contra el texto completo (Claude, 2026-10-12); falta firma del equipo |
-| 2 | La regresión logística fue el método que más ítems con DIF detectó | p. 638 (Abstract) | "the method that detected the greatest number of DIF items" | por_verificar · confirmado contra el texto completo (Claude, 2026-10-12); falta firma del equipo |
+| #   | Afirmación (como la usamos)                                        | Página            | Cita textual (< 15 palabras)                                                 | Estado     |
+| --- | ------------------------------------------------------------------ | ----------------- | ---------------------------------------------------------------------------- | ---------- |
+| 1   | El DIF por NSE varía según país, pasaje y método                   | p. 638 (Abstract) | "varied significantly across countries, passages, and DIF detection methods" | verificado |
+| 2   | La regresión logística fue el método que más ítems con DIF detectó | p. 638 (Abstract) | "the method that detected the greatest number of DIF items"                  | verificado |
 
 ## Qué NO dice (para no citarlo mal)
 Es lectura, no matemáticas; es prueba en papel, no adaptativa; no incluye a Colombia.

@@ -1,9 +1,9 @@
 ﻿id_local;tratamiento;referencia;doi_url;afirmacion_atribuida;herramienta;fecha
-1;A;;;;;
-2;A;;;;;
-3;A;;;;;
-4;A;;;;;
-5;A;;;;;
+1;A;"Zwick y Ercikan (1989)";;"DIF por grupos sociodemográficos en el examen de historia del NAEP (no PISA, no matemáticas) - dado como antecedente metodológico";Claude;2026-10-12
+2;A;"Le (2009)";;"DIF por género entre países e idioma en ítems de ciencias de PISA (no matemáticas, no NSE)";Claude;2026-10-12
+3;A;"Grisay y Monseur (2007)";;"Equivalencia de dificultad de ítems entre versiones lingüísticas de PISA, principalmente lectura (no NSE directamente)";Claude;2026-10-12
+4;A;"Kreiner y Christensen (2014)";;"Crítica al modelo de escalamiento de PISA lectura; muestra DIF por país (no NSE, no matemáticas)";Claude;2026-10-12
+5;A;"Wu y Adams (2006)";;"Modelo IRT multidimensional para ítems de resolución de problemas matemáticos de PISA (no es DIF ni NSE)";Claude;2026-10-12
 6;B;;;;;
 7;B;;;;;
 8;B;;;;;

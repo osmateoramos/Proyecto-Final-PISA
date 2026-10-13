@@ -12,10 +12,11 @@
 
 ## Tratamiento A — chat sin contexto
 
-- **Herramienta y versión / modelo:** ChatGPT (chat.openai.com, sesión nueva sin búsqueda activada)
+- **Herramienta y versión / modelo:** Claude (claude.ai, chat nuevo)
 - **Fecha y hora:** 2026-10-12
 - **Condiciones:** chat nuevo, sin proyecto ni archivos, instrucción explícita de no buscar en internet; sin
-  indicador de búsqueda en la respuesta (confirmado: no aparece "searching" ni fuentes web)
+  indicador de búsqueda en la respuesta (no aparece "buscando" ni fuentes web, a diferencia del primer intento
+  que sí mostró "Searched the web")
 - **Prompt exacto:**
 
 ```
@@ -27,31 +28,49 @@ DOI) y, para cada una, qué encontró sobre el tema."
 - **Respuesta completa:**
 
 ```
-Sin buscar en internet, puedo orientarte con la literatura sobre el funcionamiento diferencial de los ítems
-(DIF) en PISA, pero hay una distinción importante para responder con rigor: no es lo mismo estudiar el DIF por
-nivel socioeconómico (NSE) en matemáticas de PISA que estudiar el DIF específicamente dentro de sus procesos o
-competencias matemáticas.
+Voy a responder sin buscar en internet, como pediste. Hay una limitación importante: no puedo verificar DOIs ni
+detalles exactos de memoria, y los DOIs son justo lo que más se "alucina". Por eso separo lo que conozco con
+razonable confianza de lo que debes verificar, y no te doy DOIs que no pueda respaldar.
 
-No puedo confirmar de memoria cinco referencias que cumplan simultáneamente todos esos criterios y que incluyan
-un DOI correcto. Prefiero no inventar citas bibliográficas ni atribuir hallazgos a estudios que quizá analizaron
-otra dimensión de PISA.
+Referencias que conozco con confianza razonable
 
-[el resto de la respuesta explica qué debería cumplir un estudio para calificar (evaluación, método, variable
-de agrupación, proceso matemático, identificación bibliográfica), qué resultados habría que extraer de cada uno,
-y qué términos de búsqueda usaría un investigador — pero no entrega ningún autor, título, revista ni DOI]
+1. Zwick, R., & Ercikan, K. (1989). Analysis of differential item functioning in the NAEP history assessment.
+   Journal of Educational Measurement, 26(1), 55-66.
+   No es PISA ni matemáticas; antecedente metodológico clásico sobre DIF por grupos sociodemográficos.
 
-Mi conclusión: con la información que puedo sostener sin consultar fuentes externas, no sería responsable darte
-cinco referencias completas con DOI y hallazgos específicos como si estuvieran verificadas. Tampoco sería
-correcto presentar cinco estudios sobre sesgo por país o género como evidencia directa sobre DIF por NSE dentro
-de los procesos matemáticos de PISA.
+2. Le, L. T. (2009). Investigating gender differential item functioning across countries and test languages for
+   PISA science items. International Journal of Testing, 9(2), 122-133.
+   No es matemáticas ni NSE (es género y ciencias), pero es de los trabajos de DIF en PISA más citados.
+
+3. Grisay, A., & Monseur, C. (2007). Measuring the equivalence of item difficulty in the various versions of an
+   international test. Studies in Educational Evaluation, 33(1), 69-86.
+   DIF entre países/versiones lingüísticas en PISA (lectura); equivalencia imperfecta entre versiones.
+
+4. Kreiner, S., & Christensen, K. B. (2014). Analyses of model fit and robustness. A new look at the PISA
+   scaling model underlying ranking of countries according to reading literacy. Psychometrika, 79(2), 210-231.
+   Crítica al modelo de escalamiento de PISA; DIF por país en lectura.
+
+5. Wu, M., & Adams, R. (2006). Modelling mathematics problem solving item responses using a multidimensional
+   IRT model. Mathematics Education Research Journal, 18(2), 93-113.
+   Ítems de matemáticas de PISA y procesos/dimensiones de resolución de problemas; no es DIF por NSE.
+
+Lo que debo decirte con honestidad: con la información que tengo de memoria, no puedo darte cinco estudios que
+sean exactamente "DIF por NSE (ESCS) dentro de los procesos matemáticos de PISA". No recuerdo con certeza un
+artículo que haga justo ese cruce, y si te inventara títulos y DOIs para completar la lista, te haría daño en un
+trabajo académico.
 ```
 
-> **Resultado:** 0 referencias entregadas (de las ≥5 pedidas) — el modelo se abstuvo por completo en vez de
-> fabricar. No hay nada que clasificar como Utilizable / Existe pero no dice eso / No existe en esta corrida,
-> porque no citó ninguna fuente. Esto contradice la suposición de que "un chat sin fuentes siempre alucina": al
-> menos con esta instrucción explícita y este modelo, prefirió no responder. Compárese con el intento anterior
-> en Claude, donde — sin la instrucción tan explícita — sí ofreció 5 referencias "adyacentes" sin DOI (ver
-> discusión en la memoria, sección de evaluación).
+> **Resultado:** 5 referencias entregadas, **ninguna con DOI** (el modelo los omitió a propósito, explicando
+> que de memoria se inventan) y ninguna cumple exactamente el cruce pedido (DIF + NSE + procesos matemáticos de
+> PISA) — el propio modelo lo advierte. Quedan para clasificar abriendo cada una por título y autor (sin DOI
+> directo). Mismo patrón de honestidad que en la corrida anterior: prefiere dar referencias reales pero
+> incompletas/adyacentes antes que completar el pedido con datos inventados.
+
+### Comparación secundaria (no oficial) — ChatGPT, mismo prompt
+Misma instrucción ("sin buscar en internet"), en ChatGPT: se abstuvo por completo, 0 referencias entregadas —
+más conservador que Claude en esta corrida. Entre las dos, Claude dio más para clasificar (5 referencias reales,
+sin DOI) mientras ChatGPT no dio nada que clasificar. Útil para discutir en la memoria que el comportamiento de
+abstención varía por herramienta incluso bajo la misma instrucción.
 
 ## Tratamiento B — Zotero + Obsidian (Claude con el vault)
 

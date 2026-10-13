@@ -1,19 +1,19 @@
-﻿id_pregunta;pregunta;respuesta_conocida;donde_esta;en_corpus;tratamiento;respuesta_obtenida;cita_dada;sostenida;correcta;se_abstuvo;fecha
-V01;;;;sí;A;;;;;;
-V01;;;;;B;;;;;;
-V01;;;;;C;;;;;;
-V02;;;;sí;A;;;;;;
-V02;;;;;B;;;;;;
-V02;;;;;C;;;;;;
-V03;;;;sí;A;;;;;;
-V03;;;;;B;;;;;;
-V03;;;;;C;;;;;;
-V04;;;;sí;A;;;;;;
-V04;;;;;B;;;;;;
-V04;;;;;C;;;;;;
-V05;;;;sí;A;;;;;;
-V05;;;;;B;;;;;;
-V05;;;;;C;;;;;;
-V06;;;;no;A;;;;;;
-V06;;;;;B;;;;;;
-V06;;;;;C;;;;;;
+id_pregunta;pregunta;respuesta_conocida;donde_esta;en_corpus;tratamiento;respuesta_obtenida;cita_dada;sostenida;correcta;se_abstuvo;fecha
+V01;¿Según Burns et al. (2026), qué variables se controlan para evaluar la asociación entre el esfuerzo en la prueba PISA 2022 y el logro académico?;Sexo, idioma, NSE y mensajes del colegio sobre el esfuerzo;"burns2026intest, p. 1 (Abstract): ""key covariates (gender, language background, SES, and messaging about effort)""";sí;A;;;;;;
+V01;¿Según Burns et al. (2026), qué variables se controlan para evaluar la asociación entre el esfuerzo en la prueba PISA 2022 y el logro académico?;Sexo, idioma, NSE y mensajes del colegio sobre el esfuerzo;"burns2026intest, p. 1 (Abstract): ""key covariates (gender, language background, SES, and messaging about effort)""";;B;;;;;;
+V01;¿Según Burns et al. (2026), qué variables se controlan para evaluar la asociación entre el esfuerzo en la prueba PISA 2022 y el logro académico?;Sexo, idioma, NSE y mensajes del colegio sobre el esfuerzo;"burns2026intest, p. 1 (Abstract): ""key covariates (gender, language background, SES, and messaging about effort)""";;C;;;;;;
+V02;Según Calderón et al. (2026), ¿cuántos de los 22 ítems comunes de matemáticas de Saber 11 mostraron DIF no despreciable entre los calendarios AY1 y AY2?;Solo 1 (el ítem 18);"calderon2026differential, p. 21: ""item number 18 in Table 10 is the only item identified with DIF""";sí;A;;;;;;
+V02;Según Calderón et al. (2026), ¿cuántos de los 22 ítems comunes de matemáticas de Saber 11 mostraron DIF no despreciable entre los calendarios AY1 y AY2?;Solo 1 (el ítem 18);"calderon2026differential, p. 21: ""item number 18 in Table 10 is the only item identified with DIF""";;B;;;;;;
+V02;Según Calderón et al. (2026), ¿cuántos de los 22 ítems comunes de matemáticas de Saber 11 mostraron DIF no despreciable entre los calendarios AY1 y AY2?;Solo 1 (el ítem 18);"calderon2026differential, p. 21: ""item number 18 in Table 10 is the only item identified with DIF""";;C;;;;;;
+V03;Según Kucam y Gülleroğlu (2023), ¿según qué variable de los padres se encontró DIF en un ítem del cuadernillo 1 de PISA 2018 matemáticas?;La educación de la madre (ítem CM305Q01S);"kucam2023examination, p. 128 (Abstract) y p. 145-146 (Apéndice C, ítem CM305Q01S)";sí;A;;;;;;
+V03;Según Kucam y Gülleroğlu (2023), ¿según qué variable de los padres se encontró DIF en un ítem del cuadernillo 1 de PISA 2018 matemáticas?;La educación de la madre (ítem CM305Q01S);"kucam2023examination, p. 128 (Abstract) y p. 145-146 (Apéndice C, ítem CM305Q01S)";;B;;;;;;
+V03;Según Kucam y Gülleroğlu (2023), ¿según qué variable de los padres se encontró DIF en un ítem del cuadernillo 1 de PISA 2018 matemáticas?;La educación de la madre (ítem CM305Q01S);"kucam2023examination, p. 128 (Abstract) y p. 145-146 (Apéndice C, ítem CM305Q01S)";;C;;;;;;
+V04;Según Çelik y Kaşık (2025), ¿qué método de detección de DIF encontró más ítems con DIF por NSE en PIRLS 2021?;La regresión logística;"celik2025differential, p. 638 (Abstract): ""the method that detected the greatest number of DIF items""";sí;A;;;;;;
+V04;Según Çelik y Kaşık (2025), ¿qué método de detección de DIF encontró más ítems con DIF por NSE en PIRLS 2021?;La regresión logística;"celik2025differential, p. 638 (Abstract): ""the method that detected the greatest number of DIF items""";;B;;;;;;
+V04;Según Çelik y Kaşık (2025), ¿qué método de detección de DIF encontró más ítems con DIF por NSE en PIRLS 2021?;La regresión logística;"celik2025differential, p. 638 (Abstract): ""the method that detected the greatest number of DIF items""";;C;;;;;;
+V05;Según Rios y Soland (2022), ¿en qué proporción promedio de ítems respondieron rápido al azar los estudiantes de PISA 2018 ciencias?;En promedio, 1 de cada 10 ítems;"rios2022investigation, p. 2 (Abstract): ""engaged in RG on an average proportion of one in 10 items""";sí;A;;;;;;
+V05;Según Rios y Soland (2022), ¿en qué proporción promedio de ítems respondieron rápido al azar los estudiantes de PISA 2018 ciencias?;En promedio, 1 de cada 10 ítems;"rios2022investigation, p. 2 (Abstract): ""engaged in RG on an average proportion of one in 10 items""";;B;;;;;;
+V05;Según Rios y Soland (2022), ¿en qué proporción promedio de ítems respondieron rápido al azar los estudiantes de PISA 2018 ciencias?;En promedio, 1 de cada 10 ítems;"rios2022investigation, p. 2 (Abstract): ""engaged in RG on an average proportion of one in 10 items""";;C;;;;;;
+V06;¿Qué correlación encuentran Hofverberg, Eklöf y Lindfors (2022) entre el perfil motivacional de los estudiantes y su esfuerzo en la prueba de ciencias de PISA 2015?;"No aplica: la respuesta correcta es la abstención (""No está en las fuentes."")";"No está en el corpus de Vanessa: aparece solo citada dentro de la bibliografía de burns2026intest (p. 19); el PDF de Hofverberg et al. no se descargó ni se verificó";no;A;;;;;;
+V06;¿Qué correlación encuentran Hofverberg, Eklöf y Lindfors (2022) entre el perfil motivacional de los estudiantes y su esfuerzo en la prueba de ciencias de PISA 2015?;"No aplica: la respuesta correcta es la abstención (""No está en las fuentes."")";"No está en el corpus de Vanessa: aparece solo citada dentro de la bibliografía de burns2026intest (p. 19); el PDF de Hofverberg et al. no se descargó ni se verificó";;B;;;;;;
+V06;¿Qué correlación encuentran Hofverberg, Eklöf y Lindfors (2022) entre el perfil motivacional de los estudiantes y su esfuerzo en la prueba de ciencias de PISA 2015?;"No aplica: la respuesta correcta es la abstención (""No está en las fuentes."")";"No está en el corpus de Vanessa: aparece solo citada dentro de la bibliografía de burns2026intest (p. 19); el PDF de Hofverberg et al. no se descargó ni se verificó";;C;;;;;;

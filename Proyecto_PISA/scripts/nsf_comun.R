@@ -91,6 +91,7 @@ normalizar_categoria <- function(x, archivo = "") {
 
 normalizar_si_no <- function(x, permitir_parcial = FALSE) {
   y <- trimws(tolower(sin_tildes(x)))
+  y <- trimws(sub("[,;:(].*$", "", y))   # «sí, con precisión: …» cuenta como «sí»; «no aplica» sigue sin valor
   out <- rep(NA_character_, length(y))
   out[y %in% c("si", "s", "1", "true", "x")] <- "si"
   out[y %in% c("no", "n", "0", "false")] <- "no"

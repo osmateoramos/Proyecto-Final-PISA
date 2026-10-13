@@ -10,7 +10,7 @@ publicacion: "Research in Comparative and International Education, 8(3), 259–2
 doi_url: https://journals.sagepub.com/doi/10.2304/rcie.2013.8.3.259
 bloque: "B. Medición del NSE"
 estado: por_verificar
-lectura: "equipo: texto completo"
+lectura: "equipo: solo resumen (Mateo, 2026-10-13); sin PDF, el texto completo no se ha leído"
 pdf_en_zotero: no
 verificado_por:
 fecha_verificacion:
@@ -31,7 +31,7 @@ Evalúa la confiabilidad y comparabilidad del índice de posesiones del hogar en
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | El índice de posesiones tiene confiabilidad muy variable entre países y comparabilidad pobre | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| 1 | El índice de posesiones tiene confiabilidad muy variable entre países y comparabilidad pobre | pendiente | | por_verificar · origen: sin confirmar (no hay PDF; el 2026-10-13 Mateo solo vio el resumen) |
 
 ## Qué NO dice (para no citarlo mal)
 No evalúa invarianza dentro de un país.

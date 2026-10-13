@@ -12,7 +12,7 @@ bloque: "E. Desenganche"
 metadatos: "Crossref (consultado 2026-10-04)"
 estado: por_verificar
 lectura: "IA: solo resumen oficial (vía OpenAlex y Semantic Scholar). Hay un preprint gratuito en OSF (https://osf.io/pvmbf), que puede diferir de la versión publicada; la versión de la revista no es de acceso abierto"
-pdf_en_zotero: no
+pdf_en_zotero: sí (Vanessa, 2026-10-12)
 verificado_por:
 fecha_verificacion:
 ---

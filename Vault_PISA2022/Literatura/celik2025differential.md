@@ -12,7 +12,7 @@ bloque: "D. Equidad de la prueba (DIF)"
 metadatos: "Crossref (consultado 2026-10-04)"
 estado: por_verificar
 lectura: "IA: resumen dentro del PDF de acceso abierto (DergiPark, p. 638) y búsqueda en el texto; cuerpo no leído completo"
-pdf_en_zotero: no
+pdf_en_zotero: sí (Vanessa, 2026-10-12)
 verificado_por:
 fecha_verificacion:
 ---

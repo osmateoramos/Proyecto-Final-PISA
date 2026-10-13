@@ -12,7 +12,7 @@ bloque: "D. Equidad de la prueba (DIF)"
 metadatos: "Crossref (consultado 2026-10-05)"
 estado: por_verificar
 lectura: "IA: solo resumen (OpenAlex); PDF en acceso abierto"
-pdf_en_zotero: no
+pdf_en_zotero: sí (Vanessa, 2026-10-12)
 verificado_por:
 fecha_verificacion:
 ---

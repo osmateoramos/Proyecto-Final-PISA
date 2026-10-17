@@ -30,6 +30,8 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 - **Razón:** historial de cambios, sin conflictos silenciosos; los datos y los `.rds` quedan fuera (`.gitignore`).
 - **Estado:** ✅ aceptada. Repositorio privado `Proyecto-Final-PISA` creado el 2026-10-04 (raíz: carpeta CONSULTORIA,
   incluye el vault y el proyecto; los datos quedan fuera). Flujo de trabajo en `README.md`.
+- **Actualización (2026-10-17):** el repositorio es **público**: el equipo lo abrió para que el profesor pudiera
+  revisarlo. Sigue sin datos de estudiantes (`.gitignore`); solo tiene resultados agregados.
 
 ### D-03 · 2026-10-01 · Esquema de gestión de la información
 - **Alternativas:** solo Obsidian; RAG desde el inicio; NotebookLM; Zotero + Obsidian + RAG propio al final.
@@ -447,6 +449,51 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - el resto tal cual.
 
   Mateo y Brayan la revisan en el PR.
+
+### D-17 · 2026-10-17 · Versiones de R y de los paquetes, mientras se arma Docker
+- **Problema:** los scripts se corren en máquinas con versiones distintas, y una diferencia de versión puede cambiar
+  una salida sin que nadie toque el código (ver el BIC del 3.2 abajo). Versiones antes del 2026-10-17:
+
+  | Paquete | Vanessa (según ella; binarios de CRAN para R 4.4) | Mateo (`00_verificar_entorno.R`) |
+  |---|---|---|
+  | `data.table` | 1.18.2.1 | 1.17.0 |
+  | `haven` | 2.5.5 | 2.5.4 |
+  | `survey` | 4.5 | 4.4-2 |
+  | `psych` | 2.6.3 | 2.6.5 |
+  | `GPArotation` | 2025.3-1 | 2026.8-2 |
+  | `mirt` | 1.46.1 | 1.46.1 |
+  | `lavaan` | 0.6-21 | 0.7-2 |
+  | `semTools` | 0.5-8 | 0.5-9 |
+
+- **Alternativas:**
+  - (a) cada uno con sus versiones;
+  - (b) `renv`: biblioteca propia del proyecto y `renv.lock`, que fija también las dependencias;
+  - (c) un archivo con las versiones, una revisión al abrir el proyecto y una copia fechada de CRAN para instalarlas;
+  - (d) Docker, todavía pendiente.
+- **Decisión:** (c), mientras se arma (d).
+  - `scripts/versiones_paquetes.csv`: R 4.4.1 y los 13 paquetes que usa el proyecto, con el repositorio de cada uno.
+  - Las versiones son las de la copia de CRAN del 2026-10-17 en Posit Package Manager
+    (`https://packagemanager.posit.co/cran/2026-10-17`), que trae binarios para R 4.4 en Windows, así que nadie
+    compila. Los binarios del propio CRAN para R 4.4 están atrasados (ese día: `lavaan` 0.6-21, `data.table` 1.18.2.1).
+  - **Excepción, `mirt` 1.46.1:** la última en CRAN es la 1.48, pero para R 4.4 en Windows solo existe como código
+    fuente y hay que compilarla con Rtools. Queda en la última con binario para R 4.4.
+  - `scripts/00_verificar_entorno.R` compara lo instalado con el archivo; con `--instalar` instala esas versiones
+    (con RStudio cerrado).
+  - `Proyecto_PISA/.Rprofile` corre la revisión al abrir `Proyecto_PISA.Rproj` en RStudio. Solo avisa: no instala ni
+    cambia rutas. Antes carga el `~/.Rprofile` personal, porque R lee un solo `.Rprofile`.
+  - *Por qué no (b) por ahora:* obliga a reinstalar todo en una biblioteca del proyecto, y Docker cumple esa función
+    más adelante (interpretación del equipo).
+- **Comprobación** (máquina de Mateo, 2026-10-17, R 4.4.1, después de `--instalar`):
+  - `01a`, `01b`, `01c`, `02` y los dos `03` (paso 3.1) reproducen sus salidas sin cambios (`git status` limpio), y
+    la Puerta G1 sigue pasando.
+  - `01a` y `01b` usaron los cachés crudos: la lectura de los `.SAV` con `haven` 2.5.5 no se volvió a probar.
+  - Paso 3.2: 7 de sus 8 salidas son idénticas. En `nse_afe_ajuste.csv`, el BIC del AFE de 1 factor pasa de
+    89658,3 a 89658,4. Ese BIC no se interpreta. Vanessa lo confirma con `psych` 2.6.9.
+- **Límites:** fija los paquetes, no sus dependencias. El `.Rprofile` no corre con Rscript desde `scripts/`: ahí se
+  corre `00_verificar_entorno.R` a mano. Docker resuelve las dos cosas.
+- **Para actualizar:** se cambia la fecha de la copia y las versiones del archivo en un PR, y se vuelve a correr la
+  cadena.
+- **Estado:** ✅ propuesta por Mateo y aprobada por Vanessa en el PR #10 (2026-10-17); falta la revisión de Brayan.
 
 ### D-19 · 2026-10-17 · Detalles de la TRI del NSE que D-16 no fija (pasos 3.3 y 3.5)
 - **Problema:** D-16 (punto 9) fija los modelos: 2PL + GPCM, unidimensional y bidimensional, ponderados,

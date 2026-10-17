@@ -322,43 +322,45 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     `HISEI`); 320 no tienen ninguna. Entre quienes cumplen, la mediana es 29 de 29 y 4.237 respondieron las 27
     posesiones.
   - De los 7.479: los 6.886 de la muestra analítica (D-14), los 573 con «menos de 10 vistos» y solo 20 de los 345
-    sin ESCS.
+    sin ESCS. **Los 6.886 cumplen todos la regla.**
+  - Lo que sigue se calcula sobre la muestra elegida para la F3, los 6.886 (punto 1).
   - Categorías con < 2 % de las respuestas válidas (todas en el extremo alto):
-    - `ST254Q02JA`, computadores de escritorio: 2 = 1,94 % y 3 = 0,26 %;
-    - `ST254Q03JA`, portátiles: 3 = 0,64 %;
-    - `ST254Q04JA`, tabletas: 3 = 0,76 %;
+    - `ST254Q02JA`, computadores de escritorio: 2 = 1,87 % y 3 = 0,20 %;
+    - `ST254Q03JA`, portátiles: 3 = 0,66 %;
+    - `ST254Q04JA`, tabletas: 3 = 0,75 %;
     - `ST254Q05JA`, lectores de libros electrónicos: 2 = 1,54 % y 3 = 1,31 %;
     - `ST255Q01JA`, libros: 6 = 0,67 %.
-  - `ST005`/`ST007` (educación de la madre y del padre) llegan solo a ISCED 3.4: el 38,0 % de las madres y el
-    32,4 % de los padres están en ese tope. De los 3.515 estudiantes con al menos un padre en el tope, 2.472
-    (70,3 %) tienen según `HISCED` un padre con educación terciaria (ISCED 5 a 8).
-  - `HISEI` tiene 267 valores distintos; los 3 más frecuentes concentran el 19,1 %. Sus quintiles ponderados
-    cortan en 17,00 / 29,16 / 37,83 / 68,77 y cada grupo queda con el 19,8–20,1 % del peso.
-  - 262 colegios, con una mediana de 34 estudiantes (de 1 a 42); 129 tienen un número impar de estudiantes y 3
+  - `ST005`/`ST007` (educación de la madre y del padre) llegan solo a ISCED 3.4: el 38,2 % de las madres y el
+    32,4 % de los padres están en ese tope. De los 3.249 estudiantes con al menos un padre en el tope, 2.289
+    (70,5 %) tienen según `HISCED` un padre con educación terciaria (ISCED 5 a 8).
+  - `HISEI` tiene 267 valores distintos; los 3 más frecuentes concentran el 18,9 %. Sus quintiles ponderados
+    cortan en 17,55 / 29,18 / 39,02 / 68,77 y cada grupo queda con el 19,9–20,1 % del peso.
+  - 262 colegios, con una mediana de 30 estudiantes (de 1 a 40); 128 tienen un número impar de estudiantes y 4
     tienen uno solo.
 - **Propuesta:**
-  1. **Muestra de la F3: los 7.479 con ≥ 3 respuestas válidas.** Es la regla de la OCDE para sus escalas
-     (Technical Report p. 384) y no exige ESCS ni ítems de matemáticas.
-     - *Por qué:* O1 mide el NSE. El filtro de ≥ 10 ítems de matemáticas de D-14 sirve para O3 y O4, y quitaría a
-       573 estudiantes que sí tienen el cuestionario completo.
-     - La muestra analítica de D-14 está toda dentro de los 7.479, así que la F5 y la F6 usan esa intersección
-       sin perder nada.
-  2. **Mitades:** exploración y confirmación, asignadas una sola vez a los 7.479, al azar **dentro de cada colegio**
+  1. **Muestra de la F3: los 6.886 de la muestra analítica (D-14)**, la misma de todo el proyecto (decisión de
+     Vanessa, 2026-10-16). Todos tienen ≥ 3 respuestas válidas, la regla de la OCDE para sus escalas (Technical
+     Report p. 384).
+     - *Alternativa descartada:* los 7.479 que cumplen esa regla, es decir, además 573 con menos de 10 ítems de
+       matemáticas vistos y 20 sin ESCS.
+     - *Lo que implica:* el NSE se calibra en la misma población en que se usa en O3 y O4. Quedan fuera 593
+       estudiantes que sí tienen datos de NSE, y así se declara.
+  2. **Mitades:** exploración y confirmación, asignadas una sola vez a los 6.886, al azar **dentro de cada colegio**
      (`set.seed(2026)`, como dice el plan). En los colegios con número impar, el estudiante sobrante va a una
      mitad al azar.
      - *Por qué:* estratificar por colegio deja las dos mitades con la misma mezcla de colegios. Así, una
        diferencia entre mitades no puede deberse a que en una caigan más colegios de NSE alto.
      - La mitad queda guardada y la reutilizan la F4 a la F6; H5 también se prueba en la mitad de confirmación.
   3. **Indicadores (29):** las 27 posesiones, `HISCED` (10 categorías) y `HISEI` en quintiles ponderados, con los
-     cortes de arriba calculados una vez sobre los 7.479.
+     cortes de arriba calculados una vez sobre los 6.886.
      - No se usan `ST005`/`ST007`, por el tope en ISCED 3.4: confundiría a los padres con secundaria y con
        universidad.
      - No se usa `PAREDINT`: se deriva de `HISCED` (p. 387) y sería el mismo dato dos veces.
      - `HOMEPOS` y `ESCS` no son indicadores: son el criterio de validez del paso 3.5.
-  4. **Categorías escasas:** una categoría con < 2 % de las respuestas válidas (sin ponderar, en los 7.479) se une
+  4. **Categorías escasas:** una categoría con < 2 % de las respuestas válidas (sin ponderar, en los 6.886) se une
      con la vecina hacia el centro, repitiendo hasta que todas tengan ≥ 2 %. Con los datos de arriba cambian 5
      ítems: `ST254Q02JA`–`ST254Q05JA` quedan en 0–2 y `ST255Q01JA` queda en 0–5.
-     - *Por qué:* con unas 3.700 personas por mitad, el 2 % son unas 74 respuestas. Con menos, la correlación
+     - *Por qué:* con unas 3.400 personas por mitad, el 2 % son unas 69 respuestas. Con menos, la correlación
        policórica y los umbrales de la TRI se vuelven inestables.
      - La OCDE también agrupó categorías (p. 392), aunque con su propio criterio, que no conocemos.
   5. **Pesos:** `W_FSTUWT` normalizado para que sume el número de casos de cada análisis. Se aplica a la
@@ -389,7 +391,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
        es < 0,90, en el AFC ponderado de la mitad de confirmación. Si no, se rechaza.
      - Se reportan ambas versiones y la prueba sin pesos.
      - *Por qué:* fijarlo ahora impide escoger después el índice que más convenga.
-  9. **TRI (3.3):** 2PL para los ítems Sí/No y GPCM para los politómicos, como la OCDE (p. 380), en los 7.479 y
+  9. **TRI (3.3):** 2PL para los ítems Sí/No y GPCM para los politómicos, como la OCDE (p. 380), en los 6.886 y
      ponderada. Se estiman el modelo unidimensional, que es el enfoque de HOMEPOS, y el de 2 dimensiones con la
      estructura del punto 7.
      - Se comparan con AIC y BIC, y se reportan el ajuste de los ítems (S-X²) y las curvas de información.
@@ -400,4 +402,10 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - `salidas/nse_parametros_tri.csv`, `salidas/nse_ajuste_afc.csv` y las figuras de información (plan).
 - **Fuentes:** [[Literatura/oecd2024pisa2022tr]], afirmaciones 17–20 (pp. 380, 384, 386–387 y 391–392), y
   [[Literatura/avvisati2024measurement]] p. 11 (HOMEPOS es una escala TRI unidimensional). Todo `por_verificar`.
-- **Estado:** propuesta — la acepta Vanessa antes de programar; Mateo y Brayan la revisan en el PR.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-16):
+  - muestra de 6.886 (se propusieron los 7.479);
+  - `HISEI` en el factor económico;
+  - H1 con los dos CFI;
+  - el resto tal cual.
+
+  Mateo y Brayan la revisan en el PR.

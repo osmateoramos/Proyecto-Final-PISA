@@ -8,7 +8,8 @@
 #   1. Cobertura: cuántas respuestas válidas tiene cada estudiante en los 29 indicadores
 #      (27 posesiones + HISCED + HISEI) y cuántos cumplen la regla OCDE de >= 3 respuestas
 #      válidas (Technical Report 2022, p. 384), cruzado con los motivos de exclusión de D-14.
-#   2. Frecuencia de cada categoría de cada ítem (sin ponderar y ponderada) y marca de
+#   2. (Sobre la muestra de la F3 = muestra analítica de D-14, según D-16.) Frecuencia de cada
+#      categoría de cada ítem (sin ponderar y ponderada) y marca de
 #      categorías escasas (< 1 % y < 2 % de las respuestas válidas).
 #   3. HISEI: cortes de quintiles ponderados y tamaño de cada grupo.
 #   4. Techo de educ_madre / educ_padre (ST005 / ST007 llegan solo a ISCED 3.4) frente a HISCED.
@@ -63,7 +64,11 @@ cat("\n--- Cobertura (regla OCDE: >= 3 respuestas válidas) ---\n"); print(cob)
 cat("Respuestas válidas por estudiante (de 29), entre quienes cumplen la regla:\n")
 print(summary(u[regla3 == TRUE, n_validas_nse]))
 
-m <- u[regla3 == TRUE]                                              # base de la exploración de ítems
+# Base de los pasos 2 a 5: la muestra de la F3 elegida en D-16 = muestra analítica de D-14 (6.886).
+# Todos cumplen la regla de >= 3 respuestas válidas, como muestra la tabla de cobertura.
+m <- u[incluido == TRUE]
+stopifnot(nrow(m) == 6886, all(m$regla3))
+cat("\nBase de las frecuencias, HISEI y colegios: muestra analítica (D-14 / D-16),", nrow(m), "estudiantes\n")
 w <- m$W_FSTUWT
 
 # =============================================================================
@@ -110,7 +115,7 @@ print(m[(educ_madre == 4 | educ_padre == 4) & !is.na(HISCED), .N, by = HISCED][o
 # 5. COLEGIOS
 # =============================================================================
 tam <- m[, .N, by = CNTSCHID]
-cat("\n--- Colegios (entre quienes cumplen la regla) ---\nColegios:", nrow(tam), "| estudiantes por colegio:\n")
+cat("\n--- Colegios (muestra de la F3) ---\nColegios:", nrow(tam), "| estudiantes por colegio:\n")
 print(summary(tam$N))
 cat("Colegios con 1 estudiante:", sum(tam$N == 1), "| con número impar:", sum(tam$N %% 2 == 1), "\n")
 cat("\nListo: salidas/nse_items_frecuencias.csv y salidas/nse_cobertura.csv\n")

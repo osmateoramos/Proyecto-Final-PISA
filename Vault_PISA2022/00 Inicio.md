@@ -26,8 +26,9 @@ Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarroll
 
 ## Repositorio en GitHub
 
-- **Repositorio privado:** https://github.com/osmateoramos/Proyecto-Final-PISA (rama principal `main`). Los datos
-  de PISA y los cachés `.rds` no se suben (`.gitignore`, Ley 1581 de 2012).
+- **Repositorio público**, para que el profesor lo revise: https://github.com/osmateoramos/Proyecto-Final-PISA (rama
+  principal `main`). Los datos de PISA y los cachés `.rds` no se suben (`.gitignore`, Ley 1581 de 2012): en el
+  repositorio solo hay resultados agregados.
 - **Ramas:** una por integrante (`Mateo`, `Vanessa`, `Brayan`) y ramas por fase cuando hace falta (`Vanessa-F3`).
 - **Flujo:** cada rama llega a `main` por *Pull Request*; quien abre el PR no lo fusiona hasta que otro integrante
   lo apruebe. *Pull* antes de empezar (ver `README.md`).

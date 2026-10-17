@@ -8,17 +8,17 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 1. [[11 Protocolo de verificación]] — cómo se marca qué está verificado y qué no (leer primero).
 2. [[06 Objetivos PISA 2022]] — pregunta, objetivo general y O1–O5.
 3. [[07 Plan de desarrollo PISA 2022]] — paso a paso por semanas. **Estamos en la semana 2 (12–18 oct):** F0, F1 y
-   F2 cerradas (la Puerta G1 pasa); la F3 (medición del NSE) empezó con la exploración de los ítems y la propuesta
-   D-16.
+   F2 cerradas (la Puerta G1 pasa). La F3 (medición del NSE) va en el paso 3.2: el 3.1 está en `main` y el 3.2, en
+   la rama `Vanessa`.
 
-## Estado del proyecto (al 2026-10-16)
+## Estado del proyecto (al 2026-10-17)
 
 | Fase | Estado | Scripts | Evidencia |
 |---|---|---|---|
 | F0 Organización | ✅ cerrada | — | hipótesis congeladas el 2026-10-12, commit `f53054d` ([[09 Hipótesis preregistradas]]) |
 | F1 Datos y ETL | ✅ cerrada | `01a_etl_cognitivo.R` → `01b_etl_cuestionario.R` → `01c_muestra_analitica.R` | muestra analítica de 6.886 estudiantes (`salidas/conteos_muestra.csv`); D-12, D-13 y D-14 |
 | F2 Validación del diseño | ✅ cerrada, **G1 pasa** | `02_validacion_ocde.R` + `utilidades_pisa.R` | `salidas/validacion_ocde.csv`; D-15 |
-| F3 O1: medición del NSE | en curso | `03_explorar_items_nse.R` (solo describe los ítems; no estima modelos) | D-16 aceptada por Vanessa (2026-10-16); falta la revisión de Mateo y Brayan (rama `Vanessa-F3`) |
+| F3 O1: medición del NSE | en curso: 3.1 en `main`; 3.2 en la rama `Vanessa` | `03_explorar_items_nse.R` (describe los ítems) y `03_nse_medicion.R` (3.1: mitades y recodificación) | `salidas/nse_mitades.csv` y `nse_recodificacion.csv`; D-16 en `main`, aceptada por Vanessa (Mateo la firma en la rama del 3.4); D-19 (TRI del NSE) propuesta en la rama `Vanessa` |
 | F4–F9 | pendientes | — | — |
 
 Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarrollo PISA 2022]]; las razones, en
@@ -29,7 +29,8 @@ Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarroll
 - **Repositorio público**, para que el profesor lo revise: https://github.com/osmateoramos/Proyecto-Final-PISA (rama
   principal `main`). Los datos de PISA y los cachés `.rds` no se suben (`.gitignore`, Ley 1581 de 2012): en el
   repositorio solo hay resultados agregados.
-- **Ramas:** una por integrante (`Mateo`, `Vanessa`, `Brayan`) y ramas por fase cuando hace falta (`Vanessa-F3`).
+- **Ramas:** una por integrante (`Mateo`, `Vanessa`, `Brayan`) y ramas por fase cuando hace falta (`Vanessa-F3`, ya
+  fusionada en el #9).
 - **Flujo:** cada rama llega a `main` por *Pull Request*; quien abre el PR no lo fusiona hasta que otro integrante
   lo apruebe. *Pull* antes de empezar (ver `README.md`).
 - **Estado al 2026-10-17** (se actualiza al fusionar cada PR):
@@ -37,7 +38,12 @@ Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarroll
   - PR #7 (`Vanessa` → `main`), fusionado el 2026-10-17: F1 pasos 1.1 y 1.5 (`01c`) y F2 completa (`02`,
     `utilidades_pisa.R`).
   - PR #8 (`Mateo` → `main`), fusionado el 2026-10-17: firmas de D-14 y D-15 y estado del proyecto en esta nota.
-  - Rama `Vanessa-F3`: exploración de los ítems del NSE, D-16 y la F3 en curso.
+  - PR #9 (`Vanessa-F3` → `main`), fusionado el 2026-10-17: F3 paso 3.1 (`03_explorar_items_nse.R` y
+    `03_nse_medicion.R`) y D-16.
+  - PR #10 (`Mateo` → `main`), fusionado el 2026-10-17: versiones de R y de los paquetes (D-17) y repositorio
+    público.
+  - Rama `Vanessa`, todavía sin PR: paso 3.2 (policórica, análisis paralelo y AFE) y D-19. Al traer `main` choca con
+    D-17 al final del registro: se dejan los dos bloques, D-17 primero y D-19 después.
 
 ## Equipo y reparto (propuesta, por confirmar)
 
@@ -54,7 +60,11 @@ La verificación de las 44 fuentes se reparte entre los tres; al 2026-10-16 hay 
 
 - **Anteproyecto vigente:** `Proyecto_PISA/anteproyecto/anteproyecto_VanessaAcosta_MateoRamos.pdf`
   (fuente `.Rmd` y `referencias.bib` en la misma carpeta; 4 marcas [VERIFICAR] por revisar antes de entregar; ver [[13 Revisión de literatura]])
-- [[03 Registro de decisiones]] — toda decisión, con fecha y razón (D-01 a D-16; D-16 en revisión de Mateo y Brayan)
+- [[03 Registro de decisiones]] — toda decisión, con fecha y razón (D-01 a D-17 en `main`, D-16 y D-17 aún sin
+  todas las firmas; D-19 propuesta en la rama `Vanessa`)
+- **Versiones de R y de los paquetes:** `Proyecto_PISA/scripts/versiones_paquetes.csv` (D-17). Al abrir
+  `Proyecto_PISA.Rproj` en RStudio, la consola avisa si alguna no coincide; para instalarlas, paso 3 de «Primera vez»
+  del `README.md`.
 - [[08 Rúbrica de desarrollo]] — cómo autoevaluarse, puertas de fase y criterio de hallazgo innovador
 - [[09 Hipótesis preregistradas]] — H1–H8, congeladas el 2026-10-12
 - [[10 Gestión de la información]] — Zotero + Obsidian, instalación y reglas
@@ -69,7 +79,7 @@ La verificación de las 44 fuentes se reparte entre los tres; al 2026-10-16 hay 
 - [[Datos/PISA2022 - Diccionario de variables]] — variables de PISA 2022 que usa el proyecto (etiquetas oficiales)
 - [[Datos/PISA2022 - Variables recodificadas]] — variable original → variable nueva, regla y % de `NA` (D-12)
 - Proyecto: `CONSULTORIA/Proyecto_PISA/` — anteproyecto, datos (`revision_pisa2022_col.R` y cachés de Colombia),
-  scripts (cadena `01a` → `01b` → `01c` → `02`), salidas, informe, API, documentación, exposiciones y
+  scripts (cadena `01a` → `01b` → `01c` → `02` → `03`, más `00_verificar_entorno.R`), salidas, informe, API, documentación, exposiciones y
   `nada_sin_fuente/` (actividad de Consultoría).
 
 ## Carpetas

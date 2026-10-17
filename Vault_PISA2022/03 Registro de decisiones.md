@@ -127,3 +127,31 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 - **Cómo se interpreta:** en A abstenerse es lo honesto, porque no tiene fuentes; el 0/5 no dice que inventó, dice
   que sin contexto no responde. La memoria debe decirlo así.
 - **Estado:** propuesta — aplicada al banco de Vanessa; Mateo y Brayan la confirman al llenar los suyos.
+
+### D-12 · 2026-10-16 · Recodificación de las variables del cuestionario y de colegios (paso 1.3 de la F1)
+- **Problema:** antes de escribir `Proyecto_PISA/scripts/01b_etl_cuestionario.R` hay que fijar cómo se recodifican las
+  variables del NSE.
+- **Lo que muestran los datos** (etiquetas de `CY08MSP_STU_QQQ.SAV`, leídas el 2026-10-16):
+  - los 27 ítems de posesiones van de 1 a k, en orden creciente;
+  - ST254 y ST256 tienen además la categoría 5 = «I don't know»;
+  - `ST005Q01JA` y `ST007Q01JA` vienen invertidos: 1 = ISCED 3.4, el nivel más alto; 5 = no completó ISCED 1;
+  - los faltantes de usuario son 95–99 (5–9 en `ST004D01T` y `SCHLTYPE`; 995–999 en `HISEI`; 9995–9999 en `PAREDINT`).
+- **Regla:**
+  - **Faltantes de usuario** (Valid Skip, Not Applicable, Invalid, No Response): `NA`.
+  - **Posesiones:** el nivel más bajo vale 0 y cada categoría suma 1.
+    - ST250: Sí = 1, No = 0.
+    - ST251, ST253 y ST255: categoría − 1.
+    - ST254 y ST256: categoría − 1, y «No sé» → `NA`.
+    - Los ítems conservan su nombre de PISA.
+  - **Educación de la madre y del padre:** se invierte. `educ_madre` y `educ_padre` van de 0 = no completó ISCED 1 a
+    4 = ISCED 3.4.
+  - **Sin cambios:** `HISCED` (1–10, ya crece con la educación), `HISEI`, `PAREDINT`, `ESCS` y `HOMEPOS`.
+  - **Sexo, zona y sector:** como dice el paso 1.3 de [[07 Plan de desarrollo PISA 2022]].
+  - **No se agrupan categorías** para alinearlas con ciclos anteriores: el proyecto usa solo 2022.
+- **Fuentes** ([[Literatura/oecd2024pisa2022tr]], `por_verificar`):
+  - las respuestas se recodifican para que el nivel más bajo valga 0 (p. 380);
+  - el «No sé» de ST254 se recodifica como faltante en el índice de recursos TIC (p. 392);
+  - la OCDE agrupa categorías de HOMEPOS para la tendencia (p. 392).
+  - La regla exacta de HOMEPOS está en la tabla 19.A.17, que no viene en el PDF: **por verificar**. El «No sé» → `NA`
+    en ST256 es decisión del equipo, por analogía con ST254.
+- **Estado:** aceptada por Mateo (2026-10-16); Vanessa la revisa en el PR.

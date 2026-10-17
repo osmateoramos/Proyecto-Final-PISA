@@ -88,6 +88,15 @@ CONSULTORIA/
 
 Script: `Proyecto_PISA/scripts/01_etl_pisa.R` — parte de `datos/revision_pisa2022_col.R` y sus cachés.
 
+> [!note] Reparto de la F1 (2026-10-16)
+> La F1 se divide en tres scripts para avanzar en paralelo:
+> - `01a_etl_cognitivo.R` (Vanessa): paso 1.2;
+> - `01b_etl_cuestionario.R` (Mateo): pasos 1.3 y 1.4, con las reglas de [[03 Registro de decisiones]] (D-12);
+> - `01_etl_pisa.R`: consolidación, pasos 1.1 y 1.5.
+>
+> Los cachés no van a Git: quien consolide necesita en su máquina los cachés de los dos scripts.
+> La tabla de variables recodificadas queda en [[Datos/PISA2022 - Variables recodificadas]].
+
 - [ ] **1.1 Unir las tres fuentes.** `COL_estudiantes_qqq.rds` + `COL_matematicas_cog.rds` por `CNTSTUID`;
   `CY08MSP_SCH_QQQ.SAV` (solo `CNT == "COL"`) por `CNTSCHID`.
   - *Por qué:* NSE y pesos están en el cuestionario; ítems y tiempos en el cognitivo; zona y sector en el de colegios.

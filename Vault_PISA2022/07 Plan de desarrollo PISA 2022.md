@@ -185,8 +185,14 @@ con `GPArotation` para la rotación oblimin).
 >
 > Exploración previa: `scripts/03_explorar_items_nse.R`.
 
-- [ ] **3.1 Dividir la muestra** en dos mitades aleatorias estratificadas por colegio (`set.seed(2026)`):
+- [x] **3.1 Dividir la muestra** en dos mitades aleatorias estratificadas por colegio (`set.seed(2026)`):
   *exploración* y *confirmación*.
+  - *Hecho (2026-10-17, D-16):* `03_nse_medicion.R` (sección 3.1) → `datos/COL_nse.rds`,
+    `salidas/nse_recodificacion.csv` y `salidas/nse_mitades.csv`.
+    - **Mitades:** exploración 3.445 y confirmación 3.441. Quedan equilibradas en peso (49,9 / 50,1 %), ESCS
+      medio (−1,065 / −1,040), HOMEPOS (−1,351 / −1,381), % rural (15,1 / 15,6) y % público (80,3 / 80,4).
+    - **Recodificación:** la regla del 2 % cambió solo los 5 ítems previstos en D-16. `HISCED_c` (0–9) no se
+      tocó. `HISEI_q` quedó en quintiles con el ~20 % del peso cada uno.
 - [ ] **3.2 Exploración:** matriz policórica de los 27 ítems de posesiones + educación + ocupación (categorizada);
   `psych::fa.parallel(cor = "poly")`; AFE con 1–3 factores (`oblimin`, `fm = "wls"`). ¿Aparece una dimensión
   económica y otra cultural (libros, educación, ocupación)?

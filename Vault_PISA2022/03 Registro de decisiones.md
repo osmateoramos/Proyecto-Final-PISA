@@ -240,7 +240,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - Los excluidos se separan por motivo: sin ESCS, menos de 10 vistos y ambos.
   - Si los excluidos rinden claramente distinto, la muestra analítica no representa a todos los estudiantes y así se
     declara en el informe.
-- **Estado:** (b) ✅ aceptada por Vanessa (2026-10-16); la comparación queda como propuesta. Mateo revisa ambas en
+- **Estado:** ✅ (b) y la comparación por motivo de exclusión, aceptadas por Vanessa (2026-10-16). Mateo revisa ambas en
   el PR.
 
 ### D-15 · 2026-10-16 · Cómo se reproducen las tres cifras de la OCDE (Puerta G1, F2)
@@ -283,4 +283,5 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - `EdSurvey` queda opcional. Esto se aparta del plan, por eso se registra.
 - **Salida:** `scripts/02_validacion_ocde.R` → `salidas/validacion_ocde.csv` (nuestro, EE, publicado, diferencia,
   cumple).
-- **Estado:** propuesta — la acepta Vanessa antes de programar; Mateo y Brayan la revisan en el PR.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-16), incluido el contraste con `survey` en el 2.4. Mateo y Brayan
+  la revisan en el PR.

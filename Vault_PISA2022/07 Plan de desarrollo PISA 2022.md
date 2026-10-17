@@ -87,15 +87,19 @@ CONSULTORIA/
 > Estructura de PISA: estudiante / colegio / ítem; valores plausibles y pesos (lectura: capítulos de ponderación
 > y de escalamiento del Technical Report 2022).
 
-Script: `Proyecto_PISA/scripts/01_etl_pisa.R` — parte de `datos/revision_pisa2022_col.R` y sus cachés.
+Scripts: `Proyecto_PISA/scripts/01a_etl_cognitivo.R`, `01b_etl_cuestionario.R` y `01c_muestra_analitica.R`; parten
+de `datos/revision_pisa2022_col.R` y sus cachés. El plan original preveía un solo `01_etl_pisa.R`; se dividió (ver la
+nota de abajo).
 
 > [!note] Reparto de la F1 (2026-10-16)
-> La F1 se divide en tres scripts para avanzar en paralelo:
-> - `01a_etl_cognitivo.R` (Vanessa): paso 1.2;
+> La F1 se hizo en tres scripts, que se corren en este orden:
+> - `01a_etl_cognitivo.R` (Vanessa): paso 1.2, con D-13;
 > - `01b_etl_cuestionario.R` (Mateo): pasos 1.3 y 1.4, con las reglas de [[03 Registro de decisiones]] (D-12);
-> - `01_etl_pisa.R`: consolidación, pasos 1.1 y 1.5.
+> - `01c_muestra_analitica.R` (Vanessa; revisado por Mateo en el PR #7): paso 1.1 (unión de los cachés de 01a y
+>   01b) y paso 1.5 (muestra analítica con D-14).
 >
-> Los cachés no van a Git: quien consolide necesita en su máquina los cachés de los dos scripts.
+> Después sigue `02_validacion_ocde.R` (F2). Funciones comunes de estimación en `scripts/utilidades_pisa.R`.
+> Los cachés no van a Git: para correr 01c y 02 hacen falta en la máquina los cachés de 01a y 01b.
 > La tabla de variables recodificadas queda en [[Datos/PISA2022 - Variables recodificadas]].
 
 - [x] **1.1 Unir las tres fuentes.** `COL_estudiantes_qqq.rds` + `COL_matematicas_cog.rds` por `CNTSTUID`;
@@ -103,7 +107,7 @@ Script: `Proyecto_PISA/scripts/01_etl_pisa.R` — parte de `datos/revision_pisa2
   - *Por qué:* NSE y pesos están en el cuestionario; ítems y tiempos en el cognitivo; zona y sector en el de colegios.
   - *Hecho (2026-10-16):* colegios unidos en `01b` (Mateo). Cuestionario + cognitivo por `CNTSTUID` en
     `01c_muestra_analitica.R` (Vanessa), con los cachés nuevos `COL_cuestionario.rds` + `COL_cognitivo.rds`: 7.804
-    estudiantes, IDs iguales y `CNTSCHID` coincidente. Se hizo en 01c para no esperar; Mateo lo revisa.
+    estudiantes, IDs iguales y `CNTSCHID` coincidente. Se hizo en 01c para no esperar; revisado por Mateo (PR #7).
 - [x] **1.2 Recuperar los códigos de faltante.** Releer las columnas de ítems con `haven::read_sav(..., user_na = TRUE)`
   y revisar `attr(x, "labels")` para distinguir **omitido**, **no alcanzado** y **no administrado**.
   - *Por qué:* hoy esos tres quedan como `NA`; O3 necesita separarlos (D-05).
@@ -159,7 +163,7 @@ Script: `02_validacion_ocde.R` — reutiliza `pendiente()` y `estimar_pv()` de `
     - varianza explicada 16,16 % (EE 2,09), frente a 16 %.
 
     El 2.4 se hizo con el paquete `survey` en vez de `EdSurvey` (D-15) y da las mismas cifras y errores estándar.
-    Pendiente: revisión de Mateo y Brayan en el PR.
+    Mateo lo revisó en el PR #7 y reprodujo la tabla en su máquina; falta la revisión de Brayan.
 - **Autoevaluación:** ¿Por qué no se puede promediar los 10 PV por estudiante y usar ese promedio?
 
 ## F3 — O1: medición del NSE (semanas 2–3)  `[TRI]` `[SEM]`

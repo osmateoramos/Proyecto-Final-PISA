@@ -100,9 +100,12 @@ Script: `Proyecto_PISA/scripts/01_etl_pisa.R` — parte de `datos/revision_pisa2
 - [ ] **1.1 Unir las tres fuentes.** `COL_estudiantes_qqq.rds` + `COL_matematicas_cog.rds` por `CNTSTUID`;
   `CY08MSP_SCH_QQQ.SAV` (solo `CNT == "COL"`) por `CNTSCHID`.
   - *Por qué:* NSE y pesos están en el cuestionario; ítems y tiempos en el cognitivo; zona y sector en el de colegios.
-- [ ] **1.2 Recuperar los códigos de faltante.** Releer las columnas de ítems con `haven::read_sav(..., user_na = TRUE)`
+- [x] **1.2 Recuperar los códigos de faltante.** Releer las columnas de ítems con `haven::read_sav(..., user_na = TRUE)`
   y revisar `attr(x, "labels")` para distinguir **omitido**, **no alcanzado** y **no administrado**.
   - *Por qué:* hoy esos tres quedan como `NA`; O3 necesita separarlos (D-05).
+  - *Hecho (2026-10-16):* regla en D-13; `scripts/01a_etl_cognitivo.R` → `datos/COL_cognitivo.rds` y
+    `salidas/cognitivo_estados_*.csv`. Quedan abiertos los pendientes de D-13 (*Not Applicable*; *Not Reached* con
+    tiempo).
 - [ ] **1.3 Recodificar.**
   - Sexo: `ST004D01T` → Mujer / Hombre.
   - Zona: `SC001Q01TA` 1 → Rural (<3.000), 2 → Pueblo (3–15 mil), 3–6 → Urbana.

@@ -154,7 +154,8 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - la OCDE agrupa categorías de HOMEPOS para la tendencia (p. 392).
   - La regla exacta de HOMEPOS está en la tabla 19.A.17, que no viene en el PDF: **por verificar**. El «No sé» → `NA`
     en ST256 es decisión del equipo, por analogía con ST254.
-- **Estado:** aceptada por Mateo (2026-10-16); Vanessa la revisa en el PR.
+- **Estado:** ✅ aceptada por Mateo y por Vanessa (2026-10-16). Vanessa la aprobó al revisar el PR #5, que se fusionó
+  el mismo día.
 
 ### D-13 · 2026-10-16 · Omitido, no alcanzado y no administrado en los ítems de matemáticas (paso 1.2 de la F1)
 - **Problema:** `datos/revision_pisa2022_col.R` lee el archivo cognitivo sin `user_na = TRUE`, así que todos los

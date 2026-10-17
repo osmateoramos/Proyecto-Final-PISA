@@ -240,6 +240,31 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - Los excluidos se separan por motivo: sin ESCS, menos de 10 vistos y ambos.
   - Si los excluidos rinden claramente distinto, la muestra analítica no representa a todos los estudiantes y así se
     declara en el informe.
+- **Resultado** (`scripts/01c_muestra_analitica.R` → `salidas/conteos_muestra.csv` y
+  `salidas/comparacion_incluidos_excluidos.csv`, 2026-10-16). Se confirman los conteos exploratorios.
+  - **Muestra analítica: 6.886 estudiantes**, el 87,5 % de la población ponderada.
+  - **Excluidos: 918 en total.**
+    - 312 sin ESCS;
+    - 573 con menos de 10 vistos;
+    - 33 con ambas cosas.
+  - **Media de matemáticas** (10 PV + BRR):
+
+    | Grupo | Media (EE) | Diferencia con incluidos (EE) | z |
+    |---|---|---|---|
+    | Incluidos | 384,5 (3,1) | — | — |
+    | Excluidos (todos) | 369,9 (3,8) | −14,6 (3,0) | −4,86 |
+    | Sin ESCS | 359,8 (6,0) | −24,8 (5,7) | −4,33 |
+    | Menos de 10 vistos | 376,9 (4,0) | −7,6 (3,3) | −2,31 |
+    | Sin ESCS y menos de 10 vistos | 359,3 (12,2) | −25,2 (11,9) | −2,12 |
+
+  - **Lectura (dato):** la exclusión **no es aleatoria**: los excluidos rinden menos, sobre todo los que no tienen
+    ESCS. La muestra analítica sobrerrepresenta un poco a los estudiantes de mejor desempeño, y el informe debe
+    declararlo.
+  - **Por decidir (no se decide aquí):** si se hace un análisis de sensibilidad en la F7, por ejemplo con
+    imputación de ESCS.
+  - Ojo, **no verificado:** casi todos los «menos de 10 vistos» no tienen ningún ítem respondido (530 en 01a). Sus
+    PV de matemáticas salen solo del modelo de población de la OCDE, no de respuestas. Hay que tenerlo en cuenta
+    al interpretar esa fila.
 - **Estado:** ✅ (b) y la comparación por motivo de exclusión, aceptadas por Vanessa (2026-10-16). Mateo revisa ambas en
   el PR.
 

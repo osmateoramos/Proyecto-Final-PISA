@@ -98,16 +98,19 @@ Script: `Proyecto_PISA/scripts/01_etl_pisa.R` — parte de `datos/revision_pisa2
 > Los cachés no van a Git: quien consolide necesita en su máquina los cachés de los dos scripts.
 > La tabla de variables recodificadas queda en [[Datos/PISA2022 - Variables recodificadas]].
 
-- [ ] **1.1 Unir las tres fuentes.** `COL_estudiantes_qqq.rds` + `COL_matematicas_cog.rds` por `CNTSTUID`;
+- [x] **1.1 Unir las tres fuentes.** `COL_estudiantes_qqq.rds` + `COL_matematicas_cog.rds` por `CNTSTUID`;
   `CY08MSP_SCH_QQQ.SAV` (solo `CNT == "COL"`) por `CNTSCHID`.
   - *Por qué:* NSE y pesos están en el cuestionario; ítems y tiempos en el cognitivo; zona y sector en el de colegios.
+  - *Hecho (2026-10-16):* colegios unidos en `01b` (Mateo). Cuestionario + cognitivo por `CNTSTUID` en
+    `01c_muestra_analitica.R` (Vanessa), con los cachés nuevos `COL_cuestionario.rds` + `COL_cognitivo.rds`: 7.804
+    estudiantes, IDs iguales y `CNTSCHID` coincidente. Se hizo en 01c para no esperar; Mateo lo revisa.
 - [x] **1.2 Recuperar los códigos de faltante.** Releer las columnas de ítems con `haven::read_sav(..., user_na = TRUE)`
   y revisar `attr(x, "labels")` para distinguir **omitido**, **no alcanzado** y **no administrado**.
   - *Por qué:* hoy esos tres quedan como `NA`; O3 necesita separarlos (D-05).
   - *Hecho (2026-10-16):* regla en D-13; `scripts/01a_etl_cognitivo.R` → `datos/COL_cognitivo.rds` y
     `salidas/cognitivo_estados_*.csv`. Los pendientes de D-13 se resolvieron con el Technical Report
     (pp. 211, 264 y 265); quedan dos anomalías declaradas.
-- [ ] **1.3 Recodificar.**
+- [x] **1.3 Recodificar.** *Hecho por Mateo (`01b_etl_cuestionario.R`, D-12, PR #5; marcado el 2026-10-16).*
   - Sexo: `ST004D01T` → Mujer / Hombre.
   - Zona: `SC001Q01TA` 1 → Rural (<3.000), 2 → Pueblo (3–15 mil), 3–6 → Urbana.
   - Sector: `SCHLTYPE` 3 → Público; 1–2 → Privado.
@@ -116,15 +119,21 @@ Script: `Proyecto_PISA/scripts/01_etl_pisa.R` — parte de `datos/revision_pisa2
     `ST254Q01–06JA` (dispositivos), `ST255Q01JA` (libros), `ST256Q01/02/03/06/07/08/09/10JA` (tipos de libros).
   - Educación: `ST005Q01JA`, `ST007Q01JA` y `HISCED`; ocupación: `HISEI`.
   - Etiquetas de "Valid Skip", "Not Applicable", "Invalid", "No Response" → `NA`.
-- [ ] **1.4 Diccionario.** Completar [[Datos/PISA2022 - Diccionario de variables]] (versión inicial del 2026-10-04,
+- [x] **1.4 Diccionario.** Completar [[Datos/PISA2022 - Diccionario de variables]] (versión inicial del 2026-10-04,
   con `Proyecto_PISA/datos/diccionario_pisa2022.R`) con una tabla de variables recodificadas: variable original →
   variable nueva, regla de recodificación y % de `NA`.
-- [ ] **1.5 Muestra analítica.** Definir y contar: con ESCS (7.459); con ≥10 ítems de matemáticas vistos (7.222);
+  - *Hecho por Mateo:* [[Datos/PISA2022 - Variables recodificadas]] y `salidas/diccionario_cuestionario.csv`
+    (PR #5). Las variables cognitivas están descritas en el encabezado de `01a_etl_cognitivo.R`.
+- [x] **1.5 Muestra analítica.** Definir y contar: con ESCS (7.459); con ≥10 ítems de matemáticas vistos (7.222);
   intersección. Comparar el puntaje medio de incluidos vs excluidos (¿la exclusión es aleatoria?).
   - *Ajuste (2026-10-16, D-14):* «visto» = respondido u omitido (D-13), no «tiene tiempo». Conteo exploratorio:
     7.198 con ≥10 vistos y 6.886 en la intersección con ESCS. El 7.222 de la revisión se reporta como control.
+  - *Hecho (2026-10-16):* `01c_muestra_analitica.R` → **6.886 estudiantes** (87,5 % de la población ponderada).
+    La exclusión no es aleatoria: los excluidos rinden 14,6 puntos menos (EE 3,0), ver D-14.
 - **Salida:** `Proyecto_PISA/datos/COL_analitica.rds` (no va a Git), `salidas/conteos_muestra.csv`, diccionario.
 - **Listo cuando:** el script corre desde cero y reproduce los conteos de la revisión del 29/09.
+  - ✅ *Cumplido:* 01c se detiene si no da 7.459 con ESCS y 7.222 con tiempo válido; los reproduce. Para correr desde
+    cero: `01a` → `01b` → `01c` (cada uno lee el `.SAV` solo si falta su caché).
 - **Autoevaluación:** ¿Qué diferencia hay entre una pregunta omitida y una no alcanzada? ¿A quién representa la
   muestra analítica?
 

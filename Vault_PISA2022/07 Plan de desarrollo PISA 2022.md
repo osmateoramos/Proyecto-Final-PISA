@@ -76,7 +76,8 @@ CONSULTORIA/
   - [ ] Vanessa y Brayan: aceptar la invitación de GitHub, clonar el repositorio y seguir la sección *Primera vez* del
     `README.md` (Mateo invita a Brayan: *Settings → Collaborators* en GitHub).
 - [x] **0.4 Carpeta `Proyecto_PISA/`** con la estructura de arriba (2026-10-04).
-- [ ] **0.5 Preregistro.** Completar y fechar [[09 Hipótesis preregistradas]] **antes** de estimar cualquier modelo.
+- [x] **0.5 Preregistro.** Completar y fechar [[09 Hipótesis preregistradas]] **antes** de estimar cualquier modelo.
+  - *Hecho:* congeladas el 2026-10-12, commit `f53054d` (anotado el 2026-10-16).
 - **Salida:** `.bib` sincronizado, vault en Git, nota 09 fechada.
 - **Autoevaluación:** ¿Por qué se escriben las hipótesis antes de modelar? ¿Qué pasaría con H5 si no?
 
@@ -120,6 +121,8 @@ Script: `Proyecto_PISA/scripts/01_etl_pisa.R` — parte de `datos/revision_pisa2
   variable nueva, regla de recodificación y % de `NA`.
 - [ ] **1.5 Muestra analítica.** Definir y contar: con ESCS (7.459); con ≥10 ítems de matemáticas vistos (7.222);
   intersección. Comparar el puntaje medio de incluidos vs excluidos (¿la exclusión es aleatoria?).
+  - *Ajuste (2026-10-16, D-14):* «visto» = respondido u omitido (D-13), no «tiene tiempo». Conteo exploratorio:
+    7.198 con ≥10 vistos y 6.886 en la intersección con ESCS. El 7.222 de la revisión se reporta como control.
 - **Salida:** `Proyecto_PISA/datos/COL_analitica.rds` (no va a Git), `salidas/conteos_muestra.csv`, diccionario.
 - **Listo cuando:** el script corre desde cero y reproduce los conteos de la revisión del 29/09.
 - **Autoevaluación:** ¿Qué diferencia hay entre una pregunta omitida y una no alcanzada? ¿A quién representa la

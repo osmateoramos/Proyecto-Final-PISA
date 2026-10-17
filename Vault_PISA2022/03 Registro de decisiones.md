@@ -211,3 +211,34 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   numeración impresa del PDF descargado la sección empieza en la p. 265 y *Not Applicable* está en la 266.
 - **Estado:** ✅ aceptada por Vanessa (2026-10-16) y revisada por Mateo («la regla está bien», 2026-10-16). Los
   pendientes quedan resueltos con fuente; las dos anomalías quedan declaradas. Las páginas siguen `por_verificar`.
+
+### D-14 · 2026-10-16 · Qué cuenta como «ítem visto» en la muestra analítica (paso 1.5 de la F1)
+- **Problema:** el paso 1.5 pide estudiantes «con ≥10 ítems de matemáticas vistos». El 7.222 del plan sale de
+  `datos/revision_pisa2022_col.R`, que cuenta como visto todo ítem con tiempo válido. Según D-13, eso incluye los
+  *no alcanzados* («unlikely to have seen the question», Technical Report p. 266) y los *no aplicables* (ítem
+  eliminado por la OCDE, p. 266). Ninguno de los dos refleja que el estudiante tuviera la pregunta para responder.
+- **Alternativas** (conteo exploratorio de Claude, 2026-10-16, desde `COL_cognitivo.rds` y `COL_cuestionario.rds`;
+  el script del paso 1.5 debe reproducirlo y dejarlo en `salidas/`):
+
+  | Definición de «visto» (≥10 ítems) | Estudiantes | Además con ESCS |
+  |---|---|---|
+  | (a) Tiempo `TT` válido (revisión del 29/09) | 7.222 | 6.910 |
+  | (b) Respondido u omitido (D-13) | 7.198 | 6.886 |
+  | (c) Solo respondido | 7.139 | 6.828 |
+
+  Con ESCS: 7.459 de 7.804.
+- **Decisión:** (b). Un ítem cuenta como visto si quedó *respondido* u *omitido*. El omitido es la categoría en que
+  el estudiante «had an opportunity to answer the question but did not respond» (p. 265). (c) se descarta porque
+  sacaría de la muestra justamente a quienes omiten, que son el objeto de H4.
+  - Se mantiene el umbral de 10 ítems del plan.
+  - **Muestra analítica = con ESCS ∩ (b): 6.886 estudiantes** (por confirmar con el script del paso 1.5).
+  - (a) se reporta al lado, solo como control: reproduce el 7.222 y el 7.459 de la revisión del 29/09, que es lo
+    que pide «Listo cuando» de la F1.
+- **Propuesta (no discutida aún):** comparar incluidos y excluidos con la media de matemáticas (`PV1MATH`–`PV10MATH`,
+  `W_FSTUWT`, 80 réplicas BRR con Fay 0,5 y reglas de Rubin, como `estimar_pv()` de `revision_pisa2022_col.R`).
+  - Se reporta la diferencia con su error estándar.
+  - Los excluidos se separan por motivo: sin ESCS, menos de 10 vistos y ambos.
+  - Si los excluidos rinden claramente distinto, la muestra analítica no representa a todos los estudiantes y así se
+    declara en el informe.
+- **Estado:** (b) ✅ aceptada por Vanessa (2026-10-16); la comparación queda como propuesta. Mateo revisa ambas en
+  el PR.

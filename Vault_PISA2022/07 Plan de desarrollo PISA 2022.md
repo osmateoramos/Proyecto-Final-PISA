@@ -73,6 +73,7 @@ CONSULTORIA/
   fuente ya existen; se verifican siguiendo [[11 Protocolo de verificación]].
 - [x] **0.3 Git + GitHub privado.** Repositorio **Proyecto-Final-PISA** (https://github.com/osmateoramos/Proyecto-Final-PISA,
   rama `main`), sin datos de estudiantes (`.gitignore`). Flujo de trabajo en `README.md` (GitHub Desktop).
+  - *Actualización (2026-10-17):* el repositorio es público, para que el profesor lo revise (ver D-02).
   - [ ] Vanessa y Brayan: aceptar la invitación de GitHub, clonar el repositorio y seguir la sección *Primera vez* del
     `README.md` (Mateo invita a Brayan: *Settings → Collaborators* en GitHub).
 - [x] **0.4 Carpeta `Proyecto_PISA/`** con la estructura de arriba (2026-10-04).

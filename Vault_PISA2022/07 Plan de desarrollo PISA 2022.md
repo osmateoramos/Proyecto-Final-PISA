@@ -173,7 +173,7 @@ Script: `02_validacion_ocde.R` — reutiliza `pendiente()` y `estimar_pv()` de `
 > Correlación policórica, análisis paralelo, AFE / AFC, 2PL y GPCM, función de información, omega.
 > **Lectura:** [[Literatura/deayala2009theory|de Ayala]] caps. 4, 5 y 8 y pp. 131–133 · [[Literatura/chen2024structural|Chen y Yung]] caps. 2 y 5 (detalle en [[14 Libros de TRI y SEM]]).
 
-Script: `03_nse_medicion.R` · paquetes `psych`, `mirt`, `lavaan`, `semTools` (instalados en R 4.4.1 el 2026-10-16,
+Scripts: `03_nse_medicion.R` (3.1 y 3.2), `03_nse_tri.R` (3.3 y 3.5, D-19) y `03_nse_afc.R` (3.4, Mateo) · paquetes `psych`, `mirt`, `lavaan`, `semTools` (instalados en R 4.4.1 el 2026-10-16,
 con `GPArotation` para la rotación oblimin).
 
 > [!note] Decisiones de la F3 en [[03 Registro de decisiones]] (D-16, aceptada por Vanessa el 2026-10-16)
@@ -204,12 +204,24 @@ con `GPArotation` para la rotación oblimin).
       ocupación, el arte y los instrumentos cargan con lo económico; 25 de 29 ítems coinciden con D-16.
     - Detalle y salidas en el resultado del 3.2 dentro de D-16. La estructura del AFE pasa al 3.4 como
       exploratoria.
-- [ ] **3.3 TRI:** `mirt` con `itemtype` por columna (`"2PL"` para ST250, que es Sí/No; `"graded"` o `"gpcm"` para
+- [x] **3.3 TRI:** `mirt` con `itemtype` por columna (`"2PL"` para ST250, que es Sí/No; `"graded"` o `"gpcm"` para
   ST251, ST253, ST254, ST255 y ST256, que preguntan cantidades, y para educación). Tabla de parámetros (`coef(m, IRTpars = TRUE, simplify = TRUE)`), `itemfit()` (S-X²),
   curvas de información. ¿En qué rango del NSE mide bien la escala?
+  - *Hecho (2026-10-17, D-19 y D-20):* `03_nse_tri.R`, un script aparte para no reestimar los modelos.
+    - Tres modelos: 1D, 2D de D-16 y 2D del AFE.
+    - Las dos dimensiones ajustan mucho mejor que una.
+    - Ningún ítem es problemático: el RMSEA del S-X² es ≤ 0,027.
+    - **Respuesta:** la escala mide bien (información ≥ 4) en θ de −2,3 a 3,5 con 1 dimensión. En 2 dimensiones, lo
+      económico mide en un rango amplio (−2,2 a 2,7) y lo cultural (libros) mide muy bien sobre el promedio y poco
+      en el extremo bajo (−1,5 a 2,7).
+    - Detalle en el resultado de D-19.
 - [ ] **3.4 AFC en la mitad de confirmación:** 1 vs 2 factores con `estimator = "WLSMV"`, `ordered = …`; ajuste,
   `lavTestLRT()`, `semTools::compRelSEM()`. Con n ≈ 3.700 el χ² rechaza: reportarlo y usar CFI/RMSEA/SRMR.
-- [ ] **3.5 Validez:** correlación de las puntuaciones (EAP) con `HOMEPOS` y `ESCS` oficiales.
+- [x] **3.5 Validez:** correlación de las puntuaciones (EAP) con `HOMEPOS` y `ESCS` oficiales.
+  - *Hecho (2026-10-17):* `03_nse_tri.R` → `salidas/nse_validez.csv` (correlación ponderada, 6.886).
+    - El factor económico correlaciona 0,96 con HOMEPOS y entre 0,77 y 0,81 con ESCS.
+    - El cultural (libros), entre 0,62 y 0,65 con HOMEPOS y entre 0,47 y 0,51 con ESCS.
+    - El modelo de 1 dimensión, 0,91 y 0,74.
 - **Salida:** `salidas/nse_parametros_tri.csv`, `salidas/nse_ajuste_afc.csv`, figuras de información.
 - **Listo cuando:** **Puerta G2** — modelo elegido con ajuste aceptable (CFI ≥ 0,95, RMSEA ≤ 0,06, SRMR ≤ 0,08) o
   desajuste documentado y explicado; H1 resuelta.

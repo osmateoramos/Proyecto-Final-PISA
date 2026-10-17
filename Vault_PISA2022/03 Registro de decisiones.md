@@ -539,6 +539,44 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   7. **Puntuaciones EAP** de los tres modelos en `datos/COL_nse_tri.rds` (no va a Git). Cuál pasa a la F4–F6 se
      decide en la Puerta G2 (D-16).
   8. **Validez (3.5):** correlación ponderada (peso final) de cada EAP con `HOMEPOS` y `ESCS` oficiales.
+- **Resultado de los pasos 3.3 y 3.5** (`scripts/03_nse_tri.R` → `salidas/nse_ajuste_tri.csv`,
+  `nse_parametros_tri.csv`, `nse_tri_cargas_2d.csv`, `nse_itemfit_tri.csv`, `nse_informacion_tri.csv` y `.png`,
+  `nse_confiabilidad_tri.csv` y `nse_validez.csv`; 6.886 estudiantes; 2026-10-17; con D-20 completa y el entorno de
+  D-17):
+  - **Convergencia:** los tres modelos convergieron. El de 2 dimensiones de D-16 necesitó 811 iteraciones del EM.
+  - **Comparación** (descriptiva, punto 4):
+    - AIC de 344.517 (1D), 329.821 (2D de D-16) y 327.986 (2D del AFE); el BIC sigue el mismo orden;
+    - correlación entre factores: 0,50 (D-16) y 0,48 (AFE);
+    - la estructura del AFE salió de la mitad de exploración, que también está aquí, así que tiene ventaja. **H1 se
+      decide en el 3.4.**
+  - **Modelo de 1 dimensión:**
+    - lo dominan los libros (*a* de 1,27 a 1,61 en ST255 y ST256), junto con computador y portátiles (1,56);
+    - los que menos discriminan son motos (*a* = 0,09), `HISCED_c` (0,19), lectores electrónicos (0,34) y
+      `HISEI_q` (0,41).
+  - **Ajuste de los ítems:** S-X² en 4.672 casos completos (68 %), sin pesos.
+    - Entre 24 y 27 de los 29 ítems tienen p ajustado < 0,05, como era de esperar con miles de casos.
+    - El RMSEA del S-X² es ≤ 0,027 en todos; el más alto es el de diccionarios (`ST256Q09JA`) en el modelo de D-16.
+    - Con la regla del punto 5, **ningún ítem es problemático** en ninguno de los tres modelos.
+  - **Información ≥ 4** (error estándar ≤ 0,5):
+    - 1D: θ de −2,3 a 3,5 (máximo 20,6 en θ = 1,6);
+    - económico: de −2,2 a 2,7 (D-16) o a 2,9 (AFE), con máximo cercano a 10 en θ ≈ −0,3;
+    - cultural: de −1,5 a 2,7 (D-16) o a 2,6 (AFE), con máximo de 32 a 33 en θ = 1,4.
+  - **Confiabilidad:** 0,92 en 1D (marginal y empírica) y de 0,89 a 0,91 en las dimensiones de 2D.
+  - **Validez (3.5), correlación ponderada:**
+
+    | Puntuación | Con HOMEPOS | Con ESCS |
+    |---|---|---|
+    | 1D | 0,91 | 0,74 |
+    | Económico, D-16 | 0,96 | 0,77 |
+    | Económico, AFE | 0,96 | 0,81 |
+    | Cultural, D-16 | 0,65 | 0,51 |
+    | Cultural, AFE | 0,62 | 0,47 |
+
+  - **Interpretación (equipo, por discutir en la Puerta G2):**
+    - el factor económico es casi el mismo índice de posesiones de la OCDE;
+    - el cultural (libros) mide con mucha precisión por encima del promedio, pero poco en el extremo bajo: quienes
+      no tienen libros quedan todos en el piso;
+    - el factor económico es el que mide en un rango más amplio, también el NSE bajo.
 - **Estado:** ✅ aceptada por Vanessa (2026-10-17), tal cual: S-X² en casos completos e incluido el modelo exploratorio
   del AFE. Mateo la revisa en el PR.
 

@@ -135,15 +135,22 @@ Script: `Proyecto_PISA/scripts/01_etl_pisa.R` — parte de `datos/revision_pisa2
 
 Script: `02_validacion_ocde.R` — reutiliza `pendiente()` y `estimar_pv()` de `Proyecto_PISA/datos/revision_pisa2022_col.R`.
 
-- [ ] **2.1 Media de matemáticas de Colombia** con 10 PV + `W_FSTUWT` + 80 replicados. Objetivo publicado: **382,7
+- [x] **2.1 Media de matemáticas de Colombia** con 10 PV + `W_FSTUWT` + 80 replicados. Objetivo publicado: **382,7
   (EE 3,0)** ([[Literatura/oecd2024pisa2022tr]]; el valor 382,70 coincide con [[Literatura/burns2026intest]], tabla 2,
   p. 9; Technical Report, Annex Table 14.A.12, p. 301).
-- [ ] **2.2 Brecha por ESCS:** diferencia entre el cuartil más alto y el más bajo. Objetivo: **79 puntos** ([[Literatura/oecd2023fichacolombia]], p. 5; era `sin_origen` hasta que se abrió la ficha el 2026-10-16).
-- [ ] **2.3 Varianza explicada por ESCS:** objetivo publicado **16 %** ([[Literatura/icfes2024pisa]], p. 46 del visor; [[Literatura/oecd2023fichacolombia]], p. 5).
-- [ ] **2.4 Alternativa de contraste:** repetir 2.1 con `EdSurvey` (su soporte de PISA 2022 es contribuido y no
+- [x] **2.2 Brecha por ESCS:** diferencia entre el cuartil más alto y el más bajo. Objetivo: **79 puntos** ([[Literatura/oecd2023fichacolombia]], p. 5; era `sin_origen` hasta que se abrió la ficha el 2026-10-16).
+- [x] **2.3 Varianza explicada por ESCS:** objetivo publicado **16 %** ([[Literatura/icfes2024pisa]], p. 46 del visor; [[Literatura/oecd2023fichacolombia]], p. 5).
+- [x] **2.4 Alternativa de contraste:** repetir 2.1 con `EdSurvey` (su soporte de PISA 2022 es contribuido y no
   probado: si discrepa, manda la cifra de la OCDE).
 - **Salida:** `salidas/validacion_ocde.csv` (nuestro vs publicado).
 - **Listo cuando:** **Puerta G1** — las tres cifras coinciden dentro de ±1 punto (o ±1 punto porcentual).
+  - *Hecho (2026-10-16, D-15):* **G1 pasa.** `scripts/02_validacion_ocde.R` → `salidas/validacion_ocde.csv`:
+    - media 382,70 (EE 3,03), frente a 382,70 (3,03);
+    - brecha 78,56 (EE 5,74), frente a 79;
+    - varianza explicada 16,16 % (EE 2,09), frente a 16 %.
+
+    El 2.4 se hizo con el paquete `survey` en vez de `EdSurvey` (D-15) y da las mismas cifras y errores estándar.
+    Pendiente: revisión de Mateo y Brayan en el PR.
 - **Autoevaluación:** ¿Por qué no se puede promediar los 10 PV por estudiante y usar ese promedio?
 
 ## F3 — O1: medición del NSE (semanas 2–3)  `[TRI]` `[SEM]`

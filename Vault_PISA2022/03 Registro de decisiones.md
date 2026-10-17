@@ -405,6 +405,35 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - `salidas/nse_parametros_tri.csv`, `salidas/nse_ajuste_afc.csv` y las figuras de información (plan).
 - **Fuentes:** [[Literatura/oecd2024pisa2022tr]], afirmaciones 17–20 (pp. 380, 384, 386–387 y 391–392), y
   [[Literatura/avvisati2024measurement]] p. 11 (HOMEPOS es una escala TRI unidimensional). Todo `por_verificar`.
+- **Resultado del paso 3.2** (`scripts/03_nse_medicion.R`, sección 3.2 → `salidas/nse_policorica_diagnostico.csv`,
+  `nse_analisis_paralelo.csv`, `nse_afe_cargas.csv`, `nse_afe_ajuste.csv` y `nse_estructura_afe.csv`;
+  mitad de exploración, n = 3.445, 2026-10-17):
+  - **Policórica:**
+    - Sin suavizar tiene 1 autovalor negativo (−0,030). Pasa igual sin pesos (−0,031) y con solo casos completos
+      (−0,048; n = 1.966), así que no lo causan las decisiones de D-16.
+    - Se usó la matriz que `psych` suaviza. Queda casi singular, y por eso el RMSEA, el TLI y el BIC del AFE no se
+      interpretan (el RMSR baja de 0,077 con 1 factor a 0,040 con 2).
+    - No hay ítems duplicados: el par más alto es computador–portátiles (0,85).
+  - **Análisis paralelo:** dominan 2 autovalores (9,00 y 2,57; el tercero es 0,68).
+    - El criterio de factores sugiere 9 y el de componentes, 4.
+    - El AFE de 3 factores solo agrega un «factor» de dos ítems: motos (−0,61) y lectores electrónicos (0,52).
+    - Se lee como una estructura de 2 factores.
+  - **AFE de 2 factores** (oblimin; correlación entre factores 0,44):
+    - factor 1: las posesiones materiales y tecnológicas, `HISCED_c`, `HISEI_q`, obras de arte e instrumentos;
+    - factor 2: los libros (`ST255` y los 8 `ST256`).
+    - Coinciden con D-16 25 de 29 ítems. No coinciden `HISCED_c`, `ST251Q06JA` y `ST251Q07JA` (cultural en D-16,
+      aquí económico) ni `ST254Q05JA` (económico en D-16, aquí libros, con carga 0,24).
+  - **Comunalidad < 0,20:** cuarto propio (`ST250Q01JA`, 0,19), motos (`ST251Q02JA`, 0,03) y lectores electrónicos
+    (`ST254Q05JA`, 0,06).
+  - **Qué implica (punto 7):**
+    - H1 se sigue probando en el 3.4 con la estructura de D-16.
+    - La estructura del AFE también se prueba en el 3.4, pero solo como **exploratoria**:
+      - cultural (libros): los 9 de libros más `ST254Q05JA`, 10 ítems;
+      - económico: los otros 19.
+
+      Está en `salidas/nse_estructura_afe.csv`.
+  - **Interpretación (equipo, por discutir):** en estos datos, la dimensión cultural que aparece sola es la de los
+    libros en casa. La educación y la ocupación de los padres se comportan como el resto del NSE.
 - **Estado:** ✅ aceptada por Vanessa (2026-10-16):
   - muestra de 6.886 (se propusieron los 7.479);
   - `HISEI` en el factor económico;

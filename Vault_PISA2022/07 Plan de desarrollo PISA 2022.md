@@ -193,9 +193,16 @@ con `GPArotation` para la rotación oblimin).
       medio (−1,065 / −1,040), HOMEPOS (−1,351 / −1,381), % rural (15,1 / 15,6) y % público (80,3 / 80,4).
     - **Recodificación:** la regla del 2 % cambió solo los 5 ítems previstos en D-16. `HISCED_c` (0–9) no se
       tocó. `HISEI_q` quedó en quintiles con el ~20 % del peso cada uno.
-- [ ] **3.2 Exploración:** matriz policórica de los 27 ítems de posesiones + educación + ocupación (categorizada);
+- [x] **3.2 Exploración:** matriz policórica de los 27 ítems de posesiones + educación + ocupación (categorizada);
   `psych::fa.parallel(cor = "poly")`; AFE con 1–3 factores (`oblimin`, `fm = "wls"`). ¿Aparece una dimensión
   económica y otra cultural (libros, educación, ocupación)?
+  - *Hecho (2026-10-17):* `03_nse_medicion.R` (sección 3.2), en la mitad de exploración (3.445).
+    - Por D-16, el análisis paralelo se hizo sobre la policórica **ponderada**, no con `cor = "poly"`, que no
+      admite pesos.
+    - **Respuesta:** aparecen 2 factores (r = 0,44), pero el cultural es solo de **libros**. La educación, la
+      ocupación, el arte y los instrumentos cargan con lo económico; 25 de 29 ítems coinciden con D-16.
+    - Detalle y salidas en el resultado del 3.2 dentro de D-16. La estructura del AFE pasa al 3.4 como
+      exploratoria.
 - [ ] **3.3 TRI:** `mirt` con `itemtype` por columna (`"2PL"` para ST250, que es Sí/No; `"graded"` o `"gpcm"` para
   ST251, ST253, ST254, ST255 y ST256, que preguntan cantidades, y para educación). Tabla de parámetros (`coef(m, IRTpars = TRUE, simplify = TRUE)`), `itemfit()` (S-X²),
   curvas de información. ¿En qué rango del NSE mide bien la escala?

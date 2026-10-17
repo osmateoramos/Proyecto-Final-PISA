@@ -154,4 +154,103 @@ cat("\n% de faltantes por indicador (entre", nrow(nse), "):\n")
 print(round(sort(sapply(nse[, ..IND], function(x) 100 * mean(is.na(x))), decreasing = TRUE), 1))
 cat("\nMitades (salidas/nse_mitades.csv):\n"); print(mitades)
 cat("Colegios con número impar (diferencia de 1 entre mitades):", sum(dif_colegio$d == 1), "de", nrow(dif_colegio), "\n")
-cat("\nListo: datos/COL_nse.rds, salidas/nse_recodificacion.csv y salidas/nse_mitades.csv\n")
+cat("\nListo 3.1: datos/COL_nse.rds, salidas/nse_recodificacion.csv y salidas/nse_mitades.csv\n")
+
+# =============================================================================
+# 3.2 EXPLORACIÓN (solo la mitad de exploración): policórica, análisis paralelo y AFE
+# =============================================================================
+# - Correlación policórica ponderada (pesos normalizados a la suma de casos, D-16 punto 5), por pares
+#   (D-16 punto 6). HISCED_c tiene 10 categorías: max.cat = 10 para tratarla como ordinal.
+# - Análisis paralelo sobre esa matriz (n = tamaño de la mitad; 100 simulaciones, set.seed(2026)).
+# - AFE con 1, 2 y 3 factores, fm = "wls" y rotación oblimin (plan 07, paso 3.2).
+# Esto NO decide H1: la estructura que se pone a prueba está fijada en D-16 (punto 7) y H1 se decide
+# en el AFC de la mitad de confirmación (paso 3.4). Aquí se describe qué estructura sugieren los datos.
+suppressPackageStartupMessages({ library(psych); library(GPArotation) })
+ex   <- nse[mitad == "exploracion"]
+n_ex <- nrow(ex)
+w_ex <- ex$W_FSTUWT * n_ex / sum(ex$W_FSTUWT)
+
+avisos_pc <- character()
+pc <- withCallingHandlers(
+  polychoric(as.data.frame(ex[, ..IND]), weight = w_ex, max.cat = 10, smooth = TRUE, correct = 0.5, progress = FALSE),
+  warning = function(w) { avisos_pc <<- c(avisos_pc, conditionMessage(w)); invokeRestart("muffleWarning") })
+R <- pc$rho
+stopifnot(identical(rownames(R), IND), all(abs(diag(R) - 1) < 1e-8))
+fwrite(data.table(item = IND, round(R, 3)), file.path(SALIDAS, "nse_policorica_exploracion.csv"))
+
+# Diagnóstico: ¿la matriz sin suavizar es definida positiva? Se compara con dos variantes (sin pesos;
+# solo casos completos) para ver si el problema viene de las decisiones de D-16 o de la policórica misma.
+poly_sin_suavizar <- function(d, w) suppressWarnings(
+  polychoric(as.data.frame(d), weight = w, max.cat = 10, smooth = FALSE, correct = 0.5, progress = FALSE))$rho
+cc <- complete.cases(ex[, ..IND])
+variantes <- list("ponderada, por pares (D-16)" = list(d = ex[, ..IND], w = w_ex),
+                  "sin pesos, por pares"        = list(d = ex[, ..IND], w = NULL),
+                  "ponderada, casos completos"  = list(d = ex[cc, ..IND], w = w_ex[cc] * sum(cc) / sum(w_ex[cc])))
+diag_pc <- rbindlist(lapply(names(variantes), function(v) {
+  R0 <- poly_sin_suavizar(variantes[[v]]$d, variantes[[v]]$w); ev <- eigen(R0, only.values = TRUE)$values
+  data.table(policorica = v, n = nrow(variantes[[v]]$d), autovalores_negativos = sum(ev < 0), autovalor_minimo = round(min(ev), 4))
+}))
+fwrite(diag_pc, file.path(SALIDAS, "nse_policorica_diagnostico.csv"))
+R0 <- poly_sin_suavizar(ex[, ..IND], w_ex)
+pares <- which(upper.tri(R0), arr.ind = TRUE)
+pares_altos <- data.table(item_a = IND[pares[, 1]], item_b = IND[pares[, 2]], r = round(R0[pares], 3))[order(-abs(r))][1:8]
+
+set.seed(2026)
+pa <- fa.parallel(R, n.obs = n_ex, fm = "wls", fa = "both", n.iter = 100, plot = FALSE)
+paralelo <- data.table(orden = seq_along(IND), autovalor_factor = round(pa$fa.values, 3),
+                       simulado_factor = round(pa$fa.sim, 3), autovalor_componente = round(pa$pc.values, 3),
+                       simulado_componente = round(pa$pc.sim, 3))
+fwrite(paralelo, file.path(SALIDAS, "nse_analisis_paralelo.csv"))
+
+afe <- lapply(1:3, function(k) fa(R, nfactors = k, n.obs = n_ex, fm = "wls", rotate = "oblimin"))
+
+# Cargas: para k = 2 se nombra cada factor por el grupo de D-16 cuyos ítems cargan más en él (en promedio)
+carg <- lapply(afe, function(m) unclass(m$loadings)[IND, , drop = FALSE])
+L2   <- carg[[2]]
+media_abs <- sapply(1:2, function(j) c(cultural = mean(abs(L2[CULTURAL, j])), economico = mean(abs(L2[ECONOMICO, j]))))
+nombre_f  <- ifelse(media_abs["cultural", ] > media_abs["economico", ], "cultural", "económico")
+cargas <- data.table(item = IND, factor_D16 = ifelse(IND %in% CULTURAL, "cultural", "económico"),
+                     k1_carga = round(carg[[1]][, 1], 3), k1_h2 = round(afe[[1]]$communality[IND], 3),
+                     k2_F1 = round(L2[, 1], 3), k2_F2 = round(L2[, 2], 3), k2_h2 = round(afe[[2]]$communality[IND], 3),
+                     k3_F1 = round(carg[[3]][, 1], 3), k3_F2 = round(carg[[3]][, 2], 3), k3_F3 = round(carg[[3]][, 3], 3),
+                     k3_h2 = round(afe[[3]]$communality[IND], 3))
+cargas[, k2_factor_principal := nombre_f[apply(abs(L2), 1, which.max)]]
+cargas[, k2_coincide_D16 := k2_factor_principal == factor_D16]
+cargas[, k2_carga_cruzada := apply(abs(L2), 1, function(x) sum(x >= 0.30) == 2)]   # >= 0,30 en los dos factores
+fwrite(cargas, file.path(SALIDAS, "nse_afe_cargas.csv"))
+
+phi_txt <- function(m) if (is.null(m$Phi)) "" else paste(round(m$Phi[lower.tri(m$Phi)], 3), collapse = " ; ")
+ajuste_afe <- data.table(factores = 1:3,
+                         RMSEA = sapply(afe, function(m) round(unname(m$RMSEA[1]), 3)),
+                         TLI   = sapply(afe, function(m) round(m$TLI, 3)),
+                         RMSR  = sapply(afe, function(m) round(m$rms, 3)),
+                         BIC   = sapply(afe, function(m) round(m$BIC, 1)),
+                         varianza_explicada = sapply(afe, function(m) round(sum(m$communality) / length(IND), 3)),
+                         correlaciones_entre_factores = sapply(afe, phi_txt),
+                         nota = "RMSEA, TLI y BIC de psych salen de la verosimilitud de una matriz suavizada casi singular: no se interpretan; el ajuste formal se evalúa en el AFC (3.4)")
+fwrite(ajuste_afe, file.path(SALIDAS, "nse_afe_ajuste.csv"))
+
+# Estructura que sugiere el AFE de 2 factores (cada ítem en su factor de mayor carga). D-16 punto 7: se
+# prueba en la mitad de confirmación solo como estructura EXPLORATORIA; H1 se decide con la de D-16.
+estructura_afe <- cargas[, .(item, factor_D16, factor_AFE = k2_factor_principal,
+                             carga_principal = pmax(abs(k2_F1), abs(k2_F2)), coincide = k2_coincide_D16)]
+fwrite(estructura_afe, file.path(SALIDAS, "nse_estructura_afe.csv"))
+
+# --- Resumen en consola
+cat("\n=== Paso 3.2 (mitad de exploración, n =", n_ex, ") ===\n")
+cat("Avisos de la policórica:", if (length(avisos_pc)) paste(unique(avisos_pc), collapse = " | ") else "ninguno", "\n")
+cat("Autovalor mínimo de la matriz policórica suavizada:", signif(min(eigen(R, only.values = TRUE)$values), 3), "\n")
+cat("Diagnóstico sin suavizar (salidas/nse_policorica_diagnostico.csv):\n"); print(diag_pc)
+cat("Pares de ítems con la correlación policórica más alta:\n"); print(pares_altos)
+cat("Análisis paralelo: factores sugeridos =", pa$nfact, "| componentes sugeridos =", pa$ncomp, "\n")
+print(paralelo[1:6])
+cat("\nAjuste del AFE (salidas/nse_afe_ajuste.csv):\n"); print(ajuste_afe)
+cat("\nAFE de 2 factores: F1 =", nombre_f[1], "| F2 =", nombre_f[2], "(nombre según el grupo de D-16 que más carga)\n")
+cat("Ítems cuyo factor principal coincide con D-16:", sum(cargas$k2_coincide_D16), "de", nrow(cargas), "\n")
+print(cargas[order(k2_factor_principal, -pmax(abs(k2_F1), abs(k2_F2))),
+             .(item, factor_D16, k2_F1, k2_F2, k2_h2, k2_factor_principal, k2_coincide_D16, k2_carga_cruzada)])
+cat("\nÍtems con comunalidad < 0,20 en el modelo de 2 factores:", paste(cargas[k2_h2 < 0.20, item], collapse = ", "), "\n")
+cat("AFE de 3 factores, cargas >= 0,30 en el tercer factor:",
+    paste(cargas[abs(k3_F3) >= 0.30, paste0(item, " (", k3_F3, ")")], collapse = ", "), "\n")
+cat("\nListo 3.2: salidas/nse_policorica_exploracion.csv, nse_policorica_diagnostico.csv, nse_analisis_paralelo.csv,",
+    "nse_afe_cargas.csv, nse_afe_ajuste.csv y nse_estructura_afe.csv\n")

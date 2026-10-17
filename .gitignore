@@ -43,6 +43,7 @@ __pycache__/
 
 # --- Configuración personal ----------------------------------------------------
 .claude/
+.vscode/
 
 # --- Obsidian: estado de ventanas de cada uno, no contenido ---------------------
 Vault_PISA2022/.obsidian/workspace*

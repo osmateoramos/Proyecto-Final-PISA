@@ -106,7 +106,7 @@ Script: `Proyecto_PISA/scripts/01_etl_pisa.R` — parte de `datos/revision_pisa2
   - *Por qué:* hoy esos tres quedan como `NA`; O3 necesita separarlos (D-05).
   - *Hecho (2026-10-16):* regla en D-13; `scripts/01a_etl_cognitivo.R` → `datos/COL_cognitivo.rds` y
     `salidas/cognitivo_estados_*.csv`. Los pendientes de D-13 se resolvieron con el Technical Report
-    (pp. 212, 265 y 266); quedan dos anomalías declaradas.
+    (pp. 211, 264 y 265); quedan dos anomalías declaradas.
 - [ ] **1.3 Recodificar.**
   - Sexo: `ST004D01T` → Mujer / Hombre.
   - Zona: `SC001Q01TA` 1 → Rural (<3.000), 2 → Pueblo (3–15 mil), 3–6 → Urbana.

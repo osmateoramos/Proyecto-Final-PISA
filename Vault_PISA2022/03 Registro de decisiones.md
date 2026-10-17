@@ -190,7 +190,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 - **Pendientes, resueltos el 2026-10-16** (Mateo encontró la sección y Claude la confirmó contra el texto completo;
   [[Literatura/oecd2024pisa2022tr]], afirmaciones 10–14, `por_verificar` hasta que firme el equipo):
   - (1) **Qué es *Not Applicable*:** en los datos cognitivos marca un ítem «dropped/deleted during item calibration
-    and not used during scaling» (p. 266). No es una conducta del estudiante.
+    and not used during scaling» (p. 265). No es una conducta del estudiante.
     - **Dato** (`salidas/cognitivo_estados_por_item.csv`): 1.170 de las 1.352 celdas son de los dos ítems sin
       ninguna respuesta en Colombia, `CMA112Q02S` (570) y `CMA143Q01S` (600), los mismos de D-09. Encaja con un
       ítem eliminado.
@@ -198,25 +198,25 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
       con 1 a 10 celdas cada uno. Esos ítems sí tienen respuestas válidas en Colombia, así que el *Not Applicable*
       es de la celda y no del ítem. El reporte no lo explica.
   - (2) **Por qué hay *Not Reached* con tiempo:** se trata como no visto, «unlikely to have seen the question» (p.
-    266), y la regla se mantiene.
-    - **Interpretación del equipo**, no la dice el reporte sobre los tiempos: la p. 212 define *not reached* por el
+    265), y la regla se mantiene.
+    - **Interpretación del equipo**, no la dice el reporte sobre los tiempos: la p. 211 define *not reached* por el
       patrón de respuesta, no por la visita («did not answer the item or any subsequent item» de la sesión MSAT).
       Un estudiante pudo abrir el ítem, lo que deja tiempo, sin responderlo ni responder los siguientes. Queda
       como anomalía declarada.
-  - **Matiz** (Mateo; p. 265): el faltante del sistema no es solo «no administrado por diseño». También incluye a
+  - **Matiz** (Mateo; p. 264): el faltante del sistema no es solo «no administrado por diseño». También incluye a
     quien terminó antes y la pérdida de datos. La categoría conserva el nombre `no_administrado`, pero se lee así.
   - **Para D-05:** en el escalamiento de la OCDE los no alcanzados se excluyen y los omitidos cuentan como
-    incorrectos (p. 212). Ese es el criterio (a) de D-05.
-- **Fuente:** etiquetas del propio `.SAV` y Technical Report 2022, pp. 212, 265 y 266. Mateo citó pp. 264–265; en la
-  numeración impresa del PDF descargado la sección empieza en la p. 265 y *Not Applicable* está en la 266.
+    incorrectos (p. 211). Ese es el criterio (a) de D-05.
+- **Fuente:** etiquetas del propio `.SAV` y Technical Report 2022, pp. 211, 264 y 265. Es la numeración impresa,
+  que va arriba de cada página; en el visor de PDF hay que sumar 2: la 264 impresa es la 266 del visor.
 - **Estado:** ✅ aceptada por Vanessa (2026-10-16) y revisada por Mateo («la regla está bien», 2026-10-16). Los
   pendientes quedan resueltos con fuente; las dos anomalías quedan declaradas. Las páginas siguen `por_verificar`.
 
 ### D-14 · 2026-10-16 · Qué cuenta como «ítem visto» en la muestra analítica (paso 1.5 de la F1)
 - **Problema:** el paso 1.5 pide estudiantes «con ≥10 ítems de matemáticas vistos». El 7.222 del plan sale de
   `datos/revision_pisa2022_col.R`, que cuenta como visto todo ítem con tiempo válido. Según D-13, eso incluye los
-  *no alcanzados* («unlikely to have seen the question», Technical Report p. 266) y los *no aplicables* (ítem
-  eliminado por la OCDE, p. 266). Ninguno de los dos refleja que el estudiante tuviera la pregunta para responder.
+  *no alcanzados* («unlikely to have seen the question», Technical Report p. 265) y los *no aplicables* (ítem
+  eliminado por la OCDE, p. 265). Ninguno de los dos refleja que el estudiante tuviera la pregunta para responder.
 - **Alternativas** (conteo exploratorio de Claude, 2026-10-16, desde `COL_cognitivo.rds` y `COL_cuestionario.rds`;
   el script del paso 1.5 debe reproducirlo y dejarlo en `salidas/`):
 
@@ -228,7 +228,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 
   Con ESCS: 7.459 de 7.804.
 - **Decisión:** (b). Un ítem cuenta como visto si quedó *respondido* u *omitido*. El omitido es la categoría en que
-  el estudiante «had an opportunity to answer the question but did not respond» (p. 265). (c) se descarta porque
+  el estudiante «had an opportunity to answer the question but did not respond» (p. 264). (c) se descarta porque
   sacaría de la muestra justamente a quienes omiten, que son el objeto de H4.
   - Se mantiene el umbral de 10 ítems del plan.
   - **Muestra analítica = con ESCS ∩ (b): 6.886 estudiantes** (por confirmar con el script del paso 1.5).

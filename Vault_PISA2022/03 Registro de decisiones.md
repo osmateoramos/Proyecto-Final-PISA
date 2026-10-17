@@ -155,3 +155,44 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - La regla exacta de HOMEPOS está en la tabla 19.A.17, que no viene en el PDF: **por verificar**. El «No sé» → `NA`
     en ST256 es decisión del equipo, por analogía con ST254.
 - **Estado:** aceptada por Mateo (2026-10-16); Vanessa la revisa en el PR.
+
+### D-13 · 2026-10-16 · Omitido, no alcanzado y no administrado en los ítems de matemáticas (paso 1.2 de la F1)
+- **Problema:** `datos/revision_pisa2022_col.R` lee el archivo cognitivo sin `user_na = TRUE`, así que todos los
+  códigos de faltante llegan como `NA`. Además, su "omitió" (vio el ítem, es decir, tiene tiempo, y no tiene puntaje)
+  junta *No Response*, *Not Reached* y *Not Applicable*. O3 y D-05 necesitan separarlos.
+- **Lo que muestran los datos** (`scripts/01a_explorar_faltantes_cog.R` →
+  `salidas/faltantes_cog_etiquetas.csv` y `salidas/faltantes_cog_cruce.csv`, corrido el 2026-10-16 con R 4.4.1):
+  - los 234 ítems calificados declaran como faltantes de usuario 6 = *Not Reached*, 7 = *Not Applicable*,
+    8 = *Invalid* y 9 = *No Response* (203 ítems) o 96–99 con el mismo orden (31 ítems); los 234 tiempos `TT`,
+    99999996–99999999;
+  - Colombia: 7.804 estudiantes × 234 ítems = 1.826.136 celdas:
+
+    | Estado del puntaje | Celdas | Su tiempo `TT` |
+    |---|---|---|
+    | Puntaje válido | 182.047 | válido (19 con `TT` = 99999998, *Invalid*) |
+    | 9 / 99 *No Response* | 13.277 | válido (2 con `TT` *Invalid*) |
+    | 6 / 96 *Not Reached* | 5.276 | válido 5.211; `NA` 65 |
+    | 7 / 97 *Not Applicable* | 1.352 | válido |
+    | 8 / 98 *Invalid* | 0 | — |
+    | `NA` del sistema | 1.624.184 | `NA` |
+
+- **Regla propuesta** (una columna de estado por ítem, además del puntaje):
+  - **respondido:** puntaje válido; el tiempo *Invalid* pasa a `NA` y el puntaje se conserva;
+  - **omitido:** 9 / 99 (*No Response*);
+  - **no alcanzado:** 6 / 96 (*Not Reached*);
+  - **no administrado:** `NA` del sistema: el ítem no estaba en la forma ni en la ruta del estudiante;
+  - **no aplicable:** 7 / 97 (*Not Applicable*), categoría aparte hasta saber qué significa (ver pendiente);
+  - **inválido:** 8 / 98; en Colombia no aparece, pero la regla queda escrita.
+  - En la columna de puntaje, todo lo que no es *respondido* queda `NA`. Cómo se califica cada estado (por ejemplo,
+    omitido = incorrecto) **no** se decide aquí: es D-05, en la F5.
+  - Caché nuevo: `datos/COL_cognitivo.rds`, paralelo a `COL_cuestionario.rds` de 01b. No reemplaza a
+    `COL_matematicas_cog.rds`, para no romper `revision_pisa2022_col.R`.
+- **Pendiente antes de aceptar:**
+  - (1) Qué significa *Not Applicable* en los ítems cognitivos de PISA 2022. Tiene tiempo registrado, así que el
+    estudiante pasó por el ítem. Hay que buscarlo en el codebook o en [[Literatura/oecd2024pisa2022tr]]: **no
+    verificado**.
+  - (2) Por qué 5.211 celdas *Not Reached* tienen un tiempo válido. Puede ser cómo registra el tiempo la plataforma,
+    pero **no verificado**.
+- **Fuente:** solo las etiquetas del propio `.SAV` (metadatos de la OCDE). No se ha leído el capítulo del Technical
+  Report sobre los códigos de faltante.
+- **Estado:** propuesta — Vanessa y Mateo la revisan en el PR de 01a.

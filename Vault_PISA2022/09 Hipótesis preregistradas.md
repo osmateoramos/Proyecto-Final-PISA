@@ -2,7 +2,7 @@
 tipo: hipotesis
 estado: por_verificar
 lectura: "redactado por Claude; falta revisión del equipo"
-pendientes: "Fechar y congelar antes de modelar (paso 0.5)"
+pendientes: "Ninguno del paso 0.5: congeladas el 2026-10-12 (commit f53054d)"
 verificado_por:
 fecha_verificacion:
 ---
@@ -16,7 +16,7 @@ Volver a [[00 Inicio]] · Objetivos en [[06 Objetivos PISA 2022]] · Criterio de
 > deja la versión original tachada y se explica el cambio. Lo que no esté aquí y aparezca en los datos se reporta
 > como **exploratorio**.
 
-**Fecha de congelamiento:** 2026-10-12 · **Commit Git:** _(completar al hacer commit)_
+**Fecha de congelamiento:** 2026-10-12 · **Commit Git:** `f53054d` (Vanessa, 2026-10-12; anotado el 2026-10-16)
 
 > [!note] Sobre el atraso frente al plan
 > El plan original (`07 Plan de desarrollo PISA 2022`) programaba este paso en la semana 1 (5–11 oct). Se cierra
@@ -41,4 +41,6 @@ Volver a [[00 Inicio]] · Objetivos en [[06 Objetivos PISA 2022]] · Criterio de
 
 > [!note] H7 y H8
 > Agregadas el 2026-10-04 al definir que el proyecto califica por competencias (D-07), **antes** de estimar cualquier
-> modelo de TRI. La fecha de congelamiento de todas las hipótesis sigue pendiente (paso 0.5).
+> modelo de TRI. ~~La fecha de congelamiento de todas las hipótesis sigue pendiente (paso 0.5).~~
+> *Actualización 2026-10-16:* congeladas el 2026-10-12 (commit `f53054d`). La nota tachada era anterior al
+> congelamiento; no cambia ninguna hipótesis.

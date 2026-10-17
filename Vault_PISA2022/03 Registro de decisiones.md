@@ -187,13 +187,126 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     omitido = incorrecto) **no** se decide aquí: es D-05, en la F5.
   - Caché nuevo: `datos/COL_cognitivo.rds`, paralelo a `COL_cuestionario.rds` de 01b. No reemplaza a
     `COL_matematicas_cog.rds`, para no romper `revision_pisa2022_col.R`.
-- **Pendiente antes de aceptar:**
-  - (1) Qué significa *Not Applicable* en los ítems cognitivos de PISA 2022. Tiene tiempo registrado, así que el
-    estudiante pasó por el ítem. Hay que buscarlo en el codebook o en [[Literatura/oecd2024pisa2022tr]]: **no
-    verificado**.
-  - (2) Por qué 5.211 celdas *Not Reached* tienen un tiempo válido. Puede ser cómo registra el tiempo la plataforma,
-    pero **no verificado**.
-- **Fuente:** solo las etiquetas del propio `.SAV` (metadatos de la OCDE). No se ha leído el capítulo del Technical
-  Report sobre los códigos de faltante.
-- **Estado:** aceptada por Vanessa (2026-10-16), tal como está, con los dos pendientes abiertos. Mateo la revisa
-  en el PR de 01a.
+- **Pendientes, resueltos el 2026-10-16** (Mateo encontró la sección y Claude la confirmó contra el texto completo;
+  [[Literatura/oecd2024pisa2022tr]], afirmaciones 10–14, `por_verificar` hasta que firme el equipo):
+  - (1) **Qué es *Not Applicable*:** en los datos cognitivos marca un ítem «dropped/deleted during item calibration
+    and not used during scaling» (p. 265). No es una conducta del estudiante.
+    - **Dato** (`salidas/cognitivo_estados_por_item.csv`): 1.170 de las 1.352 celdas son de los dos ítems sin
+      ninguna respuesta en Colombia, `CMA112Q02S` (570) y `CMA143Q01S` (600), los mismos de D-09. Encaja con un
+      ítem eliminado.
+    - **Anomalía declarada:** las otras 182 celdas están repartidas en 33 ítems de codificación humana (`DM…C`),
+      con 1 a 10 celdas cada uno. Esos ítems sí tienen respuestas válidas en Colombia, así que el *Not Applicable*
+      es de la celda y no del ítem. El reporte no lo explica.
+  - (2) **Por qué hay *Not Reached* con tiempo:** se trata como no visto, «unlikely to have seen the question» (p.
+    265), y la regla se mantiene.
+    - **Interpretación del equipo**, no la dice el reporte sobre los tiempos: la p. 211 define *not reached* por el
+      patrón de respuesta, no por la visita («did not answer the item or any subsequent item» de la sesión MSAT).
+      Un estudiante pudo abrir el ítem, lo que deja tiempo, sin responderlo ni responder los siguientes. Queda
+      como anomalía declarada.
+  - **Matiz** (Mateo; p. 264): el faltante del sistema no es solo «no administrado por diseño». También incluye a
+    quien terminó antes y la pérdida de datos. La categoría conserva el nombre `no_administrado`, pero se lee así.
+  - **Para D-05:** en el escalamiento de la OCDE los no alcanzados se excluyen y los omitidos cuentan como
+    incorrectos (p. 211). Ese es el criterio (a) de D-05.
+- **Fuente:** etiquetas del propio `.SAV` y Technical Report 2022, pp. 211, 264 y 265. Es la numeración impresa,
+  que va arriba de cada página; en el visor de PDF hay que sumar 2: la 264 impresa es la 266 del visor.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-16) y revisada por Mateo («la regla está bien», 2026-10-16). Los
+  pendientes quedan resueltos con fuente; las dos anomalías quedan declaradas. Las páginas siguen `por_verificar`.
+
+### D-14 · 2026-10-16 · Qué cuenta como «ítem visto» en la muestra analítica (paso 1.5 de la F1)
+- **Problema:** el paso 1.5 pide estudiantes «con ≥10 ítems de matemáticas vistos». El 7.222 del plan sale de
+  `datos/revision_pisa2022_col.R`, que cuenta como visto todo ítem con tiempo válido. Según D-13, eso incluye los
+  *no alcanzados* («unlikely to have seen the question», Technical Report p. 265) y los *no aplicables* (ítem
+  eliminado por la OCDE, p. 265). Ninguno de los dos refleja que el estudiante tuviera la pregunta para responder.
+- **Alternativas** (conteo exploratorio de Claude, 2026-10-16, desde `COL_cognitivo.rds` y `COL_cuestionario.rds`;
+  el script del paso 1.5 debe reproducirlo y dejarlo en `salidas/`):
+
+  | Definición de «visto» (≥10 ítems) | Estudiantes | Además con ESCS |
+  |---|---|---|
+  | (a) Tiempo `TT` válido (revisión del 29/09) | 7.222 | 6.910 |
+  | (b) Respondido u omitido (D-13) | 7.198 | 6.886 |
+  | (c) Solo respondido | 7.139 | 6.828 |
+
+  Con ESCS: 7.459 de 7.804.
+- **Decisión:** (b). Un ítem cuenta como visto si quedó *respondido* u *omitido*. El omitido es la categoría en que
+  el estudiante «had an opportunity to answer the question but did not respond» (p. 264). (c) se descarta porque
+  sacaría de la muestra justamente a quienes omiten, que son el objeto de H4.
+  - Se mantiene el umbral de 10 ítems del plan.
+  - **Muestra analítica = con ESCS ∩ (b): 6.886 estudiantes** (por confirmar con el script del paso 1.5).
+  - (a) se reporta al lado, solo como control: reproduce el 7.222 y el 7.459 de la revisión del 29/09, que es lo
+    que pide «Listo cuando» de la F1.
+- **Propuesta (no discutida aún):** comparar incluidos y excluidos con la media de matemáticas (`PV1MATH`–`PV10MATH`,
+  `W_FSTUWT`, 80 réplicas BRR con Fay 0,5 y reglas de Rubin, como `estimar_pv()` de `revision_pisa2022_col.R`).
+  - Se reporta la diferencia con su error estándar.
+  - Los excluidos se separan por motivo: sin ESCS, menos de 10 vistos y ambos.
+  - Si los excluidos rinden claramente distinto, la muestra analítica no representa a todos los estudiantes y así se
+    declara en el informe.
+- **Resultado** (`scripts/01c_muestra_analitica.R` → `salidas/conteos_muestra.csv` y
+  `salidas/comparacion_incluidos_excluidos.csv`, 2026-10-16). Se confirman los conteos exploratorios.
+  - **Muestra analítica: 6.886 estudiantes**, el 87,5 % de la población ponderada.
+  - **Excluidos: 918 en total.**
+    - 312 sin ESCS;
+    - 573 con menos de 10 vistos;
+    - 33 con ambas cosas.
+  - **Media de matemáticas** (10 PV + BRR):
+
+    | Grupo | Media (EE) | Diferencia con incluidos (EE) | z |
+    |---|---|---|---|
+    | Incluidos | 384,5 (3,1) | — | — |
+    | Excluidos (todos) | 369,9 (3,8) | −14,6 (3,0) | −4,86 |
+    | Sin ESCS | 359,8 (6,0) | −24,8 (5,7) | −4,33 |
+    | Menos de 10 vistos | 376,9 (4,0) | −7,6 (3,3) | −2,31 |
+    | Sin ESCS y menos de 10 vistos | 359,3 (12,2) | −25,2 (11,9) | −2,12 |
+
+  - **Lectura (dato):** la exclusión **no es aleatoria**: los excluidos rinden menos, sobre todo los que no tienen
+    ESCS. La muestra analítica sobrerrepresenta un poco a los estudiantes de mejor desempeño, y el informe debe
+    declararlo.
+  - **Por decidir (no se decide aquí):** si se hace un análisis de sensibilidad en la F7, por ejemplo con
+    imputación de ESCS.
+  - Ojo, **no verificado:** casi todos los «menos de 10 vistos» no tienen ningún ítem respondido (530 en 01a). Sus
+    PV de matemáticas salen solo del modelo de población de la OCDE, no de respuestas. Hay que tenerlo en cuenta
+    al interpretar esa fila.
+- **Estado:** ✅ (b) y la comparación por motivo de exclusión, aceptadas por Vanessa (2026-10-16). Mateo revisa ambas en
+  el PR.
+
+### D-15 · 2026-10-16 · Cómo se reproducen las tres cifras de la OCDE (Puerta G1, F2)
+- **Problema:** la Puerta G1 compara tres cifras propias con las publicadas. El método se fija **antes** de calcular,
+  para no ajustarlo hasta que coincida.
+- **Cifras objetivo** (ubicadas por Claude el 2026-10-16; `por_verificar` hasta que firme el equipo):
+
+  | Paso | Cifra | Publicado | Fuente |
+  |---|---|---|---|
+  | 2.1 | Media de matemáticas | 382,70 (EE 3,03) | [[Literatura/oecd2024pisa2022tr]], Annex Table 14.A.12, p. 301 |
+  | 2.2 | Brecha Q4 − Q1 de ESCS | 79 puntos | [[Literatura/oecd2023fichacolombia]], p. 5 |
+  | 2.3 | Varianza explicada por ESCS | 16 % | [[Literatura/oecd2023fichacolombia]], p. 5; [[Literatura/icfes2024pisa]], p. 46 del visor |
+
+- **Procedimiento común (propuesto):**
+  - Se calcula cada estadística con cada uno de los 10 valores plausibles (`PV1MATH`–`PV10MATH`) y el peso final
+    `W_FSTUWT`. La estimación final es el promedio de las 10.
+  - La varianza muestral de cada PV se calcula con los 80 pesos replicados `W_FSTURWT1`–`80`:
+    0,05 · Σ (θ_t − θ)² (Technical Report, Formula 10.9, p. 198).
+  - Varianza total = promedio de las 10 varianzas muestrales + (1 + 1/10) · varianza entre los 10 PV (p. 280; la
+    fórmula de Rubin está en la p. 226). Es lo que hace `estimar_pv()` de `datos/revision_pisa2022_col.R`.
+  - Datos: `datos/COL_cuestionario.rds` (01b). **No** se usa la muestra analítica de D-14: la OCDE reporta sobre
+    todos los estudiantes.
+- **Cada cifra:**
+  - **2.1 Media:** media ponderada sobre los 7.804 estudiantes.
+  - **2.2 Brecha:** estudiantes con ESCS (7.459).
+    - Los cortes de los cuartos de ESCS son cuantiles **ponderados** con `W_FSTUWT`, porque la ficha dice que cada
+      grupo tiene el 25 % de la población (p. 5).
+    - Brecha = media del cuarto alto − media del cuarto bajo, en cada PV y en cada réplica.
+    - Los cortes se calculan una vez con el peso final y se mantienen fijos en las réplicas. Recalcularlos en cada
+      réplica cambiaría solo el error estándar, no la estimación.
+  - **2.3 Varianza explicada:** R² de la regresión lineal ponderada del PV de matemáticas sobre ESCS (estudiantes
+    con ESCS), por PV, promediado y × 100.
+    - **No verificado:** si la OCDE usa solo el término lineal. Si la cifra difiere en más de 1 punto porcentual,
+      se revisa la definición en el volumen II antes de cambiar nada.
+- **Tolerancia:** ±1 punto (2.1 y 2.2) y ±1 punto porcentual (2.3), como dice G1 en [[08 Rúbrica de desarrollo]].
+  Si una cifra no pasa, se revisan pesos, PV y filtros (rúbrica). No se cambia el método sin registrarlo aquí.
+- **2.4, contraste independiente:** `EdSurvey` no está instalado.
+  - **Propuesta:** contrastar con el paquete `survey` (ya instalado; `svrepdesign(type = "Fay", rho = 0.5)`), que
+    es una implementación distinta a la nuestra.
+  - `EdSurvey` queda opcional. Esto se aparta del plan, por eso se registra.
+- **Salida:** `scripts/02_validacion_ocde.R` → `salidas/validacion_ocde.csv` (nuestro, EE, publicado, diferencia,
+  cumple).
+- **Estado:** ✅ aceptada por Vanessa (2026-10-16), incluido el contraste con `survey` en el 2.4. Mateo y Brayan
+  la revisan en el PR.

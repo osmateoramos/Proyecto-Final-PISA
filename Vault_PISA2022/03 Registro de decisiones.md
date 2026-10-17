@@ -195,4 +195,5 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     pero **no verificado**.
 - **Fuente:** solo las etiquetas del propio `.SAV` (metadatos de la OCDE). No se ha leído el capítulo del Technical
   Report sobre los códigos de faltante.
-- **Estado:** propuesta — Vanessa y Mateo la revisan en el PR de 01a.
+- **Estado:** aceptada por Vanessa (2026-10-16), tal como está, con los dos pendientes abiertos. Mateo la revisa
+  en el PR de 01a.

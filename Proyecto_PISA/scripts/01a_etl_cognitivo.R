@@ -103,10 +103,12 @@ estado_item <- function(x, rg) {
   factor(e, levels = ESTADOS)
 }
 
-r <- d[, ..RUTA]
+# r llega a ~1.180 columnas: se reserva espacio para que set() pueda agregarlas
+# (en data.table 1.17 set() no crece la tabla sola; corrección de Mateo, 2026-10-16).
+r <- setalloccol(d[, ..RUTA], length(RUTA) + 2 * length(ITEMS) + length(PROC) + length(ESTADOS) + 100)
 for (v in FACT) {   # forma y ruta como factor con las etiquetas de la OCDE
-  lab <- ETQ[[v]]
-  r[[v]] <- factor(names(lab)[match(d[[v]], lab)], levels = names(lab))
+  lab <- ETQ[[v]]   # set() y no r[[v]] <- ...: esto último copia la tabla y pierde el espacio reservado
+  set(r, j = v, value = factor(names(lab)[match(d[[v]], lab)], levels = names(lab)))
 }
 for (v in ITEMS) {
   e <- estado_item(d[[v]], RANGO[[v]])

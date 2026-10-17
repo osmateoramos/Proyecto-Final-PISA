@@ -1,0 +1,11 @@
+conjunto,n,pct_poblacion
+Total Colombia,7804,100
+Con ESCS,7459,94.89
+">= 10 ítems con tiempo válido (revisión 29/09, control)",7222,92.39
+>= 10 ítems vistos (D-14: respondido u omitido),7198,92.09
+Con ESCS y >= 10 con tiempo válido (control),6910,87.8
+Muestra analítica: con ESCS y >= 10 vistos (D-14),6886,87.51
+Motivo: incluido,6886,87.51
+Motivo: excluido: sin ESCS,312,4.58
+Motivo: excluido: menos de 10 vistos,573,7.39
+Motivo: excluido: sin ESCS y menos de 10 vistos,33,0.52

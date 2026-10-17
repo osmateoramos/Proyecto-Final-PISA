@@ -172,10 +172,27 @@ Script: `02_validacion_ocde.R` — reutiliza `pendiente()` y `estimar_pv()` de `
 > Correlación policórica, análisis paralelo, AFE / AFC, 2PL y GPCM, función de información, omega.
 > **Lectura:** [[Literatura/deayala2009theory|de Ayala]] caps. 4, 5 y 8 y pp. 131–133 · [[Literatura/chen2024structural|Chen y Yung]] caps. 2 y 5 (detalle en [[14 Libros de TRI y SEM]]).
 
-Script: `03_nse_medicion.R` · paquetes `psych`, `mirt`, `lavaan`, `semTools`.
+Script: `03_nse_medicion.R` · paquetes `psych`, `mirt`, `lavaan`, `semTools` (instalados en R 4.4.1 el 2026-10-16,
+con `GPArotation` para la rotación oblimin).
 
-- [ ] **3.1 Dividir la muestra** en dos mitades aleatorias estratificadas por colegio (`set.seed(2026)`):
+> [!note] Decisiones de la F3 en [[03 Registro de decisiones]] (D-16, aceptada por Vanessa el 2026-10-16)
+> - Muestra analítica de 6.886 y mitades al azar dentro de cada colegio.
+> - 29 indicadores: las 27 posesiones, `HISCED` y `HISEI` en quintiles.
+> - Categorías con < 2 % unidas a su vecina; pesos normalizados; faltantes por pares.
+> - Estructura de 2 factores fijada antes de ver los datos: cultural (12) y económico (17).
+> - H1 exige que los dos CFI (*scaled* y *robust*) mejoren ≥ 0,01.
+> - TRI 2PL + GPCM, unidimensional y bidimensional.
+>
+> Exploración previa: `scripts/03_explorar_items_nse.R`.
+
+- [x] **3.1 Dividir la muestra** en dos mitades aleatorias estratificadas por colegio (`set.seed(2026)`):
   *exploración* y *confirmación*.
+  - *Hecho (2026-10-17, D-16):* `03_nse_medicion.R` (sección 3.1) → `datos/COL_nse.rds`,
+    `salidas/nse_recodificacion.csv` y `salidas/nse_mitades.csv`.
+    - **Mitades:** exploración 3.445 y confirmación 3.441. Quedan equilibradas en peso (49,9 / 50,1 %), ESCS
+      medio (−1,065 / −1,040), HOMEPOS (−1,351 / −1,381), % rural (15,1 / 15,6) y % público (80,3 / 80,4).
+    - **Recodificación:** la regla del 2 % cambió solo los 5 ítems previstos en D-16. `HISCED_c` (0–9) no se
+      tocó. `HISEI_q` quedó en quintiles con el ~20 % del peso cada uno.
 - [ ] **3.2 Exploración:** matriz policórica de los 27 ítems de posesiones + educación + ocupación (categorizada);
   `psych::fa.parallel(cor = "poly")`; AFE con 1–3 factores (`oblimin`, `fm = "wls"`). ¿Aparece una dimensión
   económica y otra cultural (libros, educación, ocupación)?

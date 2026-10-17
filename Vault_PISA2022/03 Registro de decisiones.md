@@ -187,13 +187,27 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     omitido = incorrecto) **no** se decide aquí: es D-05, en la F5.
   - Caché nuevo: `datos/COL_cognitivo.rds`, paralelo a `COL_cuestionario.rds` de 01b. No reemplaza a
     `COL_matematicas_cog.rds`, para no romper `revision_pisa2022_col.R`.
-- **Pendiente antes de aceptar:**
-  - (1) Qué significa *Not Applicable* en los ítems cognitivos de PISA 2022. Tiene tiempo registrado, así que el
-    estudiante pasó por el ítem. Hay que buscarlo en el codebook o en [[Literatura/oecd2024pisa2022tr]]: **no
-    verificado**.
-  - (2) Por qué 5.211 celdas *Not Reached* tienen un tiempo válido. Puede ser cómo registra el tiempo la plataforma,
-    pero **no verificado**.
-- **Fuente:** solo las etiquetas del propio `.SAV` (metadatos de la OCDE). No se ha leído el capítulo del Technical
-  Report sobre los códigos de faltante.
-- **Estado:** aceptada por Vanessa (2026-10-16), tal como está, con los dos pendientes abiertos. Mateo la revisa
-  en el PR de 01a.
+- **Pendientes, resueltos el 2026-10-16** (Mateo encontró la sección y Claude la confirmó contra el texto completo;
+  [[Literatura/oecd2024pisa2022tr]], afirmaciones 10–14, `por_verificar` hasta que firme el equipo):
+  - (1) **Qué es *Not Applicable*:** en los datos cognitivos marca un ítem «dropped/deleted during item calibration
+    and not used during scaling» (p. 266). No es una conducta del estudiante.
+    - **Dato** (`salidas/cognitivo_estados_por_item.csv`): 1.170 de las 1.352 celdas son de los dos ítems sin
+      ninguna respuesta en Colombia, `CMA112Q02S` (570) y `CMA143Q01S` (600), los mismos de D-09. Encaja con un
+      ítem eliminado.
+    - **Anomalía declarada:** las otras 182 celdas están repartidas en 33 ítems de codificación humana (`DM…C`),
+      con 1 a 10 celdas cada uno. Esos ítems sí tienen respuestas válidas en Colombia, así que el *Not Applicable*
+      es de la celda y no del ítem. El reporte no lo explica.
+  - (2) **Por qué hay *Not Reached* con tiempo:** se trata como no visto, «unlikely to have seen the question» (p.
+    266), y la regla se mantiene.
+    - **Interpretación del equipo**, no la dice el reporte sobre los tiempos: la p. 212 define *not reached* por el
+      patrón de respuesta, no por la visita («did not answer the item or any subsequent item» de la sesión MSAT).
+      Un estudiante pudo abrir el ítem, lo que deja tiempo, sin responderlo ni responder los siguientes. Queda
+      como anomalía declarada.
+  - **Matiz** (Mateo; p. 265): el faltante del sistema no es solo «no administrado por diseño». También incluye a
+    quien terminó antes y la pérdida de datos. La categoría conserva el nombre `no_administrado`, pero se lee así.
+  - **Para D-05:** en el escalamiento de la OCDE los no alcanzados se excluyen y los omitidos cuentan como
+    incorrectos (p. 212). Ese es el criterio (a) de D-05.
+- **Fuente:** etiquetas del propio `.SAV` y Technical Report 2022, pp. 212, 265 y 266. Mateo citó pp. 264–265; en la
+  numeración impresa del PDF descargado la sección empieza en la p. 265 y *Not Applicable* está en la 266.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-16) y revisada por Mateo («la regla está bien», 2026-10-16). Los
+  pendientes quedan resueltos con fuente; las dos anomalías quedan declaradas. Las páginas siguen `por_verificar`.

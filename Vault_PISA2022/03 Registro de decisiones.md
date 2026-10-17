@@ -478,4 +478,5 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   7. **Puntuaciones EAP** de los tres modelos en `datos/COL_nse_tri.rds` (no va a Git). Cuál pasa a la F4–F6 se
      decide en la Puerta G2 (D-16).
   8. **Validez (3.5):** correlación ponderada (peso final) de cada EAP con `HOMEPOS` y `ESCS` oficiales.
-- **Estado:** propuesta — la acepta Vanessa antes de programar; Mateo la revisa en el PR.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-17), tal cual: S-X² en casos completos e incluido el modelo exploratorio
+  del AFE. Mateo la revisa en el PR.

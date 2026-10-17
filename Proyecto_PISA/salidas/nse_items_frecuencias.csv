@@ -1,0 +1,116 @@
+item,etiqueta,pct_na,categoria,n,pct,pct_ponderado,escasa_1pct,escasa_2pct
+ST250Q01JA,A room of your own,1.1,0,2630,35.55,36.9,FALSE,FALSE
+ST250Q01JA,A room of your own,1.1,1,4767,64.45,63.1,FALSE,FALSE
+ST250Q02JA,"A computer (laptop, desktop, or tablet) that you can use for school work",1.2,0,2518,34.07,38.45,FALSE,FALSE
+ST250Q02JA,"A computer (laptop, desktop, or tablet) that you can use for school work",1.2,1,4872,65.93,61.55,FALSE,FALSE
+ST250Q03JA,Educational Software or Apps,1.5,0,4491,60.98,63.92,FALSE,FALSE
+ST250Q03JA,Educational Software or Apps,1.5,1,2874,39.02,36.08,FALSE,FALSE
+ST250Q04JA,Your own [cell phone] with Internet access (e.g. smartphone),1,0,1221,16.49,18.01,FALSE,FALSE
+ST250Q04JA,Your own [cell phone] with Internet access (e.g. smartphone),1,1,6185,83.51,81.99,FALSE,FALSE
+ST250Q05JA,Internet access (e.g. Wi-fi) (excluding through smartphones),1.4,0,1499,20.33,23.64,FALSE,FALSE
+ST250Q05JA,Internet access (e.g. Wi-fi) (excluding through smartphones),1.4,1,5874,79.67,76.36,FALSE,FALSE
+ST251Q01JA,"Cars, vans, or trucks",2,0,4924,67.2,69.34,FALSE,FALSE
+ST251Q01JA,"Cars, vans, or trucks",2,1,1790,24.43,22.84,FALSE,FALSE
+ST251Q01JA,"Cars, vans, or trucks",2,2,450,6.14,5.64,FALSE,FALSE
+ST251Q01JA,"Cars, vans, or trucks",2,3,163,2.22,2.19,FALSE,FALSE
+ST251Q02JA,Mopeds or motorcycles,2.8,0,3877,53.32,51.29,FALSE,FALSE
+ST251Q02JA,Mopeds or motorcycles,2.8,1,2440,33.56,34.66,FALSE,FALSE
+ST251Q02JA,Mopeds or motorcycles,2.8,2,748,10.29,10.99,FALSE,FALSE
+ST251Q02JA,Mopeds or motorcycles,2.8,3,206,2.83,3.05,FALSE,FALSE
+ST251Q03JA,Rooms with a bath or shower,1.8,0,1390,18.92,20.71,FALSE,FALSE
+ST251Q03JA,Rooms with a bath or shower,1.8,1,3784,51.51,51.32,FALSE,FALSE
+ST251Q03JA,Rooms with a bath or shower,1.8,2,1664,22.65,21.15,FALSE,FALSE
+ST251Q03JA,Rooms with a bath or shower,1.8,3,508,6.92,6.82,FALSE,FALSE
+ST251Q04JA,Rooms with a [flush toilet],1.9,0,247,3.37,3.88,FALSE,FALSE
+ST251Q04JA,Rooms with a [flush toilet],1.9,1,4428,60.34,61.85,FALSE,FALSE
+ST251Q04JA,Rooms with a [flush toilet],1.9,2,1894,25.81,24.47,FALSE,FALSE
+ST251Q04JA,Rooms with a [flush toilet],1.9,3,770,10.49,9.79,FALSE,FALSE
+ST251Q06JA,"Musical instruments (e.g. guitar, piano, [country-specific example])",1.9,0,4688,63.87,66.73,FALSE,FALSE
+ST251Q06JA,"Musical instruments (e.g. guitar, piano, [country-specific example])",1.9,1,1624,22.13,20.78,FALSE,FALSE
+ST251Q06JA,"Musical instruments (e.g. guitar, piano, [country-specific example])",1.9,2,584,7.96,6.97,FALSE,FALSE
+ST251Q06JA,"Musical instruments (e.g. guitar, piano, [country-specific example])",1.9,3,444,6.05,5.52,FALSE,FALSE
+ST251Q07JA,"Works of art (e.g. paintings, sculptures, [country-specific example])",1.9,0,3755,51.18,53.2,FALSE,FALSE
+ST251Q07JA,"Works of art (e.g. paintings, sculptures, [country-specific example])",1.9,1,1203,16.4,16.23,FALSE,FALSE
+ST251Q07JA,"Works of art (e.g. paintings, sculptures, [country-specific example])",1.9,2,818,11.15,10.27,FALSE,FALSE
+ST251Q07JA,"Works of art (e.g. paintings, sculptures, [country-specific example])",1.9,3,1561,21.28,20.3,FALSE,FALSE
+ST253Q01JA,How many [digital devices] with screens are there in your [home]?,0.2,0,204,2.73,3.38,FALSE,FALSE
+ST253Q01JA,How many [digital devices] with screens are there in your [home]?,0.2,1,619,8.29,9.75,FALSE,FALSE
+ST253Q01JA,How many [digital devices] with screens are there in your [home]?,0.2,2,685,9.17,10.05,FALSE,FALSE
+ST253Q01JA,How many [digital devices] with screens are there in your [home]?,0.2,3,852,11.41,12.08,FALSE,FALSE
+ST253Q01JA,How many [digital devices] with screens are there in your [home]?,0.2,4,907,12.15,12.83,FALSE,FALSE
+ST253Q01JA,How many [digital devices] with screens are there in your [home]?,0.2,5,1114,14.92,14.84,FALSE,FALSE
+ST253Q01JA,How many [digital devices] with screens are there in your [home]?,0.2,6,2238,29.98,27.03,FALSE,FALSE
+ST253Q01JA,How many [digital devices] with screens are there in your [home]?,0.2,7,847,11.34,10.04,FALSE,FALSE
+ST254Q01JA,Televisions,4.5,0,291,4.07,4.64,FALSE,FALSE
+ST254Q01JA,Televisions,4.5,1,5006,70.06,72.65,FALSE,FALSE
+ST254Q01JA,Televisions,4.5,2,1704,23.85,21.01,FALSE,FALSE
+ST254Q01JA,Televisions,4.5,3,144,2.02,1.7,FALSE,FALSE
+ST254Q02JA,Desktop computers,6.9,0,4058,58.28,62.21,FALSE,FALSE
+ST254Q02JA,Desktop computers,6.9,1,2752,39.52,35.86,FALSE,FALSE
+ST254Q02JA,Desktop computers,6.9,2,135,1.94,1.65,FALSE,TRUE
+ST254Q02JA,Desktop computers,6.9,3,18,0.26,0.27,TRUE,TRUE
+ST254Q03JA,Laptop computers or notebooks,5.8,0,3257,46.21,50.59,FALSE,FALSE
+ST254Q03JA,Laptop computers or notebooks,5.8,1,3171,44.99,41.94,FALSE,FALSE
+ST254Q03JA,Laptop computers or notebooks,5.8,2,575,8.16,6.93,FALSE,FALSE
+ST254Q03JA,Laptop computers or notebooks,5.8,3,45,0.64,0.54,TRUE,TRUE
+ST254Q04JA,"Tablets (e.g. [iPad®], [BlackBerry® Playbook™])",5.6,0,4862,68.84,70.95,FALSE,FALSE
+ST254Q04JA,"Tablets (e.g. [iPad®], [BlackBerry® Playbook™])",5.6,1,1921,27.2,25.16,FALSE,FALSE
+ST254Q04JA,"Tablets (e.g. [iPad®], [BlackBerry® Playbook™])",5.6,2,226,3.2,3.18,FALSE,FALSE
+ST254Q04JA,"Tablets (e.g. [iPad®], [BlackBerry® Playbook™])",5.6,3,54,0.76,0.71,TRUE,TRUE
+ST254Q05JA,"E-book readers (e.g. [Kindle™], [Kobo], [Bookeen])",7.1,0,6157,88.65,88.37,FALSE,FALSE
+ST254Q05JA,"E-book readers (e.g. [Kindle™], [Kobo], [Bookeen])",7.1,1,590,8.5,8.63,FALSE,FALSE
+ST254Q05JA,"E-book readers (e.g. [Kindle™], [Kobo], [Bookeen])",7.1,2,107,1.54,1.6,FALSE,TRUE
+ST254Q05JA,"E-book readers (e.g. [Kindle™], [Kobo], [Bookeen])",7.1,3,91,1.31,1.4,FALSE,TRUE
+ST254Q06JA,[Cell phones] with Internet access (i.e. smartphones),4.7,0,364,5.1,6.08,FALSE,FALSE
+ST254Q06JA,[Cell phones] with Internet access (i.e. smartphones),4.7,1,2161,30.3,32.55,FALSE,FALSE
+ST254Q06JA,[Cell phones] with Internet access (i.e. smartphones),4.7,2,3561,49.94,47.95,FALSE,FALSE
+ST254Q06JA,[Cell phones] with Internet access (i.e. smartphones),4.7,3,1045,14.65,13.42,FALSE,FALSE
+ST255Q01JA,How many books are there in your [home]?,0.6,0,1095,14.73,16.72,FALSE,FALSE
+ST255Q01JA,How many books are there in your [home]?,0.6,1,2951,39.7,41.56,FALSE,FALSE
+ST255Q01JA,How many books are there in your [home]?,0.6,2,1550,20.85,19.96,FALSE,FALSE
+ST255Q01JA,How many books are there in your [home]?,0.6,3,1250,16.81,14.8,FALSE,FALSE
+ST255Q01JA,How many books are there in your [home]?,0.6,4,377,5.07,4.33,FALSE,FALSE
+ST255Q01JA,How many books are there in your [home]?,0.6,5,161,2.17,1.96,FALSE,FALSE
+ST255Q01JA,How many books are there in your [home]?,0.6,6,50,0.67,0.67,TRUE,TRUE
+ST256Q01JA,"Religious books (e.g. [Bible], [Example 2])",20.4,0,732,12.3,12.13,FALSE,FALSE
+ST256Q01JA,"Religious books (e.g. [Bible], [Example 2])",20.4,1,4810,80.84,80.47,FALSE,FALSE
+ST256Q01JA,"Religious books (e.g. [Bible], [Example 2])",20.4,2,273,4.59,4.93,FALSE,FALSE
+ST256Q01JA,"Religious books (e.g. [Bible], [Example 2])",20.4,3,135,2.27,2.48,FALSE,FALSE
+ST256Q02JA,"Classical literature (e.g. [Shakespeare], [Example 2])",22.6,0,1629,28.13,29.87,FALSE,FALSE
+ST256Q02JA,"Classical literature (e.g. [Shakespeare], [Example 2])",22.6,1,3103,53.59,53.46,FALSE,FALSE
+ST256Q02JA,"Classical literature (e.g. [Shakespeare], [Example 2])",22.6,2,695,12,10.83,FALSE,FALSE
+ST256Q02JA,"Classical literature (e.g. [Shakespeare], [Example 2])",22.6,3,363,6.27,5.84,FALSE,FALSE
+ST256Q03JA,Contemporary literature,25.5,0,2615,46.94,49.03,FALSE,FALSE
+ST256Q03JA,Contemporary literature,25.5,1,2114,37.95,37.51,FALSE,FALSE
+ST256Q03JA,Contemporary literature,25.5,2,538,9.66,8.69,FALSE,FALSE
+ST256Q03JA,Contemporary literature,25.5,3,304,5.46,4.77,FALSE,FALSE
+ST256Q06JA,Books on science,21.9,0,1772,30.35,32.41,FALSE,FALSE
+ST256Q06JA,Books on science,21.9,1,2957,50.65,49.74,FALSE,FALSE
+ST256Q06JA,Books on science,21.9,2,692,11.85,11.19,FALSE,FALSE
+ST256Q06JA,Books on science,21.9,3,417,7.14,6.66,FALSE,FALSE
+ST256Q07JA,"Books on art, music, or design",22.7,0,2527,43.71,45.28,FALSE,FALSE
+ST256Q07JA,"Books on art, music, or design",22.7,1,2525,43.68,42.99,FALSE,FALSE
+ST256Q07JA,"Books on art, music, or design",22.7,2,479,8.29,7.66,FALSE,FALSE
+ST256Q07JA,"Books on art, music, or design",22.7,3,250,4.32,4.07,FALSE,FALSE
+ST256Q08JA,[Technical reference books],24.1,0,2212,38.98,40.95,FALSE,FALSE
+ST256Q08JA,[Technical reference books],24.1,1,2623,46.23,45.53,FALSE,FALSE
+ST256Q08JA,[Technical reference books],24.1,2,566,9.98,9.09,FALSE,FALSE
+ST256Q08JA,[Technical reference books],24.1,3,273,4.81,4.43,FALSE,FALSE
+ST256Q09JA,Dictionaries,18.5,0,201,3.3,3.58,FALSE,FALSE
+ST256Q09JA,Dictionaries,18.5,1,4962,81.44,82.17,FALSE,FALSE
+ST256Q09JA,Dictionaries,18.5,2,738,12.11,11.33,FALSE,FALSE
+ST256Q09JA,Dictionaries,18.5,3,192,3.15,2.91,FALSE,FALSE
+ST256Q10JA,Books to help with your school work,21.1,0,1450,24.56,25.42,FALSE,FALSE
+ST256Q10JA,Books to help with your school work,21.1,1,3060,51.83,52.23,FALSE,FALSE
+ST256Q10JA,Books to help with your school work,21.1,2,831,14.08,13.31,FALSE,FALSE
+ST256Q10JA,Books to help with your school work,21.1,3,563,9.54,9.04,FALSE,FALSE
+HISCED,Highest level of education of parents (ISCED),0.4,1,207,2.78,3.16,FALSE,FALSE
+HISCED,Highest level of education of parents (ISCED),0.4,2,521,7,7.68,FALSE,FALSE
+HISCED,Highest level of education of parents (ISCED),0.4,3,638,8.57,8.94,FALSE,FALSE
+HISCED,Highest level of education of parents (ISCED),0.4,4,943,12.66,12.46,FALSE,FALSE
+HISCED,Highest level of education of parents (ISCED),0.4,5,806,10.82,11.02,FALSE,FALSE
+HISCED,Highest level of education of parents (ISCED),0.4,6,603,8.1,8.22,FALSE,FALSE
+HISCED,Highest level of education of parents (ISCED),0.4,7,857,11.51,10.94,FALSE,FALSE
+HISCED,Highest level of education of parents (ISCED),0.4,8,859,11.53,11.38,FALSE,FALSE
+HISCED,Highest level of education of parents (ISCED),0.4,9,1430,19.2,18.26,FALSE,FALSE
+HISCED,Highest level of education of parents (ISCED),0.4,10,583,7.83,7.93,FALSE,FALSE

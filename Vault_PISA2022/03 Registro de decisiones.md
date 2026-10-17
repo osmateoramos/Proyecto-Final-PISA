@@ -442,3 +442,40 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - el resto tal cual.
 
   Mateo y Brayan la revisan en el PR.
+
+### D-19 · 2026-10-17 · Detalles de la TRI del NSE que D-16 no fija (pasos 3.3 y 3.5)
+- **Problema:** D-16 (punto 9) fija los modelos: 2PL + GPCM, unidimensional y bidimensional, ponderados,
+  comparados con AIC/BIC, con el ajuste de los ítems (S-X²) y las curvas de información. Quedan detalles técnicos
+  que cambian lo que se reporta. D-17 y D-18 las reservó Mateo (entorno de R y detalles del 3.4).
+- **Lo que muestran el software y los datos** (`mirt` 1.46.1, la misma versión del entorno que propone Mateo):
+  - `itemfit()` no recibe pesos ni imputa faltantes, y el S-X² exige casos completos (`na.rm = TRUE`);
+  - en la mitad de exploración solo el 57 % tiene los 29 indicadores (1.966 de 3.445,
+    `salidas/nse_policorica_diagnostico.csv`), sobre todo por los «No sé» de los tipos de libros;
+  - `testinfo()` admite `degrees`, que da la información a lo largo de cada eje en un modelo de 2 dimensiones.
+- **Propuesta:**
+  1. **Script aparte, `03_nse_tri.R`, para los pasos 3.3 y 3.5.** Lee `datos/COL_nse.rds`; así no se reestiman los
+     modelos cada vez que se corren el 3.1 y el 3.2. El plan preveía un solo `03_nse_medicion.R`.
+  2. **Tres modelos en los 6.886**, los mismos tres del AFC de Mateo:
+     - 1 dimensión, el enfoque de HOMEPOS;
+     - 2 dimensiones con la estructura de D-16, la de H1;
+     - 2 dimensiones con la estructura del AFE (`salidas/nse_estructura_afe.csv`), solo exploratoria.
+
+     Los factores tienen media 0 y varianza 1, y la correlación entre ellos es libre.
+  3. **Pesos** normalizados a 6.886 (`survey.weights`, D-16). No se calculan errores estándar de los parámetros,
+     porque no reflejarían el diseño por colegios: se reportan estimaciones puntuales.
+  4. **Comparación** con AIC, BIC y log-verosimilitud. Con pesos es una pseudo-verosimilitud, así que la
+     comparación es descriptiva y no una prueba.
+  5. **Ajuste de los ítems:** S-X² con `itemfit()` en los casos completos y sin pesos, porque la función no los
+     admite. Se reportan el p ajustado por Benjamini-Hochberg y el RMSEA del S-X².
+     - Se señala un ítem como problemático si p ajustado < 0,05 **y** RMSEA del S-X² > 0,05.
+     - Esa regla es una convención del equipo, sin fuente en el vault: con miles de casos, el p solo casi siempre
+       rechaza.
+  6. **Información y confiabilidad:**
+     - curva de información del test en θ de −4 a 4 para el modelo de 1 dimensión, y a lo largo de cada eje
+       (económico y cultural) para los de 2;
+     - confiabilidad marginal (`marginal_rxx`) o empírica de las EAP por dimensión;
+     - tablas CSV y figuras PNG.
+  7. **Puntuaciones EAP** de los tres modelos en `datos/COL_nse_tri.rds` (no va a Git). Cuál pasa a la F4–F6 se
+     decide en la Puerta G2 (D-16).
+  8. **Validez (3.5):** correlación ponderada (peso final) de cada EAP con `HOMEPOS` y `ESCS` oficiales.
+- **Estado:** propuesta — la acepta Vanessa antes de programar; Mateo la revisa en el PR.

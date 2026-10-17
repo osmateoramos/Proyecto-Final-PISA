@@ -126,13 +126,14 @@ dif_colegio <- f3[, .(d = abs(sum(mitad == "exploracion") - sum(mitad == "confir
 stopifnot(all(dif_colegio$d <= 1))
 
 # Equilibrio de las mitades (solo describe; no es una prueba de H1)
-media_w <- function(x, w) { k <- !is.na(x); sum(w[k] * x[k]) / sum(w[k]) }
+# Promedio ponderado que ignora los NA (otro nombre que media_w() de utilidades_pisa.R, que recibe (y, w, g)).
+prom_w_na <- function(x, w) { k <- !is.na(x); sum(w[k] * x[k]) / sum(w[k]) }
 mitades <- f3[, .(n = .N, colegios = uniqueN(CNTSCHID),
                   pct_peso = round(100 * sum(W_FSTUWT) / sum(f3$W_FSTUWT), 1),
-                  ESCS_media = round(media_w(ESCS, W_FSTUWT), 3), HOMEPOS_media = round(media_w(HOMEPOS, W_FSTUWT), 3),
-                  pct_mujer = round(100 * media_w(as.numeric(sexo == "Mujer"), W_FSTUWT), 1),
-                  pct_rural = round(100 * media_w(as.numeric(zona == "Rural (<3.000)"), W_FSTUWT), 1),
-                  pct_publico = round(100 * media_w(as.numeric(sector == "Público"), W_FSTUWT), 1)),
+                  ESCS_media = round(prom_w_na(ESCS, W_FSTUWT), 3), HOMEPOS_media = round(prom_w_na(HOMEPOS, W_FSTUWT), 3),
+                  pct_mujer = round(100 * prom_w_na(as.numeric(sexo == "Mujer"), W_FSTUWT), 1),
+                  pct_rural = round(100 * prom_w_na(as.numeric(zona == "Rural (<3.000)"), W_FSTUWT), 1),
+                  pct_publico = round(100 * prom_w_na(as.numeric(sector == "Público"), W_FSTUWT), 1)),
               by = mitad][order(mitad)]
 fwrite(mitades, file.path(SALIDAS, "nse_mitades.csv"))
 

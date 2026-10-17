@@ -36,32 +36,18 @@ SALIDAS <- normalizePath(file.path(DIR, "..", "salidas"))
 CACHE   <- file.path(DATOS, "COL_cuestionario.rds")
 if (!file.exists(CACHE)) stop("Falta ", CACHE, ": correr antes 01b_etl_cuestionario.R")
 
-q    <- readRDS(CACHE)
-PV   <- paste0("PV", 1:10, "MATH")
-REPS <- paste0("W_FSTURWT", 1:80)
+source(file.path(DIR, "utilidades_pisa.R"))   # estimar_pv(), media_w(), cuantil_w(), PV_MATH, REPS
+PV <- PV_MATH
+
+q <- readRDS(CACHE)
 stopifnot(nrow(q) == 7804, all(c(PV, REPS, "W_FSTUWT", "ESCS") %in% names(q)))
 cat("Estudiantes:", nrow(q), "| con ESCS:", sum(!is.na(q$ESCS)), "\n")
 
 # =============================================================================
-# 1. ESTIMADOR PISA: 10 PV x (peso final + 80 réplicas)
+# 1. ESTIMADOR PISA: 10 PV x (peso final + 80 réplicas), en utilidades_pisa.R
 # =============================================================================
-# f(y, w) devuelve la estadística para un PV (y) y un vector de pesos (w).
-estimar_pv <- function(d, f) {
-  W <- as.matrix(d[, c("W_FSTUWT", REPS), with = FALSE])
-  por_pv <- sapply(PV, function(p) {
-    th <- unname(apply(W, 2, function(w) f(d[[p]], w)))   # th[1] = peso final; th[-1] = 80 réplicas
-    c(est = th[1], var_m = 0.05 * sum((th[-1] - th[1])^2))   # Formula 10.9 (0,05 = 1 / (80 * 0,5^2))
-  })
-  est <- por_pv["est", ]
-  c(est = mean(est), ee = sqrt(mean(por_pv["var_m", ]) + (1 + 1 / length(PV)) * var(est)))
-}
-
-# Cuantil ponderado: primer valor en que la proporción acumulada del peso llega a p.
-cuantil_w <- function(x, w, p) { o <- order(x); cw <- cumsum(w[o]) / sum(w[o]); x[o][which(cw >= p)[1]] }
-
 # --- 2.1 Media (todos los estudiantes)
-media <- function(y, w) sum(w * y) / sum(w)
-r21 <- estimar_pv(q, media)
+r21 <- estimar_pv(q, media_w)
 
 # --- 2.2 Brecha Q4 - Q1 de ESCS (estudiantes con ESCS; cortes ponderados fijos)
 e <- q[!is.na(ESCS)]

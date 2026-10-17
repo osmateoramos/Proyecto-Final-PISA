@@ -242,3 +242,45 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     declara en el informe.
 - **Estado:** (b) ✅ aceptada por Vanessa (2026-10-16); la comparación queda como propuesta. Mateo revisa ambas en
   el PR.
+
+### D-15 · 2026-10-16 · Cómo se reproducen las tres cifras de la OCDE (Puerta G1, F2)
+- **Problema:** la Puerta G1 compara tres cifras propias con las publicadas. El método se fija **antes** de calcular,
+  para no ajustarlo hasta que coincida.
+- **Cifras objetivo** (ubicadas por Claude el 2026-10-16; `por_verificar` hasta que firme el equipo):
+
+  | Paso | Cifra | Publicado | Fuente |
+  |---|---|---|---|
+  | 2.1 | Media de matemáticas | 382,70 (EE 3,03) | [[Literatura/oecd2024pisa2022tr]], Annex Table 14.A.12, p. 301 |
+  | 2.2 | Brecha Q4 − Q1 de ESCS | 79 puntos | [[Literatura/oecd2023fichacolombia]], p. 5 |
+  | 2.3 | Varianza explicada por ESCS | 16 % | [[Literatura/oecd2023fichacolombia]], p. 5; [[Literatura/icfes2024pisa]], p. 46 del visor |
+
+- **Procedimiento común (propuesto):**
+  - Se calcula cada estadística con cada uno de los 10 valores plausibles (`PV1MATH`–`PV10MATH`) y el peso final
+    `W_FSTUWT`. La estimación final es el promedio de las 10.
+  - La varianza muestral de cada PV se calcula con los 80 pesos replicados `W_FSTURWT1`–`80`:
+    0,05 · Σ (θ_t − θ)² (Technical Report, Formula 10.9, p. 198).
+  - Varianza total = promedio de las 10 varianzas muestrales + (1 + 1/10) · varianza entre los 10 PV (p. 280; la
+    fórmula de Rubin está en la p. 226). Es lo que hace `estimar_pv()` de `datos/revision_pisa2022_col.R`.
+  - Datos: `datos/COL_cuestionario.rds` (01b). **No** se usa la muestra analítica de D-14: la OCDE reporta sobre
+    todos los estudiantes.
+- **Cada cifra:**
+  - **2.1 Media:** media ponderada sobre los 7.804 estudiantes.
+  - **2.2 Brecha:** estudiantes con ESCS (7.459).
+    - Los cortes de los cuartos de ESCS son cuantiles **ponderados** con `W_FSTUWT`, porque la ficha dice que cada
+      grupo tiene el 25 % de la población (p. 5).
+    - Brecha = media del cuarto alto − media del cuarto bajo, en cada PV y en cada réplica.
+    - Los cortes se calculan una vez con el peso final y se mantienen fijos en las réplicas. Recalcularlos en cada
+      réplica cambiaría solo el error estándar, no la estimación.
+  - **2.3 Varianza explicada:** R² de la regresión lineal ponderada del PV de matemáticas sobre ESCS (estudiantes
+    con ESCS), por PV, promediado y × 100.
+    - **No verificado:** si la OCDE usa solo el término lineal. Si la cifra difiere en más de 1 punto porcentual,
+      se revisa la definición en el volumen II antes de cambiar nada.
+- **Tolerancia:** ±1 punto (2.1 y 2.2) y ±1 punto porcentual (2.3), como dice G1 en [[08 Rúbrica de desarrollo]].
+  Si una cifra no pasa, se revisan pesos, PV y filtros (rúbrica). No se cambia el método sin registrarlo aquí.
+- **2.4, contraste independiente:** `EdSurvey` no está instalado.
+  - **Propuesta:** contrastar con el paquete `survey` (ya instalado; `svrepdesign(type = "Fay", rho = 0.5)`), que
+    es una implementación distinta a la nuestra.
+  - `EdSurvey` queda opcional. Esto se aparta del plan, por eso se registra.
+- **Salida:** `scripts/02_validacion_ocde.R` → `salidas/validacion_ocde.csv` (nuestro, EE, publicado, diferencia,
+  cumple).
+- **Estado:** propuesta — la acepta Vanessa antes de programar; Mateo y Brayan la revisan en el PR.

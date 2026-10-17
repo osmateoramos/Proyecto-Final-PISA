@@ -18,7 +18,7 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 | F0 Organización | ✅ cerrada | — | hipótesis congeladas el 2026-10-12, commit `f53054d` ([[09 Hipótesis preregistradas]]) |
 | F1 Datos y ETL | ✅ cerrada | `01a_etl_cognitivo.R` → `01b_etl_cuestionario.R` → `01c_muestra_analitica.R` | muestra analítica de 6.886 estudiantes (`salidas/conteos_muestra.csv`); D-12, D-13 y D-14 |
 | F2 Validación del diseño | ✅ cerrada, **G1 pasa** | `02_validacion_ocde.R` + `utilidades_pisa.R` | `salidas/validacion_ocde.csv`; D-15 |
-| F3 O1: medición del NSE | en curso | `03_explorar_items_nse.R` (solo describe los ítems; no estima modelos) | D-16 propuesta, en revisión (rama `Vanessa-F3`) |
+| F3 O1: medición del NSE | en curso | `03_explorar_items_nse.R` (solo describe los ítems; no estima modelos) | D-16 aceptada por Vanessa (2026-10-16); falta la revisión de Mateo y Brayan (rama `Vanessa-F3`) |
 | F4–F9 | pendientes | — | — |
 
 Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarrollo PISA 2022]]; las razones, en
@@ -31,11 +31,12 @@ Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarroll
 - **Ramas:** una por integrante (`Mateo`, `Vanessa`, `Brayan`) y ramas por fase cuando hace falta (`Vanessa-F3`).
 - **Flujo:** cada rama llega a `main` por *Pull Request*; quien abre el PR no lo fusiona hasta que otro integrante
   lo apruebe. *Pull* antes de empezar (ver `README.md`).
-- **Estado al 2026-10-16** (se actualiza al fusionar cada PR):
+- **Estado al 2026-10-17** (se actualiza al fusionar cada PR):
   - PR #1 a #6 fusionados en `main`: «Nada sin fuente» y la F1 de los pasos 1.2 a 1.4 (`01a` y `01b`).
-  - PR #7 (`Vanessa` → `main`): F1 pasos 1.1 y 1.5 (`01c`) y F2 completa (`02`, `utilidades_pisa.R`). Aprobado;
-    falta fusionarlo.
-  - Rama `Vanessa-F3`: exploración de los ítems del NSE y D-16, todavía sin PR.
+  - PR #7 (`Vanessa` → `main`), fusionado el 2026-10-17: F1 pasos 1.1 y 1.5 (`01c`) y F2 completa (`02`,
+    `utilidades_pisa.R`).
+  - PR #8 (`Mateo` → `main`), fusionado el 2026-10-17: firmas de D-14 y D-15 y estado del proyecto en esta nota.
+  - Rama `Vanessa-F3`: exploración de los ítems del NSE, D-16 y la F3 en curso.
 
 ## Equipo y reparto (propuesta, por confirmar)
 
@@ -52,7 +53,7 @@ La verificación de las 44 fuentes se reparte entre los tres; al 2026-10-16 hay 
 
 - **Anteproyecto vigente:** `Proyecto_PISA/anteproyecto/anteproyecto_VanessaAcosta_MateoRamos.pdf`
   (fuente `.Rmd` y `referencias.bib` en la misma carpeta; 4 marcas [VERIFICAR] por revisar antes de entregar; ver [[13 Revisión de literatura]])
-- [[03 Registro de decisiones]] — toda decisión, con fecha y razón (D-01 a D-15; D-16 en revisión)
+- [[03 Registro de decisiones]] — toda decisión, con fecha y razón (D-01 a D-16; D-16 en revisión de Mateo y Brayan)
 - [[08 Rúbrica de desarrollo]] — cómo autoevaluarse, puertas de fase y criterio de hallazgo innovador
 - [[09 Hipótesis preregistradas]] — H1–H8, congeladas el 2026-10-12
 - [[10 Gestión de la información]] — Zotero + Obsidian, instalación y reglas

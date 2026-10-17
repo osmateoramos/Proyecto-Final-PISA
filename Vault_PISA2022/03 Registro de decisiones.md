@@ -265,8 +265,8 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - Ojo, **no verificado:** casi todos los «menos de 10 vistos» no tienen ningún ítem respondido (530 en 01a). Sus
     PV de matemáticas salen solo del modelo de población de la OCDE, no de respuestas. Hay que tenerlo en cuenta
     al interpretar esa fila.
-- **Estado:** ✅ (b) y la comparación por motivo de exclusión, aceptadas por Vanessa (2026-10-16). Mateo revisa ambas en
-  el PR.
+- **Estado:** ✅ (b) y la comparación por motivo de exclusión, aceptadas por Vanessa y por Mateo (2026-10-16; Mateo
+  en la revisión del PR #7, donde reprodujo los conteos y la comparación).
 
 ### D-15 · 2026-10-16 · Cómo se reproducen las tres cifras de la OCDE (Puerta G1, F2)
 - **Problema:** la Puerta G1 compara tres cifras propias con las publicadas. El método se fija **antes** de calcular,
@@ -306,7 +306,10 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - **Propuesta:** contrastar con el paquete `survey` (ya instalado; `svrepdesign(type = "Fay", rho = 0.5)`), que
     es una implementación distinta a la nuestra.
   - `EdSurvey` queda opcional. Esto se aparta del plan, por eso se registra.
+  - **Matiz** (Mateo, revisión del PR #7): `survey` usa los mismos pesos y la misma fórmula de varianza que
+    `estimar_pv()`. Por eso descarta errores de programación, pero no valida el método. La validación de fondo es la
+    coincidencia con las cifras publicadas por la OCDE.
 - **Salida:** `scripts/02_validacion_ocde.R` → `salidas/validacion_ocde.csv` (nuestro, EE, publicado, diferencia,
   cumple).
-- **Estado:** ✅ aceptada por Vanessa (2026-10-16), incluido el contraste con `survey` en el 2.4. Mateo y Brayan
-  la revisan en el PR.
+- **Estado:** ✅ aceptada por Vanessa y por Mateo (2026-10-16), incluido el contraste con `survey` en el 2.4. Mateo
+  la aceptó en la revisión del PR #7, donde reprodujo la tabla. Falta la revisión de Brayan.

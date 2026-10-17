@@ -408,24 +408,29 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   [[Literatura/avvisati2024measurement]] p. 11 (HOMEPOS es una escala TRI unidimensional). Todo `por_verificar`.
 - **Resultado del paso 3.2** (`scripts/03_nse_medicion.R`, sección 3.2 → `salidas/nse_policorica_diagnostico.csv`,
   `nse_analisis_paralelo.csv`, `nse_afe_cargas.csv`, `nse_afe_ajuste.csv` y `nse_estructura_afe.csv`;
-  mitad de exploración, n = 3.445, 2026-10-17):
+  mitad de exploración, n = 3.445, 2026-10-17; **cifras recalculadas con D-20**):
   - **Policórica:**
-    - Sin suavizar tiene 1 autovalor negativo (−0,030). Pasa igual sin pesos (−0,031) y con solo casos completos
-      (−0,048; n = 1.966), así que no lo causan las decisiones de D-16.
+    - Sin suavizar tiene 1 autovalor negativo (−0,030). Pasa igual sin pesos (−0,030) y con solo casos completos
+      (−0,037; n = 2.305), así que no lo causan las decisiones de D-16.
     - Se usó la matriz que `psych` suaviza. Queda casi singular, y por eso el RMSEA, el TLI y el BIC del AFE no se
-      interpretan (el RMSR baja de 0,077 con 1 factor a 0,040 con 2).
+      interpretan (el RMSR baja de 0,089 con 1 factor a 0,039 con 2).
     - No hay ítems duplicados: el par más alto es computador–portátiles (0,85).
-  - **Análisis paralelo:** dominan 2 autovalores (9,00 y 2,57; el tercero es 0,68).
-    - El criterio de factores sugiere 9 y el de componentes, 4.
-    - El AFE de 3 factores solo agrega un «factor» de dos ítems: motos (−0,61) y lectores electrónicos (0,52).
+  - **Análisis paralelo:** dominan 2 autovalores (9,93 y 3,13; el tercero es 0,65).
+    - El criterio de factores sugiere 7 y el de componentes, 4.
+    - El AFE de 3 factores solo agrega un «factor» de dos ítems: motos (0,73) y lectores electrónicos (−0,39).
     - Se lee como una estructura de 2 factores.
-  - **AFE de 2 factores** (oblimin; correlación entre factores 0,44):
+  - **AFE de 2 factores** (oblimin; correlación entre factores 0,47):
     - factor 1: las posesiones materiales y tecnológicas, `HISCED_c`, `HISEI_q`, obras de arte e instrumentos;
-    - factor 2: los libros (`ST255` y los 8 `ST256`).
+    - factor 2: los libros (`ST255` y los 8 `ST256`, con cargas de 0,69 a 0,85).
     - Coinciden con D-16 25 de 29 ítems. No coinciden `HISCED_c`, `ST251Q06JA` y `ST251Q07JA` (cultural en D-16,
-      aquí económico) ni `ST254Q05JA` (económico en D-16, aquí libros, con carga 0,24).
+      aquí económico; los instrumentos cargan 0,38 y 0,31 en los dos factores) ni `ST254Q05JA` (económico en D-16,
+      aquí libros, con carga 0,30).
   - **Comunalidad < 0,20:** cuarto propio (`ST250Q01JA`, 0,19), motos (`ST251Q02JA`, 0,03) y lectores electrónicos
-    (`ST254Q05JA`, 0,06).
+    (`ST254Q05JA`, 0,08).
+  - **Antes de D-20** (misma mitad, ST256 de quien no tiene libros como faltante):
+    - autovalores 9,00 y 2,57; correlación entre factores 0,44;
+    - 1.966 casos completos; cargas de los libros de 0,52 a 0,74.
+    - **La asignación de los 29 ítems era la misma**: D-20 no cambió la estructura del AFE, solo la hizo más nítida.
   - **Qué implica (punto 7):**
     - H1 se sigue probando en el 3.4 con la estructura de D-16.
     - La estructura del AFE también se prueba en el 3.4, pero solo como **exploratoria**:
@@ -450,7 +455,9 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 - **Lo que muestran el software y los datos** (`mirt` 1.46.1, la misma versión del entorno que propone Mateo):
   - `itemfit()` no recibe pesos ni imputa faltantes, y el S-X² exige casos completos (`na.rm = TRUE`);
   - en la mitad de exploración solo el 57 % tiene los 29 indicadores (1.966 de 3.445,
-    `salidas/nse_policorica_diagnostico.csv`), sobre todo por los «No sé» de los tipos de libros;
+    `salidas/nse_policorica_diagnostico.csv`). Estos faltantes vienen **sobre todo de los saltos del cuestionario**:
+    a quien no tiene libros no se le preguntan los tipos de libros (D-20). *Corrección del 2026-10-17: antes decía
+    «sobre todo por los "No sé"», un error de Claude;*
   - `testinfo()` admite `degrees`, que da la información a lo largo de cada eje en un modelo de 2 dimensiones.
 - **Propuesta:**
   1. **Script aparte, `03_nse_tri.R`, para los pasos 3.3 y 3.5.** Lee `datos/COL_nse.rds`; así no se reestiman los
@@ -480,3 +487,33 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   8. **Validez (3.5):** correlación ponderada (peso final) de cada EAP con `HOMEPOS` y `ESCS` oficiales.
 - **Estado:** ✅ aceptada por Vanessa (2026-10-17), tal cual: S-X² en casos completos e incluido el modelo exploratorio
   del AFE. Mateo la revisa en el PR.
+
+### D-20 · 2026-10-17 · Los tipos de libros (ST256) de quien no tiene libros valen 0, no faltante (F3)
+- **Problema:** D-12 convierte en `NA` todo faltante de usuario, incluido el «Valid Skip» (código 95). El cuestionario
+  salta las 8 preguntas de tipos de libros (ST256) cuando el estudiante dice que no hay libros en casa (ST255).
+  Esos estudiantes quedaban con 8 faltantes que en realidad son «ninguno». El problema apareció de dos formas:
+  - **S-X² (D-19):** en los casos completos no quedaba nadie sin libros, ni nadie con 0 dispositivos (`ST253Q01JA`).
+    El S-X² no se pudo calcular: «S_X2 cannot be computed… less than the full range of possible response options».
+  - **Policórica y AFE (3.2, por pares):** las correlaciones de los ítems de tipos de libros se calcularon solo
+    entre quienes tienen libros.
+- **Dato** (`scripts/03_explorar_saltos_st256.R` → `salidas/nse_saltos_st256.csv`; Colombia, 7.804):
+  - los 1.095 estudiantes con ST255 = «There are no books» tienen ST256 = 95 («Valid Skip») en los 8 ítems;
+  - en las 8 preguntas hay 9.176 celdas con salto válido, 2.289 «I don't know» y 1.817 sin respuesta.
+- **Decisión** (Vanessa, 2026-10-17):
+  - en el paso 3.1, si ST255 = «no hay libros», cada ítem ST256 vale 0 («None»);
+  - los demás faltantes de ST256 siguen como `NA`: el «I don't know» (D-12) y los saltos de quien no respondió ST255;
+  - D-12 no cambia para los cachés de `01b`; D-20 se aplica solo a los indicadores del NSE (F3).
+- **Por qué** (interpretación del equipo): sin libros en casa, la cantidad de cada tipo de libro es «ninguno». Es
+  un valor que se deduce de la respuesta a ST255, no un dato que falta. **No verificado:** cómo lo trata la OCDE en
+  HOMEPOS, porque la tabla 19.A.17 del Technical Report no viene en el PDF.
+- **Consecuencias:**
+  - se repiten el 3.1 (solo cambian los ST256), el 3.2 (policórica, AFE y estructura del AFE) y la TRI (3.3);
+  - la regla del 2 % (D-16 punto 4) se aplica igual sobre los datos corregidos y ahora une también una categoría
+    de `ST256Q01JA` (libros religiosos):
+    - con los 1.002 ceros de la muestra analítica, «más de 10» queda en 120 respuestas (1,85 %);
+    - se une con «6 a 10», y juntas suman 366 (5,63 %) (`salidas/nse_recodificacion.csv`);
+    - quedan 6 ítems con categorías unidas;
+  - el resultado del 3.2 en D-16 se actualiza y se deja constancia del anterior;
+  - **los puntos 7 y 8 de D-16 (estructura y regla de H1) no cambian**;
+  - Mateo corre el 3.4 con los datos ya corregidos.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-17). Mateo la revisa en el PR (afecta los datos de su 3.4).

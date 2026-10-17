@@ -199,7 +199,7 @@ con `GPArotation` para la rotación oblimin).
   - *Hecho (2026-10-17):* `03_nse_medicion.R` (sección 3.2), en la mitad de exploración (3.445).
     - Por D-16, el análisis paralelo se hizo sobre la policórica **ponderada**, no con `cor = "poly"`, que no
       admite pesos.
-    - **Respuesta:** aparecen 2 factores (r = 0,44), pero el cultural es solo de **libros**. La educación, la
+    - **Respuesta:** aparecen 2 factores (r = 0,47 con D-20; 0,44 antes), pero el cultural es solo de **libros**. La educación, la
       ocupación, el arte y los instrumentos cargan con lo económico; 25 de 29 ítems coinciden con D-16.
     - Detalle y salidas en el resultado del 3.2 dentro de D-16. La estructura del AFE pasa al 3.4 como
       exploratoria.

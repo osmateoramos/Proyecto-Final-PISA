@@ -7,6 +7,7 @@
 # 3.1 Preparación (no estima ningún modelo):
 #   - muestra de la F3 = muestra analítica de D-14 (6.886; marca `incluido` de 01c), D-16 punto 1;
 #   - 29 indicadores: 27 posesiones + HISCED + HISEI en quintiles ponderados, D-16 punto 3;
+#   - tipos de libros (ST256) = 0 para quien no tiene libros: son saltos del cuestionario, D-20;
 #   - categorías con < 2 % de las respuestas válidas unidas con la vecina hacia el centro, D-16 punto 4;
 #   - mitades de exploración y confirmación al azar dentro de cada colegio (set.seed(2026)), D-16 punto 2;
 #   - estructura de 2 factores fijada en D-16 punto 7 (se guarda con los datos para los pasos siguientes).
@@ -49,6 +50,15 @@ ECONOMICO <- c(paste0("ST250Q0", 1:5, "JA"), paste0("ST251Q0", 1:4, "JA"), "ST25
 IND <- c(ECONOMICO, CULTURAL)
 stopifnot(length(CULTURAL) == 12, length(ECONOMICO) == 17, !anyDuplicated(IND),
           setequal(setdiff(IND, c("HISCED_c", "HISEI_q")), POS))
+
+# --- D-20: el cuestionario salta los tipos de libros (ST256) a quien dice que no hay libros en casa
+# (ST255Q01JA = 0 tras D-12, «There are no books»). Para ellos cada ST256 vale 0 («None»), no faltante.
+# Los demás faltantes de ST256 («I don't know», sin respuesta) siguen como NA.
+ST256 <- grep("^ST256", POS, value = TRUE)
+sin_libros <- which(f3$ST255Q01JA %in% 0L)
+stopifnot(length(ST256) == 8, f3[sin_libros, all(is.na(as.matrix(.SD))), .SDcols = ST256])   # solo se llenan saltos
+for (v in ST256) set(f3, i = sin_libros, j = v, value = 0L)
+n_d20 <- length(sin_libros)
 
 # --- Une categorías escasas (D-16 punto 4). Devuelve el ítem recodificado a 0..k-1 y el mapa.
 # Mientras la categoría más pequeña tenga < 2 % de las respuestas válidas, se une con su vecina hacia
@@ -111,7 +121,8 @@ for (v in IND) {
 min_pct <- tabla_rec[, .(minimo = min(pct_nueva)), by = item]
 stopifnot(all(min_pct$minimo >= 2))
 cambiados <- tabla_rec[!item %in% c("HISCED_c", "HISEI_q"), .(k_orig = .N, k_nuevo = uniqueN(categoria_nueva)), by = item][k_orig > k_nuevo, item]
-esperados <- c("ST254Q02JA", "ST254Q03JA", "ST254Q04JA", "ST254Q05JA", "ST255Q01JA")   # D-16 punto 4
+esperados <- c("ST254Q02JA", "ST254Q03JA", "ST254Q04JA", "ST254Q05JA", "ST255Q01JA",   # D-16 punto 4
+               "ST256Q01JA")   # D-20: con los 0 de quien no tiene libros, «más de 10 religiosos» queda en 1,85 %
 if (!setequal(cambiados, esperados)) stop("La regla del 2 % cambió otros ítems que los de D-16: ", paste(cambiados, collapse = ", "))
 stopifnot(tabla_rec[item == "HISEI_q", all(abs(pct_ponderado_nueva - 20) < 1)])
 
@@ -147,6 +158,7 @@ saveRDS(nse, file.path(DATOS, "COL_nse.rds"), compress = TRUE)
 # --- Resumen en consola
 cat("Paso 3.1 listo:", nrow(nse), "estudiantes x", length(IND), "indicadores (económico", length(ECONOMICO),
     "| cultural", length(CULTURAL), ")\n")
+cat("D-20: estudiantes sin libros con los 8 ítems ST256 = 0:", n_d20, "\n")
 cat("Ítems con categorías unidas (regla del 2 %):", paste(cambiados, collapse = ", "), "\n")
 print(tabla_rec[item %in% cambiados, .(item, categoria_original, n_original, pct_original, categoria_nueva, n_nueva, pct_nueva)])
 cat("\nHISCED_c (0-9) y HISEI_q (quintiles, cortes", paste(round(cortes_hisei, 2), collapse = " / "), "):\n")

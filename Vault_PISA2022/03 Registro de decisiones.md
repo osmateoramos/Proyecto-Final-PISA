@@ -410,25 +410,28 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   [[Literatura/avvisati2024measurement]] p. 11 (HOMEPOS es una escala TRI unidimensional). Todo `por_verificar`.
 - **Resultado del paso 3.2** (`scripts/03_nse_medicion.R`, sección 3.2 → `salidas/nse_policorica_diagnostico.csv`,
   `nse_analisis_paralelo.csv`, `nse_afe_cargas.csv`, `nse_afe_ajuste.csv` y `nse_estructura_afe.csv`;
-  mitad de exploración, n = 3.445, 2026-10-17; **cifras recalculadas con D-20**):
+  mitad de exploración, n = 3.445, 2026-10-17; **cifras con D-20 completa**, libros y dispositivos, y con el entorno
+  de D-17):
   - **Policórica:**
-    - Sin suavizar tiene 1 autovalor negativo (−0,030). Pasa igual sin pesos (−0,030) y con solo casos completos
-      (−0,037; n = 2.305), así que no lo causan las decisiones de D-16.
+    - Sin suavizar tiene 1 autovalor negativo (−0,026). Pasa igual sin pesos (−0,026) y con solo casos completos
+      (−0,036; n = 2.362), así que no lo causan las decisiones de D-16.
     - Se usó la matriz que `psych` suaviza. Queda casi singular, y por eso el RMSEA, el TLI y el BIC del AFE no se
       interpretan (el RMSR baja de 0,089 con 1 factor a 0,039 con 2).
     - No hay ítems duplicados: el par más alto es computador–portátiles (0,85).
-  - **Análisis paralelo:** dominan 2 autovalores (9,93 y 3,13; el tercero es 0,65).
+  - **Análisis paralelo:** dominan 2 autovalores (10,12 y 3,16; el tercero es 0,66).
     - El criterio de factores sugiere 7 y el de componentes, 4.
-    - El AFE de 3 factores solo agrega un «factor» de dos ítems: motos (0,73) y lectores electrónicos (−0,39).
+    - El AFE de 3 factores solo agrega un «factor» de un ítem: motos (0,82).
     - Se lee como una estructura de 2 factores.
   - **AFE de 2 factores** (oblimin; correlación entre factores 0,47):
     - factor 1: las posesiones materiales y tecnológicas, `HISCED_c`, `HISEI_q`, obras de arte e instrumentos;
     - factor 2: los libros (`ST255` y los 8 `ST256`, con cargas de 0,69 a 0,85).
     - Coinciden con D-16 25 de 29 ítems. No coinciden `HISCED_c`, `ST251Q06JA` y `ST251Q07JA` (cultural en D-16,
-      aquí económico; los instrumentos cargan 0,38 y 0,31 en los dos factores) ni `ST254Q05JA` (económico en D-16,
-      aquí libros, con carga 0,30).
+      aquí económico; los instrumentos cargan 0,37 y 0,31 en los dos factores) ni `ST254Q05JA` (económico en D-16,
+      aquí libros, con carga 0,29).
   - **Comunalidad < 0,20:** cuarto propio (`ST250Q01JA`, 0,19), motos (`ST251Q02JA`, 0,03) y lectores electrónicos
     (`ST254Q05JA`, 0,08).
+  - Con la primera parte de D-20 (solo libros) las cifras eran casi iguales (autovalores 9,93 y 3,13). La asignación
+    de los 29 ítems no cambió en ninguna de las tres versiones.
   - **Antes de D-20** (misma mitad, ST256 de quien no tiene libros como faltante):
     - autovalores 9,00 y 2,57; correlación entre factores 0,44;
     - 1.966 casos completos; cargas de los libros de 0,52 a 0,74.
@@ -489,6 +492,10 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - `01a` y `01b` usaron los cachés crudos: la lectura de los `.SAV` con `haven` 2.5.5 no se volvió a probar.
   - Paso 3.2: 7 de sus 8 salidas son idénticas. En `nse_afe_ajuste.csv`, el BIC del AFE de 1 factor pasa de
     89658,3 a 89658,4. Ese BIC no se interpreta. Vanessa lo confirma con `psych` 2.6.9.
+  - *Máquina de Vanessa, 2026-10-17:*
+    - instaló el entorno con `--instalar`, y R 4.4.1 y los 13 paquetes coinciden con el archivo;
+    - el BIC antiguo ya no se puede comparar, porque D-20 cambió los datos del 3.2;
+    - las salidas actuales de `03_nse_medicion.R` y `03_nse_tri.R` se generaron con este entorno, el mismo de Mateo.
 - **Límites:** fija los paquetes, no sus dependencias. El `.Rprofile` no corre con Rscript desde `scripts/`: ahí se
   corre `00_verificar_entorno.R` a mano. Docker resuelve las dos cosas.
 - **Para actualizar:** se cambia la fecha de la copia y las versiones del archivo en un PR, y se vuelve a correr la
@@ -535,7 +542,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 - **Estado:** ✅ aceptada por Vanessa (2026-10-17), tal cual: S-X² en casos completos e incluido el modelo exploratorio
   del AFE. Mateo la revisa en el PR.
 
-### D-20 · 2026-10-17 · Los tipos de libros (ST256) de quien no tiene libros valen 0, no faltante (F3)
+### D-20 · 2026-10-17 · Los saltos del cuestionario en los indicadores del NSE valen 0, no faltante: tipos de libros (ST256) y dispositivos (ST254) (F3)
 - **Problema:** D-12 convierte en `NA` todo faltante de usuario, incluido el «Valid Skip» (código 95). El cuestionario
   salta las 8 preguntas de tipos de libros (ST256) cuando el estudiante dice que no hay libros en casa (ST255).
   Esos estudiantes quedaban con 8 faltantes que en realidad son «ninguno». El problema apareció de dos formas:
@@ -543,23 +550,35 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     El S-X² no se pudo calcular: «S_X2 cannot be computed… less than the full range of possible response options».
   - **Policórica y AFE (3.2, por pares):** las correlaciones de los ítems de tipos de libros se calcularon solo
     entre quienes tienen libros.
-- **Dato** (`scripts/03_explorar_saltos_st256.R` → `salidas/nse_saltos_st256.csv`; Colombia, 7.804):
-  - los 1.095 estudiantes con ST255 = «There are no books» tienen ST256 = 95 («Valid Skip») en los 8 ítems;
-  - en las 8 preguntas hay 9.176 celdas con salto válido, 2.289 «I don't know» y 1.817 sin respuesta.
+- **Dato** (`scripts/03_explorar_saltos.R` → `salidas/nse_saltos_st256.csv` y `salidas/nse_saltos_st254.csv`;
+  Colombia, 7.804; el script se llamaba `03_explorar_saltos_st256.R` antes de la ampliación):
+  - **libros:** los 1.095 estudiantes con ST255 = «There are no books» tienen ST256 = 95 («Valid Skip») en los 8
+    ítems. En las 8 preguntas hay 9.176 celdas con salto válido, 2.289 «I don't know» y 1.817 sin respuesta;
+  - **dispositivos:** los 204 estudiantes con ST253 = «There are no digital devices with screens» tienen ST254 = 95
+    en los 6 ítems (televisores, computadores de escritorio, portátiles, tabletas, lectores y celulares). En las 6
+    preguntas hay 1.338 celdas con salto válido, 227 «I don't know» y 1.056 sin respuesta.
 - **Decisión** (Vanessa, 2026-10-17):
   - en el paso 3.1, si ST255 = «no hay libros», cada ítem ST256 vale 0 («None»);
-  - los demás faltantes de ST256 siguen como `NA`: el «I don't know» (D-12) y los saltos de quien no respondió ST255;
+  - **ampliación**, el mismo día: si ST253 = «no hay dispositivos con pantalla», cada ítem ST254 vale 0 («None»).
+    Se decidió cuando la TRI repetida con la primera parte de D-20 mostró que el S-X² seguía sin poder calcularse
+    porque no quedaba ningún caso completo con 0 dispositivos;
+  - los demás faltantes siguen como `NA`: el «I don't know» (D-12) y los saltos de quien no respondió la pregunta
+    filtro;
   - D-12 no cambia para los cachés de `01b`; D-20 se aplica solo a los indicadores del NSE (F3).
-- **Por qué** (interpretación del equipo): sin libros en casa, la cantidad de cada tipo de libro es «ninguno». Es
-  un valor que se deduce de la respuesta a ST255, no un dato que falta. **No verificado:** cómo lo trata la OCDE en
+- **Por qué** (interpretación del equipo): sin libros (o sin dispositivos) en casa, la cantidad de cada tipo es
+  «ninguno». Es un valor que se deduce de la pregunta filtro, no un dato que falta. **No verificado:** cómo lo trata la OCDE en
   HOMEPOS, porque la tabla 19.A.17 del Technical Report no viene en el PDF.
 - **Consecuencias:**
-  - se repiten el 3.1 (solo cambian los ST256), el 3.2 (policórica, AFE y estructura del AFE) y la TRI (3.3);
+  - se repiten el 3.1 (solo cambian los ST256 y los ST254), el 3.2 (policórica, AFE y estructura del AFE) y la
+    TRI (3.3);
   - la regla del 2 % (D-16 punto 4) se aplica igual sobre los datos corregidos y ahora une también una categoría
     de `ST256Q01JA` (libros religiosos):
     - con los 1.002 ceros de la muestra analítica, «más de 10» queda en 120 respuestas (1,85 %);
     - se une con «6 a 10», y juntas suman 366 (5,63 %) (`salidas/nse_recodificacion.csv`);
-    - quedan 6 ítems con categorías unidas;
+    - con la ampliación a los dispositivos, también une una categoría de `ST254Q01JA` (televisores): «más de 5»
+      queda en 132 respuestas (1,95 %) y se une con «3 a 5» (juntas, 1.707; 25,19 %). La categoría unida de
+      `ST254Q02JA` (computadores de escritorio) queda en 2,01 %, justo por encima del límite;
+    - quedan 7 ítems con categorías unidas;
   - el resultado del 3.2 en D-16 se actualiza y se deja constancia del anterior;
   - **los puntos 7 y 8 de D-16 (estructura y regla de H1) no cambian**;
   - Mateo corre el 3.4 con los datos ya corregidos.

@@ -1,4 +1,4 @@
 factores,RMSEA,TLI,RMSR,BIC,varianza_explicada,correlaciones_entre_factores,nota
-1,0.276,0.196,0.089,96160.5,0.345,"","RMSEA, TLI y BIC de psych salen de la verosimilitud de una matriz suavizada casi singular: no se interpretan; el ajuste formal se evalúa en el AFC (3.4)"
-2,0.263,0.269,0.039,80774.2,0.454,0.468,"RMSEA, TLI y BIC de psych salen de la verosimilitud de una matriz suavizada casi singular: no se interpretan; el ajuste formal se evalúa en el AFC (3.4)"
-3,0.273,0.212,0.038,80498.4,0.49,0.458 ; 0.05 ; -0.066,"RMSEA, TLI y BIC de psych salen de la verosimilitud de una matriz suavizada casi singular: no se interpretan; el ajuste formal se evalúa en el AFC (3.4)"
+1,0.277,0.201,0.089,96914.4,0.352,"","RMSEA, TLI y BIC de psych salen de la verosimilitud de una matriz suavizada casi singular: no se interpretan; el ajuste formal se evalúa en el AFC (3.4)"
+2,0.264,0.275,0.039,81154.2,0.461,0.47,"RMSEA, TLI y BIC de psych salen de la verosimilitud de una matriz suavizada casi singular: no se interpretan; el ajuste formal se evalúa en el AFC (3.4)"
+3,0.274,0.216,0.038,81103.4,0.496,0.462 ; 0.066 ; -0.05,"RMSEA, TLI y BIC de psych salen de la verosimilitud de una matriz suavizada casi singular: no se interpretan; el ajuste formal se evalúa en el AFC (3.4)"

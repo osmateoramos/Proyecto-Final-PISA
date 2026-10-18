@@ -250,6 +250,11 @@ con `GPArotation` para la rotación oblimin).
   `salidas/nse_cargas_afc.csv`, `salidas/nse_omega_afc.csv`, figuras de información.
 - **Listo cuando:** **Puerta G2** — modelo elegido con ajuste aceptable (CFI ≥ 0,95, RMSEA ≤ 0,06, SRMR ≤ 0,08) o
   desajuste documentado y explicado; H1 resuelta.
+  - ✅ *G2 pasa con el desajuste documentado (2026-10-18; D-24; acta en [[Reuniones/2026-10-18 Puerta G2]]).*
+    - H1 se acepta.
+    - Pasa a la F4–F6 el modelo de 2 dimensiones del AFE: económico (19) y libros (10). Motos se mantiene y se
+      reporta.
+    - Mateo y Brayan firman el acta.
 - **Autoevaluación:** ¿Por qué el AFC se hace en la otra mitad? ¿Qué significa *a* alto en "carro"?
 
 ## F4 — O2: invarianza del NSE (semana 4)  `[SEM]` `[TRI]`

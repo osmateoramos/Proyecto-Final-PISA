@@ -9,7 +9,8 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 2. [[06 Objetivos PISA 2022]] — pregunta, objetivo general y O1–O5.
 3. [[07 Plan de desarrollo PISA 2022]] — paso a paso por semanas. **Estamos en la semana 3 (19–25 oct):** F0, F1 y
    F2 cerradas (la Puerta G1 pasa). En la F3 están hechos el 3.1 (en `main`), el 3.2, el 3.3 y el 3.5 (rama `Vanessa`,
-   PR #12), el 3.3b (dependencia local) y el 3.4 (AFC: H1 se acepta; el ajuste no llega a los cortes). Falta la Puerta G2.
+   PR #12), el 3.3b (dependencia local) y el 3.4 (AFC: H1 se acepta). **La Puerta G2 pasa** con el desajuste
+   documentado (D-24): sigue la F4 (invarianza), en la semana 4.
 
 ## Estado del proyecto (al 2026-10-18)
 
@@ -18,7 +19,7 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 | F0 Organización | ✅ cerrada | — | hipótesis congeladas el 2026-10-12, commit `f53054d` ([[09 Hipótesis preregistradas]]) |
 | F1 Datos y ETL | ✅ cerrada | `01a_etl_cognitivo.R` → `01b_etl_cuestionario.R` → `01c_muestra_analitica.R` | muestra analítica de 6.886 estudiantes (`salidas/conteos_muestra.csv`); D-12, D-13 y D-14 |
 | F2 Validación del diseño | ✅ cerrada, **G1 pasa** | `02_validacion_ocde.R` + `utilidades_pisa.R` | `salidas/validacion_ocde.csv`; D-15 |
-| F3 O1: medición del NSE | en curso: 3.1 en `main`; 3.2, 3.3, 3.3b, 3.4 y 3.5 en el PR #12; falta la G2 | `03_explorar_items_nse.R`, `03_explorar_saltos.R`, `03_nse_medicion.R` (3.1 y 3.2) y `03_nse_tri.R` (3.3, 3.3b y 3.5) y `03_nse_afc.R` (3.4) | `salidas/nse_*.csv`; H1 se acepta (D-18); D-16, D-18 a D-21 aceptadas por Vanessa |
+| F3 O1: medición del NSE | ✅ cerrada, **G2 pasa** con desajuste documentado (D-24); 3.1 en `main` y el resto en el PR #12 | `03_explorar_items_nse.R`, `03_explorar_saltos.R`, `03_nse_medicion.R` (3.1 y 3.2) y `03_nse_tri.R` (3.3, 3.3b y 3.5) y `03_nse_afc.R` (3.4) | `salidas/nse_*.csv`; H1 aceptada (D-18); modelo para la F4–F6: 2D del AFE (D-24); acta en [[Reuniones/2026-10-18 Puerta G2]] |
 | F4–F9 | pendientes | — | — |
 
 Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarrollo PISA 2022]]; las razones, en

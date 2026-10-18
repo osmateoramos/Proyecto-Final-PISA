@@ -910,3 +910,44 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
      fuente de acceso abierto.
 - **Estado:** propuesta. Cada punto se decide antes de su fase: el 6, antes de la F4; del 1 al 4, antes de la F5; el
   5, antes de la F6.
+
+### D-24 · 2026-10-18 · Puerta G2: modelo del NSE que pasa a la F4–F6
+- **Problema:** según D-16 (punto 9), las puntuaciones del NSE que se usan en la F4–F6 salen del modelo que se elija en
+  la Puerta G2. La condición de la G2 ([[08 Rúbrica de desarrollo]]) es un modelo con ajuste aceptable o con el
+  desajuste documentado, y H1 resuelta.
+- **Evidencia** (todo de esta misma fecha):
+  - H1 se acepta con la estructura de D-16 (resultado de D-18).
+  - Ningún modelo llega a los cortes en las dos versiones (D-18).
+  - Comparación entre la estructura del AFE y la de D-16:
+
+    | Criterio | 2D del AFE | 2D de D-16 | Fuente |
+    |---|---|---|---|
+    | AFC en la mitad de confirmación: CFI *scaled* / *robust* | 0,943 / 0,753 | 0,921 / 0,731 | `salidas/nse_ajuste_afc.csv` |
+    | AFC: RMSEA *scaled* / *robust* | 0,060 / 0,114 | 0,071 / 0,119 | ídem |
+    | AFC: SRMR | 0,071 | 0,087 | ídem |
+    | TRI en los 6.886: AIC / BIC | 327.986 / 328.765 | 329.821 / 330.600 | `salidas/nse_ajuste_tri.csv` |
+    | Factor económico: correlación con ESCS / HOMEPOS | 0,81 / 0,96 | 0,77 / 0,96 | `salidas/nse_validez.csv` |
+    | Omega (AFC): económico / segundo factor | 0,888 / 0,929 | 0,925 / 0,936 | `salidas/nse_omega_afc.csv` |
+
+- **Decisión** (Vanessa, 2026-10-18):
+  1. **Pasa a la F4–F6 el modelo de 2 dimensiones del AFE:**
+     - económico (19): los 5 `ST250`, `ST251Q01JA`–`Q04JA`, `ST253Q01JA`, `ST254Q01JA`–`Q04JA` y `Q06JA`,
+       `HISEI_q`, instrumentos (`ST251Q06JA`), arte (`ST251Q07JA`) y `HISCED_c`;
+     - libros (10): `ST255Q01JA`, los 8 `ST256` y lectores electrónicos (`ST254Q05JA`).
+
+     Las puntuaciones son `eap_AFE_ECO` y `eap_AFE_CUL` de `datos/COL_nse_tri.rds`, y el AFC es M2-AFE de
+     `03_nse_afc.R`.
+  2. **Se declara como estructura empírica:** salió de la mitad de exploración (3.2) y se comprobó en la de
+     confirmación (3.4), sin llegar a los cortes *robust*. H1 se decidió con la estructura de D-16 y no cambia.
+  3. **H5 y H6** se deciden con el factor económico de este modelo, y el de libros es secundario (D-22).
+  4. **Motos** (`ST251Q02JA`) se mantiene: quedan los 29 indicadores de D-16. Se reporta como ítem poco informativo
+     (carga 0,08 en el AFC; 0,06 % de la información en la TRI) y en la F4 se revisa como candidata a no invarianza
+     entre lo rural y lo urbano (H2).
+  5. **Limitaciones para el informe:** el desajuste y sus fuentes (D-18): educación y ocupación de los padres, lo
+     digital frente a la vivienda, e ítems con cargas bajas.
+- **Interpretación (equipo, por discutir):** el factor «económico» del AFE junta bienes, educación y ocupación de los
+  padres. En la práctica es un NSE general, muy parecido a HOMEPOS (0,96), y el segundo factor es el de libros en casa.
+- **Propuesta (por confirmar):** repetir en la F7 los resultados principales con la estructura de D-16, como
+  robustez.
+- **Estado:** ✅ **la Puerta G2 pasa con el desajuste documentado** (Vanessa, 2026-10-18). Mateo y Brayan revisan y
+  firman el acta ([[Reuniones/2026-10-18 Puerta G2]]).

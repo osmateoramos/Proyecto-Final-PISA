@@ -1,7 +1,8 @@
 ---
 tipo: fuente
 clave_bib: chen2024structural
-clave_provisional: "sí (libro de consulta; no está en referencias.bib ni en Zotero)"
+zotero-key: 6F2ZERNJg6703955
+clave_provisional: no
 titulo: "Structural Equation Modeling Using R/SAS: A Step-by-Step Approach with Real Data Analysis"
 autores: "Chen, Ding-Geng; Yung, Yiu-Fai"
 año: "2024 (página de créditos: first edition published 2024; Crossref registra publicación en línea el 2023-07-12)"
@@ -11,7 +12,7 @@ bloque: "M. Métodos y software"
 metadatos: "Crossref y página de créditos del PDF (consultados 2026-10-05)"
 estado: por_verificar
 lectura: "IA: índice completo y secciones leídas (pp. 220–224, 246, 370–375)"
-pdf_en_zotero: no
+pdf_en_zotero: sí, solo una muestra de 54 páginas de la editorial (comprobado por Claude en Zotero, 2026-10-18)
 verificado_por:
 fecha_verificacion:
 ---

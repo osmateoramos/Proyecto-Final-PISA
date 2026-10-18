@@ -11,7 +11,7 @@ doi_url: https://www.redalyc.org/journal/3439/343967896009/html/
 bloque: "A. Enfoque econométrico"
 estado: por_verificar
 lectura: "equipo: texto completo"
-pdf_en_zotero: no
+pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
 verificado_por:
 fecha_verificacion:
 ---

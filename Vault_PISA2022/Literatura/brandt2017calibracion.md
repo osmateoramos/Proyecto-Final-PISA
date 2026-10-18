@@ -12,7 +12,7 @@ bloque: "C. Matemáticas por proceso / dimensionalidad"
 metadatos: "Crossref y página de la revista (consultados 2026-10-05): Vol. 54 Núm. 2 (2017); publicado en línea el 2020-12-02"
 estado: por_verificar
 lectura: "IA: solo resumen (OpenAlex); acceso abierto"
-pdf_en_zotero: no
+pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
 verificado_por:
 fecha_verificacion:
 ---

@@ -12,7 +12,7 @@ bloque: "M. Métodos y software"
 metadatos: "Crossref (consultado 2026-10-05)"
 estado: por_verificar
 lectura: "IA: solo metadatos (Crossref); no se ha leído"
-pdf_en_zotero: no
+pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
 verificado_por:
 fecha_verificacion:
 ---

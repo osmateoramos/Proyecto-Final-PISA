@@ -1,7 +1,8 @@
 ---
 tipo: fuente
 clave_bib: okubo2022theoretical
-clave_provisional: "sí (fuente nueva, aún no está en referencias.bib ni en Zotero)"
+zotero-key: 5WQPHSSIg6703955
+clave_provisional: no
 titulo: "Theoretical considerations on scaling methodology in PISA"
 autores: "Okubo, Tomoya"
 año: "2022"
@@ -11,7 +12,7 @@ bloque: "C. Matemáticas por proceso / dimensionalidad"
 metadatos: "Crossref (sin autores) y OpenAlex (autor), consultados 2026-10-05"
 estado: por_verificar
 lectura: "IA: solo resumen (OpenAlex)"
-pdf_en_zotero: no
+pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
 verificado_por:
 fecha_verificacion:
 ---

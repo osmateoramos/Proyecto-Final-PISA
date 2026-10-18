@@ -1,7 +1,8 @@
 ---
 tipo: fuente
 clave_bib: deayala2009theory
-clave_provisional: "sí (libro de consulta; no está en referencias.bib ni en Zotero)"
+zotero-key: CAST3UL4g6703955
+clave_provisional: no
 titulo: "The Theory and Practice of Item Response Theory"
 autores: "de Ayala, R. J."
 año: "2009"

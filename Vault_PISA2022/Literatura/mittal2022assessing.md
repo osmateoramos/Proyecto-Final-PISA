@@ -12,7 +12,7 @@ bloque: "B. Medición del NSE"
 metadatos: "Crossref (consultado 2026-10-04)"
 estado: por_verificar
 lectura: "IA: resumen dentro del PDF de acceso abierto (p. 1); el cuerpo del artículo no se ha leído"
-pdf_en_zotero: no
+pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
 verificado_por:
 fecha_verificacion:
 ---

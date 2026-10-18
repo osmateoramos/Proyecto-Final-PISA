@@ -1,16 +1,17 @@
 ---
 tipo: fuente
 clave_bib: gomezbenito2010sesgo
+zotero-key: JZ62TSFJg6703955
 titulo: "El sesgo de los instrumentos de medición. Tests justos"
 autores: "Gómez-Benito, Juana; Hidalgo, M. Dolores; Guilera, Georgina"
 año: "2010"
-publicacion: "por completar (la revista, el volumen y las páginas no están anotados en procedencia.csv)"
+publicacion: "Papeles del Psicólogo, 31(1), 75–84 (portada de Redalyc del PDF; anotado por Claude, 2026-10-18)"
 doi_url: http://www.redalyc.org/articulo.oa?id=77812441008
 bloque: "D. Equidad de la prueba (DIF)"
 metadatos: "Proyecto_PISA/nada_sin_fuente/corpus/procedencia.csv (fila agregada por Vanessa el 2026-10-12)"
 estado: por_verificar
 lectura: "equipo: descrita por Vanessa en procedencia.csv (2026-10-12); Claude no ha leído el documento"
-pdf_en_zotero: no
+pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
 verificado_por:
 fecha_verificacion:
 ---

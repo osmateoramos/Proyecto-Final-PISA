@@ -1,7 +1,8 @@
 ---
 tipo: fuente
 clave_bib: avvisati2024disengagement
-clave_provisional: sí (falta autor)
+zotero-key: YTT78JR9g6703955
+clave_provisional: no
 titulo: "Item characteristics and test-taker disengagement in PISA"
 autores: "por completar (Crossref no lista autores)"
 año: "2024"
@@ -11,7 +12,7 @@ bloque: "E. Desenganche"
 metadatos: "Crossref (consultado 2026-10-04); autores no listados"
 estado: por_verificar
 lectura: "IA: solo resumen/fragmento"
-pdf_en_zotero: no
+pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
 verificado_por:
 fecha_verificacion:
 ---

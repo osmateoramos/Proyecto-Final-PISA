@@ -12,7 +12,7 @@ bloque: "A. Descriptivo ALC"
 metadatos: "Crossref (consultado 2026-10-04)"
 estado: por_verificar
 lectura: "IA: resumen automático del texto completo"
-pdf_en_zotero: no
+pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
 verificado_por:
 fecha_verificacion:
 ---

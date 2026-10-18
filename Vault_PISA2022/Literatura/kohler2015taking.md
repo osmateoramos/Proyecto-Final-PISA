@@ -12,7 +12,7 @@ bloque: "E. Desenganche / omisiones"
 metadatos: "Crossref (consultado 2026-10-05)"
 estado: verificado
 lectura: "IA: solo resumen (OpenAlex); texto completo en PubMed Central"
-pdf_en_zotero: no
+pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
 verificado_por: Vanessa Acosta
 fecha_verificacion: 13/10/2026
 ---

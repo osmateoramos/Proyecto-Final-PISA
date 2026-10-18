@@ -10,7 +10,7 @@ publicacion: International Journal of Testing, 22(2), 154–184
 doi_url: https://doi.org/10.1080/15305058.2022.2036161
 bloque: E. Desenganche
 metadatos: Crossref (consultado 2026-10-04)
-estado: Verificado
+estado: verificado
 lectura: "IA: texto completo del preprint de OSF (2026-10-12; puede diferir de la versión publicada en la revista, que no es de acceso abierto)"
 pdf_en_zotero: sí (Vanessa, 2026-10-12)
 verificado_por: Vanessa Acosta

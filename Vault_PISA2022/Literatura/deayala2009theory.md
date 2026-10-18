@@ -42,6 +42,10 @@ enlace de escalas; DIF; apéndice de pruebas adaptativas.
 | 9 | El origen y la unidad de la métrica son arbitrarios (indeterminación); también en TRI multidimensional | pp. 106, 291–292 | — | por_verificar · origen: IA (2026-10-05) |
 | 10 | Para poner dos calibraciones en la misma métrica se puede calibrar fijando parámetros ya estimados de otra forma | p. 310 | — | por_verificar · origen: IA (2026-10-05) |
 | 11 | DIF uniforme y no uniforme; señalar DIF es necesario pero no suficiente para hablar de sesgo; depurar la variable de condicionamiento | pp. 324–327 | "a necessary but not sufficient condition for the item being considered to be biased" | por_verificar · origen: IA (2026-10-05) |
+| 12 | Corte del Q3: \|Q3\| > 0,2 indica dependencia local (Yen, 1993; instrumentos de al menos 17 ítems) | p. 134 | "a Q3 screening value of 0.2 can be used" | por_verificar · origen: IA (Claude, 2026-10-18; usada en D-21) |
+| 13 | Bajo independencia condicional, el Q3 esperado es −1/(L − 1) | p. 133 | "Q3 should have an expected value of -1/(L - 1)" | por_verificar · origen: IA (Claude, 2026-10-18; usada en D-21) |
+| 14 | El ETS clasifica los ítems con DIF en tres categorías, según la significación y la magnitud | p. 326 | "classify items exhibiting DIF into three categories" | por_verificar · origen: IA (Claude, 2026-10-18; usada en D-22) |
+| 15 | Los cortes de Jodoin y Gierl (2001) para el tamaño del efecto se refieren al R² de mínimos cuadrados ponderados | p. 334 | "effect size for the weighted least squares R2" | por_verificar · origen: IA (Claude, 2026-10-18; usada en D-22) |
 
 ## Qué NO dice (para no citarlo mal)
 No trata valores plausibles, pesos muestrales ni diseños de evaluaciones a gran escala como PISA (búsqueda en el texto

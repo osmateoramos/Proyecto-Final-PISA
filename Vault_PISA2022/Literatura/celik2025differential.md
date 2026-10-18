@@ -10,7 +10,8 @@ publicacion: ODÜ Sosyal Bilimler Araştırmaları Dergisi (ODÜSOBİAD), 15 (IS
 doi_url: https://doi.org/10.48146/odusobiad.1731407
 bloque: D. Equidad de la prueba (DIF)
 metadatos: Crossref (consultado 2026-10-04)
-estado: Verificado
+estado: por_verificar
+pendientes: "Fila 3, agregada por Claude el 2026-10-18 (D-22), por verificar; las filas 1 y 2 las verificó Vanessa"
 lectura: "IA: texto completo (Claude, 2026-10-12)"
 pdf_en_zotero: sí (Vanessa, 2026-10-12)
 verificado_por: Vanessa Acosta
@@ -34,6 +35,7 @@ DIF por NSE en ítems de comprensión lectora de PIRLS 2021.
 | --- | ------------------------------------------------------------------ | ----------------- | ---------------------------------------------------------------------------- | ---------- |
 | 1   | El DIF por NSE varía según país, pasaje y método                   | p. 638 (Abstract) | "varied significantly across countries, passages, and DIF detection methods" | verificado |
 | 2   | La regresión logística fue el método que más ítems con DIF detectó | p. 638 (Abstract) | "the method that detected the greatest number of DIF items"                  | verificado |
+| 3 | Clasificación del ETS (Zieky, 1993): A, efecto de 0 a 1 (despreciable); B, de 1 a 1,5 (moderado); C, 1,5 o más (grande) | p. 643 | "Level A indicates negligible DIF" | por_verificar · origen: IA (Claude, 2026-10-18; usada en D-22) |
 
 ## Qué NO dice (para no citarlo mal)
 Es lectura, no matemáticas; es prueba en papel, no adaptativa; no incluye a Colombia.

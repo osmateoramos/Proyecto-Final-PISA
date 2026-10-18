@@ -9,7 +9,8 @@ año: "2026"
 publicacion: Large-scale Assessments in Education, 14(23)
 doi_url: https://doi.org/10.1186/s40536-026-00294-x
 bloque: D. Equidad de la prueba (DIF)
-estado: Verificado
+estado: por_verificar
+pendientes: "Fila 3, agregada por Claude el 2026-10-18 (D-22), por verificar; las filas 1 y 2 las verificó Vanessa"
 lectura: "equipo: texto completo · IA: texto completo (Claude, 2026-10-12), páginas y citas confirmadas"
 pdf_en_zotero: sí (Vanessa, 2026-10-12)
 verificado_por: Vanessa Acosta
@@ -33,6 +34,7 @@ Analiza DIF entre dos formas de la prueba de matemáticas de Saber 11 (calendari
 | --- | --------------------------------------------------------------------------------------------------- | --------------------------------------- | ---------------------------------------------------------------------------------------- | ---------- |
 | 1   | Un solo ítem de 22 con DIF no despreciable; concluyen que las comparaciones entre formas son justas | p. 21 (ítem 18); p. 25-26 (conclusión)  | "item number 18 in Table 10 is the only item identified with DIF"                        | verificado |
 | 2   | Usó datos con licencia del ICFES (no públicos)                                                      | p. 27 (Declarations: Data availability) | "which were used under license for the current study, and so are not publicly available" | verificado |
+| 3 | Clasificación del ETS: A, no significativo o \|ΔMH\| ≤ 1; B, significativo y 1 < \|ΔMH\| ≤ 1,5; C, significativo y \|ΔMH\| > 1,5 | p. 8 | "(A) No DIF or negligible DIF if the MH statistical test is nonsignificant" | por_verificar · origen: IA (Claude, 2026-10-18; usada en D-22) |
 
 ## Qué NO dice (para no citarlo mal)
 No analiza DIF por NSE: los grupos comparados son calendario AY1 (39.377, mayoritariamente colegios públicos) vs. AY2 (1.508, ≥97% privados), no un corte directo por nivel socioeconómico, aunque los calendarios sí se correlacionan con tipo de colegio (p. 4).

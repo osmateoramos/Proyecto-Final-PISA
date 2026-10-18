@@ -1045,3 +1045,25 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - lo demás como está propuesto.
 
   Mateo y Brayan la revisan en el PR.
+- *El punto 7 se corrige en D-26:* la prueba TRI del DIF va sin pesos.
+
+### D-26 · 2026-10-18 · La prueba TRI del DIF va sin pesos (corrige D-25 punto 7)
+- **Problema:** la primera corrida del DIF (`04_invarianza.R`, 2026-10-18) dio X² negativos en todos los ítems,
+  de −760 a −2.930, y valores p vacíos. Con modelos anidados eso es imposible.
+  - *Causa, comprobada en el código de `mirt` 1.46.1:* `DIF()` re-estima cada modelo con `multipleGroup()` **sin
+    pasarle `survey.weights`**. El modelo base estaba ponderado y los de la prueba no, así que se comparaban
+    verosimilitudes de escalas distintas.
+  - Esa corrida no da ningún resultado de DIF y no se usa. Los ΔR² de magnitud sí son válidos: se calculan aparte, con
+    pesos, y no dependen de `DIF()`.
+- **Alternativas:**
+  - (a) prueba TRI sin pesos;
+  - (b) razón de verosimilitudes ponderada, re-estimando a mano;
+  - (c) pruebas de Wald sobre el modelo ponderado.
+- **Decisión** (Vanessa, 2026-10-18): **(a)**.
+  - La prueba TRI del DIF (`multipleGroup()` y `DIF()`, en las dos vueltas) se hace **sin pesos**. Así es una prueba
+    de razón de verosimilitudes válida para la muestra.
+  - La magnitud sigue como en D-25: ΔR² de Nagelkerke **con pesos**. Un ítem tiene DIF si cumple las dos.
+  - *Por qué:* con pesos, la verosimilitud es una pseudo-verosimilitud y compararla es descriptivo, no una prueba
+    (D-19 punto 4). Las pruebas de Wald necesitarían errores estándar que con pesos no reflejan el diseño (D-16
+    punto 5).
+- **Estado:** ✅ aceptada por Vanessa (2026-10-18). Mateo y Brayan la revisan en el PR.

@@ -563,6 +563,9 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   7. **Puerta G2:** el modelo pasa si cumple los tres cortes del plan. Si no, se documenta qué índice falla, cuánto
      mejora con la sensibilidad (b) y cuáles son los 10 residuos de correlación más grandes. El modelo de H1 no se
      modifica sin una decisión nueva.
+     - *Aclaración (2026-10-18, antes de correr el 3.4):* como en H1 (D-16 punto 8), los cortes de CFI y RMSEA deben
+       cumplirse en las dos versiones, *scaled* y *robust*. El SRMR tiene una sola versión. Se reportan las dos y se
+       dice con cuál se cumple cada corte.
   8. **Problemas de estimación** (no convergencia, varianzas residuales negativas, matriz no definida positiva): se
      reportan tal cual y se resuelven con una decisión registrada.
 - **Salidas previstas:** `scripts/03_nse_afc.R` → `salidas/nse_ajuste_afc.csv`, `salidas/nse_cargas_afc.csv` y

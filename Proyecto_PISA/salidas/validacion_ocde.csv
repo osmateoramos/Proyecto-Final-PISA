@@ -1,0 +1,4 @@
+paso,cifra,n,estimacion,ee,publicado,ee_publicado,diferencia,cumple_G1,contraste_survey,contraste_survey_ee,coincide_survey,fuente
+2.1,Media de matemáticas,7804,382.7,3.03,382.7,3.03,0,TRUE,382.7,3.03,TRUE,"Technical Report 2022, Annex Table 14.A.12, p. 301"
+2.2,Brecha Q4 - Q1 de ESCS (puntos),7459,78.56,5.74,79,,-0.44,TRUE,78.56,5.74,TRUE,"Ficha OCDE Colombia, p. 5"
+2.3,Varianza explicada por ESCS (%),7459,16.16,2.09,16,,0.16,TRUE,16.16,2.09,TRUE,"Ficha OCDE Colombia, p. 5"

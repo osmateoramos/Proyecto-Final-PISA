@@ -35,13 +35,19 @@ Empezar por `Vault_PISA2022/00 Inicio.md` (en Obsidian) y por el anteproyecto en
 
    Descomprimir los tres en `Proyecto_PISA/datos/`. Deben quedar `CY08MSP_STU_QQQ.SAV`, `CY08MSP_STU_COG.SAV` y
    `CY08MSP_SCH_QQQ.SAV`.
-3. **Crear los cachés de Colombia** (unos minutos, solo la primera vez):
+3. **Instalar las versiones de los paquetes del proyecto** (R 4.4.1, con RStudio cerrado). Las versiones están en
+   `Proyecto_PISA/scripts/versiones_paquetes.csv`, para que los tres corran todo con las mismas:
+   ```
+   & "C:\Program Files\R\R-4.4.1\bin\Rscript.exe" Proyecto_PISA\scripts\00_verificar_entorno.R --instalar
+   ```
+   Después, cada vez que se abre `Proyecto_PISA.Rproj` en RStudio, la consola avisa si alguna versión no coincide.
+4. **Crear los cachés de Colombia** (unos minutos, solo la primera vez):
    ```
    & "C:\Program Files\R\R-4.4.1\bin\Rscript.exe" Proyecto_PISA\datos\revision_pisa2022_col.R
    ```
-4. **Abrir el vault:** en Obsidian, *Abrir carpeta como vault* → `Vault_PISA2022`. Cuando pregunte por los
+5. **Abrir el vault:** en Obsidian, *Abrir carpeta como vault* → `Vault_PISA2022`. Cuando pregunte por los
    complementos de la comunidad, activarlos (Dataview, ZotLit y Git ya vienen configurados).
-5. **Referencias:** unirse al grupo de Zotero del proyecto (lo comparte Mateo) para ver la colección *Proyecto PISA*.
+6. **Referencias:** unirse al grupo de Zotero del proyecto (lo comparte Mateo) para ver la colección *Proyecto PISA*.
 
 ## Flujo de trabajo de todos los días
 

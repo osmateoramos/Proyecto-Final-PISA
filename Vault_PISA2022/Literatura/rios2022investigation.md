@@ -10,7 +10,8 @@ publicacion: International Journal of Testing, 22(2), 154–184
 doi_url: https://doi.org/10.1080/15305058.2022.2036161
 bloque: E. Desenganche
 metadatos: Crossref (consultado 2026-10-04)
-estado: verificado
+estado: por_verificar
+pendientes: "Fila 4, agregada por Claude el 2026-10-18 (D-27), por verificar; las filas 1 a 3 las verificó Vanessa"
 lectura: "IA: texto completo del preprint de OSF (2026-10-12; puede diferir de la versión publicada en la revista, que no es de acceso abierto)"
 pdf_en_zotero: sí (Vanessa, 2026-10-12)
 verificado_por: Vanessa Acosta
@@ -35,6 +36,7 @@ Correlatos de ítem, evaluado y país de la respuesta rápida al azar (rapid gue
 | 1   | Más de la mitad de los evaluados respondió rápido al azar, en promedio en 1 de cada 10 ítems | p. 2 (Abstract) | "engaged in RG on an average proportion of one in 10 items"                                       | verificado |
 | 2   | El NSE está entre los moderadores de la respuesta rápida                                     | p. 2 (Abstract) | "sex, linguistic background, SES, and self-rated reading comprehension"                           | verificado |
 | 3   | Las comparaciones entre subgrupos pueden sesgarse por diferencias de esfuerzo                | p. 2 (Abstract) | "subgroup comparisons within and across nations may be biased by differential test-taking effort" | verificado |
+| 4 | NT10 (Wise y Ma, 2012): respuesta rápida = menos del 10 % del tiempo medio del ítem, calculado por país; los autores no usaron el tope de 10 s | p. 18 (preprint de OSF) | "less than 10% of the mean item response time" | por_verificar · origen: IA (Claude, 2026-10-18; usada en D-27) |
 
 ## Qué NO dice (para no citarlo mal)
 No es matemáticas ni PISA 2022; no cuantifica el efecto sobre la brecha en Colombia; no sabemos si Colombia está entre los 71 países (lista de 71 países no revisada).

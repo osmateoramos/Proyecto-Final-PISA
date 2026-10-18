@@ -1067,3 +1067,94 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     (D-19 punto 4). Las pruebas de Wald necesitarían errores estándar que con pesos no reflejan el diseño (D-16
     punto 5).
 - **Estado:** ✅ aceptada por Vanessa (2026-10-18). Mateo y Brayan la revisan en el PR.
+
+### D-27 · 2026-10-18 · Cómo se califica por competencias (F5, O3; H3, H4, H7, H8; cierra D-05 y D-23 puntos 1 a 4)
+- **Problema:** antes de calibrar el modelo de 4 competencias hay que fijar:
+  - cómo se puntúan los ítems y con qué estudiantes se calibra;
+  - el modelo y cómo se generan los valores plausibles;
+  - qué es una omisión rápida (D-05);
+  - cómo se decide H4 por competencia;
+  - cómo se mide el DIF de matemáticas (H3) y cómo se enlaza con la OCDE (P3).
+- **Lo que muestran los datos** (`scripts/05_explorar_items.R` → `salidas/items_competencia.csv`,
+  `items_respuestas.csv` e `items_resumen_competencia.csv`, 2026-10-18; solo clasifica y cuenta, en la muestra
+  analítica de 6.886):
+
+  | Competencia | Calibrables | < 500 respuestas | Elegibles DIF: NSE económico / ESCS | Crédito parcial |
+  |---|---|---|---|---|
+  | Emplear | 75 | 6 | 59 / 59 | 13 |
+  | Formular | 47 | 9 | 31 / 34 | 12 |
+  | Interpretar | 57 | 9 | 39 / 42 | 19 |
+  | Razonar | 53 | 10 | 36 / 39 | 18 |
+  | **Total** | **232** | **34** | **165 / 174** | **62** |
+
+  - *Elegible para DIF:* al menos 100 respuestas en el cuartil bajo y en el alto (ponderados).
+  - El paso 5.1 queda hecho (`items_competencia.csv`): los 234 ítems de Colombia están en el anexo A.
+    - `CMA112Q02S` está retirado (D-09).
+    - `CMA143Q01S` no tiene respuestas.
+  - **Puntaje:** 19 ítems usan códigos de dos dígitos (11, 12, 21…): 18 de crédito parcial y 1 dicotómico.
+    - Leer el primer dígito como crédito coincide con el anexo en los 232 ítems: los de puntaje 0/1/2 son justo los
+      que tienen pasos de crédito parcial.
+    - En `DM462Q01C`, los códigos 1 y 2 son «01 – No credit» y «02 – No credit» (etiquetas del `.SAV`).
+  - **Ítems vistos por estudiante:** mediana 29 (de 10 a 30).
+  - **Omisiones:** 12.490.
+    - Con el NT10 (menos del 10 % del tiempo **medio** del ítem entre quienes lo vieron), 4.852 son rápidas (38,8 %);
+      con el tope de 10 s, 4.426.
+    - En el cuartil bajo del NSE económico es rápida el 39,7 % de las omisiones (1.342 de 3.381); en el alto, el
+      36,8 % (954 de 2.594).
+    - Umbral NT10: mediana 10,7 s (de 3,5 a 26,9 s).
+- **Fuentes** (todas por verificar):
+  - el primer dígito del código es el crédito: [[Literatura/oecd2024pisa2022tr]], p. 313;
+  - NT10 = menos del 10 % del tiempo medio del ítem en cada país, sin el tope de 10 s que propusieron Wise y Ma
+    (2012): [[Literatura/rios2022investigation]], p. 18;
+  - omitidos como incorrectos y no alcanzados excluidos en el escalamiento de la OCDE: TR, p. 211 (ya en D-13);
+  - alternativas para las omisiones: [[Literatura/deayala2009theory]], pp. 150–151.
+- **Propuesta:**
+  1. **Puntaje (5.2):** el crédito es el primer dígito en los ítems con códigos de dos dígitos, y en ellos 1 y 2
+     valen 0. Quedan 170 ítems dicotómicos y 62 de crédito parcial (0/1/2).
+  2. **Muestra (D-23 punto 2):** se calibra y se califica a los 6.886 de la muestra analítica.
+     - Es la población de todo el proyecto (D-14, D-16).
+     - Los valores plausibles condicionados (punto 4) necesitan el NSE de cada estudiante, y solo esos 6.886 lo
+       tienen.
+     - *Alternativa:* calibrar con todos los que tienen respuestas y calificar solo a los 6.886.
+  3. **Modelo (5.3, H8):**
+     - TRI multidimensional confirmatoria de 4 dimensiones correlacionadas, en la que cada ítem carga solo en su
+       competencia; 2PL para los dicotómicos y GPCM para los de crédito parcial, como en la F3;
+     - frente a un modelo unidimensional;
+     - pesos normalizados, como en la F3 (D-16 punto 5); con pesos, el BIC de H8 es descriptivo (D-19 punto 4);
+     - estimación con `QMCEM`, o `MHRM` si no converge. Antes se hace un **piloto de tiempos** (D-23 punto 4).
+  4. **Valores plausibles (5.4, D-23 punto 1):**
+     - EAP y 10 PV por competencia, de un modelo con **regresión latente** (`covdata` y `formula` de `mirt`) sobre las
+       EAP del NSE de la G2 (económico y libros), sexo, grado (`GRADE`), zona y sector;
+     - la zona y el sector sin dato entran como una categoría propia;
+     - se reporta la confiabilidad empírica por competencia.
+  5. **Omisiones (D-05, 5.7, H4):** se califica de tres formas.
+     - (a) la omitida vale 0, como la OCDE, y el no alcanzado es faltante;
+     - (b) la omisión rápida (NT10 con la media, sin tope, calculado en la muestra analítica de Colombia) es faltante y
+       las demás omisiones valen 0;
+     - (c) *sensibilidad (P5):* toda omisión es faltante (verosimilitud marginalizada, de Ayala, pp. 150–151).
+     - En las tres se usan los mismos parámetros de los ítems, los de (a). Así la brecha cambia solo por cómo se trata
+       la omisión. El NT10 con tope, el NT15 y 5 s quedan para la F7 (paso 7.1).
+  6. **H4 por competencia (lo que D-22 dejó por decidir):** se acepta si en **al menos una** competencia la
+     reducción es ≥ 0,05 DE y significativa, después de corregir por las 4 competencias con Holm. Se reportan las
+     cuatro.
+  7. **DIF de matemáticas (5.6, H3, P4):**
+     - cuartil bajo frente al alto del NSE económico de la G2, con ESCS como robustez (D-22);
+     - solo los ítems elegibles: 165;
+     - un modelo unidimensional por competencia con todos sus ítems, `multipleGroup()` sin pesos (lógica de D-26),
+       anclas depuradas en 2 vueltas y BH al 5 % dentro de cada competencia;
+     - magnitud (D-22):
+       - en los dicotómicos, Mantel-Haenszel estratificado por deciles de la EAP de la competencia, con categoría B o
+         C del ETS;
+       - en los de crédito parcial, ΔR² de Nagelkerke ≥ 0,035;
+     - segunda parte de H3: la proporción de ítems con DIF en interpretar más formular frente a emplear, con la prueba
+       exacta de Fisher (α = 0,05).
+  8. **Validación (5.5, H7, P3):**
+     - H7 como en D-22;
+     - P3: se enlazan las dificultades propias con las internacionales del anexo A por media–sigma, y se reportan la
+       correlación y la diferencia cuadrática media por competencia.
+  9. **Dependencia local (P1):** Q3 en los pares de la misma unidad, con |Q3| > 0,2 (D-21).
+  10. **P2:** en la F7 se re-calibra sin los 34 ítems con menos de 500 respuestas.
+- **Salidas previstas:** `scripts/05_tri_competencias.R` → `salidas/mat_parametros_mirt.csv`, `mat_ajuste.csv`,
+  `validacion_ocde_competencias.csv`, `mat_dif.csv`, `brecha_omisiones.csv`; puntajes en
+  `datos/COL_puntajes_competencia.rds` (no va a Git).
+- **Estado:** propuesta — la decide Vanessa.

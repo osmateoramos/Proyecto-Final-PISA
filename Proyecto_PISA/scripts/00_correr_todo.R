@@ -34,7 +34,9 @@ CADENA <- c(
   "03_nse_tri.R",                  # F3, pasos 3.3, 3.3b y 3.5 (D-19, D-21)
   "03_nse_afc.R",                  # F3, paso 3.4 (D-18)
   "04_explorar_grupos.R",          # F4, conteos por grupo previos a D-25
-  "04_invarianza.R"                # F4, pasos 4.1 a 4.5 (D-25); se salta si todavía no existe
+  "04_invarianza.R",               # F4, pasos 4.1 a 4.5 (D-25, D-26)
+  "05_explorar_items.R",           # F5, paso 5.1 y conteos previos a D-27
+  "05_tri_competencias.R"          # F5, pasos 5.2 a 5.7 (D-27); se salta si todavía no existe
 )
 
 carpeta_script <- function() {

@@ -1,0 +1,235 @@
+item,item_anexo,competencia,unidad,orden_en_unidad,tipo_unidad,formato,contenido,contexto,a_int,b_int,paso1_int,paso2_int,retirado,calibrable
+CM273Q01S,CM273Q01S,emplear,Pipelines,1/1,Trend,Complex Multiple Choice - Computer Scored,Space and Shape,Occupational,0.73689,0.06102,,,FALSE,TRUE
+CM305Q01S,CM305Q01S,emplear,Map,1/1,Trend,Simple Multiple Choice - Computer Scored,Space and Shape,Societal,0.62098,0.1488,,,FALSE,TRUE
+CM411Q01S,CM411Q01S,emplear,Diving,1/2,Trend,Open Response - Computer Scored,Quantity,Societal,1.42618,-0.07458,,,FALSE,TRUE
+CM447Q01S,CM447Q01S,emplear,Tile Arrangement,1/1,Trend,Simple Multiple Choice - Computer Scored,Space and Shape,Societal,1,-0.54517,,,FALSE,TRUE
+CM474Q01S,CM474Q01S,emplear,Running Time,1/1,Trend,Simple Multiple Choice - Computer Scored,Quantity,Personal,1,-0.66989,,,FALSE,TRUE
+CM496Q02S,CM496Q02S,emplear,Cash Withdrawal,2/2,Trend,Open Response - Computer Scored,Quantity,Societal,1,-0.6099,,,FALSE,TRUE
+CM800Q01S,CM800Q01S,emplear,Computer Game,1/1,Trend,Simple Multiple Choice - Computer Scored,Quantity,Personal,1,-1.80453,,,FALSE,TRUE
+CM828Q03S,CM828Q03S,emplear,Carbon Dioxide,2/2,Trend,Open Response - Computer Scored,Quantity,Scientific,1.07045,0.44585,,,FALSE,TRUE
+CM906Q01S,CM906Q01S,emplear,Crazy Ants,1/2,Trend,Simple Multiple Choice - Computer Scored,Quantity,Scientific,1,-0.49889,,,FALSE,TRUE
+CM909Q02S,CM909Q02S,emplear,Speeding Fines,2/3,Trend,Simple Multiple Choice - Computer Scored,Quantity,Societal,1,-0.44231,,,FALSE,TRUE
+CM915Q01S,CM915Q01S,emplear,Carbon Tax,1/2,Trend,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Societal,0.83034,0.15242,,,FALSE,TRUE
+CM915Q02S,CM915Q02S,emplear,Carbon Tax,2/2,Trend,Open Response - Computer Scored,Change and Relationships,Societal,1.23241,-0.7371,,,FALSE,TRUE
+CM919Q01S,CM919Q01S,emplear,Fan Merchandise,1/2,Trend,Open Response - Computer Scored,Quantity,Personal,1,-1.2462,,,FALSE,TRUE
+CM936Q01S,CM936Q01S,emplear,Seats in a Theatre,1/2,Trend,Open Response - Computer Scored,Change and Relationships,Occupational,1.93446,-0.46174,,,FALSE,TRUE
+CM948Q02S,CM948Q02S,emplear,Part Time Work,2/3,Trend,Open Response - Computer Scored,Quantity,Occupational,1,-1.01454,,,FALSE,TRUE
+CM948Q03S,CM948Q03S,emplear,Part Time Work,3/3,Trend,Open Response - Computer Scored,Quantity,Occupational,1,0.97761,,,FALSE,TRUE
+CM954Q01S,CM954Q01S,emplear,Medicine doses,1/3,Trend,Open Response - Computer Scored,Change and Relationships,Scientific,1.50514,-0.61114,,,FALSE,TRUE
+CM954Q04S,CM954Q04S,emplear,Medicine doses,3/3,Trend,Open Response - Computer Scored,Change and Relationships,Scientific,1.59101,0.49975,,,FALSE,TRUE
+CM955Q03S,CM955Q03S,emplear,Migration,3/3,Trend,Open Response - Computer Scored,Uncertainty and Data,Societal,1,0.98977,-0.77302,0.77302,FALSE,TRUE
+CM967Q01S,CM967Q01S,emplear,Wooden Train Set,1/2,Trend,Open Response - Computer Scored,Space and Shape,Personal,1.59299,-0.16338,,,FALSE,TRUE
+CM982Q01S,CM982Q01S,emplear,Employment Data,1/4,Trend,Open Response - Computer Scored,Uncertainty and Data,Societal,1,-1.47536,,,FALSE,TRUE
+CM982Q02S,CM982Q02S,emplear,Employment Data,2/4,Trend,Open Response - Computer Scored,Uncertainty and Data,Societal,0.83039,0.51055,,,FALSE,TRUE
+CMA102Q01S,CMA102Q01S,emplear,Buying a Wardrobe,1/3,New,Complex Multiple Choice - Computer Scored,Quantity,Personal,1.086016474,0.231650571465944,,,FALSE,TRUE
+CMA102Q03S,CMA102Q03S,emplear,Buying a Wardrobe,3/3,New,Simple Multiple Choice - Computer Scored,Space and Shape,Personal,0.5434429395,-0.42617197098953,,,FALSE,TRUE
+CMA103Q02S,CMA103Q02S,emplear,Calculation Program,2/4,New,Open Response - Computer Scored,Quantity,Scientific,1.2869371777,-0.529720587847555,,,FALSE,TRUE
+CMA109Q01S,CMA109Q01S,emplear,Headache Medicine,1/3,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Scientific,0.8468667522,-0.515268199112231,,,FALSE,TRUE
+CMA109Q02S,CMA109Q02S,emplear,Headache Medicine,2/3,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Scientific,0.6645735947,-0.515781702775676,,,FALSE,TRUE
+CMA110Q02S,CMA110Q02S,emplear,Headphone Order,2/3,New,Simple Multiple Choice - Computer Scored,Quantity,Occupational,0.7984602455,-0.573423669741923,,,FALSE,TRUE
+CMA111Q02S,CMA111Q02S,emplear,Health App,2/3,New,Simple Multiple Choice - Computer Scored,Quantity,Personal,0.3834212799,0.612086541104888,,,FALSE,TRUE
+CMA112Q01S,CMA112Q01S,emplear,Metabolism,1/3,New,Open Response - Computer Scored,Quantity,Scientific,1.4580205568,-0.767864551753155,,,FALSE,TRUE
+CMA112Q03S,CMA112Q03S,emplear,Metabolism,3/3,New,Open Response - Computer Scored,Quantity,Personal,0.8729777093,0.0800692385681151,-1.08938440788339,1.08938440788339,FALSE,TRUE
+CMA113Q03S,CMA113Q03S,emplear,Heart Rate,3/3,New,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Scientific,0.8514276348,0.552770177784255,,,FALSE,TRUE
+CMA115Q01S,CMA115Q01S,emplear,Iceberg,1/2,New,Simple Multiple Choice - Computer Scored,Quantity,Scientific,0.512744168,-0.357335043866761,,,FALSE,TRUE
+CMA116Q01S,CMA116Q01S,emplear,International School,1/3,New,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Societal,1.1997215277,-0.6789444769074,,,FALSE,TRUE
+CMA117Q02S,CMA117Q02S,emplear,Mixing Paint,2/4,New,Simple Multiple Choice - Computer Scored,Quantity,Occupational,1.2876980329,-0.631606176600901,,,FALSE,TRUE
+CMA117Q03S,CMA117Q03S,emplear,Mixing Paint,3/4,New,Open Response - Computer Scored,Quantity,Occupational,0.7225699202,0.0344196789558948,-1.69273331481518,1.69273331481518,FALSE,TRUE
+CMA121Q01S,CMA121Q01S,emplear,Mobile Phone Reviews,1/3,New,Open Response - Computer Scored,Uncertainty and Data,Occupational,1.2190980311,0.12042009749802,-0.817722217751073,0.817722217751073,FALSE,TRUE
+CMA121Q02S,CMA121Q02S,emplear,Mobile Phone Reviews,2/3,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Occupational,0.7461694669,-0.9209101482498,0.392428290506253,-0.392428290506253,FALSE,TRUE
+CMA123Q02S,CMA123Q02S,emplear,Solar System,2/2,New,Simple Multiple Choice - Computer Scored,Quantity,Scientific,1.270895089,-0.84897216382735,,,FALSE,TRUE
+CMA124Q01S,CMA124Q01S,emplear,Zedland Topography,1/3,New,Simple Multiple Choice - Computer Scored,Quantity,Societal,1.4491921308,-1.32534021412392,,,FALSE,TRUE
+CMA124Q02S,CMA124Q02S,emplear,Zedland Topography,2/3,New,Open Response - Computer Scored,Quantity,Societal,1.1458052457,-0.248403416192816,-0.813610119683741,0.813610119683741,FALSE,TRUE
+CMA126Q04S,CMA126Q04S,emplear,Robot,3/3,New,Simple Multiple Choice - Computer Scored,Space and Shape,Occupational,0.8750966635,-0.373112318801702,,,FALSE,TRUE
+CMA127Q01S,CMA127Q01S,emplear,Predicting Height,1/3,New,Open Response - Computer Scored,Quantity,Personal,1.3541887137,-0.844802744201161,-0.494997769913499,0.494997769913499,FALSE,TRUE
+CMA127Q03S,CMA127Q03S,emplear,Predicting Height,3/3,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Personal,0.9554581959,-0.878576309881649,,,FALSE,TRUE
+CMA129Q01S,CMA129Q01S,emplear,Shelving unit,1/3,New,Simple Multiple Choice - Computer Scored,Quantity,Occupational,1.1319035897,-0.321797109719917,,,FALSE,TRUE
+CMA129Q03S,CMA129Q03S,emplear,Shelving unit,3/3,New,Simple Multiple Choice - Computer Scored,Quantity,Occupational,0.7060570789,-0.55260351541297,,,FALSE,TRUE
+CMA130Q01S,CMA130Q01S,emplear,Sleep and Reaction Time,1/3,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Scientific,0.9089520336,0.365866479910999,0.712704949015811,-0.712704949015811,FALSE,TRUE
+CMA131Q02S,CMA131Q02S,emplear,Traveling by Train,2/4,New,Simple Multiple Choice - Computer Scored,Quantity,Societal,0.2216036188,1.08159338309824,,,FALSE,TRUE
+CMA131Q03S,CMA131Q03S,emplear,Traveling by Train,3/4,New,Open Response - Computer Scored,Quantity,Personal,1.15111865,-0.922627315790499,-0.226412177636689,0.226412177636689,FALSE,TRUE
+CMA135Q01S,CMA135Q01S,emplear,Electric Bicycle,1/4,New,Simple Multiple Choice - Computer Scored,Quantity,Personal,0.9833446447,-1.0783362509812,,,FALSE,TRUE
+CMA135Q02S,CMA135Q02S,emplear,Electric Bicycle,2/4,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Personal,1.0774719208,-0.993810409653137,,,FALSE,TRUE
+CMA135Q04S,CMA135Q04S,emplear,Electric Bicycle,4/4,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Personal,1.0295817633,-0.569789764411362,,,FALSE,TRUE
+CMA136Q03S,CMA136Q03S,emplear,Movie Rewards Programme,2/2,New,Simple Multiple Choice - Computer Scored,Quantity,Personal,0.7828231158,-0.781398234319473,,,FALSE,TRUE
+CMA139Q02S,CMA139Q02S,emplear,Tablet Cover,2/2,New,Simple Multiple Choice - Computer Scored,Space and Shape,Personal,0.3706196562,0.973635077550111,,,FALSE,TRUE
+CMA140Q01S,CMA140Q01S,emplear,Walk to School,1/3,New,Open Response - Computer Scored,Quantity,Personal,1.4162373997,-0.252410519396523,,,FALSE,TRUE
+CMA140Q02S,CMA140Q02S,emplear,Walk to School,2/3,New,Simple Multiple Choice - Computer Scored,Quantity,Personal,0.8828837007,-0.103807858256029,,,FALSE,TRUE
+CMA140Q03S,CMA140Q03S,emplear,Walk to School,3/3,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Personal,0.9080170197,0.476168049298074,,,FALSE,TRUE
+CMA141Q01S,CMA141Q01S,emplear,Water Bill,1/4,New,Open Response - Computer Scored,Quantity,Societal,1.6104449862,-0.425908100260854,,,FALSE,TRUE
+CMA141Q02S,CMA141Q02S,emplear,Water Bill,2/4,New,Simple Multiple Choice - Computer Scored,Quantity,Societal,0.9008153638,-0.456026152635026,,,FALSE,TRUE
+CMA143Q02S,CMA143Q02S,emplear,Wild Bird Food,2/4,New,Simple Multiple Choice - Computer Scored,Quantity,Occupational,0.7439749079,0.121102425691096,,,FALSE,TRUE
+CMA143Q03S,CMA143Q03S,emplear,Wild Bird Food,3/4,New,Simple Multiple Choice - Computer Scored,Quantity,Occupational,0.6389210246,-0.0828513916754643,,,FALSE,TRUE
+CMA143Q04S,CMA143Q04S,emplear,Wild Bird Food,4/4,New,Simple Multiple Choice - Computer Scored,Quantity,Occupational,0.3390514901,1.56243310858423,,,FALSE,TRUE
+CMA144Q01S,CMA144Q01S,emplear,Yogurt,1/2,New,Simple Multiple Choice - Computer Scored,Quantity,Personal,0.5758082425,0.738409150875892,,,FALSE,TRUE
+CMA144Q03S,CMA144Q03S,emplear,Yogurt,2/2,New,Complex Multiple Choice - Computer Scored,Quantity,Personal,0.5678416775,-0.661081691311437,0.331571662678914,-0.331571662678914,FALSE,TRUE
+CMA146Q01S,CMA146Q01S,emplear,Fuel,1/3,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Societal,0.5443693457,0.269452431914965,,,FALSE,TRUE
+CMA146Q02S,CMA146Q02S,emplear,Fuel,2/3,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Societal,0.9793904315,-0.721392213173952,,,FALSE,TRUE
+CMA147Q04S,CMA147Q04S,emplear,Aeroplane Tickets,4/4,New,Simple Multiple Choice - Computer Scored,Quantity,Occupational,0.873909112,0.0654626482754072,,,FALSE,TRUE
+CMA148Q01S,CMA148Q01S,emplear,Chance of Rain,1/3,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Scientific,1.1817867014,-0.410987442061419,,,FALSE,TRUE
+CMA148Q02S,CMA148Q02S,emplear,Chance of Rain,2/3,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Scientific,0.7737885771,-0.129480629646879,,,FALSE,TRUE
+CMA149Q02S,CMA149Q02S,emplear,Floor Area,2/3,New,Simple Multiple Choice - Computer Scored,Space and Shape,Personal,0.4610374345,0.657255894375625,,,FALSE,TRUE
+CMA150Q01S,CMA150Q01S,emplear,Triangular Pattern,1/3,New,Simple Multiple Choice - Computer Scored,Quantity,Scientific,0.9751555901,-1.05688478897315,,,FALSE,TRUE
+CMA152Q01S,CMA152Q01S,emplear,The Better Deal,1/2,New,Complex Multiple Choice - Computer Scored,Quantity,Personal,0.3224640742,-0.335860213095548,-0.30200861738626,0.30200861738626,FALSE,TRUE
+DM155Q02C,DM155Q02C,emplear,Population Pyramids,1/3,Trend,Open Response - Human Coded,Change and Relationships,Scientific,1,-0.35727,-0.42436,0.42436,FALSE,TRUE
+DM828Q02C,DM828Q02C,emplear,Carbon Dioxide,1/2,Trend,Open Response - Human Coded,Uncertainty and Data,Scientific,1.00561,-0.53439,,,FALSE,TRUE
+DMA110Q03C,DMA110Q03C,emplear,Headphone Order,3/3,New,Open Response - Human Coded,Quantity,Occupational,0.7019500876,0.649526686895317,-1.10017968806329,1.10017968806329,FALSE,TRUE
+CM034Q01S,CM034Q01S,formular,Bricks,1/1,Trend,Open Response - Computer Scored,Space and Shape,Occupational,1,0.25078,,,FALSE,TRUE
+CM446Q01S,CM446Q01S,formular,Thermometer Cricket,1/2,Trend,Open Response - Computer Scored,Change and Relationships,Scientific,1.40223,-0.56066,,,FALSE,TRUE
+CM496Q01S,CM496Q01S,formular,Cash Withdrawal,1/2,Trend,Complex Multiple Choice - Computer Scored,Quantity,Societal,1,-0.02328,,,FALSE,TRUE
+CM564Q01S,CM564Q01S,formular,Chair Lift,1/2,Trend,Simple Multiple Choice - Computer Scored,Quantity,Societal,0.63066,-0.04155,,,FALSE,TRUE
+CM564Q02S,CM564Q02S,formular,Chair Lift,2/2,Trend,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Societal,1,-0.09377,,,FALSE,TRUE
+CM919Q02S,CM919Q02S,formular,Fan Merchandise,2/2,Trend,Open Response - Computer Scored,Quantity,Personal,0.82986,0.10006,,,FALSE,TRUE
+CM953Q03S,CM953Q03S,formular,Flu test,2/3,Trend,Open Response - Computer Scored,Uncertainty and Data,Scientific,1.66157,-0.18936,,,FALSE,TRUE
+CM992Q01S,CM992Q01S,formular,Spacers,1/3,Trend,Open Response - Computer Scored,Space and Shape,Occupational,1,-0.93581,,,FALSE,TRUE
+CMA103Q05S,CMA103Q05S,formular,Calculation Program,4/4,New,Open Response - Computer Scored,Change and Relationships,Scientific,0.9906160084,0.459796192193491,-0.271336819315581,0.271336819315581,FALSE,TRUE
+CMA105Q05S,CMA105Q05S,formular,Clean Energy,5/5,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Scientific,0.4565355636,0.358582395828211,,,FALSE,TRUE
+CMA109Q03S,CMA109Q03S,formular,Headache Medicine,3/3,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Scientific,0.5878024671,-0.929588560375184,,,FALSE,TRUE
+CMA110Q01S,CMA110Q01S,formular,Headphone Order,1/3,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Occupational,0.8168963985,-1.04827988683619,,,FALSE,TRUE
+CMA111Q01S,CMA111Q01S,formular,Health App,1/3,New,Open Response - Computer Scored,Quantity,Personal,1.5845001621,0.305576784768699,,,FALSE,TRUE
+CMA113Q01S,CMA113Q01S,formular,Heart Rate,1/3,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Scientific,0.5280466434,-0.0285018799890804,,,FALSE,TRUE
+CMA114Q01S,CMA114Q01S,formular,Honey,1/3,New,Simple Multiple Choice - Computer Scored,Quantity,Scientific,1.3793872017,-1.20071948898754,,,FALSE,TRUE
+CMA114Q04S,CMA114Q04S,formular,Honey,3/3,New,Open Response - Computer Scored,Quantity,Occupational,0.6855731764,0.350965025951763,-1.92865717104678,1.92865717104678,FALSE,TRUE
+CMA115Q02S,CMA115Q02S,formular,Iceberg,2/2,New,Simple Multiple Choice - Computer Scored,Space and Shape,Scientific,0.2872146521,1.63460701002963,,,FALSE,TRUE
+CMA116Q02S,CMA116Q02S,formular,International School,2/3,New,Open Response - Computer Scored,Uncertainty and Data,Societal,0.8527939025,0.150831227464405,-0.140493720183189,0.140493720183189,FALSE,TRUE
+CMA116Q03S,CMA116Q03S,formular,International School,3/3,New,Open Response - Computer Scored,Uncertainty and Data,Societal,1.0042718045,0.0914775201237688,-0.584599623433214,0.584599623433214,FALSE,TRUE
+CMA120Q01S,CMA120Q01S,formular,Number Cubes,1/3,New,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Personal,0.4629938985,0.521077831795025,,,FALSE,TRUE
+CMA125Q01S,CMA125Q01S,formular,Painting A Room,1/3,New,Open Response - Computer Scored,Space and Shape,Personal,1.2401407562,-0.29291171307522,,,FALSE,TRUE
+CMA125Q02S,CMA125Q02S,formular,Painting A Room,2/3,New,Open Response - Computer Scored,Space and Shape,Personal,0.754238472,0.374921697062099,-1.71074294933106,1.71074294933106,FALSE,TRUE
+CMA126Q03S,CMA126Q03S,formular,Robot,2/3,New,Simple Multiple Choice - Computer Scored,Space and Shape,Occupational,0.1687315216,2.91799001180751,,,FALSE,TRUE
+CMA128Q02S,CMA128Q02S,formular,Salinity of Water,2/3,New,Open Response - Computer Scored,Change and Relationships,Scientific,0.9508238009,0.748968960670846,-0.876892505251053,0.876892505251053,FALSE,TRUE
+CMA132Q01S,CMA132Q01S,formular,Water Temperature,1/2,New,Open Response - Computer Scored,Quantity,Scientific,1.096966399,-0.0615677778466062,-0.332693742443106,0.332693742443106,FALSE,TRUE
+CMA133Q01S,CMA133Q01S,formular,Arranging Tables,1/2,New,Simple Multiple Choice - Computer Scored,Space and Shape,Occupational,0.1053486101,6.88832872078925,,,FALSE,TRUE
+CMA133Q02S,CMA133Q02S,formular,Arranging Tables,2/2,New,Open Response - Computer Scored,Space and Shape,Occupational,0.9051380583,0.297933683932104,0.167141857429196,-0.167141857429196,FALSE,TRUE
+CMA137Q01S,CMA137Q01S,formular,Football Tournament,1/2,New,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Societal,0.5540027599,0.24115736274225,,,FALSE,TRUE
+CMA138Q01S,CMA138Q01S,formular,Shoe Sizes,1/2,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Personal,0.7615650821,-0.689544165563343,,,FALSE,TRUE
+CMA141Q03S,CMA141Q03S,formular,Water Bill,3/4,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Societal,0.7206133491,0.0779717245032809,,,FALSE,TRUE
+CMA141Q04S,CMA141Q04S,formular,Water Bill,4/4,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Societal,0.3894661067,0.48508193467766,,,FALSE,TRUE
+CMA143Q01S,CMA143Q01S,formular,Wild Bird Food,1/4,New,Simple Multiple Choice - Computer Scored,Quantity,Occupational,1.0666705136,-0.0294970395196623,,,FALSE,FALSE
+CMA145Q01S,CMA145Q01S,formular,Shadows,1/2,New,Simple Multiple Choice - Computer Scored,Space and Shape,Scientific,0.7978254081,-0.249358327587447,,,FALSE,TRUE
+CMA145Q02S,CMA145Q02S,formular,Shadows,2/2,New,Simple Multiple Choice - Computer Scored,Space and Shape,Scientific,0.5413143379,0.797568967095599,,,FALSE,TRUE
+CMA147Q01S,CMA147Q01S,formular,Aeroplane Tickets,1/4,New,Simple Multiple Choice - Computer Scored,Quantity,Occupational,1.51580544,-0.635331288916061,,,FALSE,TRUE
+CMA147Q02S,CMA147Q02S,formular,Aeroplane Tickets,2/4,New,Simple Multiple Choice - Computer Scored,Quantity,Occupational,0.5505692182,-0.511374175583766,,,FALSE,TRUE
+CMA147Q03S,CMA147Q03S,formular,Aeroplane Tickets,3/4,New,Simple Multiple Choice - Computer Scored,Quantity,Occupational,0.8265826377,-0.622043215134679,,,FALSE,TRUE
+CMA150Q02S,CMA150Q02S,formular,Triangular Pattern,2/3,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Scientific,0.9713299939,-0.785171168060183,,,FALSE,TRUE
+CMA151Q02S,CMA151Q02S,formular,Moving Out,2/2,New,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Societal,0.4937823612,-0.174137397942784,,,FALSE,TRUE
+CMA152Q02S,CMA152Q02S,formular,The Better Deal,2/2,New,Open Response - Computer Scored,Change and Relationships,Personal,1.0224239667,0.807293896431656,-1.22719323994708,1.22719323994708,FALSE,TRUE
+CMA153Q02S,CMA153Q02S,formular,Gears,2/2,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Scientific,0.6747847705,0.0386843556642237,,,FALSE,TRUE
+CMA154Q02S,CMA154Q02S,formular,Company Logo,2/3,New,Simple Multiple Choice - Computer Scored,Space and Shape,Occupational,0.7547908733,-0.583429022124143,,,FALSE,TRUE
+CMA161Q01S,CMA161Q01S,formular,Forested Area,1/4,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Societal,0.7491736728,0.429607393699647,-0.455671587612619,0.455671587612619,FALSE,TRUE
+CMA162Q02S,CMA162Q02S,formular,Urban Population,2/3,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Societal,0.9564818814,-0.0871240276198097,0.775353753514149,-0.775353753514149,FALSE,TRUE
+DM446Q02C,DM446Q02C,formular,Thermometer Cricket,2/2,Trend,Open Response - Human Coded,Change and Relationships,Scientific,1,1.70543,,,FALSE,TRUE
+DM936Q02C,DM936Q02C,formular,Seats in a Theatre,2/2,Trend,Open Response - Human Coded,Change and Relationships,Occupational,1.85492,-0.39887,,,FALSE,TRUE
+DM949Q03C,DM949Q03C,formular,Roof Truss Design,3/3,Trend,Open Response - Human Coded,Space and Shape,Occupational,0.63128,0.31281,-2.36842,2.36842,FALSE,TRUE
+DMA153Q01C,DMA153Q01C,formular,Gears,1/2,New,Open Response - Human Coded,Change and Relationships,Scientific,1.6165546585,0.164841867245632,,,FALSE,TRUE
+CM155Q01S,CM155Q01S,interpretar,Population Pyramids,2/3,Trend,Complex Multiple Choice - Computer Scored,Change and Relationships,Scientific,1,-0.67186,,,FALSE,TRUE
+CM442Q02S,CM442Q02S,interpretar,Braille,1/1,Trend,Complex Multiple Choice - Computer Scored,Quantity,Societal,1.48272,0.43796,,,FALSE,TRUE
+CM905Q01S,CM905Q01S,interpretar,Tennis balls,1/2,Trend,Complex Multiple Choice - Computer Scored,Quantity,Occupational,1,-0.93668,,,FALSE,TRUE
+CM909Q01S,CM909Q01S,interpretar,Speeding Fines,1/3,Trend,Open Response - Computer Scored,Quantity,Societal,1,-1.45538,,,FALSE,TRUE
+CM909Q03S,CM909Q03S,interpretar,Speeding Fines,3/3,Trend,Open Response - Computer Scored,Change and Relationships,Societal,1.82137,0.25834,,,FALSE,TRUE
+CM948Q01S,CM948Q01S,interpretar,Part Time Work,1/3,Trend,Simple Multiple Choice - Computer Scored,Quantity,Occupational,1.14094,-1.70235,,,FALSE,TRUE
+CM982Q03S,CM982Q03S,interpretar,Employment Data,3/4,Trend,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Societal,1,-0.62891,,,FALSE,TRUE
+CMA101Q01S,CMA101Q01S,interpretar,Building Blocks,1/2,New,Complex Multiple Choice - Computer Scored,Space and Shape,Personal,0.7957870918,-0.757851402580982,0.272425377523276,-0.272425377523276,FALSE,TRUE
+CMA101Q02S,CMA101Q02S,interpretar,Building Blocks,2/2,New,Simple Multiple Choice - Computer Scored,Space and Shape,Personal,0.9332764021,-0.527380918902387,,,FALSE,TRUE
+CMA103Q04S,CMA103Q04S,interpretar,Calculation Program,3/4,New,Complex Multiple Choice - Computer Scored,Change and Relationships,Scientific,0.575350961,-0.103388805784416,,,FALSE,TRUE
+CMA105Q01S,CMA105Q01S,interpretar,Clean Energy,1/5,New,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Scientific,0.3328937405,-0.459756726698165,,,FALSE,TRUE
+CMA105Q02S,CMA105Q02S,interpretar,Clean Energy,2/5,New,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Scientific,0.7250049866,-0.653595678722629,,,FALSE,TRUE
+CMA105Q04S,CMA105Q04S,interpretar,Clean Energy,4/5,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Scientific,0.7405217678,-0.689128738818641,0.0911161770442692,-0.0911161770442692,FALSE,TRUE
+CMA107Q01S,CMA107Q01S,interpretar,Field of Vision,1/3,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Scientific,1.1904955772,-0.741209878340383,,,FALSE,TRUE
+CMA107Q02S,CMA107Q02S,interpretar,Field of Vision,2/3,New,Open Response - Computer Scored,Change and Relationships,Scientific,1.3911119809,-0.365987137536523,,,FALSE,TRUE
+CMA108Q01S,CMA108Q01S,interpretar,Fountains,1/3,New,Open Response - Computer Scored,Change and Relationships,Scientific,1.3984678565,-0.842000902881338,,,FALSE,TRUE
+CMA108Q02S,CMA108Q02S,interpretar,Fountains,2/3,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Scientific,1.2763000614,-0.419624198026292,,,FALSE,TRUE
+CMA108Q03S,CMA108Q03S,interpretar,Fountains,3/3,New,Complex Multiple Choice - Computer Scored,Space and Shape,Scientific,1.2319496792,0.960331435541622,,,FALSE,TRUE
+CMA113Q02S,CMA113Q02S,interpretar,Heart Rate,2/3,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Scientific,0.7656339105,-0.667517982031394,0.788338335899458,-0.788338335899458,FALSE,TRUE
+CMA117Q01S,CMA117Q01S,interpretar,Mixing Paint,1/4,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Scientific,0.7921529099,-0.898181676857054,,,FALSE,TRUE
+CMA117Q04S,CMA117Q04S,interpretar,Mixing Paint,4/4,New,Complex Multiple Choice - Computer Scored,Change and Relationships,Scientific,0.6769071112,-0.65076510269537,0.044385550104116,-0.0443855501041159,FALSE,TRUE
+CMA119Q01S,CMA119Q01S,interpretar,Music Survey,1/3,New,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Societal,1.3851113286,-1.67525980910613,,,FALSE,TRUE
+CMA119Q02S,CMA119Q02S,interpretar,Music Survey,2/3,New,Open Response - Computer Scored,Uncertainty and Data,Societal,0.6701716018,-0.225231439855274,,,FALSE,TRUE
+CMA120Q03S,CMA120Q03S,interpretar,Number Cubes,3/3,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Personal,0.4588935128,2.90770825850118,,,FALSE,TRUE
+CMA121Q03S,CMA121Q03S,interpretar,Mobile Phone Reviews,3/3,New,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Occupational,0.6531313512,0.334339601168097,,,FALSE,TRUE
+CMA123Q01S,CMA123Q01S,interpretar,Solar System,1/2,New,Complex Multiple Choice - Computer Scored,Quantity,Scientific,0.7190988328,-0.252290765831006,-1.88928773074209,1.88928773074209,FALSE,TRUE
+CMA128Q01S,CMA128Q01S,interpretar,Salinity of Water,1/3,New,Complex Multiple Choice - Computer Scored,Quantity,Scientific,0.4556892166,0.228974936643256,-1.92992625144698,1.92992625144698,FALSE,TRUE
+CMA129Q02S,CMA129Q02S,interpretar,Shelving unit,2/3,New,Open Response - Computer Scored,Quantity,Occupational,0.7865862057,-0.25756773619394,-1.5351254534914,1.5351254534914,FALSE,TRUE
+CMA130Q02S,CMA130Q02S,interpretar,Sleep and Reaction Time,2/3,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Scientific,0.7437027381,1.25257066817869,,,FALSE,TRUE
+CMA131Q01S,CMA131Q01S,interpretar,Traveling by Train,1/4,New,Simple Multiple Choice - Computer Scored,Quantity,Personal,0.9540684608,-0.598120389899704,,,FALSE,TRUE
+CMA132Q02S,CMA132Q02S,interpretar,Water Temperature,2/2,New,Simple Multiple Choice - Computer Scored,Quantity,Scientific,0.8715866607,0.162769692652724,,,FALSE,TRUE
+CMA134Q01S,CMA134Q01S,interpretar,Car and Bicycle Ownership,1/3,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Personal,1.5000711786,-0.936966277466121,-0.208807157579628,0.208807157579628,FALSE,TRUE
+CMA134Q02S,CMA134Q02S,interpretar,Car and Bicycle Ownership,2/3,New,Open Response - Computer Scored,Uncertainty and Data,Personal,1.1179043919,-0.459991669015118,-0.446752709908555,0.446752709908555,FALSE,TRUE
+CMA134Q03S,CMA134Q03S,interpretar,Car and Bicycle Ownership,3/3,New,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Personal,1.8856767052,-0.98998031118689,,,FALSE,TRUE
+CMA135Q03S,CMA135Q03S,interpretar,Electric Bicycle,3/4,New,Complex Multiple Choice - Computer Scored,Change and Relationships,Personal,1.0006357752,-1.07892550007147,0.19472241611107,-0.19472241611107,FALSE,TRUE
+CMA137Q03S,CMA137Q03S,interpretar,Football Tournament,2/2,New,Complex Multiple Choice - Computer Scored,Quantity,Societal,1.0928406644,-1.11841945775798,,,FALSE,TRUE
+CMA138Q02S,CMA138Q02S,interpretar,Shoe Sizes,2/2,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Personal,0.7223248813,-0.662220391855103,,,FALSE,TRUE
+CMA139Q01S,CMA139Q01S,interpretar,Tablet Cover,1/2,New,Simple Multiple Choice - Computer Scored,Space and Shape,Personal,0.9370747829,-0.904845385689379,,,FALSE,TRUE
+CMA142Q01S,CMA142Q01S,interpretar,Water Reservoir,1/2,New,Simple Multiple Choice - Computer Scored,Change and Relationships,Occupational,1.0054249112,-0.345408924843273,,,FALSE,TRUE
+CMA149Q01S,CMA149Q01S,interpretar,Floor Area,1/3,New,Complex Multiple Choice - Computer Scored,Space and Shape,Personal,0.6591933646,0.699698838278878,0.530683937759085,-0.530683937759085,FALSE,TRUE
+CMA151Q01S,CMA151Q01S,interpretar,Moving Out,1/2,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Societal,0.7079355425,-0.757189575132907,1.14554892802762,-1.14554892802762,FALSE,TRUE
+CMA154Q01S,CMA154Q01S,interpretar,Company Logo,1/3,New,Simple Multiple Choice - Computer Scored,Space and Shape,Occupational,0.658739274,-0.550256406818058,,,FALSE,TRUE
+CMA158Q01S,CMA158Q01S,interpretar,Eye Colour,1/3,New,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Personal,1.2407528298,-1.31164696012252,,,FALSE,TRUE
+CMA158Q02S,CMA158Q02S,interpretar,Eye Colour,2/3,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Personal,0.517148522,-0.536204253933389,0.0839038672553268,-0.0839038672553268,FALSE,TRUE
+CMA160Q01S,CMA160Q01S,interpretar,University Student Employment,1/3,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Societal,0.5391812545,0.529259926319289,2.10428955400345,-2.10428955400345,FALSE,TRUE
+CMA160Q02S,CMA160Q02S,interpretar,University Student Employment,2/3,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Societal,0.5295596956,1.10044244095759,-0.14830258810158,0.14830258810158,FALSE,TRUE
+CMA160Q03S,CMA160Q03S,interpretar,University Student Employment,3/3,New,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Occupational,0.4369069365,2.28293890831156,,,FALSE,TRUE
+CMA161Q02S,CMA161Q02S,interpretar,Forested Area,2/4,New,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Societal,0.6682299771,0.56855284032511,,,FALSE,TRUE
+CMA161Q03S,CMA161Q03S,interpretar,Forested Area,3/4,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Societal,0.5953275355,1.16177558732437,0.579426724125497,-0.579426724125497,FALSE,TRUE
+CMA162Q01S,CMA162Q01S,interpretar,Urban Population,1/3,New,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Societal,1.1310314723,-0.339087415840489,,,FALSE,TRUE
+CMA162Q03S,CMA162Q03S,interpretar,Urban Population,3/3,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Societal,0.4035517998,0.258943019630778,1.08848168761961,-1.08848168761961,FALSE,TRUE
+DM905Q02C,DM905Q02C,interpretar,Tennis balls,2/2,Trend,Open Response - Human Coded,Quantity,Occupational,1.86994,0.12154,,,FALSE,TRUE
+DM955Q01C,DM955Q01C,interpretar,Migration,1/3,Trend,Open Response - Human Coded,Uncertainty and Data,Societal,0.85668,-0.85046,,,FALSE,TRUE
+DM998Q02C,DM998Q02C,interpretar,Bike Rental,1/1,Trend,Open Response - Human Coded,Change and Relationships,Personal,0.99552,-0.73387,,,FALSE,TRUE
+DMA103Q01C,DMA103Q01C,interpretar,Calculation Program,1/4,New,Open Response - Human Coded,Change and Relationships,Scientific,1.3309182682,-0.117597262713186,,,FALSE,TRUE
+DMA136Q02C,DMA136Q02C,interpretar,Movie Rewards Programme,1/2,New,Open Response - Human Coded,Quantity,Personal,0.7173242436,0.268596772882272,-1.74532446583842,1.74532446583842,FALSE,TRUE
+DMA142Q02C,DMA142Q02C,interpretar,Water Reservoir,2/2,New,Open Response - Human Coded,Change and Relationships,Occupational,0.8702036399,0.622072074454659,-0.400044475369282,0.400044475369282,FALSE,TRUE
+CM00GQ01S,CM00GQ01S,razonar,Advertising Column,1/1,Trend,Open Response - Computer Scored,Space and Shape,Personal,1,1.62226,,,FALSE,TRUE
+CM033Q01S,CM033Q01S,razonar,A View Room,1/1,Trend,Simple Multiple Choice - Computer Scored,Space and Shape,Personal,1,-0.95604,,,FALSE,TRUE
+CM155Q04S,CM155Q04S,razonar,Population Pyramids,3/3,Trend,Complex Multiple Choice - Computer Scored,Change and Relationships,Scientific,1,-0.27556,,,FALSE,TRUE
+CM192Q01S,CM192Q01S,razonar,Containers,1/1,Trend,Complex Multiple Choice - Computer Scored,Change and Relationships,Scientific,1.21965,0.12203,,,FALSE,TRUE
+CM408Q01S,CM408Q01S,razonar,Lotteries,1/1,Trend,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Societal,1.05609,0.30514,,,FALSE,TRUE
+CM411Q02S,CM411Q02S,razonar,Diving,2/2,Trend,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Societal,0.68577,0.05525,,,FALSE,TRUE
+CM420Q01S,CM420Q01S,razonar,Transport,1/1,Trend,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Personal,0.84005,-0.04359,,,FALSE,TRUE
+CM423Q01S,CM423Q01S,razonar,Tossing Coins,1/1,Trend,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Personal,0.58637,-1.54803,,,FALSE,TRUE
+CM464Q01S,CM464Q01S,razonar,Fence,1/1,Trend,Open Response - Computer Scored,Space and Shape,Societal,1.64335,0.52346,,,FALSE,TRUE
+CM559Q01S,CM559Q01S,razonar,Telephone Rates,1/1,Trend,Simple Multiple Choice - Computer Scored,Quantity,Societal,1,-0.61638,,,FALSE,TRUE
+CM571Q01S,CM571Q01S,razonar,Stop The Car,1/1,Trend,Simple Multiple Choice - Computer Scored,Change and Relationships,Scientific,1,0.03128,,,FALSE,TRUE
+CM603Q01S,CM603Q01S,razonar,Number Check,1/1,Trend,Complex Multiple Choice - Computer Scored,Quantity,Scientific,0.7649,0.32618,,,FALSE,TRUE
+CM803Q01S,CM803Q01S,razonar,Labels,1/1,Trend,Open Response - Computer Scored,Uncertainty and Data,Occupational,1.69517,0.51367,,,FALSE,TRUE
+CM939Q02S,CM939Q02S,razonar,Racing,1/1,Trend,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Societal,1,-0.31215,,,FALSE,TRUE
+CM943Q01S,CM943Q01S,razonar,Arches,1/2,Trend,Simple Multiple Choice - Computer Scored,Change and Relationships,Occupational,0.73731,-0.20167,,,FALSE,TRUE
+CM943Q02S,CM943Q02S,razonar,Arches,2/2,Trend,Open Response - Computer Scored,Space and Shape,Occupational,1.80441,1.331,,,FALSE,TRUE
+CM949Q01S,CM949Q01S,razonar,Roof Truss Design,1/3,Trend,Complex Multiple Choice - Computer Scored,Space and Shape,Occupational,1.28169,-0.64247,,,FALSE,TRUE
+CM949Q02S,CM949Q02S,razonar,Roof Truss Design,2/3,Trend,Complex Multiple Choice - Computer Scored,Space and Shape,Occupational,1.22946,0.16516,,,FALSE,TRUE
+CM967Q03S,CM967Q03S,razonar,Wooden Train Set,2/2,Trend,Complex Multiple Choice - Computer Scored,Space and Shape,Personal,1,0.95993,,,FALSE,TRUE
+CM982Q04S,CM982Q04S,razonar,Employment Data,4/4,Trend,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Societal,1.08654,-0.05508,,,FALSE,TRUE
+CM992Q02S,CM992Q02S,razonar,Spacers,2/3,Trend,Open Response - Computer Scored,Space and Shape,Occupational,1.32061,0.88258,,,FALSE,TRUE
+CMA105Q03S,CMA105Q03S,razonar,Clean Energy,3/5,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Scientific,0.4297172097,-0.69274315304367,,,FALSE,TRUE
+CMA114Q03S,CMA114Q03S,razonar,Honey,2/3,New,Complex Multiple Choice - Computer Scored,Quantity,Occupational,0.6520185934,-0.32301033154772,-0.504668594903835,0.504668594903835,FALSE,TRUE
+CMA120Q02S,CMA120Q02S,razonar,Number Cubes,2/3,New,Complex Multiple Choice - Computer Scored,Uncertainty and Data,Personal,0.4200241949,0.736288810731023,-0.335941315247762,0.335941315247762,FALSE,TRUE
+CMA125Q03S,CMA125Q03S,razonar,Painting A Room,3/3,New,Simple Multiple Choice - Computer Scored,Quantity,Personal,0.3513532199,0.506696471140149,,,FALSE,TRUE
+CMA126Q02S,CMA126Q02S,razonar,Robot,1/3,New,Complex Multiple Choice - Computer Scored,Space and Shape,Occupational,0.7024729788,0.458400460164852,-0.602367068459495,0.602367068459495,FALSE,TRUE
+CMA128Q03S,CMA128Q03S,razonar,Salinity of Water,3/3,New,Complex Multiple Choice - Computer Scored,Quantity,Scientific,0.5195731883,-0.183130547276412,-0.00562788363030023,0.00562788363030023,FALSE,TRUE
+CMA130Q03S,CMA130Q03S,razonar,Sleep and Reaction Time,3/3,New,Simple Multiple Choice - Computer Scored,Uncertainty and Data,Scientific,0.2723764705,2.37250855143373,,,FALSE,TRUE
+CMA131Q04S,CMA131Q04S,razonar,Traveling by Train,4/4,New,Complex Multiple Choice - Computer Scored,Quantity,Personal,1.5830404702,-0.0723094796014744,,,FALSE,TRUE
+CMA157Q01S,CMA157Q01S,razonar,Tyres,1/2,New,Complex Multiple Choice - Computer Scored,Space and Shape,Scientific,0.4251821879,-1.20795001350913,-1.28716316485573,1.28716316485573,FALSE,TRUE
+CMA157Q02S,CMA157Q02S,razonar,Tyres,2/2,New,Simple Multiple Choice - Computer Scored,Space and Shape,Scientific,1.2065709261,-0.677619341593227,,,FALSE,TRUE
+DM00KQ02C,DM00KQ02C,razonar,Wheelchair Basketball,1/1,Trend,Open Response - Human Coded,Space and Shape,Personal,1,1.11572,,,FALSE,TRUE
+DM462Q01C,DM462Q01C,razonar,Third Side,1/1,Trend,Open Response - Human Coded,Space and Shape,Scientific,0.88317,1.14171,-0.37408,0.37408,FALSE,TRUE
+DM906Q02C,DM906Q02C,razonar,Crazy Ants,2/2,Trend,Open Response - Human Coded,Quantity,Scientific,1.01127,-0.00914,-0.54107,0.54107,FALSE,TRUE
+DM953Q02C,DM953Q02C,razonar,Flu test,1/3,Trend,Open Response - Human Coded,Uncertainty and Data,Scientific,1,0.08416,,,FALSE,TRUE
+DM953Q04C,DM953Q04C,razonar,Flu test,3/3,Trend,Open Response - Human Coded,Uncertainty and Data,Scientific,1,0.73024,-0.4271,0.4271,FALSE,TRUE
+DM954Q02C,DM954Q02C,razonar,Medicine doses,2/3,Trend,Open Response - Human Coded,Change and Relationships,Scientific,1.28609,0.36147,,,FALSE,TRUE
+DM955Q02C,DM955Q02C,razonar,Migration,2/3,Trend,Open Response - Human Coded,Uncertainty and Data,Societal,1.27402,0.3083,,,FALSE,TRUE
+DM992Q03C,DM992Q03C,razonar,Spacers,3/3,Trend,Open Response - Human Coded,Change and Relationships,Occupational,2.09713,1.01771,,,FALSE,TRUE
+DMA102Q02C,DMA102Q02C,razonar,Buying a Wardrobe,2/3,New,Open Response - Human Coded,Space and Shape,Personal,1.7374005294,0.771172412110135,,,FALSE,TRUE
+DMA107Q03C,DMA107Q03C,razonar,Field of Vision,3/3,New,Open Response - Human Coded,Space and Shape,Scientific,1.1208283283,1.26166144194247,-1.370108695787,1.370108695787,FALSE,TRUE
+DMA111Q03C,DMA111Q03C,razonar,Health App,3/3,New,Open Response - Human Coded,Quantity,Personal,1.2904812776,0.223963483796832,,,FALSE,TRUE
+DMA119Q03C,DMA119Q03C,razonar,Music Survey,3/3,New,Open Response - Human Coded,Uncertainty and Data,Personal,0.9836011271,0.177848066873582,-1.02957451493503,1.02957451493503,FALSE,TRUE
+DMA124Q03C,DMA124Q03C,razonar,Zedland Topography,3/3,New,Open Response - Human Coded,Quantity,Societal,1.1569710076,-0.147068063961276,-0.58544628572267,0.58544628572267,FALSE,TRUE
+DMA127Q02C,DMA127Q02C,razonar,Predicting Height,2/3,New,Open Response - Human Coded,Change and Relationships,Personal,1.0784806535,-0.147371897009294,-0.684309872999879,0.684309872999879,FALSE,TRUE
+DMA146Q03C,DMA146Q03C,razonar,Fuel,3/3,New,Open Response - Human Coded,Quantity,Personal,0.9319560575,0.864134497280516,-1.09670194490209,1.09670194490209,FALSE,TRUE
+DMA148Q03C,DMA148Q03C,razonar,Chance of Rain,3/3,New,Open Response - Human Coded,Change and Relationships,Scientific,1.4811612896,0.805780291389957,0.498646494999673,-0.498646494999673,FALSE,TRUE
+DMA149Q03C,DMA149Q03C,razonar,Floor Area,3/3,New,Open Response - Human Coded,Space and Shape,Scientific,0.9693249266,0.789016201907296,,,FALSE,TRUE
+DMA150Q03C,DMA150Q03C,razonar,Triangular Pattern,3/3,New,Open Response - Human Coded,Change and Relationships,Scientific,0.8667668667,0.278820869753787,-0.133379465996066,0.133379465996066,FALSE,TRUE
+DMA154Q03C,DMA154Q03C,razonar,Company Logo,3/3,New,Open Response - Human Coded,Space and Shape,Occupational,0.9557588156,0.900376895344679,-1.3879013762141,1.3879013762141,FALSE,TRUE
+DMA156Q01C,DMA156Q01C,razonar,Points,1/1,New,Open Response - Human Coded,Uncertainty and Data,Societal,0.8091144339,0.854104023324023,-0.898271913590369,0.898271913590369,FALSE,TRUE
+DMA158Q03C,DMA158Q03C,razonar,Eye Colour,3/3,New,Open Response - Human Coded,Uncertainty and Data,Personal,0.637888862,0.424359369046328,-1.56864880530571,1.56864880530571,FALSE,TRUE
+DMA161Q04C,DMA161Q04C,razonar,Forested Area,4/4,New,Open Response - Human Coded,Uncertainty and Data,Societal,1.491920007,1.43576239611272,,,FALSE,TRUE
+CMA112Q02S,,,,,,,,,,,,,,FALSE

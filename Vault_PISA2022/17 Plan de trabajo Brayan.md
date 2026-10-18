@@ -20,10 +20,17 @@ revisa O1–O2.
 
 ## 1. "Nada sin fuente": lo individual (no se delega)
 
-- [ ] **Inventario de fallos** (½ página, firmado):
+> [!info] Casillas de las secciones 1 y 2
+> Las marcó Claude el 2026-10-18 según los archivos de `Proyecto_PISA/nada_sin_fuente/`, que se entregaron el 13/10
+> (PR #2). Comprobó que existen y cuántas filas tienen, no su calidad. Brayan confirma cada una.
+
+- [x] **Inventario de fallos** (½ página, firmado):
   - al menos 3 fallos propios con la plantilla del enunciado;
   - los fallos los aporta Brayan, de su propia experiencia; la IA solo les da formato.
-- [ ] **Consulta bibliográfica propia, zona O4.**
+  - *Evidencia:* `inventarios/inventario_Brayan.md`: 3 fallos, unas 520 palabras, firmado por Brayan el 13/10/2026.
+- [x] **Consulta bibliográfica propia, zona O4.**
+  - *Evidencia:* `experimento/consulta_Brayan.md` (tratamientos A, B y C, con herramienta y fecha; la hora quedó
+    «por confirmar») y `experimento/referencias_Brayan.csv`, con 25 referencias: 9 de A, 9 de B y 7 de C.
   - Propuesta: *"SEM con valores plausibles y pesos muestrales en PISA: efecto del NSE en el desempeño por
     competencia"*.
   - No coincide con la de Vanessa (zona O3) ni con la que corresponde a Mateo (O1–O2).
@@ -31,18 +38,22 @@ revisa O1–O2.
     cerrado con PDF).
   - Al menos 5 referencias por tratamiento.
   - De cada corrida se guardan el prompt, la respuesta completa, la fecha y la herramienta (con su versión).
-- [ ] **Clasificación ciega** de las referencias de los tres integrantes:
+- [x] **Clasificación ciega** de las referencias de los tres integrantes:
   - categorías: utilizable / existe pero no dice eso / no existe;
   - cada quien escribe en su propio archivo (por ejemplo `clasificacion_Brayan.csv`);
   - Brayan **no lee la tabla de clasificación de `16 Experimento Nada sin fuente`** (rama `Vanessa`) antes de
     terminar la suya;
   - el cruce se hace al final, con los tres archivos completos.
-- [ ] **Filas propias en la bitácora de IA** (`15 Bitácora de uso de IA`, rama `Vanessa`), cuando esa nota llegue a
+  - *Evidencia:* `experimento/clasificacion_Brayan.csv`: 67 referencias (32 utilizables, 25 «existe pero no dice
+    eso» y 10 «no existe»). Que fuera ciega no se puede comprobar en los archivos.
+- [x] **Filas propias en la bitácora de IA** (`15 Bitácora de uso de IA`, rama `Vanessa`), cuando esa nota llegue a
   `main`. Mientras tanto se anotan en la sección 4 de esta nota.
+  - *Evidencia:* 5 filas de Brayan del 2026-10-13 en [[15 Bitácora de uso de IA]] (en `main`). Las del 18/10 están en
+    la sección 5 de esta nota, por trasladar.
 
 ## 2. "Nada sin fuente": piezas de equipo que nadie ha tomado (propuesta, por acordar)
 
-- [ ] **Análisis del experimento:** un script reproducible (por ejemplo `Proyecto_PISA/scripts/nsf_experimento.R`)
+- [x] **Análisis del experimento:** un script reproducible (por ejemplo `Proyecto_PISA/scripts/nsf_experimento.R`)
   que:
   - lea los archivos de clasificación;
   - calcule la proporción de referencias utilizables por tratamiento con su intervalo de confianza (Wilson,
@@ -51,16 +62,30 @@ revisa O1–O2.
   - guarde las tablas en `Proyecto_PISA/salidas/`.
 
   Alimenta el criterio C1.
+  - *Evidencia:* `scripts/nsf_experimento.R`, con `salidas/nsf_proporciones.csv`, `nsf_acuerdo.csv` y
+    `nsf_desacuerdos.csv`, entre otros (en `main`).
 - [ ] **Implementación del sistema de fuentes (C3)**, ligada al paso 8.5 del plan (RAG):
+  - *Resuelto por el equipo de otra forma:* se eligió la «vía empaquetada» (`nada_sin_fuente/README.md`, línea 12,
+    con C3 topado en Competente), con los protocolos de `nada_sin_fuente/protocolo/`. El sistema lo expone Mateo.
+    La vía propia de abajo (Ollama + Chroma) no se hizo. Queda sin marcar porque no se hizo lo que dice esta
+    casilla.
   - proponer **D-10** en [[03 Registro de decisiones]], porque la actividad pide un sistema de contexto cerrado
     y D-06 lo había descartado; además, D-04 (modelo del RAG) sigue pendiente;
   - si el equipo elige la vía propia: Ollama + modelo de embeddings + Chroma, comparando `bge-m3` contra
     `multilingual-e5` sobre preguntas propias, como pide el enunciado;
   - límite conocido: el equipo de Brayan tiene 7,8 GB de RAM, así que solo caben modelos pequeños cuantizados.
-- [ ] **Parte del banco de evaluación:**
+- [x] **Parte del banco de evaluación:**
   - preguntas con respuesta conocida y localizada (documento y página) sobre las fuentes de la sección 3.2;
   - al menos 3 preguntas cuya respuesta **no** esté en el corpus.
-- [ ] **Parte de la tabla de trazabilidad:** sale de la verificación de la sección 3.2.
+  - *Evidencia:* `evaluacion/banco_Brayan.csv`, con 6 preguntas (B01–B06) en los tres tratamientos. Solo B06 está
+    fuera del corpus; las 3 fuera del corpus se cumplen entre los tres bancos (B06, M06 y V06,
+    `evaluacion/banco_completo.csv`).
+- [x] **Parte de la tabla de trazabilidad:** sale de la verificación de la sección 3.2.
+  - *Evidencia:* `trazabilidad/trazabilidad_Brayan.csv`: 18 filas, 17 firmadas por Brayan (16 se sostienen y 1 es
+    parcial).
+    - Parcial: T-Bra-01, Collazos. No se revisó por qué; ver también lo de «MCO» en
+      [[18 Verificación de fuentes Brayan]].
+    - Sin firmar: T-Bra-16, Rubin (1987), de pago; depende de D-10.
 
 ## 3. Proyecto PISA (plan 07)
 
@@ -107,6 +132,12 @@ revisa O1–O2.
 
 Empezar por las que tienen **[VERIFICAR]** en el anteproyecto. Solo Brayan marca `verificado`, con nombre y fecha,
 siguiendo [[11 Protocolo de verificación]].
+
+**Preparado el 2026-10-18:** [[18 Verificación de fuentes Brayan]], con la página propuesta y qué buscar en cada fila
+(son pistas, no evidencia).
+- `oecd2023fichacolombia` ya no hace falta: la verificó Vanessa entera.
+- Hay que revisar tres puntos: el 40 % de Rodríguez (tres redacciones distintas), el internet de Zabala (el resumen
+  y la discusión se contradicen) y el «MCO» de Collazos (no aparece en el texto).
 
 - **Bloque A** (descriptivo y enfoque econométrico):
   - [[Literatura/guerra2026digital]]
@@ -214,6 +245,7 @@ de esa tabla y las dos ediciones chocarían.
 | 2026-10-18 | Brayan | Reproducir la cadena de `main` con los datos nuevos y revisar el plan 07 | Claude corrió los 8 scripts de la cadena y comparó las salidas con `git status` (sin cambios). Cruzó el plan 07 con los scripts, el registro y las salidas, y agregó las observaciones 7 a 9 a la sección 6 | Al principio Claude había revisado el plan 07 en la versión vieja de la rama, de antes de traer `main`; lo dijo y lo volvió a revisar en la versión vigente | borrador, sin confirmar |
 | 2026-10-18 | Brayan | Reproducir el PR #12 con datos | Claude exportó la rama `Vanessa` a una copia aparte (fuera del proyecto y de OneDrive), corrió `03_nse_medicion.R` y `03_nse_tri.R` y comparó las 16 salidas con un script propio: 13 son idénticas y 3 difieren en 0,001 o menos (sección 6.3) | Ninguna | borrador, sin confirmar |
 | 2026-10-18 | Brayan | Revisar los 14 commits nuevos del PR #12 (hasta `152691a`) | Claude leyó los scripts nuevos o cambiados, D-18 y D-21 a D-25, D-10, el acta de la G2 y las salidas del AFC. Comprobó cada observación de la 1 a la 10, simuló la fusión con `git merge-tree` y redactó las secciones 6.4 y 6.5 y las filas nuevas de la sección 7 | Claude declara un error propio (observación 11): reportó como reproducidas sin problema unas cargas 2D que valían 0 por un fallo de `mirt`; lo había encontrado Vanessa | borrador, sin confirmar |
+| 2026-10-18 | Brayan | Avanzar lo que no requiere a Brayan: reproducir el PR #12 en `152691a`, preparar la verificación de sus fuentes y marcar con evidencia las tareas de «Nada sin fuente» | Claude reprodujo 4 scripts (21 de 24 salidas idénticas; sección 6.3). Escribió [[18 Verificación de fuentes Brayan]] buscando en el texto de 7 PDF del corpus. Marcó las casillas de las secciones 1 y 2 según los archivos | No saltó la verificación antibots de la página de la OCDE (términos de uso): queda para Brayan | borrador, sin confirmar |
 
 ## 6. Revisión del PR #12 (rama `Vanessa` → `main`): borrador para Brayan
 
@@ -223,8 +255,8 @@ de esa tabla y las dos ediciones chocarían.
 > - **Secciones 6.4 y 6.5:** los 14 commits que Vanessa subió el 2026-10-18, de las 13:44 a las 16:15 (hasta
 >   `152691a`): el 3.3b con Q3 (D-21), el 3.4 y H1 (D-18), la Puerta G2 (D-24), la F4 (D-25), `00_correr_todo.R`, la
 >   corrección de las cargas 2D, D-22, D-23 y la posición de Vanessa en D-10.
->   - Revisión estática: los scripts nuevos o cambiados de esos commits (`03_nse_tri.R` y `03_nse_afc.R`) no se
->     volvieron a correr en este equipo.
+>   - **Reproducida con datos el 2026-10-18 (17:38–17:49):** `03_nse_medicion.R`, `03_nse_tri.R`, `03_nse_afc.R` y
+>     `04_explorar_grupos.R` de `152691a` (sección 6.3). No se reprodujo `03_explorar_saltos.R`.
 > - **Números de decisión:** D-21 a D-25 ya están usados; el siguiente libre es D-26.
 > - **Fusión:** `git merge-tree` entre `origin/Brayan` (`3afe333`) y `origin/Vanessa` (`152691a`) no da conflictos,
 >   tampoco en esta nota (2026-10-18).
@@ -355,6 +387,17 @@ scripts del PR se reprodujeron con datos (sección 6.3). Se leyeron
   salidas publicadas.
 - **No se reprodujo** `03_explorar_saltos.R`, que lee el `.SAV` del cuestionario. Sus dos tablas
   (`nse_saltos_*.csv`) son conteos que D-20 usa como dato.
+- **Segunda reproducción, con el PR en `152691a`** (2026-10-18, de 17:38 a 17:49; copia aparte, sin caché de modelos y
+  sin errores):
+  - scripts: `03_nse_medicion.R` (0,4 min), `03_nse_tri.R` (8,1 min), `03_nse_afc.R` (1,7 min) y
+    `04_explorar_grupos.R`;
+  - de **24 salidas regeneradas, 21 son idénticas byte a byte**, entre ellas:
+    - todas las del 3.4: `nse_ajuste_afc.csv`, `nse_h1_afc.csv` (H1 se acepta con los mismos ΔCFI),
+      `nse_cargas_afc.csv`, `nse_omega_afc.csv` y `nse_residuos_afc.csv`;
+    - el Q3 (`nse_q3_tri.csv`) y las cargas 2D corregidas (`nse_tri_cargas_2d.csv`);
+    - las dos tablas de la F4 (`inv_grupos_n.csv` e `inv_categorias_grupo.csv`);
+  - las otras 3 son las mismas de la primera vez y con las mismas diferencias: `nse_parametros_tri.csv` (3 de 522
+    celdas, 0,001), `nse_itemfit_tri.csv` (173 de 783, como mucho 0,0001) y la figura (2 bytes).
 
 ### 6.4 Estado de las observaciones en `152691a` (2026-10-18)
 

@@ -137,6 +137,18 @@ No se adelantan fases (regla de `CLAUDE.md`). Al llegar a F6:
 - leer Chen y Yung, caps. 8 y 11 ([[14 Libros de TRI y SEM]]);
 - resolver si `lavaan` acepta pesos con WLSMV (paso 6.2 del plan).
 
+Lo que ya dejó registrado la F3 para la F6 (2026-10-18; solo se anota, no se adelanta la fase):
+- **Pesos con WLSMV:** `lavaan` 0.7-3 acepta `ordered`, `sampling.weights` y `missing = "pairwise"` (D-18, prueba
+  con datos simulados) y da `cfi.robust` (observación 15).
+  - Con restricciones de igualdad no da las versiones *robust* (D-25). Afecta la prueba de igualdad de efectos del
+    paso 6.4.
+- **NSE de la F6:** el modelo de 2 dimensiones del AFE (D-24). H5 y H6 se deciden con el factor económico (D-22).
+- **Por decidir antes de la F6** (D-23, propuesta):
+  - punto 1: generar los PV propios con regresión latente sobre el NSE. Si no, su efecto saldría atenuado; esa
+    interpretación no tiene fuente todavía;
+  - punto 5: errores estándar. Un BRR completo son unos 810 ajustes (10 PV × 81 pesos).
+- **Paquetes:** `lavaan.mi` (paso 6.2) no está en `versiones_paquetes.csv` (D-17).
+
 ## 4. Observaciones para Mateo y Vanessa (solo propuestas)
 
 Revisión del repositorio del 2026-10-12. Nada de esto se corrigió desde esta rama: cada punto lo decide el equipo.
@@ -201,22 +213,21 @@ de esa tabla y las dos ediciones chocarían.
 | 2026-10-18 | Brayan | Conseguir los datos de PISA 2022 e instalar el entorno de D-17 | Claude vio que el zip que tenía Brayan (`STU_COG_SAS.zip`) era solo el cognitivo, en SAS. Con permiso de Brayan bajó los tres zips SPSS de la OCDE, los comprobó (tamaño, CRC y tamaño extraído) y los extrajo en `datos/`. Corrió `00_verificar_entorno.R --instalar` e instaló aparte `pbivnorm` | La verificación de D-17 decía «Al día» con `lavaan` sin cargar; se detectó al cargar cada paquete. Dos comandos de prueba de Claude fallaron (un `-e` partido por los espacios y un `.R` guardado con BOM) y se rehicieron | borrador, sin confirmar |
 | 2026-10-18 | Brayan | Reproducir la cadena de `main` con los datos nuevos y revisar el plan 07 | Claude corrió los 8 scripts de la cadena y comparó las salidas con `git status` (sin cambios). Cruzó el plan 07 con los scripts, el registro y las salidas, y agregó las observaciones 7 a 9 a la sección 6 | Al principio Claude había revisado el plan 07 en la versión vieja de la rama, de antes de traer `main`; lo dijo y lo volvió a revisar en la versión vigente | borrador, sin confirmar |
 | 2026-10-18 | Brayan | Reproducir el PR #12 con datos | Claude exportó la rama `Vanessa` a una copia aparte (fuera del proyecto y de OneDrive), corrió `03_nse_medicion.R` y `03_nse_tri.R` y comparó las 16 salidas con un script propio: 13 son idénticas y 3 difieren en 0,001 o menos (sección 6.3) | Ninguna | borrador, sin confirmar |
+| 2026-10-18 | Brayan | Revisar los 14 commits nuevos del PR #12 (hasta `152691a`) | Claude leyó los scripts nuevos o cambiados, D-18 y D-21 a D-25, D-10, el acta de la G2 y las salidas del AFC. Comprobó cada observación de la 1 a la 10, simuló la fusión con `git merge-tree` y redactó las secciones 6.4 y 6.5 y las filas nuevas de la sección 7 | Claude declara un error propio (observación 11): reportó como reproducidas sin problema unas cargas 2D que valían 0 por un fallo de `mirt`; lo había encontrado Vanessa | borrador, sin confirmar |
 
 ## 6. Revisión del PR #12 (rama `Vanessa` → `main`): borrador para Brayan
 
-> [!warning] Esta revisión cubre el PR hasta el commit `4159ca4`
-> El 2026-10-18, entre las 13:44 y las 16:15, Vanessa subió 14 commits más a la rama (hasta `152691a`). Según sus
-> mensajes, incluyen:
-> - el 3.3b con Q3 de dependencia local (D-21);
-> - el 3.4 (AFC) y H1 (D-18);
-> - la Puerta G2 (D-24);
-> - la F4 (D-25);
-> - `00_correr_todo.R`;
-> - cambios en `nse_parametros_tri.csv` y `nse_tri_cargas_2d.csv`.
->
-> Esta revisión no los cubre. D-21 atiende la observación 1 por su cuenta (P1 de la nota 14). Antes de publicar la
-> revisión hay que comprobar cuáles de las observaciones siguen vigentes. Los números de decisión D-21 a D-25 ya
-> están usados; el siguiente libre es D-26.
+> [!info] Alcance de esta revisión
+> - **Secciones 6.1 a 6.3:** el PR hasta el commit `4159ca4` (3.2, 3.3 y 3.5; D-19 y D-20), incluida la
+>   reproducción con datos.
+> - **Secciones 6.4 y 6.5:** los 14 commits que Vanessa subió el 2026-10-18, de las 13:44 a las 16:15 (hasta
+>   `152691a`): el 3.3b con Q3 (D-21), el 3.4 y H1 (D-18), la Puerta G2 (D-24), la F4 (D-25), `00_correr_todo.R`, la
+>   corrección de las cargas 2D, D-22, D-23 y la posición de Vanessa en D-10.
+>   - Revisión estática: los scripts nuevos o cambiados de esos commits (`03_nse_tri.R` y `03_nse_afc.R`) no se
+>     volvieron a correr en este equipo.
+> - **Números de decisión:** D-21 a D-25 ya están usados; el siguiente libre es D-26.
+> - **Fusión:** `git merge-tree` entre `origin/Brayan` (`3afe333`) y `origin/Vanessa` (`152691a`) no da conflictos,
+>   tampoco en esta nota (2026-10-18).
 
 Borrador de Claude del 2026-10-18. Brayan lo revisa, lo ajusta y decide si lo publica como revisión del PR. La revisión empezó
 estática, porque no había datos de PISA en este equipo. Ese mismo día llegaron los `.SAV` (sección 3.1) y los dos
@@ -338,16 +349,71 @@ scripts del PR se reprodujeron con datos (sección 6.3). Se leyeron
     idénticos.
   - Interpretación de Claude, no verificada: las diferencias de 0,0001 vienen del cálculo en coma flotante de cada
     máquina.
+- **Ojo:** `nse_tri_cargas_2d.csv` salió idéntico, pero con el fallo de `mirt` que dejaba en 0 las cargas
+  culturales. Esta reproducción no lo detectó (observación 11).
 - **Qué confirma:** que las salidas del PR corresponden al código del PR. La observación 2 (caché) no afectó las
   salidas publicadas.
 - **No se reprodujo** `03_explorar_saltos.R`, que lee el `.SAV` del cuestionario. Sus dos tablas
   (`nse_saltos_*.csv`) son conteos que D-20 usa como dato.
 
-**Propuesta de veredicto (la decide Brayan):**
-- aprobar con los cambios menores 2 a 4 y 7 a 10;
-- llevar la observación 1 a la discusión del 3.4: no bloquea este PR, pero hay que decidirla antes de que Mateo
-  corra el AFC;
-- la 5 queda para la Puerta G2.
+### 6.4 Estado de las observaciones en `152691a` (2026-10-18)
+
+| # | Observación | Estado | Evidencia |
+|---|---|---|---|
+| 1 | Dependencia local en el bloque de libros | **Atendida** por D-21 (Q3 de Yen) | En 2D quedan 10 de 406 pares con \|Q3\| > 0,2 (D-16) y 13 (AFE), y no hay dependencia positiva dentro de los libros (`salidas/nse_q3_tri.csv`). Queda abierto, como menor: los pares **negativos** `ST255Q01JA`–`ST256` (−0,21 a −0,27), que D-21 deja sin explicación |
+| 2 | El caché de modelos no detecta si cambiaron los datos | **Vigente** | Las líneas 61–64 de `03_nse_tri.R` no cambiaron. Ver también la 14 |
+| 3 | Comentario desactualizado sobre el S-X² | **Resuelta** | El comentario ya dice que el S-X² se calcula con D-20 |
+| 4 | D-19 citaba 1.966 casos completos | **Resuelta** | D-19 aclara que es la cifra de antes de D-20 (hoy 2.362) |
+| 5 | Validez frente a HOMEPOS | **Atendida en lo esencial** | D-22 y D-24 presentan el factor económico como «el más cercano al índice de la OCDE». El paso del plan se sigue llamando «Validez» |
+| 6 | El PR no tiene descripción | **Vigente** | La API de GitHub la da vacía (28 commits) |
+| 7 | Plan 3.1: «5 ítems» unidos | **Vigente** | Con D-20 son 7 |
+| 8 | Plan 3.3: «ajustan mucho mejor» | **Vigente** | Sigue la frase. La comparación de la TRI es descriptiva (D-19); la de verdad es el AFC del 3.4 |
+| 9 | Plan 3.2: falta que el paralelo sugería 7 factores | **Vigente** | No se agregó |
+| 10 | `nse_itemfit_tri.csv` sin redondear | **Vigente**, ahora más importante | `00_correr_todo.R` usa `git status` como criterio de reproducción, y en otra máquina este archivo aparece cambiado aunque los resultados coincidan (6.3) |
+
+### 6.5 Observaciones nuevas sobre los 14 commits
+
+11. **Error de Claude en esta revisión:** en la 6.3 se reportó `nse_tri_cargas_2d.csv` como reproducido idéntico. Era
+    cierto, pero reproducía un fallo: todas las cargas del factor cultural valían 0. Lo encontró Vanessa (commits
+    `c814241` y `8f90ac2`): `summary()` de `mirt` 1.46.1 anula la carga de los ítems GPCM que solo cargan en el
+    segundo factor. Esta revisión no lo vio.
+    - **La corrección** (`cargas_mirt()` en `03_nse_tri.R`):
+      - en 1D coincide con `summary()`; es un control del propio script;
+      - las cargas de los libros quedan entre 0,92 y 0,98;
+      - `a`, `b` y `carga_1D` de `nse_parametros_tri.csv` no cambian; se comprobó contra `4159ca4`.
+    - Usa funciones internas de `mirt` (`mirt:::ExtractLambdas`, `nominal_rescale_d`). Con la versión fijada en D-17
+      está bien; si se actualiza `mirt`, conviene revisarla. Los `stopifnot` del script avisarían.
+12. **D-24 y el acta usan el AIC/BIC de la TRI como evidencia a favor del AFE.** D-19 ya advierte que esa comparación
+    favorece al AFE, porque su estructura salió de la mitad de exploración, que está entre los 6.886.
+    - La comparación justa es la del AFC en la mitad de confirmación (`salidas/nse_ajuste_afc.csv`). Ahí el AFE
+      también gana: CFI *scaled* 0,943 frente a 0,921 y SRMR 0,071 frente a 0,087.
+    - Propuesta: marcar la fila del AIC/BIC como no independiente. La decisión no cambia.
+13. **La G2 pasa con «desajuste documentado».**
+    - El plan pide que el desajuste esté «documentado y explicado». El modelo elegido tiene CFI *robust* de 0,753 y
+      RMSEA *robust* de 0,114 (`salidas/nse_ajuste_afc.csv`), lejos de los cortes.
+    - D-18 identifica de dónde viene el desajuste, pero su interpretación sigue «por discutir».
+    - Propuesta para el acta: decir que la explicación es parcial. Es un juicio del equipo; no lo resuelve esta
+      revisión.
+14. **`00_correr_todo.R`:**
+    - solo compara `salidas/`. No ve [[Datos/PISA2022 - Variables recodificadas]], que `01b` reescribe; le pasó a
+      Claude en la corrida de este equipo (sección 3.1);
+    - con el caché de la TRI, que `salidas/` no cambie no prueba que la TRI se reproduzca: hace falta
+      `REHACER_TRI = 1`. Junto con la observación 2, podría esconder datos viejos;
+    - `00_verificar_entorno.R` revisa versiones, no si los paquetes cargan (el caso de `pbivnorm`, sección 3.1).
+15. **La comprobación pendiente de `lavaan` 0.7-3 queda resuelta con los datos.**
+    - `cfi.robust` se calcula con WLSMV, pesos y faltantes por pares en 6 de los 7 modelos. Con M1 más los 10
+      residuos sale NaN, y se reporta (`salidas/nse_ajuste_afc.csv`).
+    - D-25 añade que, con restricciones de igualdad, `lavaan` no da las versiones *robust*.
+    - Le sirve a la F6 (sección 3.4 de esta nota).
+16. **Comprobado:** los 10 pares de la sensibilidad (b) se fijaron antes de ver el Q3, como dice D-21. El orden de
+    los commits lo respalda: D-18 con los pares en `e5cb408` (15:37), Q3 en `8f90ac2` (15:46) y AFC en `9ba120e`
+    (16:03).
+
+**Propuesta de veredicto (la decide Brayan; actualizada con los 14 commits):**
+- aprobar con los cambios menores 2, 6 a 10 y 12, y 14 como mejora de `00_correr_todo.R`;
+- la 13 va al acta de la G2 antes de firmarla;
+- la 1 queda atendida; los pares negativos `ST255`–`ST256` se anotan como pendiente menor;
+- D-10 no es parte de este PR: se decide con Mateo antes de la F4 (sección 7).
 
 ## 7. Firmas pendientes en el registro: resumen para decidir
 
@@ -356,9 +422,15 @@ Claude no firma: cada firma la pone Brayan en [[03 Registro de decisiones]], con
 | Decisión | Qué fija | Qué revisó Claude (2026-10-18) | Qué falta |
 |---|---|---|---|
 | D-15 | Método de la Puerta G1 | `utilidades_pisa.R` y `02_validacion_ocde.R` hacen lo que dice D-15 (factor 0,05 = 1/(80 · 0,5²), varianza total con (1 + 1/10), cortes ponderados fijos, R² lineal). Las tres cifras quedan dentro de ±1 (`salidas/validacion_ocde.csv`). Reproducida en este equipo el 2026-10-18: la salida es idéntica a la de `main` (sección 3.1) | Leerla y firmar. Es la «revisión de Brayan» que pide la Puerta G1 en la F2 del plan 07 |
-| D-16 | Muestra, indicadores, categorías escasas, pesos, faltantes, estructura y regla de H1 | El 3.1 aplica los puntos 1 a 4: 6.886 estudiantes, 29 indicadores, regla del 2 % y cortes de `HISEI` | Decidir si la observación 1 de la sección 6 se registra como sensibilidad antes del 3.4 |
+| D-16 | Muestra, indicadores, categorías escasas, pesos, faltantes, estructura y regla de H1 | El 3.1 aplica los puntos 1 a 4: 6.886 estudiantes, 29 indicadores, regla del 2 % y cortes de `HISEI` | Firmar. La observación 1 ya la atendió D-21, antes del 3.4 |
 | D-17 | Versiones de R y de los paquetes | Instalado el 2026-10-18: los 13 coinciden y cargan (sección 3.1). Hubo que instalar aparte `pbivnorm`, y la verificación no lo detectó | Firmar. Opcional, para Mateo: que `00_verificar_entorno.R` también intente cargar cada paquete |
-| D-19 | Detalles de la TRI del NSE | `03_nse_tri.R` hace lo que dice D-19 | Observaciones 2 a 4 de la sección 6 |
-| D-20 | Saltos del cuestionario = 0 | Bien implementada (sección 6.1) | Observación 1 de la sección 6 |
-| D-10 | Citas de Goh et al. (2024) y Pohl et al. (2014) | — | Elegir (a) o (b) entre los tres |
+| D-19 | Detalles de la TRI del NSE | `03_nse_tri.R` hace lo que dice D-19. Las cargas 2D se corrigieron el 18/10 (observación 11) | Siguen vigentes las observaciones 2 y 10; la 3 y la 4 están resueltas |
+| D-20 | Saltos del cuestionario = 0 | Bien implementada (sección 6.1) | Firmar. La observación 1 quedó atendida con D-21 |
+| D-18 | Reglas del AFC del 3.4 (lo hizo Vanessa y Mateo lo revisa) | `03_nse_afc.R` aplica la regla de H1 de D-16 punto 8 con WLSMV, pesos, faltantes por pares y `std.lv`. H1 se acepta: ΔCFI de 0,107 (*scaled*) y 0,218 (*robust*), r = 0,559 (`salidas/nse_h1_afc.csv`) | Revisar; como revisor de O1–O2 te toca |
+| D-21 | P1–P6 de la nota 14 y Q3 | Ver observación 1 (sección 6.4) | Revisar |
+| D-22 | Definiciones de H2 a H7 | Anterior al AFC (commit `e5cb408`). **Para tu F6:** H5 y H6 se deciden con el factor económico | Revisar, sobre todo el punto de H5 y H6 |
+| D-23 | Pendientes de la F5 y la F6 | Los puntos 1 (PV condicionados) y 5 (errores estándar con BRR) son de tu F6 (sección 3.4) | Propuesta: decidir el 5 antes de la F6 |
+| D-24 | Puerta G2: pasa el modelo del AFE | Observaciones 12 y 13 | Revisar y firmar el acta [[Reuniones/2026-10-18 Puerta G2]] |
+| D-25 | Reglas de la F4 (invarianza) | Coherente con la regla de H2 del preregistro. Los criterios ΔCFI/ΔRMSEA salen de [[Literatura/putnick2016measurement]] (por verificar) | Revisar (revisor de O2) |
+| D-10 | Citas de fuentes de pago | Vanessa eligió (b) el 2026-10-18 y la extendió a todas las fuentes de pago del anteproyecto. **Dos son de tu bloque M:** [[Literatura/chen2007sensitivity]] (la F4 usaría Putnick en su lugar) y [[Literatura/rubin1987multiple]] (lo reemplazaría el Technical Report, p. 226, por verificar) | Decidir con Mateo antes de la F4 (lo pide el acta de la G2). Si queda (b), salen de tu lista de verificación |
 | D-11 | Cómo se codifica una abstención | `banco_Brayan.csv` ya la sigue: las 6 abstenciones en preguntas del corpus están como `sostenida = no` y `correcta = no` | Confirmarla. En `banco_Mateo.csv`, M01 B, M02 B y M05 A son abstenciones en preguntas del corpus y siguen como «no aplica». Así `nsf_evaluacion.R` las saca del conteo, que es justo lo que D-11 corrige. Lo decide Mateo |

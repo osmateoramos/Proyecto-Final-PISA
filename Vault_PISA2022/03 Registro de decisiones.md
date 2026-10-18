@@ -951,3 +951,91 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   robustez.
 - **Estado:** ✅ **la Puerta G2 pasa con el desajuste documentado** (Vanessa, 2026-10-18). Mateo y Brayan revisan y
   firman el acta ([[Reuniones/2026-10-18 Puerta G2]]).
+
+### D-25 · 2026-10-18 · Cómo se prueba la invarianza del NSE (F4, O2, H2)
+- **Problema:** el plan (F4) y D-22/D-23 dejan abiertos varios puntos que cambian los resultados de la invarianza:
+  - con qué estudiantes;
+  - qué grupos prueban H2, que habla de rural frente a urbana cuando la zona tiene 3 categorías;
+  - qué se hace con las categorías escasas por grupo;
+  - con qué criterios y fuente;
+  - cómo se mide el DIF.
+
+  Se fijan aquí **antes de estimar cualquier modelo de invarianza**.
+- **Lo que muestran los datos** (`scripts/04_explorar_grupos.R` → `salidas/inv_grupos_n.csv` y
+  `salidas/inv_categorias_grupo.csv`, 2026-10-18; solo cuenta, no estima):
+
+  | Grupo | Muestra completa (6.886) | Mitad de confirmación (3.441) | % ponderado (completa) |
+  |---|---|---|---|
+  | Rural (< 3.000) | 904 | 458 | 14,8 |
+  | Pueblo (3–15 mil) | 843 | 418 | 13,3 |
+  | Urbana (> 15 mil) | 4.927 | 2.458 | 68,7 |
+  | Zona sin dato | 212 | 107 | 3,2 |
+  | Mujer / Hombre | 3.541 / 3.345 | 1.769 / 1.672 | 52,1 / 47,9 |
+  | Público / Privado | 5.354 / 1.442 | 2.676 / 720 | 79,0 / 19,3 |
+  | Sector sin dato | 90 | 45 | 1,7 |
+
+  - **Muestra completa:** ninguna categoría queda vacía en ningún grupo. Con menos de 10 respuestas en el grupo más
+    chico hay 3 ítems:
+    - `ST254Q02JA`, «2 o más» computadores de escritorio: 5 en el pueblo;
+    - `ST251Q01JA`, «3 o más» carros: 6 en el pueblo;
+    - `HISCED_c`, el nivel más bajo: 6 en el sector privado.
+
+    Con menos de 20 respuestas hay 8 ítems.
+  - **Mitad de confirmación:** en zona hay 7 ítems con menos de 10 respuestas en alguna categoría (el mínimo es 2), y
+    en sector, 3.
+- **Lo que muestra el software** (prueba con datos simulados, 2026-10-18; `lavaan` 0.7-3, `semTools` 0.5-10, `mirt`
+  1.46.1):
+  - corren la secuencia de `measEq.syntax(ID.cat = "Wu.Estabrook.2016", parameterization = "theta")` con WLSMV, pesos
+    y faltantes por pares, `lavTestScore()` y las medias latentes;
+  - **con restricciones de igualdad, `lavaan` no calcula las versiones *robust*** del CFI y del RMSEA (salen NA);
+  - `mirt::multipleGroup()` admite `survey.weights`, y `DIF()` corre;
+  - `MASS::polr()` (regresión logística ordinal) admite pesos.
+- **Propuesta:**
+  1. **Muestra:** los 6.886 de la muestra analítica, no la mitad de confirmación. La mitad deja categorías con 2 a 9
+     respuestas en el pueblo y en el privado, y los umbrales no se podrían estimar bien. La invarianza es otra pregunta
+     (H2), distinta de la que decidió la mitad de confirmación (H1).
+     - Quienes no tienen dato de zona (212) o de sector (90) quedan fuera solo de ese análisis.
+  2. **Grupos:** cada variable por separado, nunca cruzadas.
+     - **O2:** zona con 3 grupos, sexo y sector.
+     - **H2 se decide con un modelo de 2 grupos: rural (904) frente a urbana (4.927)**, como dice la hipótesis. El
+       pueblo entra en la secuencia de 3 zonas de O2.
+  3. **Categorías escasas:** una categoría con menos de 10 respuestas en algún grupo (zona, sexo o sector, en los
+     6.886) se une con su vecina hacia el centro **en todos los grupos**. Se repite hasta que ninguna quede por debajo.
+     - Con los datos de arriba cambian 3 ítems: `ST254Q02JA` queda en 0–1, `ST251Q01JA` en 0–2 y `HISCED_c` une sus
+       dos niveles más bajos.
+     - Solo para los modelos de la F4. Las puntuaciones de la G2 (D-24) no cambian.
+     - *Por qué:* la invarianza de umbrales exige las mismas categorías en todos los grupos (plan, paso 4.1).
+  4. **Modelo y secuencia** (pasos 4.2 y 4.3):
+     - el AFC de 2 dimensiones del AFE (D-24), con WLSMV, `W_FSTUWT` normalizado a cada análisis y faltantes por
+       pares;
+     - parametrización theta (P6) e identificación de Wu y Estabrook (`semTools::measEq.syntax`);
+     - secuencia: configural → umbrales → cargas → interceptos (escalar). Antes se ajusta el modelo en cada grupo por
+       separado (P6).
+  5. **Criterios de cada paso:** un paso no se sostiene si el CFI empeora más de 0,01 o el RMSEA más de 0,015 frente
+     al paso anterior. Son los cortes que ya fija H2.
+     - **Se usan las versiones *scaled*:** con restricciones de igualdad, `lavaan` no calcula las *robust*. Se
+       reportan cuando existan.
+     - *Fuente:* [[Literatura/putnick2016measurement]] (acceso abierto), que reporta los cortes de Chen (2007).
+       Matices de la misma fuente: no hay consenso sobre los cortes, y la revisión se centra en ítems continuos.
+       Por verificar.
+  6. **Invarianza parcial (4.3):** si un paso no se sostiene, se libera de a una la restricción con el mayor
+     estadístico de `lavTestScore()`, hasta que el paso cumpla los cortes. Se documenta cada parámetro liberado.
+  7. **DIF con TRI (4.4, P4):**
+     - un modelo unidimensional por factor del AFE (económico 19 ítems; libros 10), con 2PL y GPCM como en la F3,
+       `mirt::multipleGroup()` con pesos;
+     - `DIF()` con anclas depuradas: primero todos los demás ítems; luego, solo los que no salieron con DIF. Como
+       máximo 2 vueltas;
+     - Benjamini-Hochberg al 5 % dentro de cada factor y variable de grupo;
+     - **magnitud (D-22):** ΔR² de Nagelkerke de una regresión logística ordinal (`MASS::polr`, con pesos) del ítem
+       sobre la EAP de su factor, el grupo y su interacción, frente al modelo con la EAP sola. Corte ΔR² ≥ 0,035;
+     - *Matiz por declarar:* de Ayala (p. 334) dice que los cortes de Jodoin y Gierl se propusieron para el R² de
+       mínimos cuadrados ponderados, y el que se usa aquí es el de Nagelkerke;
+     - un ítem tiene DIF si su prueba TRI es significativa (BH) **y** su ΔR² ≥ 0,035.
+  8. **H2:** se acepta si, en el modelo rural–urbana, el paso escalar empeora el CFI en más de 0,01 o el RMSEA en más
+     de 0,015 (versiones *scaled*), **y** al menos un ítem tiene DIF no despreciable en ese contraste. Es la regla del
+     preregistro, con los puntos 5 y 7.
+  9. **Medias latentes (4.5, P6):** con el nivel de invarianza que se sostenga, total o parcial, la diferencia de
+     medias latentes del NSE entre grupos (el grupo de referencia con media 0), sin EE de diseño (D-16 punto 5).
+- **Salidas previstas:** `scripts/04_invarianza.R` → `salidas/invarianza_tabla.csv`,
+  `salidas/nse_items_no_invariantes.csv`, `salidas/nse_dif_posesiones.csv` y `salidas/nse_medias_latentes.csv`.
+- **Estado:** propuesta — la decide Vanessa.

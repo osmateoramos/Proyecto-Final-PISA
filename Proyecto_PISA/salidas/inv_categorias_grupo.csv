@@ -1,0 +1,1583 @@
+muestra,grupo,item,nivel,categoria,n
+completa,zona,ST250Q01JA,Pueblo (3-15 mil),0,322
+completa,zona,ST250Q01JA,Pueblo (3-15 mil),1,508
+completa,zona,ST250Q01JA,Rural (<3.000),0,360
+completa,zona,ST250Q01JA,Rural (<3.000),1,529
+completa,zona,ST250Q01JA,Urbana (>15 mil),0,1668
+completa,zona,ST250Q01JA,Urbana (>15 mil),1,3221
+completa,zona,ST250Q02JA,Pueblo (3-15 mil),0,399
+completa,zona,ST250Q02JA,Pueblo (3-15 mil),1,428
+completa,zona,ST250Q02JA,Rural (<3.000),0,477
+completa,zona,ST250Q02JA,Rural (<3.000),1,411
+completa,zona,ST250Q02JA,Urbana (>15 mil),0,1366
+completa,zona,ST250Q02JA,Urbana (>15 mil),1,3520
+completa,zona,ST250Q03JA,Pueblo (3-15 mil),0,558
+completa,zona,ST250Q03JA,Pueblo (3-15 mil),1,262
+completa,zona,ST250Q03JA,Rural (<3.000),0,648
+completa,zona,ST250Q03JA,Rural (<3.000),1,235
+completa,zona,ST250Q03JA,Urbana (>15 mil),0,2795
+completa,zona,ST250Q03JA,Urbana (>15 mil),1,2082
+completa,zona,ST250Q04JA,Pueblo (3-15 mil),0,186
+completa,zona,ST250Q04JA,Pueblo (3-15 mil),1,643
+completa,zona,ST250Q04JA,Rural (<3.000),0,241
+completa,zona,ST250Q04JA,Rural (<3.000),1,652
+completa,zona,ST250Q04JA,Urbana (>15 mil),0,649
+completa,zona,ST250Q04JA,Urbana (>15 mil),1,4242
+completa,zona,ST250Q05JA,Pueblo (3-15 mil),0,263
+completa,zona,ST250Q05JA,Pueblo (3-15 mil),1,563
+completa,zona,ST250Q05JA,Rural (<3.000),0,357
+completa,zona,ST250Q05JA,Rural (<3.000),1,532
+completa,zona,ST250Q05JA,Urbana (>15 mil),0,695
+completa,zona,ST250Q05JA,Urbana (>15 mil),1,4180
+completa,zona,ST251Q01JA,Pueblo (3-15 mil),0,638
+completa,zona,ST251Q01JA,Pueblo (3-15 mil),1,145
+completa,zona,ST251Q01JA,Pueblo (3-15 mil),2,34
+completa,zona,ST251Q01JA,Pueblo (3-15 mil),3,6
+completa,zona,ST251Q01JA,Rural (<3.000),0,665
+completa,zona,ST251Q01JA,Rural (<3.000),1,161
+completa,zona,ST251Q01JA,Rural (<3.000),2,40
+completa,zona,ST251Q01JA,Rural (<3.000),3,14
+completa,zona,ST251Q01JA,Urbana (>15 mil),0,3090
+completa,zona,ST251Q01JA,Urbana (>15 mil),1,1298
+completa,zona,ST251Q01JA,Urbana (>15 mil),2,335
+completa,zona,ST251Q01JA,Urbana (>15 mil),3,123
+completa,zona,ST251Q02JA,Pueblo (3-15 mil),0,334
+completa,zona,ST251Q02JA,Pueblo (3-15 mil),1,320
+completa,zona,ST251Q02JA,Pueblo (3-15 mil),2,133
+completa,zona,ST251Q02JA,Pueblo (3-15 mil),3,26
+completa,zona,ST251Q02JA,Rural (<3.000),0,384
+completa,zona,ST251Q02JA,Rural (<3.000),1,325
+completa,zona,ST251Q02JA,Rural (<3.000),2,123
+completa,zona,ST251Q02JA,Rural (<3.000),3,39
+completa,zona,ST251Q02JA,Urbana (>15 mil),0,2770
+completa,zona,ST251Q02JA,Urbana (>15 mil),1,1531
+completa,zona,ST251Q02JA,Urbana (>15 mil),2,408
+completa,zona,ST251Q02JA,Urbana (>15 mil),3,109
+completa,zona,ST251Q03JA,Pueblo (3-15 mil),0,212
+completa,zona,ST251Q03JA,Pueblo (3-15 mil),1,444
+completa,zona,ST251Q03JA,Pueblo (3-15 mil),2,136
+completa,zona,ST251Q03JA,Pueblo (3-15 mil),3,34
+completa,zona,ST251Q03JA,Rural (<3.000),0,247
+completa,zona,ST251Q03JA,Rural (<3.000),1,466
+completa,zona,ST251Q03JA,Rural (<3.000),2,134
+completa,zona,ST251Q03JA,Rural (<3.000),3,29
+completa,zona,ST251Q03JA,Urbana (>15 mil),0,770
+completa,zona,ST251Q03JA,Urbana (>15 mil),1,2465
+completa,zona,ST251Q03JA,Urbana (>15 mil),2,1237
+completa,zona,ST251Q03JA,Urbana (>15 mil),3,397
+completa,zona,ST251Q04JA,Pueblo (3-15 mil),0,36
+completa,zona,ST251Q04JA,Pueblo (3-15 mil),1,585
+completa,zona,ST251Q04JA,Pueblo (3-15 mil),2,164
+completa,zona,ST251Q04JA,Pueblo (3-15 mil),3,40
+completa,zona,ST251Q04JA,Rural (<3.000),0,79
+completa,zona,ST251Q04JA,Rural (<3.000),1,600
+completa,zona,ST251Q04JA,Rural (<3.000),2,158
+completa,zona,ST251Q04JA,Rural (<3.000),3,42
+completa,zona,ST251Q04JA,Urbana (>15 mil),0,95
+completa,zona,ST251Q04JA,Urbana (>15 mil),1,2772
+completa,zona,ST251Q04JA,Urbana (>15 mil),2,1388
+completa,zona,ST251Q04JA,Urbana (>15 mil),3,601
+completa,zona,ST253Q01JA,Pueblo (3-15 mil),0,30
+completa,zona,ST253Q01JA,Pueblo (3-15 mil),1,94
+completa,zona,ST253Q01JA,Pueblo (3-15 mil),2,117
+completa,zona,ST253Q01JA,Pueblo (3-15 mil),3,136
+completa,zona,ST253Q01JA,Pueblo (3-15 mil),4,124
+completa,zona,ST253Q01JA,Pueblo (3-15 mil),5,129
+completa,zona,ST253Q01JA,Pueblo (3-15 mil),6,168
+completa,zona,ST253Q01JA,Pueblo (3-15 mil),7,43
+completa,zona,ST253Q01JA,Rural (<3.000),0,63
+completa,zona,ST253Q01JA,Rural (<3.000),1,149
+completa,zona,ST253Q01JA,Rural (<3.000),2,123
+completa,zona,ST253Q01JA,Rural (<3.000),3,113
+completa,zona,ST253Q01JA,Rural (<3.000),4,128
+completa,zona,ST253Q01JA,Rural (<3.000),5,104
+completa,zona,ST253Q01JA,Rural (<3.000),6,175
+completa,zona,ST253Q01JA,Rural (<3.000),7,47
+completa,zona,ST253Q01JA,Urbana (>15 mil),0,86
+completa,zona,ST253Q01JA,Urbana (>15 mil),1,303
+completa,zona,ST253Q01JA,Urbana (>15 mil),2,371
+completa,zona,ST253Q01JA,Urbana (>15 mil),3,517
+completa,zona,ST253Q01JA,Urbana (>15 mil),4,543
+completa,zona,ST253Q01JA,Urbana (>15 mil),5,758
+completa,zona,ST253Q01JA,Urbana (>15 mil),6,1674
+completa,zona,ST253Q01JA,Urbana (>15 mil),7,672
+completa,zona,ST254Q01JA,Pueblo (3-15 mil),0,62
+completa,zona,ST254Q01JA,Pueblo (3-15 mil),1,645
+completa,zona,ST254Q01JA,Pueblo (3-15 mil),2,117
+completa,zona,ST254Q01JA,Rural (<3.000),0,134
+completa,zona,ST254Q01JA,Rural (<3.000),1,654
+completa,zona,ST254Q01JA,Rural (<3.000),2,96
+completa,zona,ST254Q01JA,Urbana (>15 mil),0,235
+completa,zona,ST254Q01JA,Urbana (>15 mil),1,3180
+completa,zona,ST254Q01JA,Urbana (>15 mil),2,1444
+completa,zona,ST254Q02JA,Pueblo (3-15 mil),0,591
+completa,zona,ST254Q02JA,Pueblo (3-15 mil),1,220
+completa,zona,ST254Q02JA,Pueblo (3-15 mil),2,5
+completa,zona,ST254Q02JA,Rural (<3.000),0,678
+completa,zona,ST254Q02JA,Rural (<3.000),1,170
+completa,zona,ST254Q02JA,Rural (<3.000),2,7
+completa,zona,ST254Q02JA,Urbana (>15 mil),0,2521
+completa,zona,ST254Q02JA,Urbana (>15 mil),1,2098
+completa,zona,ST254Q02JA,Urbana (>15 mil),2,119
+completa,zona,ST254Q03JA,Pueblo (3-15 mil),0,505
+completa,zona,ST254Q03JA,Pueblo (3-15 mil),1,285
+completa,zona,ST254Q03JA,Pueblo (3-15 mil),2,27
+completa,zona,ST254Q03JA,Rural (<3.000),0,589
+completa,zona,ST254Q03JA,Rural (<3.000),1,246
+completa,zona,ST254Q03JA,Rural (<3.000),2,32
+completa,zona,ST254Q03JA,Urbana (>15 mil),0,1987
+completa,zona,ST254Q03JA,Urbana (>15 mil),1,2320
+completa,zona,ST254Q03JA,Urbana (>15 mil),2,500
+completa,zona,ST254Q04JA,Pueblo (3-15 mil),0,628
+completa,zona,ST254Q04JA,Pueblo (3-15 mil),1,165
+completa,zona,ST254Q04JA,Pueblo (3-15 mil),2,25
+completa,zona,ST254Q04JA,Rural (<3.000),0,678
+completa,zona,ST254Q04JA,Rural (<3.000),1,159
+completa,zona,ST254Q04JA,Rural (<3.000),2,27
+completa,zona,ST254Q04JA,Urbana (>15 mil),0,3222
+completa,zona,ST254Q04JA,Urbana (>15 mil),1,1400
+completa,zona,ST254Q04JA,Urbana (>15 mil),2,196
+completa,zona,ST254Q05JA,Pueblo (3-15 mil),0,713
+completa,zona,ST254Q05JA,Pueblo (3-15 mil),1,77
+completa,zona,ST254Q05JA,Pueblo (3-15 mil),2,21
+completa,zona,ST254Q05JA,Rural (<3.000),0,740
+completa,zona,ST254Q05JA,Rural (<3.000),1,83
+completa,zona,ST254Q05JA,Rural (<3.000),2,31
+completa,zona,ST254Q05JA,Urbana (>15 mil),0,4246
+completa,zona,ST254Q05JA,Urbana (>15 mil),1,368
+completa,zona,ST254Q05JA,Urbana (>15 mil),2,123
+completa,zona,ST254Q06JA,Pueblo (3-15 mil),0,85
+completa,zona,ST254Q06JA,Pueblo (3-15 mil),1,346
+completa,zona,ST254Q06JA,Pueblo (3-15 mil),2,314
+completa,zona,ST254Q06JA,Pueblo (3-15 mil),3,76
+completa,zona,ST254Q06JA,Rural (<3.000),0,156
+completa,zona,ST254Q06JA,Rural (<3.000),1,349
+completa,zona,ST254Q06JA,Rural (<3.000),2,300
+completa,zona,ST254Q06JA,Rural (<3.000),3,80
+completa,zona,ST254Q06JA,Urbana (>15 mil),0,252
+completa,zona,ST254Q06JA,Urbana (>15 mil),1,1250
+completa,zona,ST254Q06JA,Urbana (>15 mil),2,2579
+completa,zona,ST254Q06JA,Urbana (>15 mil),3,772
+completa,zona,HISEI_q,Pueblo (3-15 mil),0,258
+completa,zona,HISEI_q,Pueblo (3-15 mil),1,163
+completa,zona,HISEI_q,Pueblo (3-15 mil),2,148
+completa,zona,HISEI_q,Pueblo (3-15 mil),3,135
+completa,zona,HISEI_q,Pueblo (3-15 mil),4,105
+completa,zona,HISEI_q,Rural (<3.000),0,295
+completa,zona,HISEI_q,Rural (<3.000),1,166
+completa,zona,HISEI_q,Rural (<3.000),2,157
+completa,zona,HISEI_q,Rural (<3.000),3,145
+completa,zona,HISEI_q,Rural (<3.000),4,100
+completa,zona,HISEI_q,Urbana (>15 mil),0,568
+completa,zona,HISEI_q,Urbana (>15 mil),1,970
+completa,zona,HISEI_q,Urbana (>15 mil),2,996
+completa,zona,HISEI_q,Urbana (>15 mil),3,1053
+completa,zona,HISEI_q,Urbana (>15 mil),4,1177
+completa,zona,ST255Q01JA,Pueblo (3-15 mil),0,159
+completa,zona,ST255Q01JA,Pueblo (3-15 mil),1,374
+completa,zona,ST255Q01JA,Pueblo (3-15 mil),2,146
+completa,zona,ST255Q01JA,Pueblo (3-15 mil),3,118
+completa,zona,ST255Q01JA,Pueblo (3-15 mil),4,24
+completa,zona,ST255Q01JA,Pueblo (3-15 mil),5,14
+completa,zona,ST255Q01JA,Rural (<3.000),0,148
+completa,zona,ST255Q01JA,Rural (<3.000),1,422
+completa,zona,ST255Q01JA,Rural (<3.000),2,182
+completa,zona,ST255Q01JA,Rural (<3.000),3,93
+completa,zona,ST255Q01JA,Rural (<3.000),4,28
+completa,zona,ST255Q01JA,Rural (<3.000),5,22
+completa,zona,ST255Q01JA,Urbana (>15 mil),0,664
+completa,zona,ST255Q01JA,Urbana (>15 mil),1,1837
+completa,zona,ST255Q01JA,Urbana (>15 mil),2,1058
+completa,zona,ST255Q01JA,Urbana (>15 mil),3,917
+completa,zona,ST255Q01JA,Urbana (>15 mil),4,282
+completa,zona,ST255Q01JA,Urbana (>15 mil),5,154
+completa,zona,ST256Q01JA,Pueblo (3-15 mil),0,217
+completa,zona,ST256Q01JA,Pueblo (3-15 mil),1,531
+completa,zona,ST256Q01JA,Pueblo (3-15 mil),2,40
+completa,zona,ST256Q01JA,Rural (<3.000),0,229
+completa,zona,ST256Q01JA,Rural (<3.000),1,558
+completa,zona,ST256Q01JA,Rural (<3.000),2,45
+completa,zona,ST256Q01JA,Urbana (>15 mil),0,1176
+completa,zona,ST256Q01JA,Urbana (>15 mil),1,3235
+completa,zona,ST256Q01JA,Urbana (>15 mil),2,269
+completa,zona,ST256Q02JA,Pueblo (3-15 mil),0,368
+completa,zona,ST256Q02JA,Pueblo (3-15 mil),1,343
+completa,zona,ST256Q02JA,Pueblo (3-15 mil),2,54
+completa,zona,ST256Q02JA,Pueblo (3-15 mil),3,26
+completa,zona,ST256Q02JA,Rural (<3.000),0,357
+completa,zona,ST256Q02JA,Rural (<3.000),1,372
+completa,zona,ST256Q02JA,Rural (<3.000),2,62
+completa,zona,ST256Q02JA,Rural (<3.000),3,34
+completa,zona,ST256Q02JA,Urbana (>15 mil),0,1678
+completa,zona,ST256Q02JA,Urbana (>15 mil),1,2093
+completa,zona,ST256Q02JA,Urbana (>15 mil),2,514
+completa,zona,ST256Q02JA,Urbana (>15 mil),3,269
+completa,zona,ST256Q03JA,Pueblo (3-15 mil),0,485
+completa,zona,ST256Q03JA,Pueblo (3-15 mil),1,211
+completa,zona,ST256Q03JA,Pueblo (3-15 mil),2,42
+completa,zona,ST256Q03JA,Pueblo (3-15 mil),3,20
+completa,zona,ST256Q03JA,Rural (<3.000),0,497
+completa,zona,ST256Q03JA,Rural (<3.000),1,248
+completa,zona,ST256Q03JA,Rural (<3.000),2,36
+completa,zona,ST256Q03JA,Rural (<3.000),3,30
+completa,zona,ST256Q03JA,Urbana (>15 mil),0,2320
+completa,zona,ST256Q03JA,Urbana (>15 mil),1,1440
+completa,zona,ST256Q03JA,Urbana (>15 mil),2,406
+completa,zona,ST256Q03JA,Urbana (>15 mil),3,233
+completa,zona,ST256Q06JA,Pueblo (3-15 mil),0,377
+completa,zona,ST256Q06JA,Pueblo (3-15 mil),1,310
+completa,zona,ST256Q06JA,Pueblo (3-15 mil),2,66
+completa,zona,ST256Q06JA,Pueblo (3-15 mil),3,35
+completa,zona,ST256Q06JA,Rural (<3.000),0,390
+completa,zona,ST256Q06JA,Rural (<3.000),1,365
+completa,zona,ST256Q06JA,Rural (<3.000),2,59
+completa,zona,ST256Q06JA,Rural (<3.000),3,28
+completa,zona,ST256Q06JA,Urbana (>15 mil),0,1790
+completa,zona,ST256Q06JA,Urbana (>15 mil),1,1983
+completa,zona,ST256Q06JA,Urbana (>15 mil),2,494
+completa,zona,ST256Q06JA,Urbana (>15 mil),3,307
+completa,zona,ST256Q07JA,Pueblo (3-15 mil),0,461
+completa,zona,ST256Q07JA,Pueblo (3-15 mil),1,268
+completa,zona,ST256Q07JA,Pueblo (3-15 mil),2,35
+completa,zona,ST256Q07JA,Pueblo (3-15 mil),3,23
+completa,zona,ST256Q07JA,Rural (<3.000),0,472
+completa,zona,ST256Q07JA,Rural (<3.000),1,284
+completa,zona,ST256Q07JA,Rural (<3.000),2,52
+completa,zona,ST256Q07JA,Rural (<3.000),3,14
+completa,zona,ST256Q07JA,Urbana (>15 mil),0,2281
+completa,zona,ST256Q07JA,Urbana (>15 mil),1,1726
+completa,zona,ST256Q07JA,Urbana (>15 mil),2,351
+completa,zona,ST256Q07JA,Urbana (>15 mil),3,185
+completa,zona,ST256Q08JA,Pueblo (3-15 mil),0,436
+completa,zona,ST256Q08JA,Pueblo (3-15 mil),1,269
+completa,zona,ST256Q08JA,Pueblo (3-15 mil),2,46
+completa,zona,ST256Q08JA,Pueblo (3-15 mil),3,23
+completa,zona,ST256Q08JA,Rural (<3.000),0,446
+completa,zona,ST256Q08JA,Rural (<3.000),1,294
+completa,zona,ST256Q08JA,Rural (<3.000),2,51
+completa,zona,ST256Q08JA,Rural (<3.000),3,16
+completa,zona,ST256Q08JA,Urbana (>15 mil),0,2058
+completa,zona,ST256Q08JA,Urbana (>15 mil),1,1804
+completa,zona,ST256Q08JA,Urbana (>15 mil),2,409
+completa,zona,ST256Q08JA,Urbana (>15 mil),3,209
+completa,zona,ST256Q09JA,Pueblo (3-15 mil),0,188
+completa,zona,ST256Q09JA,Pueblo (3-15 mil),1,534
+completa,zona,ST256Q09JA,Pueblo (3-15 mil),2,69
+completa,zona,ST256Q09JA,Pueblo (3-15 mil),3,19
+completa,zona,ST256Q09JA,Rural (<3.000),0,169
+completa,zona,ST256Q09JA,Rural (<3.000),1,569
+completa,zona,ST256Q09JA,Rural (<3.000),2,92
+completa,zona,ST256Q09JA,Rural (<3.000),3,24
+completa,zona,ST256Q09JA,Urbana (>15 mil),0,790
+completa,zona,ST256Q09JA,Urbana (>15 mil),1,3348
+completa,zona,ST256Q09JA,Urbana (>15 mil),2,508
+completa,zona,ST256Q09JA,Urbana (>15 mil),3,130
+completa,zona,ST256Q10JA,Pueblo (3-15 mil),0,336
+completa,zona,ST256Q10JA,Pueblo (3-15 mil),1,331
+completa,zona,ST256Q10JA,Pueblo (3-15 mil),2,84
+completa,zona,ST256Q10JA,Pueblo (3-15 mil),3,49
+completa,zona,ST256Q10JA,Rural (<3.000),0,332
+completa,zona,ST256Q10JA,Rural (<3.000),1,367
+completa,zona,ST256Q10JA,Rural (<3.000),2,95
+completa,zona,ST256Q10JA,Rural (<3.000),3,48
+completa,zona,ST256Q10JA,Urbana (>15 mil),0,1606
+completa,zona,ST256Q10JA,Urbana (>15 mil),1,2053
+completa,zona,ST256Q10JA,Urbana (>15 mil),2,547
+completa,zona,ST256Q10JA,Urbana (>15 mil),3,413
+completa,zona,ST251Q06JA,Pueblo (3-15 mil),0,594
+completa,zona,ST251Q06JA,Pueblo (3-15 mil),1,151
+completa,zona,ST251Q06JA,Pueblo (3-15 mil),2,52
+completa,zona,ST251Q06JA,Pueblo (3-15 mil),3,27
+completa,zona,ST251Q06JA,Rural (<3.000),0,633
+completa,zona,ST251Q06JA,Rural (<3.000),1,146
+completa,zona,ST251Q06JA,Rural (<3.000),2,54
+completa,zona,ST251Q06JA,Rural (<3.000),3,41
+completa,zona,ST251Q06JA,Urbana (>15 mil),0,2953
+completa,zona,ST251Q06JA,Urbana (>15 mil),1,1158
+completa,zona,ST251Q06JA,Urbana (>15 mil),2,422
+completa,zona,ST251Q06JA,Urbana (>15 mil),3,333
+completa,zona,ST251Q07JA,Pueblo (3-15 mil),0,497
+completa,zona,ST251Q07JA,Pueblo (3-15 mil),1,143
+completa,zona,ST251Q07JA,Pueblo (3-15 mil),2,63
+completa,zona,ST251Q07JA,Pueblo (3-15 mil),3,124
+completa,zona,ST251Q07JA,Rural (<3.000),0,545
+completa,zona,ST251Q07JA,Rural (<3.000),1,128
+completa,zona,ST251Q07JA,Rural (<3.000),2,76
+completa,zona,ST251Q07JA,Rural (<3.000),3,125
+completa,zona,ST251Q07JA,Urbana (>15 mil),0,2331
+completa,zona,ST251Q07JA,Urbana (>15 mil),1,803
+completa,zona,ST251Q07JA,Urbana (>15 mil),2,590
+completa,zona,ST251Q07JA,Urbana (>15 mil),3,1142
+completa,zona,HISCED_c,Pueblo (3-15 mil),0,45
+completa,zona,HISCED_c,Pueblo (3-15 mil),1,100
+completa,zona,HISCED_c,Pueblo (3-15 mil),2,89
+completa,zona,HISCED_c,Pueblo (3-15 mil),3,102
+completa,zona,HISCED_c,Pueblo (3-15 mil),4,102
+completa,zona,HISCED_c,Pueblo (3-15 mil),5,84
+completa,zona,HISCED_c,Pueblo (3-15 mil),6,84
+completa,zona,HISCED_c,Pueblo (3-15 mil),7,72
+completa,zona,HISCED_c,Pueblo (3-15 mil),8,103
+completa,zona,HISCED_c,Pueblo (3-15 mil),9,60
+completa,zona,HISCED_c,Rural (<3.000),0,54
+completa,zona,HISCED_c,Rural (<3.000),1,149
+completa,zona,HISCED_c,Rural (<3.000),2,111
+completa,zona,HISCED_c,Rural (<3.000),3,116
+completa,zona,HISCED_c,Rural (<3.000),4,116
+completa,zona,HISCED_c,Rural (<3.000),5,75
+completa,zona,HISCED_c,Rural (<3.000),6,74
+completa,zona,HISCED_c,Rural (<3.000),7,47
+completa,zona,HISCED_c,Rural (<3.000),8,109
+completa,zona,HISCED_c,Rural (<3.000),9,52
+completa,zona,HISCED_c,Urbana (>15 mil),0,84
+completa,zona,HISCED_c,Urbana (>15 mil),1,209
+completa,zona,HISCED_c,Urbana (>15 mil),2,375
+completa,zona,HISCED_c,Urbana (>15 mil),3,632
+completa,zona,HISCED_c,Urbana (>15 mil),4,503
+completa,zona,HISCED_c,Urbana (>15 mil),5,374
+completa,zona,HISCED_c,Urbana (>15 mil),6,603
+completa,zona,HISCED_c,Urbana (>15 mil),7,652
+completa,zona,HISCED_c,Urbana (>15 mil),8,1071
+completa,zona,HISCED_c,Urbana (>15 mil),9,415
+completa,sexo,ST250Q01JA,Hombre,0,1120
+completa,sexo,ST250Q01JA,Hombre,1,2195
+completa,sexo,ST250Q01JA,Mujer,0,1311
+completa,sexo,ST250Q01JA,Mujer,1,2192
+completa,sexo,ST250Q02JA,Hombre,0,1155
+completa,sexo,ST250Q02JA,Hombre,1,2153
+completa,sexo,ST250Q02JA,Mujer,0,1146
+completa,sexo,ST250Q02JA,Mujer,1,2357
+completa,sexo,ST250Q03JA,Hombre,0,2068
+completa,sexo,ST250Q03JA,Hombre,1,1228
+completa,sexo,ST250Q03JA,Mujer,0,2059
+completa,sexo,ST250Q03JA,Mujer,1,1435
+completa,sexo,ST250Q04JA,Hombre,0,538
+completa,sexo,ST250Q04JA,Hombre,1,2772
+completa,sexo,ST250Q04JA,Mujer,0,570
+completa,sexo,ST250Q04JA,Mujer,1,2944
+completa,sexo,ST250Q05JA,Hombre,0,599
+completa,sexo,ST250Q05JA,Hombre,1,2704
+completa,sexo,ST250Q05JA,Mujer,0,752
+completa,sexo,ST250Q05JA,Mujer,1,2745
+completa,sexo,ST251Q01JA,Hombre,0,2185
+completa,sexo,ST251Q01JA,Hombre,1,808
+completa,sexo,ST251Q01JA,Hombre,2,201
+completa,sexo,ST251Q01JA,Hombre,3,81
+completa,sexo,ST251Q01JA,Mujer,0,2348
+completa,sexo,ST251Q01JA,Mujer,1,850
+completa,sexo,ST251Q01JA,Mujer,2,215
+completa,sexo,ST251Q01JA,Mujer,3,65
+completa,sexo,ST251Q02JA,Hombre,0,1703
+completa,sexo,ST251Q02JA,Hombre,1,1081
+completa,sexo,ST251Q02JA,Hombre,2,361
+completa,sexo,ST251Q02JA,Hombre,3,101
+completa,sexo,ST251Q02JA,Mujer,0,1888
+completa,sexo,ST251Q02JA,Mujer,1,1159
+completa,sexo,ST251Q02JA,Mujer,2,331
+completa,sexo,ST251Q02JA,Mujer,3,81
+completa,sexo,ST251Q03JA,Hombre,0,616
+completa,sexo,ST251Q03JA,Hombre,1,1711
+completa,sexo,ST251Q03JA,Hombre,2,737
+completa,sexo,ST251Q03JA,Hombre,3,224
+completa,sexo,ST251Q03JA,Mujer,0,651
+completa,sexo,ST251Q03JA,Mujer,1,1780
+completa,sexo,ST251Q03JA,Mujer,2,811
+completa,sexo,ST251Q03JA,Mujer,3,248
+completa,sexo,ST251Q04JA,Hombre,0,100
+completa,sexo,ST251Q04JA,Hombre,1,1998
+completa,sexo,ST251Q04JA,Hombre,2,845
+completa,sexo,ST251Q04JA,Hombre,3,340
+completa,sexo,ST251Q04JA,Mujer,0,114
+completa,sexo,ST251Q04JA,Mujer,1,2094
+completa,sexo,ST251Q04JA,Mujer,2,917
+completa,sexo,ST251Q04JA,Mujer,3,361
+completa,sexo,ST253Q01JA,Hombre,0,93
+completa,sexo,ST253Q01JA,Hombre,1,258
+completa,sexo,ST253Q01JA,Hombre,2,296
+completa,sexo,ST253Q01JA,Hombre,3,381
+completa,sexo,ST253Q01JA,Hombre,4,411
+completa,sexo,ST253Q01JA,Hombre,5,477
+completa,sexo,ST253Q01JA,Hombre,6,1027
+completa,sexo,ST253Q01JA,Hombre,7,398
+completa,sexo,ST253Q01JA,Mujer,0,89
+completa,sexo,ST253Q01JA,Mujer,1,301
+completa,sexo,ST253Q01JA,Mujer,2,332
+completa,sexo,ST253Q01JA,Mujer,3,402
+completa,sexo,ST253Q01JA,Mujer,4,417
+completa,sexo,ST253Q01JA,Mujer,5,554
+completa,sexo,ST253Q01JA,Mujer,6,1061
+completa,sexo,ST253Q01JA,Mujer,7,381
+completa,sexo,ST254Q01JA,Hombre,0,220
+completa,sexo,ST254Q01JA,Hombre,1,2187
+completa,sexo,ST254Q01JA,Hombre,2,880
+completa,sexo,ST254Q01JA,Mujer,0,221
+completa,sexo,ST254Q01JA,Mujer,1,2442
+completa,sexo,ST254Q01JA,Mujer,2,827
+completa,sexo,ST254Q02JA,Hombre,0,1866
+completa,sexo,ST254Q02JA,Hombre,1,1260
+completa,sexo,ST254Q02JA,Hombre,2,76
+completa,sexo,ST254Q02JA,Mujer,0,2045
+completa,sexo,ST254Q02JA,Mujer,1,1302
+completa,sexo,ST254Q02JA,Mujer,2,57
+completa,sexo,ST254Q03JA,Hombre,0,1587
+completa,sexo,ST254Q03JA,Hombre,1,1393
+completa,sexo,ST254Q03JA,Hombre,2,270
+completa,sexo,ST254Q03JA,Mujer,0,1576
+completa,sexo,ST254Q03JA,Mujer,1,1564
+completa,sexo,ST254Q03JA,Mujer,2,303
+completa,sexo,ST254Q04JA,Hombre,0,2291
+completa,sexo,ST254Q04JA,Hombre,1,830
+completa,sexo,ST254Q04JA,Hombre,2,144
+completa,sexo,ST254Q04JA,Mujer,0,2381
+completa,sexo,ST254Q04JA,Mujer,1,946
+completa,sexo,ST254Q04JA,Mujer,2,109
+completa,sexo,ST254Q05JA,Hombre,0,2899
+completa,sexo,ST254Q05JA,Hombre,1,239
+completa,sexo,ST254Q05JA,Hombre,2,73
+completa,sexo,ST254Q05JA,Mujer,0,2967
+completa,sexo,ST254Q05JA,Mujer,1,311
+completa,sexo,ST254Q05JA,Mujer,2,110
+completa,sexo,ST254Q06JA,Hombre,0,250
+completa,sexo,ST254Q06JA,Hombre,1,901
+completa,sexo,ST254Q06JA,Hombre,2,1598
+completa,sexo,ST254Q06JA,Hombre,3,533
+completa,sexo,ST254Q06JA,Mujer,0,260
+completa,sexo,ST254Q06JA,Mujer,1,1094
+completa,sexo,ST254Q06JA,Mujer,2,1703
+completa,sexo,ST254Q06JA,Mujer,3,426
+completa,sexo,HISEI_q,Hombre,0,551
+completa,sexo,HISEI_q,Hombre,1,636
+completa,sexo,HISEI_q,Hombre,2,667
+completa,sexo,HISEI_q,Hombre,3,655
+completa,sexo,HISEI_q,Hombre,4,701
+completa,sexo,HISEI_q,Mujer,0,607
+completa,sexo,HISEI_q,Mujer,1,707
+completa,sexo,HISEI_q,Mujer,2,670
+completa,sexo,HISEI_q,Mujer,3,722
+completa,sexo,HISEI_q,Mujer,4,723
+completa,sexo,ST255Q01JA,Hombre,0,527
+completa,sexo,ST255Q01JA,Hombre,1,1344
+completa,sexo,ST255Q01JA,Hombre,2,705
+completa,sexo,ST255Q01JA,Hombre,3,514
+completa,sexo,ST255Q01JA,Hombre,4,165
+completa,sexo,ST255Q01JA,Hombre,5,72
+completa,sexo,ST255Q01JA,Mujer,0,475
+completa,sexo,ST255Q01JA,Mujer,1,1374
+completa,sexo,ST255Q01JA,Mujer,2,728
+completa,sexo,ST255Q01JA,Mujer,3,645
+completa,sexo,ST255Q01JA,Mujer,4,181
+completa,sexo,ST255Q01JA,Mujer,5,122
+completa,sexo,ST256Q01JA,Hombre,0,877
+completa,sexo,ST256Q01JA,Hombre,1,2103
+completa,sexo,ST256Q01JA,Hombre,2,172
+completa,sexo,ST256Q01JA,Mujer,0,799
+completa,sexo,ST256Q01JA,Mujer,1,2354
+completa,sexo,ST256Q01JA,Mujer,2,194
+completa,sexo,ST256Q02JA,Hombre,0,1291
+completa,sexo,ST256Q02JA,Hombre,1,1336
+completa,sexo,ST256Q02JA,Hombre,2,283
+completa,sexo,ST256Q02JA,Hombre,3,155
+completa,sexo,ST256Q02JA,Mujer,0,1199
+completa,sexo,ST256Q02JA,Mujer,1,1550
+completa,sexo,ST256Q02JA,Mujer,2,363
+completa,sexo,ST256Q02JA,Mujer,3,184
+completa,sexo,ST256Q03JA,Hombre,0,1704
+completa,sexo,ST256Q03JA,Hombre,1,908
+completa,sexo,ST256Q03JA,Hombre,2,238
+completa,sexo,ST256Q03JA,Hombre,3,119
+completa,sexo,ST256Q03JA,Mujer,0,1709
+completa,sexo,ST256Q03JA,Mujer,1,1051
+completa,sexo,ST256Q03JA,Mujer,2,261
+completa,sexo,ST256Q03JA,Mujer,3,166
+completa,sexo,ST256Q06JA,Hombre,0,1286
+completa,sexo,ST256Q06JA,Hombre,1,1325
+completa,sexo,ST256Q06JA,Hombre,2,313
+completa,sexo,ST256Q06JA,Hombre,3,181
+completa,sexo,ST256Q06JA,Mujer,0,1346
+completa,sexo,ST256Q06JA,Mujer,1,1419
+completa,sexo,ST256Q06JA,Mujer,2,323
+completa,sexo,ST256Q06JA,Mujer,3,204
+completa,sexo,ST256Q07JA,Hombre,0,1681
+completa,sexo,ST256Q07JA,Hombre,1,1095
+completa,sexo,ST256Q07JA,Hombre,2,189
+completa,sexo,ST256Q07JA,Hombre,3,104
+completa,sexo,ST256Q07JA,Mujer,0,1638
+completa,sexo,ST256Q07JA,Mujer,1,1250
+completa,sexo,ST256Q07JA,Mujer,2,257
+completa,sexo,ST256Q07JA,Mujer,3,127
+completa,sexo,ST256Q08JA,Hombre,0,1474
+completa,sexo,ST256Q08JA,Hombre,1,1159
+completa,sexo,ST256Q08JA,Hombre,2,272
+completa,sexo,ST256Q08JA,Hombre,3,125
+completa,sexo,ST256Q08JA,Mujer,0,1566
+completa,sexo,ST256Q08JA,Mujer,1,1277
+completa,sexo,ST256Q08JA,Mujer,2,252
+completa,sexo,ST256Q08JA,Mujer,3,129
+completa,sexo,ST256Q09JA,Hombre,0,632
+completa,sexo,ST256Q09JA,Hombre,1,2156
+completa,sexo,ST256Q09JA,Hombre,2,334
+completa,sexo,ST256Q09JA,Hombre,3,87
+completa,sexo,ST256Q09JA,Mujer,0,550
+completa,sexo,ST256Q09JA,Mujer,1,2437
+completa,sexo,ST256Q09JA,Mujer,2,354
+completa,sexo,ST256Q09JA,Mujer,3,91
+completa,sexo,ST256Q10JA,Hombre,0,1262
+completa,sexo,ST256Q10JA,Hombre,1,1299
+completa,sexo,ST256Q10JA,Hombre,2,341
+completa,sexo,ST256Q10JA,Hombre,3,222
+completa,sexo,ST256Q10JA,Mujer,0,1082
+completa,sexo,ST256Q10JA,Mujer,1,1535
+completa,sexo,ST256Q10JA,Mujer,2,413
+completa,sexo,ST256Q10JA,Mujer,3,303
+completa,sexo,ST251Q06JA,Hombre,0,2035
+completa,sexo,ST251Q06JA,Hombre,1,771
+completa,sexo,ST251Q06JA,Hombre,2,260
+completa,sexo,ST251Q06JA,Hombre,3,222
+completa,sexo,ST251Q06JA,Mujer,0,2279
+completa,sexo,ST251Q06JA,Mujer,1,732
+completa,sexo,ST251Q06JA,Mujer,2,282
+completa,sexo,ST251Q06JA,Mujer,3,191
+completa,sexo,ST251Q07JA,Hombre,0,1670
+completa,sexo,ST251Q07JA,Hombre,1,593
+completa,sexo,ST251Q07JA,Hombre,2,363
+completa,sexo,ST251Q07JA,Hombre,3,668
+completa,sexo,ST251Q07JA,Mujer,0,1800
+completa,sexo,ST251Q07JA,Mujer,1,516
+completa,sexo,ST251Q07JA,Mujer,2,395
+completa,sexo,ST251Q07JA,Mujer,3,769
+completa,sexo,HISCED_c,Hombre,0,83
+completa,sexo,HISCED_c,Hombre,1,186
+completa,sexo,HISCED_c,Hombre,2,286
+completa,sexo,HISCED_c,Hombre,3,404
+completa,sexo,HISCED_c,Hombre,4,388
+completa,sexo,HISCED_c,Hombre,5,267
+completa,sexo,HISCED_c,Hombre,6,360
+completa,sexo,HISCED_c,Hombre,7,373
+completa,sexo,HISCED_c,Hombre,8,676
+completa,sexo,HISCED_c,Hombre,9,315
+completa,sexo,HISCED_c,Mujer,0,101
+completa,sexo,HISCED_c,Mujer,1,285
+completa,sexo,HISCED_c,Mujer,2,298
+completa,sexo,HISCED_c,Mujer,3,475
+completa,sexo,HISCED_c,Mujer,4,358
+completa,sexo,HISCED_c,Mujer,5,278
+completa,sexo,HISCED_c,Mujer,6,438
+completa,sexo,HISCED_c,Mujer,7,425
+completa,sexo,HISCED_c,Mujer,8,648
+completa,sexo,HISCED_c,Mujer,9,230
+completa,sector,ST250Q01JA,Privado,0,268
+completa,sector,ST250Q01JA,Privado,1,1168
+completa,sector,ST250Q01JA,Público,0,2133
+completa,sector,ST250Q01JA,Público,1,3159
+completa,sector,ST250Q02JA,Privado,0,164
+completa,sector,ST250Q02JA,Privado,1,1273
+completa,sector,ST250Q02JA,Público,0,2122
+completa,sector,ST250Q02JA,Público,1,3163
+completa,sector,ST250Q03JA,Privado,0,556
+completa,sector,ST250Q03JA,Privado,1,879
+completa,sector,ST250Q03JA,Público,0,3522
+completa,sector,ST250Q03JA,Público,1,1743
+completa,sector,ST250Q04JA,Privado,0,88
+completa,sector,ST250Q04JA,Privado,1,1348
+completa,sector,ST250Q04JA,Público,0,1013
+completa,sector,ST250Q04JA,Público,1,4285
+completa,sector,ST250Q05JA,Privado,0,76
+completa,sector,ST250Q05JA,Privado,1,1360
+completa,sector,ST250Q05JA,Público,0,1265
+completa,sector,ST250Q05JA,Público,1,4010
+completa,sector,ST251Q01JA,Privado,0,526
+completa,sector,ST251Q01JA,Privado,1,575
+completa,sector,ST251Q01JA,Privado,2,243
+completa,sector,ST251Q01JA,Privado,3,81
+completa,sector,ST251Q01JA,Público,0,3951
+completa,sector,ST251Q01JA,Público,1,1056
+completa,sector,ST251Q01JA,Público,2,169
+completa,sector,ST251Q01JA,Público,3,63
+completa,sector,ST251Q02JA,Privado,0,908
+completa,sector,ST251Q02JA,Privado,1,390
+completa,sector,ST251Q02JA,Privado,2,93
+completa,sector,ST251Q02JA,Privado,3,27
+completa,sector,ST251Q02JA,Público,0,2636
+completa,sector,ST251Q02JA,Público,1,1825
+completa,sector,ST251Q02JA,Público,2,589
+completa,sector,ST251Q02JA,Público,3,151
+completa,sector,ST251Q03JA,Privado,0,125
+completa,sector,ST251Q03JA,Privado,1,506
+completa,sector,ST251Q03JA,Privado,2,520
+completa,sector,ST251Q03JA,Privado,3,277
+completa,sector,ST251Q03JA,Público,0,1130
+completa,sector,ST251Q03JA,Público,1,2934
+completa,sector,ST251Q03JA,Público,2,1010
+completa,sector,ST251Q03JA,Público,3,187
+completa,sector,ST251Q04JA,Privado,0,21
+completa,sector,ST251Q04JA,Privado,1,498
+completa,sector,ST251Q04JA,Privado,2,483
+completa,sector,ST251Q04JA,Privado,3,423
+completa,sector,ST251Q04JA,Público,0,192
+completa,sector,ST251Q04JA,Público,1,3540
+completa,sector,ST251Q04JA,Público,2,1257
+completa,sector,ST251Q04JA,Público,3,265
+completa,sector,ST253Q01JA,Privado,0,12
+completa,sector,ST253Q01JA,Privado,1,32
+completa,sector,ST253Q01JA,Privado,2,52
+completa,sector,ST253Q01JA,Privado,3,75
+completa,sector,ST253Q01JA,Privado,4,102
+completa,sector,ST253Q01JA,Privado,5,158
+completa,sector,ST253Q01JA,Privado,6,612
+completa,sector,ST253Q01JA,Privado,7,398
+completa,sector,ST253Q01JA,Público,0,169
+completa,sector,ST253Q01JA,Público,1,525
+completa,sector,ST253Q01JA,Público,2,571
+completa,sector,ST253Q01JA,Público,3,703
+completa,sector,ST253Q01JA,Público,4,714
+completa,sector,ST253Q01JA,Público,5,855
+completa,sector,ST253Q01JA,Público,6,1441
+completa,sector,ST253Q01JA,Público,7,369
+completa,sector,ST254Q01JA,Privado,0,32
+completa,sector,ST254Q01JA,Privado,1,720
+completa,sector,ST254Q01JA,Privado,2,677
+completa,sector,ST254Q01JA,Público,0,406
+completa,sector,ST254Q01JA,Público,1,3848
+completa,sector,ST254Q01JA,Público,2,1004
+completa,sector,ST254Q02JA,Privado,0,531
+completa,sector,ST254Q02JA,Privado,1,792
+completa,sector,ST254Q02JA,Privado,2,70
+completa,sector,ST254Q02JA,Público,0,3333
+completa,sector,ST254Q02JA,Público,1,1734
+completa,sector,ST254Q02JA,Público,2,62
+completa,sector,ST254Q03JA,Privado,0,265
+completa,sector,ST254Q03JA,Privado,1,787
+completa,sector,ST254Q03JA,Privado,2,363
+completa,sector,ST254Q03JA,Público,0,2875
+completa,sector,ST254Q03JA,Público,1,2118
+completa,sector,ST254Q03JA,Público,2,200
+completa,sector,ST254Q04JA,Privado,0,723
+completa,sector,ST254Q04JA,Privado,1,584
+completa,sector,ST254Q04JA,Privado,2,109
+completa,sector,ST254Q04JA,Público,0,3890
+completa,sector,ST254Q04JA,Público,1,1168
+completa,sector,ST254Q04JA,Público,2,142
+completa,sector,ST254Q05JA,Privado,0,1221
+completa,sector,ST254Q05JA,Privado,1,142
+completa,sector,ST254Q05JA,Privado,2,33
+completa,sector,ST254Q05JA,Público,0,4570
+completa,sector,ST254Q05JA,Público,1,400
+completa,sector,ST254Q05JA,Público,2,148
+completa,sector,ST254Q06JA,Privado,0,37
+completa,sector,ST254Q06JA,Privado,1,219
+completa,sector,ST254Q06JA,Privado,2,857
+completa,sector,ST254Q06JA,Privado,3,312
+completa,sector,ST254Q06JA,Público,0,470
+completa,sector,ST254Q06JA,Público,1,1757
+completa,sector,ST254Q06JA,Público,2,2392
+completa,sector,ST254Q06JA,Público,3,634
+completa,sector,HISEI_q,Privado,0,81
+completa,sector,HISEI_q,Privado,1,152
+completa,sector,HISEI_q,Privado,2,207
+completa,sector,HISEI_q,Privado,3,292
+completa,sector,HISEI_q,Privado,4,682
+completa,sector,HISEI_q,Público,0,1067
+completa,sector,HISEI_q,Público,1,1178
+completa,sector,HISEI_q,Público,2,1114
+completa,sector,HISEI_q,Público,3,1064
+completa,sector,HISEI_q,Público,4,718
+completa,sector,ST255Q01JA,Privado,0,122
+completa,sector,ST255Q01JA,Privado,1,354
+completa,sector,ST255Q01JA,Privado,2,294
+completa,sector,ST255Q01JA,Privado,3,412
+completa,sector,ST255Q01JA,Privado,4,158
+completa,sector,ST255Q01JA,Privado,5,101
+completa,sector,ST255Q01JA,Público,0,870
+completa,sector,ST255Q01JA,Público,1,2329
+completa,sector,ST255Q01JA,Público,2,1121
+completa,sector,ST255Q01JA,Público,3,728
+completa,sector,ST255Q01JA,Público,4,183
+completa,sector,ST255Q01JA,Público,5,90
+completa,sector,ST256Q01JA,Privado,0,267
+completa,sector,ST256Q01JA,Privado,1,982
+completa,sector,ST256Q01JA,Privado,2,112
+completa,sector,ST256Q01JA,Público,0,1389
+completa,sector,ST256Q01JA,Público,1,3415
+completa,sector,ST256Q01JA,Público,2,248
+completa,sector,ST256Q02JA,Privado,0,346
+completa,sector,ST256Q02JA,Privado,1,621
+completa,sector,ST256Q02JA,Privado,2,203
+completa,sector,ST256Q02JA,Privado,3,155
+completa,sector,ST256Q02JA,Público,0,2105
+completa,sector,ST256Q02JA,Público,1,2237
+completa,sector,ST256Q02JA,Público,2,434
+completa,sector,ST256Q02JA,Público,3,178
+completa,sector,ST256Q03JA,Privado,0,502
+completa,sector,ST256Q03JA,Privado,1,430
+completa,sector,ST256Q03JA,Privado,2,182
+completa,sector,ST256Q03JA,Privado,3,144
+completa,sector,ST256Q03JA,Público,0,2860
+completa,sector,ST256Q03JA,Público,1,1507
+completa,sector,ST256Q03JA,Público,2,312
+completa,sector,ST256Q03JA,Público,3,139
+completa,sector,ST256Q06JA,Privado,0,383
+completa,sector,ST256Q06JA,Privado,1,577
+completa,sector,ST256Q06JA,Privado,2,217
+completa,sector,ST256Q06JA,Privado,3,161
+completa,sector,ST256Q06JA,Público,0,2213
+completa,sector,ST256Q06JA,Público,1,2138
+completa,sector,ST256Q06JA,Público,2,412
+completa,sector,ST256Q06JA,Público,3,216
+completa,sector,ST256Q07JA,Privado,0,489
+completa,sector,ST256Q07JA,Privado,1,558
+completa,sector,ST256Q07JA,Privado,2,169
+completa,sector,ST256Q07JA,Privado,3,102
+completa,sector,ST256Q07JA,Público,0,2785
+completa,sector,ST256Q07JA,Público,1,1760
+completa,sector,ST256Q07JA,Público,2,273
+completa,sector,ST256Q07JA,Público,3,124
+completa,sector,ST256Q08JA,Privado,0,404
+completa,sector,ST256Q08JA,Privado,1,541
+completa,sector,ST256Q08JA,Privado,2,211
+completa,sector,ST256Q08JA,Privado,3,134
+completa,sector,ST256Q08JA,Público,0,2594
+completa,sector,ST256Q08JA,Público,1,1867
+completa,sector,ST256Q08JA,Público,2,306
+completa,sector,ST256Q08JA,Público,3,116
+completa,sector,ST256Q09JA,Privado,0,160
+completa,sector,ST256Q09JA,Privado,1,979
+completa,sector,ST256Q09JA,Privado,2,205
+completa,sector,ST256Q09JA,Privado,3,50
+completa,sector,ST256Q09JA,Público,0,1010
+completa,sector,ST256Q09JA,Público,1,3550
+completa,sector,ST256Q09JA,Público,2,475
+completa,sector,ST256Q09JA,Público,3,127
+completa,sector,ST256Q10JA,Privado,0,357
+completa,sector,ST256Q10JA,Privado,1,576
+completa,sector,ST256Q10JA,Privado,2,218
+completa,sector,ST256Q10JA,Privado,3,179
+completa,sector,ST256Q10JA,Público,0,1958
+completa,sector,ST256Q10JA,Público,1,2226
+completa,sector,ST256Q10JA,Público,2,524
+completa,sector,ST256Q10JA,Público,3,337
+completa,sector,ST251Q06JA,Privado,0,573
+completa,sector,ST251Q06JA,Privado,1,435
+completa,sector,ST251Q06JA,Privado,2,233
+completa,sector,ST251Q06JA,Privado,3,192
+completa,sector,ST251Q06JA,Público,0,3687
+completa,sector,ST251Q06JA,Público,1,1045
+completa,sector,ST251Q06JA,Público,2,301
+completa,sector,ST251Q06JA,Público,3,216
+completa,sector,ST251Q07JA,Privado,0,434
+completa,sector,ST251Q07JA,Privado,1,220
+completa,sector,ST251Q07JA,Privado,2,203
+completa,sector,ST251Q07JA,Privado,3,572
+completa,sector,ST251Q07JA,Público,0,2997
+completa,sector,ST251Q07JA,Público,1,876
+completa,sector,ST251Q07JA,Público,2,542
+completa,sector,ST251Q07JA,Público,3,842
+completa,sector,HISCED_c,Privado,0,6
+completa,sector,HISCED_c,Privado,1,19
+completa,sector,HISCED_c,Privado,2,50
+completa,sector,HISCED_c,Privado,3,112
+completa,sector,HISCED_c,Privado,4,84
+completa,sector,HISCED_c,Privado,5,64
+completa,sector,HISCED_c,Privado,6,129
+completa,sector,HISCED_c,Privado,7,273
+completa,sector,HISCED_c,Privado,8,515
+completa,sector,HISCED_c,Privado,9,189
+completa,sector,HISCED_c,Público,0,178
+completa,sector,HISCED_c,Público,1,451
+completa,sector,HISCED_c,Público,2,531
+completa,sector,HISCED_c,Público,3,757
+completa,sector,HISCED_c,Público,4,656
+completa,sector,HISCED_c,Público,5,477
+completa,sector,HISCED_c,Público,6,647
+completa,sector,HISCED_c,Público,7,513
+completa,sector,HISCED_c,Público,8,787
+completa,sector,HISCED_c,Público,9,346
+confirmacion,zona,ST250Q01JA,Pueblo (3-15 mil),0,152
+confirmacion,zona,ST250Q01JA,Pueblo (3-15 mil),1,261
+confirmacion,zona,ST250Q01JA,Rural (<3.000),0,172
+confirmacion,zona,ST250Q01JA,Rural (<3.000),1,280
+confirmacion,zona,ST250Q01JA,Urbana (>15 mil),0,836
+confirmacion,zona,ST250Q01JA,Urbana (>15 mil),1,1599
+confirmacion,zona,ST250Q02JA,Pueblo (3-15 mil),0,207
+confirmacion,zona,ST250Q02JA,Pueblo (3-15 mil),1,204
+confirmacion,zona,ST250Q02JA,Rural (<3.000),0,244
+confirmacion,zona,ST250Q02JA,Rural (<3.000),1,207
+confirmacion,zona,ST250Q02JA,Urbana (>15 mil),0,678
+confirmacion,zona,ST250Q02JA,Urbana (>15 mil),1,1758
+confirmacion,zona,ST250Q03JA,Pueblo (3-15 mil),0,276
+confirmacion,zona,ST250Q03JA,Pueblo (3-15 mil),1,129
+confirmacion,zona,ST250Q03JA,Rural (<3.000),0,331
+confirmacion,zona,ST250Q03JA,Rural (<3.000),1,117
+confirmacion,zona,ST250Q03JA,Urbana (>15 mil),0,1417
+confirmacion,zona,ST250Q03JA,Urbana (>15 mil),1,1011
+confirmacion,zona,ST250Q04JA,Pueblo (3-15 mil),0,98
+confirmacion,zona,ST250Q04JA,Pueblo (3-15 mil),1,314
+confirmacion,zona,ST250Q04JA,Rural (<3.000),0,119
+confirmacion,zona,ST250Q04JA,Rural (<3.000),1,333
+confirmacion,zona,ST250Q04JA,Urbana (>15 mil),0,318
+confirmacion,zona,ST250Q04JA,Urbana (>15 mil),1,2120
+confirmacion,zona,ST250Q05JA,Pueblo (3-15 mil),0,136
+confirmacion,zona,ST250Q05JA,Pueblo (3-15 mil),1,277
+confirmacion,zona,ST250Q05JA,Rural (<3.000),0,186
+confirmacion,zona,ST250Q05JA,Rural (<3.000),1,267
+confirmacion,zona,ST250Q05JA,Urbana (>15 mil),0,364
+confirmacion,zona,ST250Q05JA,Urbana (>15 mil),1,2065
+confirmacion,zona,ST251Q01JA,Pueblo (3-15 mil),0,319
+confirmacion,zona,ST251Q01JA,Pueblo (3-15 mil),1,73
+confirmacion,zona,ST251Q01JA,Pueblo (3-15 mil),2,17
+confirmacion,zona,ST251Q01JA,Pueblo (3-15 mil),3,2
+confirmacion,zona,ST251Q01JA,Rural (<3.000),0,342
+confirmacion,zona,ST251Q01JA,Rural (<3.000),1,79
+confirmacion,zona,ST251Q01JA,Rural (<3.000),2,20
+confirmacion,zona,ST251Q01JA,Rural (<3.000),3,6
+confirmacion,zona,ST251Q01JA,Urbana (>15 mil),0,1547
+confirmacion,zona,ST251Q01JA,Urbana (>15 mil),1,623
+confirmacion,zona,ST251Q01JA,Urbana (>15 mil),2,168
+confirmacion,zona,ST251Q01JA,Urbana (>15 mil),3,65
+confirmacion,zona,ST251Q02JA,Pueblo (3-15 mil),0,167
+confirmacion,zona,ST251Q02JA,Pueblo (3-15 mil),1,167
+confirmacion,zona,ST251Q02JA,Pueblo (3-15 mil),2,60
+confirmacion,zona,ST251Q02JA,Pueblo (3-15 mil),3,11
+confirmacion,zona,ST251Q02JA,Rural (<3.000),0,186
+confirmacion,zona,ST251Q02JA,Rural (<3.000),1,170
+confirmacion,zona,ST251Q02JA,Rural (<3.000),2,67
+confirmacion,zona,ST251Q02JA,Rural (<3.000),3,17
+confirmacion,zona,ST251Q02JA,Urbana (>15 mil),0,1372
+confirmacion,zona,ST251Q02JA,Urbana (>15 mil),1,759
+confirmacion,zona,ST251Q02JA,Urbana (>15 mil),2,214
+confirmacion,zona,ST251Q02JA,Urbana (>15 mil),3,55
+confirmacion,zona,ST251Q03JA,Pueblo (3-15 mil),0,111
+confirmacion,zona,ST251Q03JA,Pueblo (3-15 mil),1,216
+confirmacion,zona,ST251Q03JA,Pueblo (3-15 mil),2,68
+confirmacion,zona,ST251Q03JA,Pueblo (3-15 mil),3,17
+confirmacion,zona,ST251Q03JA,Rural (<3.000),0,145
+confirmacion,zona,ST251Q03JA,Rural (<3.000),1,210
+confirmacion,zona,ST251Q03JA,Rural (<3.000),2,73
+confirmacion,zona,ST251Q03JA,Rural (<3.000),3,15
+confirmacion,zona,ST251Q03JA,Urbana (>15 mil),0,379
+confirmacion,zona,ST251Q03JA,Urbana (>15 mil),1,1236
+confirmacion,zona,ST251Q03JA,Urbana (>15 mil),2,619
+confirmacion,zona,ST251Q03JA,Urbana (>15 mil),3,193
+confirmacion,zona,ST251Q04JA,Pueblo (3-15 mil),0,22
+confirmacion,zona,ST251Q04JA,Pueblo (3-15 mil),1,287
+confirmacion,zona,ST251Q04JA,Pueblo (3-15 mil),2,83
+confirmacion,zona,ST251Q04JA,Pueblo (3-15 mil),3,20
+confirmacion,zona,ST251Q04JA,Rural (<3.000),0,36
+confirmacion,zona,ST251Q04JA,Rural (<3.000),1,295
+confirmacion,zona,ST251Q04JA,Rural (<3.000),2,87
+confirmacion,zona,ST251Q04JA,Rural (<3.000),3,26
+confirmacion,zona,ST251Q04JA,Urbana (>15 mil),0,48
+confirmacion,zona,ST251Q04JA,Urbana (>15 mil),1,1377
+confirmacion,zona,ST251Q04JA,Urbana (>15 mil),2,694
+confirmacion,zona,ST251Q04JA,Urbana (>15 mil),3,301
+confirmacion,zona,ST253Q01JA,Pueblo (3-15 mil),0,17
+confirmacion,zona,ST253Q01JA,Pueblo (3-15 mil),1,43
+confirmacion,zona,ST253Q01JA,Pueblo (3-15 mil),2,61
+confirmacion,zona,ST253Q01JA,Pueblo (3-15 mil),3,76
+confirmacion,zona,ST253Q01JA,Pueblo (3-15 mil),4,57
+confirmacion,zona,ST253Q01JA,Pueblo (3-15 mil),5,59
+confirmacion,zona,ST253Q01JA,Pueblo (3-15 mil),6,82
+confirmacion,zona,ST253Q01JA,Pueblo (3-15 mil),7,23
+confirmacion,zona,ST253Q01JA,Rural (<3.000),0,29
+confirmacion,zona,ST253Q01JA,Rural (<3.000),1,75
+confirmacion,zona,ST253Q01JA,Rural (<3.000),2,53
+confirmacion,zona,ST253Q01JA,Rural (<3.000),3,58
+confirmacion,zona,ST253Q01JA,Rural (<3.000),4,69
+confirmacion,zona,ST253Q01JA,Rural (<3.000),5,50
+confirmacion,zona,ST253Q01JA,Rural (<3.000),6,97
+confirmacion,zona,ST253Q01JA,Rural (<3.000),7,25
+confirmacion,zona,ST253Q01JA,Urbana (>15 mil),0,38
+confirmacion,zona,ST253Q01JA,Urbana (>15 mil),1,164
+confirmacion,zona,ST253Q01JA,Urbana (>15 mil),2,165
+confirmacion,zona,ST253Q01JA,Urbana (>15 mil),3,270
+confirmacion,zona,ST253Q01JA,Urbana (>15 mil),4,295
+confirmacion,zona,ST253Q01JA,Urbana (>15 mil),5,386
+confirmacion,zona,ST253Q01JA,Urbana (>15 mil),6,814
+confirmacion,zona,ST253Q01JA,Urbana (>15 mil),7,326
+confirmacion,zona,ST254Q01JA,Pueblo (3-15 mil),0,33
+confirmacion,zona,ST254Q01JA,Pueblo (3-15 mil),1,315
+confirmacion,zona,ST254Q01JA,Pueblo (3-15 mil),2,62
+confirmacion,zona,ST254Q01JA,Rural (<3.000),0,63
+confirmacion,zona,ST254Q01JA,Rural (<3.000),1,330
+confirmacion,zona,ST254Q01JA,Rural (<3.000),2,53
+confirmacion,zona,ST254Q01JA,Urbana (>15 mil),0,108
+confirmacion,zona,ST254Q01JA,Urbana (>15 mil),1,1604
+confirmacion,zona,ST254Q01JA,Urbana (>15 mil),2,713
+confirmacion,zona,ST254Q02JA,Pueblo (3-15 mil),0,297
+confirmacion,zona,ST254Q02JA,Pueblo (3-15 mil),1,103
+confirmacion,zona,ST254Q02JA,Pueblo (3-15 mil),2,2
+confirmacion,zona,ST254Q02JA,Rural (<3.000),0,342
+confirmacion,zona,ST254Q02JA,Rural (<3.000),1,85
+confirmacion,zona,ST254Q02JA,Rural (<3.000),2,3
+confirmacion,zona,ST254Q02JA,Urbana (>15 mil),0,1277
+confirmacion,zona,ST254Q02JA,Urbana (>15 mil),1,1032
+confirmacion,zona,ST254Q02JA,Urbana (>15 mil),2,52
+confirmacion,zona,ST254Q03JA,Pueblo (3-15 mil),0,249
+confirmacion,zona,ST254Q03JA,Pueblo (3-15 mil),1,143
+confirmacion,zona,ST254Q03JA,Pueblo (3-15 mil),2,9
+confirmacion,zona,ST254Q03JA,Rural (<3.000),0,301
+confirmacion,zona,ST254Q03JA,Rural (<3.000),1,124
+confirmacion,zona,ST254Q03JA,Rural (<3.000),2,11
+confirmacion,zona,ST254Q03JA,Urbana (>15 mil),0,980
+confirmacion,zona,ST254Q03JA,Urbana (>15 mil),1,1174
+confirmacion,zona,ST254Q03JA,Urbana (>15 mil),2,246
+confirmacion,zona,ST254Q04JA,Pueblo (3-15 mil),0,315
+confirmacion,zona,ST254Q04JA,Pueblo (3-15 mil),1,79
+confirmacion,zona,ST254Q04JA,Pueblo (3-15 mil),2,10
+confirmacion,zona,ST254Q04JA,Rural (<3.000),0,342
+confirmacion,zona,ST254Q04JA,Rural (<3.000),1,75
+confirmacion,zona,ST254Q04JA,Rural (<3.000),2,16
+confirmacion,zona,ST254Q04JA,Urbana (>15 mil),0,1603
+confirmacion,zona,ST254Q04JA,Urbana (>15 mil),1,694
+confirmacion,zona,ST254Q04JA,Urbana (>15 mil),2,95
+confirmacion,zona,ST254Q05JA,Pueblo (3-15 mil),0,353
+confirmacion,zona,ST254Q05JA,Pueblo (3-15 mil),1,36
+confirmacion,zona,ST254Q05JA,Pueblo (3-15 mil),2,10
+confirmacion,zona,ST254Q05JA,Rural (<3.000),0,372
+confirmacion,zona,ST254Q05JA,Rural (<3.000),1,46
+confirmacion,zona,ST254Q05JA,Rural (<3.000),2,17
+confirmacion,zona,ST254Q05JA,Urbana (>15 mil),0,2102
+confirmacion,zona,ST254Q05JA,Urbana (>15 mil),1,191
+confirmacion,zona,ST254Q05JA,Urbana (>15 mil),2,60
+confirmacion,zona,ST254Q06JA,Pueblo (3-15 mil),0,43
+confirmacion,zona,ST254Q06JA,Pueblo (3-15 mil),1,175
+confirmacion,zona,ST254Q06JA,Pueblo (3-15 mil),2,146
+confirmacion,zona,ST254Q06JA,Pueblo (3-15 mil),3,44
+confirmacion,zona,ST254Q06JA,Rural (<3.000),0,81
+confirmacion,zona,ST254Q06JA,Rural (<3.000),1,164
+confirmacion,zona,ST254Q06JA,Rural (<3.000),2,155
+confirmacion,zona,ST254Q06JA,Rural (<3.000),3,43
+confirmacion,zona,ST254Q06JA,Urbana (>15 mil),0,120
+confirmacion,zona,ST254Q06JA,Urbana (>15 mil),1,650
+confirmacion,zona,ST254Q06JA,Urbana (>15 mil),2,1278
+confirmacion,zona,ST254Q06JA,Urbana (>15 mil),3,372
+confirmacion,zona,HISEI_q,Pueblo (3-15 mil),0,117
+confirmacion,zona,HISEI_q,Pueblo (3-15 mil),1,98
+confirmacion,zona,HISEI_q,Pueblo (3-15 mil),2,72
+confirmacion,zona,HISEI_q,Pueblo (3-15 mil),3,59
+confirmacion,zona,HISEI_q,Pueblo (3-15 mil),4,61
+confirmacion,zona,HISEI_q,Rural (<3.000),0,150
+confirmacion,zona,HISEI_q,Rural (<3.000),1,82
+confirmacion,zona,HISEI_q,Rural (<3.000),2,77
+confirmacion,zona,HISEI_q,Rural (<3.000),3,73
+confirmacion,zona,HISEI_q,Rural (<3.000),4,56
+confirmacion,zona,HISEI_q,Urbana (>15 mil),0,288
+confirmacion,zona,HISEI_q,Urbana (>15 mil),1,479
+confirmacion,zona,HISEI_q,Urbana (>15 mil),2,506
+confirmacion,zona,HISEI_q,Urbana (>15 mil),3,507
+confirmacion,zona,HISEI_q,Urbana (>15 mil),4,598
+confirmacion,zona,ST255Q01JA,Pueblo (3-15 mil),0,82
+confirmacion,zona,ST255Q01JA,Pueblo (3-15 mil),1,179
+confirmacion,zona,ST255Q01JA,Pueblo (3-15 mil),2,72
+confirmacion,zona,ST255Q01JA,Pueblo (3-15 mil),3,64
+confirmacion,zona,ST255Q01JA,Pueblo (3-15 mil),4,11
+confirmacion,zona,ST255Q01JA,Pueblo (3-15 mil),5,7
+confirmacion,zona,ST255Q01JA,Rural (<3.000),0,77
+confirmacion,zona,ST255Q01JA,Rural (<3.000),1,219
+confirmacion,zona,ST255Q01JA,Rural (<3.000),2,87
+confirmacion,zona,ST255Q01JA,Rural (<3.000),3,49
+confirmacion,zona,ST255Q01JA,Rural (<3.000),4,11
+confirmacion,zona,ST255Q01JA,Rural (<3.000),5,10
+confirmacion,zona,ST255Q01JA,Urbana (>15 mil),0,369
+confirmacion,zona,ST255Q01JA,Urbana (>15 mil),1,877
+confirmacion,zona,ST255Q01JA,Urbana (>15 mil),2,544
+confirmacion,zona,ST255Q01JA,Urbana (>15 mil),3,463
+confirmacion,zona,ST255Q01JA,Urbana (>15 mil),4,132
+confirmacion,zona,ST255Q01JA,Urbana (>15 mil),5,67
+confirmacion,zona,ST256Q01JA,Pueblo (3-15 mil),0,106
+confirmacion,zona,ST256Q01JA,Pueblo (3-15 mil),1,260
+confirmacion,zona,ST256Q01JA,Pueblo (3-15 mil),2,23
+confirmacion,zona,ST256Q01JA,Rural (<3.000),0,110
+confirmacion,zona,ST256Q01JA,Rural (<3.000),1,286
+confirmacion,zona,ST256Q01JA,Rural (<3.000),2,22
+confirmacion,zona,ST256Q01JA,Urbana (>15 mil),0,633
+confirmacion,zona,ST256Q01JA,Urbana (>15 mil),1,1574
+confirmacion,zona,ST256Q01JA,Urbana (>15 mil),2,127
+confirmacion,zona,ST256Q02JA,Pueblo (3-15 mil),0,194
+confirmacion,zona,ST256Q02JA,Pueblo (3-15 mil),1,155
+confirmacion,zona,ST256Q02JA,Pueblo (3-15 mil),2,22
+confirmacion,zona,ST256Q02JA,Pueblo (3-15 mil),3,14
+confirmacion,zona,ST256Q02JA,Rural (<3.000),0,179
+confirmacion,zona,ST256Q02JA,Rural (<3.000),1,193
+confirmacion,zona,ST256Q02JA,Rural (<3.000),2,31
+confirmacion,zona,ST256Q02JA,Rural (<3.000),3,14
+confirmacion,zona,ST256Q02JA,Urbana (>15 mil),0,847
+confirmacion,zona,ST256Q02JA,Urbana (>15 mil),1,1034
+confirmacion,zona,ST256Q02JA,Urbana (>15 mil),2,253
+confirmacion,zona,ST256Q02JA,Urbana (>15 mil),3,128
+confirmacion,zona,ST256Q03JA,Pueblo (3-15 mil),0,244
+confirmacion,zona,ST256Q03JA,Pueblo (3-15 mil),1,98
+confirmacion,zona,ST256Q03JA,Pueblo (3-15 mil),2,17
+confirmacion,zona,ST256Q03JA,Pueblo (3-15 mil),3,13
+confirmacion,zona,ST256Q03JA,Rural (<3.000),0,257
+confirmacion,zona,ST256Q03JA,Rural (<3.000),1,116
+confirmacion,zona,ST256Q03JA,Rural (<3.000),2,19
+confirmacion,zona,ST256Q03JA,Rural (<3.000),3,15
+confirmacion,zona,ST256Q03JA,Urbana (>15 mil),0,1170
+confirmacion,zona,ST256Q03JA,Urbana (>15 mil),1,699
+confirmacion,zona,ST256Q03JA,Urbana (>15 mil),2,205
+confirmacion,zona,ST256Q03JA,Urbana (>15 mil),3,114
+confirmacion,zona,ST256Q06JA,Pueblo (3-15 mil),0,185
+confirmacion,zona,ST256Q06JA,Pueblo (3-15 mil),1,153
+confirmacion,zona,ST256Q06JA,Pueblo (3-15 mil),2,30
+confirmacion,zona,ST256Q06JA,Pueblo (3-15 mil),3,19
+confirmacion,zona,ST256Q06JA,Rural (<3.000),0,187
+confirmacion,zona,ST256Q06JA,Rural (<3.000),1,191
+confirmacion,zona,ST256Q06JA,Rural (<3.000),2,34
+confirmacion,zona,ST256Q06JA,Rural (<3.000),3,12
+confirmacion,zona,ST256Q06JA,Urbana (>15 mil),0,909
+confirmacion,zona,ST256Q06JA,Urbana (>15 mil),1,979
+confirmacion,zona,ST256Q06JA,Urbana (>15 mil),2,251
+confirmacion,zona,ST256Q06JA,Urbana (>15 mil),3,140
+confirmacion,zona,ST256Q07JA,Pueblo (3-15 mil),0,219
+confirmacion,zona,ST256Q07JA,Pueblo (3-15 mil),1,143
+confirmacion,zona,ST256Q07JA,Pueblo (3-15 mil),2,14
+confirmacion,zona,ST256Q07JA,Pueblo (3-15 mil),3,12
+confirmacion,zona,ST256Q07JA,Rural (<3.000),0,236
+confirmacion,zona,ST256Q07JA,Rural (<3.000),1,147
+confirmacion,zona,ST256Q07JA,Rural (<3.000),2,25
+confirmacion,zona,ST256Q07JA,Rural (<3.000),3,7
+confirmacion,zona,ST256Q07JA,Urbana (>15 mil),0,1170
+confirmacion,zona,ST256Q07JA,Urbana (>15 mil),1,839
+confirmacion,zona,ST256Q07JA,Urbana (>15 mil),2,184
+confirmacion,zona,ST256Q07JA,Urbana (>15 mil),3,80
+confirmacion,zona,ST256Q08JA,Pueblo (3-15 mil),0,206
+confirmacion,zona,ST256Q08JA,Pueblo (3-15 mil),1,145
+confirmacion,zona,ST256Q08JA,Pueblo (3-15 mil),2,21
+confirmacion,zona,ST256Q08JA,Pueblo (3-15 mil),3,12
+confirmacion,zona,ST256Q08JA,Rural (<3.000),0,222
+confirmacion,zona,ST256Q08JA,Rural (<3.000),1,152
+confirmacion,zona,ST256Q08JA,Rural (<3.000),2,30
+confirmacion,zona,ST256Q08JA,Rural (<3.000),3,6
+confirmacion,zona,ST256Q08JA,Urbana (>15 mil),0,1052
+confirmacion,zona,ST256Q08JA,Urbana (>15 mil),1,859
+confirmacion,zona,ST256Q08JA,Urbana (>15 mil),2,216
+confirmacion,zona,ST256Q08JA,Urbana (>15 mil),3,106
+confirmacion,zona,ST256Q09JA,Pueblo (3-15 mil),0,96
+confirmacion,zona,ST256Q09JA,Pueblo (3-15 mil),1,264
+confirmacion,zona,ST256Q09JA,Pueblo (3-15 mil),2,32
+confirmacion,zona,ST256Q09JA,Pueblo (3-15 mil),3,9
+confirmacion,zona,ST256Q09JA,Rural (<3.000),0,91
+confirmacion,zona,ST256Q09JA,Rural (<3.000),1,284
+confirmacion,zona,ST256Q09JA,Rural (<3.000),2,48
+confirmacion,zona,ST256Q09JA,Rural (<3.000),3,9
+confirmacion,zona,ST256Q09JA,Urbana (>15 mil),0,428
+confirmacion,zona,ST256Q09JA,Urbana (>15 mil),1,1665
+confirmacion,zona,ST256Q09JA,Urbana (>15 mil),2,228
+confirmacion,zona,ST256Q09JA,Urbana (>15 mil),3,56
+confirmacion,zona,ST256Q10JA,Pueblo (3-15 mil),0,168
+confirmacion,zona,ST256Q10JA,Pueblo (3-15 mil),1,153
+confirmacion,zona,ST256Q10JA,Pueblo (3-15 mil),2,41
+confirmacion,zona,ST256Q10JA,Pueblo (3-15 mil),3,30
+confirmacion,zona,ST256Q10JA,Rural (<3.000),0,174
+confirmacion,zona,ST256Q10JA,Rural (<3.000),1,173
+confirmacion,zona,ST256Q10JA,Rural (<3.000),2,53
+confirmacion,zona,ST256Q10JA,Rural (<3.000),3,23
+confirmacion,zona,ST256Q10JA,Urbana (>15 mil),0,833
+confirmacion,zona,ST256Q10JA,Urbana (>15 mil),1,999
+confirmacion,zona,ST256Q10JA,Urbana (>15 mil),2,263
+confirmacion,zona,ST256Q10JA,Urbana (>15 mil),3,204
+confirmacion,zona,ST251Q06JA,Pueblo (3-15 mil),0,302
+confirmacion,zona,ST251Q06JA,Pueblo (3-15 mil),1,74
+confirmacion,zona,ST251Q06JA,Pueblo (3-15 mil),2,23
+confirmacion,zona,ST251Q06JA,Pueblo (3-15 mil),3,10
+confirmacion,zona,ST251Q06JA,Rural (<3.000),0,326
+confirmacion,zona,ST251Q06JA,Rural (<3.000),1,72
+confirmacion,zona,ST251Q06JA,Rural (<3.000),2,24
+confirmacion,zona,ST251Q06JA,Rural (<3.000),3,21
+confirmacion,zona,ST251Q06JA,Urbana (>15 mil),0,1484
+confirmacion,zona,ST251Q06JA,Urbana (>15 mil),1,561
+confirmacion,zona,ST251Q06JA,Urbana (>15 mil),2,209
+confirmacion,zona,ST251Q06JA,Urbana (>15 mil),3,172
+confirmacion,zona,ST251Q07JA,Pueblo (3-15 mil),0,248
+confirmacion,zona,ST251Q07JA,Pueblo (3-15 mil),1,79
+confirmacion,zona,ST251Q07JA,Pueblo (3-15 mil),2,31
+confirmacion,zona,ST251Q07JA,Pueblo (3-15 mil),3,54
+confirmacion,zona,ST251Q07JA,Rural (<3.000),0,272
+confirmacion,zona,ST251Q07JA,Rural (<3.000),1,59
+confirmacion,zona,ST251Q07JA,Rural (<3.000),2,47
+confirmacion,zona,ST251Q07JA,Rural (<3.000),3,62
+confirmacion,zona,ST251Q07JA,Urbana (>15 mil),0,1185
+confirmacion,zona,ST251Q07JA,Urbana (>15 mil),1,403
+confirmacion,zona,ST251Q07JA,Urbana (>15 mil),2,297
+confirmacion,zona,ST251Q07JA,Urbana (>15 mil),3,534
+confirmacion,zona,HISCED_c,Pueblo (3-15 mil),0,25
+confirmacion,zona,HISCED_c,Pueblo (3-15 mil),1,48
+confirmacion,zona,HISCED_c,Pueblo (3-15 mil),2,42
+confirmacion,zona,HISCED_c,Pueblo (3-15 mil),3,53
+confirmacion,zona,HISCED_c,Pueblo (3-15 mil),4,50
+confirmacion,zona,HISCED_c,Pueblo (3-15 mil),5,32
+confirmacion,zona,HISCED_c,Pueblo (3-15 mil),6,45
+confirmacion,zona,HISCED_c,Pueblo (3-15 mil),7,34
+confirmacion,zona,HISCED_c,Pueblo (3-15 mil),8,54
+confirmacion,zona,HISCED_c,Pueblo (3-15 mil),9,35
+confirmacion,zona,HISCED_c,Rural (<3.000),0,23
+confirmacion,zona,HISCED_c,Rural (<3.000),1,71
+confirmacion,zona,HISCED_c,Rural (<3.000),2,52
+confirmacion,zona,HISCED_c,Rural (<3.000),3,59
+confirmacion,zona,HISCED_c,Rural (<3.000),4,68
+confirmacion,zona,HISCED_c,Rural (<3.000),5,46
+confirmacion,zona,HISCED_c,Rural (<3.000),6,35
+confirmacion,zona,HISCED_c,Rural (<3.000),7,26
+confirmacion,zona,HISCED_c,Rural (<3.000),8,51
+confirmacion,zona,HISCED_c,Rural (<3.000),9,26
+confirmacion,zona,HISCED_c,Urbana (>15 mil),0,42
+confirmacion,zona,HISCED_c,Urbana (>15 mil),1,97
+confirmacion,zona,HISCED_c,Urbana (>15 mil),2,186
+confirmacion,zona,HISCED_c,Urbana (>15 mil),3,309
+confirmacion,zona,HISCED_c,Urbana (>15 mil),4,255
+confirmacion,zona,HISCED_c,Urbana (>15 mil),5,193
+confirmacion,zona,HISCED_c,Urbana (>15 mil),6,302
+confirmacion,zona,HISCED_c,Urbana (>15 mil),7,320
+confirmacion,zona,HISCED_c,Urbana (>15 mil),8,539
+confirmacion,zona,HISCED_c,Urbana (>15 mil),9,210
+confirmacion,sexo,ST250Q01JA,Hombre,0,536
+confirmacion,sexo,ST250Q01JA,Hombre,1,1121
+confirmacion,sexo,ST250Q01JA,Mujer,0,663
+confirmacion,sexo,ST250Q01JA,Mujer,1,1087
+confirmacion,sexo,ST250Q02JA,Hombre,0,587
+confirmacion,sexo,ST250Q02JA,Hombre,1,1067
+confirmacion,sexo,ST250Q02JA,Mujer,0,578
+confirmacion,sexo,ST250Q02JA,Mujer,1,1172
+confirmacion,sexo,ST250Q03JA,Hombre,0,1046
+confirmacion,sexo,ST250Q03JA,Hombre,1,599
+confirmacion,sexo,ST250Q03JA,Mujer,0,1045
+confirmacion,sexo,ST250Q03JA,Mujer,1,698
+confirmacion,sexo,ST250Q04JA,Hombre,0,262
+confirmacion,sexo,ST250Q04JA,Hombre,1,1390
+confirmacion,sexo,ST250Q04JA,Mujer,0,288
+confirmacion,sexo,ST250Q04JA,Mujer,1,1469
+confirmacion,sexo,ST250Q05JA,Hombre,0,300
+confirmacion,sexo,ST250Q05JA,Hombre,1,1351
+confirmacion,sexo,ST250Q05JA,Mujer,0,406
+confirmacion,sexo,ST250Q05JA,Mujer,1,1344
+confirmacion,sexo,ST251Q01JA,Hombre,0,1083
+confirmacion,sexo,ST251Q01JA,Hombre,1,407
+confirmacion,sexo,ST251Q01JA,Hombre,2,102
+confirmacion,sexo,ST251Q01JA,Hombre,3,40
+confirmacion,sexo,ST251Q01JA,Mujer,0,1196
+confirmacion,sexo,ST251Q01JA,Mujer,1,396
+confirmacion,sexo,ST251Q01JA,Mujer,2,106
+confirmacion,sexo,ST251Q01JA,Mujer,3,35
+confirmacion,sexo,ST251Q02JA,Hombre,0,831
+confirmacion,sexo,ST251Q02JA,Hombre,1,553
+confirmacion,sexo,ST251Q02JA,Hombre,2,191
+confirmacion,sexo,ST251Q02JA,Hombre,3,47
+confirmacion,sexo,ST251Q02JA,Mujer,0,942
+confirmacion,sexo,ST251Q02JA,Mujer,1,577
+confirmacion,sexo,ST251Q02JA,Mujer,2,166
+confirmacion,sexo,ST251Q02JA,Mujer,3,40
+confirmacion,sexo,ST251Q03JA,Hombre,0,308
+confirmacion,sexo,ST251Q03JA,Hombre,1,840
+confirmacion,sexo,ST251Q03JA,Hombre,2,385
+confirmacion,sexo,ST251Q03JA,Hombre,3,113
+confirmacion,sexo,ST251Q03JA,Mujer,0,350
+confirmacion,sexo,ST251Q03JA,Mujer,1,879
+confirmacion,sexo,ST251Q03JA,Mujer,2,394
+confirmacion,sexo,ST251Q03JA,Mujer,3,118
+confirmacion,sexo,ST251Q04JA,Hombre,0,53
+confirmacion,sexo,ST251Q04JA,Hombre,1,968
+confirmacion,sexo,ST251Q04JA,Hombre,2,445
+confirmacion,sexo,ST251Q04JA,Hombre,3,173
+confirmacion,sexo,ST251Q04JA,Mujer,0,54
+confirmacion,sexo,ST251Q04JA,Mujer,1,1063
+confirmacion,sexo,ST251Q04JA,Mujer,2,444
+confirmacion,sexo,ST251Q04JA,Mujer,3,182
+confirmacion,sexo,ST253Q01JA,Hombre,0,49
+confirmacion,sexo,ST253Q01JA,Hombre,1,138
+confirmacion,sexo,ST253Q01JA,Hombre,2,131
+confirmacion,sexo,ST253Q01JA,Hombre,3,192
+confirmacion,sexo,ST253Q01JA,Hombre,4,213
+confirmacion,sexo,ST253Q01JA,Hombre,5,241
+confirmacion,sexo,ST253Q01JA,Hombre,6,520
+confirmacion,sexo,ST253Q01JA,Hombre,7,187
+confirmacion,sexo,ST253Q01JA,Mujer,0,37
+confirmacion,sexo,ST253Q01JA,Mujer,1,151
+confirmacion,sexo,ST253Q01JA,Mujer,2,157
+confirmacion,sexo,ST253Q01JA,Mujer,3,222
+confirmacion,sexo,ST253Q01JA,Mujer,4,224
+confirmacion,sexo,ST253Q01JA,Mujer,5,273
+confirmacion,sexo,ST253Q01JA,Mujer,6,509
+confirmacion,sexo,ST253Q01JA,Mujer,7,194
+confirmacion,sexo,ST254Q01JA,Hombre,0,108
+confirmacion,sexo,ST254Q01JA,Hombre,1,1092
+confirmacion,sexo,ST254Q01JA,Hombre,2,443
+confirmacion,sexo,ST254Q01JA,Mujer,0,101
+confirmacion,sexo,ST254Q01JA,Mujer,1,1235
+confirmacion,sexo,ST254Q01JA,Mujer,2,407
+confirmacion,sexo,ST254Q02JA,Hombre,0,953
+confirmacion,sexo,ST254Q02JA,Hombre,1,612
+confirmacion,sexo,ST254Q02JA,Hombre,2,33
+confirmacion,sexo,ST254Q02JA,Mujer,0,1023
+confirmacion,sexo,ST254Q02JA,Mujer,1,648
+confirmacion,sexo,ST254Q02JA,Mujer,2,26
+confirmacion,sexo,ST254Q03JA,Hombre,0,788
+confirmacion,sexo,ST254Q03JA,Hombre,1,706
+confirmacion,sexo,ST254Q03JA,Hombre,2,132
+confirmacion,sexo,ST254Q03JA,Mujer,0,783
+confirmacion,sexo,ST254Q03JA,Mujer,1,788
+confirmacion,sexo,ST254Q03JA,Mujer,2,142
+confirmacion,sexo,ST254Q04JA,Hombre,0,1155
+confirmacion,sexo,ST254Q04JA,Hombre,1,403
+confirmacion,sexo,ST254Q04JA,Hombre,2,64
+confirmacion,sexo,ST254Q04JA,Mujer,0,1182
+confirmacion,sexo,ST254Q04JA,Mujer,1,466
+confirmacion,sexo,ST254Q04JA,Mujer,2,60
+confirmacion,sexo,ST254Q05JA,Hombre,0,1435
+confirmacion,sexo,ST254Q05JA,Hombre,1,129
+confirmacion,sexo,ST254Q05JA,Hombre,2,38
+confirmacion,sexo,ST254Q05JA,Mujer,0,1474
+confirmacion,sexo,ST254Q05JA,Mujer,1,155
+confirmacion,sexo,ST254Q05JA,Mujer,2,55
+confirmacion,sexo,ST254Q06JA,Hombre,0,127
+confirmacion,sexo,ST254Q06JA,Hombre,1,448
+confirmacion,sexo,ST254Q06JA,Hombre,2,805
+confirmacion,sexo,ST254Q06JA,Hombre,3,262
+confirmacion,sexo,ST254Q06JA,Mujer,0,126
+confirmacion,sexo,ST254Q06JA,Mujer,1,565
+confirmacion,sexo,ST254Q06JA,Mujer,2,828
+confirmacion,sexo,ST254Q06JA,Mujer,3,213
+confirmacion,sexo,HISEI_q,Hombre,0,276
+confirmacion,sexo,HISEI_q,Hombre,1,314
+confirmacion,sexo,HISEI_q,Hombre,2,341
+confirmacion,sexo,HISEI_q,Hombre,3,310
+confirmacion,sexo,HISEI_q,Hombre,4,367
+confirmacion,sexo,HISEI_q,Mujer,0,302
+confirmacion,sexo,HISEI_q,Mujer,1,365
+confirmacion,sexo,HISEI_q,Mujer,2,330
+confirmacion,sexo,HISEI_q,Mujer,3,349
+confirmacion,sexo,HISEI_q,Mujer,4,372
+confirmacion,sexo,ST255Q01JA,Hombre,0,284
+confirmacion,sexo,ST255Q01JA,Hombre,1,644
+confirmacion,sexo,ST255Q01JA,Hombre,2,371
+confirmacion,sexo,ST255Q01JA,Hombre,3,261
+confirmacion,sexo,ST255Q01JA,Hombre,4,75
+confirmacion,sexo,ST255Q01JA,Hombre,5,31
+confirmacion,sexo,ST255Q01JA,Mujer,0,258
+confirmacion,sexo,ST255Q01JA,Mujer,1,673
+confirmacion,sexo,ST255Q01JA,Mujer,2,357
+confirmacion,sexo,ST255Q01JA,Mujer,3,330
+confirmacion,sexo,ST255Q01JA,Mujer,4,87
+confirmacion,sexo,ST255Q01JA,Mujer,5,55
+confirmacion,sexo,ST256Q01JA,Hombre,0,458
+confirmacion,sexo,ST256Q01JA,Hombre,1,1040
+confirmacion,sexo,ST256Q01JA,Hombre,2,81
+confirmacion,sexo,ST256Q01JA,Mujer,0,416
+confirmacion,sexo,ST256Q01JA,Mujer,1,1151
+confirmacion,sexo,ST256Q01JA,Mujer,2,99
+confirmacion,sexo,ST256Q02JA,Hombre,0,646
+confirmacion,sexo,ST256Q02JA,Hombre,1,655
+confirmacion,sexo,ST256Q02JA,Hombre,2,136
+confirmacion,sexo,ST256Q02JA,Hombre,3,77
+confirmacion,sexo,ST256Q02JA,Mujer,0,615
+confirmacion,sexo,ST256Q02JA,Mujer,1,768
+confirmacion,sexo,ST256Q02JA,Mujer,2,176
+confirmacion,sexo,ST256Q02JA,Mujer,3,85
+confirmacion,sexo,ST256Q03JA,Hombre,0,851
+confirmacion,sexo,ST256Q03JA,Hombre,1,438
+confirmacion,sexo,ST256Q03JA,Hombre,2,119
+confirmacion,sexo,ST256Q03JA,Hombre,3,62
+confirmacion,sexo,ST256Q03JA,Mujer,0,870
+confirmacion,sexo,ST256Q03JA,Mujer,1,504
+confirmacion,sexo,ST256Q03JA,Mujer,2,132
+confirmacion,sexo,ST256Q03JA,Mujer,3,82
+confirmacion,sexo,ST256Q06JA,Hombre,0,632
+confirmacion,sexo,ST256Q06JA,Hombre,1,660
+confirmacion,sexo,ST256Q06JA,Hombre,2,171
+confirmacion,sexo,ST256Q06JA,Hombre,3,86
+confirmacion,sexo,ST256Q06JA,Mujer,0,678
+confirmacion,sexo,ST256Q06JA,Mujer,1,712
+confirmacion,sexo,ST256Q06JA,Mujer,2,154
+confirmacion,sexo,ST256Q06JA,Mujer,3,93
+confirmacion,sexo,ST256Q07JA,Hombre,0,834
+confirmacion,sexo,ST256Q07JA,Hombre,1,554
+confirmacion,sexo,ST256Q07JA,Hombre,2,97
+confirmacion,sexo,ST256Q07JA,Hombre,3,48
+confirmacion,sexo,ST256Q07JA,Mujer,0,840
+confirmacion,sexo,ST256Q07JA,Mujer,1,608
+confirmacion,sexo,ST256Q07JA,Mujer,2,131
+confirmacion,sexo,ST256Q07JA,Mujer,3,57
+confirmacion,sexo,ST256Q08JA,Hombre,0,734
+confirmacion,sexo,ST256Q08JA,Hombre,1,572
+confirmacion,sexo,ST256Q08JA,Hombre,2,141
+confirmacion,sexo,ST256Q08JA,Hombre,3,62
+confirmacion,sexo,ST256Q08JA,Mujer,0,786
+confirmacion,sexo,ST256Q08JA,Mujer,1,627
+confirmacion,sexo,ST256Q08JA,Mujer,2,135
+confirmacion,sexo,ST256Q08JA,Mujer,3,66
+confirmacion,sexo,ST256Q09JA,Hombre,0,334
+confirmacion,sexo,ST256Q09JA,Hombre,1,1065
+confirmacion,sexo,ST256Q09JA,Hombre,2,160
+confirmacion,sexo,ST256Q09JA,Hombre,3,40
+confirmacion,sexo,ST256Q09JA,Mujer,0,296
+confirmacion,sexo,ST256Q09JA,Mujer,1,1220
+confirmacion,sexo,ST256Q09JA,Mujer,2,161
+confirmacion,sexo,ST256Q09JA,Mujer,3,36
+confirmacion,sexo,ST256Q10JA,Hombre,0,647
+confirmacion,sexo,ST256Q10JA,Hombre,1,626
+confirmacion,sexo,ST256Q10JA,Hombre,2,177
+confirmacion,sexo,ST256Q10JA,Hombre,3,100
+confirmacion,sexo,ST256Q10JA,Mujer,0,560
+confirmacion,sexo,ST256Q10JA,Mujer,1,748
+confirmacion,sexo,ST256Q10JA,Mujer,2,191
+confirmacion,sexo,ST256Q10JA,Mujer,3,162
+confirmacion,sexo,ST251Q06JA,Hombre,0,1039
+confirmacion,sexo,ST251Q06JA,Hombre,1,378
+confirmacion,sexo,ST251Q06JA,Hombre,2,121
+confirmacion,sexo,ST251Q06JA,Hombre,3,108
+confirmacion,sexo,ST251Q06JA,Mujer,0,1145
+confirmacion,sexo,ST251Q06JA,Mujer,1,352
+confirmacion,sexo,ST251Q06JA,Mujer,2,140
+confirmacion,sexo,ST251Q06JA,Mujer,3,101
+confirmacion,sexo,ST251Q07JA,Hombre,0,825
+confirmacion,sexo,ST251Q07JA,Hombre,1,322
+confirmacion,sexo,ST251Q07JA,Hombre,2,186
+confirmacion,sexo,ST251Q07JA,Hombre,3,310
+confirmacion,sexo,ST251Q07JA,Mujer,0,932
+confirmacion,sexo,ST251Q07JA,Mujer,1,238
+confirmacion,sexo,ST251Q07JA,Mujer,2,201
+confirmacion,sexo,ST251Q07JA,Mujer,3,361
+confirmacion,sexo,HISCED_c,Hombre,0,43
+confirmacion,sexo,HISCED_c,Hombre,1,87
+confirmacion,sexo,HISCED_c,Hombre,2,140
+confirmacion,sexo,HISCED_c,Hombre,3,198
+confirmacion,sexo,HISCED_c,Hombre,4,194
+confirmacion,sexo,HISCED_c,Hombre,5,148
+confirmacion,sexo,HISCED_c,Hombre,6,171
+confirmacion,sexo,HISCED_c,Hombre,7,185
+confirmacion,sexo,HISCED_c,Hombre,8,339
+confirmacion,sexo,HISCED_c,Hombre,9,164
+confirmacion,sexo,HISCED_c,Mujer,0,47
+confirmacion,sexo,HISCED_c,Mujer,1,135
+confirmacion,sexo,HISCED_c,Mujer,2,144
+confirmacion,sexo,HISCED_c,Mujer,3,237
+confirmacion,sexo,HISCED_c,Mujer,4,191
+confirmacion,sexo,HISCED_c,Mujer,5,130
+confirmacion,sexo,HISCED_c,Mujer,6,229
+confirmacion,sexo,HISCED_c,Mujer,7,210
+confirmacion,sexo,HISCED_c,Mujer,8,324
+confirmacion,sexo,HISCED_c,Mujer,9,119
+confirmacion,sector,ST250Q01JA,Privado,0,133
+confirmacion,sector,ST250Q01JA,Privado,1,582
+confirmacion,sector,ST250Q01JA,Público,0,1052
+confirmacion,sector,ST250Q01JA,Público,1,1595
+confirmacion,sector,ST250Q02JA,Privado,0,84
+confirmacion,sector,ST250Q02JA,Privado,1,632
+confirmacion,sector,ST250Q02JA,Público,0,1071
+confirmacion,sector,ST250Q02JA,Público,1,1573
+confirmacion,sector,ST250Q03JA,Privado,0,276
+confirmacion,sector,ST250Q03JA,Privado,1,439
+confirmacion,sector,ST250Q03JA,Público,0,1790
+confirmacion,sector,ST250Q03JA,Público,1,838
+confirmacion,sector,ST250Q04JA,Privado,0,37
+confirmacion,sector,ST250Q04JA,Privado,1,678
+confirmacion,sector,ST250Q04JA,Público,0,509
+confirmacion,sector,ST250Q04JA,Público,1,2140
+confirmacion,sector,ST250Q05JA,Privado,0,43
+confirmacion,sector,ST250Q05JA,Privado,1,673
+confirmacion,sector,ST250Q05JA,Público,0,657
+confirmacion,sector,ST250Q05JA,Público,1,1984
+confirmacion,sector,ST251Q01JA,Privado,0,264
+confirmacion,sector,ST251Q01JA,Privado,1,290
+confirmacion,sector,ST251Q01JA,Privado,2,115
+confirmacion,sector,ST251Q01JA,Privado,3,39
+confirmacion,sector,ST251Q01JA,Público,0,1988
+confirmacion,sector,ST251Q01JA,Público,1,499
+confirmacion,sector,ST251Q01JA,Público,2,91
+confirmacion,sector,ST251Q01JA,Público,3,35
+confirmacion,sector,ST251Q02JA,Privado,0,456
+confirmacion,sector,ST251Q02JA,Privado,1,188
+confirmacion,sector,ST251Q02JA,Privado,2,47
+confirmacion,sector,ST251Q02JA,Privado,3,14
+confirmacion,sector,ST251Q02JA,Público,0,1298
+confirmacion,sector,ST251Q02JA,Público,1,927
+confirmacion,sector,ST251Q02JA,Público,2,304
+confirmacion,sector,ST251Q02JA,Público,3,71
+confirmacion,sector,ST251Q03JA,Privado,0,74
+confirmacion,sector,ST251Q03JA,Privado,1,248
+confirmacion,sector,ST251Q03JA,Privado,2,251
+confirmacion,sector,ST251Q03JA,Privado,3,138
+confirmacion,sector,ST251Q03JA,Público,0,576
+confirmacion,sector,ST251Q03JA,Público,1,1443
+confirmacion,sector,ST251Q03JA,Público,2,522
+confirmacion,sector,ST251Q03JA,Público,3,90
+confirmacion,sector,ST251Q04JA,Privado,0,9
+confirmacion,sector,ST251Q04JA,Privado,1,255
+confirmacion,sector,ST251Q04JA,Privado,2,230
+confirmacion,sector,ST251Q04JA,Privado,3,215
+confirmacion,sector,ST251Q04JA,Público,0,98
+confirmacion,sector,ST251Q04JA,Público,1,1746
+confirmacion,sector,ST251Q04JA,Público,2,649
+confirmacion,sector,ST251Q04JA,Público,3,135
+confirmacion,sector,ST253Q01JA,Privado,0,5
+confirmacion,sector,ST253Q01JA,Privado,1,16
+confirmacion,sector,ST253Q01JA,Privado,2,22
+confirmacion,sector,ST253Q01JA,Privado,3,47
+confirmacion,sector,ST253Q01JA,Privado,4,56
+confirmacion,sector,ST253Q01JA,Privado,5,81
+confirmacion,sector,ST253Q01JA,Privado,6,295
+confirmacion,sector,ST253Q01JA,Privado,7,198
+confirmacion,sector,ST253Q01JA,Público,0,80
+confirmacion,sector,ST253Q01JA,Público,1,272
+confirmacion,sector,ST253Q01JA,Público,2,262
+confirmacion,sector,ST253Q01JA,Público,3,364
+confirmacion,sector,ST253Q01JA,Público,4,377
+confirmacion,sector,ST253Q01JA,Público,5,424
+confirmacion,sector,ST253Q01JA,Público,6,717
+confirmacion,sector,ST253Q01JA,Público,7,177
+confirmacion,sector,ST254Q01JA,Privado,0,15
+confirmacion,sector,ST254Q01JA,Privado,1,354
+confirmacion,sector,ST254Q01JA,Privado,2,345
+confirmacion,sector,ST254Q01JA,Público,0,193
+confirmacion,sector,ST254Q01JA,Público,1,1941
+confirmacion,sector,ST254Q01JA,Público,2,493
+confirmacion,sector,ST254Q02JA,Privado,0,263
+confirmacion,sector,ST254Q02JA,Privado,1,405
+confirmacion,sector,ST254Q02JA,Privado,2,28
+confirmacion,sector,ST254Q02JA,Público,0,1690
+confirmacion,sector,ST254Q02JA,Público,1,837
+confirmacion,sector,ST254Q02JA,Público,2,30
+confirmacion,sector,ST254Q03JA,Privado,0,134
+confirmacion,sector,ST254Q03JA,Privado,1,398
+confirmacion,sector,ST254Q03JA,Privado,2,172
+confirmacion,sector,ST254Q03JA,Público,0,1426
+confirmacion,sector,ST254Q03JA,Público,1,1071
+confirmacion,sector,ST254Q03JA,Público,2,96
+confirmacion,sector,ST254Q04JA,Privado,0,356
+confirmacion,sector,ST254Q04JA,Privado,1,303
+confirmacion,sector,ST254Q04JA,Privado,2,45
+confirmacion,sector,ST254Q04JA,Público,0,1953
+confirmacion,sector,ST254Q04JA,Público,1,554
+confirmacion,sector,ST254Q04JA,Público,2,77
+confirmacion,sector,ST254Q05JA,Privado,0,613
+confirmacion,sector,ST254Q05JA,Privado,1,70
+confirmacion,sector,ST254Q05JA,Privado,2,13
+confirmacion,sector,ST254Q05JA,Público,0,2262
+confirmacion,sector,ST254Q05JA,Público,1,209
+confirmacion,sector,ST254Q05JA,Público,2,78
+confirmacion,sector,ST254Q06JA,Privado,0,18
+confirmacion,sector,ST254Q06JA,Privado,1,120
+confirmacion,sector,ST254Q06JA,Privado,2,423
+confirmacion,sector,ST254Q06JA,Privado,3,149
+confirmacion,sector,ST254Q06JA,Público,0,232
+confirmacion,sector,ST254Q06JA,Público,1,885
+confirmacion,sector,ST254Q06JA,Público,2,1183
+confirmacion,sector,ST254Q06JA,Público,3,321
+confirmacion,sector,HISEI_q,Privado,0,41
+confirmacion,sector,HISEI_q,Privado,1,77
+confirmacion,sector,HISEI_q,Privado,2,101
+confirmacion,sector,HISEI_q,Privado,3,145
+confirmacion,sector,HISEI_q,Privado,4,340
+confirmacion,sector,HISEI_q,Público,0,532
+confirmacion,sector,HISEI_q,Público,1,597
+confirmacion,sector,HISEI_q,Público,2,561
+confirmacion,sector,HISEI_q,Público,3,501
+confirmacion,sector,HISEI_q,Público,4,388
+confirmacion,sector,ST255Q01JA,Privado,0,68
+confirmacion,sector,ST255Q01JA,Privado,1,165
+confirmacion,sector,ST255Q01JA,Privado,2,145
+confirmacion,sector,ST255Q01JA,Privado,3,222
+confirmacion,sector,ST255Q01JA,Privado,4,80
+confirmacion,sector,ST255Q01JA,Privado,5,40
+confirmacion,sector,ST255Q01JA,Público,0,470
+confirmacion,sector,ST255Q01JA,Público,1,1134
+confirmacion,sector,ST255Q01JA,Público,2,577
+confirmacion,sector,ST255Q01JA,Público,3,358
+confirmacion,sector,ST255Q01JA,Público,4,78
+confirmacion,sector,ST255Q01JA,Público,5,44
+confirmacion,sector,ST256Q01JA,Privado,0,141
+confirmacion,sector,ST256Q01JA,Privado,1,490
+confirmacion,sector,ST256Q01JA,Privado,2,53
+confirmacion,sector,ST256Q01JA,Público,0,725
+confirmacion,sector,ST256Q01JA,Público,1,1670
+confirmacion,sector,ST256Q01JA,Público,2,122
+confirmacion,sector,ST256Q02JA,Privado,0,176
+confirmacion,sector,ST256Q02JA,Privado,1,314
+confirmacion,sector,ST256Q02JA,Privado,2,104
+confirmacion,sector,ST256Q02JA,Privado,3,68
+confirmacion,sector,ST256Q02JA,Público,0,1066
+confirmacion,sector,ST256Q02JA,Público,1,1096
+confirmacion,sector,ST256Q02JA,Público,2,204
+confirmacion,sector,ST256Q02JA,Público,3,90
+confirmacion,sector,ST256Q03JA,Privado,0,255
+confirmacion,sector,ST256Q03JA,Privado,1,217
+confirmacion,sector,ST256Q03JA,Privado,2,90
+confirmacion,sector,ST256Q03JA,Privado,3,69
+confirmacion,sector,ST256Q03JA,Público,0,1446
+confirmacion,sector,ST256Q03JA,Público,1,713
+confirmacion,sector,ST256Q03JA,Público,2,158
+confirmacion,sector,ST256Q03JA,Público,3,73
+confirmacion,sector,ST256Q06JA,Privado,0,201
+confirmacion,sector,ST256Q06JA,Privado,1,280
+confirmacion,sector,ST256Q06JA,Privado,2,119
+confirmacion,sector,ST256Q06JA,Privado,3,71
+confirmacion,sector,ST256Q06JA,Público,0,1094
+confirmacion,sector,ST256Q06JA,Público,1,1076
+confirmacion,sector,ST256Q06JA,Público,2,202
+confirmacion,sector,ST256Q06JA,Público,3,104
+confirmacion,sector,ST256Q07JA,Privado,0,256
+confirmacion,sector,ST256Q07JA,Privado,1,274
+confirmacion,sector,ST256Q07JA,Privado,2,91
+confirmacion,sector,ST256Q07JA,Privado,3,44
+confirmacion,sector,ST256Q07JA,Público,0,1396
+confirmacion,sector,ST256Q07JA,Público,1,877
+confirmacion,sector,ST256Q07JA,Público,2,134
+confirmacion,sector,ST256Q07JA,Público,3,58
+confirmacion,sector,ST256Q08JA,Privado,0,218
+confirmacion,sector,ST256Q08JA,Privado,1,251
+confirmacion,sector,ST256Q08JA,Privado,2,110
+confirmacion,sector,ST256Q08JA,Privado,3,70
+confirmacion,sector,ST256Q08JA,Público,0,1287
+confirmacion,sector,ST256Q08JA,Público,1,930
+confirmacion,sector,ST256Q08JA,Público,2,163
+confirmacion,sector,ST256Q08JA,Público,3,55
+confirmacion,sector,ST256Q09JA,Privado,0,89
+confirmacion,sector,ST256Q09JA,Privado,1,482
+confirmacion,sector,ST256Q09JA,Privado,2,104
+confirmacion,sector,ST256Q09JA,Privado,3,21
+confirmacion,sector,ST256Q09JA,Público,0,536
+confirmacion,sector,ST256Q09JA,Público,1,1769
+confirmacion,sector,ST256Q09JA,Público,2,213
+confirmacion,sector,ST256Q09JA,Público,3,55
+confirmacion,sector,ST256Q10JA,Privado,0,187
+confirmacion,sector,ST256Q10JA,Privado,1,283
+confirmacion,sector,ST256Q10JA,Privado,2,101
+confirmacion,sector,ST256Q10JA,Privado,3,94
+confirmacion,sector,ST256Q10JA,Público,0,1007
+confirmacion,sector,ST256Q10JA,Público,1,1072
+confirmacion,sector,ST256Q10JA,Público,2,263
+confirmacion,sector,ST256Q10JA,Público,3,165
+confirmacion,sector,ST251Q06JA,Privado,0,285
+confirmacion,sector,ST251Q06JA,Privado,1,209
+confirmacion,sector,ST251Q06JA,Privado,2,121
+confirmacion,sector,ST251Q06JA,Privado,3,100
+confirmacion,sector,ST251Q06JA,Público,0,1873
+confirmacion,sector,ST251Q06JA,Público,1,508
+confirmacion,sector,ST251Q06JA,Público,2,137
+confirmacion,sector,ST251Q06JA,Público,3,106
+confirmacion,sector,ST251Q07JA,Privado,0,221
+confirmacion,sector,ST251Q07JA,Privado,1,118
+confirmacion,sector,ST251Q07JA,Privado,2,96
+confirmacion,sector,ST251Q07JA,Privado,3,273
+confirmacion,sector,ST251Q07JA,Público,0,1514
+confirmacion,sector,ST251Q07JA,Público,1,434
+confirmacion,sector,ST251Q07JA,Público,2,287
+confirmacion,sector,ST251Q07JA,Público,3,388
+confirmacion,sector,HISCED_c,Privado,0,2
+confirmacion,sector,HISCED_c,Privado,1,7
+confirmacion,sector,HISCED_c,Privado,2,28
+confirmacion,sector,HISCED_c,Privado,3,52
+confirmacion,sector,HISCED_c,Privado,4,46
+confirmacion,sector,HISCED_c,Privado,5,26
+confirmacion,sector,HISCED_c,Privado,6,67
+confirmacion,sector,HISCED_c,Privado,7,141
+confirmacion,sector,HISCED_c,Privado,8,250
+confirmacion,sector,HISCED_c,Privado,9,101
+confirmacion,sector,HISCED_c,Público,0,88
+confirmacion,sector,HISCED_c,Público,1,214
+confirmacion,sector,HISCED_c,Público,2,255
+confirmacion,sector,HISCED_c,Público,3,379
+confirmacion,sector,HISCED_c,Público,4,334
+confirmacion,sector,HISCED_c,Público,5,249
+confirmacion,sector,HISCED_c,Público,6,323
+confirmacion,sector,HISCED_c,Público,7,248
+confirmacion,sector,HISCED_c,Público,8,404
+confirmacion,sector,HISCED_c,Público,9,176

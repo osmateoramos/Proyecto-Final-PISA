@@ -66,7 +66,8 @@ CONSULTORIA/
 - [x] **0.1 Zotero + Better BibTeX.** Zotero 10.0.5 + Better BibTeX + ZotLit Companion instalados (2026-10-04).
   Grupo privado **Proyecto Final PISA**, colección *Proyecto PISA*, con las referencias de `referencias.bib` importadas
   con sus claves (2026-10-05). Detalle y pendientes en [[12 Guía de Zotero]]:
-  - [ ] Vanessa y Brayan: crear su cuenta de Zotero y aceptar la invitación al grupo.
+  - [ ] Brayan: crear su cuenta de Zotero y aceptar la invitación al grupo. *(Vanessa: hecho; al 2026-10-18 está en
+    el grupo y adjuntó los PDF.)*
   - [ ] Enviar a la papelera del grupo `icfes2018puntajes` e `icfes2024acceso` (ya no forman parte del proyecto).
   - [ ] Adjuntar los PDF a medida que se verifiquen las fuentes.
 - [x] **0.2 Obsidian.** Vault abierto con Dataview, ZotLit (carpeta `Literatura`) y Git (Vinzent03). Las notas de
@@ -74,8 +75,10 @@ CONSULTORIA/
 - [x] **0.3 Git + GitHub privado.** Repositorio **Proyecto-Final-PISA** (https://github.com/osmateoramos/Proyecto-Final-PISA,
   rama `main`), sin datos de estudiantes (`.gitignore`). Flujo de trabajo en `README.md` (GitHub Desktop).
   - *Actualización (2026-10-17):* el repositorio es público, para que el profesor lo revise (ver D-02).
-  - [ ] Vanessa y Brayan: aceptar la invitación de GitHub, clonar el repositorio y seguir la sección *Primera vez* del
-    `README.md` (Mateo invita a Brayan: *Settings → Collaborators* en GitHub).
+  - [x] Vanessa y Brayan: aceptar la invitación de GitHub y clonar el repositorio (los dos suben commits desde sus
+    ramas; anotado el 2026-10-18).
+  - [ ] Brayan: seguir la sección *Primera vez* del `README.md` (descargar PISA 2022 y correr la cadena; ver
+    [[17 Plan de trabajo Brayan]]).
 - [x] **0.4 Carpeta `Proyecto_PISA/`** con la estructura de arriba (2026-10-04).
 - [x] **0.5 Preregistro.** Completar y fechar [[09 Hipótesis preregistradas]] **antes** de estimar cualquier modelo.
   - *Hecho:* congeladas el 2026-10-12, commit `f53054d` (anotado el 2026-10-16).
@@ -173,7 +176,7 @@ Script: `02_validacion_ocde.R` — reutiliza `pendiente()` y `estimar_pv()` de `
 > Correlación policórica, análisis paralelo, AFE / AFC, 2PL y GPCM, función de información, omega.
 > **Lectura:** [[Literatura/deayala2009theory|de Ayala]] caps. 4, 5 y 8 y pp. 131–133 · [[Literatura/chen2024structural|Chen y Yung]] caps. 2 y 5 (detalle en [[14 Libros de TRI y SEM]]).
 
-Scripts: `03_nse_medicion.R` (3.1 y 3.2), `03_nse_tri.R` (3.3 y 3.5, D-19) y `03_nse_afc.R` (3.4, Mateo) · paquetes `psych`, `mirt`, `lavaan`, `semTools` (instalados en R 4.4.1 el 2026-10-16,
+Scripts: `03_nse_medicion.R` (3.1 y 3.2), `03_nse_tri.R` (3.3, 3.3b y 3.5; D-19 y D-21) y `03_nse_afc.R` (3.4, D-18) · paquetes `psych`, `mirt`, `lavaan`, `semTools` (instalados en R 4.4.1 el 2026-10-16,
 con `GPArotation` para la rotación oblimin).
 
 > [!note] Decisiones de la F3 en [[03 Registro de decisiones]] (D-16, aceptada por Vanessa el 2026-10-16)
@@ -215,14 +218,21 @@ con `GPArotation` para la rotación oblimin).
       económico mide en un rango amplio (−2,2 a 2,7) y lo cultural (libros) mide muy bien sobre el promedio y poco
       en el extremo bajo (−1,5 a 2,7).
     - Detalle en el resultado de D-19.
+- [ ] **3.3b Dependencia local (P1 de [[14 Libros de TRI y SEM]], D-21):** Q3 de Yen en los tres modelos del 3.3, en
+  los 6.886 y sin pesos. Se marca un par con |Q3| > 0,2 (de Ayala, p. 134). Es exploratorio: no cambia H1.
+  - *Por qué:* D-20 deja a quien no tiene libros con 0 en los 9 ítems de libros a la vez. Si se viola la independencia
+    condicional, la información y la confiabilidad se sobreestiman (de Ayala, p. 131).
 - [ ] **3.4 AFC en la mitad de confirmación:** 1 vs 2 factores con `estimator = "WLSMV"`, `ordered = …`; ajuste,
-  `lavTestLRT()`, `semTools::compRelSEM()`. Con n ≈ 3.700 el χ² rechaza: reportarlo y usar CFI/RMSEA/SRMR.
+  `lavTestLRT()`, `semTools::compRelSEM()`. Con n ≈ 3.400 el χ² rechaza: reportarlo y usar CFI/RMSEA/SRMR.
+  - *Reglas fijadas en D-18 (2026-10-18), antes de correrlo:* H1 con los modelos puros de D-16; sensibilidad sin pesos
+    y otra, exploratoria, con 10 residuos correlacionados entre ítems que se superponen.
 - [x] **3.5 Validez:** correlación de las puntuaciones (EAP) con `HOMEPOS` y `ESCS` oficiales.
   - *Hecho (2026-10-17):* `03_nse_tri.R` → `salidas/nse_validez.csv` (correlación ponderada, 6.886).
     - El factor económico correlaciona 0,96 con HOMEPOS y entre 0,77 y 0,81 con ESCS.
     - El cultural (libros), entre 0,62 y 0,65 con HOMEPOS y entre 0,47 y 0,51 con ESCS.
     - El modelo de 1 dimensión, 0,91 y 0,74.
-- **Salida:** `salidas/nse_parametros_tri.csv`, `salidas/nse_ajuste_afc.csv`, figuras de información.
+- **Salida:** `salidas/nse_parametros_tri.csv`, `salidas/nse_q3_tri.csv`, `salidas/nse_ajuste_afc.csv`,
+  `salidas/nse_cargas_afc.csv`, `salidas/nse_omega_afc.csv`, figuras de información.
 - **Listo cuando:** **Puerta G2** — modelo elegido con ajuste aceptable (CFI ≥ 0,95, RMSEA ≤ 0,06, SRMR ≤ 0,08) o
   desajuste documentado y explicado; H1 resuelta.
 - **Autoevaluación:** ¿Por qué el AFC se hace en la otra mitad? ¿Qué significa *a* alto en "carro"?
@@ -235,13 +245,25 @@ con `GPArotation` para la rotación oblimin).
 
 Script: `04_invarianza.R`.
 
+> [!warning] Antes de programar la F4 (registrar una decisión; ver D-22 y D-23)
+> - **Grupos de H2:** H2 habla de zona rural frente a urbana, pero la zona tiene 3 categorías (rural / pueblo / urbana).
+> - **Muestra:** completa (6.886) o mitad de confirmación; D-16 punto 2 no lo dice.
+> - **Categorías vacías por grupo:** qué se hace si una categoría no aparece en un grupo (la invarianza de umbrales
+>   exige las mismas categorías en todos).
+> - **Magnitud del DIF:** ΔR² ≥ 0,035 (D-22); falta fijar el tipo de R² y el estimador.
+> - **Criterios ΔCFI y ΔRMSEA:** fuente de acceso abierto si D-10 queda en (b) (D-23 punto 6).
+
 - [ ] **4.1 Grupos:** zona (3), sexo (2), sector (2). Verificar n por grupo y celdas vacías en categorías raras.
+  Ajustar primero el modelo en cada grupo por separado (P6, D-21).
 - [ ] **4.2 Secuencia** con `semTools::measEq.syntax(..., ID.cat = "Wu.Estabrook.2016")`: configural → umbrales →
   métrica (cargas) → escalar (interceptos). Criterio: ΔCFI ≤ 0,01 y ΔRMSEA ≤ 0,015.
 - [ ] **4.3 Invarianza parcial:** liberar parámetros uno por uno (índices de modificación) y documentar cuáles.
-- [ ] **4.4 DIF con TRI** (`mirt::multipleGroup` + `DIF()` con ítems ancla) y tamaño del efecto (diferencia en
-  puntaje esperado). ¿Coincide con 4.3?
-- **Salida:** `salidas/invarianza_tabla.csv`, `salidas/nse_items_no_invariantes.csv`.
+- [ ] **4.4 DIF con TRI** (`mirt::multipleGroup` + `DIF()` con ítems ancla) y tamaño del efecto. ¿Coincide con 4.3?
+  - *P4 (D-21):* DIF uniforme y no uniforme, depuración iterativa de las anclas y un segundo método como robustez.
+  - *Magnitud (D-22):* «no despreciable» = ΔR² ≥ 0,035 en las posesiones (ítems ordinales).
+- [ ] **4.5 Medias latentes del NSE (P6, D-21):** con el nivel de invarianza que se sostenga (total o parcial), comparar
+  las medias latentes del NSE entre zonas y sectores, con la parametrización theta.
+- **Salida:** `salidas/invarianza_tabla.csv`, `salidas/nse_items_no_invariantes.csv`, `salidas/nse_medias_latentes.csv`.
 - **Listo cuando:** H2 resuelta; queda decidido con qué restricciones entra el NSE a F6.
 - **Autoevaluación:** Si "carro" no es invariante entre zonas, ¿qué consecuencia tiene comparar el NSE rural y urbano?
 
@@ -259,23 +281,41 @@ Script: `05_tri_competencias.R` · `mirt`.
   233 de 234 ítems con parámetros; `CMA112Q02S` figura como *Dropped* (retirado de la escala internacional; ver D-09).
   En Colombia, `CMA112Q02S` y `CMA143Q01S` no tienen ninguna respuesta: **quedan 232 calibrables** (emplear 75,
   interpretar 57, razonar 53, formular 47; `revision_pisa2022_col.R`, 2026-10-05).
-  Guardar `salidas/items_competencia.csv`.
-- [ ] **5.2 Matriz de respuestas:** 7.222 estudiantes × ítems clasificados (S y C); categorías parciales para los
+  Guardar `salidas/items_competencia.csv`. *D-09 cerrada (2026-10-18): `CMA112Q02S` se excluye, como en la OCDE.*
+- [ ] **5.2 Matriz de respuestas:** ~~7.222~~ estudiantes × ítems clasificados (S y C); categorías parciales para los
   politómicos. Las celdas vacías por la ruta adaptativa se dejan `NA` (la ruta depende de respuestas observadas:
   es ignorable si se calibra con todas las etapas juntas).
+  - *Muestra por decidir (D-23 punto 2):* el 7.222 es el conteo de la revisión del 29/09; la muestra del proyecto es la
+    de 6.886 (D-14, D-16).
+  - *P2 (D-21):* calibrar los 232 ítems y repetir sin los que tienen menos de 500 respuestas, como robustez (F7).
 - [ ] **5.3 Calibración unidimensional vs multidimensional.** (a) `mirt(datos, 1, …)`; (b) modelo confirmatorio de 4
   dimensiones, cada ítem cargando solo en su competencia (`mirt.model()` con `COV = F1*F2*F3*F4`, método
   `QMCEM` o `MHRM` por la dimensionalidad). Comparar AIC/BIC y ajuste → **H8**.
+  - *P1 (D-21):* revisar la dependencia local con el Q3 dentro de cada unidad (estímulo común). En Colombia, 211 de los
+    234 ítems están en unidades de 2 o más ítems ([[14 Libros de TRI y SEM]]).
+  - *D-23 punto 4:* hacer antes una corrida piloto de tiempos (semana 4).
 - [ ] **5.4 Calificar:** puntajes por competencia para cada estudiante (EAP y 10 valores plausibles con
   `fscores(..., plausible.draws = 10)`); confiabilidad empírica por competencia.
+  - **Riesgo (D-23 punto 1):** sin condicionar en el NSE, los PV propios atenúan el efecto del NSE en la F6. Propuesta:
+    regresión latente (`covdata` y `formula` de `mirt`) sobre el NSE de la G2 y las covariables del SEM. Decidirlo
+    antes de la F5.
 - [ ] **5.5 Validar contra la OCDE:** correlación ponderada entre el puntaje propio y los PV oficiales de la misma
-  competencia (`MPFS`, `MPEM`, `MPIN`, `MPRE`) → **H7**. Comparar dificultades propias con los parámetros
-  internacionales de la tabla A.3.
-- [ ] **5.6 DIF por NSE dentro de cada competencia:** cuartil bajo vs alto de ESCS (o del NSE de O1); solo ítems con
-  ≥100 respuestas por grupo (175 en la revisión); `multipleGroup` con anclas + `DIF()`; Benjamini-Hochberg; tamaño del
-  efecto. ¿En qué competencia se concentra? → **H3**.
+  competencia (`MPFS`, `MPEM`, `MPIN`, `MPRE`) → **H7**, calculada como en D-22 (promedio de las 10 correlaciones PV a
+  PV). Comparar dificultades propias con los parámetros internacionales de la tabla A.3.
+  - *P3 (D-21):* antes de comparar dificultades, llevar la métrica propia a la de la OCDE (enlace). La correlación de H7
+    no necesita enlace.
+- [ ] **5.6 DIF por NSE dentro de cada competencia:** cuartil bajo vs alto del NSE elegido en la G2 (con ESCS como
+  robustez; D-22); solo ítems con ≥100 respuestas por grupo (175 en la revisión del 29/09: recontar, D-23 punto 3);
+  `multipleGroup` con anclas + `DIF()`; Benjamini-Hochberg; tamaño del efecto. ¿En qué competencia se concentra? →
+  **H3**.
+  - *Magnitud (D-22):* categoría B o C del ETS (|ΔMH| > 1) en los ítems dicotómicos; ΔR² ≥ 0,035 en los de crédito
+    parcial; emparejando con el θ de la TRI.
+  - *P4 (D-21):* DIF uniforme y no uniforme, depuración de anclas, segundo método y revisión del contenido antes de
+    hablar de sesgo.
 - [ ] **5.7 Omisiones (D-05):** calificar dos veces — (a) omitida = 0 (criterio OCDE); (b) omisión rápida (NT10) = `NA`
-  — y comparar la brecha Q4–Q1 por competencia en desviaciones estándar → **H4**.
+  — y comparar la brecha Q4–Q1 por competencia en desviaciones estándar → **H4**, con la prueba de D-22.
+  - *P5 (D-21):* un tercer tratamiento como sensibilidad (crédito fraccional 1/m, o la omisión como categoría en un
+    modelo nominal). H4 no cambia.
 - **Salida:** `salidas/items_competencia.csv`, `salidas/mat_parametros_mirt.csv`, `salidas/puntajes_competencia.rds`
   (no va a Git), `salidas/validacion_ocde_competencias.csv`, `salidas/mat_dif.csv`, `salidas/brecha_omisiones.csv`.
 - **Listo cuando:** **Puerta G3** — modelo de 4 competencias elegido o descartado con argumento; ítems con n
@@ -296,9 +336,13 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 - [ ] **6.2 Estimación por cada conjunto de puntajes plausibles** (los 10 propios de F5) con
   `sampling.weights = "W_FSTUWT"` y `cluster = "CNTSCHID"`; combinar con `lavaan.mi` (Rubin). **Verificar** que
   `lavaan` acepta pesos con WLSMV; si no: **alternativa en dos pasos** (puntuaciones del NSE + regresiones con BRR).
+  - *Comprobado con datos simulados (D-18, 2026-10-18):* `lavaan` 0.7-3 acepta WLSMV con `sampling.weights` y
+    faltantes por pares.
+  - *Por decidir antes de la F6 (D-23 punto 5):* errores estándar con BRR completo (≈ 810 ajustes) o cluster-robustos.
 - [ ] **6.3 Robustez:** repetir con los PV oficiales de la OCDE (`MPEM`, `MPFS`, `MPIN`, `MPRE`).
 - [ ] **6.4 Igualdad de efectos** entre competencias (prueba de Wald o modelo restringido vs libre). Contrastar con el
-  resultado exploratorio: interpretar − emplear = 3,9 (z = 2,61, PV OCDE) → H5.
+  resultado exploratorio: interpretar − emplear = 3,9 (z = 2,61, PV OCDE) → H5. Si la G2 elige 2 dimensiones, H5 y H6
+  se deciden con el factor económico y el de libros es secundario (D-22).
 - [ ] **6.5 Multigrupo** por zona o sector si F4 lo permite → H6.
 - **Salida:** `salidas/sem_coeficientes.csv`, `salidas/sem_igualdad.csv`, diagrama del modelo.
 - **Listo cuando:** coeficientes con EE, prueba de igualdad y ajuste reportados con ambos tipos de puntaje; H5 y H6

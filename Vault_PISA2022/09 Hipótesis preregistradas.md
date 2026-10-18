@@ -44,3 +44,20 @@ Volver a [[00 Inicio]] · Objetivos en [[06 Objetivos PISA 2022]] · Criterio de
 > modelo de TRI. ~~La fecha de congelamiento de todas las hipótesis sigue pendiente (paso 0.5).~~
 > *Actualización 2026-10-16:* congeladas el 2026-10-12 (commit `f53054d`). La nota tachada era anterior al
 > congelamiento; no cambia ninguna hipótesis.
+
+## Anexo: definiciones operativas (2026-10-18, D-22)
+
+> [!note] Qué es este anexo
+> La tabla de arriba **no cambia**. Algunos términos quedaron sin definir al congelarla, y este anexo los define. Se
+> escribió el 2026-10-18, **después del congelamiento pero antes de estimar cualquier modelo de la F4 a la F6**, y así
+> debe declararse en el informe. El detalle y las fuentes están en D-22 de [[03 Registro de decisiones]].
+
+| Término | Definición |
+|---|---|
+| «Efecto no despreciable» (H2, H3), ítems dicotómicos | Categoría B o C del ETS: prueba MH significativa y \|ΔMH\| > 1 (Calderón et al., 2026, p. 8; Çelik y Kaşık, 2025, p. 643) |
+| «Efecto no despreciable», ítems ordinales o de crédito parcial | ΔR² ≥ 0,035 (Jodoin y Gierl, 2001, citados por Kucam y Gülleroğlu, 2023, p. 130) |
+| H3, ítem con DIF | Prueba TRI significativa con Benjamini-Hochberg al 5 % **y** efecto no despreciable |
+| H4, brecha y reducción | Brecha Q4 − Q1 en DE ponderadas del puntaje con la calificación (a); reducción = brecha (a) − brecha (b) |
+| H4, «significativa» | IC 95 % bilateral de la reducción que excluye 0 (80 réplicas BRR y 10 PV, mismos estudiantes). Queda por decidir antes de la F5 si exige las 4 competencias |
+| H5 y H6 con un NSE de 2 dimensiones | Se deciden con el factor económico; el de libros es secundario y exploratorio |
+| H7, correlación | Promedio de las 10 correlaciones ponderadas PV propio *m* – PV OCDE *m*, por competencia; sin promediar PV ni corregir por atenuación |

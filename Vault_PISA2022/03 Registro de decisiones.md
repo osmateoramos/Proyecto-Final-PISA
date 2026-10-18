@@ -87,7 +87,8 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 - **Dato (2026-10-05):** en Colombia el ítem no tiene ninguna respuesta, igual que `CMA143Q01S` (que sí tiene parámetros
   internacionales). Ninguno de los dos se puede calibrar con datos de Colombia: quedan 232 ítems
   (`revision_pisa2022_col.R`). La alternativa (b) deja de aplicar.
-- **Estado:** propuesta — decidir antes de F5 (paso 5.1).
+- **Estado:** ✅ (a) aceptada por Vanessa (2026-10-18): `CMA112Q02S` se excluye, como en la OCDE. Quedan 232 ítems
+  calibrables (paso 5.1).
 
 ### D-10 · 2026-10-13 · Citas del anteproyecto cuyo texto completo es de pago (Goh et al., 2024; Pohl et al., 2014)
 - **Hallazgo:** en la trazabilidad de "Nada sin fuente", las filas T-Van-04 (`goh2024detection`) y T-Van-09
@@ -515,6 +516,60 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   cadena.
 - **Estado:** ✅ propuesta por Mateo y aprobada por Vanessa en el PR #10 (2026-10-17); falta la revisión de Brayan.
 
+### D-18 · 2026-10-18 · Reglas del AFC en la mitad de confirmación (paso 3.4, H1)
+- **Problema:** D-16 fija la estructura y la regla de H1 (puntos 7 y 8), pero no cómo se especifica y se reporta el
+  AFC. Tampoco dice qué hacer si el ajuste no llega a los cortes de la Puerta G2 (CFI ≥ 0,95, RMSEA ≤ 0,06,
+  SRMR ≤ 0,08), algo probable con 29 indicadores ordinales. Se fija aquí, **antes de correrlo**, para no ajustar el
+  modelo después de ver el resultado.
+- **Quién:** Mateo había reservado este número para el 3.4. Para avanzar, el 3.4 lo hace Vanessa y Mateo lo revisa
+  en el PR.
+- **Lo que muestra el software** (prueba con datos simulados, 2026-10-18; `lavaan` 0.7-3 y `semTools` 0.5-10, las de
+  D-17):
+  - `cfa()` con WLSMV acepta a la vez `ordered`, `sampling.weights` y `missing = "pairwise"`;
+  - `lavTestLRT()` hace la prueba de diferencia escalada (método `satorra.2000` en la salida de `lavaan`);
+  - `compRelSEM()` da el omega de cada factor con indicadores ordinales;
+  - se pueden agregar residuos correlacionados entre indicadores ordinales.
+- **Regla:**
+  1. **Datos:** la mitad de confirmación (3.441) de `datos/COL_nse.rds`, con D-20 completa. Los 29 indicadores entran
+     como ordinales.
+  2. **Modelos:**
+     - M1: 1 factor con los 29;
+     - M2: 2 factores con la estructura de D-16 (cultural 12, económico 17);
+     - M2-AFE: la estructura de `salidas/nse_estructura_afe.csv`, solo exploratoria.
+
+     Factores con varianza 1 (`std.lv = TRUE`) y correlación libre; parametrización delta, la de `lavaan` por defecto.
+  3. **Estimación:** WLSMV, `W_FSTUWT` normalizado a 3.441 (D-16 punto 5) y faltantes por pares (D-16 punto 6).
+  4. **H1 se decide con M1 y M2 puros:** sin residuos correlacionados y sin índices de modificación. Se aplica la regla
+     de D-16 punto 8: CFI *scaled* y *robust* mejoran los dos ≥ 0,01 de M1 a M2, y la correlación entre factores es
+     < 0,90.
+  5. **Se reporta:**
+     - χ² escalado (se espera que rechace con n ≈ 3.400);
+     - CFI, TLI y RMSEA, en versión *scaled* y *robust* (RMSEA con IC 90 %), y SRMR;
+     - `lavTestLRT(M1, M2)`, que no decide H1;
+     - correlación entre factores, cargas estandarizadas y omega por factor (`compRelSEM()`).
+
+     Los errores estándar de `lavaan` no reflejan el diseño por colegios (D-16 punto 5): se usan las estimaciones
+     puntuales.
+  6. **Sensibilidades:**
+     - (a) sin pesos (D-16);
+     - (b) **exploratoria:** M1 y M2 con 10 residuos correlacionados, fijados hoy, entre ítems cuyo contenido se
+       superpone:
+       - `ST250Q02JA` (computador para tareas: portátil, de escritorio o tableta) con `ST254Q02JA` (computadores de
+         escritorio), `ST254Q03JA` (portátiles) y `ST254Q04JA` (tabletas);
+       - `ST250Q04JA` (celular propio con internet) con `ST254Q06JA` (celulares con internet);
+       - `ST253Q01JA` (número de dispositivos con pantalla) con cada uno de los 6 `ST254`.
+
+       Sirve para saber cuánto del desajuste viene de esa superposición. No decide H1.
+  7. **Puerta G2:** el modelo pasa si cumple los tres cortes del plan. Si no, se documenta qué índice falla, cuánto
+     mejora con la sensibilidad (b) y cuáles son los 10 residuos de correlación más grandes. El modelo de H1 no se
+     modifica sin una decisión nueva.
+  8. **Problemas de estimación** (no convergencia, varianzas residuales negativas, matriz no definida positiva): se
+     reportan tal cual y se resuelven con una decisión registrada.
+- **Salidas previstas:** `scripts/03_nse_afc.R` → `salidas/nse_ajuste_afc.csv`, `salidas/nse_cargas_afc.csv` y
+  `salidas/nse_omega_afc.csv`.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-18): H1 con los modelos puros y la sensibilidad (b). Mateo la revisa en
+  el PR.
+
 ### D-19 · 2026-10-17 · Detalles de la TRI del NSE que D-16 no fija (pasos 3.3 y 3.5)
 - **Problema:** D-16 (punto 9) fija los modelos: 2PL + GPCM, unidimensional y bidimensional, ponderados,
   comparados con AIC/BIC, con el ajuste de los ítems (S-X²) y las curvas de información. Quedan detalles técnicos
@@ -643,3 +698,110 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - **los puntos 7 y 8 de D-16 (estructura y regla de H1) no cambian**;
   - Mateo corre el 3.4 con los datos ya corregidos.
 - **Estado:** ✅ aceptada por Vanessa (2026-10-17). Mateo la revisa en el PR (afecta los datos de su 3.4).
+
+### D-21 · 2026-10-18 · Mejoras P1–P6 de la nota 14 y dependencia local en la TRI del NSE (P1, F3)
+- **Problema:** [[14 Libros de TRI y SEM]] propuso el 2026-10-05 siete mejoras al plan (P1–P7) y nadie las había
+  aprobado ni rechazado. P1, revisar la dependencia local, estaba prevista para el paso 3.3, que se hizo sin ella.
+- **Por qué importa ahora:** D-20 deja a los 1.002 estudiantes sin libros de la muestra analítica con 0 en los 9 ítems
+  de libros a la vez (`ST255` y los 8 `ST256`; `salidas/nse_recodificacion.csv`). Hay tres señales compatibles con
+  dependencia local, aunque no la prueban:
+  - la información del factor cultural llega a 32–33 en θ = 1,4 (`salidas/nse_informacion_tri.csv`);
+  - las cargas de los libros en el AFE subieron de 0,52–0,74 a 0,69–0,85 con D-20 (resultado del 3.2 en D-16);
+  - el computador para tareas y los portátiles correlacionan 0,836 (`salidas/nse_policorica_exploracion.csv`).
+
+  Si se viola la independencia condicional, la información se sobreestima (de Ayala, p. 131; por verificar).
+- **Decisión** (Vanessa, 2026-10-18): se aprueban P1 a P6 de la nota 14, porque tienen sentido teórico y
+  metodológico. P7 (SEM multinivel) queda opcional para la F7. Cada una entra al plan en su fase:
+  - P1: F3 (paso 3.3b, ahora) y F5.3;
+  - P2: F5.2 y F7;
+  - P3: F5.5;
+  - P4: F4.4, F5.6 y H3 (la magnitud está en D-22);
+  - P5: D-05 y F5.7 (H4 no cambia);
+  - P6: F4.1 y el paso nuevo F4.5.
+- **Regla de P1 en la F3:**
+  1. Q3 de Yen (`residuals(m, type = "Q3")` de `mirt`) en los tres modelos de D-19, en los 6.886.
+     - Sin pesos, porque la función no los admite, igual que `itemfit()`.
+     - Con todas las respuestas disponibles: la prueba con datos simulados del 2026-10-18 mostró que admite
+       faltantes.
+  2. Se marca un par con |Q3| > 0,2: de Ayala (p. 134) lo atribuye a Yen (1993) para instrumentos de al menos 17
+     ítems, y aquí son 29. Como referencia, el Q3 esperado bajo independencia es −1/(L − 1) = −0,036 con L = 29
+     (p. 133). Las dos páginas están por verificar
+     ([[Literatura/deayala2009theory]]).
+  3. Se reportan todos los pares, los marcados y un resumen por bloque: libros, dispositivos y el resto.
+  4. Es **exploratorio**: H1 no cambia. Si hay pares marcados, en la G2 se discute un modelo alternativo (un
+     *testlet* o sumar los ítems dependientes como un solo ítem politómico, como dice P1), que necesitaría una
+     decisión nueva.
+- **Salida prevista:** `scripts/03_nse_tri.R` (sección 3.3b) → `salidas/nse_q3_tri.csv`.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-18).
+
+### D-22 · 2026-10-18 · Definiciones operativas de H2 a H7 (las hipótesis no cambian)
+- **Problema:** desde el congelamiento (2026-10-12) hay términos sin definir:
+  - «efecto no despreciable» en H2 y H3; lo señalaron Brayan ([[17 Plan de trabajo Brayan]], sección 4, 2026-10-12) y
+    la P4 de la nota 14;
+  - en H4, las unidades de la brecha y qué prueba hace «significativa» la reducción;
+  - en H7, cómo se calcula la correlación;
+  - H5 y H6 suponen un NSE de una dimensión, y la G2 puede elegir dos.
+
+  Se definen aquí **antes de estimar cualquier modelo de la F4 a la F6**: no se ha visto ningún resultado de esas
+  fases. Las hipótesis de [[09 Hipótesis preregistradas]] no cambian; se les agrega esta definición.
+- **Definiciones** (Vanessa, 2026-10-18):
+  - **Efecto no despreciable (H2 y H3):**
+    - Ítems dicotómicos de matemáticas (H3): categoría B o C de la clasificación del ETS, es decir, prueba MH
+      significativa y |ΔMH| > 1, con ΔMH = −2,35 ln(α_MH). Las categorías son A (no significativa o |ΔMH| ≤ 1),
+      B (1 < |ΔMH| ≤ 1,5) y C (|ΔMH| > 1,5). Fuente: [[Literatura/calderon2026differential]], p. 8, y
+      [[Literatura/celik2025differential]], p. 643. Las dos notas están verificadas; estas páginas, por verificar.
+    - Ítems ordinales de posesiones (H2) e ítems de crédito parcial de matemáticas: ΔR² ≥ 0,035 (niveles B o C) de
+      Jodoin y Gierl (2001), citados por [[Literatura/kucam2023examination]], p. 130 (por verificar). *Matiz:* de
+      Ayala (p. 334) dice que esos cortes se propusieron para el R² de mínimos cuadrados ponderados; el tipo de R² se
+      fija en la decisión de la F4.
+    - Con el diseño adaptativo, el emparejamiento se hace con el θ de la TRI, no con el puntaje total. El estimador
+      exacto (estratos y depuración de anclas, P4) se fija en las decisiones de la F4 y la F5, antes de correrlas.
+    - En H3, un ítem cuenta si su prueba TRI es significativa con Benjamini-Hochberg al 5 % **y** su efecto es no
+      despreciable.
+  - **H4:**
+    - la brecha Q4 − Q1 se expresa en desviaciones estándar: diferencia de medias dividida por la DE ponderada del
+      puntaje con la calificación (a), omitida = incorrecta, en cada competencia;
+    - la reducción es la brecha con (a) menos la brecha con (b), omisión rápida = faltante. «≥ 0,05 DE» se aplica a
+      esa diferencia;
+    - «significativa» quiere decir que el IC 95 % bilateral de la diferencia excluye 0. Se calcula con las 80 réplicas
+      BRR (Fay 0,5) y los 10 PV (Rubin), con los mismos estudiantes en las dos calificaciones;
+    - **por decidir antes de la F5:** si H4 exige las cuatro competencias o basta una, con corrección por
+      multiplicidad.
+  - **H5 y H6, si la G2 elige 2 dimensiones:** se deciden con el **factor económico**, que mide en todo el rango del
+    NSE y es el más cercano al índice de la OCDE (0,96 con HOMEPOS, `salidas/nse_validez.csv`). El de libros se
+    reporta como secundario y exploratorio. Si la G2 elige 1 dimensión, se aplican tal como están escritas.
+    - *Por coherencia (propuesta, por confirmar):* los cuartiles de NSE de H3 y H4 salen del mismo NSE elegido en la
+      G2 (el factor económico si es 2D), con ESCS como robustez (F7.1).
+  - **H7:** la correlación es el promedio de las 10 correlaciones ponderadas entre el PV propio *m* y el PV de la OCDE
+    *m* (*m* = 1…10), por competencia. No se promedian los PV por estudiante ni se corrige por atenuación. La segunda
+    parte de H7 (más alta con la propia competencia que con las otras) se calcula igual.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-18), salvo los dos puntos marcados «por decidir» y «propuesta». Se
+  copian como anexo en [[09 Hipótesis preregistradas]].
+
+### D-23 · 2026-10-18 · Pendientes de la F5 y la F6 detectados en la revisión del 2026-10-18
+- **Problema:** la revisión de tutor del 2026-10-18 encontró puntos del plan que hay que decidir antes de que
+  lleguen sus fases. Se registran ahora para no improvisarlos.
+- **Propuestas:**
+  1. **Valores plausibles propios condicionados (5.4).** El plan los genera con `fscores(plausible.draws = 10)` desde
+     un MIRT sin covariables.
+     - Si el NSE no está en el modelo que genera los PV, su efecto en la F6 sale atenuado hacia 0 (interpretación
+       técnica de Claude; **falta la fuente**: buscar en el capítulo de escalamiento del Technical Report cómo
+       condiciona la OCDE sus PV y registrarlo).
+     - `mirt` 1.46.1 tiene los argumentos `covdata` y `formula` de regresión latente (comprobado el 2026-10-18).
+     - Propuesta: generar los PV con regresión latente sobre el NSE elegido en la G2 y las covariables del SEM
+       (sexo, grado, zona, sector).
+     - También afecta a H7: los PV de la OCDE están condicionados.
+  2. **Muestra de calibración (5.2).** El plan dice 7.222 estudiantes, pero la muestra del proyecto es la de 6.886
+     (D-14, D-16). Alternativas: calibrar en los 6.886, o calibrar con todos los que tienen respuestas y calificar a
+     los 6.886.
+  3. **Ítems con ≥ 100 respuestas por grupo (5.6).** El 175 viene de la revisión del 29/09, anterior a D-13 y D-14:
+     hay que recontarlos con la muestra y las definiciones vigentes.
+  4. **Corrida piloto de tiempos** en la semana 4. La F5 es costosa: 232 ítems, 4 dimensiones, todo dos veces por D-05,
+     más el DIF.
+  5. **Errores estándar de la F6.** Pesos con conglomerado no es BRR; un BRR completo son unos 810 ajustes (10 PV ×
+     81 pesos). Con menos que BRR, el criterio C2 de [[08 Rúbrica de desarrollo]] no llega a «Ejemplar», y hay que
+     declararlo.
+  6. **Criterios ΔCFI y ΔRMSEA de la F4.** Si D-10 queda en (b), Chen (2007) sale del proyecto y hace falta otra
+     fuente de acceso abierto.
+- **Estado:** propuesta. Cada punto se decide antes de su fase: el 6, antes de la F4; del 1 al 4, antes de la F5; el
+  5, antes de la F6.

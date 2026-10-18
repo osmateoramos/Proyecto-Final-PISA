@@ -111,7 +111,18 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - Con (a) el argumento no cambia, pero las dos citas quedan apoyadas solo en el resumen y así se declara en la
     memoria.
 - **Propuesta:** ninguna todavía; la decisión es de los tres integrantes.
-- **Estado:** propuesta — decidir entre Vanessa, Mateo y Brayan antes de aplicar las correcciones al anteproyecto.
+- **Posición de Vanessa (2026-10-18):** el equipo no va a pagar fuentes, así que elige (b): lo que no se puede leer
+  completo no se cita. La extiende a las otras fuentes de pago que cita el anteproyecto:
+  - Rutkowski y Rutkowski (2013), línea 102 del `.Rmd`: confiabilidad del índice de posesiones entre países (la
+    frase ya dice "según su resumen").
+  - Chen (2007), línea 258: criterios de cambio en el ajuste para la invarianza (F4). Con (b) la F4 necesita otra
+    fuente de acceso abierto para esos criterios.
+  - Rubin (1987), línea 262: reglas para combinar los valores plausibles. La misma regla está en el Technical Report
+    (p. 226; fila 16 de `Literatura/oecd2024pisa2022tr`, por verificar), que es de acceso abierto y puede reemplazar
+    la cita.
+  - Las notas de estas cinco fuentes no cambian hasta que decidan Mateo y Brayan.
+- **Estado:** propuesta — Vanessa eligió (b) el 2026-10-18; faltan Mateo y Brayan antes de aplicar las correcciones
+  al anteproyecto.
 
 ### D-11 · 2026-10-13 · Cómo se codifica una abstención en el banco de evaluación
 - **Problema:** en `evaluacion/banco_Vanessa.csv`, las cinco preguntas del corpus en que el tratamiento A se abstuvo

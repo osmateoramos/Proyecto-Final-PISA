@@ -49,7 +49,9 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 - **Alternativas:** (a) omitida = incorrecta (criterio OCDE); (b) omisión rápida (NT10) = faltante; (c) ambas, como
   análisis de sensibilidad.
 - **Propuesta:** (c) — es la base de H4.
-- **Estado:** pendiente — se fija en F5, tras separar omitido / no alcanzado / no administrado (paso 1.2).
+- **Estado:** ✅ cerrada en D-27 (2026-10-18). Se usan las dos, (a) y (b), y además una tercera sensibilidad.
+  - La omisión rápida es la que tarda menos del 10 % del tiempo **medio** del ítem en Colombia (NT10, sin tope).
+  - ~~El script de revisión usaba la mediana~~: era un error, ver [[11 Protocolo de verificación]].
 
 ### D-06 · 2026-10-01 · Sin RAG para gestionar la información; vault como fuente de verdad
 - **Alternativas:** (a) RAG como base de la gestión de la información; (b) Obsidian como fuente de verdad, con
@@ -910,6 +912,8 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
      fuente de acceso abierto.
 - **Estado:** propuesta. Cada punto se decide antes de su fase: el 6, antes de la F4; del 1 al 4, antes de la F5; el
   5, antes de la F6.
+  - *2026-10-18:* el punto 6 quedó cerrado en D-25 y los puntos 1 a 4, en D-27. Sigue abierto el 5 (errores
+    estándar de la F6).
 
 ### D-24 · 2026-10-18 · Puerta G2: modelo del NSE que pasa a la F4–F6
 - **Problema:** según D-16 (punto 9), las puntuaciones del NSE que se usan en la F4–F6 salen del modelo que se elija en
@@ -1157,4 +1161,11 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 - **Salidas previstas:** `scripts/05_tri_competencias.R` → `salidas/mat_parametros_mirt.csv`, `mat_ajuste.csv`,
   `validacion_ocde_competencias.csv`, `mat_dif.csv`, `brecha_omisiones.csv`; puntajes en
   `datos/COL_puntajes_competencia.rds` (no va a Git).
-- **Estado:** propuesta — la decide Vanessa.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-18), tal cual:
+  - los 6.886;
+  - valores plausibles condicionados;
+  - NT10 con la media y sin tope;
+  - H4 con al menos una competencia, con Holm;
+  - el resto como está propuesto.
+
+  Con esto quedan cerrados D-05 y los puntos 1 a 4 de D-23. Mateo y Brayan la revisan en el PR.

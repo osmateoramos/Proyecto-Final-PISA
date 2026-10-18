@@ -307,7 +307,8 @@ Script: `04_invarianza.R`.
 
 Script: `05_tri_competencias.R` · `mirt`.
 
-- [ ] **5.1 Clasificación de ítems por competencia.** Tabla ítem → competencia / contenido / formato desde la hoja
+- [x] **5.1 Clasificación de ítems por competencia.** *Hecho (2026-10-18):* `scripts/05_explorar_items.R` →
+  `salidas/items_competencia.csv`. Las reglas de la F5 están en D-27. Tabla ítem → competencia / contenido / formato desde la hoja
   *Mathematics-CBA* del anexo A del Technical Report 2022 (`Proyecto_PISA/documentacion/PISA2022_TechnicalReport_AnexoA_clasificacion_items.xlsx`):
   233 de 234 ítems con parámetros; `CMA112Q02S` figura como *Dropped* (retirado de la escala internacional; ver D-09).
   En Colombia, `CMA112Q02S` y `CMA143Q01S` no tienen ninguna respuesta: **quedan 232 calibrables** (emplear 75,

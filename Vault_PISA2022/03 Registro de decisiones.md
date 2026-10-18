@@ -1169,3 +1169,16 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - el resto como está propuesto.
 
   Con esto quedan cerrados D-05 y los puntos 1 a 4 de D-23. Mateo y Brayan la revisan en el PR.
+- **Piloto de tiempos** (D-23 punto 4; script del scratchpad, no del proyecto; 2026-10-18, con el DIF de la F4
+  corriendo al mismo tiempo, así que los tiempos están inflados):
+  - matriz de 6.886 × 232 (170 ítems 2PL y 62 GPCM), con dato en el 11,7 % de las celdas por el diseño adaptativo;
+  - 1 dimensión, con pesos: unos 2 s por ciclo del EM;
+  - 4 dimensiones, `QMCEM` con pesos y los puntos de integración por defecto: unos 70 s por ciclo, es decir,
+    varias horas;
+  - 4 dimensiones, `QMCEM` con pesos y 1.000 puntos: unos 13 s por ciclo, del orden de 1 a 2 horas;
+  - **`MHRM` no admite pesos en `mirt` 1.46.1** (el ajuste se detiene con un error). Sin pesos, el piloto se detuvo
+    antes de terminar.
+  - *Por decidir al retomar (cambia el punto 3):* cuántos puntos de integración usa `QMCEM`. La propuesta es 1.000,
+    con pesos, en segundo plano y con caché.
+  - Calibrar cada competencia por separado se descarta: la ruta adaptativa depende de ítems de otras competencias, y la
+    falta de datos solo es ignorable si se calibran todas juntas (plan, paso 5.2).

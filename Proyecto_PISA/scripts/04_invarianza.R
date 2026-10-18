@@ -218,6 +218,10 @@ dif_una_vuelta <- function(X, g, tipos, anclas, probar, esquema) {
       data.table(item = js, X2 = round(r[js, "X2"], 2), gl = r[js, "df"], p = r[js, "p"]) }))
 }
 REHACER_DIF <- REHACER || Sys.getenv("REHACER_DIF") == "1"      # rehace solo el DIF, sin repetir el AFC
+# Un caché con X² negativos viene de la corrida inválida con pesos (D-26): no se usa.
+invalido <- function(x) is.null(x) || !"X2" %in% names(x) || any(x$X2 < -1, na.rm = TRUE)
+if (file.exists(CACHE_DIF) && !REHACER_DIF && invalido(readRDS(CACHE_DIF))) {
+  reloj("El caché del DIF es de la corrida inválida con pesos (D-26): se rehace"); REHACER_DIF <- TRUE }
 if (file.exists(CACHE_DIF) && !REHACER_DIF) {
   dif <- readRDS(CACHE_DIF); reloj("DIF leído del caché", basename(CACHE_DIF))
 } else {
@@ -226,6 +230,7 @@ if (file.exists(CACHE_DIF) && !REHACER_DIF) {
   # Caché parcial: cada análisis x factor terminado se guarda, para no repetirlo si algo falla después
   CACHE_PARCIAL <- file.path(DATOS, "COL_inv_dif_parcial.rds")
   hechos <- if (file.exists(CACHE_PARCIAL) && Sys.getenv("REHACER_DIF") != "1") readRDS(CACHE_PARCIAL) else list()
+  hechos <- Filter(Negate(invalido), hechos)                     # descarta lo que venga de la corrida con pesos
   dif <- rbindlist(lapply(names(ANALISIS), function(a) rbindlist(lapply(names(FACTORES), function(fc) {
     clave <- paste(a, fc)
     if (!is.null(hechos[[clave]])) { reloj("4.4", clave, "leído del caché parcial"); return(hechos[[clave]]) }

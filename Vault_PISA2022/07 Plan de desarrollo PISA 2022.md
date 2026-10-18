@@ -284,17 +284,31 @@ Script: `04_invarianza.R`.
 > - **Magnitud del DIF:** ΔR² ≥ 0,035 (D-22); falta fijar el tipo de R² y el estimador.
 > - **Criterios ΔCFI y ΔRMSEA:** fuente de acceso abierto si D-10 queda en (b) (D-23 punto 6).
 
-- [ ] **4.1 Grupos:** zona (3), sexo (2), sector (2). Verificar n por grupo y celdas vacías en categorías raras.
+- [x] **4.1 Grupos:** zona (3), sexo (2), sector (2). Verificar n por grupo y celdas vacías en categorías raras.
   Ajustar primero el modelo en cada grupo por separado (P6, D-21).
-- [ ] **4.2 Secuencia** con `semTools::measEq.syntax(..., ID.cat = "Wu.Estabrook.2016")`: configural → umbrales →
+- [x] **4.2 Secuencia** con `semTools::measEq.syntax(..., ID.cat = "Wu.Estabrook.2016")`: configural → umbrales →
   métrica (cargas) → escalar (interceptos). Criterio: ΔCFI ≤ 0,01 y ΔRMSEA ≤ 0,015.
-- [ ] **4.3 Invarianza parcial:** liberar parámetros uno por uno (índices de modificación) y documentar cuáles.
+- [x] **4.3 Invarianza parcial:** liberar parámetros uno por uno (índices de modificación) y documentar cuáles.
 - [ ] **4.4 DIF con TRI** (`mirt::multipleGroup` + `DIF()` con ítems ancla) y tamaño del efecto. ¿Coincide con 4.3?
   - *P4 (D-21):* DIF uniforme y no uniforme, depuración iterativa de las anclas y un segundo método como robustez.
   - *Magnitud (D-22):* «no despreciable» = ΔR² ≥ 0,035 en las posesiones (ítems ordinales).
-- [ ] **4.5 Medias latentes del NSE (P6, D-21):** con el nivel de invarianza que se sostenga (total o parcial), comparar
+- [x] **4.5 Medias latentes del NSE (P6, D-21):** con el nivel de invarianza que se sostenga (total o parcial), comparar
   las medias latentes del NSE entre zonas y sectores, con la parametrización theta.
 - **Salida:** `salidas/invarianza_tabla.csv`, `salidas/nse_items_no_invariantes.csv`, `salidas/nse_medias_latentes.csv`.
+- *Hecho (2026-10-18, Vanessa):* `04_invarianza.R` → `salidas/invarianza_por_grupo.csv`, `invarianza_tabla.csv`,
+  `nse_items_no_invariantes.csv` y `nse_medias_latentes.csv` (muestra completa; D-25).
+  - **4.1:** el AFC del AFE converge en los 7 grupos (CFI *scaled* de 0,929 a 0,954).
+  - **4.2:** la invarianza **escalar total** se sostiene en zona, rural–urbana, sexo y sector. El peor cambio es del
+    sector: ΔCFI −0,007 y ΔRMSEA +0,002, dentro de los cortes.
+  - **4.3:** no hizo falta liberar ningún parámetro.
+  - **4.5:** diferencias de medias latentes en DE frente al grupo de referencia:
+    - rural frente a urbana: −0,95 en el factor económico y −0,17 en libros;
+    - pueblo frente a urbana: −0,63 y −0,19;
+    - privado frente a público: +1,43 y +0,60;
+    - hombre frente a mujer: +0,05 y −0,12.
+  - **Falta el 4.4 (DIF)** para cerrar H2. La primera corrida fue inválida (D-26); la corregida estaba en curso al
+    cerrar la sesión del 2026-10-18. Aun así, el paso escalar rural–urbana no empeora (ΔCFI −0,003), así que la primera
+    condición de H2 no se cumple.
 - **Listo cuando:** H2 resuelta; queda decidido con qué restricciones entra el NSE a F6.
 - **Autoevaluación:** Si "carro" no es invariante entre zonas, ¿qué consecuencia tiene comparar el NSE rural y urbano?
 

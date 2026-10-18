@@ -428,7 +428,9 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
       (−0,036; n = 2.362), así que no lo causan las decisiones de D-16.
     - Se usó la matriz que `psych` suaviza. Queda casi singular, y por eso el RMSEA, el TLI y el BIC del AFE no se
       interpretan (el RMSR baja de 0,089 con 1 factor a 0,039 con 2).
-    - No hay ítems duplicados: el par más alto es computador–portátiles (0,85).
+    - No hay ítems duplicados: el par más alto es computador–portátiles (~~0,85~~ 0,84: `ST250Q02JA`–`ST254Q03JA`,
+      0,836 en `salidas/nse_policorica_exploracion.csv`). *Corregido el 2026-10-18: el 0,85 no coincidía con la
+      salida vigente y no se sabe de qué corrida salió (error de Claude).*
   - **Análisis paralelo:** dominan 2 autovalores (10,12 y 3,16; el tercero es 0,66).
     - El criterio de factores sugiere 7 y el de componentes, 4.
     - El AFE de 3 factores solo agrega un «factor» de un ítem: motos (0,82).
@@ -519,8 +521,8 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   que cambian lo que se reporta. D-17 y D-18 las reservó Mateo (entorno de R y detalles del 3.4).
 - **Lo que muestran el software y los datos** (`mirt` 1.46.1, la misma versión del entorno que propone Mateo):
   - `itemfit()` no recibe pesos ni imputa faltantes, y el S-X² exige casos completos (`na.rm = TRUE`);
-  - en la mitad de exploración solo el 57 % tiene los 29 indicadores (1.966 de 3.445,
-    `salidas/nse_policorica_diagnostico.csv`). Estos faltantes vienen **sobre todo de los saltos del cuestionario**:
+  - en la mitad de exploración solo el 57 % tiene los 29 indicadores (1.966 de 3.445, cifra de antes de D-20;
+    con D-20 completa, `salidas/nse_policorica_diagnostico.csv` da 2.362, el 69 %; aclarado el 2026-10-18). Estos faltantes vienen **sobre todo de los saltos del cuestionario**:
     a quien no tiene libros no se le preguntan los tipos de libros (D-20). *Corrección del 2026-10-17: antes decía
     «sobre todo por los "No sé"», un error de Claude;*
   - `testinfo()` admite `degrees`, que da la información a lo largo de cada eje en un modelo de 2 dimensiones.
@@ -554,6 +556,15 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   `nse_parametros_tri.csv`, `nse_tri_cargas_2d.csv`, `nse_itemfit_tri.csv`, `nse_informacion_tri.csv` y `.png`,
   `nse_confiabilidad_tri.csv` y `nse_validez.csv`; 6.886 estudiantes; 2026-10-17; con D-20 completa y el entorno de
   D-17):
+  - **Corrección (2026-10-18, error de Claude):** `salidas/nse_tri_cargas_2d.csv` está mal.
+    - La columna `carga_CUL` sale en 0 en todos los ítems, y el `h2` de los ítems culturales también.
+    - El factor cultural sí está estimado: en `datos/COL_nse_tri_modelos.rds`, la pendiente cultural de `ST255Q01JA`
+      es 2,942 (D-16) y 2,976 (AFE).
+    - `summary()` de `mirt` 1.46.1 devuelve 0 en esa columna en los dos modelos de 2 dimensiones, también con
+      `rotate = "none"`, y el script no lo comprobó.
+    - Ninguna cifra de esta decisión sale de ese archivo.
+    - **Pendiente:** corregir `03_nse_tri.R` y regenerar la tabla antes de fusionar el PR #12. Hasta entonces, la tabla
+      no se usa.
   - **Convergencia:** los tres modelos convergieron. El de 2 dimensiones de D-16 necesitó 811 iteraciones del EM.
   - **Comparación** (descriptiva, punto 4):
     - AIC de 344.517 (1D), 329.821 (2D de D-16) y 327.986 (2D del AFE); el BIC sigue el mismo orden;

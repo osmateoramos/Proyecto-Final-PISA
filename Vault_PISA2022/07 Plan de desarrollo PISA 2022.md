@@ -229,10 +229,18 @@ con `GPArotation` para la rotación oblimin).
     - No hay dependencia positiva dentro de los libros en 2D. Sí la hay en baños–sanitarios (0,46) y en
       educación–ocupación de los padres (0,35). Detalle en D-21.
   - *De paso se corrigieron* las cargas del modelo 2D (error de `mirt`, D-19) y se agregó la información de cada ítem.
-- [ ] **3.4 AFC en la mitad de confirmación:** 1 vs 2 factores con `estimator = "WLSMV"`, `ordered = …`; ajuste,
+- [x] **3.4 AFC en la mitad de confirmación:** 1 vs 2 factores con `estimator = "WLSMV"`, `ordered = …`; ajuste,
   `lavTestLRT()`, `semTools::compRelSEM()`. Con n ≈ 3.400 el χ² rechaza: reportarlo y usar CFI/RMSEA/SRMR.
   - *Reglas fijadas en D-18 (2026-10-18), antes de correrlo:* H1 con los modelos puros de D-16; sensibilidad sin pesos
     y otra, exploratoria, con 10 residuos correlacionados entre ítems que se superponen.
+  - *Hecho (2026-10-18, Vanessa):* `03_nse_afc.R` → `salidas/nse_ajuste_afc.csv`, `nse_h1_afc.csv`,
+    `nse_cargas_afc.csv`, `nse_omega_afc.csv` y `nse_residuos_afc.csv` (n = 3.441).
+    - **H1 se acepta:** el CFI sube 0,107 (*scaled*) y 0,218 (*robust*) de 1 a 2 factores, y la correlación entre
+      factores es 0,559.
+    - **El ajuste no llega a los cortes de la G2.** M2 (D-16): CFI 0,921 / 0,731, RMSEA 0,071 / 0,119, SRMR 0,087.
+      La estructura del AFE ajusta mejor (CFI 0,943 / 0,753, RMSEA 0,060 / 0,114, SRMR 0,071).
+    - El desajuste viene sobre todo de educación–ocupación de los padres y de lo digital frente a la vivienda. Detalle
+      en el resultado de D-18.
 - [x] **3.5 Validez:** correlación de las puntuaciones (EAP) con `HOMEPOS` y `ESCS` oficiales.
   - *Hecho (2026-10-17):* `03_nse_tri.R` → `salidas/nse_validez.csv` (correlación ponderada, 6.886).
     - El factor económico correlaciona 0,96 con HOMEPOS y entre 0,77 y 0,81 con ESCS.

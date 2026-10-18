@@ -510,6 +510,15 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     - instaló el entorno con `--instalar`, y R 4.4.1 y los 13 paquetes coinciden con el archivo;
     - el BIC antiguo ya no se puede comparar, porque D-20 cambió los datos del 3.2;
     - las salidas actuales de `03_nse_medicion.R` y `03_nse_tri.R` se generaron con este entorno, el mismo de Mateo.
+  - *Cadena completa, 2026-10-18 (máquina de Vanessa):*
+    - `scripts/00_correr_todo.R` corrió los 9 scripts, de `01a_explorar_faltantes_cog.R` a `03_nse_tri.R`, en
+      7,7 min;
+    - `salidas/` quedó idéntica al commit `4297fe5`;
+    - `01a_explorar_faltantes_cog.R`, `03_explorar_items_nse.R` y `03_explorar_saltos.R` leyeron los `.SAV` con
+      `haven` 2.5.5, así que esa lectura ya está probada;
+    - `01a` y `01b` usaron sus cachés crudos;
+    - la única diferencia fue la fecha que `01b` escribe en [[Datos/PISA2022 - Variables recodificadas]]; el
+      contenido se reprodujo igual.
 - **Límites:** fija los paquetes, no sus dependencias. El `.Rprofile` no corre con Rscript desde `scripts/`: ahí se
   corre `00_verificar_entorno.R` a mano. Docker resuelve las dos cosas.
 - **Para actualizar:** se cambia la fecha de la copia y las versiones del archivo en un PR, y se vuelve a correr la
@@ -572,6 +581,52 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   `salidas/nse_omega_afc.csv`.
 - **Estado:** ✅ aceptada por Vanessa (2026-10-18): H1 con los modelos puros y la sensibilidad (b). Mateo la revisa en
   el PR.
+- **Resultado del 3.4** (`scripts/03_nse_afc.R` → `salidas/nse_ajuste_afc.csv`, `nse_h1_afc.csv`,
+  `nse_cargas_afc.csv`, `nse_omega_afc.csv` y `nse_residuos_afc.csv`; mitad de confirmación, n = 3.441;
+  2026-10-18; los 7 modelos convergieron y `lavaan` no dio avisos):
+  - **H1 se acepta** (D-16 punto 8, con pesos).
+    - De M1 a M2, el CFI *scaled* sube 0,107 y el *robust*, 0,218. La correlación entre factores es 0,559, menor que
+      0,90.
+    - La prueba de diferencia (`lavTestLRT`), que no decide H1, da Δχ² = 1.220,5 con 1 gl.
+    - Se mantiene sin pesos (ΔCFI de 0,116 y 0,196; r = 0,577) y con la estructura del AFE (0,129 y 0,240;
+      r = 0,523).
+  - **Puerta G2: ningún modelo cumple los tres cortes en las dos versiones.**
+
+    | Modelo | CFI *scaled* / *robust* | RMSEA *scaled* / *robust* | SRMR |
+    |---|---|---|---|
+    | M1, 1 factor | 0,814 / 0,514 | 0,108 / 0,160 | 0,137 |
+    | **M2, D-16 (H1)** | **0,921 / 0,731** | **0,071 / 0,119** | **0,087** |
+    | M2-AFE, exploratorio | 0,943 / 0,753 | 0,060 / 0,114 | 0,071 |
+    | M2 sin pesos | 0,911 / 0,710 | 0,081 / 0,124 | 0,083 |
+    | M2 con los 10 residuos (b) | 0,931 / 0,779 | 0,067 / 0,109 | 0,084 |
+
+    - M2-AFE cumple el SRMR y el RMSEA *scaled* (0,0599), pero no el CFI ni las versiones *robust*.
+    - Las versiones *robust* dan siempre un ajuste mucho peor que las *scaled*.
+    - Con M1 más los 10 residuos, `lavaan` no pudo calcular los índices *robust* (NaN o Inf); el CFI *scaled* es
+      0,844. Se reporta tal cual (D-18 punto 8).
+  - **Sensibilidad (b):** los 10 pares fijados de antemano mejoran poco a M2: el CFI sube 0,010 (*scaled*) y 0,048
+    (*robust*), y el SRMR baja 0,003. La superposición de esos ítems no explica el desajuste.
+  - **De dónde viene el desajuste** (los 10 residuos más grandes de M2, `salidas/nse_residuos_afc.csv`):
+    - educación y ocupación de los padres (`HISCED_c`–`HISEI_q`, 0,384). En D-16 están en factores distintos; el
+      Q3 del 3.3b también los marcó (0,350);
+    - residuos negativos entre lo digital y la vivienda: computador para tareas con sanitarios (−0,256) y con baños
+      (−0,216), y software educativo con sanitarios (−0,203);
+    - residuos positivos entre celular propio e internet (0,216), tabletas y lectores electrónicos (0,212), y
+      computador para tareas y software educativo (0,205);
+    - `HISCED_c` con dos tipos de libros (−0,231 y −0,213);
+    - cargas muy bajas: motos (0,08), lectores electrónicos (0,19) y cuarto propio (0,37).
+    - *Interpretación (equipo, por discutir en la G2):* el factor económico mezcla por lo menos lo digital y la
+      vivienda, y la educación de los padres no se comporta como «cultural». Es coherente con el AFE del 3.2 y con el
+      Q3 del 3.3b. Probar otra estructura con estos mismos datos ya sería exploratorio.
+  - **Omega** (`salidas/nse_omega_afc.csv`):
+    - M2: económico 0,925 y cultural 0,936;
+    - M2-AFE: económico 0,888 y libros 0,929;
+    - M1: 0,978.
+  - **Cargas de M2** (`salidas/nse_cargas_afc.csv`):
+    - cultural: libros de 0,74 a 0,88; arte 0,60, instrumentos 0,58 y `HISCED_c` 0,43;
+    - económico: de 0,08 (motos) a 0,85 (computador para tareas).
+  - **Qué falta:** la reunión de la G2 decide qué modelo pasa a la F4–F6 (D-16 punto 9), con este desajuste
+    documentado.
 
 ### D-19 · 2026-10-17 · Detalles de la TRI del NSE que D-16 no fija (pasos 3.3 y 3.5)
 - **Problema:** D-16 (punto 9) fija los modelos: 2PL + GPCM, unidimensional y bidimensional, ponderados,

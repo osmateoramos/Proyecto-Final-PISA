@@ -1,0 +1,5 @@
+comparacion,decide_H1,dCFI_scaled,dCFI_robust,correlacion_factores,cumple_regla,LRT_dif_chi2,LRT_gl,LRT_p,H1
+M1 | principal -> M2 | principal,sí (D-16 punto 8),0.1068,0.2176,0.559,TRUE,1220.5,1,2.1e-267,se acepta
+M1 | sin pesos -> M2 | sin pesos,no: sensibilidad (a),0.1158,0.1955,0.577,TRUE,1479.4,1,9.881313e-324,—
+M1 | principal -> M2_AFE | exploratoria (AFE),no: exploratoria,0.1294,0.2395,0.523,TRUE,1178.8,1,2.51e-258,—
+M1 | con 10 residuos (D-18 b) -> M2 | con 10 residuos (D-18 b),no: sensibilidad (b),0.0867,,0.579,,1046,1,1.85e-229,—

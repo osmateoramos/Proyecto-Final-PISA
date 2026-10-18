@@ -1,0 +1,6 @@
+modelo,factor,omega
+M1,NSE,0.978
+M2,ECO,0.925
+M2,CUL,0.936
+M2_AFE,ECO,0.888
+M2_AFE,CUL,0.929

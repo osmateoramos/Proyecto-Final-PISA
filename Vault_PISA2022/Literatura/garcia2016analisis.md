@@ -12,7 +12,7 @@ bloque: "D. Equidad de la prueba (DIF)"
 metadatos: "página del artículo en Redalyc (consultada 2026-10-04)"
 estado: verificado
 lectura: "IA: resumen automático del texto completo"
-pdf_en_zotero: sí (Vanessa, 2026-10-12)
+pdf_en_zotero: sí (PDF adjuntado el 2026-10-18; Vanessa confirmó que la portada es la de este artículo)
 verificado_por: Vanessa Acosta
 fecha_verificacion: 13/10/2026
 ---

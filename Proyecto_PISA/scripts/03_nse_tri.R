@@ -10,12 +10,13 @@
 #     2 dimensiones del AFE (solo exploratorio);
 #   - comparación con AIC y BIC (pseudo-verosimilitud ponderada: es descriptiva);
 #   - ajuste de cada ítem con S-X² en los casos completos (itemfit no admite faltantes ni pesos);
-#   - información del test y confiabilidad.
+#   - información del test y confiabilidad; información de cada ítem en el modelo 1D (D-19, corrección).
+# 3.3b Dependencia local (D-21): Q3 de Yen en los tres modelos, sin pesos; se marca |Q3| > 0,2.
 # 3.5 Validez: correlación ponderada de las puntuaciones EAP con HOMEPOS y ESCS oficiales.
 #
 # Salidas (solo agregados): salidas/nse_parametros_tri.csv, nse_tri_cargas_2d.csv, nse_ajuste_tri.csv,
-#   nse_itemfit_tri.csv, nse_informacion_tri.csv, nse_confiabilidad_tri.csv, nse_validez.csv y la
-#   figura nse_informacion_tri.png.
+#   nse_itemfit_tri.csv, nse_q3_tri.csv, nse_informacion_tri.csv, nse_confiabilidad_tri.csv, nse_validez.csv
+#   y la figura nse_informacion_tri.png.
 # Caché (no va a Git: puntuaciones individuales): datos/COL_nse_tri.rds.
 #
 # Cómo correrlo (desde Proyecto_PISA/scripts/, después de 03_nse_medicion.R). Tarda varios minutos:
@@ -82,21 +83,54 @@ ajuste[, `:=`(dif_AIC = AIC - min(AIC), dif_BIC = BIC - min(BIC))]
 ajuste[, nota := "pseudo-verosimilitud ponderada: la comparación es descriptiva (D-19)"]
 fwrite(ajuste, file.path(SALIDAS, "nse_ajuste_tri.csv"))
 
+# --- Cargas estandarizadas: la misma fórmula que usa summary() de mirt (función interna Lambdas), con una corrección.
+# En mirt 1.46.1, Lambdas multiplica la carga de cada ítem GPCM por sign(pendiente del factor 1). En los ítems que
+# solo cargan en el factor 2, esa pendiente es 0 y sign(0) = 0 anula la carga: por eso summary() daba 0 en todo el
+# factor cultural (D-19, corrección del 2026-10-18). Aquí se usa el signo de la primera pendiente que no es 0.
+cargas_mirt <- function(m) {
+  pars <- m@ParObjects$pars; J <- length(pars) - 1L
+  nf   <- length(mirt:::ExtractLambdas(pars[[1L]], include_fixed = FALSE))
+  gcov <- mirt:::ExtractGroupPars(pars[[J + 1L]])$gcov
+  stopifnot(ncol(gcov) == nf)
+  L <- do.call(rbind, lapply(seq_len(J), function(i) {
+    p <- pars[[i]]; l <- mirt:::ExtractLambdas(p, include_fixed = FALSE) / 1.702
+    if (p@ncat > 2 && (is(p, "gpcm") || is(p, "nominal"))) {
+      d <- mirt:::nominal_rescale_d(p@par[1:(nf + p@ncat)], nfact = nf, ncat = p@ncat)
+      l <- l * d
+      s <- sign(l[which(l != 0)[1]]); if (is.na(s)) s <- 1
+      l <- l * sqrt((p@ncat - 1) * 1.702) * s
+    }
+    l }))
+  L <- L %*% diag(sqrt(diag(gcov)), nf)
+  F <- L / sqrt(1 + rowSums(L^2))
+  dimnames(F) <- list(extract.mirt(m, "itemnames"), extract.mirt(m, "factorNames")); F
+}
+cargas <- lapply(modelos, cargas_mirt)
+# Control: en 1D coincide con summary(); en 2D, coincide en los ítems que no cargan en el factor 2 (donde mirt no falla)
+s1 <- summary(modelos[["1D"]], verbose = FALSE)
+stopifnot(isTRUE(all.equal(unname(cargas[["1D"]][, 1]), unname(s1$rotF[, 1]), tolerance = 1e-8)))
+for (k in c("2D_D16", "2D_AFE")) { s <- summary(modelos[[k]], verbose = FALSE)
+  solo_eco <- cargas[[k]][, "CUL"] == 0
+  stopifnot(isTRUE(all.equal(unname(cargas[[k]][solo_eco, "ECO"]), unname(s$rotF[solo_eco, "ECO"]), tolerance = 1e-8)),
+            all(cargas[[k]][!solo_eco, "CUL"] > 0)) }
+
 # --- Parámetros del modelo de 1 dimensión (a = discriminación; b = umbrales en la escala del NSE)
-h2_de <- function(s) setNames(as.numeric(s$h2), rownames(s$rotF))   # h2 con nombres de ítem
-s1  <- summary(modelos[["1D"]], verbose = FALSE)
+# Las a de un 2PL y de un GPCM con 3 a 10 categorías no son comparables entre sí. Para comparar ítems se agrega la
+# información de cada ítem: el área bajo su curva de información en theta de -4 a 4 (areainfo) y su % del total.
 p1  <- as.data.table(coef(modelos[["1D"]], IRTpars = TRUE, simplify = TRUE)$items, keep.rownames = "item")
 par1 <- p1[, c("item", "a", grep("^b[0-9]*$", names(p1), value = TRUE)), with = FALSE]
+info_item <- vapply(seq_along(IND), function(j) areainfo(modelos[["1D"]], c(-4, 4), which.items = j)$Info, numeric(1))
 par1[, `:=`(tipo = tipos[match(item, IND)], factor_D16 = ifelse(item %in% CUL, "cultural", "económico"),
-            carga_1D = s1$rotF[item, 1], h2_1D = h2_de(s1)[item])]
+            carga_1D = cargas[["1D"]][item, 1], h2_1D = cargas[["1D"]][item, 1]^2,
+            info_1D = info_item[match(item, IND)], pct_info_1D = 100 * info_item[match(item, IND)] / sum(info_item))]
 num <- names(par1)[sapply(par1, is.numeric)]; par1[, (num) := lapply(.SD, round, 3), .SDcols = num]
-setcolorder(par1, c("item", "factor_D16", "tipo", "a", "carga_1D", "h2_1D"))
+setcolorder(par1, c("item", "factor_D16", "tipo", "a", "carga_1D", "h2_1D", "info_1D", "pct_info_1D"))
 fwrite(par1, file.path(SALIDAS, "nse_parametros_tri.csv"))
 
-# --- Cargas estandarizadas de los modelos de 2 dimensiones
-cargas2 <- rbindlist(lapply(c("2D_D16", "2D_AFE"), function(k) { s <- summary(modelos[[k]], verbose = FALSE)
-  data.table(modelo = k, item = IND, carga_ECO = round(s$rotF[IND, "ECO"], 3), carga_CUL = round(s$rotF[IND, "CUL"], 3),
-             h2 = round(h2_de(s)[IND], 3)) }))
+# --- Cargas estandarizadas de los modelos de 2 dimensiones (con cargas_mirt, no con summary)
+cargas2 <- rbindlist(lapply(c("2D_D16", "2D_AFE"), function(k) { F <- cargas[[k]][IND, , drop = FALSE]
+  data.table(modelo = k, item = IND, carga_ECO = round(F[, "ECO"], 3), carga_CUL = round(F[, "CUL"], 3),
+             h2 = round(rowSums(F^2), 3)) }))
 fwrite(cargas2, file.path(SALIDAS, "nse_tri_cargas_2d.csv"))
 
 # --- Información del test (1D) y a lo largo de cada eje (2D), en theta de -4 a 4
@@ -152,8 +186,8 @@ fwrite(validez, file.path(SALIDAS, "nse_validez.csv"))
 # =============================================================================
 # AJUSTE DE CADA ÍTEM (D-19 punto 5), al final y protegido: si falla, las demás salidas ya están guardadas.
 # =============================================================================
-# S-X² en los casos completos y sin pesos. En los 6.886, ningún caso completo tiene la categoría 0 de
-# ST253Q01JA ni de ST255Q01JA, y el S-X² no se puede calcular (ver D-19, pendiente de decisión).
+# S-X² en los casos completos y sin pesos. Antes de D-20, ningún caso completo tenía la categoría 0 de ST253Q01JA
+# ni de ST255Q01JA y el S-X² no se podía calcular; con D-20 (saltos = 0) ya se calcula.
 n_completos <- sum(complete.cases(X))
 items_fit <- rbindlist(lapply(names(modelos), function(k) {
   f <- tryCatch(as.data.table(suppressMessages(itemfit(modelos[[k]], fit_stats = "S_X2", na.rm = TRUE))),
@@ -167,15 +201,40 @@ setcolorder(items_fit, c("modelo", "item"))
 fwrite(items_fit, file.path(SALIDAS, "nse_itemfit_tri.csv"))
 
 # =============================================================================
+# 3.3b DEPENDENCIA LOCAL (D-21): Q3 de Yen, protegido como el S-X²
+# =============================================================================
+# Q3 = correlación entre los residuos de dos ítems (de Ayala, pp. 132-133). Sin pesos (residuals no los admite) y
+# con todas las respuestas disponibles. Se marca |Q3| > 0,2 (de Ayala, p. 134, citando a Yen, 1993, para 17 ítems
+# o más). Bajo independencia, el Q3 esperado es -1/(L - 1) (p. 133). Exploratorio: no decide H1.
+bloque <- function(x) fifelse(grepl("^ST25[56]", x), "libros", fifelse(grepl("^ST25[34]", x), "dispositivos", "otros"))
+q3 <- rbindlist(lapply(names(modelos), function(k) {
+  Q <- tryCatch(residuals(modelos[[k]], type = "Q3", verbose = FALSE), error = function(e) conditionMessage(e))
+  if (is.character(Q)) return(data.table(modelo = k, error = Q))
+  ij <- which(upper.tri(Q), arr.ind = TRUE)
+  data.table(modelo = k, item1 = rownames(Q)[ij[, 1]], item2 = colnames(Q)[ij[, 2]], Q3 = round(Q[ij], 3)) }), fill = TRUE)
+Q3_ESPERADO <- -1 / (length(IND) - 1)
+if ("Q3" %in% names(q3)) {
+  q3[, `:=`(bloque = fifelse(bloque(item1) == bloque(item2), bloque(item1), "entre bloques"), marcado = abs(Q3) > 0.2)]
+  q3_res <- q3[, .(pares = .N, marcados = sum(marcado), Q3_medio = round(mean(Q3), 3), Q3_max = max(Q3),
+                   Q3_min = min(Q3)), by = .(modelo, bloque)]
+}
+fwrite(q3, file.path(SALIDAS, "nse_q3_tri.csv"))
+
+# =============================================================================
 # RESUMEN EN CONSOLA
 # =============================================================================
 cat("Estimación de los tres modelos:", if (is.na(minutos)) "leídos del caché" else paste(minutos, "min"),
     "| todos convergieron\n\n--- Comparación (salidas/nse_ajuste_tri.csv) ---\n")
 print(ajuste[, .(modelo, logLik, parametros, AIC, BIC, dif_AIC, dif_BIC, correlacion_factores, iteraciones)])
-cat("\n--- 1 dimensión: discriminación (a) y carga, de mayor a menor ---\n")
-print(par1[order(-a), .(item, factor_D16, tipo, a, carga_1D, h2_1D)])
+cat("\n--- 1 dimensión: información de cada ítem (área en theta -4 a 4), de mayor a menor; a y carga como referencia ---\n")
+print(par1[order(-info_1D), .(item, factor_D16, tipo, a, carga_1D, info_1D, pct_info_1D)])
+cat("\n--- 2 dimensiones: cargas estandarizadas corregidas (salidas/nse_tri_cargas_2d.csv) ---\n")
+print(dcast(cargas2, item ~ modelo, value.var = c("carga_ECO", "carga_CUL"))[match(IND, item)])
 cat("\n--- Ajuste de ítems (S-X², n =", n_completos, "casos completos): ítems problemáticos por modelo ---\n")
 if ("problematico" %in% names(items_fit)) print(items_fit[, .(problematicos = sum(problematico, na.rm = TRUE), cuales = paste(item[problematico %in% TRUE], collapse = ", ")), by = modelo]) else print(unique(items_fit[, .(modelo, error)]))
+cat("\n--- 3.3b Dependencia local: Q3 por bloque (|Q3| > 0,2 marcado; esperado bajo independencia:",
+    round(Q3_ESPERADO, 3), ") ---\n")
+if (exists("q3_res")) { print(q3_res); cat("Pares marcados:\n"); print(q3[marcado == TRUE][order(modelo, -abs(Q3))]) } else print(q3)
 cat("\n--- Información >= 4 (error estándar <= 0,5) en el rango de theta ---\n")
 cat("1D:", rango(info$info_1D), "| D-16 económico:", rango(info$info_D16_ECO), "| D-16 cultural:", rango(info$info_D16_CUL),
     "| AFE económico:", rango(info$info_AFE_ECO), "| AFE cultural:", rango(info$info_AFE_CUL), "\n")

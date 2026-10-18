@@ -218,10 +218,17 @@ con `GPArotation` para la rotación oblimin).
       económico mide en un rango amplio (−2,2 a 2,7) y lo cultural (libros) mide muy bien sobre el promedio y poco
       en el extremo bajo (−1,5 a 2,7).
     - Detalle en el resultado de D-19.
-- [ ] **3.3b Dependencia local (P1 de [[14 Libros de TRI y SEM]], D-21):** Q3 de Yen en los tres modelos del 3.3, en
+- [x] **3.3b Dependencia local (P1 de [[14 Libros de TRI y SEM]], D-21):** Q3 de Yen en los tres modelos del 3.3, en
   los 6.886 y sin pesos. Se marca un par con |Q3| > 0,2 (de Ayala, p. 134). Es exploratorio: no cambia H1.
   - *Por qué:* D-20 deja a quien no tiene libros con 0 en los 9 ítems de libros a la vez. Si se viola la independencia
     condicional, la información y la confiabilidad se sobreestiman (de Ayala, p. 131).
+  - *Hecho (2026-10-18):* `03_nse_tri.R` (sección 3.3b) → `salidas/nse_q3_tri.csv`.
+    - Pares marcados de 406: 69 con 1 dimensión, 10 con la de D-16 y 13 con la del AFE.
+    - El patrón de 1D (positivos dentro de los libros, negativos entre los libros y el resto) es el de un modelo al
+      que le falta una dimensión.
+    - No hay dependencia positiva dentro de los libros en 2D. Sí la hay en baños–sanitarios (0,46) y en
+      educación–ocupación de los padres (0,35). Detalle en D-21.
+  - *De paso se corrigieron* las cargas del modelo 2D (error de `mirt`, D-19) y se agregó la información de cada ítem.
 - [ ] **3.4 AFC en la mitad de confirmación:** 1 vs 2 factores con `estimator = "WLSMV"`, `ordered = …`; ajuste,
   `lavTestLRT()`, `semTools::compRelSEM()`. Con n ≈ 3.400 el χ² rechaza: reportarlo y usar CFI/RMSEA/SRMR.
   - *Reglas fijadas en D-18 (2026-10-18), antes de correrlo:* H1 con los modelos puros de D-16; sensibilidad sin pesos

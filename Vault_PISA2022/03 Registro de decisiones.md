@@ -618,8 +618,15 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     - `summary()` de `mirt` 1.46.1 devuelve 0 en esa columna en los dos modelos de 2 dimensiones, también con
       `rotate = "none"`, y el script no lo comprobó.
     - Ninguna cifra de esta decisión sale de ese archivo.
-    - **Pendiente:** corregir `03_nse_tri.R` y regenerar la tabla antes de fusionar el PR #12. Hasta entonces, la tabla
-      no se usa.
+    - **Corregido el mismo día.**
+      - *Causa:* un error de la función interna `Lambdas()` de `mirt` 1.46.1. En los ítems GPCM multiplica la carga
+        por el signo de la pendiente del factor 1, que vale 0 en los ítems que solo cargan en el factor 2.
+      - *Arreglo:* `03_nse_tri.R` calcula ahora las cargas con la misma fórmula, pero usa el signo de la pendiente que
+        no es 0. Comprueba que el resultado coincide con `summary()` donde `mirt` no falla: todo el modelo 1D y los
+        ítems del factor económico.
+      - *Cargas culturales corregidas* (`salidas/nse_tri_cargas_2d.csv`): libros de 0,92 a 0,98 en los dos modelos;
+        en el cultural de D-16, instrumentos 0,63, arte 0,51 y `HISCED_c` 0,26.
+      - Las demás salidas del script se reprodujeron idénticas.
   - **Convergencia:** los tres modelos convergieron. El de 2 dimensiones de D-16 necesitó 811 iteraciones del EM.
   - **Comparación** (descriptiva, punto 4):
     - AIC de 344.517 (1D), 329.821 (2D de D-16) y 327.986 (2D del AFE); el BIC sigue el mismo orden;
@@ -628,8 +635,14 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
       decide en el 3.4.**
   - **Modelo de 1 dimensión:**
     - lo dominan los libros (*a* de 1,27 a 1,61 en ST255 y ST256), junto con computador y portátiles (1,56);
-    - los que menos discriminan son motos (*a* = 0,09), `HISCED_c` (0,19), lectores electrónicos (0,34) y
-      `HISEI_q` (0,41).
+    - ~~los que menos discriminan son motos (*a* = 0,09), `HISCED_c` (0,19), lectores electrónicos (0,34) y
+      `HISEI_q` (0,41).~~ *Corregido el 2026-10-18 (error de Claude):* las *a* de un 2PL y de un GPCM con distinto
+      número de categorías no se pueden comparar entre sí. Con la información de cada ítem (área bajo su curva en θ de
+      −4 a 4; columnas `info_1D` y `pct_info_1D` de `salidas/nse_parametros_tri.csv`):
+      - los que menos aportan son motos (0,06 % de la información), lectores electrónicos (0,30 %), cuarto propio
+        (0,55 %) y celular propio con internet (1,19 %);
+      - los 9 ítems de libros aportan el 55,8 %; después siguen portátiles y número de dispositivos, con 4,1 % cada
+        uno.
   - **Ajuste de los ítems:** S-X² en 4.672 casos completos (68 %), sin pesos.
     - Entre 24 y 27 de los 29 ítems tienen p ajustado < 0,05, como era de esperar con miles de casos.
     - El RMSEA del S-X² es ≤ 0,027 en todos; el más alto es el de diccionarios (`ST256Q09JA`) en el modelo de D-16.
@@ -733,6 +746,39 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
      decisión nueva.
 - **Salida prevista:** `scripts/03_nse_tri.R` (sección 3.3b) → `salidas/nse_q3_tri.csv`.
 - **Estado:** ✅ aceptada por Vanessa (2026-10-18).
+- **Resultado del 3.3b** (`scripts/03_nse_tri.R` → `salidas/nse_q3_tri.csv`; 6.886 estudiantes, sin pesos;
+  2026-10-18; 406 pares por modelo):
+
+  | Modelo | Pares con \|Q3\| > 0,2 | Rango del Q3 |
+  |---|---|---|
+  | 1 dimensión | 69 | −0,339 a 0,571 |
+  | 2 dimensiones de D-16 | 10 | −0,284 a 0,463 |
+  | 2 dimensiones del AFE | 13 | −0,266 a 0,463 |
+
+  - **Modelo de 1 dimensión:** 6 pares positivos dentro de los libros, 50 negativos entre un ítem de libros y otro que
+    no lo es, y 13 positivos sin libros.
+    - Es el patrón que describe de Ayala (p. 133, citando a Yen, 1984) cuando se usa un modelo de una dimensión y
+      hacen falta dos: dependencia positiva entre los ítems de la misma dimensión y negativa entre dimensiones.
+    - Es evidencia **exploratoria** a favor de 2 dimensiones. H1 se decide en el 3.4.
+  - **Modelos de 2 dimensiones:** la dependencia casi desaparece (10 y 13 de 406 pares).
+    - Dentro de los libros ya no hay pares positivos. Los marcados son negativos: `ST255Q01JA` con varios `ST256`,
+      de −0,21 a −0,27. Esos negativos no tienen explicación por ahora.
+    - La sospecha de la revisión del 2026-10-18 no se confirma: no aparece dependencia **positiva** que infle la
+      información del factor cultural.
+    - *Interpretación:* el pico de información (32–33) viene de las cargas muy altas de los libros (0,92 a 0,98).
+  - **Pares marcados en el modelo de D-16 (H1):**
+    - positivos: baños y sanitarios (`ST251Q03JA`–`ST251Q04JA`, 0,463); educación y ocupación de los padres
+      (`HISCED_c`–`HISEI_q`, 0,350); computador para tareas y software educativo (`ST250Q02JA`–`ST250Q03JA`, 0,203);
+    - negativos: computador para tareas con celulares (−0,284) y con el número de dispositivos (−0,267); computadores
+      de escritorio y portátiles (−0,228); `ST255Q01JA` con 4 de los `ST256` (−0,219 a −0,244).
+    - *Interpretación (equipo, por discutir):* baños y sanitarios preguntan casi lo mismo, y la educación y la ocupación
+      comparten la posición de los padres. Escritorio y portátil parecen sustituirse.
+  - **Los 10 pares de la sensibilidad (b) de D-18 se fijaron antes de ver este Q3** (commit `e5cb408`) y no se cambian.
+    Si en la G2 se quiere probar los pares que marcó el Q3, se registra como análisis exploratorio posterior a los
+    datos.
+  - **Para la G2:** no hace falta un modelo de *testlet* para los libros. Los pares con dependencia positiva
+    (baños–sanitarios y educación–ocupación) se reportan como limitación: en ellos la información se sobreestima un
+    poco (de Ayala, p. 131).
 
 ### D-22 · 2026-10-18 · Definiciones operativas de H2 a H7 (las hipótesis no cambian)
 - **Problema:** desde el congelamiento (2026-10-12) hay términos sin definir:
@@ -749,7 +795,8 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     - Ítems dicotómicos de matemáticas (H3): categoría B o C de la clasificación del ETS, es decir, prueba MH
       significativa y |ΔMH| > 1, con ΔMH = −2,35 ln(α_MH). Las categorías son A (no significativa o |ΔMH| ≤ 1),
       B (1 < |ΔMH| ≤ 1,5) y C (|ΔMH| > 1,5). Fuente: [[Literatura/calderon2026differential]], p. 8, y
-      [[Literatura/celik2025differential]], p. 643. Las dos notas están verificadas; estas páginas, por verificar.
+      [[Literatura/celik2025differential]], p. 643. En las dos notas, Vanessa verificó las filas 1 y 2; la fila 3,
+      con estos cortes, está por verificar.
     - Ítems ordinales de posesiones (H2) e ítems de crédito parcial de matemáticas: ΔR² ≥ 0,035 (niveles B o C) de
       Jodoin y Gierl (2001), citados por [[Literatura/kucam2023examination]], p. 130 (por verificar). *Matiz:* de
       Ayala (p. 334) dice que esos cortes se propusieron para el R² de mínimos cuadrados ponderados; el tipo de R² se

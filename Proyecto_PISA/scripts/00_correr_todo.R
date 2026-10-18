@@ -32,7 +32,9 @@ CADENA <- c(
   "03_explorar_saltos.R",          # F3, saltos del cuestionario (D-20)
   "03_nse_medicion.R",             # F3, pasos 3.1 y 3.2 (D-16, D-20)
   "03_nse_tri.R",                  # F3, pasos 3.3, 3.3b y 3.5 (D-19, D-21)
-  "03_nse_afc.R"                   # F3, paso 3.4 (D-18); se salta si todavía no existe
+  "03_nse_afc.R",                  # F3, paso 3.4 (D-18)
+  "04_explorar_grupos.R",          # F4, conteos por grupo previos a D-25
+  "04_invarianza.R"                # F4, pasos 4.1 a 4.5 (D-25); se salta si todavía no existe
 )
 
 carpeta_script <- function() {

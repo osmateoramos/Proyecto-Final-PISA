@@ -1038,4 +1038,10 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
      medias latentes del NSE entre grupos (el grupo de referencia con media 0), sin EE de diseño (D-16 punto 5).
 - **Salidas previstas:** `scripts/04_invarianza.R` → `salidas/invarianza_tabla.csv`,
   `salidas/nse_items_no_invariantes.csv`, `salidas/nse_dif_posesiones.csv` y `salidas/nse_medias_latentes.csv`.
-- **Estado:** propuesta — la decide Vanessa.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-18), tal cual:
+  - muestra completa (6.886);
+  - H2 con rural frente a urbana y O2 con las 3 zonas;
+  - categorías con menos de 10 respuestas unidas;
+  - lo demás como está propuesto.
+
+  Mateo y Brayan la revisan en el PR.

@@ -10,7 +10,7 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 3. [[07 Plan de desarrollo PISA 2022]] — paso a paso por semanas. **Estamos en la semana 3 (19–25 oct):** F0, F1 y
    F2 cerradas (la Puerta G1 pasa). En la F3 están hechos el 3.1 (en `main`), el 3.2, el 3.3 y el 3.5 (rama `Vanessa`,
    PR #12), el 3.3b (dependencia local) y el 3.4 (AFC: H1 se acepta). **La Puerta G2 pasa** con el desajuste
-   documentado (D-24): sigue la F4 (invarianza), en la semana 4.
+   documentado (D-24). La F4 (invarianza) ya tiene sus reglas en D-25, fijadas antes de estimar.
 
 ## Estado del proyecto (al 2026-10-18)
 
@@ -66,7 +66,7 @@ que no hizo (paso 9.3).
 
 - **Anteproyecto vigente:** `Proyecto_PISA/anteproyecto/anteproyecto_VanessaAcosta_MateoRamos.pdf`
   (fuente `.Rmd` y `referencias.bib` en la misma carpeta; 4 marcas [VERIFICAR] por revisar antes de entregar; ver [[13 Revisión de literatura]])
-- [[03 Registro de decisiones]] — toda decisión, con fecha y razón (D-01 a D-23: en `main` hasta D-17; D-18 a D-23
+- [[03 Registro de decisiones]] — toda decisión, con fecha y razón (D-01 a D-25: en `main` hasta D-17; D-18 a D-25
   en la rama `Vanessa`, PR #12; D-16 y D-17 aún sin todas las firmas)
 - **Versiones de R y de los paquetes:** `Proyecto_PISA/scripts/versiones_paquetes.csv` (D-17). Al abrir
   `Proyecto_PISA.Rproj` en RStudio, la consola avisa si alguna no coincide; para instalarlas, paso 3 de «Primera vez»

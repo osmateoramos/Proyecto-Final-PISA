@@ -265,7 +265,18 @@ con `GPArotation` para la rotación oblimin).
 
 Script: `04_invarianza.R`.
 
-> [!warning] Antes de programar la F4 (registrar una decisión; ver D-22 y D-23)
+> [!success] Decidido en D-25 (2026-10-18, antes de estimar)
+> - Muestra completa (6.886).
+> - H2 con rural (904) frente a urbana (4.927); O2 con las 3 zonas, el sexo y el sector.
+> - Categorías con menos de 10 respuestas unidas en todos los grupos: cambian `ST254Q02JA`, `ST251Q01JA` y
+>   `HISCED_c`.
+> - Wu y Estabrook con parametrización theta.
+> - ΔCFI 0,01 y ΔRMSEA 0,015 en versión *scaled* ([[Literatura/putnick2016measurement]]).
+> - DIF por factor con anclas depuradas, y magnitud ΔR² de Nagelkerke ≥ 0,035.
+>
+> Exploración: `scripts/04_explorar_grupos.R` → `salidas/inv_grupos_n.csv` e `inv_categorias_grupo.csv`.
+>
+> *Lo que quedaba abierto antes de D-25:*
 > - **Grupos de H2:** H2 habla de zona rural frente a urbana, pero la zona tiene 3 categorías (rural / pueblo / urbana).
 > - **Muestra:** completa (6.886) o mitad de confirmación; D-16 punto 2 no lo dice.
 > - **Categorías vacías por grupo:** qué se hace si una categoría no aparece en un grupo (la invarianza de umbrales

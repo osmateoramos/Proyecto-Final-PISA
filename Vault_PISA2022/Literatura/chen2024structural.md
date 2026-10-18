@@ -12,7 +12,7 @@ bloque: "M. Métodos y software"
 metadatos: "Crossref y página de créditos del PDF (consultados 2026-10-05)"
 estado: por_verificar
 lectura: "IA: índice completo y secciones leídas (pp. 220–224, 246, 370–375)"
-pdf_en_zotero: sí, solo una muestra de 54 páginas de la editorial (comprobado por Claude en Zotero, 2026-10-18)
+pdf_en_zotero: sí (libro completo compartido en las materias de TRI y SEM, adjuntado el 2026-10-18; queda también la muestra de 54 páginas de la editorial)
 verificado_por:
 fecha_verificacion:
 ---

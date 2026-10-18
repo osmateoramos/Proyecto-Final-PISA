@@ -246,6 +246,7 @@ de esa tabla y las dos ediciones chocarían.
 | 2026-10-18 | Brayan | Reproducir el PR #12 con datos | Claude exportó la rama `Vanessa` a una copia aparte (fuera del proyecto y de OneDrive), corrió `03_nse_medicion.R` y `03_nse_tri.R` y comparó las 16 salidas con un script propio: 13 son idénticas y 3 difieren en 0,001 o menos (sección 6.3) | Ninguna | borrador, sin confirmar |
 | 2026-10-18 | Brayan | Revisar los 14 commits nuevos del PR #12 (hasta `152691a`) | Claude leyó los scripts nuevos o cambiados, D-18 y D-21 a D-25, D-10, el acta de la G2 y las salidas del AFC. Comprobó cada observación de la 1 a la 10, simuló la fusión con `git merge-tree` y redactó las secciones 6.4 y 6.5 y las filas nuevas de la sección 7 | Claude declara un error propio (observación 11): reportó como reproducidas sin problema unas cargas 2D que valían 0 por un fallo de `mirt`; lo había encontrado Vanessa | borrador, sin confirmar |
 | 2026-10-18 | Brayan | Avanzar lo que no requiere a Brayan: reproducir el PR #12 en `152691a`, preparar la verificación de sus fuentes y marcar con evidencia las tareas de «Nada sin fuente» | Claude reprodujo 4 scripts (21 de 24 salidas idénticas; sección 6.3). Escribió [[18 Verificación de fuentes Brayan]] buscando en el texto de 7 PDF del corpus. Marcó las casillas de las secciones 1 y 2 según los archivos | No saltó la verificación antibots de la página de la OCDE (términos de uso): queda para Brayan | borrador, sin confirmar |
+| 2026-10-18 | Brayan | Crear el PR #13 y publicar la revisión en el PR #12 | Con la sesión de GitHub de Brayan en el navegador integrado, Claude llenó y creó el PR #13 (`Brayan` → `main`, listo para revisión) y publicó en el #12 un comentario con las secciones 6.4 y 6.5 y el veredicto. No aprobó el PR, a pedido de Brayan | El comentario dice que el siguiente número libre es D-26, pero Vanessa ya había usado D-26 y D-27 minutos antes: es un error de Claude, corregido en esta nota | borrador, sin confirmar |
 
 ## 6. Revisión del PR #12 (rama `Vanessa` → `main`): borrador para Brayan
 
@@ -257,7 +258,17 @@ de esa tabla y las dos ediciones chocarían.
 >   corrección de las cargas 2D, D-22, D-23 y la posición de Vanessa en D-10.
 >   - **Reproducida con datos el 2026-10-18 (17:38–17:49):** `03_nse_medicion.R`, `03_nse_tri.R`, `03_nse_afc.R` y
 >     `04_explorar_grupos.R` de `152691a` (sección 6.3). No se reprodujo `03_explorar_saltos.R`.
-> - **Números de decisión:** D-21 a D-25 ya están usados; el siguiente libre es D-26.
+> - **Números de decisión:** D-21 a D-27 ya están usados; el siguiente libre es **D-28**.
+>   - *Corrección (2026-10-18):* antes decía D-26. Entre las 17:51 y las 18:04 Vanessa registró D-26 (F4, prueba del
+>     DIF) y D-27 (F5), en los commits `34d68d0` a `0a43118`.
+>   - El comentario publicado en el PR #12 decía D-26; se corrigió el mismo día.
+> - **Commits que esta revisión no cubre:** después de `152691a` el PR suma 4 commits (32 en total, de `34d68d0` a
+>   `51ad44d`, entre las 17:51 y las 18:16):
+>   - la F4 (`04_invarianza.R`, D-26; pasos 4.1–4.3 y 4.5);
+>   - la F5: el paso 5.1 y un piloto (`05_explorar_items.R`, D-27).
+>
+>   La F4 es O2: como revisor de O1–O2, también te toca revisarla.
+>   - El comentario del PR #12 se editó para decir esto y para corregir el número (D-28).
 > - **Fusión:** `git merge-tree` entre `origin/Brayan` (`3afe333`) y `origin/Vanessa` (`152691a`) no da conflictos,
 >   tampoco en esta nota (2026-10-18).
 

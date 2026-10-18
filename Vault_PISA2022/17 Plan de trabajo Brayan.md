@@ -2,7 +2,7 @@
 tipo: guia
 estado: por_verificar
 lectura: "redactado por Claude con Brayan; falta revisión del equipo"
-pendientes: "Equipo: aceptar o ajustar las propuestas de las secciones 2, 3.2 y 4"
+pendientes: "Equipo: aceptar o ajustar las propuestas de las secciones 2, 3.2 y 4. Brayan: revisar y asumir la revisión del PR #12 (sección 6) y decidir las firmas (sección 7)"
 verificado_por:
 fecha_verificacion:
 ---
@@ -77,6 +77,31 @@ revisa O1–O2.
   - Los `.SAV` y los `.rds` quedan fuera de Git.
   - Si el repositorio está dentro de OneDrive, OneDrive sí los sube a la nube: conviene excluir
     `Proyecto_PISA/datos/` de la sincronización.
+  - 2026-10-18: los tres `.SAV` ya están en `Proyecto_PISA/datos/`. Se bajaron los zips SPSS de
+    `webfs.oecd.org/pisa2022/` y se comprobaron:
+    - el tamaño de cada zip es igual al que anuncia el servidor;
+    - los tres pasan `unzip -t` (CRC);
+    - cada `.SAV` extraído pesa lo mismo que indica su zip: `STU_COG` 3.733.772.526 bytes, `STU_QQQ`
+      2.096.666.903 y `SCH_QQQ` 19.704.342.
+
+    Git los ignora (`.gitignore`, `*.sav`), pero OneDrive sí los sincroniza.
+  - 2026-10-18, **la cadena de `main` se reproduce en este equipo.** Corrieron sin errores y en este orden
+    `revision_pisa2022_col.R`, `01a_etl_cognitivo.R`, `01a_explorar_faltantes_cog.R`, `01b`, `01c`, `02`,
+    `03_explorar_items_nse.R` y `03_nse_medicion.R` (unos 13 minutos).
+    - Volvieron a escribir 12 archivos de `salidas/`, y `git status` no muestra ningún cambio: son iguales a los de
+      `main`.
+    - `01b` también reescribe [[Datos/PISA2022 - Variables recodificadas]]. Solo cambió la fecha (2026-10-16 →
+      2026-10-18) y se devolvió a la versión del repositorio. En la primera comparación Claude miró solo
+      `Proyecto_PISA/` y no la vio.
+    - La Puerta G1 pasa: 382,70 (EE 3,03), 78,56 (EE 5,74) y 16,16 % (EE 2,09).
+    - No se regeneraron los `nsf_*.csv` ni `diccionario_pisa2022.csv`, porque no son parte de esta cadena.
+- [x] Instalar el entorno de D-17 (2026-10-18).
+  - `--instalar` no pudo bajar `pbivnorm`, una dependencia de `lavaan`, por un fallo de DNS; se instaló aparte
+    desde la misma copia de Posit del 2026-10-17.
+  - `00_verificar_entorno.R` decía «Al día» aunque `lavaan` no cargaba: compara versiones, no dependencias (límite
+    ya anotado en D-17).
+  - Ahora R 4.4.1 y los 13 paquetes coinciden y los 13 cargan. Quedan avisos de que `mirt` y `lattice` se
+    compilaron con R 4.4.3.
 
 ### 3.2 Verificación de fuentes (propuesta de tercio, acorde a O4)
 
@@ -103,6 +128,8 @@ siguiendo [[11 Protocolo de verificación]].
 ### 3.3 Revisión cruzada de O1–O2
 
 - [ ] Revisar `03_nse_medicion.R` y `04_invarianza.R` de Mateo cuando existan.
+  - El 3.1–3.3 y el 3.5 los hizo Vanessa (PR #12). Borrador de revisión en la sección 6; `04_invarianza.R` aún no
+    existe.
 
 ### 3.4 Responsable de F6 (SEM) y F8 (API, tablero y RAG)
 
@@ -164,3 +191,174 @@ como registro.
 |---|---|---|---|---|---|
 | 2026-10-12 | Brayan | Revisar el estado del repositorio (ramas `main` y `Vanessa`) y armar el plan de trabajo de Brayan sin repetir lo hecho | Esta nota (borrador) y la copia del enunciado en `documentacion/` | Claude iba a numerar esta nota como 16; al volver a consultar el repositorio vio que Vanessa ya había creado la 16 y la cambió a 17 | borrador, sin confirmar |
 | 2026-10-12 | Brayan | Plan de equipo para entregar "Nada sin fuente" en una noche y estructura de trabajo en paralelo | `Proyecto_PISA/nada_sin_fuente/` (README, plantillas, esqueletos de memoria y experimento) y los scripts `nsf_*.R`, probados con datos simulados fuera del repositorio | En las pruebas aparecieron y se corrigieron: CSV de Excel en ANSI que quedaban con codificación mezclada; tablas que no cabían en el PDF; símbolo ≈ sin glifo. Las hojas de trazabilidad salen del anteproyecto con una pista del vault que **no** es evidencia | borrador, sin confirmar |
+
+**Por trasladar** a [[15 Bitácora de uso de IA]] cuando se fusione el PR #12. La rama `Vanessa` agrega filas al final
+de esa tabla y las dos ediciones chocarían.
+
+| Fecha | Integrante | Para qué se usó la IA | Qué generó exactamente | Qué se corrigió / ajustó | Estado |
+|---|---|---|---|---|---|
+| 2026-10-18 | Brayan | Revisar el estado del proyecto, traer `main` a la rama `Brayan` y revisar el PR #12 (F3: 3.2, 3.3 y 3.5; D-19 y D-20) | Claude (Claude Code, Claude Opus 5.5) leyó el vault, las ramas y el PR por la API pública de GitHub. Guardó con `stash` los cambios de formato que hizo Obsidian y fusionó `origin/main` en `Brayan` sin conflictos (sin `push`). Corrió `00_verificar_entorno.R` sin `--instalar`. Leyó los tres scripts del PR y comprobó sus cifras contra las salidas. Redactó las secciones 6 y 7 de esta nota | No se volvió a correr ningún script del PR: no hay datos de PISA en este equipo | borrador, sin confirmar |
+| 2026-10-18 | Brayan | Conseguir los datos de PISA 2022 e instalar el entorno de D-17 | Claude vio que el zip que tenía Brayan (`STU_COG_SAS.zip`) era solo el cognitivo, en SAS. Con permiso de Brayan bajó los tres zips SPSS de la OCDE, los comprobó (tamaño, CRC y tamaño extraído) y los extrajo en `datos/`. Corrió `00_verificar_entorno.R --instalar` e instaló aparte `pbivnorm` | La verificación de D-17 decía «Al día» con `lavaan` sin cargar; se detectó al cargar cada paquete. Dos comandos de prueba de Claude fallaron (un `-e` partido por los espacios y un `.R` guardado con BOM) y se rehicieron | borrador, sin confirmar |
+| 2026-10-18 | Brayan | Reproducir la cadena de `main` con los datos nuevos y revisar el plan 07 | Claude corrió los 8 scripts de la cadena y comparó las salidas con `git status` (sin cambios). Cruzó el plan 07 con los scripts, el registro y las salidas, y agregó las observaciones 7 a 9 a la sección 6 | Al principio Claude había revisado el plan 07 en la versión vieja de la rama, de antes de traer `main`; lo dijo y lo volvió a revisar en la versión vigente | borrador, sin confirmar |
+| 2026-10-18 | Brayan | Reproducir el PR #12 con datos | Claude exportó la rama `Vanessa` a una copia aparte (fuera del proyecto y de OneDrive), corrió `03_nse_medicion.R` y `03_nse_tri.R` y comparó las 16 salidas con un script propio: 13 son idénticas y 3 difieren en 0,001 o menos (sección 6.3) | Ninguna | borrador, sin confirmar |
+
+## 6. Revisión del PR #12 (rama `Vanessa` → `main`): borrador para Brayan
+
+> [!warning] Esta revisión cubre el PR hasta el commit `4159ca4`
+> El 2026-10-18, entre las 13:44 y las 16:15, Vanessa subió 14 commits más a la rama (hasta `152691a`). Según sus
+> mensajes, incluyen:
+> - el 3.3b con Q3 de dependencia local (D-21);
+> - el 3.4 (AFC) y H1 (D-18);
+> - la Puerta G2 (D-24);
+> - la F4 (D-25);
+> - `00_correr_todo.R`;
+> - cambios en `nse_parametros_tri.csv` y `nse_tri_cargas_2d.csv`.
+>
+> Esta revisión no los cubre. D-21 atiende la observación 1 por su cuenta (P1 de la nota 14). Antes de publicar la
+> revisión hay que comprobar cuáles de las observaciones siguen vigentes. Los números de decisión D-21 a D-25 ya
+> están usados; el siguiente libre es D-26.
+
+Borrador de Claude del 2026-10-18. Brayan lo revisa, lo ajusta y decide si lo publica como revisión del PR. La revisión empezó
+estática, porque no había datos de PISA en este equipo. Ese mismo día llegaron los `.SAV` (sección 3.1) y los dos
+scripts del PR se reprodujeron con datos (sección 6.3). Se leyeron
+`03_nse_medicion.R` (3.1 y 3.2), `03_nse_tri.R`, `03_explorar_saltos.R`, D-16, D-19, D-20 y las salidas nuevas.
+
+### 6.1 Lo que se comprobó y cuadra
+
+- **Ajuste de ítems** (`salidas/nse_itemfit_tri.csv`), coincide con D-19:
+  - S-X² en 4.672 casos completos, calculado para los 29 ítems de los tres modelos;
+  - ítems con p ajustado < 0,05: 26 (1D), 27 (D-16) y 24 (AFE);
+  - RMSEA máximo del S-X²: 0,016, 0,027 y 0,021;
+  - ningún ítem problemático.
+- **Policórica** (`salidas/nse_policorica_diagnostico.csv`), coincide con D-16: autovalor mínimo sin suavizar de
+  −0,0255 (ponderada), −0,0262 (sin pesos) y −0,0357 (casos completos, n = 2.362).
+- **Comparación de la TRI** (`salidas/nse_ajuste_tri.csv`):
+  - BIC de 345.289 (1D), 330.600 (D-16) y 328.765 (AFE);
+  - correlación entre factores de 0,497 (D-16) y 0,483 (AFE).
+- **Información** (`salidas/nse_informacion_tri.csv`), coincide con D-19:
+  - máximo de 20,6 en θ = 1,6 (1D);
+  - económico: 10,0 (D-16) y 10,6 (AFE), cerca de θ = −0,3;
+  - cultural: 32,3 (D-16) y 33,1 (AFE), en θ = 1,4.
+- **D-20 bien implementada:** el script solo llena celdas que estaban vacías (`stopifnot` de
+  `03_nse_medicion.R`, líneas 64–66).
+- **Mitades:** se sortean después de ordenar por colegio y estudiante. D-20 cambia valores, no filas, así que no
+  cambió las mitades.
+- **Información por eje:** `testinfo(..., degrees = …)` recorre el eje correcto en cada dimensión.
+- **Ley 1581:**
+  - los cachés con datos individuales (`COL_nse.rds`, `COL_nse_tri.rds`, `COL_nse_tri_modelos.rds`) quedan fuera
+    de Git (`.gitignore`: `*.rds` y `Proyecto_PISA/datos/*`);
+  - las salidas del PR son agregadas.
+
+### 6.2 Observaciones (propuestas; las decide el equipo)
+
+1. **De fondo, antes del 3.4: dependencia local por el filtro de libros.**
+   - **Qué pasa:** con D-20, los 1.002 estudiantes de la muestra analítica que no tienen libros quedan con
+     `ST255Q01JA` = 0 y los 8 `ST256` = 0 por construcción. Una sola pregunta fija sus 9 respuestas.
+     - Lo mismo, en menor escala, con `ST253` → `ST254` (204 estudiantes en Colombia; D-20).
+     - La TRI (2PL y GPCM) y el AFC suponen independencia local dado el factor.
+   - **Interpretación de Claude, sin fuente en el vault:** un bloque así puede inflar las discriminaciones, la
+     información y la confiabilidad de sus ítems. Hay que buscar la fuente (por ejemplo, en de Ayala) antes de citarlo.
+   - **Lo que se ve en las salidas y es compatible con eso:**
+     - en el modelo de 1D, los 9 ítems de libros tienen las cargas más altas (0,83 a 0,93;
+       `salidas/nse_parametros_tri.csv`);
+     - la información del factor cultural llega a 32–33, frente a 10 en el económico;
+     - con D-20, las cargas de los libros en el AFE pasaron de 0,52–0,74 a 0,69–0,85 (resultado del 3.2 en D-16).
+   - **La otra lectura, la del registro, también encaja:** antes de D-20, por pares, los ítems de libros solo se
+     correlacionaban entre quienes tienen libros (rango restringido). Las salidas actuales no permiten distinguir las
+     dos lecturas.
+   - **Por qué importa para H1:** 9 de los 12 indicadores del factor cultural de D-16 son de ese bloque. El AFC del
+     3.4 podría preferir 2 factores por cómo está hecho el cuestionario y no por el NSE.
+   - **Propuesta** (no cambia H1 ni su regla, que están congeladas):
+     - (a) medir la dependencia local en el modelo de 1D con `residuals(m, type = "LD")` o `type = "Q3"` de `mirt`,
+       en los casos completos, como el S-X²;
+     - (b) análisis de sensibilidad del 3.4: el mismo AFC con los 8 `ST256` resumidos en un solo indicador (por
+       ejemplo, cuántos tipos de libro hay en casa) o con un factor propio para ellos;
+     - registrarlo (en la D-18 de Mateo o en una nueva) **antes** de correr el 3.4, para que cuente como
+       preregistrado.
+2. **Código: el caché de modelos no detecta si cambiaron los datos.**
+   - **Qué pasa:** `03_nse_tri.R` (líneas 61–64) reutiliza `datos/COL_nse_tri_modelos.rds` si existe y
+     `REHACER_TRI` no es `"1"`. Si `COL_nse.rds` cambia, el script:
+     - no vuelve a estimar e imprime «Modelos leídos del caché»;
+     - saca de los datos viejos todas las salidas (parámetros, EAP, validez y S-X²);
+     - pega las EAP a `nse$CNTSTUID` por posición (líneas 133–138), sin control.
+
+     Eso puede pasar con otra corrección como D-20, o si Mateo vuelve a correr el 3.1.
+   - **Las salidas actuales no tienen ese problema:** el S-X² se calculó en los 29 ítems, y con los datos anteriores
+     a la ampliación de D-20 no se podía calcular (D-20).
+   - **Propuesta, sin probar** (`mirt` no está instalado en este equipo), después de leer el caché:
+
+     ```r
+     guardados <- unname(as.matrix(extract.mirt(modelos[["1D"]], "data")))
+     if (!isTRUE(all.equal(guardados, unname(as.matrix(X)), check.attributes = FALSE)))
+       stop("COL_nse.rds cambió desde que se guardó el caché: correr con REHACER_TRI = 1")
+     ```
+3. **Comentario desactualizado:** `03_nse_tri.R`, líneas 155–156, dice que el S-X² no se puede calcular para
+   `ST253Q01JA` y `ST255Q01JA` («pendiente de decisión»). Después de D-20 sí se calcula en los 29 ítems.
+4. **Registro:** en D-19 («Lo que muestran el software y los datos») dice «1.966 de 3.445 (57 %)» y cita
+   `salidas/nse_policorica_diagnostico.csv`. Hoy ese archivo dice 2.362: el dato es de antes de D-20. Basta con
+   agregar «antes de D-20».
+5. **Interpretación del 3.5, para la Puerta G2:** la correlación de 0,96 del factor económico con `HOMEPOS`
+   (`salidas/nse_validez.csv`) no es evidencia de validez independiente.
+   - `HOMEPOS` se construye con los mismos bloques de posesiones, ST250 a ST256 (plan 07, paso 1.3).
+   - Propuesta: presentarla como concordancia con el índice oficial, no como validez externa.
+   - La composición exacta de `ESCS` no está en el vault; D-16 solo dice que `PAREDINT` se deriva de `HISCED`
+     (p. 387). Todavía no se puede decir cuánto comparten nuestras escalas con `ESCS`.
+6. **Menor:** el PR no tiene descripción. Propuesta: listar los pasos que cierra (3.2, 3.3 y 3.5), las decisiones
+   (D-19 y D-20) y que el 3.4 de Mateo se corre sobre estos datos.
+7. **Plan 07, paso 3.1:** sigue diciendo que «la regla del 2 % cambió solo los 5 ítems previstos en D-16». Con D-20
+   son 7: se suman `ST256Q01JA` y `ST254Q01JA` (D-20 y la lista `esperados` de `03_nse_medicion.R`). El PR no
+   actualiza esa frase.
+8. **Plan 07, paso 3.3:** dice «las dos dimensiones ajustan mucho mejor que una». D-19 dice que la comparación es
+   descriptiva (pseudo-verosimilitud ponderada) y que H1 se decide en el 3.4. Propuesta: «tienen menor AIC y BIC
+   (comparación descriptiva, D-19)».
+9. **Plan 07, paso 3.2:** dice «aparecen 2 factores» sin mencionar que el análisis paralelo sugiere 7 factores y 4
+   componentes. El 2 es una lectura de los dos autovalores dominantes (10,12 y 3,16; resultado del 3.2 en D-16).
+   Propuesta: agregarlo en una línea.
+
+10. **Menor, para que las reproducciones se comparen limpias:** `nse_itemfit_tri.csv` se guarda sin redondear,
+    a diferencia de las demás salidas. Sus diferencias de 0,0001 entre máquinas aparecen como cambios en Git (sección
+    6.3). Propuesta: redondearlo a 4 decimales, como `nse_parametros_tri.csv` a 3.
+
+### 6.3 Reproducción con datos (2026-10-18)
+
+- **Cómo se hizo:**
+  - copia aparte de la rama `Vanessa` (commit `4159ca4`) en la carpeta temporal de la sesión, fuera del proyecto
+    y de OneDrive;
+  - de entrada, el `COL_analitica.rds` de la cadena de `main`, que el PR no cambia (los `01a`–`01c` y
+    `utilidades_pisa.R` son iguales en las dos ramas);
+  - se corrieron `03_nse_medicion.R` (0,6 min) y `03_nse_tri.R` (10,8 min), sin caché de modelos, con el entorno
+    de D-17 y sin errores.
+- **Resultado:** de las 16 salidas de los dos scripts, **13 son idénticas byte a byte**, entre ellas todas las del
+  3.1 y el 3.2, `nse_ajuste_tri.csv`, `nse_validez.csv`, `nse_confiabilidad_tri.csv` y `nse_informacion_tri.csv`.
+  - `nse_parametros_tri.csv`: 3 de 464 celdas difieren en el tercer decimal (0,001). Son umbrales extremos de
+    ítems que casi no discriminan: `ST254Q05JA` b1 (6,968 frente a 6,969) y `HISCED_c` b6 y b9.
+  - `nse_itemfit_tri.csv`: 173 de 783 celdas difieren, con una diferencia máxima de 0,0001 en el S-X² (632,6124
+    frente a 632,6123). La columna `problematico` es igual en todas las filas, así que la conclusión no cambia.
+  - `nse_informacion_tri.png`: difiere en 2 bytes, pero se ve igual y sus datos (`nse_informacion_tri.csv`) son
+    idénticos.
+  - Interpretación de Claude, no verificada: las diferencias de 0,0001 vienen del cálculo en coma flotante de cada
+    máquina.
+- **Qué confirma:** que las salidas del PR corresponden al código del PR. La observación 2 (caché) no afectó las
+  salidas publicadas.
+- **No se reprodujo** `03_explorar_saltos.R`, que lee el `.SAV` del cuestionario. Sus dos tablas
+  (`nse_saltos_*.csv`) son conteos que D-20 usa como dato.
+
+**Propuesta de veredicto (la decide Brayan):**
+- aprobar con los cambios menores 2 a 4 y 7 a 10;
+- llevar la observación 1 a la discusión del 3.4: no bloquea este PR, pero hay que decidirla antes de que Mateo
+  corra el AFC;
+- la 5 queda para la Puerta G2.
+
+## 7. Firmas pendientes en el registro: resumen para decidir
+
+Claude no firma: cada firma la pone Brayan en [[03 Registro de decisiones]], con nombre y fecha.
+
+| Decisión | Qué fija | Qué revisó Claude (2026-10-18) | Qué falta |
+|---|---|---|---|
+| D-15 | Método de la Puerta G1 | `utilidades_pisa.R` y `02_validacion_ocde.R` hacen lo que dice D-15 (factor 0,05 = 1/(80 · 0,5²), varianza total con (1 + 1/10), cortes ponderados fijos, R² lineal). Las tres cifras quedan dentro de ±1 (`salidas/validacion_ocde.csv`). Reproducida en este equipo el 2026-10-18: la salida es idéntica a la de `main` (sección 3.1) | Leerla y firmar. Es la «revisión de Brayan» que pide la Puerta G1 en la F2 del plan 07 |
+| D-16 | Muestra, indicadores, categorías escasas, pesos, faltantes, estructura y regla de H1 | El 3.1 aplica los puntos 1 a 4: 6.886 estudiantes, 29 indicadores, regla del 2 % y cortes de `HISEI` | Decidir si la observación 1 de la sección 6 se registra como sensibilidad antes del 3.4 |
+| D-17 | Versiones de R y de los paquetes | Instalado el 2026-10-18: los 13 coinciden y cargan (sección 3.1). Hubo que instalar aparte `pbivnorm`, y la verificación no lo detectó | Firmar. Opcional, para Mateo: que `00_verificar_entorno.R` también intente cargar cada paquete |
+| D-19 | Detalles de la TRI del NSE | `03_nse_tri.R` hace lo que dice D-19 | Observaciones 2 a 4 de la sección 6 |
+| D-20 | Saltos del cuestionario = 0 | Bien implementada (sección 6.1) | Observación 1 de la sección 6 |
+| D-10 | Citas de Goh et al. (2024) y Pohl et al. (2014) | — | Elegir (a) o (b) entre los tres |
+| D-11 | Cómo se codifica una abstención | `banco_Brayan.csv` ya la sigue: las 6 abstenciones en preguntas del corpus están como `sostenida = no` y `correcta = no` | Confirmarla. En `banco_Mateo.csv`, M01 B, M02 B y M05 A son abstenciones en preguntas del corpus y siguen como «no aplica». Así `nsf_evaluacion.R` las saca del conteo, que es justo lo que D-11 corrige. Lo decide Mateo |

@@ -1071,6 +1071,32 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     (D-19 punto 4). Las pruebas de Wald necesitarían errores estándar que con pesos no reflejan el diseño (D-16
     punto 5).
 - **Estado:** ✅ aceptada por Vanessa (2026-10-18). Mateo y Brayan la revisan en el PR.
+- **Resultado del 4.4 y de H2** (`scripts/04_invarianza.R` → `salidas/nse_dif_posesiones.csv` e `inv_h2.csv`,
+  2026-10-18; 116 pruebas en 8 análisis, 4 contrastes por 2 factores; todos los X² positivos):
+
+  | Contraste | Factor | Probados | Significativos (BH) | ΔR² ≥ 0,035 | Con DIF |
+  |---|---|---|---|---|---|
+  | Zona, 3 grupos | económico | 19 | 14 | 1 | **1: motos (`ST251Q02JA`), ΔR² = 0,042** |
+  | Zona, 3 grupos | libros | 10 | 5 | 0 | 0 |
+  | Rural vs urbana (H2) | económico | 19 | 13 | 0 | 0 |
+  | Rural vs urbana (H2) | libros | 10 | 4 | 0 | 0 |
+  | Sexo | económico / libros | 19 / 10 | 11 / 5 | 0 | 0 |
+  | Sector | económico / libros | 19 / 10 | 15 / 9 | 0 | 0 |
+
+  - Con miles de estudiantes, la prueba TRI marca casi todos los ítems. La magnitud es la que separa: el ΔR² más alto
+    fuera de motos es 0,019 (celulares, por sector).
+  - Motos tiene el ΔR² más alto en los tres contrastes en que aparece: 0,042 (zona), 0,033 (sector) y 0,028
+    (rural–urbana). Solo en zona pasa el corte. *Interpretación (equipo, por discutir):* la diferencia está sobre
+    todo en el pueblo, y motos funciona distinto según el entorno, como se había anticipado en D-24.
+  - **H2 se rechaza** (regla del preregistro con D-22 y D-25): en rural–urbana, el paso escalar empeora el CFI 0,003
+    y el RMSEA 0,001 (no más de 0,01 ni de 0,015), y ningún ítem tiene DIF no despreciable. Fallan las dos
+    condiciones.
+  - **Qué implica para la F6:** el NSE entra con invarianza escalar total entre zonas, sexos y sectores, así que sus
+    medias y sus efectos se pueden comparar entre grupos (H6). Motos se reporta como el único ítem con DIF no
+    despreciable, en zona.
+  - *Nota técnica:* el resumen de la corrida terminó con un error de lectura porque Claude editó el script mientras
+    corría. Los cálculos estaban guardados en el caché; las salidas se escribieron de nuevo desde ahí en una corrida
+    limpia (2026-10-18, 19:54).
 
 ### D-27 · 2026-10-18 · Cómo se califica por competencias (F5, O3; H3, H4, H7, H8; cierra D-05 y D-23 puntos 1 a 4)
 - **Problema:** antes de calibrar el modelo de 4 competencias hay que fijar:

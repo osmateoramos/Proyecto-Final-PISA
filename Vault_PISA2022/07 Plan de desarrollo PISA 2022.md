@@ -289,7 +289,7 @@ Script: `04_invarianza.R`.
 - [x] **4.2 Secuencia** con `semTools::measEq.syntax(..., ID.cat = "Wu.Estabrook.2016")`: configural → umbrales →
   métrica (cargas) → escalar (interceptos). Criterio: ΔCFI ≤ 0,01 y ΔRMSEA ≤ 0,015.
 - [x] **4.3 Invarianza parcial:** liberar parámetros uno por uno (índices de modificación) y documentar cuáles.
-- [ ] **4.4 DIF con TRI** (`mirt::multipleGroup` + `DIF()` con ítems ancla) y tamaño del efecto. ¿Coincide con 4.3?
+- [x] **4.4 DIF con TRI** (`mirt::multipleGroup` + `DIF()` con ítems ancla) y tamaño del efecto. ¿Coincide con 4.3?
   - *P4 (D-21):* DIF uniforme y no uniforme, depuración iterativa de las anclas y un segundo método como robustez.
   - *Magnitud (D-22):* «no despreciable» = ΔR² ≥ 0,035 en las posesiones (ítems ordinales).
 - [x] **4.5 Medias latentes del NSE (P6, D-21):** con el nivel de invarianza que se sostenga (total o parcial), comparar
@@ -306,7 +306,9 @@ Script: `04_invarianza.R`.
     - pueblo frente a urbana: −0,63 y −0,19;
     - privado frente a público: +1,43 y +0,60;
     - hombre frente a mujer: +0,05 y −0,12.
-  - **Falta el 4.4 (DIF)** para cerrar H2. La primera corrida fue inválida (D-26); la corregida estaba en curso al
+  - **4.4 (DIF, D-26):** solo motos tiene DIF no despreciable, por zona (ΔR² = 0,042). **H2 se rechaza**: el paso
+    escalar rural–urbana no empeora y ningún ítem tiene DIF no despreciable en ese contraste. F4 cerrada (2026-10-18).
+  - *Antes:* la primera corrida del DIF fue inválida (D-26); la corregida estaba en curso al
     cerrar la sesión del 2026-10-18. Aun así, el paso escalar rural–urbana no empeora (ΔCFI −0,003), así que la primera
     condición de H2 no se cumple.
 - **Listo cuando:** H2 resuelta; queda decidido con qué restricciones entra el NSE a F6.

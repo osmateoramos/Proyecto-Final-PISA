@@ -10,7 +10,7 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 3. [[07 Plan de desarrollo PISA 2022]] — paso a paso por semanas. **Estamos en la semana 3 (19–25 oct):** F0, F1 y
    F2 cerradas (la Puerta G1 pasa). En la F3 están hechos el 3.1 (en `main`), el 3.2, el 3.3 y el 3.5 (rama `Vanessa`,
    PR #12), el 3.3b (dependencia local) y el 3.4 (AFC: H1 se acepta). **La Puerta G2 pasa** con el desajuste
-   documentado (D-24). **F4 (invarianza):** la invarianza escalar se sostiene en los 4 análisis (D-25); falta terminar el DIF (D-26) para cerrar H2. **F5:** paso 5.1 hecho y reglas fijadas en D-27.
+   documentado (D-24). **F4 (invarianza):** la invarianza escalar se sostiene en los 4 análisis (D-25); DIF hecho: solo motos tiene DIF no despreciable (zona) y **H2 se rechaza** (D-26). **F5:** paso 5.1 hecho y reglas fijadas en D-27.
 
 ## Estado del proyecto (al 2026-10-18)
 
@@ -20,7 +20,7 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 | F1 Datos y ETL | ✅ cerrada | `01a_etl_cognitivo.R` → `01b_etl_cuestionario.R` → `01c_muestra_analitica.R` | muestra analítica de 6.886 estudiantes (`salidas/conteos_muestra.csv`); D-12, D-13 y D-14 |
 | F2 Validación del diseño | ✅ cerrada, **G1 pasa** | `02_validacion_ocde.R` + `utilidades_pisa.R` | `salidas/validacion_ocde.csv`; D-15 |
 | F3 O1: medición del NSE | ✅ cerrada, **G2 pasa** con desajuste documentado (D-24); 3.1 en `main` y el resto en el PR #12 | `03_explorar_items_nse.R`, `03_explorar_saltos.R`, `03_nse_medicion.R` (3.1 y 3.2) y `03_nse_tri.R` (3.3, 3.3b y 3.5) y `03_nse_afc.R` (3.4) | `salidas/nse_*.csv`; H1 aceptada (D-18); modelo para la F4–F6: 2D del AFE (D-24); acta en [[Reuniones/2026-10-18 Puerta G2]] |
-| F4 O2: invarianza | en curso: 4.1, 4.2, 4.3 y 4.5 hechos (escalar total en zona, rural–urbana, sexo y sector); falta el DIF (4.4) | `04_explorar_grupos.R` y `04_invarianza.R` | `salidas/invarianza_tabla.csv`, `nse_medias_latentes.csv`; D-25 y D-26 |
+| F4 O2: invarianza | ✅ cerrada: escalar total en zona, rural–urbana, sexo y sector; H2 rechazada | `04_explorar_grupos.R` y `04_invarianza.R` | `salidas/invarianza_tabla.csv`, `nse_medias_latentes.csv`; D-25 y D-26 |
 | F5 O3: competencias | en curso: 5.1 hecho; reglas en D-27 | `05_explorar_items.R` | `salidas/items_competencia.csv`, `items_resumen_competencia.csv` |
 | F6–F9 | pendientes | — | — |
 

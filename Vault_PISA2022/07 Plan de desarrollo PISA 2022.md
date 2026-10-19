@@ -315,6 +315,9 @@ Script: `04_invarianza.R`.
   - **4.2:** la invarianza **escalar total** se sostiene en zona, rural–urbana, sexo y sector. El peor cambio es del
     sector: ΔCFI −0,007 y ΔRMSEA +0,002, dentro de los cortes.
   - **4.3:** no hizo falta liberar ningún parámetro.
+  - **Prueba de diferencia escalada (D-28, 2026-10-19):** complemento que no decide. Sale significativa en 10 de los 12
+    pasos (solo no en umbrales y cargas de sexo); en el escalar rural–urbana, Δχ² = 273,4 con 21 gl. La invarianza y
+    H2 siguen decidiéndose con ΔCFI/ΔRMSEA, como dice D-25 (`salidas/invarianza_tabla.csv`).
   - **4.5:** diferencias de medias latentes en DE frente al grupo de referencia:
     - rural frente a urbana: −0,95 en el factor económico y −0,17 en libros;
     - pueblo frente a urbana: −0,63 y −0,19;

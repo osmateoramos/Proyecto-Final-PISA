@@ -121,7 +121,7 @@ CACHE_CFA <- file.path(DATOS, "COL_inv_cfa.rds")
 # modelo, se rehacen en vez de usar resultados viejos (observación 4 de Brayan sobre la F4, PR #12).
 huella <- function(...) { f <- tempfile(); on.exit(unlink(f))
   writeBin(serialize(list(...), NULL, version = 3), f); unname(tools::md5sum(f)) }
-HUELLA_CFA <- huella(as.list(nse), MODELO)
+HUELLA_CFA <- huella(as.list(nse), MODELO, "D-28")      # "D-28": la tabla trae la prueba de diferencia escalada
 usar_cfa <- file.exists(CACHE_CFA) && !REHACER
 if (usar_cfa) {
   res_cfa <- readRDS(CACHE_CFA)
@@ -150,6 +150,14 @@ if (usar_cfa) {
                        list(avisos = paste(attr(fits[[p]], "avisos"), collapse = " / ")))))
     tab[, `:=`(dCFI = round(cfi.scaled - shift(cfi.scaled), 4), dRMSEA = round(rmsea.scaled - shift(rmsea.scaled), 4))]
     tab[, se_sostiene := fifelse(paso == "configural", NA, dCFI >= -0.01 & dRMSEA <= 0.015)]
+    # D-28: prueba de diferencia escalada de cada paso frente al anterior (lavTestLRT, como en el 3.4). Es un
+    # complemento: no decide H2 ni la invarianza parcial.
+    lrt <- rbindlist(lapply(seq_along(fits), function(i) {
+      r <- if (i > 1) tryCatch(lavTestLRT(fits[[i - 1]], fits[[i]]), error = function(e) NULL) else NULL
+      if (is.null(r)) data.table(LRT_dif_chi2 = NA_real_, LRT_gl = NA_real_, LRT_p = NA_real_) else
+        data.table(LRT_dif_chi2 = round(r[2, "Chisq diff"], 1), LRT_gl = r[2, "Df diff"], LRT_p = signif(r[2, "Pr(>Chisq)"], 3))
+    }))
+    tab <- cbind(tab, lrt)
     secuencia[[a]] <- tab
     # --- 4.3 Invarianza parcial desde el primer paso que no se sostiene
     libres <- character(); previo <- fits[["configural"]]; final <- NULL
@@ -195,7 +203,9 @@ if (usar_cfa) {
   saveRDS(res_cfa, CACHE_CFA)
 }
 fwrite(res_cfa$por_grupo, file.path(SALIDAS, "invarianza_por_grupo.csv"))
-fwrite(res_cfa$secuencia, file.path(SALIDAS, "invarianza_tabla.csv"))
+# El p de la prueba de D-28 va en notación científica: con scipen = 999 saldría con decenas de ceros.
+fwrite(copy(res_cfa$secuencia)[, LRT_p := ifelse(is.na(LRT_p), NA_character_, formatC(LRT_p, format = "e", digits = 2))],
+       file.path(SALIDAS, "invarianza_tabla.csv"))
 fwrite(if (nrow(res_cfa$parciales)) res_cfa$parciales else data.table(analisis = character(), nota = "no hizo falta"),
        file.path(SALIDAS, "nse_items_no_invariantes.csv"))
 # El ee y el IC son los de lavaan: no reflejan el diseño por colegios (D-16 punto 5; D-25 punto 9). Se exportan con

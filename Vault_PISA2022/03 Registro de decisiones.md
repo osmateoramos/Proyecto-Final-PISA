@@ -1216,3 +1216,36 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     con pesos, en segundo plano y con caché.
   - Calibrar cada competencia por separado se descarta: la ruta adaptativa depende de ítems de otras competencias, y la
     falta de datos solo es ignorable si se calibran todas juntas (plan, paso 5.2).
+
+### D-28 · 2026-10-19 · Prueba de diferencia escalada en cada paso de la invarianza (F4; observación 1 de Brayan)
+- **Hallazgo** (revisión de Brayan de la F4, PR #12, 2026-10-18): en los 4 análisis, al restringir las cargas el
+  ajuste *scaled* **mejora**: el CFI sube entre 0,004 y 0,006, el RMSEA baja y el χ² *scaled* también baja (de 9.646 a
+  8.917 en zona), aunque el modelo tiene más restricciones (`salidas/invarianza_tabla.csv`).
+- **Por qué importa** (*interpretación de Claude, sin fuente en el vault, por verificar*): con WLSMV, la corrección de
+  escala cambia entre modelos anidados, así que el χ² y los índices *scaled* no tienen por qué empeorar al restringir.
+  Eso le quita fuerza a la regla ΔCFI/ΔRMSEA de D-25 punto 5, que la propia fuente describe para ítems continuos
+  ([[Literatura/putnick2016measurement]], por verificar).
+- **Alternativas:**
+  - (a) no cambiar nada y declarar la limitación en el informe;
+  - (b) agregar en cada paso la **prueba de diferencia escalada** (`lavTestLRT()`, método `satorra.2000`), igual que
+    en el 3.4 (D-18), como complemento que **no decide** ni H2 ni la invarianza parcial;
+  - (c) usar esa prueba como criterio de decisión.
+- **Propuesta:** (b).
+  - La regla de H2 está preregistrada y no cambia ([[09 Hipótesis preregistradas]]). Por eso se descarta (c).
+  - *Interpretación (por verificar):* con muestras del tamaño de la F4 (de 5.831 a 6.886), la prueba χ² tiende a
+    rechazar diferencias pequeñas, otra razón para no usarla como criterio.
+  - Qué cambia: `invarianza_tabla.csv` gana tres columnas (Δχ², Δgl y p de la prueba) en cada paso frente al
+    anterior.
+  - Costo: el caché `COL_inv_cfa.rds` guarda solo las tablas, no los modelos ajustados, así que hay que rehacer el
+    AFC una vez (unos 11 minutos, `REHACER_INV = 1`). El DIF no se toca.
+- **Estado:** ✅ (b) aceptada por Vanessa (2026-10-19). Mateo y Brayan la revisan en el PR.
+  - Para que los cachés anteriores se rehagan solos en cualquier máquina, la huella del caché del AFC incluye la
+    marca «D-28» (observaciones 2 y 4 de Brayan, PR #12).
+  - **Resultado (2026-10-19, `salidas/invarianza_tabla.csv`):** la prueba de diferencia sale significativa en 10 de
+    los 12 pasos, aunque los 12 se sostienen por ΔCFI/ΔRMSEA. Solo no lo es en sexo, umbrales (Δχ² = 33,0 con 29 gl,
+    p = 0,28) y cargas (Δχ² = 33,5 con 27 gl, p = 0,18). En el paso escalar rural–urbana, el que decide H2, da
+    Δχ² = 273,4 con 21 gl (p = 8,1e−46).
+    - **No cambia nada:** la regla preregistrada de H2 y de la invarianza parcial es ΔCFI/ΔRMSEA (D-25 punto 5), y
+      H2 sigue rechazada (`salidas/inv_h2.csv`, sin cambios).
+    - Se reporta como discrepancia entre los dos criterios. *Interpretación (por verificar):* con n de 5.831 a 6.886,
+      la prueba detecta diferencias que los índices de ajuste consideran pequeñas.

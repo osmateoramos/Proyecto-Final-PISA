@@ -60,8 +60,19 @@ ajustar <- function(modelo) mirt(X, modelo, itemtype = tipos, survey.weights = w
 # Los modelos tardan unos 10 minutos: se guardan en un caché y las corridas siguientes lo reutilizan.
 # Para volver a estimarlos: $env:REHACER_TRI = "1" antes de correr el script.
 MODELOS <- file.path(DATOS, "COL_nse_tri_modelos.rds")
-if (file.exists(MODELOS) && Sys.getenv("REHACER_TRI") != "1") {
-  modelos <- readRDS(MODELOS); minutos <- NA
+# El caché guarda la huella (md5) de lo que entra a los modelos: si cambian los datos, los pesos, los tipos o la
+# estructura, se reestiman en vez de usar modelos viejos (observación 2 de Brayan, PR #12).
+huella <- function(...) { f <- tempfile(); on.exit(unlink(f))
+  writeBin(serialize(list(...), NULL, version = 3), f); unname(tools::md5sum(f)) }
+HUELLA <- huella(as.list(X), w, tipos, ECO, CUL, ECO_AFE, CUL_AFE)
+usar_cache <- file.exists(MODELOS) && Sys.getenv("REHACER_TRI") != "1"
+if (usar_cache) {
+  modelos <- readRDS(MODELOS)
+  usar_cache <- identical(attr(modelos, "huella_datos"), HUELLA)
+  if (!usar_cache) cat("El caché", basename(MODELOS), "no corresponde a los datos actuales: se reestiman los modelos\n")
+}
+if (usar_cache) {
+  minutos <- NA
   cat("Modelos leídos del caché", basename(MODELOS), "\n")
 } else {
   t0 <- Sys.time()
@@ -69,6 +80,7 @@ if (file.exists(MODELOS) && Sys.getenv("REHACER_TRI") != "1") {
                   "2D_D16" = ajustar(modelo_2d(ECO, CUL)),
                   "2D_AFE" = ajustar(modelo_2d(ECO_AFE, CUL_AFE)))
   minutos <- round(as.numeric(Sys.time() - t0, units = "mins"), 1)
+  attr(modelos, "huella_datos") <- HUELLA
   saveRDS(modelos, MODELOS)
 }
 stopifnot(all(sapply(modelos, extract.mirt, "converged")))

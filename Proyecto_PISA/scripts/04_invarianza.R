@@ -117,8 +117,19 @@ se_sostiene <- function(a, b) (b$cfi.scaled - a$cfi.scaled) >= -0.01 & (b$rmsea.
 # 1-3. AFC POR GRUPO, SECUENCIA DE INVARIANZA E INVARIANZA PARCIAL
 # =============================================================================
 CACHE_CFA <- file.path(DATOS, "COL_inv_cfa.rds")
-if (file.exists(CACHE_CFA) && !REHACER) {
-  res_cfa <- readRDS(CACHE_CFA); reloj("AFC e invarianza leídos del caché", basename(CACHE_CFA))
+# Los cachés guardan la huella (md5) de lo que entra al análisis: si cambian COL_nse.rds o COL_nse_tri.rds, o el
+# modelo, se rehacen en vez de usar resultados viejos (observación 4 de Brayan sobre la F4, PR #12).
+huella <- function(...) { f <- tempfile(); on.exit(unlink(f))
+  writeBin(serialize(list(...), NULL, version = 3), f); unname(tools::md5sum(f)) }
+HUELLA_CFA <- huella(as.list(nse), MODELO)
+usar_cfa <- file.exists(CACHE_CFA) && !REHACER
+if (usar_cfa) {
+  res_cfa <- readRDS(CACHE_CFA)
+  usar_cfa <- identical(attr(res_cfa, "huella_datos"), HUELLA_CFA)
+  if (!usar_cfa) reloj("El caché", basename(CACHE_CFA), "no corresponde a los datos actuales: se rehace")
+}
+if (usar_cfa) {
+  reloj("AFC e invarianza leídos del caché", basename(CACHE_CFA))
 } else {
   # --- 4.1 Cada grupo por separado
   por_grupo <- rbindlist(lapply(c("zona3", "sexo2", "sector2"), function(g) rbindlist(lapply(levels(nse[[g]]), function(nv) {
@@ -180,6 +191,7 @@ if (file.exists(CACHE_CFA) && !REHACER) {
                   parciales = rbindlist(parciales), medias = medias,
                   niveles = rbindlist(lapply(names(finales), function(a) data.table(analisis = a, nivel = finales[[a]]$nivel,
                                                                                      liberados = length(finales[[a]]$libres)))))
+  attr(res_cfa, "huella_datos") <- HUELLA_CFA
   saveRDS(res_cfa, CACHE_CFA)
 }
 fwrite(res_cfa$por_grupo, file.path(SALIDAS, "invarianza_por_grupo.csv"))
@@ -222,6 +234,9 @@ REHACER_DIF <- REHACER || Sys.getenv("REHACER_DIF") == "1"      # rehace solo el
 invalido <- function(x) is.null(x) || !"X2" %in% names(x) || any(x$X2 < -1, na.rm = TRUE)
 if (file.exists(CACHE_DIF) && !REHACER_DIF && invalido(readRDS(CACHE_DIF))) {
   reloj("El caché del DIF es de la corrida inválida con pesos (D-26): se rehace"); REHACER_DIF <- TRUE }
+HUELLA_DIF <- huella(as.list(nse), as.list(tri), ECO, CUL)
+if (file.exists(CACHE_DIF) && !REHACER_DIF && !identical(attr(readRDS(CACHE_DIF), "huella_datos"), HUELLA_DIF)) {
+  reloj("El caché del DIF no corresponde a los datos actuales: se rehace"); REHACER_DIF <- TRUE }
 if (file.exists(CACHE_DIF) && !REHACER_DIF) {
   dif <- readRDS(CACHE_DIF); reloj("DIF leído del caché", basename(CACHE_DIF))
 } else {
@@ -230,7 +245,9 @@ if (file.exists(CACHE_DIF) && !REHACER_DIF) {
   # Caché parcial: cada análisis x factor terminado se guarda, para no repetirlo si algo falla después
   CACHE_PARCIAL <- file.path(DATOS, "COL_inv_dif_parcial.rds")
   hechos <- if (file.exists(CACHE_PARCIAL) && Sys.getenv("REHACER_DIF") != "1") readRDS(CACHE_PARCIAL) else list()
+  if (!identical(attr(hechos, "huella_datos"), HUELLA_DIF)) hechos <- list()   # caché parcial de otros datos
   hechos <- Filter(Negate(invalido), hechos)                     # descarta lo que venga de la corrida con pesos
+  attr(hechos, "huella_datos") <- HUELLA_DIF
   dif <- rbindlist(lapply(names(ANALISIS), function(a) rbindlist(lapply(names(FACTORES), function(fc) {
     clave <- paste(a, fc)
     if (!is.null(hechos[[clave]])) { reloj("4.4", clave, "leído del caché parcial"); return(hechos[[clave]]) }
@@ -261,6 +278,7 @@ if (file.exists(CACHE_DIF) && !REHACER_DIF) {
     final }))))
   mirtCluster(remove = TRUE)
   setcolorder(dif, c("analisis", "factor", "item", "vuelta", "X2", "gl", "p", "p_BH", "dR2_Nagelkerke"))
+  setattr(dif, "huella_datos", HUELLA_DIF)
   saveRDS(dif, CACHE_DIF)
 }
 fwrite(dif, file.path(SALIDAS, "nse_dif_posesiones.csv"))

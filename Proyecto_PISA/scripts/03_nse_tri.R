@@ -196,6 +196,10 @@ items_fit <- rbindlist(lapply(names(modelos), function(k) {
 if ("p.S_X2" %in% names(items_fit)) {
   items_fit[, p_BH := p.adjust(p.S_X2, "BH"), by = modelo]
   items_fit[, problematico := p_BH < 0.05 & RMSEA.S_X2 > 0.05]
+  # Redondeo solo para el archivo, después de marcar los problemáticos: sin él, en otra máquina el CSV cambia en el
+  # último decimal aunque el resultado sea el mismo (observación 10 de Brayan, PR #12).
+  items_fit[, `:=`(S_X2 = round(S_X2, 2), RMSEA.S_X2 = round(RMSEA.S_X2, 4),
+                   p.S_X2 = round(p.S_X2, 4), p_BH = round(p_BH, 4))]
 }
 setcolorder(items_fit, c("modelo", "item"))
 fwrite(items_fit, file.path(SALIDAS, "nse_itemfit_tri.csv"))

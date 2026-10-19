@@ -247,6 +247,8 @@ de esa tabla y las dos ediciones chocarían.
 | 2026-10-18 | Brayan | Revisar los 14 commits nuevos del PR #12 (hasta `152691a`) | Claude leyó los scripts nuevos o cambiados, D-18 y D-21 a D-25, D-10, el acta de la G2 y las salidas del AFC. Comprobó cada observación de la 1 a la 10, simuló la fusión con `git merge-tree` y redactó las secciones 6.4 y 6.5 y las filas nuevas de la sección 7 | Claude declara un error propio (observación 11): reportó como reproducidas sin problema unas cargas 2D que valían 0 por un fallo de `mirt`; lo había encontrado Vanessa | borrador, sin confirmar |
 | 2026-10-18 | Brayan | Avanzar lo que no requiere a Brayan: reproducir el PR #12 en `152691a`, preparar la verificación de sus fuentes y marcar con evidencia las tareas de «Nada sin fuente» | Claude reprodujo 4 scripts (21 de 24 salidas idénticas; sección 6.3). Escribió [[18 Verificación de fuentes Brayan]] buscando en el texto de 7 PDF del corpus. Marcó las casillas de las secciones 1 y 2 según los archivos | No saltó la verificación antibots de la página de la OCDE (términos de uso): queda para Brayan | borrador, sin confirmar |
 | 2026-10-18 | Brayan | Crear el PR #13 y publicar la revisión en el PR #12 | Con la sesión de GitHub de Brayan en el navegador integrado, Claude llenó y creó el PR #13 (`Brayan` → `main`, listo para revisión) y publicó en el #12 un comentario con las secciones 6.4 y 6.5 y el veredicto. No aprobó el PR, a pedido de Brayan | El comentario dice que el siguiente número libre es D-26, pero Vanessa ya había usado D-26 y D-27 minutos antes: es un error de Claude, corregido en esta nota | borrador, sin confirmar |
+| 2026-10-18 | Brayan | Revisar la F4 de Vanessa (O2) y reproducirla con datos | Claude leyó `04_invarianza.R`, D-25, D-26 y la F4 del plan 07. Comprobó en el código de `mirt` la causa que da D-26 y reprodujo los pasos 4.1 a 4.5 en una copia aparte, con el script cortado en la línea 189: 4 de 5 salidas idénticas y 1 que difiere en el redondeo de una celda. Redactó la sección 8 | El 4.4 (DIF) no se revisó ni se corrió, porque sus salidas no están publicadas | borrador, sin confirmar |
+| 2026-10-18 | Brayan | Publicar la revisión de la F4 en el PR #12 | Con la sesión de GitHub de Brayan en el navegador integrado, Claude publicó la sección 8 como comentario (`issuecomment-6256805371`), sin aprobar el PR, a pedido de Brayan | Ninguna | borrador, sin confirmar |
 
 ## 6. Revisión del PR #12 (rama `Vanessa` → `main`): borrador para Brayan
 
@@ -268,6 +270,8 @@ de esa tabla y las dos ediciones chocarían.
 >   - la F5: el paso 5.1 y un piloto (`05_explorar_items.R`, D-27).
 >
 >   La F4 es O2: como revisor de O1–O2, también te toca revisarla.
+>   - **Revisada el 2026-10-18 en la sección 8**, con reproducción hasta el 4.5. El 4.4 y el paso 5.1 de la F5 no se
+>     revisaron.
 >   - El comentario del PR #12 se editó para decir esto y para corregir el número (D-28).
 > - **Fusión:** `git merge-tree` entre `origin/Brayan` (`3afe333`) y `origin/Vanessa` (`152691a`) no da conflictos,
 >   tampoco en esta nota (2026-10-18).
@@ -488,3 +492,83 @@ Claude no firma: cada firma la pone Brayan en [[03 Registro de decisiones]], con
 | D-25 | Reglas de la F4 (invarianza) | Coherente con la regla de H2 del preregistro. Los criterios ΔCFI/ΔRMSEA salen de [[Literatura/putnick2016measurement]] (por verificar) | Revisar (revisor de O2) |
 | D-10 | Citas de fuentes de pago | Vanessa eligió (b) el 2026-10-18 y la extendió a todas las fuentes de pago del anteproyecto. **Dos son de tu bloque M:** [[Literatura/chen2007sensitivity]] (la F4 usaría Putnick en su lugar) y [[Literatura/rubin1987multiple]] (lo reemplazaría el Technical Report, p. 226, por verificar) | Decidir con Mateo antes de la F4 (lo pide el acta de la G2). Si queda (b), salen de tu lista de verificación |
 | D-11 | Cómo se codifica una abstención | `banco_Brayan.csv` ya la sigue: las 6 abstenciones en preguntas del corpus están como `sostenida = no` y `correcta = no` | Confirmarla. En `banco_Mateo.csv`, M01 B, M02 B y M05 A son abstenciones en preguntas del corpus y siguen como «no aplica». Así `nsf_evaluacion.R` las saca del conteo, que es justo lo que D-11 corrige. Lo decide Mateo |
+| D-26 | La prueba TRI del DIF va sin pesos (corrige D-25 punto 7) | Comprobado en `mirt` 1.46.1: `DIF()` reestima sin `survey.weights` (sección 8.1) | Revisar y firmar |
+
+## 8. Revisión de la F4 (O2), commits `34d68d0` a `51ad44d`: borrador para Brayan
+
+Borrador de Claude del 2026-10-18, como revisor de O2. Cubre `04_invarianza.R` en `51ad44d`, D-25, D-26, la F4 del
+plan 07 y las salidas publicadas. **El 4.4 (DIF) no está en el PR:** sus salidas (`nse_dif_posesiones.csv` e
+`inv_h2.csv`) no se publicaron porque la corrida corregida seguía en curso (plan 07). Por eso aquí no se revisa su
+resultado.
+
+### 8.1 Lo que se comprobó y cuadra
+
+- **Muestras** (`salidas/invarianza_tabla.csv`), como dice D-25:
+  - zona, 6.674 (6.886 menos los 212 sin zona);
+  - rural–urbana, 5.831 (4.927 + 904);
+  - sexo, 6.886;
+  - sector, 6.796 (menos los 90 sin sector).
+- **Categorías escasas:** cambian solo los 3 ítems previstos en D-25 (`ST254Q02JA`, `ST251Q01JA` y `HISCED_c`). El
+  script se detiene si cambia otro (líneas 89–90), y el detalle está en `salidas/inv_recodificacion.csv`.
+- **Secuencia:** `measEq.syntax` con Wu y Estabrook, parametrización theta y `std.lv`, en el orden configural →
+  umbrales → cargas → interceptos. El criterio es ΔCFI ≥ −0,01 y ΔRMSEA ≤ 0,015 en versión *scaled* (líneas 114 y
+  141), como en D-25 punto 5.
+- **Resultado:** la invarianza escalar total se sostiene en los 4 análisis. No hizo falta liberar ningún parámetro
+  (`nse_items_no_invariantes.csv` vacío). El peor cambio es el del sector: ΔCFI −0,0066 y ΔRMSEA +0,0019.
+- **D-26:** la causa que da se comprobó en el código de `mirt` 1.46.1 de este equipo: ninguna línea de `DIF()`
+  menciona `survey.weights`, y reestima con `multipleGroup()` sin pesos. La prueba TRI sin pesos y la magnitud con
+  pesos son coherentes con D-19 punto 4.
+- **H2 ya se decide sin el DIF:** la regla de D-25 punto 8 pide dos condiciones a la vez. El paso escalar
+  rural–urbana no empeora (ΔCFI −0,0027 y ΔRMSEA +0,0007), así que **H2 se rechaza tenga o no DIF**. El plan 07 ya lo
+  dice. El 4.4 sigue sirviendo para describir O2.
+
+### 8.2 Observaciones (propuestas; las decide el equipo)
+
+1. **Al restringir las cargas, el ajuste *scaled* mejora.**
+   - En los 4 análisis, el CFI *scaled* sube entre 0,004 y 0,006 y el RMSEA baja. El χ² *scaled* también baja, de
+     9.646 a 8.917 en zona, aunque el modelo tiene más restricciones (`invarianza_tabla.csv`).
+   - *Interpretación de Claude, sin fuente en el vault:* con WLSMV, el χ² y los índices *scaled* de modelos anidados
+     no tienen por qué empeorar al restringir, porque la corrección de escala cambia entre modelos. Eso le quita
+     fuerza a la regla ΔCFI/ΔRMSEA, que D-25 ya matiza: Putnick y Bornstein la describen para ítems continuos.
+   - Propuesta: agregar en cada paso la prueba de diferencia escalada (`lavTestLRT`, como en el 3.4) como
+     complemento. No cambia la regla de H2; con n ≈ 6.000 seguramente rechazará, pero queda documentado.
+2. **Los índices *robust* faltan también sin restricciones.**
+   - En el 4.1 (un AFC por grupo, sin igualdades), 4 de los 7 grupos no tienen CFI ni RMSEA *robust*: urbana,
+     rural, mujer y privado.
+   - Donde sí salen, el CFI *robust* va de 0,68 a 0,71 y el RMSEA *robust* de 0,12 a 0,14
+     (`invarianza_por_grupo.csv`), igual de lejos de los cortes que en la G2.
+   - D-25 atribuye la falta de *robust* a las restricciones de igualdad, pero aquí pasa sin ellas.
+   - Propuesta: anotarlo como limitación. Que el modelo «converge con CFI *scaled* de 0,929 a 0,954» (plan 07) no
+     dice que ajuste bien en cada grupo.
+3. **Errores estándar de las medias latentes.** `nse_medias_latentes.csv` exporta `ee` e IC 95 % de `lavaan`, que no
+   reflejan el diseño por colegios (D-16 punto 5; D-25 punto 9 dice «sin EE de diseño»).
+   - El riesgo es que se lean como intervalos válidos: por ejemplo, hombre frente a mujer en el factor económico,
+     con un IC de −0,003 a 0,107.
+   - Propuesta: agregar una columna de aviso, o no exportar el IC hasta tener errores con BRR.
+4. **El caché del AFC** (`datos/COL_inv_cfa.rds`) tampoco detecta si cambiaron `COL_nse.rds` o `COL_nse_tri.rds`. Es
+   el mismo patrón de la observación 2 (sección 6). El commit `51ad44d` blindó solo el caché del DIF, y solo contra la
+   corrida con pesos.
+5. **De redacción:** en D-25 (o al cerrar la F4), decir explícitamente que H2 ya se rechaza por la primera
+   condición. Así no parece que H2 espere al DIF.
+
+### 8.3 Reproducción con datos (2026-10-18, de 18:24 a 18:59)
+
+- **Cómo se hizo:**
+  - copia aparte de la rama `Vanessa` en `51ad44d`, fuera del proyecto y de OneDrive, sin caché del AFC (34,5 min,
+    sin errores);
+  - entradas: `COL_nse.rds` y `COL_nse_tri.rds` de la reproducción de `152691a` (sección 6.3). Los scripts `03` no
+    cambian entre `152691a` y `51ad44d`;
+  - se corrió `04_invarianza.R` **hasta la línea 189** (fin del 4.5), copiada sin cambios, para no correr el 4.4
+    (DIF), cuyas salidas no están publicadas.
+- **Resultado:** de las 5 salidas publicadas, **4 son idénticas byte a byte**:
+  - `inv_recodificacion.csv`, `invarianza_por_grupo.csv`, `nse_items_no_invariantes.csv` y
+    `nse_medias_latentes.csv`;
+  - en `invarianza_tabla.csv` difiere 1 celda de 256, en el redondeo (χ² *scaled* de umbrales rural–urbana: 8.421,42
+    frente a 8.421,4199). Los ΔCFI, ΔRMSEA y la columna `se_sostiene` son iguales.
+- **Qué confirma:** la invarianza escalar total en los 4 análisis y las medias latentes del 4.5 se reproducen en este
+  equipo.
+
+**Propuesta de veredicto para la F4 (la decide Brayan):**
+- aprobable; las observaciones 1 a 4 son mejoras, y la 5 es de redacción;
+- el 4.4 se revisa cuando se publiquen sus salidas;
+- D-26 se puede firmar: su causa está comprobada.

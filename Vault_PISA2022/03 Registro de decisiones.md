@@ -929,9 +929,14 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     | AFC en la mitad de confirmación: CFI *scaled* / *robust* | 0,943 / 0,753 | 0,921 / 0,731 | `salidas/nse_ajuste_afc.csv` |
     | AFC: RMSEA *scaled* / *robust* | 0,060 / 0,114 | 0,071 / 0,119 | ídem |
     | AFC: SRMR | 0,071 | 0,087 | ídem |
-    | TRI en los 6.886: AIC / BIC | 327.986 / 328.765 | 329.821 / 330.600 | `salidas/nse_ajuste_tri.csv` |
+    | TRI en los 6.886: AIC / BIC (no independiente: ver la nota) | 327.986 / 328.765 | 329.821 / 330.600 | `salidas/nse_ajuste_tri.csv` |
     | Factor económico: correlación con ESCS / HOMEPOS | 0,81 / 0,96 | 0,77 / 0,96 | `salidas/nse_validez.csv` |
     | Omega (AFC): económico / segundo factor | 0,888 / 0,929 | 0,925 / 0,936 | `salidas/nse_omega_afc.csv` |
+
+    *Nota (revisión de Brayan, PR #12, 2026-10-18; anotada el 2026-10-19):* la fila del AIC/BIC no es una evidencia
+    independiente a favor del AFE. Como advierte D-19, su estructura salió de la mitad de exploración, que está
+    dentro de los 6.886. La comparación justa es el AFC en la mitad de confirmación, y ahí el AFE también gana:
+    CFI *scaled* 0,943 frente a 0,921 y SRMR 0,071 frente a 0,087. La decisión no cambia.
 
 - **Decisión** (Vanessa, 2026-10-18):
   1. **Pasa a la F4–F6 el modelo de 2 dimensiones del AFE:**
@@ -1038,6 +1043,9 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   8. **H2:** se acepta si, en el modelo rural–urbana, el paso escalar empeora el CFI en más de 0,01 o el RMSEA en más
      de 0,015 (versiones *scaled*), **y** al menos un ítem tiene DIF no despreciable en ese contraste. Es la regla del
      preregistro, con los puntos 5 y 7.
+     - *Resultado (anotado el 2026-10-19, por la revisión de Brayan):* como la regla pide las dos condiciones a la
+       vez, H2 ya se rechaza por la primera: el paso escalar rural–urbana no empeora (ΔCFI −0,0027 y ΔRMSEA
+       +0,0007, `salidas/inv_h2.csv`). El DIF del 4.4 describe O2, pero no cambia H2.
   9. **Medias latentes (4.5, P6):** con el nivel de invarianza que se sostenga, total o parcial, la diferencia de
      medias latentes del NSE entre grupos (el grupo de referencia con media 0), sin EE de diseño (D-16 punto 5).
 - **Salidas previstas:** `scripts/04_invarianza.R` → `salidas/invarianza_tabla.csv`,

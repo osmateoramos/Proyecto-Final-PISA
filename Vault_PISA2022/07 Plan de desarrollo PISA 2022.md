@@ -195,14 +195,20 @@ con `GPArotation` para la rotación oblimin).
     `salidas/nse_recodificacion.csv` y `salidas/nse_mitades.csv`.
     - **Mitades:** exploración 3.445 y confirmación 3.441. Quedan equilibradas en peso (49,9 / 50,1 %), ESCS
       medio (−1,065 / −1,040), HOMEPOS (−1,351 / −1,381), % rural (15,1 / 15,6) y % público (80,3 / 80,4).
-    - **Recodificación:** la regla del 2 % cambió solo los 5 ítems previstos en D-16. `HISCED_c` (0–9) no se
-      tocó. `HISEI_q` quedó en quintiles con el ~20 % del peso cada uno.
+    - **Recodificación:** la regla del 2 % unió categorías en 7 ítems: `ST254Q01JA` a `ST254Q05JA`, `ST255Q01JA`
+      y `ST256Q01JA` (`salidas/nse_recodificacion.csv`). Eran 5 en la primera corrida; con D-20 son 7.
+      `HISCED_c` (0–9) no se tocó. `HISEI_q` quedó en quintiles con el ~20 % del peso cada uno.
+      *Revisión de Brayan (PR #12, 2026-10-18), corregido el 2026-10-19:* decía «solo los 5 ítems previstos en D-16».
 - [x] **3.2 Exploración:** matriz policórica de los 27 ítems de posesiones + educación + ocupación (categorizada);
   `psych::fa.parallel(cor = "poly")`; AFE con 1–3 factores (`oblimin`, `fm = "wls"`). ¿Aparece una dimensión
   económica y otra cultural (libros, educación, ocupación)?
   - *Hecho (2026-10-17):* `03_nse_medicion.R` (sección 3.2), en la mitad de exploración (3.445).
     - Por D-16, el análisis paralelo se hizo sobre la policórica **ponderada**, no con `cor = "poly"`, que no
       admite pesos.
+    - **Análisis paralelo:** el criterio de factores sugiere 7 y el de componentes, 4
+      (`salidas/nse_analisis_paralelo.csv`). Dominan 2 autovalores (10,12 y 3,16; el tercero es 0,66) y el AFE de
+      3 factores solo agrega un factor de un ítem (motos), así que se leyó como estructura de 2 factores (D-16).
+      *Revisión de Brayan (PR #12, 2026-10-18), corregido el 2026-10-19:* faltaba anotar los 7 factores.
     - **Respuesta:** aparecen 2 factores (r = 0,47 con D-20; 0,44 antes), pero el cultural es solo de **libros**. La educación, la
       ocupación, el arte y los instrumentos cargan con lo económico; 25 de 29 ítems coinciden con D-16.
     - Detalle y salidas en el resultado del 3.2 dentro de D-16. La estructura del AFE pasa al 3.4 como
@@ -212,7 +218,9 @@ con `GPArotation` para la rotación oblimin).
   curvas de información. ¿En qué rango del NSE mide bien la escala?
   - *Hecho (2026-10-17, D-19 y D-20):* `03_nse_tri.R`, un script aparte para no reestimar los modelos.
     - Tres modelos: 1D, 2D de D-16 y 2D del AFE.
-    - Las dos dimensiones ajustan mucho mejor que una.
+    - Por AIC y BIC, los dos modelos de 2 dimensiones quedan por debajo del de 1 (`salidas/nse_ajuste_tri.csv`).
+      Es una comparación descriptiva en los 6.886 (D-19): la prueba de H1 es el AFC del 3.4.
+      *Revisión de Brayan (PR #12, 2026-10-18), corregido el 2026-10-19:* decía «ajustan mucho mejor que una».
     - Ningún ítem es problemático: el RMSEA del S-X² es ≤ 0,027.
     - **Respuesta:** la escala mide bien (información ≥ 4) en θ de −2,3 a 3,5 con 1 dimensión. En 2 dimensiones, lo
       económico mide en un rango amplio (−2,2 a 2,7) y lo cultural (libros) mide muy bien sobre el promedio y poco
@@ -228,6 +236,8 @@ con `GPArotation` para la rotación oblimin).
       que le falta una dimensión.
     - No hay dependencia positiva dentro de los libros en 2D. Sí la hay en baños–sanitarios (0,46) y en
       educación–ocupación de los padres (0,35). Detalle en D-21.
+    - **Pendiente menor** (revisión de Brayan, PR #12, 2026-10-18; anotado el 2026-10-19): en 2D quedan marcados pares **negativos** entre
+      `ST255Q01JA` y varios `ST256`, de −0,21 a −0,27 (`salidas/nse_q3_tri.csv`), que D-21 no explica.
   - *De paso se corrigieron* las cargas del modelo 2D (error de `mirt`, D-19) y se agregó la información de cada ítem.
 - [x] **3.4 AFC en la mitad de confirmación:** 1 vs 2 factores con `estimator = "WLSMV"`, `ordered = …`; ajuste,
   `lavTestLRT()`, `semTools::compRelSEM()`. Con n ≈ 3.400 el χ² rechaza: reportarlo y usar CFI/RMSEA/SRMR.
@@ -298,6 +308,10 @@ Script: `04_invarianza.R`.
 - *Hecho (2026-10-18, Vanessa):* `04_invarianza.R` → `salidas/invarianza_por_grupo.csv`, `invarianza_tabla.csv`,
   `nse_items_no_invariantes.csv` y `nse_medias_latentes.csv` (muestra completa; D-25).
   - **4.1:** el AFC del AFE converge en los 7 grupos (CFI *scaled* de 0,929 a 0,954).
+    - **Limitación** (revisión de Brayan, PR #12, 2026-10-18; anotado el 2026-10-19): que converja no quiere decir que ajuste bien en cada
+      grupo. En 4 de los 7 grupos (urbana, rural, mujer y privado) `lavaan` no da el CFI ni el RMSEA *robust*,
+      aunque el 4.1 no tiene restricciones de igualdad. Donde sí salen, el CFI *robust* va de 0,68 a 0,71 y el
+      RMSEA *robust* de 0,12 a 0,14 (`salidas/invarianza_por_grupo.csv`), tan lejos de los cortes como en la G2.
   - **4.2:** la invarianza **escalar total** se sostiene en zona, rural–urbana, sexo y sector. El peor cambio es del
     sector: ΔCFI −0,007 y ΔRMSEA +0,002, dentro de los cortes.
   - **4.3:** no hizo falta liberar ningún parámetro.
@@ -306,6 +320,9 @@ Script: `04_invarianza.R`.
     - pueblo frente a urbana: −0,63 y −0,19;
     - privado frente a público: +1,43 y +0,60;
     - hombre frente a mujer: +0,05 y −0,12.
+    - **Ojo** (revisión de Brayan, PR #12, 2026-10-18; anotado el 2026-10-19): los `ee` y los IC 95 % de `nse_medias_latentes.csv` son los de
+      `lavaan` y no reflejan el diseño por colegios (D-16 punto 5; D-25 punto 9). No se leen como intervalos
+      válidos hasta tener errores con BRR.
   - **4.4 (DIF, D-26):** solo motos tiene DIF no despreciable, por zona (ΔR² = 0,042). **H2 se rechaza**: el paso
     escalar rural–urbana no empeora y ningún ítem tiene DIF no despreciable en ese contraste. F4 cerrada (2026-10-18).
   - *Antes:* la primera corrida del DIF fue inválida (D-26); la corregida estaba en curso al

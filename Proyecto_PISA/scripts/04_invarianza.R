@@ -198,7 +198,10 @@ fwrite(res_cfa$por_grupo, file.path(SALIDAS, "invarianza_por_grupo.csv"))
 fwrite(res_cfa$secuencia, file.path(SALIDAS, "invarianza_tabla.csv"))
 fwrite(if (nrow(res_cfa$parciales)) res_cfa$parciales else data.table(analisis = character(), nota = "no hizo falta"),
        file.path(SALIDAS, "nse_items_no_invariantes.csv"))
-fwrite(res_cfa$medias, file.path(SALIDAS, "nse_medias_latentes.csv"))
+# El ee y el IC son los de lavaan: no reflejan el diseño por colegios (D-16 punto 5; D-25 punto 9). Se exportan con
+# un aviso para que no se lean como intervalos válidos (observación 3 de Brayan sobre la F4, PR #12).
+fwrite(copy(res_cfa$medias)[, aviso_ee := "ee e IC de lavaan, sin el diseño por colegios: no son intervalos válidos hasta tener errores con BRR"],
+       file.path(SALIDAS, "nse_medias_latentes.csv"))
 
 # =============================================================================
 # 4. DIF CON TRI POR FACTOR (D-25 punto 7)

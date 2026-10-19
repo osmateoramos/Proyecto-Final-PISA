@@ -1,11 +1,11 @@
-analisis,nivel_invarianza,factor,grupo,referencia,diferencia,ee,ic95_inf,ic95_sup,comparable
-zona,interceptos (total),ECO,Pueblo,Urbana,-0.63,0.042,-0.712,-0.549,TRUE
-zona,interceptos (total),CUL,Pueblo,Urbana,-0.194,0.044,-0.28,-0.108,TRUE
-zona,interceptos (total),ECO,Rural,Urbana,-0.949,0.045,-1.037,-0.86,TRUE
-zona,interceptos (total),CUL,Rural,Urbana,-0.173,0.042,-0.255,-0.091,TRUE
-H2_rural_urbana,interceptos (total),ECO,Rural,Urbana,-0.95,0.046,-1.04,-0.861,TRUE
-H2_rural_urbana,interceptos (total),CUL,Rural,Urbana,-0.173,0.042,-0.256,-0.091,TRUE
-sexo,interceptos (total),ECO,Hombre,Mujer,0.052,0.028,-0.003,0.107,TRUE
-sexo,interceptos (total),CUL,Hombre,Mujer,-0.123,0.032,-0.185,-0.061,TRUE
-sector,interceptos (total),ECO,Privado,Público,1.433,0.044,1.347,1.519,TRUE
-sector,interceptos (total),CUL,Privado,Público,0.604,0.039,0.527,0.681,TRUE
+analisis,nivel_invarianza,factor,grupo,referencia,diferencia,ee,ic95_inf,ic95_sup,comparable,aviso_ee
+zona,interceptos (total),ECO,Pueblo,Urbana,-0.63,0.042,-0.712,-0.549,TRUE,"ee e IC de lavaan, sin el diseño por colegios: no son intervalos válidos hasta tener errores con BRR"
+zona,interceptos (total),CUL,Pueblo,Urbana,-0.194,0.044,-0.28,-0.108,TRUE,"ee e IC de lavaan, sin el diseño por colegios: no son intervalos válidos hasta tener errores con BRR"
+zona,interceptos (total),ECO,Rural,Urbana,-0.949,0.045,-1.037,-0.86,TRUE,"ee e IC de lavaan, sin el diseño por colegios: no son intervalos válidos hasta tener errores con BRR"
+zona,interceptos (total),CUL,Rural,Urbana,-0.173,0.042,-0.255,-0.091,TRUE,"ee e IC de lavaan, sin el diseño por colegios: no son intervalos válidos hasta tener errores con BRR"
+H2_rural_urbana,interceptos (total),ECO,Rural,Urbana,-0.95,0.046,-1.04,-0.861,TRUE,"ee e IC de lavaan, sin el diseño por colegios: no son intervalos válidos hasta tener errores con BRR"
+H2_rural_urbana,interceptos (total),CUL,Rural,Urbana,-0.173,0.042,-0.256,-0.091,TRUE,"ee e IC de lavaan, sin el diseño por colegios: no son intervalos válidos hasta tener errores con BRR"
+sexo,interceptos (total),ECO,Hombre,Mujer,0.052,0.028,-0.003,0.107,TRUE,"ee e IC de lavaan, sin el diseño por colegios: no son intervalos válidos hasta tener errores con BRR"
+sexo,interceptos (total),CUL,Hombre,Mujer,-0.123,0.032,-0.185,-0.061,TRUE,"ee e IC de lavaan, sin el diseño por colegios: no son intervalos válidos hasta tener errores con BRR"
+sector,interceptos (total),ECO,Privado,Público,1.433,0.044,1.347,1.519,TRUE,"ee e IC de lavaan, sin el diseño por colegios: no son intervalos válidos hasta tener errores con BRR"
+sector,interceptos (total),CUL,Privado,Público,0.604,0.039,0.527,0.681,TRUE,"ee e IC de lavaan, sin el diseño por colegios: no son intervalos válidos hasta tener errores con BRR"

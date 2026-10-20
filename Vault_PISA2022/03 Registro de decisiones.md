@@ -1515,9 +1515,44 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
      adicional, pero no sustituye la validación independiente.
   6. **Condición para avanzar:** no se generan ni publican puntajes definitivos hasta que la referencia independiente y
      los diagnósticos de estabilidad justifiquen que el método elegido es suficientemente preciso.
-- **Pendientes antes de programar** (señalados por Claude; los decide Vanessa):
-  - el tamaño efectivo mínimo de las cadenas de E3 («suficiente» todavía no tiene número);
-  - la tolerancia del gradiente para certificar la moda;
-  - **las referencias metodológicas de E1, E2 y E3:** no están en el vault. Hay que buscarlas, abrirlas y verificarlas
-    como cualquier fuente del proyecto; Claude no las agrega sin que el equipo las abra.
-- **Estado:** ✅ aceptada por Vanessa (2026-10-20); quedan los pendientes anteriores. Mateo y Brayan la revisan en el PR.
+- **Pendientes resueltos por Vanessa (2026-10-20), antes de programar:**
+  - **Semilla:** `set.seed(2026)` se mantiene. Que coincida con la del 3.1 no es un problema metodológico: la selección
+    tiene que ser reproducible y quedar identificada en el código.
+  - **Tamaño efectivo mínimo de las cadenas de E3:** ESS ≥ 1.000 por estudiante y competencia en los estimandos
+    principales. Es un criterio operativo, no una garantía universal: complementa, no sustituye, el error Monte Carlo
+    de la EAP ≤ 0,005 DE. Se mantienen R̂ ≤ 1,01 y los diagnósticos de mezcla; si discrepan, manda la evidencia de
+    precisión, no el ESS aislado.
+  - **Tolerancia de la moda:** norma infinita del gradiente de la log-posterior escalada ≤ 10⁻⁵, con una comprobación
+    de curvatura válida. Se aplica en una parametrización y una escala documentadas; no basta con que el optimizador
+    diga que convergió.
+  - **E3 con un paquete, no con un Metropolis propio:** un Metropolis artesanal añade código crítico que habría que
+    validar justo cuando se necesita una referencia confiable. El paquete se incorpora con un cambio documentado de
+    D-17, coordinado con Mateo y Brayan. No se elige solo porque haga MCMC: tiene que permitir definir la posterior
+    multivariada de cada estudiante y dar diagnósticos robustos. El R̂ calculado a mano no es la primera opción, por
+    las limitaciones del diagnóstico tradicional que señalan Vehtari et al. (2021).
+    - *Lo que hay que verificar al elegirlo (nota de Claude):* `rstan` y `cmdstanr` compilan cada modelo en C++ y
+      necesitan Rtools, que este equipo no tiene (D-17 ya lo evitó con `mirt`). Hay paquetes que corren en R sin
+      compilar y aceptan una log-densidad escrita en R, y existe el paquete `posterior`, que implementa los
+      diagnósticos de Vehtari et al. (2021). Ninguno se ha instalado ni probado.
+  - **Referencias candidatas, propuestas por Vanessa.** Están **por verificar** y no se agregan al vault hasta que el
+    equipo las revise. Claude comprobó solo que existen y que sus datos bibliográficos coinciden (Crossref y PMLR,
+    2026-10-20); no leyó su contenido.
+
+    | Método | Referencia | Comprobación |
+    |---|---|---|
+    | E1 | Haberman, S. J. (2006). *Adaptive quadrature for item response models.* ETS Research Report Series. | Existe en Crossref, DOI 10.1002/j.2333-8504.2006.tb02035.x; el número RR-06-29 no aparece en los metadatos |
+    | E1 | Antal, T., y Oranje, A. (2007). *Adaptive numerical integration for item response theory.* ETS Research Report Series. | Existe en Crossref, DOI 10.1002/j.2333-8504.2007.tb02048.x |
+    | E2 | Guilmeau, T., Branchini, N., Chouzenoux, E., y Elvira, V. (2024). *Adaptive importance sampling for heavy-tailed distributions via α-divergence minimization.* PMLR, 238, 3871–3879. | Existe en la página de PMLR, con esos autores y páginas; no es específica de TRI |
+    | E3 | Vehtari, A., Gelman, A., Simpson, D., Carpenter, B., y Bürkner, P.-C. (2021). *Rank-normalization, folding, and localization: An improved R̂ for assessing convergence of MCMC.* Bayesian Analysis, 16(2), 667–718. | Existe en Crossref, DOI 10.1214/20-BA1221 |
+    | E3 | Hastings, W. K. (1970). *Monte Carlo sampling methods using Markov chains and their applications.* Biometrika, 57(1), 97–109. | Existe en Crossref, DOI 10.1093/biomet/57.1.97 |
+
+  - **Orden de ejecución aprobado:**
+    1. registrar estos umbrales y la decisión del paquete en un commit, antes de programar;
+    2. revisar las fuentes con el equipo y agregarlas al vault solo después de su aprobación;
+    3. probar E3 primero en unos pocos casos ordinarios y extremos: que las cadenas converjan y que el error Monte
+       Carlo cumpla el límite;
+    4. solo entonces correr la submuestra de 277 y contrastar E1 y E2.
+  - *Precisión de Vanessa:* cuatro cadenas y ESS ≥ 1.000 no garantizan por sí solos la calidad de E3. Se evalúan juntos
+    la convergencia, la mezcla, el error Monte Carlo de las EAP y la cobertura de la posterior. Si E3 no se puede
+    validar, no se convierte en referencia: se documenta el fallo y se revisa el diseño antes de producir puntajes.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-20), con los pendientes resueltos; falta elegir el paquete de MCMC. Mateo y Brayan la revisan en el PR.

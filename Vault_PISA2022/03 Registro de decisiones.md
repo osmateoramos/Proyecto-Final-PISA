@@ -1257,3 +1257,56 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
       H2 sigue rechazada (`salidas/inv_h2.csv`, sin cambios).
     - Se reporta como discrepancia entre los dos criterios. *Interpretación (por verificar):* con n de 5.831 a 6.886,
       la prueba detecta diferencias que los índices de ajuste consideran pequeñas.
+
+### D-29 · 2026-10-20 · Con qué se califica por competencia después de rechazar H8 (F5, O3; Puerta G3)
+- **Problema:** H8 se rechazó (2026-10-20, `salidas/mat_ajuste.csv`): el BIC es menor con 1 dimensión y dos
+  correlaciones entre competencias pasan de 0,95 (emplear–razonar 0,976; emplear–interpretar 0,951). El plan necesita
+  puntajes por competencia para H4, H5, H6 y H7, y la Puerta G3 pide el modelo de 4 competencias «elegido o descartado
+  con argumento».
+- **Alternativas:**
+  - (a) calificar con el modelo de 4 competencias, declarando la correlación alta;
+  - (b) abandonar la calificación por competencias y usar un solo puntaje;
+  - (c) un modelo unidimensional por competencia (descartado ya en D-27: la ruta adaptativa depende de ítems de otras
+    competencias y la falta de datos solo es ignorable si se calibran todos juntos);
+  - (d) lo de (a), más un modelo bifactor exploratorio: un factor general de matemáticas y cuatro específicos.
+- **Decisión** (Vanessa, 2026-10-20): **(d)**, siempre que se verifique su viabilidad estadística con los datos
+  reales. Se conserva el análisis de H4, H5, H6 y H7 como se preregistró, se evalúa si las cuatro competencias aportan
+  información diferenciada y se profundiza en la comparación con un puntaje único. Criterios:
+  1. **Validar el modelo de 4 competencias:** ajuste, convergencia, identificación, precisión de las puntuaciones y
+     correlaciones entre factores. Las correlaciones altas se reconocen como limitación, pero no implican por sí
+     solas que el modelo sea inválido.
+  2. **Estimar el bifactor exploratorio:** comprobar que es compatible con la estructura adaptativa, los datos
+     faltantes y los pesos del diseño, y evaluar cuánto aporta cada competencia después de controlar la habilidad
+     matemática general.
+  3. **Preservar el preregistro:** las hipótesis confirmatorias no cambian; el bifactor se documenta como
+     exploratorio y no se usa para modificar retrospectivamente las decisiones originales.
+  4. **Criterios de viabilidad:** si el bifactor no converge, no se identifica o sus factores específicos no son
+     interpretables, se documenta el resultado sin forzar conclusiones.
+  - *Propósito (Vanessa):* no se trata de conservar cuatro competencias a toda costa, sino de investigar si aportan
+    información frente a un puntaje global. Si su contribución específica es limitada, ese resultado también es un
+    hallazgo del proyecto.
+- **Operacionalización del bifactor** (propuesta de Claude, aceptada por Vanessa con ajustes el 2026-10-20):
+  - *Ajuste de Vanessa:* no se da por garantizado que el bifactor podrá estimarse ni que las cuatro subescalas tendrán
+    fiabilidad específica suficiente. El resultado se decide con la evidencia, no con umbrales escogidos después de
+    observarla. Por eso los criterios de viabilidad quedan fijados **aquí, antes de estimar**, y no se cambian después.
+  - *Modelo:* `bfactor()` de `mirt`: cada ítem carga en el factor general y en el específico de su competencia, con
+    factores ortogonales. Mismos ítems, tipos (2PL y GPCM), versión (a) de la matriz y pesos normalizados que el 5.3;
+    integración por defecto de `bfactor()`. Las cargas se calculan con `cargas_mirt()` de la F3, porque `summary()`
+    de `mirt` 1.46.1 anula cargas de ítems GPCM (D-19).
+  - *Viabilidad (punto 4):* el bifactor es viable solo si se cumplen las tres condiciones:
+    - V1: converge dentro de 2.000 ciclos;
+    - V2: no hay parámetros no finitos ni ítems con comunalidad (h² = carga general² + carga específica²) ≥ 0,99;
+    - V3: cada uno de los cuatro factores específicos tiene al menos 3 ítems con carga estandarizada ≥ 0,30 en valor
+      absoluto.
+    - *Los cortes de V2 y V3 los propuso Claude antes de estimar; no tienen fuente en el vault.* Si alguna condición
+      falla, se documenta que el bifactor no es viable y no se interpretan sus factores específicos.
+  - *Aporte de cada competencia (punto 2), solo si es viable:* la proporción de varianza común que explica el factor
+    general (ECV) y la confiabilidad propia de cada competencia descontado el general (omega jerárquico de subescala).
+    - Se reportan sin cortes: es un análisis exploratorio que no decide hipótesis, y el modelo de calificación sigue
+      siendo el de 4 competencias.
+    - *Fuente:* no está en el vault. Son índices usuales del análisis bifactor; hay que buscar y verificar una
+      referencia antes de usarlos en el informe.
+  - *Validación del modelo de 4 competencias (punto 1):* la confiabilidad empírica por competencia se calcula en el
+    5.4, junto con los puntajes.
+- **Estado:** ✅ (d) aceptada por Vanessa (2026-10-20), con la operacionalización y sus ajustes; los cortes de V2 y V3
+  se fijan antes de estimar el bifactor. Mateo y Brayan la revisan en el PR.

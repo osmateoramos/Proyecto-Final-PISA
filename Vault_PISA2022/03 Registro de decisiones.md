@@ -1471,3 +1471,53 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   resolver la validación.
 - **Estado:** ✅ aceptada por Vanessa (2026-10-20); la estrategia concreta está por decidir. Mateo y Brayan la revisan
   en el PR.
+
+### D-31 · 2026-10-20 · Métodos, referencia independiente y contingencias para la posterior del 5.4 (posterior al resultado de V1)
+- **Contexto:** sigue de D-30. Se decide **después** de conocer el fallo de V1, y así se declara. Ningún código de esta
+  decisión se ha escrito ni ejecutado al registrarla.
+- **Decisión de Vanessa (2026-10-20):**
+  1. **Métodos.**
+     - **E1, cuadratura de Gauss-Hermite adaptativa:** método principal, condicionado a que la moda y la curvatura de
+       cada estudiante se estimen de forma fiable y a que la cuadratura alcance estabilidad. Se elige porque ofrece una
+       integración determinista cuyo error se estudia refinando la cuadratura, **no** porque se suponga que la
+       posterior es normal; eso se comprueba. Si las posteriores resultan asimétricas, multimodales o difíciles de
+       aproximar, se reconsidera su idoneidad.
+     - **E2, muestreo de importancia adaptativo:** contraste numérico en los estudiantes y competencias donde E1 muestre
+       dificultades, y comparación más amplia si el costo lo permite.
+     - **E3, MCMC:** referencia independiente para evaluar E1 y E2 en casos extremos y ordinarios. No es válida solo
+       por ser independiente de la cuadratura: tiene que demostrar convergencia y precisión.
+  2. **Submuestra de E3: 277 estudiantes.**
+     - Los 77 con tamaño efectivo de puntos menor que 100 en V1, donde falló la integración.
+     - 200 elegidos al azar entre los demás, con semilla registrada y sin repetir a los 77. *Semilla propuesta:*
+       `set.seed(2026)`, la de la división de mitades del 3.1.
+     - Se amplía solo si los diagnósticos muestran problemas.
+  3. **Criterios para aceptar E3 como referencia**, fijados antes de ejecutarla y aplicados **por estudiante y
+     competencia**, no como promedio global:
+     - 4 cadenas por estudiante, con R̂ ≤ 1,01 en los parámetros relevantes;
+     - error estándar Monte Carlo de cada EAP ≤ 0,005 DE latente, pequeño frente al umbral de 0,02 de V1;
+     - diagnósticos de mezcla y tamaño efectivo suficientes: no se acepta una referencia solo porque las cadenas
+       terminaron;
+     - si un caso no cumple, se prolongan o ajustan las cadenas; si el problema persiste, queda como referencia no
+       validada.
+     - La comparación mantiene constantes los parámetros de los ítems y de la regresión latente, para que los tres
+       métodos estimen la misma posterior.
+  4. **Protocolo si la moda no converge:**
+     1. optimizar desde varios valores iniciales, incluido el centro de la distribución latente y estimaciones
+        alternativas;
+     2. verificar que el gradiente sea suficientemente pequeño y la curvatura válida: que el optimizador termine no
+        basta para certificar la moda;
+     3. si sigue fallando, no descartar al estudiante ni asignarle un puntaje automático: intentar E2 con una propuesta
+        robusta que cubra varias regiones plausibles de la posterior y verificar su tamaño efectivo y su estabilidad;
+     4. si E2 no se valida, usar E3 para ese caso si es viable y converge; si ningún método cumple los criterios, el
+        puntaje queda como **no validado** y no se incluye silenciosamente en los resultados.
+  5. **Criterios de precisión:** se conservan los umbrales originales de V1, V2 y V3 sin modificarlos. E1 se compara con
+     E3 con los umbrales de V1, y su estabilidad se evalúa con V2 y V3. La comparación entre E1 y E2 es evidencia
+     adicional, pero no sustituye la validación independiente.
+  6. **Condición para avanzar:** no se generan ni publican puntajes definitivos hasta que la referencia independiente y
+     los diagnósticos de estabilidad justifiquen que el método elegido es suficientemente preciso.
+- **Pendientes antes de programar** (señalados por Claude; los decide Vanessa):
+  - el tamaño efectivo mínimo de las cadenas de E3 («suficiente» todavía no tiene número);
+  - la tolerancia del gradiente para certificar la moda;
+  - **las referencias metodológicas de E1, E2 y E3:** no están en el vault. Hay que buscarlas, abrirlas y verificarlas
+    como cualquier fuente del proyecto; Claude no las agrega sin que el equipo las abra.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-20); quedan los pendientes anteriores. Mateo y Brayan la revisan en el PR.

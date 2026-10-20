@@ -1214,6 +1214,14 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     antes de terminar.
   - *Por decidir al retomar (cambia el punto 3):* cuántos puntos de integración usa `QMCEM`. La propuesta es 1.000,
     con pesos, en segundo plano y con caché.
+  - ✅ **Decidido por Vanessa (2026-10-20):** `QMCEM` con **1.000 puntos de integración**, con pesos, en segundo plano
+    y con caché, igual para el modelo de 1 y el de 4 dimensiones, para que la comparación de H8 sea pareja.
+    - Por qué: con los puntos por defecto el piloto tardaba unos 70 s por ciclo (varias horas), y con 1.000 unos 13 s
+      (de 1 a 2 horas). Los tiempos del piloto están inflados porque el DIF de la F4 corría al mismo tiempo.
+    - `MHRM` sigue descartado: no admite pesos en `mirt` 1.46.1.
+    - El caché del modelo guarda una huella de los datos y de esta configuración, como en la F3 y la F4 (observación 2
+      de Brayan, PR #12): si cambia alguna de las dos, se reestima.
+    - Mateo y Brayan la revisan en el PR.
   - Calibrar cada competencia por separado se descarta: la ruta adaptativa depende de ítems de otras competencias, y la
     falta de datos solo es ignorable si se calibran todas juntas (plan, paso 5.2).
 

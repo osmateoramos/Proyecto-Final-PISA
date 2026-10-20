@@ -362,12 +362,25 @@ Script: `05_tri_competencias.R` · `mirt`.
     - Dato en el 11,66 % de las celdas; mediana de 29 ítems por estudiante.
     - Tres versiones según la omisión: (a) omitida = 0, (b) omisión rápida (NT10) faltante y (c) toda omisión
       faltante. Hay 12.490 omisiones, de las que 4.852 son rápidas: las mismas cifras que D-27.
-- [ ] **5.3 Calibración unidimensional vs multidimensional.** (a) `mirt(datos, 1, …)`; (b) modelo confirmatorio de 4
+- [x] **5.3 Calibración unidimensional vs multidimensional.** (a) `mirt(datos, 1, …)`; (b) modelo confirmatorio de 4
   dimensiones, cada ítem cargando solo en su competencia (`mirt.model()` con `COV = F1*F2*F3*F4`, método
   `QMCEM` o `MHRM` por la dimensionalidad). Comparar AIC/BIC y ajuste → **H8**.
   - *P1 (D-21):* revisar la dependencia local con el Q3 dentro de cada unidad (estímulo común). En Colombia, 211 de los
     234 ítems están en unidades de 2 o más ítems ([[14 Libros de TRI y SEM]]).
   - *D-23 punto 4:* hacer antes una corrida piloto de tiempos (semana 4).
+  - *Hecho (2026-10-20, Vanessa):* `scripts/05_tri_competencias.R` (sección 5.3) → `salidas/mat_ajuste.csv`; modelos en
+    `datos/COL_mat_tri_1D.rds` y `COL_mat_tri_4D.rds` (no van a Git). Versión (a) de la matriz, pesos y `QMCEM` con
+    1.000 puntos en los dos (D-27).
+    - 1 dimensión: convergió en 123 iteraciones (7 min); BIC 204.268,8. 4 competencias: convergió en 258 iteraciones
+      (45 min); BIC 204.296,1. El AIC favorece por poco al de 4 (200.658,6 frente a 200.672,4).
+    - Correlaciones entre competencias: de 0,897 (formular–interpretar) a 0,976 (emplear–razonar); emplear–
+      interpretar, 0,951.
+    - **H8 se rechaza** por las dos condiciones: el BIC es menor con 1 dimensión y dos correlaciones pasan de 0,95.
+    - `mirt` avisó que la log-verosimilitud bajaba cerca de la solución del modelo de 4 dimensiones.
+      *Interpretación del equipo (Vanessa):* es ruido de la integración con 1.000 puntos, así que la diferencia de BIC
+      se lee con cautela; la condición de las correlaciones (0,976) sostiene el rechazo por sí sola.
+    - *Por decidir antes del 5.4:* con qué puntajes se califica por competencia si se descarta el modelo de 4
+      dimensiones (Puerta G3).
 - [ ] **5.4 Calificar:** puntajes por competencia para cada estudiante (EAP y 10 valores plausibles con
   `fscores(..., plausible.draws = 10)`); confiabilidad empírica por competencia.
   - **Riesgo (D-23 punto 1):** sin condicionar en el NSE, los PV propios atenúan el efecto del NSE en la F6. Propuesta:

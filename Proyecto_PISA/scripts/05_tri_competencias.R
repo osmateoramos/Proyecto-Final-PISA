@@ -1,7 +1,7 @@
 # =============================================================================
 # 05 TRI POR COMPETENCIAS - Colombia, PISA 2022 (F5, O3; reglas en D-27)
 #
-# Qué hace (por ahora, solo el paso 5.2; los pasos 5.3 a 5.7 se agregan uno a uno):
+# Qué hace (por ahora, los pasos 5.2 y 5.3; los pasos 5.4 a 5.7 se agregan uno a uno):
 #   5.2 Matriz de respuestas: 6.886 estudiantes de la muestra analítica (D-27 punto 2) x 232 ítems calibrables.
 #     - Puntaje (D-27 punto 1): el crédito es el primer dígito en los ítems con códigos de dos dígitos, y en ellos
 #       1 y 2 valen 0 (Technical Report, p. 313). Quedan 170 ítems dicotómicos y 62 de crédito parcial (0/1/2).
@@ -12,11 +12,19 @@
 #       (c) toda omisión es faltante (sensibilidad).
 #     - Las celdas vacías por la ruta adaptativa quedan NA: la falta de datos es ignorable si se calibran todos los
 #       ítems juntos (plan, paso 5.2).
+#   5.3 Calibración (D-27 punto 3): con la versión (a), un modelo de 1 dimensión y uno de 4 competencias
+#       correlacionadas (cada ítem carga solo en la suya); 2PL y GPCM; pesos normalizados; QMCEM con 1.000 puntos de
+#       integración en los dos (D-27, decidido el 2026-10-20). H8 se acepta si el de 4 dimensiones tiene menor BIC y
+#       ninguna correlación entre competencias es > 0,95 (09 Hipótesis preregistradas; con pesos, el BIC es
+#       descriptivo, D-19 punto 4).
+#     - Cada modelo se guarda en un caché con huella (datos, pesos, tipos, estructura y configuración): si algo
+#       cambia, se reestima. Para reestimar a la fuerza: $env:REHACER_MAT = "1".
+#     - El de 4 dimensiones tarda horas: para probar solo el de 1 dimensión, $env:SOLO_1D = "1".
 #
 # Entradas: datos/COL_cognitivo.rds (01a), datos/COL_nse.rds (03_nse_medicion) y salidas/items_competencia.csv
 #   (05_explorar_items.R).
-# Salidas: datos/COL_mat_respuestas.rds (no va a Git: datos por estudiante, Ley 1581) y, solo agregados,
-#   salidas/mat_matriz_resumen.csv.
+# Salidas: datos/COL_mat_respuestas.rds, COL_mat_tri_1D.rds y COL_mat_tri_4D.rds (no van a Git: datos por
+#   estudiante, Ley 1581) y, solo agregados, salidas/mat_matriz_resumen.csv y salidas/mat_ajuste.csv.
 #
 # Cómo correrlo (desde Proyecto_PISA/scripts/, después de 05_explorar_items.R):
 #   & "C:\Program Files\R\R-4.4.1\bin\Rscript.exe" 05_tri_competencias.R
@@ -85,4 +93,57 @@ saveRDS(list(CNTSTUID = d$CNTSTUID, a = A, b = B, c = C, competencia = COMP, tip
         file.path(DATOS, "COL_mat_respuestas.rds"))
 
 cat("--- 5.2 Matriz de respuestas (salidas/mat_matriz_resumen.csv) ---\n"); print(resumen)
-cat("\nListo: datos/COL_mat_respuestas.rds (no va a Git) y salidas/mat_matriz_resumen.csv\n")
+
+# =============================================================================
+# 5.3 CALIBRACIÓN: 1 DIMENSIÓN FRENTE A 4 COMPETENCIAS (H8)
+# =============================================================================
+suppressPackageStartupMessages(library(mirt))
+X <- as.data.frame(A)
+peso <- nse$W_FSTUWT[match(d$CNTSTUID, nse$CNTSTUID)]; stopifnot(!anyNA(peso))
+w <- peso * length(peso) / sum(peso)                                      # pesos normalizados (D-16 punto 5)
+FACT <- c(emplear = "EMP", formular = "FOR", interpretar = "INT", razonar = "RAZ")
+sintaxis <- vapply(names(FACT), function(k) paste0(FACT[[k]], " = ", paste(ITEMS[COMP == k], collapse = ", ")), "")
+modelo_4d <- mirt.model(paste0(paste(sintaxis, collapse = "\n"), "\nCOV = ", paste(FACT, collapse = "*")), itemnames = ITEMS)
+CONFIG <- list(method = "QMCEM", quadpts = 1000, NCYCLES = 2000)
+ajustar <- function(modelo) mirt(X, modelo, itemtype = unname(tipos), survey.weights = w, method = CONFIG$method,
+                                 quadpts = CONFIG$quadpts, SE = FALSE, verbose = FALSE,
+                                 technical = list(NCYCLES = CONFIG$NCYCLES))
+huella <- function(...) { f <- tempfile(); on.exit(unlink(f))
+  writeBin(serialize(list(...), NULL, version = 3), f); unname(tools::md5sum(f)) }
+calibrar <- function(nombre, modelo) {
+  cache <- file.path(DATOS, paste0("COL_mat_tri_", nombre, ".rds"))
+  h <- huella(as.list(X), w, unname(tipos), COMP, CONFIG, nombre)
+  if (file.exists(cache) && Sys.getenv("REHACER_MAT") != "1") {
+    m <- readRDS(cache)
+    if (identical(attr(m, "huella_datos"), h)) { cat("5.3", nombre, "leído del caché", basename(cache), "\n"); return(m) }
+    cat("5.3 El caché", basename(cache), "no corresponde a los datos actuales: se reestima\n")
+  }
+  cat(format(Sys.time(), "%H:%M:%S"), "| 5.3 estimando el modelo", nombre, "\n"); flush.console()
+  t0 <- Sys.time(); m <- ajustar(modelo)
+  attr(m, "minutos") <- round(as.numeric(Sys.time() - t0, units = "mins"), 1); attr(m, "huella_datos") <- h
+  saveRDS(m, cache); cat(format(Sys.time(), "%H:%M:%S"), "| 5.3", nombre, "listo en", attr(m, "minutos"), "min\n"); m
+}
+modelos <- list("1D" = calibrar("1D", 1))
+if (Sys.getenv("SOLO_1D") != "1") modelos[["4D"]] <- calibrar("4D", modelo_4d)
+
+correlaciones <- function(m) {
+  s <- coef(m, simplify = TRUE)$cov
+  if (is.null(s) || ncol(s) < 2) return(NULL)
+  r <- cov2cor(s); dimnames(r) <- list(names(FACT), names(FACT)); r
+}
+ajuste <- rbindlist(lapply(names(modelos), function(k) { m <- modelos[[k]]; r <- correlaciones(m)
+  data.table(modelo = k, convergio = extract.mirt(m, "converged"), iteraciones = extract.mirt(m, "iterations"),
+             minutos = attr(m, "minutos"), logLik = round(extract.mirt(m, "logLik"), 1),
+             parametros = extract.mirt(m, "nest"), AIC = round(extract.mirt(m, "AIC"), 1),
+             BIC = round(extract.mirt(m, "BIC"), 1),
+             correlacion_min = if (is.null(r)) NA_real_ else round(min(r[upper.tri(r)]), 3),
+             correlacion_max = if (is.null(r)) NA_real_ else round(max(r[upper.tri(r)]), 3)) }))
+fwrite(ajuste, file.path(SALIDAS, "mat_ajuste.csv"))
+
+cat("\n--- 5.3 Ajuste (salidas/mat_ajuste.csv) ---\n"); print(ajuste)
+if (all(c("1D", "4D") %in% ajuste$modelo)) {
+  r4 <- correlaciones(modelos[["4D"]]); cat("\nCorrelaciones entre competencias (4D):\n"); print(round(r4, 3))
+  h8 <- ajuste[modelo == "4D", BIC] < ajuste[modelo == "1D", BIC] && max(r4[upper.tri(r4)]) <= 0.95
+  cat("\nH8 (menor BIC en 4D y ninguna correlación > 0,95):", if (h8) "se acepta" else "se rechaza", "\n")
+}
+cat("\nListo: datos/COL_mat_respuestas.rds y COL_mat_tri_*.rds (no van a Git); salidas/mat_matriz_resumen.csv y mat_ajuste.csv\n")

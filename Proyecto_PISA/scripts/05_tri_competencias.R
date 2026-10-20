@@ -146,4 +146,111 @@ if (all(c("1D", "4D") %in% ajuste$modelo)) {
   h8 <- ajuste[modelo == "4D", BIC] < ajuste[modelo == "1D", BIC] && max(r4[upper.tri(r4)]) <= 0.95
   cat("\nH8 (menor BIC en 4D y ninguna correlación > 0,95):", if (h8) "se acepta" else "se rechaza", "\n")
 }
-cat("\nListo: datos/COL_mat_respuestas.rds y COL_mat_tri_*.rds (no van a Git); salidas/mat_matriz_resumen.csv y mat_ajuste.csv\n")
+
+# =============================================================================
+# 5.3b BIFACTOR EXPLORATORIO (D-29): no decide hipótesis; criterios de viabilidad fijados antes de estimar
+# =============================================================================
+# Cada ítem carga en el factor general y en el específico de su competencia (factores ortogonales). Mismos datos,
+# tipos y pesos que el 5.3; integración por defecto de bfactor(). Para no correrlo: $env:SIN_BIFACTOR = "1".
+# Cargas estandarizadas como en la F3 (cargas_mirt de 03_nse_tri.R): summary() de mirt 1.46.1 anula cargas de GPCM (D-19).
+cargas_mirt <- function(m) {
+  pars <- m@ParObjects$pars; J <- length(pars) - 1L
+  nf   <- length(mirt:::ExtractLambdas(pars[[1L]], include_fixed = FALSE))
+  gcov <- mirt:::ExtractGroupPars(pars[[J + 1L]])$gcov
+  stopifnot(ncol(gcov) == nf)
+  L <- do.call(rbind, lapply(seq_len(J), function(i) {
+    p <- pars[[i]]; l <- mirt:::ExtractLambdas(p, include_fixed = FALSE) / 1.702
+    if (p@ncat > 2 && (is(p, "gpcm") || is(p, "nominal"))) {
+      d <- mirt:::nominal_rescale_d(p@par[1:(nf + p@ncat)], nfact = nf, ncat = p@ncat)
+      l <- l * d
+      s <- sign(l[which(l != 0)[1]]); if (is.na(s)) s <- 1
+      l <- l * sqrt((p@ncat - 1) * 1.702) * s
+    }
+    l }))
+  L <- L %*% diag(sqrt(diag(gcov)), nf)
+  F <- L / sqrt(1 + rowSums(L^2))
+  dimnames(F) <- list(extract.mirt(m, "itemnames"), extract.mirt(m, "factorNames")); F
+}
+if (Sys.getenv("SOLO_1D") != "1" && Sys.getenv("SIN_BIFACTOR") != "1") {
+  ESPECIFICO <- match(COMP, names(FACT))                                  # 1 a 4: emplear, formular, interpretar, razonar
+  cache_bf <- file.path(DATOS, "COL_mat_tri_bifactor.rds")
+  h_bf <- huella(as.list(X), w, unname(tipos), ESPECIFICO, "bifactor", "D-29", "con EE")
+  bf <- NULL
+  if (file.exists(cache_bf) && Sys.getenv("REHACER_MAT") != "1") {
+    bf <- readRDS(cache_bf)
+    if (identical(attr(bf, "huella_datos"), h_bf)) cat("\n5.3b bifactor leído del caché", basename(cache_bf), "\n") else bf <- NULL
+  }
+  if (is.null(bf)) {
+    cat(format(Sys.time(), "%H:%M:%S"), "| 5.3b estimando el bifactor\n"); flush.console(); t0 <- Sys.time()
+    # Con errores estándar: V2 y V3 los revisan (confirmación de Vanessa en D-29)
+    bf <- tryCatch(bfactor(X, ESPECIFICO, itemtype = unname(tipos), survey.weights = w, SE = TRUE, verbose = FALSE,
+                           technical = list(NCYCLES = 2000)),
+                   error = function(e) structure(list(error = conditionMessage(e)), class = "error_bifactor"))
+    attr(bf, "minutos") <- round(as.numeric(Sys.time() - t0, units = "mins"), 1); attr(bf, "huella_datos") <- h_bf
+    saveRDS(bf, cache_bf)
+  }
+  if (inherits(bf, "error_bifactor")) {
+    viab <- data.table(criterio = "estimación", cumple = FALSE, detalle = bf$error)
+    fwrite(viab, file.path(SALIDAS, "mat_bifactor_viabilidad.csv"))
+    cat("\n5.3b El bifactor no se pudo estimar:", bf$error, "\n")
+  } else {
+    Fb <- cargas_mirt(bf)
+    # El general es el factor en el que cargan todos los ítems; el específico de cada competencia, el que cargan sus ítems
+    G <- names(which.max(colSums(Fb != 0)))
+    S <- vapply(names(FACT), function(k) { o <- setdiff(colnames(Fb), G)
+      o[which.max(colSums(Fb[COMP == k, o, drop = FALSE] != 0))] }, "")
+    stopifnot(all(Fb[, G] != 0), length(unique(S)) == 4)
+    h2 <- rowSums(Fb^2)
+    par_num <- unlist(lapply(bf@ParObjects$pars, function(p) p@par))
+    n_fuertes <- vapply(seq_along(S), function(k) sum(abs(Fb[COMP == names(FACT)[k], S[k]]) >= 0.30), 0)
+    # Pendiente específica de cada ítem y su error estándar (escala de la TRI); NA si no se pudo calcular
+    fn <- extract.mirt(bf, "factorNames"); cf <- coef(bf, printSE = TRUE)
+    pend <- rbindlist(lapply(ITEMS, function(j) { m <- cf[[j]]; col <- paste0("a", match(S[[COMP[[j]]]], fn))
+      data.table(item = j, competencia = COMP[[j]],
+                 pendiente_especifica = m["par", col], ee_pendiente_especifica = if ("SE" %in% rownames(m)) m["SE", col] else NA_real_) }))
+    ee_todos <- unlist(lapply(cf[ITEMS], function(m) if ("SE" %in% rownames(m)) m["SE", ] else NA_real_))
+    ee_ok <- length(ee_todos) > 0 && all(is.finite(ee_todos))
+    viab <- data.table(
+      criterio = c("V1 convergencia (<= 2.000 ciclos)", "V2a parámetros finitos", "V2b errores estándar calculados y finitos",
+                   "V2c comunalidad < 0,99",
+                   paste("V3", names(FACT), ">= 3 ítems con carga específica >= 0,30 (criterio operativo)")),
+      cumple = c(extract.mirt(bf, "converged"), all(is.finite(par_num)), ee_ok, max(h2) < 0.99, n_fuertes >= 3),
+      detalle = c(paste(extract.mirt(bf, "iterations"), "ciclos;", attr(bf, "minutos"), "min"),
+                  paste(sum(!is.finite(par_num)), "no finitos"),
+                  paste(sum(!is.finite(ee_todos)), "de", length(ee_todos), "EE no finitos o sin calcular"),
+                  paste("comunalidad máxima", round(max(h2), 3)),
+                  vapply(seq_along(S), function(k) { p <- pend[competencia == names(FACT)[k]]
+                    sprintf("%d de %d ítems; EE de la pendiente específica: mediana %.3f, máximo %.3f", n_fuertes[k], nrow(p),
+                            median(p$ee_pendiente_especifica, na.rm = TRUE), suppressWarnings(max(p$ee_pendiente_especifica, na.rm = TRUE))) }, "")))
+    # Se reportan, sin umbral (D-29): varianzas de los factores (fijas en 1) y posibles soluciones de frontera
+    frontera <- data.table(medida = c("varianzas de los factores", "comunalidad máxima", "carga general máxima (valor absoluto)",
+                                      "carga específica máxima (valor absoluto)", "pendiente específica máxima (valor absoluto)"),
+                           valor = c("fijas en 1 por identificación", round(max(h2), 3), round(max(abs(Fb[, G])), 3),
+                                     round(max(abs(Fb[cbind(seq_len(nrow(Fb)), match(S[COMP], colnames(Fb)))])), 3),
+                                     round(max(abs(pend$pendiente_especifica)), 3)))
+    fwrite(frontera, file.path(SALIDAS, "mat_bifactor_frontera.csv"))
+    fwrite(cbind(pend, carga_general = round(Fb[pend$item, G], 3),
+                 carga_especifica = round(Fb[cbind(match(pend$item, rownames(Fb)), match(S[pend$competencia], colnames(Fb)))], 3),
+                 comunalidad = round(h2[pend$item], 3))[, `:=`(pendiente_especifica = round(pendiente_especifica, 3),
+                                                              ee_pendiente_especifica = round(ee_pendiente_especifica, 3))],
+           file.path(SALIDAS, "mat_bifactor_items.csv"))
+    fwrite(viab, file.path(SALIDAS, "mat_bifactor_viabilidad.csv"))
+    viable <- all(viab$cumple)
+    cat("\n--- 5.3b Viabilidad del bifactor (salidas/mat_bifactor_viabilidad.csv) ---\n"); print(viab)
+    cat("\n--- 5.3b Posibles soluciones de frontera (salidas/mat_bifactor_frontera.csv; se reportan sin umbral) ---\n"); print(frontera)
+    if (viable) {
+      # ECV y omega jerárquico de subescala (D-29; fuente por buscar y verificar): se reportan sin cortes
+      ecv <- sum(Fb[, G]^2) / sum(Fb^2)
+      aporte <- rbindlist(lapply(seq_along(S), function(k) { jj <- COMP == names(FACT)[k]
+        g <- sum(Fb[jj, G]); s <- sum(Fb[jj, S[k]]); u <- sum(1 - h2[jj])
+        data.table(competencia = names(FACT)[k], items = sum(jj), carga_general_media = round(mean(Fb[jj, G]), 3),
+                   carga_especifica_media = round(mean(Fb[jj, S[k]]), 3), items_carga_especifica_030 = n_fuertes[k],
+                   omega_jerarquico_subescala = round(s^2 / (g^2 + s^2 + u), 3)) }))
+      aporte <- rbind(aporte, data.table(competencia = "ECV (factor general)", omega_jerarquico_subescala = round(ecv, 3)), fill = TRUE)
+      fwrite(aporte, file.path(SALIDAS, "mat_bifactor_aporte.csv"))
+      cat("\n--- 5.3b Aporte de cada competencia (salidas/mat_bifactor_aporte.csv) ---\n"); print(aporte)
+    } else cat("\n5.3b El bifactor no es viable según D-29: no se interpretan sus factores específicos.\n")
+  }
+}
+
+cat("\nListo: datos/COL_mat_respuestas.rds y COL_mat_tri_*.rds (no van a Git); salidas/mat_matriz_resumen.csv, mat_ajuste.csv y mat_bifactor_*.csv\n")

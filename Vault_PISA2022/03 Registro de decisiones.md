@@ -1300,6 +1300,20 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
       absoluto.
     - *Los cortes de V2 y V3 los propuso Claude antes de estimar; no tienen fuente en el vault.* Si alguna condición
       falla, se documenta que el bifactor no es viable y no se interpretan sus factores específicos.
+  - *Confirmación de Vanessa (2026-10-20), antes de estimar:* V1 y V2 se aceptan; V3 se ajusta.
+    - **V1** es un límite computacional operativo: si se alcanza sin convergencia, se registra y se examina la causa.
+    - **V2** exige parámetros finitos y una solución admisible. Una comunalidad ≥ 0,99 es una señal de alerta muy
+      fuerte; además se verifican los errores estándar (que se puedan calcular y sean finitos), las varianzas de los
+      factores (fijas en 1 por identificación en el bifactor) y posibles soluciones de frontera, que se reportan.
+    - **V3** se mantiene (al menos 3 ítems por competencia con carga específica ≥ 0,30 en valor absoluto), pero como
+      **criterio operativo de viabilidad, no como prueba de validez ni de fiabilidad**: una carga de 0,30 no garantiza
+      que el factor específico esté bien medido. Se registran cuántos ítems lo cumplen y los errores estándar de las
+      pendientes específicas, sin agregar nuevos umbrales de aceptación después de ver los resultados.
+    - Los tres cortes son decisiones metodológicas del proyecto, no estándares universales. Antes del informe se
+      incorporan fuentes verificadas sobre modelos bifactor, cargas factoriales e índices de fiabilidad.
+    - Si el modelo falla algún criterio, se documenta qué ocurrió y por qué. Si los supera, el ECV y el omega
+      jerárquico de subescala se interpretan de forma exploratoria, sin modificar el modelo de 4 competencias ni las
+      hipótesis preregistradas.
   - *Aporte de cada competencia (punto 2), solo si es viable:* la proporción de varianza común que explica el factor
     general (ECV) y la confiabilidad propia de cada competencia descontado el general (omega jerárquico de subescala).
     - Se reportan sin cortes: es un análisis exploratorio que no decide hipótesis, y el modelo de calificación sigue

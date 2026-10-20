@@ -379,8 +379,14 @@ Script: `05_tri_competencias.R` · `mirt`.
     - `mirt` avisó que la log-verosimilitud bajaba cerca de la solución del modelo de 4 dimensiones.
       *Interpretación del equipo (Vanessa):* es ruido de la integración con 1.000 puntos, así que la diferencia de BIC
       se lee con cautela; la condición de las correlaciones (0,976) sostiene el rechazo por sí sola.
-    - *Por decidir antes del 5.4:* con qué puntajes se califica por competencia si se descarta el modelo de 4
-      dimensiones (Puerta G3).
+    - *Decidido en D-29 (Vanessa, 2026-10-20):* se califica con el modelo de 4 competencias y se agrega un bifactor
+      exploratorio.
+  - **5.3b Bifactor exploratorio (D-29):** `scripts/05_tri_competencias.R` (sección 5.3b) →
+    `salidas/mat_bifactor_viabilidad.csv`, `mat_bifactor_frontera.csv` y `mat_bifactor_items.csv`.
+    - **No es viable** según los criterios fijados antes de estimar: no convergió en 2.000 ciclos (174,6 min) y no se
+      pudo calcular ningún error estándar; `mirt` advirtió que el modelo podría no estar identificado empíricamente.
+    - No se interpretan sus cargas específicas ni se reportan el ECV ni el omega. Las explicaciones plausibles y la
+      interpretación del equipo están en D-29.
 - [ ] **5.4 Calificar:** puntajes por competencia para cada estudiante (EAP y 10 valores plausibles con
   `fscores(..., plausible.draws = 10)`); confiabilidad empírica por competencia.
   - **Riesgo (D-23 punto 1):** sin condicionar en el NSE, los PV propios atenúan el efecto del NSE en la F6. Propuesta:

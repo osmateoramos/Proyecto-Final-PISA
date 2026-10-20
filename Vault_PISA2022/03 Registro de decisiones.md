@@ -1322,5 +1322,38 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
       referencia antes de usarlos en el informe.
   - *Validación del modelo de 4 competencias (punto 1):* la confiabilidad empírica por competencia se calcula en el
     5.4, junto con los puntajes.
+- **Resultado de la prueba de viabilidad (2026-10-20; `salidas/mat_bifactor_viabilidad.csv`, `mat_bifactor_frontera.csv`
+  y `mat_bifactor_items.csv`):** el bifactor **no es viable** según los criterios fijados antes de estimar.
+  - **Incumplidos:** V1, porque llegó a los 2.000 ciclos sin converger (174,6 min), y V2b, porque no se pudo calcular
+    ningún error estándar. `mirt` avisó que no pudo invertir la matriz de información y que el modelo podría no estar
+    identificado empíricamente con estos datos.
+  - **Cumplidos:** V2a (parámetros finitos), V2c (comunalidad máxima 0,981) y V3 en las cuatro competencias (emplear 15
+    de 75 ítems, formular 13 de 47, interpretar 15 de 57 y razonar 23 de 53). Sin convergencia ni errores estándar,
+    esas cargas no son estimaciones confiables.
+  - **Reportado sin umbral:** varianzas de los factores fijas en 1; carga general máxima 0,939; carga específica
+    máxima 0,903; pendiente específica máxima 4,795.
+- **Interpretación del equipo (Vanessa, 2026-10-20):**
+  - El bifactor no cumplió los criterios de viabilidad. Esto impide interpretar de forma confiable las cargas
+    específicas y cuantificar con este modelo el aporte independiente de cada competencia.
+  - Tres explicaciones plausibles, que podrían actuar juntas; son compatibles con los resultados, pero no se puede
+    establecer cuál explica el fallo sin análisis adicionales:
+    1. **Alta dispersión de las respuestas:** cada estudiante respondió una mediana de 29 de los 232 ítems, con el
+       11,7 % de las celdas observadas, lo que podría dificultar estimar un modelo con tantos parámetros.
+    2. **Elevada correlación entre competencias:** las correlaciones de 0,90 a 0,98 del modelo de 4 competencias
+       sugieren poca diferenciación empírica entre algunas dimensiones, lo que podría dificultar identificar los
+       factores específicos.
+    3. **Posibles problemas de estimación en algunos ítems:** la comunalidad de 0,981 y la pendiente específica de
+       4,795 justifican examinar soluciones próximas a la frontera, aunque por sí solos no demuestran una solución
+       impropia.
+  - **Conclusión:** el bifactor no es viable bajo los criterios preregistrados. Esto no demuestra por sí mismo que el
+    modelo de 4 competencias sea inválido ni confirma automáticamente el rechazo de H8: es un resultado metodológico
+    que se documenta con transparencia.
+- **Decisiones que siguen del resultado (Vanessa, 2026-10-20):**
+  - no se interpretan las cargas específicas ni se reportan el ECV ni el omega jerárquico de subescala;
+    `mat_bifactor_items.csv` lleva un aviso en cada fila y los errores estándar dicen «No calculable»;
+  - no se amplía el límite de iteraciones ni se cambia la configuración para buscar un resultado favorable después
+    de conocer el fallo;
+  - se continúa con el paso 5.4 y el modelo de 4 competencias, verificando su ajuste, convergencia y precisión, y
+    reconociendo las limitaciones de las correlaciones altas.
 - **Estado:** ✅ (d) aceptada por Vanessa (2026-10-20), con la operacionalización y sus ajustes; los cortes de V2 y V3
   se fijan antes de estimar el bifactor. Mateo y Brayan la revisan en el PR.

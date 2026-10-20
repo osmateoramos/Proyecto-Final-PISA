@@ -1,0 +1,9 @@
+criterio,cumple,detalle
+V1 convergencia (<= 2.000 ciclos),FALSE,2000 ciclos; 174.6 min
+V2a parámetros finitos,TRUE,0 no finitos
+V2b errores estándar calculados y finitos,FALSE,232 de 232 EE no finitos o sin calcular
+"V2c comunalidad < 0,99",TRUE,comunalidad máxima 0.981
+"V3 emplear >= 3 ítems con carga específica >= 0,30 (criterio operativo)",TRUE,15 de 75 ítems; EE de la pendiente específica: No calculable
+"V3 formular >= 3 ítems con carga específica >= 0,30 (criterio operativo)",TRUE,13 de 47 ítems; EE de la pendiente específica: No calculable
+"V3 interpretar >= 3 ítems con carga específica >= 0,30 (criterio operativo)",TRUE,15 de 57 ítems; EE de la pendiente específica: No calculable
+"V3 razonar >= 3 ítems con carga específica >= 0,30 (criterio operativo)",TRUE,23 de 53 ítems; EE de la pendiente específica: No calculable

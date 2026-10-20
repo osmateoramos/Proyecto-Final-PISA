@@ -220,8 +220,9 @@ if (Sys.getenv("SOLO_1D") != "1" && Sys.getenv("SIN_BIFACTOR") != "1") {
                   paste(sum(!is.finite(ee_todos)), "de", length(ee_todos), "EE no finitos o sin calcular"),
                   paste("comunalidad máxima", round(max(h2), 3)),
                   vapply(seq_along(S), function(k) { p <- pend[competencia == names(FACT)[k]]
-                    sprintf("%d de %d ítems; EE de la pendiente específica: mediana %.3f, máximo %.3f", n_fuertes[k], nrow(p),
-                            median(p$ee_pendiente_especifica, na.rm = TRUE), suppressWarnings(max(p$ee_pendiente_especifica, na.rm = TRUE))) }, "")))
+                    ee <- p$ee_pendiente_especifica[is.finite(p$ee_pendiente_especifica)]
+                    sprintf("%d de %d ítems; EE de la pendiente específica: %s", n_fuertes[k], nrow(p),
+                            if (length(ee)) sprintf("mediana %.3f, máximo %.3f", median(ee), max(ee)) else "No calculable") }, "")))
     # Se reportan, sin umbral (D-29): varianzas de los factores (fijas en 1) y posibles soluciones de frontera
     frontera <- data.table(medida = c("varianzas de los factores", "comunalidad máxima", "carga general máxima (valor absoluto)",
                                       "carga específica máxima (valor absoluto)", "pendiente específica máxima (valor absoluto)"),
@@ -232,7 +233,10 @@ if (Sys.getenv("SOLO_1D") != "1" && Sys.getenv("SIN_BIFACTOR") != "1") {
     fwrite(cbind(pend, carga_general = round(Fb[pend$item, G], 3),
                  carga_especifica = round(Fb[cbind(match(pend$item, rownames(Fb)), match(S[pend$competencia], colnames(Fb)))], 3),
                  comunalidad = round(h2[pend$item], 3))[, `:=`(pendiente_especifica = round(pendiente_especifica, 3),
-                                                              ee_pendiente_especifica = round(ee_pendiente_especifica, 3))],
+                                                              ee_pendiente_especifica = fifelse(is.finite(ee_pendiente_especifica),
+                                                                sprintf("%.3f", ee_pendiente_especifica), "No calculable"),
+                                                              aviso = if (all(viab$cumple)) "" else
+                                                                "modelo no viable (D-29): no interpretar estas cargas")],
            file.path(SALIDAS, "mat_bifactor_items.csv"))
     fwrite(viab, file.path(SALIDAS, "mat_bifactor_viabilidad.csv"))
     viable <- all(viab$cumple)

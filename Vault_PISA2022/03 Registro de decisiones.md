@@ -1257,15 +1257,29 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
       duplicar los puntos (V2, V3), antes de producir los puntajes definitivos; (4) si se cumplen, EAP, errores
       estándar y 10 valores plausibles por estudiante; (5) documentar cualquier incumplimiento y no presentar los
       puntajes como suficientemente precisos hasta resolverlo.
-    - **Detalles de implementación propuestos por Claude, por confirmar antes de correr V1:**
-      - *Puntos QMC:* una secuencia de Halton de 4 dimensiones transformada a normal; 5.000 puntos por estudiante en la
-        resolución base y 10.000 en la duplicada.
-      - *Referencia de V1:* `fscores()` del modelo de 4 competencias sin covariables, con QMC y 10.000 puntos, para que
-        el error de integración de la propia referencia sea pequeño.
-      - *Valores plausibles:* extracciones de una normal multivariada con la EAP y la covarianza posterior conjunta de
-        cada estudiante, que es el método por defecto de `fscores()` (`plausible.type = "normal"`). La alternativa es
-        remuestrear los puntos QMC con sus pesos posteriores, que no supone normalidad pero puede dar pocos puntos
-        distintos cuando la posterior es muy concentrada.
+    - **Detalles de implementación** (propuestos por Claude; confirmados por Vanessa el 2026-10-20 con precisiones,
+      antes de correr V1):
+      1. *Puntos QMC:* secuencia de Halton de 4 dimensiones transformada a normal; 5.000 puntos en la resolución base
+         y 10.000 en la duplicada, con **puntos comunes**: los primeros 5.000 de la secuencia de 10.000 son los de la
+         base. *Precisión de Vanessa:* centrar los puntos en la predicción de las covariables no garantiza representar
+         toda la posterior; la integración usa la densidad posterior y sus pesos, y la dispersión de los puntos es la de
+         la distribución latente especificada (media y covarianza residual del modelo).
+      2. *Referencia de V1:* `fscores()` del modelo de 4 competencias sin covariables, con QMC y 10.000 puntos.
+         *Precisión de Vanessa:* la comparación usa exactamente los mismos estudiantes, ítems, codificación y
+         tratamiento de los faltantes; V1 comprueba la implementación en ese escenario, pero no demuestra por sí sola
+         que la regresión latente esté bien implementada.
+      3. *Valores plausibles:* normal multivariada con la EAP y la covarianza posterior conjunta de cada estudiante
+         (como `plausible.type = "normal"` de `fscores()`), **aceptada de forma condicionada**: no se asume que
+         reproduce exactamente la posterior, y si es asimétrica o multimodal puede ser insuficiente. Comprobaciones,
+         con tolerancia a la variabilidad Monte Carlo (no se exige igualdad exacta):
+         - la media de los valores plausibles se aproxima a la media de las EAP;
+         - la covarianza total de los valores plausibles se aproxima a la covarianza entre las EAP más la covarianza
+           posterior media;
+         - la dependencia entre competencias se contrasta con esa covarianza total, no solo con las correlaciones de
+           los factores del modelo.
+    - **Si V1 falla** (Vanessa): no se continúa con la estimación definitiva. Primero se identifica si la discrepancia
+      viene de la integración QMC, de la implementación de la posterior o de diferencias de configuración entre
+      `mirt` y el código propio.
   - Calibrar cada competencia por separado se descarta: la ruta adaptativa depende de ítems de otras competencias, y la
     falta de datos solo es ignorable si se calibran todas juntas (plan, paso 5.2).
 

@@ -350,12 +350,18 @@ Script: `05_tri_competencias.R` · `mirt`.
   En Colombia, `CMA112Q02S` y `CMA143Q01S` no tienen ninguna respuesta: **quedan 232 calibrables** (emplear 75,
   interpretar 57, razonar 53, formular 47; `revision_pisa2022_col.R`, 2026-10-05).
   Guardar `salidas/items_competencia.csv`. *D-09 cerrada (2026-10-18): `CMA112Q02S` se excluye, como en la OCDE.*
-- [ ] **5.2 Matriz de respuestas:** ~~7.222~~ estudiantes × ítems clasificados (S y C); categorías parciales para los
+- [x] **5.2 Matriz de respuestas:** ~~7.222~~ estudiantes × ítems clasificados (S y C); categorías parciales para los
   politómicos. Las celdas vacías por la ruta adaptativa se dejan `NA` (la ruta depende de respuestas observadas:
   es ignorable si se calibra con todas las etapas juntas).
   - *Muestra por decidir (D-23 punto 2):* el 7.222 es el conteo de la revisión del 29/09; la muestra del proyecto es la
     de 6.886 (D-14, D-16).
   - *P2 (D-21):* calibrar los 232 ítems y repetir sin los que tienen menos de 500 respuestas, como robustez (F7).
+  - *Hecho (2026-10-20, Vanessa; reglas de D-27 puntos 1, 2 y 5):* `scripts/05_tri_competencias.R` (sección 5.2) →
+    `datos/COL_mat_respuestas.rds` (no va a Git) y `salidas/mat_matriz_resumen.csv`.
+    - Matriz de los 6.886 de la muestra analítica × 232 ítems: 170 dicotómicos y 62 de crédito parcial.
+    - Dato en el 11,66 % de las celdas; mediana de 29 ítems por estudiante.
+    - Tres versiones según la omisión: (a) omitida = 0, (b) omisión rápida (NT10) faltante y (c) toda omisión
+      faltante. Hay 12.490 omisiones, de las que 4.852 son rápidas: las mismas cifras que D-27.
 - [ ] **5.3 Calibración unidimensional vs multidimensional.** (a) `mirt(datos, 1, …)`; (b) modelo confirmatorio de 4
   dimensiones, cada ítem cargando solo en su competencia (`mirt.model()` con `COV = F1*F2*F3*F4`, método
   `QMCEM` o `MHRM` por la dimensionalidad). Comparar AIC/BIC y ajuste → **H8**.

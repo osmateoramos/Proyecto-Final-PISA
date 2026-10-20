@@ -1222,6 +1222,50 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     - El caché del modelo guarda una huella de los datos y de esta configuración, como en la F3 y la F4 (observación 2
       de Brayan, PR #12): si cambia alguna de las dos, se reestima.
     - Mateo y Brayan la revisan en el PR.
+  - ✅ **Puntajes del 5.4 con regresión latente (Vanessa, 2026-10-20), antes de programar.**
+    - *Verificación técnica (2026-10-20, scripts de prueba del scratchpad, no del proyecto):*
+      - con `mirt` 1.46.1, la regresión latente se estima con los ítems **fijos** en los parámetros del modelo de 4
+        competencias (`pars` con `est = FALSE`), con pesos y `QMCEM`: los ítems quedan idénticos;
+      - con los ítems fijos, la especificación por defecto deja la media en 0 y la varianza en 1, lo que es
+        inconsistente con la escala de los ítems: se estiman **las 4 medias y las 4 varianzas residuales** (62
+        parámetros con las 6 covarianzas y 48 coeficientes);
+      - `fscores()` no puede calcular EAP ni valores plausibles con regresión latente e integración QMC (error de
+        dimensiones por las tres vías probadas); Metropolis-Hastings no está soportado con regresión latente; la
+        cuadratura fija de 9 y 11 puntos funciona, pero es imprecisa (frente a QMC en el modelo sin covariables:
+        r de 0,956 a 0,960 y diferencias de hasta 0,97 DE); con más puntos se agota la memoria; la MAP funciona, pero
+        no es la EAP y 2 estudiantes no convergen.
+    - *Alternativas:* (A) posterior con código propio e integración QMC; (B) MAP con aproximación normal; (C) puntajes
+      sin regresión latente.
+    - **Decisión: (A).** (B) no es equivalente a D-27, porque MAP y EAP son estimadores distintos, y ya hay dos
+      estudiantes sin converger; (C) abandona la regresión latente prevista y puede atenuar los efectos del NSE (D-23
+      punto 1). La ventaja de (A) depende de validar el código independiente con rigor: no basta con reproducir las
+      EAP de `mirt` en un caso sencillo; hay que verificar la estabilidad numérica en el modelo definitivo.
+    - **Criterios de aceptación, fijados antes de evaluar los resultados definitivos:**
+
+      | Criterio | Regla de aceptación |
+      |---|---|
+      | V1. Validación frente a `mirt` | Sin covariables: correlación de las EAP ≥ 0,999 en cada competencia y diferencia absoluta máxima ≤ 0,02 DE latentes |
+      | V2. Estabilidad de las EAP | Al duplicar los puntos QMC: correlación ≥ 0,995 por competencia, diferencia absoluta media ≤ 0,02 DE y percentil 95 de la diferencia absoluta ≤ 0,05 DE |
+      | V3. Estabilidad de la incertidumbre | Diferencia relativa de los errores estándar posteriores entre las dos resoluciones: mediana ≤ 2 % y percentil 95 ≤ 5 %; los casos con denominador cercano a cero se evalúan aparte |
+
+      - Son criterios operativos del proyecto, no estándares universales.
+      - Si se incumplen, los puntajes no se aceptan automáticamente: se documenta el problema y se investiga su origen.
+    - **Valores plausibles:** se comprueba que salen de la posterior conjunta, condicionada a las covariables y a las
+      respuestas. No se exige que los valores individuales coincidan al duplicar los puntos, porque son extracciones
+      aleatorias: se evalúa la estabilidad de sus distribuciones y resúmenes.
+    - **Plan:** (1) este registro; (2) validar el código sin covariables frente a `mirt` (V1); (3) estabilidad al
+      duplicar los puntos (V2, V3), antes de producir los puntajes definitivos; (4) si se cumplen, EAP, errores
+      estándar y 10 valores plausibles por estudiante; (5) documentar cualquier incumplimiento y no presentar los
+      puntajes como suficientemente precisos hasta resolverlo.
+    - **Detalles de implementación propuestos por Claude, por confirmar antes de correr V1:**
+      - *Puntos QMC:* una secuencia de Halton de 4 dimensiones transformada a normal; 5.000 puntos por estudiante en la
+        resolución base y 10.000 en la duplicada.
+      - *Referencia de V1:* `fscores()` del modelo de 4 competencias sin covariables, con QMC y 10.000 puntos, para que
+        el error de integración de la propia referencia sea pequeño.
+      - *Valores plausibles:* extracciones de una normal multivariada con la EAP y la covarianza posterior conjunta de
+        cada estudiante, que es el método por defecto de `fscores()` (`plausible.type = "normal"`). La alternativa es
+        remuestrear los puntos QMC con sus pesos posteriores, que no supone normalidad pero puede dar pocos puntos
+        distintos cuando la posterior es muy concentrada.
   - Calibrar cada competencia por separado se descarta: la ruta adaptativa depende de ítems de otras competencias, y la
     falta de datos solo es ignorable si se calibran todas juntas (plan, paso 5.2).
 

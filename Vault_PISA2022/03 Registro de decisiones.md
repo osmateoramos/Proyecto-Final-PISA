@@ -1443,3 +1443,31 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     reconociendo las limitaciones de las correlaciones altas.
 - **Estado:** ✅ (d) aceptada por Vanessa (2026-10-20), con la operacionalización y sus ajustes; los cortes de V2 y V3
   se fijan antes de estimar el bifactor. Mateo y Brayan la revisan en el PR.
+
+### D-30 · 2026-10-20 · Estrategia de integración adaptativa para la posterior del 5.4 (posterior al resultado de V1)
+- **Contexto:** V1 no se cumplió (D-27, 2026-10-20). El diagnóstico apunta a la integración en las colas: los
+  estudiantes con EAP extremas tienen un tamaño efectivo de puntos muy bajo y ni el código propio ni `fscores()` se
+  estabilizan al aumentar los puntos. **Esta decisión se toma después de conocer ese resultado**, y así se declara.
+- **Decisión de Vanessa (2026-10-20):**
+  1. V1 queda documentada como **fallida**. Se conservan los resultados, los diagnósticos y los umbrales originales; no
+     se modifican retroactivamente para conseguir la aprobación.
+  2. No se aprueba V1 ni se sigue aumentando indiscriminadamente el número de puntos QMC.
+  3. Se autoriza **evaluar** una estrategia de integración adaptativa, que centre la distribución de propuesta en la
+     región de mayor probabilidad posterior de cada estudiante, en lugar de usar solo puntos de la distribución latente
+     general.
+  4. La validación debe ser **independiente**: comparar casos ordinarios y extremos con una referencia numérica más
+     precisa, por ejemplo integración adaptativa o simulación independiente de la posterior, según sea viable. No se
+     valida contra la misma aproximación que está fallando.
+  5. Los criterios de precisión originales (V1 a V3) se mantienen como objetivo, sin garantizar que la nueva
+     estrategia los cumpla. Si no se demuestra precisión suficiente, esos puntajes no se presentan como fiables.
+  - *Precisión de Vanessa:* que el código propio y `mirt` fallen igual no demuestra que la implementación sea
+    correcta; sí sugiere que la referencia de `mirt` no es estable en los casos extremos. Un tamaño efectivo bajo
+    indica integración insuficiente, pero no determina por sí solo el error de las EAP: se evalúa junto con la
+    estabilidad de los puntajes y la incertidumbre posterior.
+  - *Lo que no cambia:* no se descarta el modelo de 4 competencias por este fallo numérico, ni se pasa a la MAP ni a
+    puntajes sin regresión latente.
+- **Siguiente paso:** comparar dos o tres estrategias de integración adaptativa, sus requisitos computacionales y cómo
+  validarlas sin depender de la aproximación que falla. La generación definitiva de puntajes queda detenida hasta
+  resolver la validación.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-20); la estrategia concreta está por decidir. Mateo y Brayan la revisan
+  en el PR.

@@ -1,0 +1,5 @@
+competencia,r_EAP,dif_abs_max_EAP,dif_abs_media_EAP,cumple_V1,r_EE,dif_abs_max_EE
+emplear,0.99998,0.223,0.001,FALSE,0.99936,0.0721
+formular,0.99997,0.2056,0.0014,FALSE,0.99859,0.0907
+interpretar,0.99996,0.2542,0.0015,FALSE,0.99669,0.1266
+razonar,0.99997,0.248,0.0013,FALSE,0.99889,0.0944

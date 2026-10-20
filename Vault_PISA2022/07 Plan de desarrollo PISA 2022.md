@@ -387,7 +387,7 @@ Script: `05_tri_competencias.R` · `mirt`.
       pudo calcular ningún error estándar; `mirt` advirtió que el modelo podría no estar identificado empíricamente.
     - No se interpretan sus cargas específicas ni se reportan el ECV ni el omega. Las explicaciones plausibles y la
       interpretación del equipo están en D-29.
-- [ ] **5.4 Calificar:** puntajes por competencia para cada estudiante (EAP y 10 valores plausibles con
+- [ ] **5.4 Calificar:** *(en curso, 2026-10-20: V1 de la posterior propia no se cumple; diagnóstico en D-27)* puntajes por competencia para cada estudiante (EAP y 10 valores plausibles con
   `fscores(..., plausible.draws = 10)`); confiabilidad empírica por competencia.
   - **Riesgo (D-23 punto 1):** sin condicionar en el NSE, los PV propios atenúan el efecto del NSE en la F6. Propuesta:
     regresión latente (`covdata` y `formula` de `mirt`) sobre el NSE de la G2 y las covariables del SEM. Decidirlo

@@ -1280,6 +1280,34 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     - **Si V1 falla** (Vanessa): no se continúa con la estimación definitiva. Primero se identifica si la discrepancia
       viene de la integración QMC, de la implementación de la posterior o de diferencias de configuración entre
       `mirt` y el código propio.
+    - **Resultado de V1 (2026-10-20, `salidas/mat_posterior_V1.csv`): no se cumple.**
+      - Correlación de las EAP de 0,99996 a 0,99998 (cumple ≥ 0,999), pero diferencia máxima de 0,206 a 0,254 DE (no
+        cumple ≤ 0,02). La diferencia media es de 0,001 a 0,0015 DE: el problema está en pocos estudiantes.
+      - Tamaño efectivo de los puntos (código propio, 5.000): mediana 1.812, mínimo 6. Errores estándar, solo como
+        información: correlación con `mirt` de 0,997 a 0,999 y diferencia máxima de 0,07 a 0,13.
+      - Por la regla de Vanessa no se continuó con V2, V3 ni la estimación definitiva.
+    - **Diagnóstico (2026-10-20; script de prueba del scratchpad, no del proyecto):** diferencia máxima de las EAP por
+      competencia (emplear, formular, interpretar, razonar):
+
+      | Comparación | Diferencia máxima (DE) |
+      |---|---|
+      | propio 5.000 frente a propio 10.000 | 0,13 / 0,15 / 0,16 / 0,10 |
+      | `mirt` 20.000 frente a `mirt` 10.000 | 0,13 / 0,21 / 0,30 / 0,08 |
+      | `mirt` 40.000 frente a `mirt` 20.000 | 0,28 / 0,15 / 0,10 / 0,41 |
+      | propio 10.000 frente a `mirt` 40.000 | 0,50 / 0,42 / 0,41 / 0,65 |
+
+      - **Ni el código propio ni la referencia de `mirt` se estabilizan** al aumentar los puntos en los estudiantes más
+        afectados: la propia referencia cambia hasta 0,41 DE entre 20.000 y 40.000 puntos.
+      - Los casos con mayor diferencia son estudiantes con **EAP extremas** (de 2,8 a 3,9 DE en valor absoluto) que
+        respondieron casi todos sus ítems (de 17 a 30) y tienen **tamaño efectivo muy bajo** (de 6 a 31 puntos de
+        5.000). La correlación de Spearman entre el tamaño efectivo y la diferencia es −0,75; hay 36 estudiantes con
+        tamaño efectivo menor que 50 y 77 con menos de 100.
+      - *Lectura técnica (Claude, por discutir con Vanessa):* el origen es la **integración en las colas**. Los
+        puntos se generan desde la distribución latente centrada en la media; cuando la posterior de un estudiante
+        está en la cola, pocos puntos caen cerca de ella y la EAP depende de esos pocos puntos. Eso afecta igual a la
+        integración QMC de `fscores()`, así que **la referencia de V1 tampoco es exacta para esos estudiantes**. No
+        hay evidencia de un error de implementación: en la mayoría de estudiantes los dos métodos coinciden en
+        milésimas.
   - Calibrar cada competencia por separado se descarta: la ruta adaptativa depende de ítems de otras competencias, y la
     falta de datos solo es ignorable si se calibran todas juntas (plan, paso 5.2).
 

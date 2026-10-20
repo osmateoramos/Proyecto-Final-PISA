@@ -257,4 +257,55 @@ if (Sys.getenv("SOLO_1D") != "1" && Sys.getenv("SIN_BIFACTOR") != "1") {
   }
 }
 
-cat("\nListo: datos/COL_mat_respuestas.rds y COL_mat_tri_*.rds (no van a Git); salidas/mat_matriz_resumen.csv, mat_ajuste.csv y mat_bifactor_*.csv\n")
+
+# =============================================================================
+# 5.4 PUNTAJES: posterior propia con integración QMC (D-27, decisión A de Vanessa, 2026-10-20)
+# =============================================================================
+# fscores() de mirt 1.46.1 no calcula EAP ni valores plausibles con regresión latente e integración QMC (D-27). Por eso
+# la posterior de cada estudiante se integra aquí: los puntos de Halton (transformados a normal) se ubican con la media
+# y la covarianza de la distribución latente de ese estudiante, y cada punto pesa según la verosimilitud de sus
+# respuestas observadas. Con eso: EAP = media ponderada; covarianza posterior = covarianza ponderada.
+# Antes de usarla con covariables, V1 la compara sin covariables con fscores() (criterios fijados en D-27).
+halton <- function(n, bases = c(2, 3, 5, 7)) {
+  vapply(bases, function(b) vapply(seq_len(n), function(i) { f <- 1; r <- 0
+    while (i > 0) { f <- f / b; r <- r + f * (i %% b); i <- i %/% b }; r }, 0), numeric(n))
+}
+Z_HALTON <- qnorm(halton(10000))                         # los primeros 5.000 son los de la resolución base (D-27)
+OBJ_ITEMS <- function(m) lapply(ITEMS, function(j) extract.item(m, j))
+posterior_qmc <- function(obj, Xm, mu, Sigma, Q) {
+  Z <- Z_HALTON[seq_len(Q), , drop = FALSE] %*% chol(Sigma)              # puntos con la covarianza latente
+  n <- nrow(Xm); K <- ncol(Z)
+  eap <- se <- matrix(NA_real_, n, K); cv <- array(NA_real_, c(n, K, K)); ess <- numeric(n)
+  for (i in seq_len(n)) {
+    Th <- sweep(Z, 2, mu[i, ], "+"); ll <- numeric(Q)
+    for (j in which(!is.na(Xm[i, ]))) ll <- ll + log(probtrace(obj[[j]], Th)[, Xm[i, j] + 1])
+    wq <- exp(ll - max(ll)); wq <- wq / sum(wq)
+    e <- colSums(Th * wq); dv <- sweep(Th, 2, e); C <- crossprod(dv * sqrt(wq))
+    eap[i, ] <- e; cv[i, , ] <- C; se[i, ] <- sqrt(diag(C)); ess[i] <- 1 / sum(wq^2)
+  }
+  list(eap = eap, se = se, cov = cv, ess = ess)
+}
+
+if (Sys.getenv("SOLO_1D") != "1") {
+  m4 <- modelos[["4D"]]; obj4 <- OBJ_ITEMS(m4); Xm <- as.matrix(X)
+  S4 <- coef(m4, simplify = TRUE)$cov; mu0 <- matrix(0, nrow(Xm), ncol(S4))
+  # --- V1: sin covariables, el código propio (5.000 puntos) frente a fscores() con QMC y 10.000 puntos
+  t0 <- Sys.time(); propio <- posterior_qmc(obj4, Xm, mu0, S4, 5000)
+  min_propio <- round(as.numeric(Sys.time() - t0, units = "mins"), 1)
+  t0 <- Sys.time(); ref <- fscores(m4, method = "EAP", QMC = TRUE, quadpts = 10000, full.scores.SE = TRUE, verbose = FALSE)
+  min_ref <- round(as.numeric(Sys.time() - t0, units = "mins"), 1)
+  v1 <- rbindlist(lapply(seq_along(FACT), function(k) { d <- abs(propio$eap[, k] - ref[, k])
+    data.table(competencia = names(FACT)[k], r_EAP = round(cor(propio$eap[, k], ref[, k]), 5),
+               dif_abs_max_EAP = round(max(d), 4), dif_abs_media_EAP = round(mean(d), 4),
+               cumple_V1 = cor(propio$eap[, k], ref[, k]) >= 0.999 && max(d) <= 0.02,
+               r_EE = round(cor(propio$se[, k], ref[, length(FACT) + k]), 5),
+               dif_abs_max_EE = round(max(abs(propio$se[, k] - ref[, length(FACT) + k])), 4)) }))
+  fwrite(v1, file.path(SALIDAS, "mat_posterior_V1.csv"))
+  cat("\n--- 5.4 V1: código propio frente a fscores() sin covariables (salidas/mat_posterior_V1.csv) ---\n")
+  cat("Tiempos: código propio", min_propio, "min | fscores()", min_ref, "min\n")
+  cat("Tamaño efectivo de la muestra de puntos (código propio): mínimo", round(min(propio$ess)), "| mediana",
+      round(median(propio$ess)), "de 5.000\n"); print(v1)
+  cat("V1:", if (all(v1$cumple_V1)) "se cumple en las 4 competencias" else "NO se cumple: no se continúa (D-27)", "\n")
+}
+
+cat("\nListo: datos/COL_mat_respuestas.rds y COL_mat_tri_*.rds (no van a Git); salidas/mat_matriz_resumen.csv, mat_ajuste.csv, mat_bifactor_*.csv y mat_posterior_V1.csv\n")

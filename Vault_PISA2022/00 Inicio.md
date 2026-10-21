@@ -10,9 +10,9 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 3. [[07 Plan de desarrollo PISA 2022]] — paso a paso por semanas. **Estamos en la semana 3 (19–25 oct):** F0, F1 y
    F2 cerradas (la Puerta G1 pasa). En la F3 están hechos el 3.1 (en `main`), el 3.2, el 3.3 y el 3.5 (rama `Vanessa`,
    PR #12), el 3.3b (dependencia local) y el 3.4 (AFC: H1 se acepta). **La Puerta G2 pasa** con el desajuste
-   documentado (D-24). **F4 (invarianza):** la invarianza escalar se sostiene en los 4 análisis (D-25); DIF hecho: solo motos tiene DIF no despreciable (zona) y **H2 se rechaza** (D-26). **F5:** paso 5.1 hecho y reglas fijadas en D-27.
+   documentado (D-24). **F4 (invarianza):** la invarianza escalar se sostiene en los 4 análisis (D-25); DIF hecho: solo motos tiene DIF no despreciable (zona) y **H2 se rechaza** (D-26). **F5 (al 2026-10-20):** 5.1 a 5.3 hechos; **H8 se rechaza** (D-27); el bifactor exploratorio no es viable (D-29); el 5.4 está **detenido** porque la validación V1 de los puntajes no se cumplió, y se evalúa una integración adaptativa (D-30 y D-31).
 
-## Estado del proyecto (al 2026-10-18)
+## Estado del proyecto (al 2026-10-20)
 
 | Fase | Estado | Scripts | Evidencia |
 |---|---|---|---|
@@ -21,7 +21,7 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 | F2 Validación del diseño | ✅ cerrada, **G1 pasa** | `02_validacion_ocde.R` + `utilidades_pisa.R` | `salidas/validacion_ocde.csv`; D-15 |
 | F3 O1: medición del NSE | ✅ cerrada, **G2 pasa** con desajuste documentado (D-24); 3.1 en `main` y el resto en el PR #12 | `03_explorar_items_nse.R`, `03_explorar_saltos.R`, `03_nse_medicion.R` (3.1 y 3.2) y `03_nse_tri.R` (3.3, 3.3b y 3.5) y `03_nse_afc.R` (3.4) | `salidas/nse_*.csv`; H1 aceptada (D-18); modelo para la F4–F6: 2D del AFE (D-24); acta en [[Reuniones/2026-10-18 Puerta G2]] |
 | F4 O2: invarianza | ✅ cerrada: escalar total en zona, rural–urbana, sexo y sector; H2 rechazada | `04_explorar_grupos.R` y `04_invarianza.R` | `salidas/invarianza_tabla.csv`, `nse_medias_latentes.csv`; D-25 y D-26 |
-| F5 O3: competencias | en curso: 5.1 hecho; reglas en D-27 | `05_explorar_items.R` | `salidas/items_competencia.csv`, `items_resumen_competencia.csv` |
+| F5 O3: competencias | en curso: 5.1 a 5.3 hechos; H8 rechazada; bifactor no viable (D-29); 5.4 detenido: V1 no se cumple y falta validar una integración adaptativa (D-30, D-31) | `05_explorar_items.R`, `05_tri_competencias.R` | `salidas/items_competencia.csv`, `mat_matriz_resumen.csv`, `mat_ajuste.csv`, `mat_bifactor_*.csv`, `mat_posterior_V1.csv`; D-27, D-29 a D-31 |
 | F6–F9 | pendientes | — | — |
 
 Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarrollo PISA 2022]]; las razones, en
@@ -45,8 +45,12 @@ Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarroll
     `03_nse_medicion.R`) y D-16.
   - PR #10 (`Mateo` → `main`), fusionado el 2026-10-17: versiones de R y de los paquetes (D-17) y repositorio
     público.
-  - PR #12 (`Vanessa` → `main`), abierto desde el 2026-10-17 y sin revisar: pasos 3.2, 3.3 y 3.5, D-18 a D-23, firmas
-    de fuentes del 18/10 y la corrección de la revisión de tutor del 2026-10-18.
+  - PR #12 (`Vanessa` → `main`), abierto desde el 2026-10-17: F3 (3.2 a 3.5), F4 completa, F5 (5.1 a 5.4 en curso),
+    D-18 a D-31, firmas de fuentes del 18/10 y la corrección de la revisión de tutor del 2026-10-18.
+    - Brayan publicó dos revisiones (2026-10-18); el 2026-10-19 Vanessa atendió todas sus observaciones, de texto y
+      de código. Espera la segunda revisión de Brayan, la del paso 4.4 y la aprobación de Mateo.
+  - PR #13 (`Brayan` → `main`), abierto el 2026-10-18 y sin revisor: notas 17 y 18 y la presentación de «Nada sin
+    fuente».
 
 ## Equipo y reparto (propuesta, por confirmar)
 

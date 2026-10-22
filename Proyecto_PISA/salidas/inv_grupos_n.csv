@@ -1,0 +1,28 @@
+muestra,grupo,nivel,n,pct_ponderado
+completa,zona,Urbana (>15 mil),4927,68.7
+completa,zona,Pueblo (3-15 mil),843,13.3
+completa,zona,Rural (<3.000),904,14.8
+completa,zona,(sin dato),212,3.2
+completa,sexo,Hombre,3345,47.9
+completa,sexo,Mujer,3541,52.1
+completa,sector,Público,5354,79
+completa,sector,Privado,1442,19.3
+completa,sector,(sin dato),90,1.7
+confirmacion,zona,Urbana (>15 mil),2458,68.6
+confirmacion,zona,Pueblo (3-15 mil),418,13.1
+confirmacion,zona,Rural (<3.000),458,15.1
+confirmacion,zona,(sin dato),107,3.3
+confirmacion,sexo,Hombre,1672,48.1
+confirmacion,sexo,Mujer,1769,51.9
+confirmacion,sector,Público,2676,79
+confirmacion,sector,Privado,720,19.3
+confirmacion,sector,(sin dato),45,1.7
+exploracion,zona,Urbana (>15 mil),2469,68.7
+exploracion,zona,Pueblo (3-15 mil),425,13.5
+exploracion,zona,Rural (<3.000),446,14.6
+exploracion,zona,(sin dato),105,3.2
+exploracion,sexo,Hombre,1673,47.7
+exploracion,sexo,Mujer,1772,52.3
+exploracion,sector,Público,2678,79
+exploracion,sector,Privado,722,19.3
+exploracion,sector,(sin dato),45,1.7

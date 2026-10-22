@@ -1,0 +1,8 @@
+modelo,version,n,convergio,chisq.scaled,df.scaled,pvalue.scaled,cfi.scaled,cfi.robust,tli.scaled,tli.robust,rmsea.scaled,rmsea.ci.lower.scaled,rmsea.ci.upper.scaled,rmsea.robust,rmsea.ci.lower.robust,rmsea.ci.upper.robust,srmr,correlacion_factores,cor_ic95_inf,cor_ic95_sup,avisos,G2_cfi,G2_rmsea,G2_srmr
+M1,principal,3441,TRUE,15610.5514,377,0,0.8139,0.5137,0.7996,0.4763,0.1084,0.1069,0.1098,0.1596,0.1565,0.1626,0.1365,,,,"",no cumple,no cumple,no cumple
+M2,principal,3441,TRUE,6867.2498,376,0,0.9207,0.7313,0.9144,0.7099,0.0708,0.0694,0.0723,0.1188,0.1156,0.1219,0.087,0.559,0.531,0.587,"",no cumple,no cumple,no cumple
+M2_AFE,exploratoria (AFE),3441,TRUE,5014.4253,376,0,0.9433,0.7532,0.9388,0.7335,0.0599,0.0584,0.0614,0.1138,0.1107,0.117,0.0714,0.523,0.494,0.553,"",no cumple,solo una versión,cumple
+M1,sin pesos,3441,TRUE,19714.6818,377,0,0.7948,0.5149,0.779,0.4775,0.1221,0.1207,0.1236,0.1602,0.1576,0.1629,0.1274,,,,"",no cumple,no cumple,no cumple
+M2,sin pesos,3441,TRUE,8802.2145,376,0,0.9106,0.7104,0.9035,0.6873,0.0807,0.0793,0.0822,0.124,0.1212,0.1267,0.0829,0.577,0.552,0.601,"",no cumple,no cumple,no cumple
+M1,con 10 residuos (D-18 b),3441,TRUE,13128.7096,367,0,0.8441,,0.8275,-Inf,0.1005,0.0991,0.102,Inf,,,0.1292,,,,lavaan no pudo calcular los índices robust (NaN o Inf),no cumple (robust no calculable),no cumple (robust no calculable),no cumple
+M2,con 10 residuos (D-18 b),3441,TRUE,6025.8918,366,0,0.9308,0.7788,0.9233,0.7546,0.067,0.0656,0.0685,0.1092,0.1057,0.1128,0.0837,0.579,0.55,0.607,"",no cumple,no cumple,no cumple

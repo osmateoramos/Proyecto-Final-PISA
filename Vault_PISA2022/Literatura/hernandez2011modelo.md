@@ -11,7 +11,7 @@ doi_url: https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S1607-40412
 bloque: "B. Medición del NSE"
 estado: por_verificar
 lectura: "equipo: texto completo"
-pdf_en_zotero: no
+pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
 verificado_por:
 fecha_verificacion:
 ---

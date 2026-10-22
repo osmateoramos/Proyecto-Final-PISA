@@ -38,6 +38,10 @@ y contrastando una estructura unidimensional contra una de dos dimensiones (capi
 - **Datos:** 27 ítems de posesiones del hogar disponibles para Colombia (`ST250`, `ST251`, `ST253`, `ST254`, `ST255`,
   `ST256` — este último, 8 tipos de libros en casa: indicador de capital cultural), educación de los padres
   (`ST005`, `ST007`, `HISCED`) y ocupación (`HISEI`).
+  - *Ajuste (2026-10-16, [[03 Registro de decisiones]] D-16):*
+    - la medición usa `HISCED`, que incluye la educación terciaria, y no `ST005`/`ST007`, que llegan solo a ISCED 3.4;
+    - `HISEI` entra en quintiles ponderados;
+    - la muestra es la analítica de D-14 (6.886).
 - **Método:** 2PL (ítems Sí/No) y GPCM / respuesta graduada (politómicos) con `mirt`; AFC con WLSMV en `lavaan`;
   contraste con el índice oficial ESCS y con HOMEPOS.
 - **Cumplido cuando:** parámetros *a* y *b* + curvas de información; cargas estandarizadas, confiabilidad (omega)

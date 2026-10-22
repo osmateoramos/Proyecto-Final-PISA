@@ -11,7 +11,7 @@ doi_url: https://www.icfes.gov.co/wp-content/uploads/2024/11/Marco-de-referencia
 bloque: "C. Matemáticas por competencia"
 estado: por_verificar
 lectura: "equipo: texto completo"
-pdf_en_zotero: no
+pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
 verificado_por:
 fecha_verificacion:
 ---

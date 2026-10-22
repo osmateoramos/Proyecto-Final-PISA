@@ -12,7 +12,7 @@ bloque: "E. Desenganche / omisiones"
 metadatos: "Crossref (consultado 2026-10-05)"
 estado: verificado
 lectura: "IA: solo resumen (OpenAlex); texto completo en PubMed Central"
-pdf_en_zotero: no
+pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
 verificado_por: Vanessa Acosta
 fecha_verificacion: 13/10/2026
 ---
@@ -32,7 +32,7 @@ Evalúa los modelos que incluyen una propensión latente a omitir cuando se viol
 
 | # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
 |---|---|---|---|---|
-| 1 | Estos modelos suponen una propensión a omitir unidimensional y normal bivariada con la habilidad | resumen | "The missing propensity is unidimensional" | verificado - Vanessa |
+| 1 | Estos modelos suponen una propensión a omitir unidimensional y normal bivariada con la habilidad | p. 850 (Abstract; página anotada por Claude el 2026-10-18 al cotejar el PDF de Zotero) | "The missing propensity is unidimensional" | verificado - Vanessa |
 | 2 | Incluir la propensión a omitir cambia las estimaciones de habilidad frente a ignorar las omisiones | p. 850 (Abstract), texto completo en PMC5965518 | "results in different ability estimates compared with a model ignoring missing responses" | verificado - Vanessa |
 
 ## Qué NO dice (para no citarlo mal)

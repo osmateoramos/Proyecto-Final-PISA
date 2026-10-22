@@ -15,6 +15,9 @@
 #   - a mano, desde Proyecto_PISA/scripts/:
 #       & "C:\Program Files\R\R-4.4.1\bin\Rscript.exe" 00_verificar_entorno.R
 #     (termina con código 1 si algo no coincide);
+#   - además de la versión, comprueba que cada paquete carga (requireNamespace): un paquete puede tener la
+#     versión correcta y no cargar porque le falta una dependencia, como le pasó a lavaan sin pbivnorm
+#     (observación 14 de Brayan, PR #12). Al abrir RStudio no se hace, para no demorar el arranque;
 #   - para instalar las versiones del archivo, en una sesión nueva de R (con RStudio cerrado, para
 #     que Windows no bloquee los paquetes en uso):
 #       & "C:\Program Files\R\R-4.4.1\bin\Rscript.exe" 00_verificar_entorno.R --instalar
@@ -22,7 +25,7 @@
 # Límite: fija los paquetes que usa el proyecto, no sus dependencias. Eso lo resuelve Docker.
 # =============================================================================
 
-verificar_entorno <- function(archivo, instalar = FALSE) {
+verificar_entorno <- function(archivo, instalar = FALSE, probar_carga = !isTRUE(getOption("pisa.desde_rprofile"))) {
   v  <- utils::read.csv(archivo, stringsAsFactors = FALSE, fileEncoding = "UTF-8")
   pk <- v[v$paquete != "R", ]
 
@@ -36,6 +39,11 @@ verificar_entorno <- function(archivo, instalar = FALSE) {
   cmp <- mapply(function(a, b) if (is.na(a)) NA_integer_ else utils::compareVersion(a, b), inst, pk$version)
   estado <- ifelse(is.na(inst), "no instalado",
                    ifelse(cmp == 0, "ok", ifelse(cmp < 0, "más vieja", "más nueva")))
+  if (probar_carga) {
+    carga <- vapply(pk$paquete, function(p) isTRUE(tryCatch(suppressPackageStartupMessages(requireNamespace(p, quietly = TRUE)),
+                                                          error = function(e) FALSE)), logical(1))
+    estado[estado == "ok" & !carga] <- "no carga"
+  }
   tabla <- data.frame(paquete = pk$paquete, requerida = pk$version, instalada = ifelse(is.na(inst), "-", inst),
                       estado = estado, stringsAsFactors = FALSE)
   difieren <- tabla$estado != "ok"
@@ -43,7 +51,8 @@ verificar_entorno <- function(archivo, instalar = FALSE) {
   cat("\n--- Entorno R del proyecto PISA (scripts/versiones_paquetes.csv) ---\n")
   cat("R", r_act, if (r_ok) "(ok)\n" else paste0("-> el proyecto usa R ", r_req, "\n"))
   if (r_ok && !any(difieren)) {
-    cat("Al día: los", nrow(tabla), "paquetes coinciden con el archivo.\n\n")
+    cat("Al día: los", nrow(tabla), "paquetes coinciden con el archivo",
+        if (probar_carga) "y cargan.\n\n" else "(no se probó que carguen).\n\n")
     return(invisible(TRUE))
   }
   if (any(difieren)) {

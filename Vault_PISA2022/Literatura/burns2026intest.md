@@ -10,7 +10,7 @@ publicacion: Large-scale Assessments in Education, 14(1), 17
 doi_url: https://doi.org/10.1186/s40536-026-00288-9
 bloque: E. Desenganche
 metadatos: Crossref (consultado 2026-10-04)
-estado: Verificado
+estado: verificado
 lectura: "IA: texto completo (PDF de acceso abierto, 22 págs.); leídos resumen, muestra y tablas 1–2"
 pdf_en_zotero: sí (Vanessa, 2026-10-12)
 verificado_por: Vanessa Acosta

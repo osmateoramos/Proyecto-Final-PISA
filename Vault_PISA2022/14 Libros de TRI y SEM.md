@@ -63,5 +63,8 @@ despreciable" **antes** de congelar las hipótesis (paso 0.5): las hipótesis a�
 
 ## 4. Pendiente
 
-- [ ] El equipo aprueba, cambia o rechaza P1–P7. Con la aprobación se agregan los pasos al plan 07 y las decisiones al registro.
-- [ ] Si se aprueba P4: fijar el umbral de magnitud del DIF en [[09 Hipótesis preregistradas]] antes de congelarlas.
+- [x] El equipo aprueba, cambia o rechaza P1–P7. *Hecho el 2026-10-18 (D-21): Vanessa aprobó P1–P6; P7 queda opcional
+  para la F7. Los pasos ya están en el plan 07.*
+- [x] Si se aprueba P4: fijar el umbral de magnitud del DIF en [[09 Hipótesis preregistradas]]. *Hecho el 2026-10-18
+  (D-22), en un anexo de la nota 09. Las hipótesis ya estaban congeladas (2026-10-12), así que se declara como
+  definición posterior al congelamiento, aunque anterior a ver los datos de la F4 y la F5.*

@@ -1,0 +1,92 @@
+tabla,fila,codigo,n
+ST253Q01JA x ST254Q01JA,2 = One,1 = None,88
+ST253Q01JA x ST254Q01JA,3 = Two,1 = None,67
+ST253Q01JA x ST254Q01JA,4 = Three,1 = None,51
+ST253Q01JA x ST254Q01JA,5 = Four,1 = None,44
+ST253Q01JA x ST254Q01JA,6 = Five,1 = None,25
+ST253Q01JA x ST254Q01JA,7 = 6 to 10,1 = None,16
+ST253Q01JA x ST254Q01JA,2 = One,2 = 1 or 2,491
+ST253Q01JA x ST254Q01JA,3 = Two,2 = 1 or 2,597
+ST253Q01JA x ST254Q01JA,4 = Three,2 = 1 or 2,710
+ST253Q01JA x ST254Q01JA,5 = Four,2 = 1 or 2,713
+ST253Q01JA x ST254Q01JA,6 = Five,2 = 1 or 2,914
+ST253Q01JA x ST254Q01JA,7 = 6 to 10,2 = 1 or 2,1354
+ST253Q01JA x ST254Q01JA,8 = More than 10,2 = 1 or 2,227
+ST253Q01JA x ST254Q01JA,2 = One,3 = 3 - 5,15
+ST253Q01JA x ST254Q01JA,3 = Two,3 = 3 - 5,9
+ST253Q01JA x ST254Q01JA,4 = Three,3 = 3 - 5,77
+ST253Q01JA x ST254Q01JA,5 = Four,3 = 3 - 5,126
+ST253Q01JA x ST254Q01JA,6 = Five,3 = 3 - 5,151
+ST253Q01JA x ST254Q01JA,7 = 6 to 10,3 = 3 - 5,810
+ST253Q01JA x ST254Q01JA,8 = More than 10,3 = 3 - 5,516
+ST253Q01JA x ST254Q01JA,2 = One,4 = More than 5,3
+ST253Q01JA x ST254Q01JA,3 = Two,4 = More than 5,3
+ST253Q01JA x ST254Q01JA,5 = Four,4 = More than 5,4
+ST253Q01JA x ST254Q01JA,6 = Five,4 = More than 5,2
+ST253Q01JA x ST254Q01JA,7 = 6 to 10,4 = More than 5,40
+ST253Q01JA x ST254Q01JA,8 = More than 10,4 = More than 5,92
+ST253Q01JA x ST254Q01JA,2 = One,5 = I don't know.,4
+ST253Q01JA x ST254Q01JA,3 = Two,5 = I don't know.,1
+ST253Q01JA x ST254Q01JA,4 = Three,5 = I don't know.,2
+ST253Q01JA x ST254Q01JA,5 = Four,5 = I don't know.,3
+ST253Q01JA x ST254Q01JA,6 = Five,5 = I don't know.,7
+ST253Q01JA x ST254Q01JA,7 = 6 to 10,5 = I don't know.,5
+ST253Q01JA x ST254Q01JA,8 = More than 10,5 = I don't know.,3
+ST253Q01JA x ST254Q01JA,1 = There are no <digital devices> with screens.,95 = Valid Skip,204
+ST253Q01JA x ST254Q01JA,99 = No Response,95 = Valid Skip,19
+ST253Q01JA x ST254Q01JA,2 = One,99 = No Response,18
+ST253Q01JA x ST254Q01JA,3 = Two,99 = No Response,8
+ST253Q01JA x ST254Q01JA,4 = Three,99 = No Response,12
+ST253Q01JA x ST254Q01JA,5 = Four,99 = No Response,17
+ST253Q01JA x ST254Q01JA,6 = Five,99 = No Response,15
+ST253Q01JA x ST254Q01JA,7 = 6 to 10,99 = No Response,13
+ST253Q01JA x ST254Q01JA,8 = More than 10,99 = No Response,10
+ST253Q01JA x ST254Q01JA,NA del sistema,NA del sistema,318
+códigos de cada ítem ST254,ST254Q01JA,1 = None,291
+códigos de cada ítem ST254,ST254Q01JA,2 = 1 or 2,5006
+códigos de cada ítem ST254,ST254Q01JA,3 = 3 - 5,1704
+códigos de cada ítem ST254,ST254Q01JA,4 = More than 5,144
+códigos de cada ítem ST254,ST254Q01JA,5 = I don't know.,25
+códigos de cada ítem ST254,ST254Q01JA,95 = Valid Skip,223
+códigos de cada ítem ST254,ST254Q01JA,99 = No Response,93
+códigos de cada ítem ST254,ST254Q01JA,NA del sistema,318
+códigos de cada ítem ST254,ST254Q02JA,1 = None,4058
+códigos de cada ítem ST254,ST254Q02JA,2 = 1 or 2,2752
+códigos de cada ítem ST254,ST254Q02JA,3 = 3 - 5,135
+códigos de cada ítem ST254,ST254Q02JA,4 = More than 5,18
+códigos de cada ítem ST254,ST254Q02JA,5 = I don't know.,15
+códigos de cada ítem ST254,ST254Q02JA,95 = Valid Skip,223
+códigos de cada ítem ST254,ST254Q02JA,99 = No Response,285
+códigos de cada ítem ST254,ST254Q02JA,NA del sistema,318
+códigos de cada ítem ST254,ST254Q03JA,1 = None,3257
+códigos de cada ítem ST254,ST254Q03JA,2 = 1 or 2,3171
+códigos de cada ítem ST254,ST254Q03JA,3 = 3 - 5,575
+códigos de cada ítem ST254,ST254Q03JA,4 = More than 5,45
+códigos de cada ítem ST254,ST254Q03JA,5 = I don't know.,20
+códigos de cada ítem ST254,ST254Q03JA,95 = Valid Skip,223
+códigos de cada ítem ST254,ST254Q03JA,99 = No Response,195
+códigos de cada ítem ST254,ST254Q03JA,NA del sistema,318
+códigos de cada ítem ST254,ST254Q04JA,1 = None,4862
+códigos de cada ítem ST254,ST254Q04JA,2 = 1 or 2,1921
+códigos de cada ítem ST254,ST254Q04JA,3 = 3 - 5,226
+códigos de cada ítem ST254,ST254Q04JA,4 = More than 5,54
+códigos de cada ítem ST254,ST254Q04JA,5 = I don't know.,26
+códigos de cada ítem ST254,ST254Q04JA,95 = Valid Skip,223
+códigos de cada ítem ST254,ST254Q04JA,99 = No Response,174
+códigos de cada ítem ST254,ST254Q04JA,NA del sistema,318
+códigos de cada ítem ST254,ST254Q05JA,1 = None,6157
+códigos de cada ítem ST254,ST254Q05JA,2 = 1 or 2,590
+códigos de cada ítem ST254,ST254Q05JA,3 = 3 - 5,107
+códigos de cada ítem ST254,ST254Q05JA,4 = More than 5,91
+códigos de cada ítem ST254,ST254Q05JA,5 = I don't know.,101
+códigos de cada ítem ST254,ST254Q05JA,95 = Valid Skip,223
+códigos de cada ítem ST254,ST254Q05JA,99 = No Response,217
+códigos de cada ítem ST254,ST254Q05JA,NA del sistema,318
+códigos de cada ítem ST254,ST254Q06JA,1 = None,364
+códigos de cada ítem ST254,ST254Q06JA,2 = 1 or 2,2161
+códigos de cada ítem ST254,ST254Q06JA,3 = 3 - 5,3561
+códigos de cada ítem ST254,ST254Q06JA,4 = More than 5,1045
+códigos de cada ítem ST254,ST254Q06JA,5 = I don't know.,40
+códigos de cada ítem ST254,ST254Q06JA,95 = Valid Skip,223
+códigos de cada ítem ST254,ST254Q06JA,99 = No Response,92
+códigos de cada ítem ST254,ST254Q06JA,NA del sistema,318

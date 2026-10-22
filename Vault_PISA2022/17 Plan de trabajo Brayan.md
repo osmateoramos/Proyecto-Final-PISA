@@ -199,6 +199,9 @@ Revisión del repositorio del 2026-10-12. Nada de esto se corrigió desde esta r
    - el paso 0.5 no está marcado en [[07 Plan de desarrollo PISA 2022]].
 
    Como aún no se ha estimado ningún modelo, un ajuste registrado ahora sigue siendo legítimo.
+
+   *Resuelto el 2026-10-18:* el umbral de «efecto no despreciable» y las otras definiciones quedaron en D-22 y en el
+   anexo de la nota 09. P1–P6 se aprobaron en D-21. El congelamiento y el paso 0.5 se anotaron el 2026-10-16.
 3. **Cifras sin archivo de salida:** `Proyecto_PISA/datos/revision_pisa2022_col.R` solo imprime en consola. Cifras
    citadas en [[06 Objetivos PISA 2022]] (3,9 puntos con z = 2,61; 175 ítems; 7.459 estudiantes con ESCS) no tienen
    archivo en `salidas/`. Eso choca con la regla 2 del `README.md`.

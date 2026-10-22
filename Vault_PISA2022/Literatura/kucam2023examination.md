@@ -10,7 +10,8 @@ publicacion: "Eğitimde ve Psikolojide Ölçme ve Değerlendirme Dergisi, 14(2),
 doi_url: https://doi.org/10.21031/epod.1122857
 bloque: "D. Equidad de la prueba (DIF)"
 metadatos: "Crossref (consultado 2026-10-05)"
-estado: verificado
+estado: por_verificar
+pendientes: "Fila 3, agregada por Claude el 2026-10-18 (D-22), por verificar; las filas 1 y 2 las verificó Vanessa"
 lectura: "IA: texto completo (Claude, 2026-10-12)"
 pdf_en_zotero: sí (Vanessa, 2026-10-12)
 verificado_por: Vanessa Acosta
@@ -34,6 +35,7 @@ DIF en ítems de matemáticas de PISA 2018 por sexo y por educación de los padr
 |---|---|---|---|---|
 | 1 | Analiza DIF en matemáticas de PISA por sexo y por educación de los padres | p. 128 (Abstract) | "according to gender and parental education level" | verificado - Vanessa |
 | 2 | Encuentra un ítem (CM305Q01S) que funciona distinto según la educación de la madre | p. 128 (Abstract); p. 145-146 (ítem CM305Q01S, Apéndice C) | "an item in booklet 1 was easy for students whose mother's education" | verificado - Vanessa |
+| 3 | Cortes de Jodoin y Gierl (2001) para el ΔR² de la regresión logística: A < 0,035; B de 0,035 a < 0,070; C ≥ 0,070 | p. 130 (tabla 4) | "DIF levels regarding the R2 effect size values are suggested by Jodoin and Gierl" | por_verificar · origen: IA (Claude, 2026-10-18; usada en D-22) |
 
 ## Qué NO dice (para no citarlo mal)
 La muestra es pequeña (521) y el NSE es solo la educación de los padres; no es Colombia ni PISA 2022.

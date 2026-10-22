@@ -1,0 +1,3 @@
+modelo,convergio,iteraciones,minutos,logLik,parametros,AIC,BIC,correlacion_min,correlacion_max
+1D,TRUE,123,7,-99810.2,526,200672.4,204268.8,,
+4D,TRUE,258,45.3,-99797.3,532,200658.6,204296.1,0.897,0.976

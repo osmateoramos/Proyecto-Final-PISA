@@ -11,7 +11,7 @@ doi_url: https://doi.org/10.3389/feduc.2021.731634
 bloque: "B. Medición del NSE"
 estado: por_verificar
 lectura: "equipo: texto completo"
-pdf_en_zotero: no
+pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
 verificado_por:
 fecha_verificacion:
 ---

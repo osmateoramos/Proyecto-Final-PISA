@@ -1,0 +1,105 @@
+tabla,fila,codigo,n
+ST255Q01JA x ST256Q01JA,2 = 1-10 books,1 = None,444
+ST255Q01JA x ST256Q01JA,3 = 11-25 books,1 = None,155
+ST255Q01JA x ST256Q01JA,4 = 26-100 books,1 = None,89
+ST255Q01JA x ST256Q01JA,5 = 101-200 books,1 = None,32
+ST255Q01JA x ST256Q01JA,6 = 201-500 books,1 = None,8
+ST255Q01JA x ST256Q01JA,7 = More than 500 books,1 = None,4
+ST255Q01JA x ST256Q01JA,2 = 1-10 books,2 = 1-5,2256
+ST255Q01JA x ST256Q01JA,3 = 11-25 books,2 = 1-5,1220
+ST255Q01JA x ST256Q01JA,4 = 26-100 books,2 = 1-5,956
+ST255Q01JA x ST256Q01JA,5 = 101-200 books,2 = 1-5,250
+ST255Q01JA x ST256Q01JA,6 = 201-500 books,2 = 1-5,102
+ST255Q01JA x ST256Q01JA,7 = More than 500 books,2 = 1-5,26
+ST255Q01JA x ST256Q01JA,2 = 1-10 books,3 = 6-10,48
+ST255Q01JA x ST256Q01JA,3 = 11-25 books,3 = 6-10,73
+ST255Q01JA x ST256Q01JA,4 = 26-100 books,3 = 6-10,87
+ST255Q01JA x ST256Q01JA,5 = 101-200 books,3 = 6-10,42
+ST255Q01JA x ST256Q01JA,6 = 201-500 books,3 = 6-10,18
+ST255Q01JA x ST256Q01JA,7 = More than 500 books,3 = 6-10,5
+ST255Q01JA x ST256Q01JA,2 = 1-10 books,4 = More than 10,21
+ST255Q01JA x ST256Q01JA,3 = 11-25 books,4 = More than 10,20
+ST255Q01JA x ST256Q01JA,4 = 26-100 books,4 = More than 10,41
+ST255Q01JA x ST256Q01JA,5 = 101-200 books,4 = More than 10,27
+ST255Q01JA x ST256Q01JA,6 = 201-500 books,4 = More than 10,20
+ST255Q01JA x ST256Q01JA,7 = More than 500 books,4 = More than 10,6
+ST255Q01JA x ST256Q01JA,2 = 1-10 books,5 = I don't know,77
+ST255Q01JA x ST256Q01JA,3 = 11-25 books,5 = I don't know,30
+ST255Q01JA x ST256Q01JA,4 = 26-100 books,5 = I don't know,57
+ST255Q01JA x ST256Q01JA,5 = 101-200 books,5 = I don't know,18
+ST255Q01JA x ST256Q01JA,6 = 201-500 books,5 = I don't know,9
+ST255Q01JA x ST256Q01JA,7 = More than 500 books,5 = I don't know,5
+ST255Q01JA x ST256Q01JA,1 = There are no books.,95 = Valid Skip,1095
+ST255Q01JA x ST256Q01JA,2 = 1-10 books,95 = Valid Skip,1
+ST255Q01JA x ST256Q01JA,99 = No Response,95 = Valid Skip,51
+ST255Q01JA x ST256Q01JA,2 = 1-10 books,99 = No Response,105
+ST255Q01JA x ST256Q01JA,3 = 11-25 books,99 = No Response,52
+ST255Q01JA x ST256Q01JA,4 = 26-100 books,99 = No Response,20
+ST255Q01JA x ST256Q01JA,5 = 101-200 books,99 = No Response,8
+ST255Q01JA x ST256Q01JA,6 = 201-500 books,99 = No Response,4
+ST255Q01JA x ST256Q01JA,7 = More than 500 books,99 = No Response,4
+ST255Q01JA x ST256Q01JA,NA del sistema,NA del sistema,318
+códigos de cada ítem ST256,ST256Q01JA,1 = None,732
+códigos de cada ítem ST256,ST256Q01JA,2 = 1-5,4810
+códigos de cada ítem ST256,ST256Q01JA,3 = 6-10,273
+códigos de cada ítem ST256,ST256Q01JA,4 = More than 10,135
+códigos de cada ítem ST256,ST256Q01JA,5 = I don't know,196
+códigos de cada ítem ST256,ST256Q01JA,95 = Valid Skip,1147
+códigos de cada ítem ST256,ST256Q01JA,99 = No Response,193
+códigos de cada ítem ST256,ST256Q01JA,NA del sistema,318
+códigos de cada ítem ST256,ST256Q02JA,1 = None,1629
+códigos de cada ítem ST256,ST256Q02JA,2 = 1-5,3103
+códigos de cada ítem ST256,ST256Q02JA,3 = 6-10,695
+códigos de cada ítem ST256,ST256Q02JA,4 = More than 10,363
+códigos de cada ítem ST256,ST256Q02JA,5 = I don't know,309
+códigos de cada ítem ST256,ST256Q02JA,95 = Valid Skip,1147
+códigos de cada ítem ST256,ST256Q02JA,99 = No Response,239
+códigos de cada ítem ST256,ST256Q02JA,NA del sistema,319
+códigos de cada ítem ST256,ST256Q03JA,1 = None,2615
+códigos de cada ítem ST256,ST256Q03JA,2 = 1-5,2114
+códigos de cada ítem ST256,ST256Q03JA,3 = 6-10,538
+códigos de cada ítem ST256,ST256Q03JA,4 = More than 10,304
+códigos de cada ítem ST256,ST256Q03JA,5 = I don't know,496
+códigos de cada ítem ST256,ST256Q03JA,95 = Valid Skip,1147
+códigos de cada ítem ST256,ST256Q03JA,99 = No Response,271
+códigos de cada ítem ST256,ST256Q03JA,NA del sistema,319
+códigos de cada ítem ST256,ST256Q06JA,1 = None,1772
+códigos de cada ítem ST256,ST256Q06JA,2 = 1-5,2957
+códigos de cada ítem ST256,ST256Q06JA,3 = 6-10,692
+códigos de cada ítem ST256,ST256Q06JA,4 = More than 10,417
+códigos de cada ítem ST256,ST256Q06JA,5 = I don't know,269
+códigos de cada ítem ST256,ST256Q06JA,95 = Valid Skip,1147
+códigos de cada ítem ST256,ST256Q06JA,99 = No Response,231
+códigos de cada ítem ST256,ST256Q06JA,NA del sistema,319
+códigos de cada ítem ST256,ST256Q07JA,1 = None,2527
+códigos de cada ítem ST256,ST256Q07JA,2 = 1-5,2525
+códigos de cada ítem ST256,ST256Q07JA,3 = 6-10,479
+códigos de cada ítem ST256,ST256Q07JA,4 = More than 10,250
+códigos de cada ítem ST256,ST256Q07JA,5 = I don't know,316
+códigos de cada ítem ST256,ST256Q07JA,95 = Valid Skip,1147
+códigos de cada ítem ST256,ST256Q07JA,99 = No Response,242
+códigos de cada ítem ST256,ST256Q07JA,NA del sistema,318
+códigos de cada ítem ST256,ST256Q08JA,1 = None,2212
+códigos de cada ítem ST256,ST256Q08JA,2 = 1-5,2623
+códigos de cada ítem ST256,ST256Q08JA,3 = 6-10,566
+códigos de cada ítem ST256,ST256Q08JA,4 = More than 10,273
+códigos de cada ítem ST256,ST256Q08JA,5 = I don't know,366
+códigos de cada ítem ST256,ST256Q08JA,95 = Valid Skip,1147
+códigos de cada ítem ST256,ST256Q08JA,99 = No Response,298
+códigos de cada ítem ST256,ST256Q08JA,NA del sistema,319
+códigos de cada ítem ST256,ST256Q09JA,1 = None,201
+códigos de cada ítem ST256,ST256Q09JA,2 = 1-5,4962
+códigos de cada ítem ST256,ST256Q09JA,3 = 6-10,738
+códigos de cada ítem ST256,ST256Q09JA,4 = More than 10,192
+códigos de cada ítem ST256,ST256Q09JA,5 = I don't know,88
+códigos de cada ítem ST256,ST256Q09JA,95 = Valid Skip,1147
+códigos de cada ítem ST256,ST256Q09JA,99 = No Response,158
+códigos de cada ítem ST256,ST256Q09JA,NA del sistema,318
+códigos de cada ítem ST256,ST256Q10JA,1 = None,1450
+códigos de cada ítem ST256,ST256Q10JA,2 = 1-5,3060
+códigos de cada ítem ST256,ST256Q10JA,3 = 6-10,831
+códigos de cada ítem ST256,ST256Q10JA,4 = More than 10,563
+códigos de cada ítem ST256,ST256Q10JA,5 = I don't know,249
+códigos de cada ítem ST256,ST256Q10JA,95 = Valid Skip,1147
+códigos de cada ítem ST256,ST256Q10JA,99 = No Response,185
+códigos de cada ítem ST256,ST256Q10JA,NA del sistema,319

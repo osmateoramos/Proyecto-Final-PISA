@@ -45,6 +45,14 @@ Empezar por `Vault_PISA2022/00 Inicio.md` (en Obsidian) y por el anteproyecto en
    ```
    & "C:\Program Files\R\R-4.4.1\bin\Rscript.exe" Proyecto_PISA\datos\revision_pisa2022_col.R
    ```
+   Después, para reproducir **toda la cadena de análisis** (F1 a F3) con un solo comando, desde
+   `Proyecto_PISA\scripts\`:
+   ```
+   & "C:\Program Files\R\R-4.4.1\bin\Rscript.exe" 00_correr_todo.R
+   ```
+   Revisa primero las versiones (D-17), corre los scripts en orden, se detiene en el primero que falle y al final
+   dice qué archivos de `salidas/` cambiaron frente al último commit. Con un prefijo corre solo una parte (por
+   ejemplo, `00_correr_todo.R 03`).
 5. **Abrir el vault:** en Obsidian, *Abrir carpeta como vault* → `Vault_PISA2022`. Cuando pregunte por los
    complementos de la comunidad, activarlos (Dataview, ZotLit y Git ya vienen configurados).
 6. **Referencias:** unirse al grupo de Zotero del proyecto (lo comparte Mateo) para ver la colección *Proyecto PISA*.
@@ -55,7 +63,8 @@ Empezar por `Vault_PISA2022/00 Inicio.md` (en Obsidian) y por el anteproyecto en
 |---|---|---|
 | Al empezar | **Fetch origin → Pull origin** | Traer los cambios de los demás |
 | Mientras trabajan | Nada: escribir notas, correr scripts, editar el anteproyecto | — |
-| Al terminar | Escribir un resumen corto y **Commit to main**, luego **Push origin** | Guardar y subir los cambios |
+| Al terminar | Escribir un resumen corto y **Commit** en la rama propia (`Vanessa`, `Mateo` o `Brayan`), luego **Push origin** | Guardar y subir los cambios |
+| Para llevar a `main` | Abrir un **Pull Request** de la rama propia a `main`; otro integrante lo revisa y lo aprueba en GitHub (*Files changed → Review changes → Approve*) antes de fusionarlo | Que nada llegue a `main` sin revisión |
 
 - Si dos personas cambian **las mismas líneas** sin hacer *pull* antes, GitHub Desktop muestra un **conflicto** y
   pide elegir qué versión queda. Para evitarlo: *pull* al empezar y repartirse las notas o secciones.

@@ -1,0 +1,7 @@
+modelo,dimension,tipo,confiabilidad
+1D,NSE,marginal,0.919
+1D,NSE,empírica (EAP),0.916
+2D_D16,ECO,empírica (EAP),0.891
+2D_D16,CUL,empírica (EAP),0.906
+2D_AFE,ECO,empírica (EAP),0.898
+2D_AFE,CUL,empírica (EAP),0.902

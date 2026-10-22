@@ -12,7 +12,7 @@ doi_url: https://www.unipamplona.edu.co/unipamplona/portalIG/home_72/recursos/20
 bloque: "A. Enfoque econométrico"
 estado: por_verificar
 lectura: "equipo: texto completo"
-pdf_en_zotero: no
+pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
 verificado_por:
 fecha_verificacion:
 ---

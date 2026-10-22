@@ -1,0 +1,4 @@
+modelo,logLik,parametros,AIC,BIC,iteraciones,correlacion_factores,dif_AIC,dif_BIC,nota
+1D,-172145.3,113,344516.6,345289.2,40,,16530.7,16523.8,pseudo-verosimilitud ponderada: la comparación es descriptiva (D-19)
+2D_D16,-164796.4,114,329820.7,330600.2,811,0.497,1834.79999999999,1834.79999999999,pseudo-verosimilitud ponderada: la comparación es descriptiva (D-19)
+2D_AFE,-163879,114,327985.9,328765.4,45,0.483,0,0,pseudo-verosimilitud ponderada: la comparación es descriptiva (D-19)

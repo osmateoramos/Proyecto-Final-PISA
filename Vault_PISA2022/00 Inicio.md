@@ -7,19 +7,22 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 
 1. [[11 Protocolo de verificación]] — cómo se marca qué está verificado y qué no (leer primero).
 2. [[06 Objetivos PISA 2022]] — pregunta, objetivo general y O1–O5.
-3. [[07 Plan de desarrollo PISA 2022]] — paso a paso por semanas. **Estamos en la semana 2 (12–18 oct):** F0, F1 y
-   F2 cerradas (la Puerta G1 pasa). La F3 (medición del NSE) va en el paso 3.2: el 3.1 está en `main` y el 3.2, en
-   la rama `Vanessa`.
+3. [[07 Plan de desarrollo PISA 2022]] — paso a paso por semanas. **Estamos en la semana 3 (19–25 oct):** F0, F1 y
+   F2 cerradas (la Puerta G1 pasa). En la F3 están hechos el 3.1 (en `main`), el 3.2, el 3.3 y el 3.5 (rama `Vanessa`,
+   PR #12), el 3.3b (dependencia local) y el 3.4 (AFC: H1 se acepta). **La Puerta G2 pasa** con el desajuste
+   documentado (D-24). **F4 (invarianza):** la invarianza escalar se sostiene en los 4 análisis (D-25); DIF hecho: solo motos tiene DIF no despreciable (zona) y **H2 se rechaza** (D-26). **F5 (al 2026-10-20):** 5.1 a 5.3 hechos; **H8 se rechaza** (D-27); el bifactor exploratorio no es viable (D-29); el 5.4 está **detenido** porque la validación V1 de los puntajes no se cumplió, y se evalúa una integración adaptativa (D-30 y D-31).
 
-## Estado del proyecto (al 2026-10-17)
+## Estado del proyecto (al 2026-10-20)
 
 | Fase | Estado | Scripts | Evidencia |
 |---|---|---|---|
 | F0 Organización | ✅ cerrada | — | hipótesis congeladas el 2026-10-12, commit `f53054d` ([[09 Hipótesis preregistradas]]) |
 | F1 Datos y ETL | ✅ cerrada | `01a_etl_cognitivo.R` → `01b_etl_cuestionario.R` → `01c_muestra_analitica.R` | muestra analítica de 6.886 estudiantes (`salidas/conteos_muestra.csv`); D-12, D-13 y D-14 |
 | F2 Validación del diseño | ✅ cerrada, **G1 pasa** | `02_validacion_ocde.R` + `utilidades_pisa.R` | `salidas/validacion_ocde.csv`; D-15 |
-| F3 O1: medición del NSE | en curso: 3.1 en `main`; 3.2 en la rama `Vanessa` | `03_explorar_items_nse.R` (describe los ítems) y `03_nse_medicion.R` (3.1: mitades y recodificación) | `salidas/nse_mitades.csv` y `nse_recodificacion.csv`; D-16 en `main`, aceptada por Vanessa (Mateo la firma en la rama del 3.4); D-19 (TRI del NSE) propuesta en la rama `Vanessa` |
-| F4–F9 | pendientes | — | — |
+| F3 O1: medición del NSE | ✅ cerrada, **G2 pasa** con desajuste documentado (D-24); 3.1 en `main` y el resto en el PR #12 | `03_explorar_items_nse.R`, `03_explorar_saltos.R`, `03_nse_medicion.R` (3.1 y 3.2) y `03_nse_tri.R` (3.3, 3.3b y 3.5) y `03_nse_afc.R` (3.4) | `salidas/nse_*.csv`; H1 aceptada (D-18); modelo para la F4–F6: 2D del AFE (D-24); acta en [[Reuniones/2026-10-18 Puerta G2]] |
+| F4 O2: invarianza | ✅ cerrada: escalar total en zona, rural–urbana, sexo y sector; H2 rechazada | `04_explorar_grupos.R` y `04_invarianza.R` | `salidas/invarianza_tabla.csv`, `nse_medias_latentes.csv`; D-25 y D-26 |
+| F5 O3: competencias | en curso: 5.1 a 5.3 hechos; H8 rechazada; bifactor no viable (D-29); 5.4 detenido: V1 no se cumple y falta validar una integración adaptativa (D-30, D-31) | `05_explorar_items.R`, `05_tri_competencias.R` | `salidas/items_competencia.csv`, `mat_matriz_resumen.csv`, `mat_ajuste.csv`, `mat_bifactor_*.csv`, `mat_posterior_V1.csv`; D-27, D-29 a D-31 |
+| F6–F9 | pendientes | — | — |
 
 Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarrollo PISA 2022]]; las razones, en
 [[03 Registro de decisiones]].
@@ -42,8 +45,12 @@ Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarroll
     `03_nse_medicion.R`) y D-16.
   - PR #10 (`Mateo` → `main`), fusionado el 2026-10-17: versiones de R y de los paquetes (D-17) y repositorio
     público.
-  - Rama `Vanessa`, todavía sin PR: paso 3.2 (policórica, análisis paralelo y AFE) y D-19. Al traer `main` choca con
-    D-17 al final del registro: se dejan los dos bloques, D-17 primero y D-19 después.
+  - PR #12 (`Vanessa` → `main`), abierto desde el 2026-10-17: F3 (3.2 a 3.5), F4 completa, F5 (5.1 a 5.4 en curso),
+    D-18 a D-31, firmas de fuentes del 18/10 y la corrección de la revisión de tutor del 2026-10-18.
+    - Brayan publicó dos revisiones (2026-10-18); el 2026-10-19 Vanessa atendió todas sus observaciones, de texto y
+      de código. Espera la segunda revisión de Brayan, la del paso 4.4 y la aprobación de Mateo.
+  - PR #13 (`Brayan` → `main`), abierto el 2026-10-18 y sin revisor: notas 17 y 18 y la presentación de «Nada sin
+    fuente».
 
 ## Equipo y reparto (propuesta, por confirmar)
 
@@ -53,15 +60,20 @@ Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarroll
 | Vanessa Acosta | O3: calificar por competencias y DIF | O4 |
 | Brayan David Barreto | O4–O5: modelo estructural, API y tablero | O1–O2 |
 
-La verificación de las 44 fuentes se reparte entre los tres; al 2026-10-16 hay 8 verificadas (ver
+La verificación de las 44 fuentes se reparte entre los tres; al 2026-10-18 hay 10 verificadas (ver
 [[Literatura/_Léeme]]). Cada uno trabaja en sus notas y scripts.
+
+**En la práctica (al 2026-10-18):** para no atrasar el calendario, Vanessa adelantó la F1 (`01a`, `01c`), la F2 y la
+F3 (3.1, 3.2, 3.3 y 3.5), y hará el 3.4. Mateo hizo `01b` y D-17 y revisa los PR. Brayan hizo su parte de «Nada sin
+fuente». Mateo y Brayan se ponen al día revisando los PR. Para la sustentación, cada uno debe poder explicar las fases
+que no hizo (paso 9.3).
 
 ## Notas del proyecto
 
 - **Anteproyecto vigente:** `Proyecto_PISA/anteproyecto/anteproyecto_VanessaAcosta_MateoRamos.pdf`
   (fuente `.Rmd` y `referencias.bib` en la misma carpeta; 4 marcas [VERIFICAR] por revisar antes de entregar; ver [[13 Revisión de literatura]])
-- [[03 Registro de decisiones]] — toda decisión, con fecha y razón (D-01 a D-17 en `main`, D-16 y D-17 aún sin
-  todas las firmas; D-19 propuesta en la rama `Vanessa`)
+- [[03 Registro de decisiones]] — toda decisión, con fecha y razón (D-01 a D-25: en `main` hasta D-17; D-18 a D-25
+  en la rama `Vanessa`, PR #12; D-16 y D-17 aún sin todas las firmas)
 - **Versiones de R y de los paquetes:** `Proyecto_PISA/scripts/versiones_paquetes.csv` (D-17). Al abrir
   `Proyecto_PISA.Rproj` en RStudio, la consola avisa si alguna no coincide; para instalarlas, paso 3 de «Primera vez»
   del `README.md`.

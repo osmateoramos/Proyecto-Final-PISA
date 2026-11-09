@@ -2008,7 +2008,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     para tareas) es casi 1 en el modelo con covariables. Es el par más alto de la policórica del 3.2 (0,836).
   - *Matiz:* las unidades no son idénticas (DE de la EAP frente a DE del factor latente); la comparación es aproximada.
 
-### D-43 · 2026-11-09 · Enlace robusto para P3 (corrige el punto 5 de D-41) — PROPUESTA
+### D-43 · 2026-11-09 · Enlace robusto para P3 (corrige el punto 5 de D-41)
 - **Problema:** el enlace media–sigma de D-41 punto 5 queda dominado por los ítems dicotómicos con discriminación casi
   nula en Colombia (b = −d/a se dispara). Ver el resultado de D-41. Es un error de diseño de Claude, detectado después
   de correr; el resultado de D-41 se conserva y se reporta tal como se fijó.
@@ -2023,4 +2023,25 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     más estándar, pero más largo de programar y de explicar.
   - Todo esto es **posterior a ver los resultados** y debe declararse así en el informe. P3 no tiene regla de decisión
     preregistrada; es un análisis descriptivo del paso 5.5.
-- **Estado:** ⏳ pendiente de decisión de Vanessa.
+- **Salidas previstas:** `scripts/05_p3_robusto.R` → `salidas/mat_p3_robusto.csv` (por competencia) y
+  `mat_p3_baja_discriminacion.csv` (ítems con a < 0,3; parámetros de ítems, sin datos de estudiantes).
+- **Estado:** ✅ aceptada por Vanessa (2026-11-09): Spearman como principal, media–sigma con a ≥ 0,3 y la lista de
+  ítems de baja discriminación. Mateo y Brayan la revisan en el PR.
+- **Resultado (2026-11-09, `05_p3_robusto.R`):**
+
+  | Competencia | Spearman (todos) | Ítems con a ≥ 0,3 / excluidos | Pearson (a ≥ 0,3) | Pendiente A | Intercepto B | RMSD |
+  |---|---|---|---|---|---|---|
+  | Emplear | 0,932 | 52 / 10 | 0,888 | 0,440 | −0,934 | 0,269 |
+  | Formular | 0,877 | 27 / 8 | 0,794 | 0,548 | −0,978 | 0,373 |
+  | Interpretar | 0,932 | 36 / 2 | 0,976 | 0,565 | −0,922 | 0,211 |
+  | Razonar | 0,703 | 30 / 5 | 0,776 | 0,416 | −0,682 | 0,543 |
+
+  - **Dato:** el orden de dificultad de los ítems en Colombia concuerda con el internacional (Spearman de 0,70 a
+    0,93), y las discriminaciones también (Spearman de a propio con `a_int` = 0,812). Razonar es la que menos
+    concuerda. 25 dicotómicos tienen a < 0,3 en Colombia (`salidas/mat_p3_baja_discriminacion.csv`); en todos, la
+    `a_int` es mayor.
+  - *Interpretación de Claude (no verificada contra la métrica del anexo A):* si el b propio está en DE de Colombia, A
+    y B estiman, de forma aproximada, la DE y la media de Colombia en la métrica internacional (A ≈ 0,4–0,6 y
+    B ≈ −0,7 a −1,0), lo que sería coherente con un desempeño por debajo y menos disperso que el internacional. No he
+    verificado en qué métrica están `a_int` y `b_int` en el anexo A, así que esta lectura queda por confirmar.
+

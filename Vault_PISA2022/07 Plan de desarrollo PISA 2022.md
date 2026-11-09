@@ -504,6 +504,9 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
   - *Redacción (evaluación del 2026-11-08):* el diseño es transversal. «Explica» se usa solo como «varianza
     explicada», y el «efecto del NSE» se escribe «asociación» o «coeficiente», como ya declara el anteproyecto
     (línea 285 del `.Rmd`). Las conclusiones de la F4 se redactan como en D-35.
+  - *Esqueleto creado (2026-11-08):* `Proyecto_PISA/informe/informe.Rmd` con todas las secciones; cada tabla se lee de
+    `salidas/` (ninguna cifra a mano) y lo que falta dice «Pendiente». Compila a PDF con XeLaTeX. Para compilarlo fuera
+    de RStudio hay que apuntar `RSTUDIO_PANDOC` al pandoc de RStudio. Los textos **[POR REDACTAR]** son del equipo.
 - [ ] **9.2 Declaración de uso de IA** y reparto del trabajo (igual que en el anteproyecto).
 - [ ] **9.3 Ensayo cruzado:** cada uno expone una parte que no hizo; los otros dos preguntan con las autoevaluaciones de
   esta guía.

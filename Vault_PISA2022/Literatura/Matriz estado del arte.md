@@ -54,6 +54,16 @@ Cuando se lea una fuente †: crear su nota en `Literatura/` (ZotLit), cambiar �
 | [[Literatura/burns2026intest\|Burns et al. (2026)]] | ✓ | PISA 2022; 36 países OCDE | NSE covariable | ✗ | Logro | ✗ | ✗ | ◐ (autorreporte) | ✓ (multinivel latente) | ✓ (incluida, n = 7.804) |
 | [[Literatura/pohl2014dealing\|Pohl, Gräfe y Rose (2014)]] | † | Pruebas de competencias (no PISA) | — | — | — | ✓ | ✗ | ✓ (omitidos y no alcanzados) | ✗ | ✗ |
 | [[Literatura/kohler2015taking\|Köhler, Pohl y Carstensen (2015)]] | † | NEPS; 15.396 escolares y 7.256 adultos | — | — | — | ✓ (propensión latente a omitir) | ✗ | ✓ (omisiones, con modelo) | ✗ | ✗ |
+| **F. Encontrados en la búsqueda 7.2 (2026-11-09; sin nota todavía, ver [[Literatura/Búsqueda de novedad F7]])** | | | | | | | | | | |
+| ACER, informe PISA 2022 de Australia | † | PISA 2022 Australia | NSE | ✗ | Subescalas de contenido y proceso | ? | ✗ | ? | ✗ | ✗ |
+| Documento de Oxford (ORA) sobre subdominios de proceso (título no verificado) | † | PISA 2022 (países ?) | ? | ? | **Procesos** | ? | ? | ? | ? | ? |
+| Preprint Research Square, PISA 2025 Colombia (autores no verificados) | † | PISA 2025 Colombia | ESCS dentro y entre colegios | ✗ | Bajo desempeño simultáneo | ✗ | ✗ | ✗ | ✗ | ✓ |
+| Estudio longitudinal PISA 2009–2022, JOSPOE (título no verificado) | † | PISA 2009–2022 | ? | ✗ | Brecha público–privado | ✗ | ✗ | ✗ | ✗ | ✓ |
+| Quiroz, Dari y Cervini (2018, no verificado) | † | PISA 2015 Argentina | Indicadores socioeconómicos | ✗ | Brecha público–privado (multinivel) | ✗ | ✗ | ✗ | ✗ | ✗ |
+| OCDE, *Education Working Paper* 279 | † | PISA | NSE (grupo) | ✗ | Medidas de desenganche | ? | ✗ | ✓ | ✗ | ? |
+| Robitzsch (2021, no verificado), omisiones en PISA 2018 | † | PISA 2018 matemáticas | — | — | Medias de país según el tratamiento de omisiones | ✓ | ✗ | ✓ (omisiones) | ✗ | ? |
+| Jerrim et al. (UCL, año no verificado) | † | PISA | — | — | Robustez al modelo de escalamiento | ✓ | ✗ | ◐ (no alcanzados) | ✗ | ? |
+| *Psicothema*, DIF con TERCE (año no verificado) | † | TERCE, 15 países ALC | Desarrollo humano del país | ✗ | Ciencias | ✓ | ◐ (entre países) | ✗ | ✗ | ? |
 | **ESTE PROYECTO** | | **PISA 2022 Colombia; 7.804** | **Latente 1 vs 2 dim. (TRI + AFC)** | **✓ zona, sexo, sector** | **4 procesos** | **✓ calibración propia** | **✓ Q1 vs Q4** | **✓ omisiones rápidas (tiempos)** | **✓ NSE → procesos, PV + pesos** | **✓** |
 
 > Nota: las filas de los bloques A y B marcadas ✓ las leyó el equipo en texto completo; las del bloque C–E

@@ -435,6 +435,14 @@ Script: `05_tri_competencias.R` · `mirt`.
 
 Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 
+> [!success] Decidido en D-42 (2026-11-08, antes de programar)
+> - Principal: enfoque en dos pasos. Regresión de cada competencia (10 VP de la OCDE, D-32) sobre las EAP del NSE de la
+>   G2, el sexo y el grado categórico, con los 80 pesos BRR y Rubin (D-34).
+> - 6.4: Wald conjunta de igualdad del efecto del NSE económico entre competencias; H5 (exploratoria) como diferencia
+>   interpretar − emplear, en la muestra completa y en la mitad de confirmación.
+> - 6.5 / H6: interacciones NSE × zona y NSE × sector en lugar del multigrupo; Wald conjunta por variable y Holm sobre las 2.
+> - Robustez: SEM con NSE latente, solo con el peso final, por cada VP. `lavaan.mi` no hace falta.
+
 - [ ] **6.1 Modelo:** NSE latente (estructura y restricciones de F3–F4) → las 4 competencias calificadas en F5, con
   residuos correlacionados entre competencias; covariables: sexo, grado.
 - [ ] **6.2 Estimación por cada conjunto de puntajes plausibles** (los 10 propios de F5) con

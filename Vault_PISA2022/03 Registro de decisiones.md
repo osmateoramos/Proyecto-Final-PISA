@@ -1862,3 +1862,36 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   `mat_h7.csv` y `mat_p3_enlace.csv`.
 - **Estado:** ✅ aceptada por Vanessa (2026-11-08): regresión latente fija, números comunes y P3 con los dicotómicos.
   Mateo y Brayan la revisan en el PR.
+
+### D-42 · 2026-11-08 · Cómo se estima la F6 (O4, H5 y H6)
+- **Problema:** con D-32 (VP de la OCDE como principal) y D-34 (BRR), un SEM completo con WLSMV costaría 10 VP × 81 pesos
+  = 810 ajustes por modelo (más de 13 h cada uno en este equipo). Hay que fijar el enfoque, las covariables y cómo se
+  prueban H5 y H6 **antes de programar la F6**.
+- **Decisión (Vanessa, 2026-11-08):**
+  1. **Enfoque en dos pasos (plan 6.2) como análisis principal.** Para cada competencia y cada VP de la OCDE
+     (`PV1–10 MPEM`, `MPFS`, `MPIN`, `MPRE`), regresión lineal ponderada sobre las EAP del NSE de la G2 (`eap_AFE_ECO` y
+     `eap_AFE_CUL`, D-24) y las covariables. Errores con las 80 réplicas BRR (Fay 0,5) y Rubin (D-34). Muestra: los
+     6.886 de la muestra analítica (D-14).
+     - *Límite que hay que declarar (interpretación):* usar la EAP del NSE como predictor es una calibración de
+       regresión. Con confiabilidad de ~0,90 (`salidas/nse_confiabilidad_tri.csv`), la atenuación esperada es pequeña,
+       pero la EAP no se calculó condicionando en las demás covariables. Por eso va la robustez del punto 4.
+  2. **Covariables (plan 6.1):** sexo y **grado categórico** (5 niveles, el modal de referencia), como en D-39.
+  3. **Pruebas:**
+     - *Igualdad de efectos entre competencias (6.4):* prueba de Wald conjunta de que el coeficiente del NSE económico es
+       igual en las 4 competencias (3 gl).
+     - *H5 (exploratoria, D-32):* diferencia entre los coeficientes del NSE económico en interpretar y en emplear, con su
+       error BRR + Rubin. Se reporta con la regla preregistrada (positiva y significativa, α = 0,05, bilateral) en la
+       muestra completa y en la mitad de confirmación.
+     - *H6 (6.5):* el multigrupo se reemplaza por interacciones en la regresión, que es equivalente para las pendientes
+       (interpretación). Modelo con zona, sector, NSE económico × zona y NSE económico × sector, sin los estudiantes sin
+       dato de zona (212) o de sector (90). **Una prueba de Wald conjunta por variable** en las 4 competencias (zona 8 gl,
+       sector 4 gl), con la covarianza BRR + Rubin; **Holm sobre las 2**. H6 se acepta si al menos una es significativa.
+       La prueba χ² con la covarianza de Rubin es una aproximación, y así se declara.
+  4. **Robustez del punto 1 (no decide hipótesis):** SEM con el NSE latente (estructura del AFE, D-24; WLSMV con los 29
+     indicadores ordinales) que predice las 4 competencias con las mismas covariables, solo con el peso final, una vez
+     por cada VP. Se promedian los coeficientes y se comparan con los del punto 1. Sin errores BRR (costo).
+  5. **Unidades:** coeficientes en puntos de PISA por unidad de la EAP y por desviación estándar ponderada de la EAP.
+- **Salidas previstas:** `scripts/06_sem_competencias.R` → `salidas/sem_coeficientes.csv`, `sem_igualdad.csv`,
+  `sem_h5.csv`, `sem_h6.csv` y `sem_robustez_latente.csv`.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08): dos pasos con SEM de robustez, Wald conjunto por variable con Holm y
+  grado categórico. Mateo y Brayan la revisan en el PR.

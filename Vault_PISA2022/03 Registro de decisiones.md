@@ -1796,3 +1796,63 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - Los coeficientes de Γ se reportan sin errores estándar: son parámetros del modelo de imputación, no estimaciones
     para interpretar (las inferencias van en la F6 con BRR, D-34).
 - **Estado:** ✅ aceptada por Vanessa (2026-11-08): EM propio y `GRADE` categórico. Mateo y Brayan la revisan en el PR.
+
+### D-40 · 2026-11-08 · Detalles del DIF de matemáticas y de H3 (paso 5.6; completa D-22, D-27 punto 7 y D-36)
+- **Problema:** D-22, D-27 y D-36 fijan el método del DIF de H3, pero dejan abiertos el sentido de la prueba de Fisher,
+  los pesos y qué ítems entran a la calibración. Se fijan **antes de correrlo**.
+- **Decisión (Vanessa, 2026-11-08):**
+  1. **Grupos:** cuartil bajo (Q1, focal) y alto (Q4, referencia) del NSE económico de la G2 (`eap_AFE_ECO`), con los
+     cuartiles ponderados de `05_explorar_items.R` (línea 88). Solo entran los estudiantes de Q1 y Q4.
+  2. **Ítems de la calibración:** los de la versión (a) de la matriz (D-27) con todas sus categorías observadas en Q1 y en
+     Q4. Se **prueban** solo los 165 elegibles (≥ 100 respuestas en cada cuartil, `salidas/items_respuestas.csv`); los
+     demás son siempre anclas. Se reporta cuántos quedan fuera.
+  3. **Modelo y prueba (D-36):** `multipleGroup()` de 1 dimensión, 2PL y GPCM, **sin pesos** (D-26), con medias y
+     varianzas libres. Vuelta 1: todos los ítems como anclas y `DIF(scheme = "drop")`. Vuelta 2: anclas = los que no
+     salieron significativos y `DIF(scheme = "add")` para los significativos. Benjamini-Hochberg al 5 % como **una sola
+     familia por competencia** sobre los valores p finales (D-35).
+  4. **Magnitud, como en la F4: con pesos** (`W_FSTUWT` normalizado). Emparejamiento: EAP del modelo multigrupo de la
+     vuelta 1, con la media de cada grupo (D-35, S2).
+     - Dicotómicos: ΔMH = −2,35 ln(α_MH), con α_MH ponderado y 10 estratos por deciles de esa EAP (Q4 de referencia: un
+       ΔMH negativo favorece al cuartil alto). La prueba χ² de Mantel-Haenszel va **sin pesos**. Categorías del ETS
+       (D-22): A si la prueba MH no es significativa o |ΔMH| ≤ 1; B si es significativa y 1 < |ΔMH| ≤ 1,5; C si es
+       significativa y |ΔMH| > 1,5.
+     - Crédito parcial: ΔR² de Nagelkerke ≥ 0,035 (la misma función que la F4).
+  5. **Un ítem tiene DIF** si su prueba TRI es significativa con BH **y** su efecto es no despreciable (B o C, o
+     ΔR² ≥ 0,035).
+  6. **H3, primera parte:** se acepta si al menos 1 ítem tiene DIF. **Segunda parte:** prueba exacta de Fisher de **una
+     cola** («mayor»), con los ítems elegibles: proporción con DIF en interpretar + formular frente a emplear, α = 0,05.
+- **Salidas previstas:** `scripts/05_dif_matematicas.R` → `salidas/mat_dif.csv`, `mat_dif_resumen.csv` y `mat_h3.csv`.
+- *Al correrlo (2026-11-08):* en Q1 quedan 1.473 estudiantes y en Q4, 1.975 (los cuartiles son ponderados). Entran a la
+  calibración 213 de los 232 ítems. **11 de los 165 elegibles no tienen todas sus categorías en los dos grupos** y no se
+  pueden probar con el modelo multigrupo (punto 2): `CM948Q03S`, `CM955Q03S`, `CMA152Q02S`, `DM949Q03C`, `DMA136Q02C`,
+  `DMA142Q02C`, `CM464Q01S`, `CM943Q02S`, `DM462Q01C`, `DMA146Q03C` y `DMA156Q01C`. Se prueban 154.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08): Fisher de una cola, pesos como en la F4 e ítems con todas sus
+  categorías en los dos grupos. Mateo y Brayan la revisan en el PR.
+
+### D-41 · 2026-11-08 · Detalles de H4 (paso 5.7) y de H7 con el enlace P3 (paso 5.5)
+- **Problema:** D-22 y D-27 fijan H4 y H7, pero dejan abiertos qué parte del modelo se mantiene fija al recalificar, cómo
+  se generan los VP de las tres calificaciones y qué ítems entran al enlace con los parámetros internacionales (P3). Se
+  fijan **antes de correrlos**, con los puntajes de D-39.
+- **Decisión (Vanessa, 2026-11-08):**
+  1. **H4, modelo fijo:** las calificaciones (b) omisión rápida = faltante y (c) toda omisión = faltante usan los mismos
+     ítems **y la misma regresión latente** (Γ y Σ) que la (a) (D-27 punto 5): solo cambian los datos. La posterior de
+     cada versión se calcula con E1.
+  2. **H4, números aleatorios comunes:** los 10 VP de (a), (b) y (c) salen de las mismas extracciones normales
+     (`set.seed(2026)`, en el mismo orden que en `05_puntajes_rl.R`), para que la diferencia refleje la calificación y no
+     el ruido de Monte Carlo.
+  3. **H4, cálculo (D-22, D-27 punto 6):** cuartiles del NSE económico como en H3 (D-40). Brecha = (media ponderada de Q4 −
+     media de Q1) / DE ponderada del puntaje (a), en cada VP; reducción = brecha (a) − brecha (b). Error con las 80
+     réplicas BRR (cuartiles fijos, la DE se recalcula en cada réplica) y Rubin. Se acepta si en al menos una competencia
+     la reducción es ≥ 0,05 DE y significativa después de Holm sobre las 4 (p bilateral). (c) se reporta como
+     sensibilidad.
+  4. **H7 (D-22):** promedio de las 10 correlaciones ponderadas VP propio *m* – VP de la OCDE *m* (emplear `MPEM`,
+     formular `MPFS`, interpretar `MPIN`, razonar `MPRE`), en una matriz de 4 × 4. Primera parte: ≥ 0,80 en las cuatro.
+     Segunda: en cada competencia propia, la correlación con la misma competencia de la OCDE es mayor que con las otras
+     tres.
+  5. **P3:** enlace media–sigma por competencia **solo con los ítems dicotómicos**: b propio = −d / a (modelo de 4
+     competencias) frente a `b_int` del anexo A (`salidas/items_competencia.csv`). Se reportan la correlación y la
+     diferencia cuadrática media después del enlace. Los de crédito parcial se reportan aparte, sin enlazar.
+- **Salidas previstas:** `scripts/05_h4_h7.R` → `salidas/mat_h4_brechas.csv`, `mat_h4.csv`, `mat_h7_correlaciones.csv`,
+  `mat_h7.csv` y `mat_p3_enlace.csv`.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08): regresión latente fija, números comunes y P3 con los dicotómicos.
+  Mateo y Brayan la revisan en el PR.

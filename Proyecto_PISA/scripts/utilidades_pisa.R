@@ -93,5 +93,19 @@ preparar_f4 <- function(DATOS, SALIDAS) {
        ANALISIS = list(zona = "zona3", H2_rural_urbana = "rural_urbana", sexo = "sexo2", sector = "sector2"))
 }
 
+# ΔR² de Nagelkerke de la regresión logística (ordinal si hay más de 2 categorías) del ítem sobre la variable de
+# emparejamiento, el grupo y su interacción, frente a la variable de emparejamiento sola, con pesos (D-22, D-25). Es la
+# misma función que 04_invarianza.R (líneas 220-229); requiere MASS.
+magnitud_dR2 <- function(y, eap, g, w) {
+  nagelkerke <- function(m, m0, n) (1 - exp((2 / n) * (as.numeric(logLik(m0)) - as.numeric(logLik(m))))) /
+                                   (1 - exp((2 / n) * as.numeric(logLik(m0))))
+  k <- !is.na(y) & !is.na(eap) & !is.na(g); y <- y[k]; eap <- eap[k]; g <- droplevels(g[k]); w <- w[k] * sum(k) / sum(w[k])
+  dd <- data.frame(y = factor(y, ordered = TRUE), eap, g, w)
+  ajusta <- function(fm) suppressWarnings(if (nlevels(dd$y) > 2) MASS::polr(fm, dd, weights = w, Hess = FALSE) else
+                                            glm(fm, binomial, dd, weights = w))
+  tryCatch({ m0 <- ajusta(y ~ 1); m1 <- ajusta(y ~ eap); m3 <- ajusta(y ~ eap * g)
+             nagelkerke(m3, m0, nrow(dd)) - nagelkerke(m1, m0, nrow(dd)) }, error = function(e) NA_real_)
+}
+
 # Correlación ponderada entre x e y (casos completos)
 r_w <- function(x, y, w) { k <- !is.na(x) & !is.na(y); cov.wt(cbind(x[k], y[k]), wt = w[k], cor = TRUE)$cor[1, 2] }

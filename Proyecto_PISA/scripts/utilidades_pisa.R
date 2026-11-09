@@ -28,3 +28,33 @@ media_w <- function(y, w, g = rep(TRUE, length(y))) sum(w[g] * y[g]) / sum(w[g])
 
 # Cuantil ponderado: primer valor en que la proporción acumulada del peso llega a p.
 cuantil_w <- function(x, w, p) { o <- order(x); cw <- cumsum(w[o]) / sum(w[o]); x[o][which(cw >= p)[1]] }
+
+# Huella (md5) de lo que entra a un modelo, para saber si un caché corresponde a los datos actuales.
+huella <- function(...) { f <- tempfile(); on.exit(unlink(f))
+  writeBin(serialize(list(...), NULL, version = 3), f); unname(tools::md5sum(f)) }
+
+# Cargas estandarizadas de un modelo de mirt 1.46.1, con la corrección de D-19: summary() anula la carga de los ítems
+# GPCM que no cargan en el factor 1, porque multiplica por sign(0). Aquí se usa el signo de la primera pendiente que no
+# es 0. Es la misma función que tienen 03_nse_tri.R y 05_tri_competencias.R; usa funciones internas de mirt (:::),
+# así que hay que revisarla si cambia la versión de mirt (D-17).
+cargas_mirt <- function(m) {
+  pars <- m@ParObjects$pars; J <- length(pars) - 1L
+  nf   <- length(mirt:::ExtractLambdas(pars[[1L]], include_fixed = FALSE))
+  gcov <- mirt:::ExtractGroupPars(pars[[J + 1L]])$gcov
+  stopifnot(ncol(gcov) == nf)
+  L <- do.call(rbind, lapply(seq_len(J), function(i) {
+    p <- pars[[i]]; l <- mirt:::ExtractLambdas(p, include_fixed = FALSE) / 1.702
+    if (p@ncat > 2 && (is(p, "gpcm") || is(p, "nominal"))) {
+      d <- mirt:::nominal_rescale_d(p@par[1:(nf + p@ncat)], nfact = nf, ncat = p@ncat)
+      l <- l * d
+      s <- sign(l[which(l != 0)[1]]); if (is.na(s)) s <- 1
+      l <- l * sqrt((p@ncat - 1) * 1.702) * s
+    }
+    l }))
+  L <- L %*% diag(sqrt(diag(gcov)), nf)
+  F <- L / sqrt(1 + rowSums(L^2))
+  dimnames(F) <- list(extract.mirt(m, "itemnames"), extract.mirt(m, "factorNames")); F
+}
+
+# Correlación ponderada entre x e y (casos completos)
+r_w <- function(x, y, w) { k <- !is.na(x) & !is.na(y); cov.wt(cbind(x[k], y[k]), wt = w[k], cor = TRUE)$cor[1, 2] }

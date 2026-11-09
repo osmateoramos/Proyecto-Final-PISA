@@ -1,0 +1,18 @@
+medida,D20,S1
+correlación entre factores,0.483,0.569
+"información máxima, libros (theta del máximo)",33.1 (1.4),13.2 (1.6)
+"rango con información >= 4, libros",-1.5 a 2.6,-0.9 a 2.9
+"información máxima, económico",10.6,10.1
+"rango con información >= 4, económico",-2.2 a 2.9,-2.2 a 2.9
+"confiabilidad empírica, económico",0.898,0.894
+"confiabilidad empírica, libros",0.902,0.813
+"r ponderada con HOMEPOS, económico",0.962,0.969
+"r ponderada con ESCS, económico",0.809,0.821
+"r ponderada con HOMEPOS, libros",0.618,0.748
+"r ponderada con ESCS, libros",0.473,0.581
+"Q3 ST255-ST256: mínimo / máximo / pares con |Q3| > 0,2",-0.266 / -0.094 / 5,-0.217 / -0.058 / 3
+"r ponderada entre las EAP D-20 y S1, económico",—,0.995
+"r ponderada entre las EAP D-20 y S1, libros",—,0.923
+"r ponderada entre las EAP D-20 y S1, libros, solo quienes no tienen libros",—,0.983
+estudiantes con los saltos como faltantes (libros / dispositivos),0 / 0,1002 / 182
+iteraciones del EM,45,33

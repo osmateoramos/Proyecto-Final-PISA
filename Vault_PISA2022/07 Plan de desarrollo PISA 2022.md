@@ -489,6 +489,9 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 
 - [ ] **9.1 Informe** en `Proyecto_PISA/informe/informe.Rmd` con citas de `referencias.bib`; cada cifra con su
   script y salida.
+  - *Redacción (evaluación del 2026-11-08):* el diseño es transversal. «Explica» se usa solo como «varianza
+    explicada», y el «efecto del NSE» se escribe «asociación» o «coeficiente», como ya declara el anteproyecto
+    (línea 285 del `.Rmd`). Las conclusiones de la F4 se redactan como en D-35.
 - [ ] **9.2 Declaración de uso de IA** y reparto del trabajo (igual que en el anteproyecto).
 - [ ] **9.3 Ensayo cruzado:** cada uno expone una parte que no hizo; los otros dos preguntan con las autoevaluaciones de
   esta guía.

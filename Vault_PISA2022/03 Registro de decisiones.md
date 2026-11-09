@@ -1674,3 +1674,34 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
       anclas conservaban el valor de la vuelta 1 (`04_invarianza.R`, líneas 278–283): se recalcula sobre los valores p
       finales de cada análisis y factor, como una sola familia.
 - **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+- **Resultado de S1** (`scripts/03_nse_sens_d20.R` → `salidas/nse_sens_d20_resumen.csv` y `nse_sens_d20_items.csv`;
+  2026-11-08; 1.002 estudiantes sin libros y 182 sin dispositivos con los saltos como faltantes; el EM convergió):
+
+  | Medida | Con D-20 (saltos = 0) | S1 (saltos = faltante) |
+  |---|---|---|
+  | Información máxima del factor libros (θ) | 33,1 (1,4) | 13,2 (1,6) |
+  | Rango con información ≥ 4, libros | −1,5 a 2,6 | −0,9 a 2,9 |
+  | Confiabilidad empírica, libros / económico | 0,902 / 0,898 | 0,813 / 0,894 |
+  | Correlación entre factores | 0,483 | 0,569 |
+  | Libros: r con HOMEPOS / ESCS | 0,618 / 0,473 | 0,748 / 0,581 |
+  | Económico: r con HOMEPOS / ESCS | 0,962 / 0,809 | 0,969 / 0,821 |
+  | Q3 ST255–ST256: mínimo / pares con \|Q3\| > 0,2 | −0,266 / 5 | −0,217 / 3 |
+
+  - Las cargas de los tipos de libros bajan: de 0,918 a 0,668 en `ST256Q01JA` (religiosos) y entre 0,03 y 0,11 en los
+    demás. Las EAP de las dos versiones correlacionan 0,995 (económico) y 0,923 (libros).
+  - **Lectura (dato):** los ceros de D-20 **inflaban la precisión del factor libros** (la información máxima baja a
+    menos de la mitad y la confiabilidad de 0,90 a 0,81) y achicaban su relación con el NSE oficial. El factor
+    económico, el que deciden H5, H6 y los cuartiles de H3 y H4 (D-22, D-24), **casi no cambia**.
+  - *Interpretación (Claude, por discutir):* para el factor económico, D-20 no importa. El factor libros es más
+    impreciso de lo reportado en la G2. Si se usa en el informe, conviene reportarlo con la versión S1 o con las dos.
+    No cambia nada sin una decisión nueva.
+- **Resultado de S2** (`scripts/04_dif_emparejamiento.R` → `salidas/nse_dif_sens_emparejamiento.csv`; 2026-11-08; los
+  8 modelos multigrupo convergieron):
+  - Las EAP multigrupo correlacionan de 0,9955 a 0,9979 con las de la G2, y el ΔR² cambia como máximo en la tercera
+    cifra decimal.
+  - Motos (`ST251Q02JA`) sigue con DIF por zona (ΔR² 0,0416 → 0,0435) y **pasa el corte por sector** (0,0329 → 0,0350).
+    Ningún otro ítem cambia de clasificación.
+  - Benjamini-Hochberg como una sola familia no cambia la significancia de ningún ítem (0 de 116).
+  - **H2 no cambia:** se rechaza por la primera condición (`salidas/inv_h2.csv`).
+  - *Lectura:* la contracción de las EAP no fabricaba ni tapaba DIF de magnitud relevante, salvo motos por sector,
+    que queda en el límite. Se reporta motos con DIF por zona y, con el emparejamiento multigrupo, también por sector.

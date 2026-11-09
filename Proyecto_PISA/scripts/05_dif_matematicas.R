@@ -13,13 +13,20 @@
 #   4. H3: primera parte, al menos 1 ítem con DIF; segunda parte, Fisher de una cola (interpretar + formular frente a
 #      emplear), α = 0,05.
 #   Las pruebas TRI se guardan en datos/COL_mat_dif.rds (con huella): reestimarlas tarda horas.
+#   Sensibilidades de la F7 (D-45), con la variable de entorno F7_VARIANTE:
+#     escs       cuartiles de ESCS en lugar del NSE económico (TRI completo; caché datos/COL_f7_dif_escs.rds)
+#     sin_lineal mismos cuartiles, sin los estudiantes de la ruta lineal (MPATH; caché datos/COL_f7_dif_sin_lineal.rds)
+#     d38        pesos ajustados por no respuesta dentro del colegio (D-38): cambia solo la magnitud; usa el caché TRI
+#                principal porque la prueba TRI va sin pesos (D-26)
 #
 # Entradas: datos/COL_mat_respuestas.rds (05_tri_competencias.R), COL_nse.rds, COL_nse_tri.rds y
-#   salidas/items_respuestas.csv.
-# Salidas (solo agregados): salidas/mat_dif.csv, mat_dif_resumen.csv y mat_h3.csv.
+#   salidas/items_respuestas.csv; con F7_VARIANTE, también COL_cognitivo.rds o COL_cuestionario.rds.
+# Salidas (solo agregados): salidas/mat_dif.csv, mat_dif_resumen.csv y mat_h3.csv; con F7_VARIANTE,
+#   salidas/f7_dif_<variante>.csv, f7_dif_resumen_<variante>.csv y f7_h3_<variante>.csv.
 #
 # Cómo correrlo (desde Proyecto_PISA/scripts/):
 #   & "C:\Program Files\R\R-4.4.1\bin\Rscript.exe" 05_dif_matematicas.R
+#   $env:F7_VARIANTE = "escs"; & "C:\Program Files\R\R-4.4.1\bin\Rscript.exe" 05_dif_matematicas.R
 # =============================================================================
 
 options(stringsAsFactors = FALSE, scipen = 999, width = 160)
@@ -43,11 +50,23 @@ ic  <- fread(file.path(SALIDAS, "items_respuestas.csv"), encoding = "UTF-8")    
 stopifnot(identical(nse$CNTSTUID, tri$CNTSTUID), all(R$CNTSTUID %in% nse$CNTSTUID))
 k <- match(R$CNTSTUID, nse$CNTSTUID)
 W <- nse$W_FSTUWT[k]; ECO <- tri$eap_AFE_ECO[k]
+VAR <- Sys.getenv("F7_VARIANTE")                                    # "" = análisis principal (D-40); si no, D-45
+stopifnot(VAR %in% c("", "escs", "sin_lineal", "d38"))
+if (nzchar(VAR)) reloj("Sensibilidad de la F7 (D-45):", VAR)
 
-# --- Cuartiles ponderados del NSE económico (05_explorar_items.R, línea 88)
+# --- Cuartiles ponderados del NSE económico (05_explorar_items.R, línea 88); con «escs», de ESCS (D-45)
 cuartil_w <- function(x, w) { o <- order(x); cw <- cumsum(w[o]) / sum(w[o]); q <- integer(length(x)); q[o] <- pmin(4L, 1L + floor(4 * cw - 1e-9)); q }
-q <- cuartil_w(ECO, W)
+q <- cuartil_w(if (VAR == "escs") nse$ESCS[k] else ECO, W)
 sel <- q %in% c(1L, 4L)
+if (VAR == "sin_lineal") {                                         # cuartiles fijos; se quitan los de la ruta lineal
+  cog <- readRDS(file.path(DATOS, "COL_cognitivo.rds")); ruta <- as.character(cog$MPATH[match(R$CNTSTUID, cog$CNTSTUID)])
+  stopifnot(!anyNA(ruta)); reloj("Ruta lineal excluida:", sum(ruta == "Linear"), "estudiantes de la muestra analítica")
+  sel <- sel & ruta != "Linear"
+}
+if (VAR == "d38") {                                                 # peso final ajustado por colegio (D-38)
+  cue <- readRDS(file.path(DATOS, "COL_cuestionario.rds"))
+  W <- W * factor_d38(cue, R$CNTSTUID, "W_FSTUWT")[, 1]
+}
 grp <- factor(ifelse(q[sel] == 4L, "Q4", "Q1"), levels = c("Q4", "Q1"))        # Q4 = referencia
 Y <- R$a[sel, ]; w <- W[sel]; w <- w * length(w) / sum(w)
 COMP <- R$competencia; TIPO <- setNames(R$tipo, colnames(R$a))
@@ -78,7 +97,9 @@ vuelta <- function(anclas, probar, esquema) {
     data.table(item = js, X2 = round(r[js, "X2"], 2), gl = r[js, "df"], p = r[js, "p"]) }))
   list(mg = mg, res = res)
 }
-CACHE <- file.path(DATOS, "COL_mat_dif.rds")
+CACHE <- file.path(DATOS, if (VAR %in% c("escs", "sin_lineal")) paste0("COL_f7_dif_", VAR, ".rds") else "COL_mat_dif.rds")
+if (VAR == "d38" && !identical(readRDS(CACHE)$huella, huella(as.list(X), as.character(grp), tipos, PROBAR, "D-40")))
+  stop("d38 debe reutilizar las pruebas TRI del análisis principal y la huella no coincide")
 H <- huella(as.list(X), as.character(grp), tipos, PROBAR, "D-40")
 cache <- if (file.exists(CACHE)) readRDS(CACHE) else NULL
 if (!is.null(cache) && identical(cache$huella, H)) {
@@ -142,12 +163,13 @@ dif[, `:=`(p = signif(p, 3), p_BH = signif(p_BH, 3))]
 setcolorder(dif, c("competencia", "item", "tipo", "n_Q1", "n_Q4", "vuelta", "X2", "gl", "p", "p_BH", "delta_MH", "p_MH",
                    "categoria_ETS", "dR2_Nagelkerke", "TRI_significativo", "no_despreciable", "DIF", "favorece"))
 setorder(dif, competencia, item)
-fwrite(dif, file.path(SALIDAS, "mat_dif.csv"))
+salida <- function(base) file.path(SALIDAS, if (nzchar(VAR)) sub("^mat_", "f7_", sub("\\.csv$", paste0("_", VAR, ".csv"), base)) else base)
+fwrite(dif, salida("mat_dif.csv"))
 
 resumen <- dif[, .(elegibles = .N, significativos_BH = sum(TRI_significativo), no_despreciables = sum(no_despreciable),
                    con_DIF = sum(DIF), pct_DIF = round(100 * mean(DIF), 1), ETS_B = sum(categoria_ETS == "B", na.rm = TRUE),
                    ETS_C = sum(categoria_ETS == "C", na.rm = TRUE)), by = competencia]
-fwrite(resumen, file.path(SALIDAS, "mat_dif_resumen.csv"))
+fwrite(resumen, salida("mat_dif_resumen.csv"))
 
 # =============================================================================
 # 3. H3 (09 Hipótesis preregistradas, D-22, D-40)
@@ -164,7 +186,7 @@ h3 <- data.table(
                    unname(fis$estimate), fis$p.value)),
   se_acepta = c(parte1, parte2))
 h3[, H3 := if (parte1 && parte2) "se acepta (las dos partes)" else if (parte1) "se acepta solo la primera parte" else "se rechaza"]
-fwrite(h3, file.path(SALIDAS, "mat_h3.csv"))
+fwrite(h3, salida("mat_h3.csv"))
 
 cat("\nMedias latentes del modelo de la vuelta 1 (Q4 = 0):", paste(sprintf("%s %.3f", names(medias), medias), collapse = " | "), "\n")
 cat("\n--- 5.6 DIF por competencia (salidas/mat_dif_resumen.csv) ---\n"); print(resumen)

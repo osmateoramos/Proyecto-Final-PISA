@@ -1,0 +1,25 @@
+candidato,sensibilidad,se_mantiene,detalle
+K1,base (análisis principal),TRUE,igualdad p = 0.01; H5 completa 5.57 (p = 0.001); mitad 6.33 (p = 0.00037); n = 6886
+K1,S-A ESCS,TRUE,igualdad p = 0.042; H5 completa 3.72 (p = 0.016); mitad 3.79 (p = 0.021); n = 6886
+K1,S-B sin ruta lineal,TRUE,igualdad p = 0.049; H5 completa 5.19 (p = 0.0053); mitad 5.6 (p = 0.008); n = 5187
+K1,S-E reponderación D-38,TRUE,igualdad p = 0.01; H5 completa 5.48 (p = 0.0011); mitad 6.09 (p = 0.0011); n = 6886
+K2,base (análisis principal),TRUE,NSE x sector p Holm = 0.0073 (zona p = 0.082); n = 6886
+K2,S-A ESCS,TRUE,NSE x sector p Holm = 0.00067 (zona p = 0.0045); n = 6886
+K2,S-B sin ruta lineal,TRUE,NSE x sector p Holm = 0.0041 (zona p = 0.39); n = 5187
+K2,S-D sin corrección múltiple,TRUE,NSE x sector p sin corregir = 0.0036 (zona p = 0.082); n = 6886
+K2,S-E reponderación D-38,TRUE,NSE x sector p Holm = 0.0097 (zona p = 0.075); n = 6886
+K3,base (análisis principal),TRUE,emplear 25.5 (p = 3.5e-41); formular 26.2 (p = 6.1e-17); interpretar 31 (p = 5.5e-40); razonar 25.6 (p = 2e-19); n = 6886
+K3,S-A ESCS,TRUE,emplear 19.1 (p = 3.2e-27); formular 22.1 (p = 1e-21); interpretar 22.8 (p = 9.2e-31); razonar 20.7 (p = 3.6e-22); n = 6886
+K3,S-B sin ruta lineal,TRUE,emplear 25.1 (p = 7.6e-35); formular 26.1 (p = 6.2e-14); interpretar 30.3 (p = 8.5e-36); razonar 25.6 (p = 1.2e-17); n = 5187
+K3,S-E reponderación D-38,TRUE,emplear 25.6 (p = 1.3e-41); formular 26.3 (p = 1.9e-16); interpretar 31.1 (p = 1.8e-39); razonar 25.6 (p = 2.9e-19); n = 6886
+K4,base (análisis principal),TRUE,emplear 0.0075 (p Holm = 0.24); formular 0.0073 (p Holm = 0.24); interpretar 0.0075 (p Holm = 0.24); razonar 0.0074 (p Holm = 0.24)
+K4,S-A ESCS,TRUE,emplear 0.0035 (p Holm = 1); formular 0.0034 (p Holm = 1); interpretar 0.0042 (p Holm = 1); razonar 0.0033 (p Holm = 1)
+K4,S-B sin ruta lineal,TRUE,emplear 0.0067 (p Holm = 0.35); formular 0.0065 (p Holm = 0.35); interpretar 0.0066 (p Holm = 0.35); razonar 0.0066 (p Holm = 0.35)
+K4,S-C umbral de omisión (NT15 y 5 s),TRUE,NT15 (5677 omisiones rápidas): emplear 0.0085 (p Holm = 0.18); formular 0.0080 (p Holm = 0.18); interpretar 0.0084 (p Holm = 0.18); razonar 0.0083 (p Holm = 0.18) | 5 s (3083): emplear 0.0044 (p Holm = 0.47); formular 0.0042 (p Holm = 0.47); interpretar 0.0044 (p Holm = 0.47); razonar 0.0042 (p Holm = 0.47)
+K4,S-D sin corrección múltiple,TRUE,emplear 0.0075 (p = 0.06); formular 0.0073 (p = 0.059); interpretar 0.0075 (p = 0.063); razonar 0.0074 (p = 0.063)
+K4,S-E reponderación D-38,TRUE,emplear 0.0063 (p Holm = 0.52); formular 0.0057 (p Holm = 0.52); interpretar 0.0060 (p Holm = 0.52); razonar 0.0061 (p Holm = 0.52)
+K5,base (análisis principal),TRUE,"3 de 154 ítems con DIF (CMA113Q03S, CMA131Q02S, CMA135Q04S)"
+K5,S-A ESCS,,pendiente: falta salidas/f7_h3_escs.csv
+K5,S-B sin ruta lineal,,pendiente: falta salidas/f7_h3_sin_lineal.csv
+K5,S-D sin corrección múltiple,TRUE,"sin BH: 8 de 154 ítems con DIF (CM982Q01S emplear, CMA113Q03S emplear, CMA117Q03S emplear, CMA131Q02S emplear, CMA135Q02S emplear, CMA135Q04S emplear, CMA153Q02S formular, CMA132Q02S interpretar)"
+K5,S-E reponderación D-38,TRUE,"3 de 154 ítems elegibles con DIF | interpretar + formular 0 de 66; emplear 3 de 57; OR 0.00; p = 1 | ítems con DIF: CMA113Q03S, CMA131Q02S, CMA135Q04S"

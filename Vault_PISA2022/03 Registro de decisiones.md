@@ -2150,3 +2150,24 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   `salidas/f7_dif_<variante>.csv` y `f7_h3_<variante>.csv`; nota `Vault_PISA2022/Hallazgos.md`; acta de la G4.
 - **Estado:** ✅ aceptada por Vanessa (2026-11-09): 5 candidatos con regla del 75 %, DIF con TRI completo, búsqueda
   documentada por Claude y etiqueta después del PR. Mateo y Brayan la revisan en el PR.
+- *Al programar (2026-11-09, antes de ver resultados):* en S-E, los cuartiles de H4 se recalculan con el peso final
+  ajustado. `wls81()`, `rubin_vec()` y `wald()` pasan de `06_sem_competencias.R` a `utilidades_pisa.R` (las salidas de la
+  F6 no cambian). Variantes del DIF también en `f7_dif_resumen_<variante>.csv`.
+- **Resultado de K1 a K4 (2026-11-09, `07_sensibilidad.R` → `salidas/f7_sensibilidad_detalle.csv` y
+  `f7_robustez.csv`):** la versión base reproduce `sem_h5.csv`, `sem_h6.csv` y `mat_h4_brechas.csv` (comprobado en el
+  script). Ruta lineal: 1.699 estudiantes de la muestra analítica. Factor de D-38 sobre el peso final: de 1 a 11,7.
+  Omisiones rápidas: 4.852 con NT10, 5.677 con NT15 y 3.083 con 5 s.
+
+  | Candidato | Base | S-A ESCS | S-B sin ruta lineal | S-C NT15 / 5 s | S-D sin corrección | S-E D-38 | Robusto |
+  |---|---|---|---|---|---|---|---|
+  | K1 igualdad + H5 | igualdad p = 0,010; H5 5,57 (p = 0,001) y 6,33 (p < 0,001) | p = 0,042; 3,72 (p = 0,016) y 3,79 (p = 0,021) | p = 0,049; 5,19 (p = 0,005) y 5,60 (p = 0,008) | — | — | p = 0,010; 5,48 y 6,09 (p = 0,001) | **sí, 3 de 3** |
+  | K2 NSE × sector | Holm p = 0,0073 | 0,0007 | 0,0041 | — | sin Holm 0,0036 | 0,0097 | **sí, 4 de 4** |
+  | K3 NSE > 0 en las 4 | 25,5 a 31,0 puntos por unidad de EAP | 19,1 a 22,8 por unidad de ESCS | 25,1 a 30,3 | — | — | 25,6 a 31,1 | **sí, 3 de 3** |
+  | K4 H4 nulo | reducción 0,007 DE; Holm p = 0,24 | 0,003–0,004; p = 1 | 0,007; p = 0,35 | NT15 0,008 (p = 0,18); 5 s 0,004 (p = 0,47) | 0,007; p 0,059–0,063 | 0,006; p = 0,52 | **sí, 5 de 5** |
+  | K5 H3 (parte 1 sí, 2 no) | 3 de 154 con DIF | en curso | en curso | — | sin BH: 8 de 154 (6 emplear, 1 formular, 1 interpretar); se mantiene | 3 de 154; se mantiene | pendiente (2 de 4 evaluadas) |
+
+  - *Lectura (dato):* K1 queda cerca del límite en dos sensibilidades: con ESCS la diferencia H5 baja a ~3,7 puntos, y
+    sin la ruta lineal la igualdad sale con p = 0,049. Con ESCS, la interacción NSE × zona también sale significativa
+    (p = 0,0045), a diferencia de la base (0,082).
+  - *Interpretación de Claude:* el factor máximo de 11,7 en D-38 viene de colegios con pocos incluidos; S-E da casi los
+    mismos resultados, así que esos pesos grandes no mueven las conclusiones.

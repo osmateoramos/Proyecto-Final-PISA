@@ -1,0 +1,6 @@
+candidato,conclusion,aplicables,evaluadas,se_mantiene_en,requerido,robusto
+K1,igualdad rechazada y H5 con su regla (completa y mitad),3,3,3,3,sí
+K2,NSE x sector significativa (H6),4,4,4,3,sí
+K3,NSE > 0 y significativo en las 4 competencias,3,3,3,3,sí
+K4,H4 se rechaza (nulo),5,5,5,4,sí
+K5,"H3: primera parte sí, segunda no",4,2,2,3,pendiente

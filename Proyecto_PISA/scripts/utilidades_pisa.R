@@ -109,3 +109,29 @@ magnitud_dR2 <- function(y, eap, g, w) {
 
 # Correlación ponderada entre x e y (casos completos)
 r_w <- function(x, y, w) { k <- !is.na(x) & !is.na(y); cov.wt(cbind(x[k], y[k]), wt = w[k], cor = TRUE)$cor[1, 2] }
+
+# Ajuste de no respuesta por colegio (D-38): factor = suma de los pesos de todos los estudiantes del colegio / suma de
+# los pesos de los incluidos, por cada columna de peso (peso final y réplicas). Devuelve una matriz con una fila por
+# cada id de `ids` (en ese orden) y una columna por cada peso de `cols`. `cue` = todos los estudiantes de Colombia.
+factor_d38 <- function(cue, ids, cols) {
+  inc <- cue$CNTSTUID %in% ids; sch <- as.character(cue$CNTSCHID); s_ids <- sch[match(ids, cue$CNTSTUID)]
+  Fm <- vapply(cols, function(cl) { w <- cue[[cl]]; tot <- tapply(w, sch, sum); den <- tapply(w[inc], sch[inc], sum)
+    unname((tot[s_ids]) / den[s_ids]) }, numeric(length(ids)))
+  stopifnot(all(is.finite(Fm)), all(Fm >= 1 - 1e-12)); Fm
+}
+
+# Regresión ponderada con varias columnas de peso a la vez (F6, D-42): B[peso, coeficiente, columna de Y]
+wls81 <- function(X, Y, WR) {
+  B <- array(NA_real_, c(ncol(WR), ncol(X), ncol(Y)), dimnames = list(colnames(WR), colnames(X), colnames(Y)))
+  for (r in seq_len(ncol(WR))) { w <- WR[, r]; B[r, , ] <- solve(crossprod(X, X * w), crossprod(X, Y * w)) }
+  B }
+# Rubin con BRR para un vector de cantidades: theta(B, m) devuelve, para el VP m, una matriz 81 x q (fila 1 = peso final)
+rubin_vec <- function(B, theta) {
+  est <- lapply(1:10, function(m) theta(B, m)); q <- ncol(est[[1]])
+  th <- do.call(rbind, lapply(est, function(e) e[1, ]))             # 10 x q (peso final); rbind, no t(vapply()), por q = 1
+  stopifnot(nrow(th) == 10, ncol(th) == q)
+  U <- Reduce(`+`, lapply(est, function(e) { dv <- sweep(e[-1, , drop = FALSE], 2, e[1, ]); 0.05 * crossprod(dv) })) / 10
+  Bv <- if (q == 1) matrix(var(th[, 1])) else cov(th)
+  list(est = colMeans(th), V = U + 1.1 * Bv) }
+# Wald conjunta con la covarianza total de Rubin (aproximación χ² con q gl, D-42)
+wald <- function(r) { s <- drop(t(r$est) %*% solve(r$V, r$est)); c(chi2 = s, gl = length(r$est), p = pchisq(s, length(r$est), lower.tail = FALSE)) }

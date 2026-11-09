@@ -71,20 +71,7 @@ Yp <- Y; Yp[] <- NA_real_
 for (j in seq_along(COMP)) for (m in 1:10) Yp[, col_pv(COMP[j], m)] <- pun$pv[kp, m, j]
 stopifnot(!anyNA(Yp))
 
-# --- WLS con los 81 pesos a la vez: B[peso, coeficiente, columna de Y]
-wls81 <- function(X, Y, WR) {
-  B <- array(NA_real_, c(ncol(WR), ncol(X), ncol(Y)), dimnames = list(colnames(WR), colnames(X), colnames(Y)))
-  for (r in seq_len(ncol(WR))) { w <- WR[, r]; B[r, , ] <- solve(crossprod(X, X * w), crossprod(X, Y * w)) }
-  B }
-# theta(B, m) devuelve, para el VP m, el vector de cantidades de interés en cada uno de los 81 pesos (81 x q)
-rubin_vec <- function(B, theta) {
-  est <- lapply(1:10, function(m) theta(B, m)); q <- ncol(est[[1]])
-  th <- do.call(rbind, lapply(est, function(e) e[1, ]))             # 10 x q (peso final); rbind, no t(vapply()), por q = 1
-  stopifnot(nrow(th) == 10, ncol(th) == q)
-  U <- Reduce(`+`, lapply(est, function(e) { dv <- sweep(e[-1, , drop = FALSE], 2, e[1, ]); 0.05 * crossprod(dv) })) / 10
-  Bv <- if (q == 1) matrix(var(th[, 1])) else cov(th)
-  list(est = colMeans(th), V = U + 1.1 * Bv) }
-wald <- function(r) { s <- drop(t(r$est) %*% solve(r$V, r$est)); c(chi2 = s, gl = length(r$est), p = pchisq(s, length(r$est), lower.tail = FALSE)) }
+# wls81(), rubin_vec() y wald() están en utilidades_pisa.R (las usa también 07_sensibilidad.R)
 
 # =============================================================================
 # 1 A 3. COEFICIENTES (1), IGUALDAD Y H5 (2), H6 (3) - D-42 puntos 1 a 3

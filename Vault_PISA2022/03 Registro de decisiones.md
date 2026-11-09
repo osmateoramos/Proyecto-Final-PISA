@@ -912,8 +912,8 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
      fuente de acceso abierto.
 - **Estado:** propuesta. Cada punto se decide antes de su fase: el 6, antes de la F4; del 1 al 4, antes de la F5; el
   5, antes de la F6.
-  - *2026-10-18:* el punto 6 quedó cerrado en D-25 y los puntos 1 a 4, en D-27. Sigue abierto el 5 (errores
-    estándar de la F6).
+  - *2026-10-18:* el punto 6 quedó cerrado en D-25 y los puntos 1 a 4, en D-27. ~~Sigue abierto el 5 (errores
+    estándar de la F6).~~ *2026-11-08:* el punto 5 se cierra en D-34 (BRR en las cifras finales).
 
 ### D-24 · 2026-10-18 · Puerta G2: modelo del NSE que pasa a la F4–F6
 - **Problema:** según D-16 (punto 9), las puntuaciones del NSE que se usan en la F4–F6 salen del modelo que se elija en
@@ -1556,3 +1556,118 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     la convergencia, la mezcla, el error Monte Carlo de las EAP y la cobertura de la posterior. Si E3 no se puede
     validar, no se convierte en referencia: se documenta el fallo y se revisa el diseño antes de producir puntajes.
 - **Estado:** ✅ aceptada por Vanessa (2026-10-20), con los pendientes resueltos; falta elegir el paquete de MCMC. Mateo y Brayan la revisan en el PR.
+  - *Modificada por D-33 (2026-11-08):* solo E1, con plazo; E2, E3 y el paquete de MCMC no se hacen.
+
+### D-32 · 2026-11-08 · Con qué puntajes se responde O4 después de rechazar H8 (F5–F6; desviación del preregistro)
+- **Contexto:** evaluación del avance del 2026-11-08 (Claude, en el papel de profesor de doctorado; pedida por
+  Vanessa). Se decide **después** de conocer el rechazo de H8 y el fallo de V1, y así se declara.
+- **Lo que muestran los datos:**
+  - H8 rechazada: correlaciones entre competencias de 0,897 a 0,976 (`salidas/mat_ajuste.csv`, D-27);
+  - el modelo de 4 competencias tiene solo 6 parámetros más que el de 1 (532 frente a 526: las 6 correlaciones) y
+    mejora la log-pseudoverosimilitud en 12,9 (−99.797,3 frente a −99.810,2; `salidas/mat_ajuste.csv`);
+  - mediana de ítems por estudiante: emplear 9, formular 5, interpretar 7 y razonar 6
+    (`salidas/mat_matriz_resumen.csv`);
+  - el 5.4 está detenido desde el 2026-10-20 (V1 no se cumple; D-27, D-30 y D-31);
+  - la bitácora de la rama `Vanessa` (fila del 2026-10-23, borrador, scripts del scratchpad) anota que con
+    integración exacta la correlación emplear–razonar llega a la frontera (ρ → 1). **No está en el repositorio ni se
+    ha verificado.**
+- **Problema (interpretación de Claude):** con tan pocos ítems por competencia y correlaciones tan altas, el puntaje
+  propio de cada competencia depende sobre todo de las otras competencias y del modelo de condicionamiento. Con esos
+  puntajes, H5 (que compara interpretar con emplear, r = 0,951) y la segunda parte de H7 (correlación mayor con la
+  propia competencia) casi no se pueden identificar.
+- **Alternativas:**
+  - (a) la F6 con los valores plausibles (VP) de proceso de la OCDE como análisis principal y los puntajes propios como
+    secundarios;
+  - (b) mantener el plan: puntajes propios como principal y VP de la OCDE como robustez;
+  - (c) un puntaje global propio (modelo de 1 dimensión) y las competencias solo con los VP de la OCDE.
+- **Decisión (Vanessa, 2026-11-08): (a).**
+  1. La F6 (O4, H5 y H6) se estima con los 10 VP de proceso de la OCDE (`PV1MPEM`–`PV10MPEM`, `MPFS`, `MPIN` y
+     `MPRE`, que ya están en `datos/COL_cuestionario.rds`: `01b_etl_cuestionario.R`, línea 61), con `W_FSTUWT`, las 80
+     réplicas y las reglas de Rubin (D-34).
+  2. Los puntajes propios, si el 5.4 se valida (D-33), pasan a análisis secundario: robustez de la F6 y base de H4 y H7.
+  3. **Desviación del preregistro:** [[09 Hipótesis preregistradas]] dice que H5 se prueba «puntajes propios y PV
+     OCDE», y [[06 Objetivos PISA 2022]] pone los puntajes de O3 como principales en O4. Se invierte el orden. Las
+     reglas de decisión de H5 y H6 no cambian. Se anota en la nota 09.
+  4. **Lo que no cambia:** H3 (DIF; no usa puntajes), H4 (necesita la recalificación propia y depende de D-33) y H7
+     (depende de D-33).
+- **Límites que hay que declarar (interpretación, por verificar en el Technical Report):** los VP de la OCDE están
+  condicionados con el modelo de población de la OCDE, no con el NSE latente de la G2. Si ese modelo no incluye
+  interacciones del NSE con la zona o el sector, las diferencias de pendiente que busca H6 salen atenuadas hacia la
+  igualdad. Falta la página del Technical Report que describe el condicionamiento.
+- **Propuesta de Claude (por confirmar por Vanessa):** declarar **H5 exploratoria** en el informe. La hipótesis salió
+  de la revisión del 2026-09-29 sobre los 7.804 estudiantes, que incluyen a la mitad de confirmación, así que ninguna
+  parte de estos datos es independiente de su origen. La nota de H5 en la nota 09 ya la llama «exploratoria en origen».
+- **Estado:** ✅ (a) aceptada por Vanessa (2026-11-08). La propuesta sobre H5, por confirmar. Mateo y Brayan la revisan
+  en el PR.
+
+### D-33 · 2026-11-08 · El 5.4 sigue solo con E1 y con plazo (modifica D-31)
+- **Contexto:** V1 no se cumple (`salidas/mat_posterior_V1.csv`: diferencia máxima de 0,206 a 0,254 DE). D-31 preveía
+  tres métodos (E1, E2 y E3) y un paquete de MCMC que obligaba a cambiar D-17. Con D-32, los puntajes propios son
+  secundarios. Se decide **después** de conocer el fallo de V1.
+- **Decisión (Vanessa, 2026-11-08):**
+  1. **Solo E1:** cuadratura de Gauss-Hermite adaptativa programada en el proyecto, centrada en la moda de la posterior
+     de cada estudiante y escalada con su curvatura (D-31 punto 1). No se instalan paquetes nuevos; E2 y E3 no se hacen.
+  2. **Validación contra una malla fina** en la submuestra de D-31 punto 2 (los 77 estudiantes con tamaño efectivo
+     menor que 100 en V1 y 200 al azar con `set.seed(2026)`).
+  3. **Plazo: 2026-11-12.** Si para esa fecha E1 no cumple V1 a V3 (umbrales de D-27, sin cambios), se documenta, el 5.4
+     se suspende y H4 y H7 se reportan como **no evaluables**.
+- **Detalles de implementación (propuestos por Claude y fijados antes de correr; Vanessa puede ajustarlos):**
+  - *Moda:* `optim()` con BFGS desde la media latente del estudiante; se acepta si la norma infinita del gradiente es
+    ≤ 10⁻⁵ y la Hessiana negativa es definida positiva (D-31 punto 4). Si no, se reintenta desde el origen y desde la
+    EAP sin covariables; si sigue fallando, el estudiante queda como **no validado** (D-31 punto 4.4).
+  - *E1:* malla producto de Gauss-Hermite con 5 puntos por dimensión (625) en las coordenadas de la moda y de la
+    Cholesky de la inversa de la Hessiana; resolución duplicada para V2 y V3: 7 puntos por dimensión (2.401).
+  - *Referencia (V1):* regla del rectángulo en una malla de 21 puntos por dimensión sobre ± 6 desviaciones posteriores
+    alrededor de la moda (194.481 puntos). No supone que la posterior sea normal y es determinista. Se comprueba que
+    ampliar a ± 8 no cambia la EAP en más de 0,005 DE.
+  - *Orden:* (1) E1 sin covariables frente a la referencia en los 277; (2) V2 y V3 en los 6.886; (3) solo si se
+    cumplen, la regresión latente de D-27 punto 4 con los ítems fijos, y E1 con covariables.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08); detalles de implementación por confirmar. Mateo y Brayan la revisan
+  en el PR.
+
+### D-34 · 2026-11-08 · Errores estándar con BRR para las cifras finales (cierra D-23 punto 5)
+- **Problema:** después de la F2 ninguna cifra tiene un error estándar que refleje el diseño por colegios (D-16
+  punto 5). `salidas/nse_medias_latentes.csv` lo advierte en cada fila, y las correlaciones entre competencias no
+  tienen error estándar (`SE = FALSE`).
+- **Alternativas:** (a) BRR con las 80 réplicas y Fay 0,5 solo en las cifras finales; (b) *bootstrap* por colegio;
+  (c) declarar la limitación sin corregirla.
+- **Decisión (Vanessa, 2026-11-08): (a).**
+  1. **Medias latentes de la F4:** en cada réplica se re-estima el modelo escalar de cada análisis (zona, rural–urbana,
+     sexo y sector) con el peso replicado normalizado y las mismas restricciones, partiendo de la solución de la
+     muestra completa. Varianza con la fórmula de `utilidades_pisa.R`: 0,05 · Σ (θ_t − θ)².
+     - Si una réplica no converge se excluye y se reporta. Si fallan más de 4 de 80 (5 %), ese análisis no tiene error
+       BRR y se dice.
+  2. **Coeficientes de la F6:** cada modelo con cada uno de los 10 VP de la OCDE y los 81 pesos (810 ajustes por
+     modelo), combinados con Rubin.
+  3. Lo demás (AFC, TRI, DIF) queda como estimación puntual descriptiva, con el aviso de que sus errores no reflejan el
+     diseño.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+
+### D-35 · 2026-11-08 · Conclusiones de la F3–F4 corregidas y dos sensibilidades exploratorias
+- **Problema (errores de redacción de Claude en el vault):**
+  - «La invarianza escalar total se sostiene» ([[00 Inicio]], [[07 Plan de desarrollo PISA 2022]]) dice más de lo que
+    muestran los datos. Con ΔCFI y ΔRMSEA *scaled* (D-25) ningún paso pasa los cortes, pero:
+    - la prueba de diferencia escalada rechaza en 10 de 12 pasos (D-28; rural–urbana escalar: Δχ² = 273,4 con 21 gl);
+    - el CFI *scaled* **mejora** al restringir las cargas, de +0,004 a +0,006, así que no se comporta como medida de
+      ajuste (`salidas/invarianza_tabla.csv`);
+    - el ajuste configural es pobre en las versiones *robust*: CFI de 0,68 a 0,71 donde se pudo calcular, y no sale en
+      4 de los 7 grupos (`salidas/invarianza_por_grupo.csv`).
+  - H1 se acepta por su regla, pero los dos modelos desajustan en las versiones *robust* (CFI 0,514 con 1 factor y
+    0,731 con 2; `salidas/nse_ajuste_afc.csv`).
+- **Redacción corregida (se aplica en las notas 00, 07 y 09):** «Con el criterio preregistrado (ΔCFI/ΔRMSEA *scaled*)
+  no se detectó no invarianza de magnitud relevante. No equivale a demostrar la invarianza: la prueba χ² la rechaza y
+  el ajuste de partida es pobre». H2 sigue rechazada por su regla.
+- **Sensibilidades exploratorias (decisión de Vanessa, 2026-11-08; no cambian el modelo de la G2, H1 ni H2):**
+  - **S1, ceros de D-20.** Se re-estima la TRI de 2 dimensiones del AFE con los saltos de ST256 y ST254 como
+    faltantes, como antes de D-20. Esa falta depende solo de ST255 y ST253, que están observados, así que es ignorable
+    en una TRI por verosimilitud (interpretación). Se comparan: cargas de los libros (hoy 0,92 a 0,98,
+    `salidas/nse_tri_cargas_2d.csv`), información máxima, confiabilidad, validez con HOMEPOS y ESCS, correlación entre
+    las EAP de las dos versiones y los Q3 negativos ST255–ST256 (hoy −0,21 a −0,27, `salidas/nse_q3_tri.csv`).
+  - **S2, emparejamiento del DIF.** El ΔR² del DIF de posesiones se calcula con EAP de un modelo de un solo grupo, que
+    contrae a todos hacia una media común aunque los grupos difieren hasta 1,4 DE (`salidas/nse_medias_latentes.csv`).
+    Se repite el ΔR² con EAP de un modelo multigrupo con todos los ítems iguales y medias y varianzas libres por grupo
+    (`mirt::multipleGroup`, con pesos), con el mismo corte (0,035).
+    - De paso se corrige que la vuelta 2 del DIF aplicaba Benjamini-Hochberg solo a los ítems probados, mientras las
+      anclas conservaban el valor de la vuelta 1 (`04_invarianza.R`, líneas 278–283): se recalcula sobre los valores p
+      finales de cada análisis y factor, como una sola familia.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.

@@ -392,6 +392,9 @@ Script: `05_tri_competencias.R` · `mirt`.
   - **Riesgo (D-23 punto 1):** sin condicionar en el NSE, los PV propios atenúan el efecto del NSE en la F6. Propuesta:
     regresión latente (`covdata` y `formula` de `mirt`) sobre el NSE de la G2 y las covariables del SEM. Decidirlo
     antes de la F5.
+  - *Cambio (2026-11-08, D-32 y D-33):* los puntajes propios pasan a análisis **secundario**. El 5.4 sigue solo con E1
+    (cuadratura de Gauss-Hermite adaptativa, validada contra una malla fina en 277 estudiantes) y con **plazo al
+    2026-11-12**; si no cumple V1–V3, se suspende y H4 y H7 quedan como no evaluables.
 - [ ] **5.5 Validar contra la OCDE:** correlación ponderada entre el puntaje propio y los PV oficiales de la misma
   competencia (`MPFS`, `MPEM`, `MPIN`, `MPRE`) → **H7**, calculada como en D-22 (promedio de las 10 correlaciones PV a
   PV). Comparar dificultades propias con los parámetros internacionales de la tabla A.3.
@@ -431,8 +434,12 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
   `lavaan` acepta pesos con WLSMV; si no: **alternativa en dos pasos** (puntuaciones del NSE + regresiones con BRR).
   - *Comprobado con datos simulados (D-18, 2026-10-18):* `lavaan` 0.7-3 acepta WLSMV con `sampling.weights` y
     faltantes por pares.
-  - *Por decidir antes de la F6 (D-23 punto 5):* errores estándar con BRR completo (≈ 810 ajustes) o cluster-robustos.
-- [ ] **6.3 Robustez:** repetir con los PV oficiales de la OCDE (`MPEM`, `MPFS`, `MPIN`, `MPRE`).
+  - ~~*Por decidir antes de la F6 (D-23 punto 5):* errores estándar con BRR completo (≈ 810 ajustes) o cluster-robustos.~~
+    *Decidido en D-34 (2026-11-08):* BRR completo, 10 PV × 81 pesos por modelo, con Rubin.
+  - *Cambio (2026-11-08, D-32):* el análisis **principal** usa los 10 VP de proceso de la OCDE (`MPEM`, `MPFS`, `MPIN`,
+    `MPRE`), no los puntajes propios.
+- [ ] **6.3 Robustez:** ~~repetir con los PV oficiales de la OCDE (`MPEM`, `MPFS`, `MPIN`, `MPRE`).~~ repetir con los
+  puntajes propios del 5.4, si se validan (D-32, D-33).
 - [ ] **6.4 Igualdad de efectos** entre competencias (prueba de Wald o modelo restringido vs libre). Contrastar con el
   resultado exploratorio: interpretar − emplear = 3,9 (z = 2,61, PV OCDE) → H5. Si la G2 elige 2 dimensiones, H5 y H6
   se deciden con el factor económico y el de libros es secundario (D-22).

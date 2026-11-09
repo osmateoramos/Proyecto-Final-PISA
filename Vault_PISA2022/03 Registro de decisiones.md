@@ -1914,4 +1914,18 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - *Interpretación (Claude, por discutir):* el NSE se asocia más con interpretar que con emplear, y su asociación es
     más fuerte dentro del sector privado. No son efectos causales (diseño transversal) y descansan en el límite de
     invarianza de D-35.
-  - El SEM latente de robustez (punto 4) se corre aparte.
+- **Resultado de la robustez (punto 4)** (`salidas/sem_robustez_latente.csv`; 2026-11-09; los 10 SEM convergieron):
+
+  | Competencia | NSE económico: latente / dos pasos (puntos por DE) | Libros: latente / dos pasos |
+  |---|---|---|
+  | Emplear | 23,20 / 24,15 | 7,82 / 6,96 |
+  | Formular | 23,59 / 24,84 | 13,79 / 12,10 |
+  | Interpretar | 28,69 / 29,43 | 8,68 / 8,06 |
+  | Razonar | 23,12 / 24,27 | 10,89 / 9,38 |
+
+  - **Lectura (dato):** en el NSE económico los dos enfoques casi coinciden (el de dos pasos queda entre 2,6 % y 5,3 %
+    por encima), así que la calibración de regresión no atenúa el coeficiente principal, y el orden de las competencias
+    (interpretar la más alta) se mantiene. En libros, el de dos pasos queda entre 7 % y 14 % por debajo del latente.
+  - *Aviso de `lavaan` en los 10 ajustes:* la correlación entre `ST254Q03JA` (portátiles) y `ST250Q02JA` (computador
+    para tareas) es casi 1 en el modelo con covariables. Es el par más alto de la policórica del 3.2 (0,836).
+  - *Matiz:* las unidades no son idénticas (DE de la EAP frente a DE del factor latente); la comparación es aproximada.

@@ -1099,6 +1099,9 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - **H2 se rechaza** (regla del preregistro con D-22 y D-25): en rural–urbana, el paso escalar empeora el CFI 0,003
     y el RMSEA 0,001 (no más de 0,01 ni de 0,015), y ningún ítem tiene DIF no despreciable. Fallan las dos
     condiciones.
+  - *Corrección (2026-11-08, D-35):* el párrafo siguiente dice más de lo que muestran los datos. Con el criterio
+    preregistrado no se detectó no invarianza relevante; no es invarianza demostrada (el χ² la rechaza en 10 de 12 pasos
+    y el ajuste de partida es pobre). Las comparaciones de medias y efectos entre grupos se hacen declarando ese límite.
   - **Qué implica para la F6:** el NSE entra con invarianza escalar total entre zonas, sexos y sectores, así que sus
     medias y sus efectos se pueden comparar entre grupos (H6). Motos se reporta como el único ítem con DIF no
     despreciable, en zona.

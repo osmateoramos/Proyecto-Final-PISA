@@ -247,6 +247,8 @@ con `GPArotation` para la rotación oblimin).
     `nse_cargas_afc.csv`, `nse_omega_afc.csv` y `nse_residuos_afc.csv` (n = 3.441).
     - **H1 se acepta:** el CFI sube 0,107 (*scaled*) y 0,218 (*robust*) de 1 a 2 factores, y la correlación entre
       factores es 0,559.
+      *Salvedad (2026-11-08, D-35):* la regla compara dos modelos que desajustan en las versiones *robust* (CFI 0,514
+      con 1 factor y 0,731 con 2): dice que 2 factores es mejor que 1, no que el de 2 factores sea adecuado.
     - **El ajuste no llega a los cortes de la G2.** M2 (D-16): CFI 0,921 / 0,731, RMSEA 0,071 / 0,119, SRMR 0,087.
       La estructura del AFE ajusta mejor (CFI 0,943 / 0,753, RMSEA 0,060 / 0,114, SRMR 0,071).
     - El desajuste viene sobre todo de educación–ocupación de los padres y de lo digital frente a la vivienda. Detalle
@@ -312,7 +314,10 @@ Script: `04_invarianza.R`.
       grupo. En 4 de los 7 grupos (urbana, rural, mujer y privado) `lavaan` no da el CFI ni el RMSEA *robust*,
       aunque el 4.1 no tiene restricciones de igualdad. Donde sí salen, el CFI *robust* va de 0,68 a 0,71 y el
       RMSEA *robust* de 0,12 a 0,14 (`salidas/invarianza_por_grupo.csv`), tan lejos de los cortes como en la G2.
-  - **4.2:** la invarianza **escalar total** se sostiene en zona, rural–urbana, sexo y sector. El peor cambio es del
+  - *Corrección (2026-11-08, D-35):* «se sostiene» decía más de lo que muestran los datos. Con el criterio preregistrado
+    no se detectó no invarianza relevante, pero la prueba χ² la rechaza en 10 de 12 pasos, el CFI *scaled* mejora al
+    restringir las cargas y el CFI *robust* configural es de 0,68 a 0,71 donde se pudo calcular.
+  - **4.2:** ~~la invarianza **escalar total** se sostiene~~ ningún paso pasa los cortes ΔCFI/ΔRMSEA *scaled* en zona, rural–urbana, sexo y sector. El peor cambio es del
     sector: ΔCFI −0,007 y ΔRMSEA +0,002, dentro de los cortes.
   - **4.3:** no hizo falta liberar ningún parámetro.
   - **Prueba de diferencia escalada (D-28, 2026-10-19):** complemento que no decide. Sale significativa en 10 de los 12

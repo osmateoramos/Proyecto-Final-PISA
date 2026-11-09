@@ -7,12 +7,16 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 
 1. [[11 Protocolo de verificación]] — cómo se marca qué está verificado y qué no (leer primero).
 2. [[06 Objetivos PISA 2022]] — pregunta, objetivo general y O1–O5.
-3. [[07 Plan de desarrollo PISA 2022]] — paso a paso por semanas. **Estamos en la semana 3 (19–25 oct):** F0, F1 y
+3. [[07 Plan de desarrollo PISA 2022]] — paso a paso por semanas. **Al 2026-11-08 (fin de la semana 5):** después de la
+   evaluación del 08/11 se registraron D-32 a D-39. O4 usa los VP de la OCDE como principal (D-32); el 5.4 se destrabó
+   con E1, que cumple V1–V3 (D-33), y la regresión latente está en curso (D-39); errores con BRR (D-34); conclusiones de
+   la F4 corregidas y dos sensibilidades (D-35); H5 exploratoria. Lo que sigue: terminar el 5.4, el 5.5 a 5.7 y la F6.
+   *Estado anterior (semana 3, 19–25 oct):* F0, F1 y
    F2 cerradas (la Puerta G1 pasa). La F3 está completa en `main` (PR #12, fusionado el 2026-10-21): 3.1 a 3.5, con el
    3.3b (dependencia local) y el 3.4 (AFC: H1 se acepta). **La Puerta G2 pasa** con el desajuste
    documentado (D-24). **F4 (invarianza):** ~~la invarianza escalar se sostiene en los 4 análisis (D-25)~~ con ΔCFI/ΔRMSEA *scaled* no se detectó no invarianza relevante en los 4 análisis (D-25), pero la prueba χ² la rechaza en 10 de 12 pasos y el ajuste de partida es pobre: no es invarianza demostrada (D-35); DIF hecho: solo motos tiene DIF no despreciable (zona) y **H2 se rechaza** (D-26). **F5 (al 2026-10-20):** 5.1 a 5.3 hechos; **H8 se rechaza** (D-27); el bifactor exploratorio no es viable (D-29); el 5.4 está **detenido** porque la validación V1 de los puntajes no se cumplió, y se evalúa una integración adaptativa (D-30 y D-31).
 
-## Estado del proyecto (al 2026-10-23; sin trabajo nuevo de análisis desde el 2026-10-20)
+## Estado del proyecto (al 2026-11-08)
 
 | Fase | Estado | Scripts | Evidencia |
 |---|---|---|---|
@@ -21,7 +25,7 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 | F2 Validación del diseño | ✅ cerrada, **G1 pasa** | `02_validacion_ocde.R` + `utilidades_pisa.R` | `salidas/validacion_ocde.csv`; D-15 |
 | F3 O1: medición del NSE | ✅ cerrada, **G2 pasa** con desajuste documentado (D-24); todo en `main` desde el 2026-10-21 (PR #12) | `03_explorar_items_nse.R`, `03_explorar_saltos.R`, `03_nse_medicion.R` (3.1 y 3.2) y `03_nse_tri.R` (3.3, 3.3b y 3.5) y `03_nse_afc.R` (3.4) | `salidas/nse_*.csv`; H1 aceptada (D-18); modelo para la F4–F6: 2D del AFE (D-24); acta en [[Reuniones/2026-10-18 Puerta G2]] |
 | F4 O2: invarianza | ✅ cerrada: ningún paso pasa los cortes ΔCFI/ΔRMSEA *scaled* en zona, rural–urbana, sexo y sector, pero el χ² rechaza en 10 de 12 (no es invarianza demostrada, D-35); H2 rechazada | `04_explorar_grupos.R` y `04_invarianza.R` | `salidas/invarianza_tabla.csv`, `nse_medias_latentes.csv`; D-25 y D-26 |
-| F5 O3: competencias | en curso: 5.1 a 5.3 hechos; H8 rechazada; bifactor no viable (D-29); 5.4 detenido: V1 no se cumple y falta validar una integración adaptativa (D-30, D-31) | `05_explorar_items.R`, `05_tri_competencias.R` | `salidas/items_competencia.csv`, `mat_matriz_resumen.csv`, `mat_ajuste.csv`, `mat_bifactor_*.csv`, `mat_posterior_V1.csv`; D-27, D-29 a D-31 |
+| F5 O3: competencias | en curso: 5.1 a 5.3 hechos; H8 rechazada; bifactor no viable (D-29); 5.4: E1 cumple V1–V3 sin covariables (D-33) y la regresión latente está en curso (D-39); puntajes propios secundarios (D-32) | `05_explorar_items.R`, `05_tri_competencias.R`, `05_puntajes_e1.R`, `05_puntajes_rl.R` | `salidas/items_competencia.csv`, `mat_matriz_resumen.csv`, `mat_ajuste.csv`, `mat_bifactor_*.csv`, `mat_posterior_V1.csv`, `mat_e1_*.csv`; D-27, D-29 a D-33, D-36, D-37, D-39 |
 | F6–F9 | pendientes | — | — |
 
 Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarrollo PISA 2022]]; las razones, en

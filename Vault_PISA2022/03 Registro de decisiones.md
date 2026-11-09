@@ -1769,3 +1769,30 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - *Por qué así:* es simple y sigue la lógica del ajuste de no respuesta dentro de las celdas del diseño; corrige la
     parte de la exclusión que se explica por el colegio, no la que ocurre dentro de él (interpretación).
 - **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+
+### D-39 · 2026-11-08 · Cómo se estima la regresión latente del 5.4 (paso 3 de D-33)
+- **Problema:** con E1 validado (D-33), falta estimar la regresión latente de D-27 punto 4 (con las interacciones de
+  D-37) con los ítems fijos en el modelo de 4 competencias. D-27 preveía `covdata` y `formula` de `mirt`, pero esa vía
+  integra con puntos de la previa, la misma que falló en V1 en los casos extremos.
+- **Decisión (Vanessa, 2026-11-08):**
+  1. **EM propio con E1.** Paso E: la posterior de cada estudiante con E1 (5 puntos por dimensión), con media
+     x_i'Γ y covarianza Σ. Paso M: Γ por mínimos cuadrados ponderados de las EAP sobre las covariables, y Σ = promedio
+     ponderado de (EAP − x_i'Γ)(EAP − x_i'Γ)' + covarianza posterior. Pesos `W_FSTUWT` normalizados. Es el algoritmo
+     clásico de los valores plausibles condicionados (interpretación; falta la fuente: el capítulo de escalamiento del
+     Technical Report, por ubicar).
+  2. **Covariables** (18 columnas por competencia): intercepto; EAP económico y de libros de la G2 (D-24); sexo;
+     **`GRADE` categórico** (5 niveles, el modal como referencia); zona (pueblo, rural y sin dato; referencia urbana);
+     sector (privado y sin dato; referencia público); NSE económico × zona y NSE económico × sector (D-37).
+- **Detalles de implementación (propuestos por Claude, fijados antes de correr):**
+  - Inicio: ~~Γ = 0~~ Γ de la regresión ponderada de las EAP sin covariables (`05_puntajes_e1.R`) sobre las
+    covariables (cambiado antes de correr, el mismo día: es el mismo algoritmo y el mismo punto de llegada, pero
+    converge en menos iteraciones) y Σ = la covarianza latente del modelo de 4 competencias. Convergencia: el cambio máximo de Γ y de
+    Σ entre iteraciones ≤ 10⁻⁴, con un máximo de 300 iteraciones; cada iteración se guarda en un caché para retomar.
+  - Con los parámetros finales: V2 y V3 con covariables (5 frente a 7 puntos, los 6.886) y V1 con covariables (E1
+    frente a la malla fina en los mismos 277), con los umbrales de D-27.
+  - Valores plausibles: 10 por estudiante de la normal con la EAP y la covarianza posterior (D-27, detalle 3),
+    `set.seed(2026)`, con los controles de D-27 (media de los VP frente a la media de las EAP; covarianza total frente a
+    la covarianza de las EAP más la covarianza posterior media).
+  - Los coeficientes de Γ se reportan sin errores estándar: son parámetros del modelo de imputación, no estimaciones
+    para interpretar (las inferencias van en la F6 con BRR, D-34).
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08): EM propio y `GRADE` categórico. Mateo y Brayan la revisan en el PR.

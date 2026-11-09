@@ -1883,6 +1883,30 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   `mat_h7.csv` y `mat_p3_enlace.csv`.
 - **Estado:** ✅ aceptada por Vanessa (2026-11-08): regresión latente fija, números comunes y P3 con los dicotómicos.
   Mateo y Brayan la revisan en el PR.
+- **Resultado (2026-11-09, `05_h4_h7.R`, con los puntajes validados de D-39):**
+  - **H4 se rechaza** (`salidas/mat_h4_brechas.csv` y `mat_h4.csv`). La brecha Q4 − Q1 con la calificación (a) es de
+    1,17 a 1,23 DE. Tratar las omisiones rápidas como faltantes la reduce solo **0,0073 a 0,0075 DE** (EE ≈ 0,004),
+    lejos de 0,05 y no significativa (p de 0,059 a 0,063; Holm 0,237 en las cuatro; todos los IC 95 % incluyen 0).
+    Sensibilidad (c), con toda omisión como faltante: reducción de 0,015 a 0,020 DE, también < 0,05. Se recalificaron
+    4.852 omisiones rápidas de 12.490 omisiones (conteos de respuestas, no de estudiantes).
+  - **H7 se rechaza** (`salidas/mat_h7_correlaciones.csv` y `mat_h7.csv`). La correlación con la misma competencia de
+    la OCDE va de 0,653 (formular) a 0,752 (emplear): ninguna llega a 0,80. Además, en formular y razonar la
+    correlación es mayor con el VP de **emplear** de la OCDE (0,717 y 0,740) que con el propio (0,653 y 0,680).
+  - *Interpretación de Claude (para discutir en el informe, no cambia la regla):* (i) la columna de la OCDE manda más
+    que la fila propia (la de emplear de la OCDE es la más alta en las cuatro filas), coherente con que las competencias
+    casi no se distinguen (H8, D-27); (ii) aun si los constructos coincidieran del todo, la correlación entre dos VP
+    con errores independientes queda acotada, de forma aproximada, por la raíz del producto de las confiabilidades;
+    con 0,76–0,82 en los propios (D-39), el umbral de 0,80 era difícil de alcanzar. La confiabilidad de los VP de proceso
+    de la OCDE para Colombia **no está en el vault / no la he verificado**. D-22 fijó la correlación sin corregir por
+    atenuación; cualquier versión corregida sería **exploratoria y posterior a los resultados**.
+  - **P3** (`salidas/mat_p3_enlace.csv`), con el método fijado: correlación de las dificultades de 0,909 (formular) y
+    0,918 (interpretar), pero de 0,296 (emplear) y −0,003 (razonar), con pendientes del enlace de 0,011 a 0,503.
+  - ⚠️ **Error de diseño de Claude en el punto 5:** el enlace media–sigma con b = −d/a no anticipó ítems con
+    discriminación casi nula en Colombia (25 dicotómicos con a ≤ 0,3; el mínimo es 0,002 en CMA131Q02S, con b = 460).
+    Esos ítems dominan las DE y la correlación de Pearson. Diagnóstico (script en el scratchpad de Claude, no en el
+    repositorio): la correlación de Spearman es 0,703 (razonar), 0,877 (formular), 0,932 (interpretar) y 0,932
+    (emplear), y la de Pearson sin los ítems con a ≤ 0,3 es de 0,776 a 0,976. **El resultado de P3 tal como se fijó no
+    sirve para concluir que las dificultades no concuerdan**; un enlace robusto queda como propuesta (D-43).
 
 ### D-42 · 2026-11-08 · Cómo se estima la F6 (O4, H5 y H6)
 - **Problema:** con D-32 (VP de la OCDE como principal) y D-34 (BRR), un SEM completo con WLSMV costaría 10 VP × 81 pesos
@@ -1950,3 +1974,20 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - *Aviso de `lavaan` en los 10 ajustes:* la correlación entre `ST254Q03JA` (portátiles) y `ST250Q02JA` (computador
     para tareas) es casi 1 en el modelo con covariables. Es el par más alto de la policórica del 3.2 (0,836).
   - *Matiz:* las unidades no son idénticas (DE de la EAP frente a DE del factor latente); la comparación es aproximada.
+
+### D-43 · 2026-11-09 · Enlace robusto para P3 (corrige el punto 5 de D-41) — PROPUESTA
+- **Problema:** el enlace media–sigma de D-41 punto 5 queda dominado por los ítems dicotómicos con discriminación casi
+  nula en Colombia (b = −d/a se dispara). Ver el resultado de D-41. Es un error de diseño de Claude, detectado después
+  de correr; el resultado de D-41 se conserva y se reporta tal como se fijó.
+- **Propuesta de Claude (no programada):**
+  1. Reportar como análisis principal de P3 la correlación de **Spearman** de las dificultades por competencia (no
+     depende de la escala y no la dominan los valores extremos).
+  2. Repetir el enlace media–sigma **solo con los ítems con a ≥ 0,3** en el modelo propio, y reportar cuántos quedan
+     por competencia y cuáles se excluyen.
+  3. Reportar aparte, como hallazgo de calidad de los ítems, los dicotómicos con a < 0,3 en Colombia y compararlos con
+     su `a_int`.
+  - Alternativa: enlace de Stocking-Lord con las curvas características, que pondera los ítems por su información. Es
+    más estándar, pero más largo de programar y de explicar.
+  - Todo esto es **posterior a ver los resultados** y debe declararse así en el informe. P3 no tiene regla de decisión
+    preregistrada; es un análisis descriptivo del paso 5.5.
+- **Estado:** ⏳ pendiente de decisión de Vanessa.

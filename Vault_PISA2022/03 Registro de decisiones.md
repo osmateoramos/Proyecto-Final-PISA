@@ -1788,6 +1788,12 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     covariables (cambiado antes de correr, el mismo día: es el mismo algoritmo y el mismo punto de llegada, pero
     converge en menos iteraciones) y Σ = la covarianza latente del modelo de 4 competencias. Convergencia: el cambio máximo de Γ y de
     Σ entre iteraciones ≤ 10⁻⁴, con un máximo de 300 iteraciones; cada iteración se guarda en un caché para retomar.
+  - *Aceleración (2026-11-08, durante la corrida):* el EM convergía con una razón de ~0,93 por iteración (cambio de Γ
+    0,0133 → 0,0123 en las iteraciones 8 y 9), lo que suponía unas 6 horas más. Desde la iteración 9 se acelera con
+    **SQUAREM** (esquema S3; Varadhan y Roland, 2008, referencia que no está en el vault y que hay que verificar): dos
+    pasos del EM, una extrapolación y un paso de estabilización por ciclo. Llega al mismo punto fijo que el EM, y el
+    criterio de convergencia no cambia (un paso del EM ≤ 10⁻⁴). Si la extrapolación deja una Σ no definida positiva, se
+    usa el paso del EM sin acelerar.
   - Con los parámetros finales: V2 y V3 con covariables (5 frente a 7 puntos, los 6.886) y V1 con covariables (E1
     frente a la malla fina en los mismos 277), con los umbrales de D-27.
   - Valores plausibles: 10 por estudiante de la normal con la EAP y la covarianza posterior (D-27, detalle 3),

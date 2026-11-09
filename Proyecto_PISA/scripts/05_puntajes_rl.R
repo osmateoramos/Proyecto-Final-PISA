@@ -7,7 +7,8 @@
 #   - Covariables (18 columnas): intercepto, EAP económico y de libros de la G2 (D-24), sexo, GRADE categórico (modal de
 #     referencia), zona (pueblo, rural, sin dato), sector (privado, sin dato) y NSE económico x zona y x sector (D-37).
 #   - Inicio: Gamma de la regresión de las EAP sin covariables (05_puntajes_e1.R) sobre las covariables y Sigma del
-#     modelo de 4 competencias. Convergencia: cambio máximo de Gamma y Sigma <= 1e-4 (máximo 300 iteraciones). Cada
+#     modelo de 4 competencias. EM acelerado con SQUAREM (mismo punto fijo; ver la sección 1).
+#     Convergencia: cambio máximo de un paso del EM en Gamma y Sigma <= 1e-4 (máximo 300 iteraciones del EM). Cada
 #     iteración se guarda en datos/COL_mat_rl_em.rds para retomar si se interrumpe.
 #   - Con los parámetros finales: V1 (E1 frente a la malla fina en los 277 de D-33), V2 y V3 (5 frente a 7 puntos), con
 #     los umbrales de D-27; confiabilidad empírica por competencia; 10 valores plausibles por estudiante de la normal
@@ -85,15 +86,30 @@ if (is.null(st) || !identical(st$huella, H)) {
   st <- list(huella = H, Gamma = wls(sc$eap5), Sigma = coef(m4, simplify = TRUE)$cov, inicio = sc$eap5, iter = 0,
              historial = data.table(), convergio = FALSE)
 }
+# Aceleración SQUAREM (esquema S3 de Varadhan y Roland, 2008; agregada el 2026-11-08 porque el EM convergía con una
+# razón de ~0,93 por iteración). Cada ciclo: dos pasos del EM, una extrapolación y un paso de estabilización. Llega al
+# mismo punto fijo que el EM; si la extrapolación deja una Sigma no definida positiva, se usa el segundo paso del EM.
+# La convergencia se juzga igual que antes (D-39): el cambio de un paso del EM <= 1e-4 en Gamma y en Sigma.
+a_vec <- function(G, S) c(G, S[lower.tri(S, diag = TRUE)])
+de_vec <- function(v) { G <- matrix(v[seq_along(st$Gamma)], nrow(st$Gamma)); S <- matrix(0, K, K)
+  S[lower.tri(S, diag = TRUE)] <- v[-seq_along(st$Gamma)]; S <- S + t(S) - diag(diag(S)); list(Gamma = G, Sigma = S) }
+paso_EM <- function(G, S, inicio) { e <- paso_E(G, S, inicio); nv <- paso_M(e); c(nv, list(moda = e$moda, ok = sum(e$ok))) }
+anotar <- function(tipo, dG, dS, ok, alfa = NA_real_) {
+  st$historial <<- rbind(st$historial, data.table(iter = st$iter, tipo = tipo, dif_Gamma = dG, dif_Sigma = dS, modas_ok = ok, alfa = alfa), fill = TRUE)
+  reloj("EM", tipo, "iteración", st$iter, "| cambio Gamma", signif(dG, 3), "| cambio Sigma", signif(dS, 3), "| modas", ok, if (!is.na(alfa)) paste("| alfa", signif(alfa, 3))) }
 t0 <- Sys.time()
 while (!st$convergio && st$iter < 300) {
-  e <- paso_E(st$Gamma, st$Sigma, st$inicio); nv <- paso_M(e)
-  dG <- max(abs(nv$Gamma - st$Gamma)); dS <- max(abs(nv$Sigma - st$Sigma))
-  st$iter <- st$iter + 1; st$Gamma <- nv$Gamma; st$Sigma <- nv$Sigma; st$inicio <- e$moda
-  st$historial <- rbind(st$historial, data.table(iter = st$iter, dif_Gamma = dG, dif_Sigma = dS, modas_ok = sum(e$ok)))
+  p1 <- paso_EM(st$Gamma, st$Sigma, st$inicio); p2 <- paso_EM(p1$Gamma, p1$Sigma, p1$moda); st$iter <- st$iter + 2
+  th0 <- a_vec(st$Gamma, st$Sigma); r <- a_vec(p1$Gamma, p1$Sigma) - th0; v <- a_vec(p2$Gamma, p2$Sigma) - 2 * a_vec(p1$Gamma, p1$Sigma) + th0
+  alfa <- min(-1, -sqrt(sum(r^2)) / sqrt(sum(v^2)))
+  ext <- de_vec(th0 - 2 * alfa * r + alfa^2 * v)
+  if (!isTRUE(all(eigen(ext$Sigma, symmetric = TRUE, only.values = TRUE)$values > 1e-8))) ext <- p2[c("Gamma", "Sigma")]
+  p3 <- paso_EM(ext$Gamma, ext$Sigma, p2$moda); st$iter <- st$iter + 1      # estabilización: un paso del EM desde la extrapolación
+  dG <- max(abs(p3$Gamma - ext$Gamma)); dS <- max(abs(p3$Sigma - ext$Sigma))
+  st$Gamma <- p3$Gamma; st$Sigma <- p3$Sigma; st$inicio <- p3$moda
+  anotar("SQUAREM", dG, dS, p3$ok, alfa)
   st$convergio <- dG <= 1e-4 && dS <= 1e-4
   saveRDS(st, CACHE)
-  reloj("EM iteración", st$iter, "| cambio Gamma", signif(dG, 3), "| cambio Sigma", signif(dS, 3), "| modas aceptadas", sum(e$ok))
 }
 min_em <- round(as.numeric(Sys.time() - t0, units = "mins"), 1)
 if (!st$convergio) reloj("AVISO: el EM no convergió en 300 iteraciones")

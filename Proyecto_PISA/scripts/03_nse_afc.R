@@ -126,7 +126,9 @@ h1_fila <- function(k1, k2, decide) {
              cumple_regla = dcs >= 0.01 & dcr >= 0.01 & r < 0.90,
              LRT_dif_chi2 = if (is.null(lrt)) NA else round(lrt[2, "Chisq diff"], 1),
              LRT_gl = if (is.null(lrt)) NA else lrt[2, "Df diff"],
-             LRT_p = if (is.null(lrt)) NA_character_ else format(signif(lrt[2, "Pr(>Chisq)"], 3), scientific = TRUE))
+             # Por debajo de 1e-16 el valor p es ruido de punto flotante (salía 2.1e-267 o 9.88e-324): se reporta "< 1e-16"
+             LRT_p = if (is.null(lrt)) NA_character_ else { p <- lrt[2, "Pr(>Chisq)"]
+               if (p < 1e-16) "< 1e-16" else format(signif(p, 3), scientific = TRUE) })
 }
 h1 <- rbind(h1_fila("M1 | principal", "M2 | principal", "sí (D-16 punto 8)"),
             h1_fila("M1 | sin pesos", "M2 | sin pesos", "no: sensibilidad (a)"),

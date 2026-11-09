@@ -395,7 +395,8 @@ Script: `05_tri_competencias.R` · `mirt`.
       pudo calcular ningún error estándar; `mirt` advirtió que el modelo podría no estar identificado empíricamente.
     - No se interpretan sus cargas específicas ni se reportan el ECV ni el omega. Las explicaciones plausibles y la
       interpretación del equipo están en D-29.
-- [ ] **5.4 Calificar:** *(en curso, 2026-10-20: V1 de la posterior propia no se cumple; diagnóstico en D-27)* puntajes por competencia para cada estudiante (EAP y 10 valores plausibles con
+- [x] **5.4 Calificar:** *(Hecho, 2026-11-09: regresión latente con E1, 45 iteraciones; V1–V3 se cumplen en las cuatro
+  competencias; confiabilidad 0,760–0,817; D-39, `salidas/mat_rl_validacion.csv`. Antes, 2026-10-20: V1 de la posterior propia no se cumplía; diagnóstico en D-27)* puntajes por competencia para cada estudiante (EAP y 10 valores plausibles con
   `fscores(..., plausible.draws = 10)`); confiabilidad empírica por competencia.
   - **Riesgo (D-23 punto 1):** sin condicionar en el NSE, los PV propios atenúan el efecto del NSE en la F6. Propuesta:
     regresión latente (`covdata` y `formula` de `mirt`) sobre el NSE de la G2 y las covariables del SEM. Decidirlo
@@ -404,12 +405,14 @@ Script: `05_tri_competencias.R` · `mirt`.
     (cuadratura de Gauss-Hermite adaptativa, validada contra una malla fina en 277 estudiantes) y con **plazo al
     2026-11-12**; si no cumple V1–V3, se suspende y H4 y H7 quedan como no evaluables.
     Si se valida, la regresión latente incluye NSE × zona y NSE × sector (D-37).
-- [ ] **5.5 Validar contra la OCDE:** correlación ponderada entre el puntaje propio y los PV oficiales de la misma
+- [x] **5.5 Validar contra la OCDE:** *(Hecho, 2026-11-09: **H7 se rechaza**, correlaciones de 0,653 a 0,752, D-41;
+  P3 con el enlace robusto de D-43: Spearman de las dificultades de 0,70 a 0,93.)* correlación ponderada entre el puntaje propio y los PV oficiales de la misma
   competencia (`MPFS`, `MPEM`, `MPIN`, `MPRE`) → **H7**, calculada como en D-22 (promedio de las 10 correlaciones PV a
   PV). Comparar dificultades propias con los parámetros internacionales de la tabla A.3.
   - *P3 (D-21):* antes de comparar dificultades, llevar la métrica propia a la de la OCDE (enlace). La correlación de H7
     no necesita enlace.
-- [ ] **5.6 DIF por NSE dentro de cada competencia:** cuartil bajo vs alto del NSE elegido en la G2 (con ESCS como
+- [x] **5.6 DIF por NSE dentro de cada competencia:** *(Hecho, 2026-11-09: **H3 se acepta solo en su primera parte**,
+  3 de 154 ítems con DIF, los tres en emplear, D-40. Sin hacer: la robustez con ESCS y la revisión de contenido de P4.)* cuartil bajo vs alto del NSE elegido en la G2 (con ESCS como
   robustez; D-22); solo ítems con ≥100 respuestas por grupo (175 en la revisión del 29/09: recontar, D-23 punto 3);
   `multipleGroup` con anclas + `DIF()`; Benjamini-Hochberg; tamaño del efecto. ¿En qué competencia se concentra? →
   **H3**.
@@ -419,7 +422,8 @@ Script: `05_tri_competencias.R` · `mirt`.
     hablar de sesgo.
   - *Cambio (2026-11-08, D-36):* el DIF se calibra con el modelo conjunto de 1 dimensión (232 ítems, medias libres
     por grupo), no con un modelo por competencia; BH como una sola familia dentro de cada competencia.
-- [ ] **5.7 Omisiones (D-05):** calificar dos veces — (a) omitida = 0 (criterio OCDE); (b) omisión rápida (NT10) = `NA`
+- [x] **5.7 Omisiones (D-05):** *(Hecho, 2026-11-09: **H4 se rechaza**, la brecha baja 0,007 DE, D-41. La versión (c),
+  toda omisión faltante, se reportó como sensibilidad; el tercer tratamiento de P5 no se hizo.)* calificar dos veces — (a) omitida = 0 (criterio OCDE); (b) omisión rápida (NT10) = `NA`
   — y comparar la brecha Q4–Q1 por competencia en desviaciones estándar → **H4**, con la prueba de D-22.
   - *P5 (D-21):* un tercer tratamiento como sensibilidad (crédito fraccional 1/m, o la omisión como categoría en un
     modelo nominal). H4 no cambia.
@@ -427,6 +431,8 @@ Script: `05_tri_competencias.R` · `mirt`.
   (no va a Git), `salidas/validacion_ocde_competencias.csv`, `salidas/mat_dif.csv`, `salidas/brecha_omisiones.csv`.
 - **Listo cuando:** **Puerta G3** — modelo de 4 competencias elegido o descartado con argumento; ítems con n
   insuficiente excluidos y documentados; H3, H4, H7 y H8 resueltas.
+  - *Estado (2026-11-09):* condiciones cumplidas; acta en [[Reuniones/2026-11-09 Puerta G3]], pendiente de las firmas de
+    Mateo y Brayan.
 - **Autoevaluación:** ¿Qué gana la calificación por competencias frente a un puntaje único? ¿Por qué un ítem con DIF
   no significa automáticamente que sea injusto?
 

@@ -36,40 +36,9 @@ SALIDAS <- normalizePath(file.path(DIR, "..", "salidas"))
 for (f in c("nse_dif_posesiones.csv", "inv_recodificacion.csv"))
   if (!file.exists(file.path(SALIDAS, f))) stop("Falta salidas/", f, ": correr antes 04_invarianza.R")
 
-nse <- readRDS(file.path(DATOS, "COL_nse.rds"))
-tri <- readRDS(file.path(DATOS, "COL_nse_tri.rds"))
-fac <- attr(nse, "factores"); IND <- c(fac$economico, fac$cultural)
-est_afe <- fread(file.path(SALIDAS, "nse_estructura_afe.csv"), encoding = "UTF-8")
-CUL <- est_afe[factor_AFE == "cultural", item]; ECO <- setdiff(IND, CUL)
-stopifnot(nrow(nse) == 6886, identical(nse$CNTSTUID, tri$CNTSTUID))
-nse[, `:=`(eap_ECO = tri$eap_AFE_ECO, eap_CUL = tri$eap_AFE_CUL)]
-
-# --- Grupos y categorías: igual que 04_invarianza.R (líneas 55-86, D-25 puntos 2 y 3)
-nse[, zona3 := factor(fcase(zona == "Urbana (>15 mil)", "Urbana", zona == "Pueblo (3-15 mil)", "Pueblo",
-                            zona == "Rural (<3.000)", "Rural"), levels = c("Urbana", "Pueblo", "Rural"))]
-nse[, rural_urbana := factor(fcase(zona3 == "Urbana", "Urbana", zona3 == "Rural", "Rural"), levels = c("Urbana", "Rural"))]
-nse[, sexo2 := factor(as.character(sexo), levels = c("Mujer", "Hombre"))]
-nse[, sector2 := factor(as.character(sector), levels = c("Público", "Privado"))]
-ANALISIS <- list(zona = "zona3", H2_rural_urbana = "rural_urbana", sexo = "sexo2", sector = "sector2")
-VARS_RECOD <- c("zona3", "sexo2", "sector2")
-cambiados <- character()
-for (v in IND) {
-  x <- nse[[v]]; orig <- x
-  repeat {
-    k <- sort(unique(na.omit(x)))
-    cuenta <- rbindlist(lapply(VARS_RECOD, function(g) { t <- table(factor(x[!is.na(nse[[g]])], levels = k), nse[[g]][!is.na(nse[[g]])])
-      data.table(categoria = k, minimo = apply(t, 1, min)) }))[, .(minimo = min(minimo)), by = categoria]
-    if (all(cuenta$minimo >= 10)) break
-    centro <- mean(range(k))
-    mala <- cuenta[minimo < 10][order(-abs(categoria - centro))][1, categoria]
-    vecina <- if (mala > centro) max(k[k < mala]) else min(k[k > mala])
-    x[!is.na(x) & x == mala] <- vecina
-    x <- match(x, sort(unique(na.omit(x)))) - 1
-  }
-  if (!identical(as.numeric(orig), as.numeric(x))) cambiados <- c(cambiados, v)
-  nse[, (v) := x]
-}
-stopifnot(setequal(cambiados, unique(fread(file.path(SALIDAS, "inv_recodificacion.csv"))$item)))
+source(file.path(DIR, "utilidades_pisa.R"))                        # preparar_f4()
+f4 <- preparar_f4(DATOS, SALIDAS)                                  # grupos y categorías de la F4 (D-25)
+nse <- f4$nse; ECO <- f4$ECO; CUL <- f4$CUL; ANALISIS <- f4$ANALISIS
 
 # --- ΔR² de Nagelkerke: la misma función que 04_invarianza.R (líneas 220-229)
 nagelkerke <- function(m, m0, n) (1 - exp((2 / n) * (as.numeric(logLik(m0)) - as.numeric(logLik(m))))) /

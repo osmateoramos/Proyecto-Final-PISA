@@ -1,0 +1,5 @@
+competencia,V1_r,V1_dif_max,V1_dif_max_extremos,V1_cumple,V2_r,V2_dif_media,V2_dif_p95,V2_cumple,V3_mediana_pct,V3_p95_pct,V3_cumple,cobertura_ref_dif_max,cobertura_ok
+emplear,1,0.00193,0.00115,TRUE,1,0.00028,0.00092,TRUE,0.053,0.254,TRUE,0.00001,TRUE
+formular,1,0.00164,0.00101,TRUE,1,0.00024,0.00079,TRUE,0.035,0.16,TRUE,0.00001,TRUE
+interpretar,1,0.00159,0.00105,TRUE,1,0.00024,0.0008,TRUE,0.039,0.196,TRUE,0.00001,TRUE
+razonar,1,0.00185,0.00108,TRUE,1,0.00027,0.00089,TRUE,0.044,0.217,TRUE,0.00001,TRUE

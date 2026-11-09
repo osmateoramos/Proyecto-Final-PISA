@@ -1631,6 +1631,30 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     cumplen, la regresión latente de D-27 punto 4 con los ítems fijos, y E1 con covariables.
 - **Estado:** ✅ aceptada por Vanessa (2026-11-08); detalles de implementación por confirmar. Mateo y Brayan la revisan
   en el PR.
+- **Reproducción previa (2026-11-08, en este equipo, donde no estaban los cachés de la F5):** `05_tri_competencias.R`
+  (sin el bifactor) re-estimó los modelos de 1 y 4 dimensiones y V1. `mat_matriz_resumen.csv`, `mat_ajuste.csv` y
+  `mat_posterior_V1.csv` salieron idénticos a los del commit, salvo los minutos de cálculo.
+- **Resultado de E1 sin covariables** (`scripts/05_puntajes_e1.R` → `salidas/mat_e1_validacion.csv` y
+  `mat_e1_resumen.csv`; 2026-11-08): **se cumplen V1, V2, V3 y la cobertura.**
+  - Moda aceptada en los 6.886 (gradiente máximo 1,0 · 10⁻¹⁰; hasta 13 iteraciones de Newton). Las probabilidades
+    programadas coinciden con `probtrace()` (diferencia máxima 2,2 · 10⁻¹⁶).
+  - La submuestra reproduce los conteos de V1: 36 estudiantes con tamaño efectivo < 50 y **77 con < 100** (D-27), más
+    200 al azar.
+
+  | Competencia | V1: dif. máx. con la referencia (277 / solo los 77) | V2: dif. media / P95 (5 vs 7 puntos) | V3: dif. relativa del EE, mediana / P95 |
+  |---|---|---|---|
+  | Emplear | 0,0019 / 0,0012 | 0,0003 / 0,0009 | 0,05 % / 0,25 % |
+  | Formular | 0,0016 / 0,0010 | 0,0002 / 0,0008 | 0,04 % / 0,16 % |
+  | Interpretar | 0,0016 / 0,0011 | 0,0002 / 0,0008 | 0,04 % / 0,20 % |
+  | Razonar | 0,0019 / 0,0011 | 0,0003 / 0,0009 | 0,04 % / 0,22 % |
+
+  - La correlación con la referencia y entre resoluciones redondea a 1,000000. Ampliar la referencia de ± 6 a ± 8
+    cambia la EAP como máximo en 0,00001 DE.
+  - **Lectura (dato):** con la integración centrada en la moda, la diferencia máxima baja de 0,21–0,25 DE (V1 original)
+    a menos de 0,002 DE, también en los 77 casos extremos. El fallo de V1 venía de integrar con puntos de la previa,
+    como anticipaba el diagnóstico de D-27; E1 lo resuelve.
+  - Sigue el paso 3 de D-33: la regresión latente con los ítems fijos y E1 con covariables (con las interacciones de
+    D-37).
 
 ### D-34 · 2026-11-08 · Errores estándar con BRR para las cifras finales (cierra D-23 punto 5)
 - **Problema:** después de la F2 ninguna cifra tiene un error estándar que refleje el diseño por colegios (D-16

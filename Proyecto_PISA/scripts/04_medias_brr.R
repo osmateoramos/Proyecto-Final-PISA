@@ -11,7 +11,7 @@
 #     BRR (D-34).
 #   - Cada análisis terminado se guarda en datos/COL_inv_brr.rds (caché por análisis, con huella): si se interrumpe, al
 #     volver a correr sigue donde iba.
-#   Son 4 x 81 ajustes: tarda horas. Correrlo en segundo plano.
+#   Son 4 x 81 ajustes de alrededor de 1 minuto cada uno: unas 5 a 6 horas. Correrlo en segundo plano.
 #
 # Entradas: datos/COL_nse.rds, datos/COL_nse_tri.rds, datos/COL_cuestionario.rds (pesos replicados),
 #   salidas/nse_estructura_afe.csv, salidas/inv_recodificacion.csv y salidas/nse_medias_latentes.csv (control).
@@ -45,12 +45,15 @@ stopifnot(nrow(nse) == 6886, !anyNA(nse[, ..REPS]))
 # --- Modelo escalar como en 04_invarianza.R (líneas 94-110 y 143-144)
 MODELO <- paste0("ECO =~ ", paste(ECO, collapse = " + "), "\nCUL =~ ", paste(CUL, collapse = " + "))
 ESCALAR <- c("thresholds", "loadings", "intercepts")
-ajustar <- function(sint, d, g, peso, inicio = NULL) {
+# Solo hacen falta las estimaciones puntuales: sin errores estándar ni prueba (se = "none", test = "none"), que son lo
+# más costoso de WLSMV; las estimaciones son las mismas. cfa() se llama directamente: con do.call() la llamada lleva
+# el data.frame entero adentro y lavaan tarda decenas de minutos en cada ajuste (error de la primera versión).
+ajustar <- function(sint, d, g, peso, inicio = "default") {
   d[, w_norm := get(peso) * .N / sum(get(peso))]
-  args <- list(model = sint, data = as.data.frame(d), group = g, group.label = levels(d[[g]]), ordered = IND,
-               estimator = "WLSMV", parameterization = "theta", sampling.weights = "w_norm", missing = "pairwise")
-  if (!is.null(inicio)) args$start <- inicio
-  suppressWarnings(do.call(cfa, args))
+  datos <- as.data.frame(d[, c(IND, g, "w_norm"), with = FALSE])
+  suppressWarnings(cfa(sint, data = datos, group = g, group.label = levels(d[[g]]), ordered = IND, estimator = "WLSMV",
+                       parameterization = "theta", sampling.weights = "w_norm", missing = "pairwise",
+                       se = "none", test = "none", start = inicio))
 }
 medias <- function(f) { pe <- parameterEstimates(f, se = FALSE); gl <- lavInspect(f, "group.label")
   pe <- pe[pe$op == "~1" & pe$lhs %in% c("ECO", "CUL") & pe$group > 1, ]
@@ -75,7 +78,7 @@ for (a in names(ANALISIS)) {
   for (r in seq_along(REPS)) {
     fr <- tryCatch(ajustar(sint, d, g, REPS[r], inicio = f0), error = function(e) NULL)
     if (!is.null(fr) && lavInspect(fr, "converged")) rep_est[r, ] <- medias(fr)
-    if (r %% 10 == 0) reloj(a, "réplica", r, "de 80")
+    if (r %% 5 == 0) reloj(a, "réplica", r, "de 80")                    # cada ajuste tarda alrededor de 1 minuto
   }
   hechos[[a]] <- list(est = th0, rep = rep_est, minutos = round(as.numeric(Sys.time() - t0, units = "mins"), 1))
   saveRDS(hechos, CACHE)

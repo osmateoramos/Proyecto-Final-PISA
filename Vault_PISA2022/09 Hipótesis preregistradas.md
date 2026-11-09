@@ -54,6 +54,7 @@ Volver a [[00 Inicio]] · Objetivos en [[06 Objetivos PISA 2022]] · Criterio de
 > - H5 se declara **exploratoria** (Vanessa, 2026-11-08): la mitad de confirmación forma parte de la muestra del
 >   2026-09-29 en la que se originó. Se reporta con su regla, pero no cuenta como confirmación.
 > - El DIF de H3 se calibra con el modelo conjunto de 1 dimensión, no por competencia (D-36). La regla de H3 no cambia.
+> - **Resultados de la F6 (2026-11-08, D-42, VP de la OCDE):** H5 cumple su regla (interpretar − emplear = 5,57 puntos, p = 0,001; en la mitad de confirmación 6,33, p < 0,001), pero es exploratoria. **H6 se acepta** por sector (Holm p = 0,007); por zona no (p = 0,082). Salidas: `salidas/sem_h5.csv` y `sem_h6.csv`.
 > - H2 se rechaza por su regla. Eso **no** demuestra la invarianza: la prueba χ² la rechaza en 10 de 12 pasos y el
 >   ajuste de partida es pobre (D-35).
 

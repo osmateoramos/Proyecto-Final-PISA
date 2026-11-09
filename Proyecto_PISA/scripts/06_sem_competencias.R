@@ -65,7 +65,8 @@ col_pv <- function(comp, m) paste0("PV", m, OCDE[[comp]])
 # theta(B, m) devuelve, para el VP m, el vector de cantidades de interés en cada uno de los 81 pesos (81 x q)
 rubin_vec <- function(B, theta) {
   est <- lapply(1:10, function(m) theta(B, m)); q <- ncol(est[[1]])
-  th <- t(vapply(est, function(e) e[1, ], numeric(q)))              # 10 x q (peso final)
+  th <- do.call(rbind, lapply(est, function(e) e[1, ]))             # 10 x q (peso final); rbind, no t(vapply()), por q = 1
+  stopifnot(nrow(th) == 10, ncol(th) == q)
   U <- Reduce(`+`, lapply(est, function(e) { dv <- sweep(e[-1, , drop = FALSE], 2, e[1, ]); 0.05 * crossprod(dv) })) / 10
   Bv <- if (q == 1) matrix(var(th[, 1])) else cov(th)
   list(est = colMeans(th), V = U + 1.1 * Bv) }
@@ -82,7 +83,7 @@ coefs <- rbindlist(lapply(COMP, function(cp) rbindlist(lapply(colnames(X), funct
   r <- rubin_vec(B, function(B, m) matrix(B[, v, col_pv(cp, m)], ncol = 1))
   ee <- sqrt(r$V[1, 1]); de <- if (v %in% names(DE)) DE[[v]] else NA_real_
   data.table(competencia = cp, coeficiente = v, estimacion = round(r$est, 2), ee_BRR = round(ee, 2),
-             ic95_inf = round(r$est - 1.96 * ee, 2), ic95_sup = round(r$est + 1.96 * ee, 2), p = signif(2 * pnorm(-abs(r$est / ee)), 3),
+             ic95_inf = round(r$est - 1.96 * ee, 2), ic95_sup = round(r$est + 1.96 * ee, 2), p = formatC(2 * pnorm(-abs(r$est / ee)), format = "e", digits = 2),
              por_DE_de_la_EAP = round(r$est * de, 2)) }))))
 r2 <- vapply(COMP, function(cp) mean(vapply(1:10, function(m) { y <- Y[, col_pv(cp, m)]; w <- nse$W_FSTUWT
   f <- drop(X %*% B[1, , col_pv(cp, m)]); 1 - sum(w * (y - f)^2) / sum(w * (y - sum(w * y) / sum(w))^2) }, 0)), 0)
@@ -96,7 +97,7 @@ dif_eco <- function(B, m, a, b) B[, "eco", col_pv(a, m)] - B[, "eco", col_pv(b, 
 ig <- wald(rubin_vec(B, function(B, m) cbind(dif_eco(B, m, "formular", "emplear"), dif_eco(B, m, "interpretar", "emplear"),
                                               dif_eco(B, m, "razonar", "emplear"))))
 igualdad <- data.table(prueba = "coeficiente del NSE económico igual en las 4 competencias", chi2 = round(ig[["chi2"]], 2),
-                       gl = ig[["gl"]], p = signif(ig[["p"]], 3))
+                       gl = ig[["gl"]], p = formatC(ig[["p"]], format = "e", digits = 2))
 fwrite(igualdad, file.path(SALIDAS, "sem_igualdad.csv"))
 
 h5_fila <- function(B, muestra) { r <- rubin_vec(B, function(B, m) matrix(dif_eco(B, m, "interpretar", "emplear"), ncol = 1))

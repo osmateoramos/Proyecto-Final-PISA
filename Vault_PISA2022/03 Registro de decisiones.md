@@ -1895,3 +1895,23 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   `sem_h5.csv`, `sem_h6.csv` y `sem_robustez_latente.csv`.
 - **Estado:** ✅ aceptada por Vanessa (2026-11-08): dos pasos con SEM de robustez, Wald conjunto por variable con Holm y
   grado categórico. Mateo y Brayan la revisan en el PR.
+- **Resultado del análisis principal** (`scripts/06_sem_competencias.R` → `salidas/sem_coeficientes.csv`, `sem_igualdad.csv`,
+  `sem_h5.csv`, `sem_h6.csv` y `sem_h6_interacciones.csv`; 2026-11-08; 10 VP de la OCDE × 81 pesos; 6.886 estudiantes):
+
+  | Competencia | NSE económico: puntos por unidad de EAP (EE BRR) | Libros (EE) | R² medio |
+  |---|---|---|---|
+  | Emplear | 25,5 (1,9) | 7,3 (1,9) | 0,298 |
+  | Formular | 26,2 (3,1) | 12,8 (2,5) | 0,244 |
+  | Interpretar | 31,0 (2,3) | 8,5 (1,8) | 0,310 |
+  | Razonar | 25,6 (2,8) | 9,9 (2,1) | 0,238 |
+
+  - **Igualdad entre competencias (6.4):** se rechaza; Wald χ² = 11,32 con 3 gl, p = 0,010.
+  - **H5 (exploratoria, D-32):** interpretar − emplear = 5,57 puntos (EE 1,70; IC 95 % 2,24 a 8,89) en la muestra completa
+    y 6,33 (EE 1,78) en la mitad de confirmación (3.441). Cumple la regla en las dos, pero se presenta como exploratoria.
+  - **H6 se acepta**, por sector: Wald χ² = 15,58 con 4 gl, p = 0,0036 (Holm 0,0073). Por zona no: χ² = 13,99 con 8 gl,
+    p = 0,082 (Holm 0,082). La pendiente del NSE es entre 12,3 y 20,3 puntos mayor en los colegios privados, según la
+    competencia (6.674 estudiantes con zona y sector).
+  - *Interpretación (Claude, por discutir):* el NSE se asocia más con interpretar que con emplear, y su asociación es
+    más fuerte dentro del sector privado. No son efectos causales (diseño transversal) y descansan en el límite de
+    invarianza de D-35.
+  - El SEM latente de robustez (punto 4) se corre aparte.

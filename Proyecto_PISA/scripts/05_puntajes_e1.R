@@ -18,7 +18,7 @@
 #   - Criterios (D-27, sin cambios): V1 r >= 0,999 y diferencia máxima <= 0,02 (E1 5 puntos frente a la referencia, en
 #     la submuestra); V2 r >= 0,995, diferencia media <= 0,02 y P95 <= 0,05 (5 frente a 7 puntos, los 6.886);
 #     V3 diferencia relativa de los EE: mediana <= 2 % y P95 <= 5 % (5 frente a 7 puntos).
-#   Las probabilidades de los ítems se programan aquí (más rápido que probtrace) y se comprueban contra probtrace().
+#   El motor está en utilidades_e1.R (lo comparte 05_puntajes_rl.R); sus probabilidades se comprueban contra probtrace().
 #
 # Entradas: datos/COL_mat_respuestas.rds y datos/COL_mat_tri_4D.rds (05_tri_competencias.R).
 # Salidas (solo agregados): salidas/mat_e1_validacion.csv y salidas/mat_e1_resumen.csv. Los puntajes por estudiante
@@ -50,62 +50,16 @@ COMP <- c("emplear", "formular", "interpretar", "razonar")
 stopifnot(identical(extract.mirt(m4, "itemnames"), ITEMS), N == 6886)
 SIGMA <- coef(m4, simplify = TRUE)$cov; SINV <- solve(SIGMA); MU0 <- rep(0, K)
 
-# --- Parámetros de los ítems como modelos de división por el total: P(k) ∝ exp(s_k (a'theta) + d_k)
-cf <- coef(m4)
-PAR <- lapply(seq_along(ITEMS), function(j) { v <- cf[[j]][1, ]; a <- unname(v[paste0("a", 1:K)])
-  if (R$tipo[j] == "2PL") list(a = a, s = c(0, 1), d = c(0, unname(v["d"])))
-  else list(a = a, s = unname(v[grep("^ak", names(v))]), d = unname(v[grep("^d[0-9]", names(v))])) })
-rowmax <- function(M) { mx <- M[, 1]; for (c in seq_len(ncol(M))[-1]) mx <- pmax(mx, M[, c]); mx }
-prob <- function(p, Th) { eta <- outer(drop(Th %*% p$a), p$s) + rep(p$d, each = nrow(Th))
-  eta <- eta - rowmax(eta); e <- exp(eta); e / rowSums(e) }
+# --- Motor de E1 (utilidades_e1.R): probabilidades, log-posterior, moda e integración
+source(file.path(DIR, "utilidades_e1.R"))
+E <- e1_motor(m4, Y, R$tipo)
 set.seed(1); Th_prueba <- matrix(rnorm(40 * K, sd = 1.5), ncol = K)
-dif_prob <- max(vapply(seq_along(ITEMS), function(j) max(abs(prob(PAR[[j]], Th_prueba) - probtrace(extract.item(m4, j), Th_prueba))), 0))
+dif_prob <- max(vapply(seq_along(ITEMS), function(j) max(abs(E$prob(j, Th_prueba) - probtrace(extract.item(m4, j), Th_prueba))), 0))
 stopifnot(dif_prob < 1e-10)                                    # las probabilidades propias son las de mirt
-
-# --- Log-posterior (sin la constante) en muchos puntos, y gradiente y Hessiana exactos en uno
-OBS <- lapply(seq_len(N), function(i) which(!is.na(Y[i, ])))
-logpost <- function(i, Th, mu = MU0) {
-  ll <- numeric(nrow(Th))
-  for (j in OBS[[i]]) { p <- PAR[[j]]; eta <- outer(drop(Th %*% p$a), p$s) + rep(p$d, each = nrow(Th))
-    mx <- rowmax(eta); ll <- ll + eta[, Y[i, j] + 1] - mx - log(rowSums(exp(eta - mx))) }
-  dv <- sweep(Th, 2, mu); ll - 0.5 * rowSums((dv %*% SINV) * dv)
-}
-deriv <- function(i, th, mu = MU0) {
-  g <- -SINV %*% (th - mu); H <- -SINV
-  for (j in OBS[[i]]) { p <- PAR[[j]]; eta <- p$s * sum(p$a * th) + p$d; pr <- exp(eta - max(eta)); pr <- pr / sum(pr)
-    Es <- sum(pr * p$s); Vs <- sum(pr * p$s^2) - Es^2
-    g <- g + p$a * (p$s[Y[i, j] + 1] - Es); H <- H - Vs * tcrossprod(p$a) }
-  list(g = drop(g), H = H)
-}
-moda <- function(i, mu = MU0) {
-  th <- mu; lp <- logpost(i, matrix(th, 1), mu)
-  for (it in 1:100) { dv <- deriv(i, th, mu); if (max(abs(dv$g)) <= 1e-10) break
-    paso <- solve(-dv$H, dv$g); t <- 1
-    repeat { nuevo <- th + t * paso; lpn <- logpost(i, matrix(nuevo, 1), mu); if (lpn >= lp - 1e-12 || t < 1e-8) break; t <- t / 2 }
-    th <- nuevo; lp <- lpn }
-  dv <- deriv(i, th, mu); ev <- eigen(-dv$H, symmetric = TRUE, only.values = TRUE)$values
-  list(th = th, negH = -dv$H, ok = max(abs(dv$g)) <= 1e-5 && min(ev) > 0, grad = max(abs(dv$g)), iter = it)
-}
-
-# --- Nodos y pesos de Gauss-Hermite (peso exp(-z^2)) por Golub-Welsch
-gauss_hermite <- function(n) { J <- matrix(0, n, n); off <- sqrt(seq_len(n - 1) / 2)
-  J[cbind(1:(n - 1), 2:n)] <- off; J[cbind(2:n, 1:(n - 1))] <- off
-  e <- eigen(J, symmetric = TRUE); list(z = e$values, w = sqrt(pi) * e$vectors[1, ]^2) }
-malla <- function(z) as.matrix(expand.grid(rep(list(z), K)))
-GH <- lapply(c(5, 7), function(n) { g <- gauss_hermite(n); Z <- malla(g$z)
-  list(Z = Z, logw = rowSums(log(as.matrix(expand.grid(rep(list(g$w), K))))) + rowSums(Z^2)) })
-names(GH) <- c("5", "7")
-REF <- list(c6 = malla(seq(-6, 6, length.out = 21)), c8 = malla(seq(-8, 8, length.out = 27)))
-
-# Integra con nodos U (coordenadas estándar) y log-pesos lw: theta = moda + C u, con C C' = inversa de -H
-integrar <- function(i, md, U, lw, escala = 1, mu = MU0) {
-  C <- t(chol(solve(md$negH))); Th <- sweep(U %*% t(C) * escala, 2, md$th, "+")
-  lq <- lw + logpost(i, Th, mu); wq <- exp(lq - max(lq)); wq <- wq / sum(wq)
-  e <- colSums(Th * wq); dv <- sweep(Th, 2, e)
-  list(eap = e, se = sqrt(colSums(dv^2 * wq)), ess = 1 / sum(wq^2))
-}
-e1  <- function(i, md, n) integrar(i, md, GH[[n]]$Z, GH[[n]]$logw, escala = sqrt(2))
-ref <- function(i, md, cual) integrar(i, md, REF[[cual]], 0)
+moda <- function(i) E$moda(i, MU0, SINV)
+e1   <- function(i, md, n) E$e1(i, md, n, MU0, SINV)
+ref  <- function(i, md, cual) E$ref(i, md, cual, MU0, SINV)
+logpost <- function(i, Th) E$logpost(i, Th, MU0, SINV)
 
 # =============================================================================
 # 1. MODA Y E1 CON 5 Y 7 PUNTOS EN LOS 6.886 (V2, V3)

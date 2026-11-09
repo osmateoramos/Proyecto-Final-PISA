@@ -400,6 +400,7 @@ Script: `05_tri_competencias.R` · `mirt`.
   - *Cambio (2026-11-08, D-32 y D-33):* los puntajes propios pasan a análisis **secundario**. El 5.4 sigue solo con E1
     (cuadratura de Gauss-Hermite adaptativa, validada contra una malla fina en 277 estudiantes) y con **plazo al
     2026-11-12**; si no cumple V1–V3, se suspende y H4 y H7 quedan como no evaluables.
+    Si se valida, la regresión latente incluye NSE × zona y NSE × sector (D-37).
 - [ ] **5.5 Validar contra la OCDE:** correlación ponderada entre el puntaje propio y los PV oficiales de la misma
   competencia (`MPFS`, `MPEM`, `MPIN`, `MPRE`) → **H7**, calculada como en D-22 (promedio de las 10 correlaciones PV a
   PV). Comparar dificultades propias con los parámetros internacionales de la tabla A.3.
@@ -413,6 +414,8 @@ Script: `05_tri_competencias.R` · `mirt`.
     parcial; emparejando con el θ de la TRI.
   - *P4 (D-21):* DIF uniforme y no uniforme, depuración de anclas, segundo método y revisión del contenido antes de
     hablar de sesgo.
+  - *Cambio (2026-11-08, D-36):* el DIF se calibra con el modelo conjunto de 1 dimensión (232 ítems, medias libres
+    por grupo), no con un modelo por competencia; BH como una sola familia dentro de cada competencia.
 - [ ] **5.7 Omisiones (D-05):** calificar dos veces — (a) omitida = 0 (criterio OCDE); (b) omisión rápida (NT10) = `NA`
   — y comparar la brecha Q4–Q1 por competencia en desviaciones estándar → **H4**, con la prueba de D-22.
   - *P5 (D-21):* un tercer tratamiento como sensibilidad (crédito fraccional 1/m, o la omisión como categoría en un
@@ -461,6 +464,7 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
   - con y sin estudiantes de la ruta lineal (1.793);
   - umbrales de omisión rápida NT10, NT15 y 5 s;
   - con y sin corrección por comparaciones múltiples.
+  - con los pesos ajustados por no respuesta dentro de cada colegio (D-38), por la exclusión no aleatoria de D-14.
 - [ ] **7.2 Búsqueda formal de novedad** en Scopus / Google Scholar / Scielo / Redalyc para cada hallazgo;
   actualizar la [[Literatura/Matriz estado del arte|matriz]] (pasar las † a ✓ o corregir).
 - [ ] **7.3 Aplicar el criterio de hallazgo innovador** de [[08 Rúbrica de desarrollo]] y redactar cada hallazgo en

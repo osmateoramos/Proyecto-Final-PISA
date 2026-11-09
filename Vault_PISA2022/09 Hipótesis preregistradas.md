@@ -51,8 +51,9 @@ Volver a [[00 Inicio]] · Objetivos en [[06 Objetivos PISA 2022]] · Criterio de
 > robustez, si el 5.4 se valida (D-33). La tabla decía lo contrario para O4. Las reglas de decisión no cambian.
 > - H4 y H7 dependen de los puntajes propios: si el 5.4 no se valida antes del 2026-11-12 (D-33), se reportan como
 >   **no evaluables**.
-> - *Propuesta, por confirmar:* H5 se declara **exploratoria**, porque la mitad de confirmación forma parte de la
->   muestra del 2026-09-29 en la que se originó.
+> - H5 se declara **exploratoria** (Vanessa, 2026-11-08): la mitad de confirmación forma parte de la muestra del
+>   2026-09-29 en la que se originó. Se reporta con su regla, pero no cuenta como confirmación.
+> - El DIF de H3 se calibra con el modelo conjunto de 1 dimensión, no por competencia (D-36). La regla de H3 no cambia.
 > - H2 se rechaza por su regla. Eso **no** demuestra la invarianza: la prueba χ² la rechaza en 10 de 12 pasos y el
 >   ajuste de partida es pobre (D-35).
 

@@ -1289,7 +1289,11 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
       - Tamaño efectivo de los puntos (código propio, 5.000): mediana 1.812, mínimo 6. Errores estándar, solo como
         información: correlación con `mirt` de 0,997 a 0,999 y diferencia máxima de 0,07 a 0,13.
       - Por la regla de Vanessa no se continuó con V2, V3 ni la estimación definitiva.
-    - **Diagnóstico (2026-10-20; script de prueba del scratchpad, no del proyecto):** diferencia máxima de las EAP por
+    - **Diagnóstico (2026-10-20; script de prueba del scratchpad, no del proyecto):** *Aviso de trazabilidad
+      (2026-11-08):* las cifras de este diagnóstico, las del piloto de tiempos y las de la «verificación técnica» de
+      arriba salieron de scripts que no están en el repositorio (se corrieron en otro equipo), así que **no se pueden
+      reproducir** y no deben ir al informe tal cual (regla 2 del `README.md`). Los conteos de tamaño efectivo (< 50 y
+      < 100) los recalcula `scripts/05_puntajes_e1.R` (D-33). Diferencia máxima de las EAP por
       competencia (emplear, formular, interpretar, razonar):
 
       | Comparación | Diferencia máxima (DE) |
@@ -1600,8 +1604,8 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 - **Propuesta de Claude (por confirmar por Vanessa):** declarar **H5 exploratoria** en el informe. La hipótesis salió
   de la revisión del 2026-09-29 sobre los 7.804 estudiantes, que incluyen a la mitad de confirmación, así que ninguna
   parte de estos datos es independiente de su origen. La nota de H5 en la nota 09 ya la llama «exploratoria en origen».
-- **Estado:** ✅ (a) aceptada por Vanessa (2026-11-08). La propuesta sobre H5, por confirmar. Mateo y Brayan la revisan
-  en el PR.
+- **Estado:** ✅ (a) aceptada por Vanessa (2026-11-08). ~~La propuesta sobre H5, por confirmar.~~ *H5 exploratoria:
+  confirmada por Vanessa el mismo día.* Mateo y Brayan la revisan en el PR.
 
 ### D-33 · 2026-11-08 · El 5.4 sigue solo con E1 y con plazo (modifica D-31)
 - **Contexto:** V1 no se cumple (`salidas/mat_posterior_V1.csv`: diferencia máxima de 0,206 a 0,254 DE). D-31 preveía
@@ -1705,3 +1709,39 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - **H2 no cambia:** se rechaza por la primera condición (`salidas/inv_h2.csv`).
   - *Lectura:* la contracción de las EAP no fabricaba ni tapaba DIF de magnitud relevante, salvo motos por sector,
     que queda en el límite. Se reporta motos con DIF por zona y, con el emparejamiento multigrupo, también por sector.
+
+### D-36 · 2026-11-08 · El DIF de H3 se calibra con el modelo conjunto de 1 dimensión (corrige D-27 punto 7)
+- **Problema (evaluación del 2026-11-08):** D-27 punto 7 hace el DIF de matemáticas con «un modelo unidimensional por
+  competencia», pero D-27 (al final) y D-29 (c) descartan calibrar por competencia porque la ruta adaptativa depende de
+  ítems de otras competencias y la falta de datos solo es ignorable si se calibran todos juntos. Son incompatibles.
+- **Decisión (Vanessa, 2026-11-08):** el DIF del paso 5.6 usa `multipleGroup()` con **los 232 ítems en 1 dimensión**
+  (el modelo que gana por BIC en `salidas/mat_ajuste.csv`), cuartil bajo frente al alto del NSE económico, con medias y
+  varianzas libres por grupo y sin pesos (lógica de D-26).
+  - Se prueban los ítems elegibles de cada competencia (165, D-27) con anclas depuradas en 2 vueltas; Benjamini-Hochberg
+    al 5 % dentro de cada competencia, como **una sola familia** por competencia (D-35).
+  - La magnitud no cambia (D-22): Mantel-Haenszel en los dicotómicos, estratificado por deciles de la EAP **del modelo
+    multigrupo** (D-35, S2), y ΔR² ≥ 0,035 en los de crédito parcial.
+  - La segunda parte de H3 (Fisher, interpretar + formular frente a emplear) no cambia.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+
+### D-37 · 2026-11-08 · Interacciones en la regresión latente de los puntajes propios (modifica D-27 punto 4)
+- **Problema:** el modelo de condicionamiento de D-27 punto 4 solo tiene efectos principales (NSE, sexo, grado, zona y
+  sector). Si las pendientes del NSE difieren por zona o sector (H6), unos valores plausibles generados sin esas
+  interacciones las atenúan hacia la igualdad (interpretación; la regla general es que el modelo de imputación incluya
+  lo que va a analizarse).
+- **Decisión (Vanessa, 2026-11-08):** si E1 se valida (D-33), la regresión latente incluye además **NSE económico ×
+  zona y NSE económico × sector** (con las categorías «sin dato» de D-27). Solo afecta a los puntajes propios, que son
+  secundarios (D-32). Con los VP de la OCDE no se puede cambiar el condicionamiento: se declara como límite de H6.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+
+### D-38 · 2026-11-08 · Sensibilidad de la F7 a la exclusión no aleatoria: reponderación por colegio (D-14)
+- **Problema:** los 918 excluidos de la muestra analítica rinden 14,6 puntos menos (EE 3,0; z = −4,86;
+  `salidas/comparacion_incluidos_excluidos.csv`), y los análisis usan `W_FSTUWT` sin ajustar: describen la población
+  analítica (87,5 % de la ponderada), no a todos los estudiantes.
+- **Decisión (Vanessa, 2026-11-08):** en la F7 (paso 7.1) se repiten los resultados principales con un **ajuste de no
+  respuesta por colegio**: el peso de cada incluido (y cada réplica) se multiplica por la suma de los pesos de todos los
+  estudiantes de su colegio entre la suma de los pesos de los incluidos de ese colegio. Los colegios sin ningún incluido
+  se reportan aparte.
+  - *Por qué así:* es simple y sigue la lógica del ajuste de no respuesta dentro de las celdas del diseño; corrige la
+    parte de la exclusión que se explica por el colegio, no la que ocurre dentro de él (interpretación).
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.

@@ -2106,3 +2106,47 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     *robust* de 0,753 (D-24); el ajuste de este SEM no se puede leer como bueno sin los *robust*. Se reporta como
     descriptivo, con esa salvedad. Se repite el aviso de `lavaan` de correlación casi 1 entre `ST254Q03JA` y
     `ST250Q02JA` (D-42).
+
+### D-45 · 2026-11-09 · Diseño de la F7: candidatos, sensibilidades, regla de robustez, búsqueda de novedad y G4
+- **Problema:** el paso 7.1 lista cinco sensibilidades y la rúbrica (criterio 3) pide que un hallazgo se mantenga «en al
+  menos 3 de los 4 análisis de sensibilidad». No está fijado qué resultados son candidatos, qué sensibilidad aplica a
+  cada uno ni cómo se cuenta cuando aplican menos de 4. Se fija **antes de correr**, el 2026-11-09.
+- **Decisión (Vanessa, 2026-11-09):**
+  1. **Candidatos** (cada uno con la conclusión que se pone a prueba):
+     - **K1 (O4, H5 exploratoria):** la igualdad del NSE económico entre competencias se rechaza **y** H5 cumple su regla
+       (interpretar − emplear > 0 con p < 0,05) en la muestra completa y en la mitad de confirmación.
+     - **K2 (O4, H6):** la interacción NSE × sector es significativa (Wald, 4 gl; Holm sobre zona y sector).
+     - **K3 (O4):** el coeficiente del NSE es positivo y significativo (p < 0,05) en las 4 competencias.
+     - **K4 (O3, H4):** H4 se rechaza: ninguna competencia tiene reducción ≥ 0,05 DE y significativa (Holm).
+     - **K5 (O3, H3):** misma decisión de H3: primera parte aceptada y segunda rechazada.
+  2. **Sensibilidades** (plan 7.1) y a qué candidato aplican:
+
+     | Sensibilidad | Qué cambia | K1 | K2 | K3 | K4 | K5 |
+     |---|---|---|---|---|---|---|
+     | S-A ESCS | ESCS oficial en lugar de las EAP del NSE de la G2 (como predictor en la F6; para formar los cuartiles en H3 y H4) | ✓ | ✓ | ✓ | ✓ | ✓ (TRI completo) |
+     | S-B Sin ruta lineal | Se excluyen los 1.699 estudiantes con `MPATH` = *Linear*; los cuartiles de H3 y H4 se mantienen fijos (los de la muestra completa) | ✓ | ✓ | ✓ | ✓ | ✓ (TRI completo) |
+     | S-C Umbral de omisión | Omisión rápida con NT15 y con 5 s fijos; vale si se mantiene con **los dos** | — | — | — | ✓ | — |
+     | S-D Sin corrección múltiple | Valores p sin Holm (H4, H6) ni BH (H3) | — | ✓ | — | ✓ | ✓ |
+     | S-E Reponderación (D-38) | Pesos y réplicas ajustados por no respuesta dentro del colegio | ✓ | ✓ | ✓ | ✓ | ✓ (solo la magnitud: la prueba TRI va sin pesos, D-26) |
+
+     - En S-A, la F6 usa ESCS en lugar de las dos EAP (ESCS es de 1 dimensión, así que no hay coeficiente de libros), y en
+       H6 las interacciones son ESCS × zona y ESCS × sector.
+     - En H3 (S-A y S-B) se prueban los mismos 165 elegibles, salvo los que pierdan alguna categoría en un grupo, que se
+       listan. El DIF se re-estima con el método de D-40 completo, en segundo plano (~5 h por corrida).
+     - En H4 se usan los mismos ítems, la misma regresión latente y los mismos números aleatorios de D-41; los VP de las
+       versiones NT15 y 5 s se calculan con E1.
+  3. **Regla de robustez (criterio 3 de la rúbrica, definición operativa):** un candidato es robusto si su conclusión se
+     mantiene en al menos el **75 % de las sensibilidades que le aplican, con un mínimo de 3**: K1 y K3, 3 de 3; K2 y K5,
+     3 de 4; K4, 4 de 5.
+  4. **Paso 7.2:** Claude hace una búsqueda web documentada (Google Scholar, SciELO, Redalyc y buscador general; fecha y
+     cadenas por candidato). Scopus no está disponible desde la herramienta: lo completa el equipo. Los antecedentes nuevos
+     entran a la matriz como † y `por_verificar`, solo con lo que muestre la búsqueda.
+  5. **Paso 7.3:** cada candidato se clasifica con los 5 criterios de la rúbrica como hallazgo, réplica o resultado nulo
+     o frágil; la frase para el Ministerio queda como borrador de Claude para que el equipo la apruebe.
+  6. **Puerta G4:** el acta se deja lista; la etiqueta `resultados-v1` se crea **sobre `main` cuando Mateo o Brayan aprueben
+     y fusionen el PR**, no antes.
+- **Salidas previstas:** `scripts/07_sensibilidad.R` → `salidas/f7_sensibilidad_detalle.csv` y `f7_robustez.csv`;
+  `scripts/05_dif_matematicas.R` con la variable de entorno `F7_VARIANTE` (`escs`, `sin_lineal`, `d38`) →
+  `salidas/f7_dif_<variante>.csv` y `f7_h3_<variante>.csv`; nota `Vault_PISA2022/Hallazgos.md`; acta de la G4.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-09): 5 candidatos con regla del 75 %, DIF con TRI completo, búsqueda
+  documentada por Claude y etiqueta después del PR. Mateo y Brayan la revisan en el PR.

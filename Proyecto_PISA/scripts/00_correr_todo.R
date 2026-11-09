@@ -36,11 +36,25 @@ CADENA <- c(
   "03_nse_medicion.R",             # F3, pasos 3.1 y 3.2 (D-16, D-20)
   "03_nse_tri.R",                  # F3, pasos 3.3, 3.3b y 3.5 (D-19, D-21)
   "03_nse_afc.R",                  # F3, paso 3.4 (D-18)
+  "03_nse_sens_d20.R",             # F3, sensibilidad S1 a los ceros de D-20 (D-35)
   "04_explorar_grupos.R",          # F4, conteos por grupo previos a D-25
   "04_invarianza.R",               # F4, pasos 4.1 a 4.5 (D-25, D-26)
+  "04_dif_emparejamiento.R",       # F4, sensibilidad S2 (D-35)
+  "04_medias_brr.R",               # F4, medias latentes con BRR (D-34; ~6 h sin caché)
   "05_explorar_items.R",           # F5, paso 5.1 y conteos previos a D-27
-  "05_tri_competencias.R"          # F5, pasos 5.2 a 5.7 (D-27); se salta si todavía no existe
+  "05_tri_competencias.R",         # F5, pasos 5.2 a 5.3b (D-27, D-29)
+  "05_puntajes_e1.R",              # F5, paso 5.4: E1 sin covariables (D-33)
+  "05_puntajes_rl.R",              # F5, paso 5.4: regresión latente (D-39; horas sin caché)
+  "05_dif_matematicas.R",          # F5, paso 5.6, H3 (D-40; horas sin caché)
+  "05_h4_h7.R",                    # F5, pasos 5.5 y 5.7, H4, H7 y P3 (D-41)
+  "05_p3_robusto.R",               # F5, paso 5.5, enlace robusto (D-43)
+  "06_sem_competencias.R",         # F6, O4, H5 y H6 (D-42, D-44)
+  "05_dif_matematicas.R|F7_VARIANTE=escs",       # F7, S-A del DIF (D-45; horas sin caché)
+  "05_dif_matematicas.R|F7_VARIANTE=sin_lineal", # F7, S-B del DIF (D-45; horas sin caché)
+  "05_dif_matematicas.R|F7_VARIANTE=d38",        # F7, S-E del DIF (D-45)
+  "07_sensibilidad.R"              # F7, paso 7.1 (D-45)
 )
+# Una entrada «script|VAR=valor» corre el script con esa variable de entorno (la hereda el proceso hijo).
 
 carpeta_script <- function() {
   arg <- grep("^--file=", commandArgs(FALSE), value = TRUE)
@@ -55,13 +69,16 @@ prefijos <- commandArgs(trailingOnly = TRUE)
 cadena   <- if (length(prefijos)) CADENA[Reduce(`|`, lapply(prefijos, function(p) startsWith(CADENA, p)))] else CADENA
 if (!length(cadena)) stop("Ningún script de la cadena empieza por: ", paste(prefijos, collapse = ", "))
 
-correr <- function(script) {
-  log <- file.path(tempdir(), sub("\\.R$", ".txt", script))
+correr <- function(entrada) {
+  partes <- strsplit(entrada, "|", fixed = TRUE)[[1]]; script <- partes[1]; env <- partes[-1]
+  for (e in env) do.call(Sys.setenv, setNames(list(sub("^[^=]*=", "", e)), sub("=.*$", "", e)))
+  on.exit(for (e in env) Sys.unsetenv(sub("=.*$", "", e)), add = TRUE)
+  log <- file.path(tempdir(), paste0(sub("\\.R$", "", script), if (length(env)) paste0("_", gsub("[^A-Za-z0-9]", "_", env), collapse = ""), ".txt"))
   t0  <- Sys.time()
   st  <- system2(RSCRIPT, shQuote(script), stdout = log, stderr = log)
   lineas <- if (file.exists(log)) readLines(log, warn = FALSE, encoding = "UTF-8") else character()
   list(estado = st, minutos = round(as.numeric(difftime(Sys.time(), t0, units = "mins")), 1), log = log,
-       cache = any(grepl("[Cc]aché crudo leído|leídos? del caché", lineas)))
+       cache = any(grepl("[Cc]aché crudo leído|leíd[oa]s? del caché", lineas)))
 }
 
 owd <- setwd(DIR); on.exit(setwd(owd), add = TRUE)
@@ -73,7 +90,7 @@ if (ent$estado != 0) stop("Las versiones no coinciden con versiones_paquetes.csv
 
 resumen <- data.frame(script = character(), estado = character(), minutos = numeric(), uso_cache = character())
 for (s in cadena) {
-  if (!file.exists(s)) { cat(sprintf("%-30s  no existe todavía: se salta\n", s))
+  if (!file.exists(sub("\\|.*$", "", s))) { cat(sprintf("%-30s  no existe todavía: se salta\n", s))
     resumen[nrow(resumen) + 1, ] <- list(s, "no existe", NA, ""); next }
   cat(sprintf("%-30s  corriendo...", s)); flush.console()
   r <- correr(s)
@@ -94,7 +111,9 @@ con_cache <- resumen$script[resumen$uso_cache == "sí"]
 if (length(con_cache))
   cat("\nLeyeron un caché:", paste(con_cache, collapse = ", "),
       "\nSus resultados no se reestimaron. Para probar que se reproducen: REHACER_COG, REHACER_CUEST, REHACER_TRI,",
-      "REHACER_INV o REHACER_DIF = \"1\" (ver el encabezado de cada script).\n")
+      "REHACER_INV, REHACER_DIF (04) o REHACER_MAT (05_tri) = \"1\" (ver el encabezado de cada script). Los scripts de la",
+      "F4 (BRR) a la F7 usan cachés con huella en datos/ (COL_inv_brr, COL_mat_e1_sin_cov, COL_mat_rl_em, COL_mat_dif,",
+      "COL_sem_*, COL_f7_*): para reestimarlos, renombrar el .rds y volver a correr.\n")
 
 # ¿Se reprodujeron las salidas? Compara salidas/ con el último commit (si Git está disponible).
 cambios <- tryCatch(system2("git", c("status", "--porcelain", "--", shQuote("../salidas")), stdout = TRUE, stderr = TRUE),

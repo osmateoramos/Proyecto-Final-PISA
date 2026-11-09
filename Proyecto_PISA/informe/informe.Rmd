@@ -198,7 +198,18 @@ if (file.exists(src)) { dst <- paste0(knitr::opts_current$get("fig.path"), "1.pn
 # Robustez (F7)
 
 **[POR REDACTAR]** Sensibilidades del paso 7.1: NSE latente frente a ESCS, con y sin la ruta lineal, umbrales de omisión
-rápida, comparaciones múltiples y reponderación por colegio (D-38).
+rápida, comparaciones múltiples y reponderación por colegio (D-38). Diseño y regla de robustez en D-45.
+
+```{r f7}
+rb <- leer("f7_robustez.csv")
+if (is.null(rb)) pendiente("f7_robustez.csv") else
+  print(tabla(rb[, .(Candidato = candidato, Conclusion = conclusion, Aplicables = aplicables, Se_mantiene = se_mantiene_en,
+                     Requerido = requerido, Robusto = robusto)], caption = "Robustez de los candidatos (07_sensibilidad.R, D-45)."))
+dt <- leer("f7_sensibilidad_detalle.csv")
+if (is.null(dt)) pendiente("f7_sensibilidad_detalle.csv") else
+  print(tabla(dt[, .(Candidato = candidato, Sensibilidad = sensibilidad, Se_mantiene = se_mantiene)],
+              caption = "Resultado de cada sensibilidad; el detalle numérico está en el archivo de salidas."))
+```
 
 # Discusión y limitaciones
 

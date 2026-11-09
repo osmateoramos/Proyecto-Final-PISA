@@ -1673,6 +1673,24 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   3. Lo demás (AFC, TRI, DIF) queda como estimación puntual descriptiva, con el aviso de que sus errores no reflejan el
      diseño.
 - **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+- **Resultado del punto 1 (2026-11-09, `04_medias_brr.R` → `salidas/nse_medias_latentes_brr.csv`):** las 80 réplicas
+  convergieron en los cuatro análisis (ninguna exclusión).
+
+  | Contraste | Económico: diferencia (EE BRR) | IC 95 % BRR | Libros: diferencia (EE BRR) | IC 95 % BRR |
+  |---|---|---|---|---|
+  | Pueblo − urbana | −0,630 (0,108) | −0,841 a −0,419 | −0,194 (0,077) | −0,344 a −0,044 |
+  | Rural − urbana (H2) | −0,950 (0,142) | −1,230 a −0,671 | −0,173 (0,088) | −0,346 a 0,000 |
+  | Hombre − mujer | 0,052 (0,033) | −0,014 a 0,117 | −0,123 (0,037) | −0,195 a −0,051 |
+  | Privado − público | 1,433 (0,161) | 1,118 a 1,748 | 0,604 (0,103) | 0,402 a 0,806 |
+
+  - **Lectura (dato):** el EE BRR es de 1,16 a 3,66 veces el de `lavaan` (columna `razon_ee`); la subestimación es
+    mayor en zona y sector, que se agrupan por colegio, y casi nula en sexo, que varía dentro del colegio.
+  - **Qué cambia frente a la F4:** las diferencias económicas por zona y sector y la de libros por sector, pueblo y sexo
+    siguen excluyendo el 0. La de **libros rural − urbana pasa a estar en el límite** (el IC toca 0), así que ya no se
+    puede afirmar con el 95 %. La económica por sexo no excluía el 0 ni con el EE de `lavaan` (z ≈ 1,86).
+  - Los minutos de la tabla incluyen la suspensión del equipo de esa noche en el análisis rural–urbana (496,5); no son
+    tiempo de cálculo.
+  - Las cifras puntuales coinciden con `nse_medias_latentes.csv` (lo que cambia es el error).
 
 ### D-35 · 2026-11-08 · Conclusiones de la F3–F4 corregidas y dos sensibilidades exploratorias
 - **Problema (errores de redacción de Claude en el vault):**
@@ -1855,6 +1873,21 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   `DMA142Q02C`, `CM464Q01S`, `CM943Q02S`, `DM462Q01C`, `DMA146Q03C` y `DMA156Q01C`. Se prueban 154.
 - **Estado:** ✅ aceptada por Vanessa (2026-11-08): Fisher de una cola, pesos como en la F4 e ítems con todas sus
   categorías en los dos grupos. Mateo y Brayan la revisan en el PR.
+- **Resultado (2026-11-09, `05_dif_matematicas.R` → `salidas/mat_dif.csv`, `mat_dif_resumen.csv` y `mat_h3.csv`):**
+  - Vuelta 1: 14 de 154 significativos con BH; vuelta 2 con 199 anclas depuradas. Media latente de Q1 frente a Q4 en el
+    modelo de la vuelta 1: −1,207 DE.
+  - Por competencia (elegibles probados / significativos con BH / con DIF): emplear 57 / 6 / **3**; formular 29 / 0 / 0;
+    interpretar 37 / 3 / 0; razonar 31 / 1 / 0.
+  - **Ítems con DIF** (los tres de emplear, dicotómicos): `CMA113Q03S` (ΔMH 1,13, B, favorece a Q1), `CMA131Q02S`
+    (ΔMH −1,33, B, favorece a Q4) y `CMA135Q04S` (ΔMH 2,07, C, favorece a Q1).
+  - **H3 se acepta solo en su primera parte:** hay 3 de 154 ítems con DIF. La segunda se rechaza: interpretar +
+    formular tienen 0 de 66 frente a 3 de 57 en emplear (Fisher de una cola, p = 1). El DIF que hay va **en contra**
+    de lo que planteaba H3, y dos de los tres ítems favorecen al cuartil bajo.
+  - *Interpretación de Claude (por discutir):* (i) con 3 de 154 (≈ 2 %) y efectos en dos sentidos, el DIF por NSE es
+    escaso y no apunta a un sesgo sistemático contra el cuartil bajo; (ii) `CMA131Q02S` es el ítem con discriminación
+    casi nula en el modelo de 4 competencias (a = 0,002, D-41), así que su DIF puede reflejar un mal funcionamiento
+    general del ítem en Colombia más que un sesgo por NSE; (iii) el error de la prueba no refleja el diseño por
+    colegios (D-34 punto 3).
 
 ### D-41 · 2026-11-08 · Detalles de H4 (paso 5.7) y de H7 con el enlace P3 (paso 5.5)
 - **Problema:** D-22 y D-27 fijan H4 y H7, pero dejan abiertos qué parte del modelo se mantiene fija al recalificar, cómo

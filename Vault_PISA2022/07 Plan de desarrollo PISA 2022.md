@@ -331,6 +331,9 @@ Script: `04_invarianza.R`.
     - **Ojo** (revisión de Brayan, PR #12, 2026-10-18; anotado el 2026-10-19): los `ee` y los IC 95 % de `nse_medias_latentes.csv` son los de
       `lavaan` y no reflejan el diseño por colegios (D-16 punto 5; D-25 punto 9). No se leen como intervalos
       válidos hasta tener errores con BRR.
+    - *Actualización 2026-11-09 (D-34):* ya hay errores BRR (`salidas/nse_medias_latentes_brr.csv`); son de 1,2 a
+      3,7 veces los de `lavaan`. Todo sigue excluyendo el 0 salvo libros rural − urbana, que queda en el límite (IC
+      −0,346 a 0,000), y el económico por sexo, que tampoco lo excluía antes.
   - **4.4 (DIF, D-26):** solo motos tiene DIF no despreciable, por zona (ΔR² = 0,042). **H2 se rechaza**: el paso
     escalar rural–urbana no empeora y ningún ítem tiene DIF no despreciable en ese contraste. F4 cerrada (2026-10-18).
   - *Antes:* la primera corrida del DIF fue inválida (D-26); la corregida estaba en curso al

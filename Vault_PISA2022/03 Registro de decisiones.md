@@ -1802,6 +1802,27 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - Los coeficientes de Γ se reportan sin errores estándar: son parámetros del modelo de imputación, no estimaciones
     para interpretar (las inferencias van en la F6 con BRR, D-34).
 - **Estado:** ✅ aceptada por Vanessa (2026-11-08): EM propio y `GRADE` categórico. Mateo y Brayan la revisan en el PR.
+- **Resultado (2026-11-09, `05_puntajes_rl.R`; log de la corrida en el scratchpad de Claude, no en el repositorio):**
+  - **Convergencia:** el EM convergió en 45 iteraciones (último paso: cambio de Γ 0,0000948 y de Σ 0,0000266). Los
+    530,8 minutos de `minutos_EM_esta_corrida` incluyen unas 6 horas en que el equipo estuvo suspendido; no es el
+    tiempo de cálculo. *Nota de Claude:* el criterio mide un paso del EM, no la distancia al punto fijo; con la razón
+    de ~0,93 observada antes de acelerar, esa distancia puede ser ~14 veces el último paso (≈ 0,0013 DE en Γ), que es
+    despreciable frente a coeficientes de 0,1 a 0,3 (interpretación).
+  - **Validación con covariables** (`salidas/mat_rl_validacion.csv`): las cuatro competencias cumplen V1, V2 y V3.
+    Diferencia máxima de V1 entre 0,00135 y 0,00156 DE; diferencia media de V2 ≤ 0,00016 DE; los casos extremos quedan
+    cubiertos (diferencia 0).
+  - **Ajuste** (`salidas/mat_rl_ajuste.csv`): R² latente entre 0,360 (razonar) y 0,386 (emplear); varianza residual
+    entre 0,599 y 0,622.
+  - **Confiabilidad empírica** (`salidas/mat_confiabilidad_competencias.csv`): con covariables, entre 0,760 (formular) y
+    0,817 (emplear); sin covariables, entre 0,741 y 0,793.
+  - **Controles de los VP** (`salidas/mat_pv_controles.csv`): diferencia de medias VP − EAP ≤ 0,0034 y razón de
+    varianzas entre 0,9987 y 1,0014; las correlaciones totales de los VP coinciden con las esperadas al tercer decimal.
+  - **Coeficientes** (`salidas/mat_rl_coeficientes.csv`, sin EE por el punto anterior): NSE económico entre 0,256 y
+    0,315 DE, el mayor en interpretar, como en la F6 (D-42); libros entre 0,103 y 0,162.
+  - Las correlaciones entre competencias siguen muy altas (emplear–razonar 0,979 entre VP), coherente con el rechazo de
+    H8 (D-27).
+  - **Conclusión:** los puntajes propios son **válidos según V1–V3** y el paso 5.4 queda cerrado antes del plazo de
+    D-33 (2026-11-12). H4 y H7 pasan a ser evaluables (`05_h4_h7.R`).
 
 ### D-40 · 2026-11-08 · Detalles del DIF de matemáticas y de H3 (paso 5.6; completa D-22, D-27 punto 7 y D-36)
 - **Problema:** D-22, D-27 y D-36 fijan el método del DIF de H3, pero dejan abiertos el sentido de la prueba de Fisher,

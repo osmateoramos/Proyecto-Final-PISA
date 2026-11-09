@@ -8,8 +8,8 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 1. [[11 Protocolo de verificación]] — cómo se marca qué está verificado y qué no (leer primero).
 2. [[06 Objetivos PISA 2022]] — pregunta, objetivo general y O1–O5.
 3. [[07 Plan de desarrollo PISA 2022]] — paso a paso por semanas. **Al 2026-11-09 (inicio de la semana 6):** la F5
-   cerró y la Puerta G3 pasa (acta por firmar); la F6 tiene el análisis principal hecho (D-42). Lo que sigue: robustez
-   de la F6 con puntajes propios, F7 y la revisión del PR por Mateo y Brayan.
+   cerró y la Puerta G3 pasa (acta por firmar); la F6 también cerró (D-42 y D-44). Lo que sigue: F7 y Puerta G4
+   (resultados congelados), F8 (API) y F9 (informe), y la revisión del PR por Mateo y Brayan.
    *Al 2026-11-08 (fin de la semana 5):* después de la
    evaluación del 08/11 se registraron D-32 a D-39. O4 usa los VP de la OCDE como principal (D-32); el 5.4 se destrabó
    con E1, que cumple V1–V3 (D-33), y la regresión latente está en curso (D-39); errores con BRR (D-34); conclusiones de
@@ -29,7 +29,7 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 | F3 O1: medición del NSE | ✅ cerrada, **G2 pasa** con desajuste documentado (D-24); todo en `main` desde el 2026-10-21 (PR #12) | `03_explorar_items_nse.R`, `03_explorar_saltos.R`, `03_nse_medicion.R` (3.1 y 3.2) y `03_nse_tri.R` (3.3, 3.3b y 3.5) y `03_nse_afc.R` (3.4) | `salidas/nse_*.csv`; H1 aceptada (D-18); modelo para la F4–F6: 2D del AFE (D-24); acta en [[Reuniones/2026-10-18 Puerta G2]] |
 | F4 O2: invarianza | ✅ cerrada: ningún paso pasa los cortes ΔCFI/ΔRMSEA *scaled* en zona, rural–urbana, sexo y sector, pero el χ² rechaza en 10 de 12 (no es invarianza demostrada, D-35); H2 rechazada | `04_explorar_grupos.R` y `04_invarianza.R` | `salidas/invarianza_tabla.csv`, `nse_medias_latentes.csv`, `nse_medias_latentes_brr.csv` (EE BRR, 2026-11-09); D-25, D-26 y D-34 |
 | F5 O3: competencias | ✅ cerrada, **G3 pasa** (acta en borrador, falta firmar): puntajes propios válidos con regresión latente (D-39); H3 solo primera parte (D-40); H4, H7 y H8 rechazadas (D-41, D-27); P3 con enlace robusto (D-43) | `05_explorar_items.R`, `05_tri_competencias.R`, `05_puntajes_e1.R`, `05_puntajes_rl.R`, `05_dif_matematicas.R`, `05_h4_h7.R`, `05_p3_robusto.R` | `salidas/mat_*.csv`; D-27, D-29 a D-33, D-36 a D-41, D-43; acta en [[Reuniones/2026-11-09 Puerta G3]] |
-| F6 O4: SEM | análisis principal y robustez latente hechos (D-42): H5 cumple su regla pero es exploratoria; H6 aceptada por sector. Falta la robustez con puntajes propios | `06_sem_competencias.R` | `salidas/sem_*.csv`; D-42 |
+| F6 O4: SEM | ✅ cerrada (2026-11-09): H5 cumple su regla pero es exploratoria; H6 aceptada por sector; robustez latente y con puntajes propios concordantes salvo H6 por zona (D-44) | `06_sem_competencias.R` | `salidas/sem_*.csv`, `sem_diagrama.png`; D-42 y D-44 |
 | F7–F8 | pendientes | — | — |
 | F9 Informe | esqueleto | `informe/informe.Rmd` | tablas leídas de `salidas/` |
 

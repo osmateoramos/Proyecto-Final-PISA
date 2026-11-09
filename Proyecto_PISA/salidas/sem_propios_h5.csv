@@ -1,0 +1,3 @@
+muestra,diferencia_interpretar_menos_emplear,ee_BRR,ic95_inf,ic95_sup,p,cumple_regla,H5
+completa (6.886),0.0352,0.0079,0.0197,0.0507,0.00000846,TRUE,"se cumple la regla (exploratoria, D-32)"
+mitad de confirmación (3441),0.0392,0.0115,0.0166,0.0618,0.000679,TRUE,"se cumple la regla (exploratoria, D-32)"

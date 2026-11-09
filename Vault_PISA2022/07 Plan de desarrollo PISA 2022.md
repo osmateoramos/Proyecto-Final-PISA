@@ -452,9 +452,18 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 > - 6.5 / H6: interacciones NSE × zona y NSE × sector en lugar del multigrupo; Wald conjunta por variable y Holm sobre las 2.
 > - Robustez: SEM con NSE latente, solo con el peso final, por cada VP. `lavaan.mi` no hace falta.
 
-- [ ] **6.1 Modelo:** NSE latente (estructura y restricciones de F3–F4) → las 4 competencias calificadas en F5, con
+> [!success] F6 cerrada (2026-11-09, D-42 y D-44)
+> - Principal (VP de la OCDE): NSE económico de 24,2 a 29,4 puntos por DE de la EAP; igualdad entre competencias
+>   rechazada (p = 0,010); H5 cumple su regla (exploratoria); H6 aceptada por sector (`salidas/sem_*.csv`).
+> - Robustez: el SEM con NSE latente da coeficientes casi iguales (D-42 punto 4) y los VP propios repiten todas las
+>   conclusiones salvo H6 por zona, que queda sin resolver entre fuentes (`salidas/sem_comparacion_fuentes.csv`, D-44).
+> - Ajuste: R² medio con las dos fuentes y ajuste del SEM latente con el VP1 (`salidas/sem_ajuste_latente.csv`).
+>   Diagrama en `salidas/sem_diagrama.png`.
+
+- [x] **6.1 Modelo:** *(hecho en dos pasos, D-42; los residuos entre competencias quedan libres porque cada
+  competencia tiene su regresión con los mismos predictores, y el SEM latente es la robustez)* NSE latente (estructura y restricciones de F3–F4) → las 4 competencias calificadas en F5, con
   residuos correlacionados entre competencias; covariables: sexo, grado.
-- [ ] **6.2 Estimación por cada conjunto de puntajes plausibles** (los 10 propios de F5) con
+- [x] **6.2 Estimación por cada conjunto de puntajes plausibles** *(hecho: 10 VP × 81 pesos y Rubin, D-42)* (los 10 propios de F5) con
   `sampling.weights = "W_FSTUWT"` y `cluster = "CNTSCHID"`; combinar con `lavaan.mi` (Rubin). **Verificar** que
   `lavaan` acepta pesos con WLSMV; si no: **alternativa en dos pasos** (puntuaciones del NSE + regresiones con BRR).
   - *Comprobado con datos simulados (D-18, 2026-10-18):* `lavaan` 0.7-3 acepta WLSMV con `sampling.weights` y
@@ -463,12 +472,13 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
     *Decidido en D-34 (2026-11-08):* BRR completo, 10 PV × 81 pesos por modelo, con Rubin.
   - *Cambio (2026-11-08, D-32):* el análisis **principal** usa los 10 VP de proceso de la OCDE (`MPEM`, `MPFS`, `MPIN`,
     `MPRE`), no los puntajes propios.
-- [ ] **6.3 Robustez:** ~~repetir con los PV oficiales de la OCDE (`MPEM`, `MPFS`, `MPIN`, `MPRE`).~~ repetir con los
+- [x] **6.3 Robustez:** *(hecho, D-44: concuerdan todas las conclusiones salvo H6 por zona)* ~~repetir con los PV oficiales de la OCDE (`MPEM`, `MPFS`, `MPIN`, `MPRE`).~~ repetir con los
   puntajes propios del 5.4, si se validan (D-32, D-33).
-- [ ] **6.4 Igualdad de efectos** entre competencias (prueba de Wald o modelo restringido vs libre). Contrastar con el
+- [x] **6.4 Igualdad de efectos** *(hecho: se rechaza con las dos fuentes; H5 cumple su regla, exploratoria)* entre competencias (prueba de Wald o modelo restringido vs libre). Contrastar con el
   resultado exploratorio: interpretar − emplear = 3,9 (z = 2,61, PV OCDE) → H5. Si la G2 elige 2 dimensiones, H5 y H6
   se deciden con el factor económico y el de libros es secundario (D-22).
-- [ ] **6.5 Multigrupo** por zona o sector si F4 lo permite → H6.
+- [x] **6.5 Multigrupo** por zona o sector si F4 lo permite → H6. *(hecho con interacciones, D-42: H6 aceptada por
+  sector)*
 - **Salida:** `salidas/sem_coeficientes.csv`, `salidas/sem_igualdad.csv`, diagrama del modelo.
 - **Listo cuando:** coeficientes con EE, prueba de igualdad y ajuste reportados con ambos tipos de puntaje; H5 y H6
   resueltas.

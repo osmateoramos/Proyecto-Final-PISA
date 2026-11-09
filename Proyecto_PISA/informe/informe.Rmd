@@ -181,6 +181,18 @@ if (is.null(sc)) pendiente("sem_coeficientes.csv") else
 for (f in c("sem_igualdad.csv", "sem_h5.csv", "sem_h6.csv")) { x <- leer(f); if (!is.null(x)) print(tabla(x, caption = f)) }
 rl <- leer("sem_robustez_latente.csv")
 if (is.null(rl)) pendiente("sem_robustez_latente.csv") else tabla(rl, caption = "Robustez: SEM con NSE latente frente al enfoque en dos pasos.")
+cf <- leer("sem_comparacion_fuentes.csv")
+if (is.null(cf)) pendiente("sem_comparacion_fuentes.csv") else
+  print(tabla(cf, caption = "Robustez con los puntajes propios: concordancia con los VP de la OCDE (D-44)."))
+aj <- leer("sem_ajuste_latente.csv")
+if (is.null(aj)) pendiente("sem_ajuste_latente.csv") else print(tabla(aj, caption = "Ajuste del SEM latente con el VP1 de la OCDE (D-44)."))
+```
+
+```{r f6-diagrama, out.width = "100%", fig.cap = "Modelo de la F6 y coeficientes del NSE en puntos PISA por DE (diagrama de la carpeta de salidas, D-44)."}
+# Se copia a la carpeta de figuras de knitr: LaTeX no acepta la ruta absoluta (espacios y tildes de OneDrive)
+src <- file.path(SALIDAS, "sem_diagrama.png")
+if (file.exists(src)) { dst <- paste0(knitr::opts_current$get("fig.path"), "1.png"); dir.create(dirname(dst), recursive = TRUE, showWarnings = FALSE)
+  file.copy(src, dst, overwrite = TRUE); knitr::include_graphics(dst) } else pendiente("sem_diagrama.png")
 ```
 
 # Robustez (F7)

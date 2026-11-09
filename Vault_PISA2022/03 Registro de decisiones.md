@@ -2045,3 +2045,64 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     B ≈ −0,7 a −1,0), lo que sería coherente con un desempeño por debajo y menos disperso que el internacional. No he
     verificado en qué métrica están `a_int` y `b_int` en el anexo A, así que esta lectura queda por confirmar.
 
+### D-44 · 2026-11-09 · Robustez de la F6 con los puntajes propios, ajuste y diagrama (cierra el 6.3 y la F6)
+- **Problema:** D-32 deja los puntajes propios como robustez de O4 si el 5.4 se valida, y se validó (D-39). D-42 no fija
+  cómo se hace. El «Listo cuando» de la F6 pide además el ajuste con los dos tipos de puntaje y un diagrama del modelo.
+- **Propuesta de Claude, aplicada por encargo de Vanessa («cierra la F6», 2026-11-09); falta que ella la confirme:**
+  1. **Mismo análisis, otra variable de respuesta.** Se repiten los puntos 1 a 3 de D-42 (coeficientes, igualdad entre
+     competencias, H5 en la muestra completa y en la mitad de confirmación, H6 con Wald por variable y Holm) cambiando
+     los 10 VP de la OCDE por los 10 VP propios de cada competencia (`datos/COL_puntajes_competencia.rds`, D-39). Mismas
+     covariables, misma muestra (6.886), los 81 pesos y Rubin.
+     - *Límites que hay que declarar (interpretación):* (i) los VP propios se generaron con la regresión latente de la
+       muestra completa, no re-estimada en cada réplica, así que el error BRR puede quedar algo corto (la OCDE hace lo
+       mismo con sus VP); (ii) el modelo de condicionamiento incluye todas las variables de la F6, con NSE × zona y NSE ×
+       sector (D-37), así que los coeficientes no quedan atenuados por omitirlas.
+  2. **Unidades y comparación.** Los VP propios están en DE latentes de Colombia; los de la OCDE, en puntos PISA. Para
+     comparar se agrega el **coeficiente estandarizado** del NSE: coeficiente × DE ponderada de la EAP del NSE / DE
+     ponderada de la competencia (promedio de los 10 VP), en las dos fuentes. Es una estimación puntual, sin EE.
+  3. **Criterio de concordancia (fijado antes de correr):** la conclusión es robusta si coinciden el signo y la decisión
+     (p < 0,05 o no) en la igualdad entre competencias, en H5 (las dos muestras) y en H6 (cada variable, después de
+     Holm). La robustez **no cambia** la decisión de ninguna hipótesis (D-32).
+  4. **Ajuste.** De la regresión en dos pasos: R² medio con las dos fuentes. Del SEM latente de D-42 punto 4: CFI, TLI y
+     RMSEA (*scaled* y *robust*, donde se puedan calcular) y SRMR, **solo con el VP1 de la OCDE** y el peso final
+     (costo: un ajuste con estadístico de prueba). Es descriptivo y no decide nada.
+  5. **Diagrama** del modelo en `salidas/sem_diagrama.png`, dibujado con R base (sin paquetes nuevos).
+- **Salidas previstas:** `scripts/06_sem_competencias.R` → `salidas/sem_propios_coeficientes.csv`,
+  `sem_propios_igualdad.csv`, `sem_propios_h5.csv`, `sem_propios_h6.csv`, `sem_propios_h6_interacciones.csv`
+  (agregada al programar), `sem_comparacion_fuentes.csv`,
+  `sem_ajuste_latente.csv` y `sem_diagrama.png`. Las salidas del análisis principal no deben cambiar (se comprueba con
+  `git diff`).
+- **Estado:** ⏳ aplicada por encargo de Vanessa («cierra la F6»); falta que confirme los puntos 1 a 5. Mateo y Brayan la
+  revisan en el PR.
+- **Resultado de los puntos 1 a 3 (2026-11-09, `06_sem_competencias.R` → `salidas/sem_comparacion_fuentes.csv` y
+  `sem_propios_*.csv`):** las salidas del análisis principal no cambiaron (`git status` sin cambios en ellas).
+
+  | Prueba | VP de la OCDE | VP propios | ¿Coincide? |
+  |---|---|---|---|
+  | NSE económico, coeficiente estandarizado (emplear / formular / interpretar / razonar) | 0,327 / 0,280 / 0,350 / 0,283 | 0,335 / 0,322 / 0,367 / 0,315 | sí (todos p < 10⁻¹⁶) |
+  | R² medio (mismo orden) | 0,298 / 0,244 / 0,310 / 0,238 | 0,364 / 0,338 / 0,350 / 0,337 | — |
+  | Igualdad entre competencias (6.4) | χ² = 11,32; p = 0,010 | χ² = 38,08; p = 2,7 · 10⁻⁸ | sí: se rechaza |
+  | H5, muestra completa | 5,57 puntos; p = 0,001 | 0,035 DE latentes; p = 8,5 · 10⁻⁶ | sí |
+  | H5, mitad de confirmación | 6,33 puntos; p = 0,0004 | 0,039 DE latentes; p = 0,0007 | sí |
+  | H6, sector (Holm) | p = 0,0073 | p = 4,6 · 10⁻¹⁴ | sí: se acepta |
+  | H6, zona (Holm) | p = 0,082 | p = 1,9 · 10⁻¹⁴ | **no** |
+
+  - **Lectura (dato):** con los puntajes propios se repiten el orden de las competencias (interpretar la más alta),
+    el rechazo de la igualdad, H5 y H6 por sector. La única discrepancia es la interacción NSE × zona, que con los
+    propios es muy significativa y con los de la OCDE no.
+  - *Interpretación de Claude (por discutir; no cambia ninguna decisión, D-32):* hay dos sesgos posibles, en sentidos
+    opuestos. (i) Los VP propios se condicionaron con NSE × zona (D-37) y con Γ fija en todas las réplicas, así que su
+    error BRR no recoge la incertidumbre de Γ y con ~5 a 9 ítems por competencia la previa pesa mucho: su valor p
+    queda **demasiado pequeño** (límite (i) del punto 1). (ii) Si el modelo de condicionamiento de la OCDE no incluye
+    esa interacción, sus VP la **atenúan** hacia 0; **no he verificado** en el Technical Report qué variables usa la
+    OCDE para condicionar. Con esto, H6 por zona queda **sin resolver** entre fuentes y así se reporta; H6 se sigue
+    aceptando por sector, que coincide en las dos.
+  - Los R² con los propios son más altos en parte por el mismo condicionamiento (interpretación).
+- **Resultado de los puntos 4 y 5 (2026-11-09, `salidas/sem_ajuste_latente.csv` y `sem_diagrama.png`):** el SEM latente
+  con el VP1 convergió (n = 6.886; 5 min). χ² *scaled* = 11.352,1 con 629 gl (p < 0,001); CFI *scaled* 0,927; TLI
+  *scaled* 0,939; RMSEA *scaled* 0,050; SRMR 0,070. `lavaan` **no pudo calcular** los índices *robust* (salen vacíos),
+  como ya pasó en partes de la F3–F4.
+  - *Interpretación de Claude:* los índices *scaled* con WLSMV tienden a ser optimistas, y el AFC del NSE tuvo CFI
+    *robust* de 0,753 (D-24); el ajuste de este SEM no se puede leer como bueno sin los *robust*. Se reporta como
+    descriptivo, con esa salvedad. Se repite el aviso de `lavaan` de correlación casi 1 entre `ST254Q03JA` y
+    `ST250Q02JA` (D-42).

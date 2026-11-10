@@ -2216,8 +2216,9 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   ([[Literatura/Búsqueda de novedad F7]]). La búsqueda no cambia ningún resultado congelado.
   - *Google Académico (2026-11-10):* Mateo corrió las 10 cadenas desde otro computador (en el suyo Google bloqueó las
     consultas) y Claude revisó la página 1 de cada una: ningún antecedente para Colombia. Hay análisis parecidos en otros
-    países o poblaciones; el más cercano a K2, según su resumen, es Duarte, Bos y Moreno (2010, BID), con el SERCE en
-    primaria y el resultado contrario (por verificar). El criterio 4 sigue provisional hasta leer esos antecedentes.
+    países o poblaciones. El más cercano a K2 es Duarte, Bos y Moreno (2010, BID), que Claude leyó en texto completo
+    ([[Literatura/duarte2010ensenan]], por verificar): con el SERCE de 2006 en primaria, la interacción gestión × NSE
+    no fue significativa para Colombia. El criterio 4 sigue provisional hasta leer los 3 antecedentes que faltan.
 
 ### D-46 · 2026-11-09 · Diseño de la API (F8, paso 8.2): stack, persistencia y endpoint de predicción
 - **Problema:** la F8 debe cumplir las buenas prácticas del curso de Python (documento del curso que Vanessa dio a

@@ -564,9 +564,10 @@ página de cada cadena), y en ninguno apareció un antecedente para Colombia de 
 cadenas dieron cero resultados y las otras 3, un documento cada una, ninguno sobre Colombia. Sí aparecieron análisis
 parecidos en otros países o poblaciones: el informe nacional de Inglaterra, que según su resumen revisa si la brecha por
 NSE cambia entre procesos matemáticos (K1), el efecto del tratamiento de las omisiones en comparaciones entre grupos (K4) y, en primaria
-de América Latina con el SERCE de 2006, un estudio del BID que, según su resumen, no encontró que la relación entre el NSE
-y el aprendizaje cambie entre escuelas públicas y privadas (K2, por verificar). Esos antecedentes y otros cuatro
-posibles no se han leído en texto completo (`Vault_PISA2022/Literatura/Búsqueda de novedad F7.md`).
+de América Latina con el SERCE de 2006, un estudio del BID que probó la misma interacción de K2 y no la encontró
+significativa para Colombia en ninguna de sus cuatro pruebas [@duarte2010ensenan, pp. 20–21] **[VERIFICAR]**. Ese estudio
+se leyó en texto completo; los demás antecedentes y otros tres posibles, no
+(`Vault_PISA2022/Literatura/Búsqueda de novedad F7.md`).
 
 ```{r hallazgos}
 hz <- data.table(
@@ -594,7 +595,10 @@ tabla(hz, caption = "Clasificación de los candidatos (borrador; Hallazgos.md). 
    empíricamente (H8, H7). Por eso K1 se reporta como exploratorio.
 3. **El sector importa más que la zona.** La pendiente del NSE es más empinada en los colegios privados (K2). Esto no
    dice que los colegios privados «causen» desigualdad: puede reflejar cómo se reparten los estudiantes entre colegios
-   (composición y selección), algo que este diseño no separa.
+   (composición y selección), algo que este diseño no separa. En primaria, con el SERCE de 2006, la misma interacción
+   no fue significativa para Colombia, aunque la pendiente del NSE entre escuelas era más pronunciada en las privadas
+   en América Latina [@duarte2010ensenan, pp. 19–21] **[VERIFICAR]**. La diferencia con nuestro resultado puede deberse
+   a la edad, al año o al modelo, y no se puede separar con estos datos.
 4. **La medición del NSE es la parte más débil.** Dos dimensiones se sostienen (H1), pero el ajuste no llega a los cortes
    y la invarianza no se demostró (D-35). Las conclusiones sobre el NSE económico son estables con el ESCS oficial (S-A),
    lo que da algo de tranquilidad.

@@ -125,12 +125,13 @@ el contenido sigue por verificar en el texto completo):
 | 9 | K5 | `PISA "differential item functioning" mathematics "socioeconomic status"` | 944 | Chen y Zumbo (2017), DIF multinivel con datos de PISA; Rutkowski y Rutkowski (2013) y Pokropek et al. (2017), sobre la medición del NSE en PISA (más cerca de la F4 que de K5). Ninguno trata Colombia |
 | 10 | K5 | `"funcionamiento diferencial" ítems "nivel socioeconómico" matemáticas Colombia` | 93 | Woitschach y Ortiz (2019), «Funcionamiento diferencial del ítem en la evaluación educativa a nivel América Latina y el Caribe» (icso.org.py): el fragmento menciona PISA 2012, matemáticas y el índice socioeconómico. **Por leer** (no se encontró su resumen). Pardo Adames et al. (2023), *Interdisciplinaria*, 40(1): TERCE y procesamiento cognitivo, no DIF por NSE |
 
-**Antecedente que aparece al revisar la cadena 4 (por verificar en el original):** Duarte, Bos y Moreno (2010),
-«¿Enseñan mejor las escuelas privadas en América Latina? Estudio comparativo usando los resultados del SERCE», nota
-técnica del BID. Según el resumen que mostró la búsqueda web, con el SERCE de 2006 (primaria, América Latina) la
-asociación entre el NSE y los aprendizajes **no cambia** entre escuelas públicas y privadas. Es lo más cercano a K2: otra
-población (primaria, 2006) y el resultado contrario al nuestro (en PISA 2022 la pendiente es mayor en los privados). No
-se ha leído; falta confirmar si incluye a Colombia y cómo se probó.
+**Antecedente que aparece al revisar la cadena 4, leído en texto completo el 2026-11-10:** Duarte, Bos y Moreno
+(2010), «¿Enseñan mejor las escuelas privadas en América Latina? Estudio comparativo usando los resultados del SERCE»,
+BID, Notas Técnicas n.º 5 ([[Literatura/duarte2010ensenan]]). Con el SERCE de 2006 (3.º y 6.º grado) prueban la
+interacción gestión × NSE del estudiante. En el agregado de América Latina solo es significativa en matemáticas de 3.º
+(más fuerte en las privadas); **para Colombia ninguna de las 4 es significativa** (pág. 21, tabla 7), y concluyen que la
+gestión es «en general neutro» frente a esa asociación (pág. 20). Es el antecedente más cercano a K2: la misma
+pregunta, pero en primaria y en 2006.
 
 **Documentos de la búsqueda del 2026-11-09 que Google Académico identifica** (según los resultados, por verificar):
 
@@ -141,10 +142,10 @@ se ha leído; falta confirmar si incluye a Colombia y cómo se probó.
   PISA».
 
 **Conclusión (interpretación de Claude, por discutir):** ninguna fuente de la página 1 prueba para Colombia K1, K2, K4
-o K5. Hay antecedentes **del mismo análisis en otros países o poblaciones**: K1 en Inglaterra y Australia, K2 en primaria
-de América Latina (con el resultado contrario) y K4 en el método. Esto no quita la novedad para Colombia, pero el
-informe debería citarlos. Faltan por leer 4 posibles antecedentes: Wu (2025), Salinas-Contador (2014), Woitschach y
-Ortiz (2019) y Duarte et al. (2010).
+o K5. Hay antecedentes **del mismo análisis en otros países o poblaciones**: K1 en Inglaterra, K2 en primaria de
+América Latina (Duarte et al., 2010, leído: sin interacción significativa para Colombia en el SERCE de 2006) y K4 en el
+método. Esto no quita la novedad para Colombia, pero el informe debe citarlos. Faltan por leer 3 posibles antecedentes:
+Wu (2025), Salinas-Contador (2014) y Woitschach y Ortiz (2019).
 
 ## Fuentes de los resultados de búsqueda (URL tal como aparecieron)
 
@@ -163,8 +164,9 @@ Ortiz (2019) y Duarte et al. (2010).
 ## Qué falta (equipo)
 1. ✅ Scopus y Google Académico (2026-11-10, arriba). Si se quiere más cobertura, revisar también la página 2 de
    Google Académico.
-1b. Leer los 4 posibles antecedentes nuevos: Wu (2025), Salinas-Contador (2014), Woitschach y Ortiz (2019) y Duarte,
-   Bos y Moreno (2010, BID).
+1b. Leer los 3 posibles antecedentes que faltan: Wu (2025), Salinas-Contador (2014) y Woitschach y Ortiz (2019).
+   Duarte, Bos y Moreno (2010, BID) ya se leyó (2026-11-10, [[Literatura/duarte2010ensenan]]); falta que un integrante
+   verifique sus afirmaciones y lo agregue a Zotero.
 2. Abrir los 9 antecedentes nuevos (ACER, Oxford, Research Square, JOSPOE, Quiroz et al., OCDE WP 279, Robitzsch,
    Jerrim et al. y *Psicothema*), crear su nota en `Literatura/` (ZotLit) y corregir esta tabla.
 3. Con eso, confirmar o corregir el criterio 4 de cada candidato en [[Hallazgos]].

@@ -84,8 +84,9 @@ p_igual_sl <- as.numeric(sub("^igualdad p = ([0-9.]+);.*", "\\1", k1_sl))
 
 > **Estado del borrador.** Borrador completo redactado por Claude el 2026-11-10 con las salidas de las fases F1 a F7,
 > para que el equipo lo revise sección por sección (paso 9.1 del plan). Todas las cifras del texto y de las tablas se
-> leen de `Proyecto_PISA/salidas/` al compilar; ninguna se escribió a mano. Las citas marcadas **[VERIFICAR]** remiten a
-> fuentes cuya nota en `Vault_PISA2022/Literatura/` sigue `por_verificar`. Los párrafos marcados *(interpretación, por
+> leen de `Proyecto_PISA/salidas/` al compilar; ninguna se escribió a mano. Todas las fuentes citadas las verificó el
+> equipo contra el original (notas en `Vault_PISA2022/Literatura/`, 2026-11-10); los cortes de Chen (2007) se citan a
+> través de Sokolov (2019) porque el equipo no consiguió el artículo original. Los párrafos marcados *(interpretación, por
 > discutir)* son lecturas propuestas, no resultados. El diseño es transversal: se escribe «asociación» o «coeficiente»,
 > nunca «efecto causal» (plan, paso 9.1). Los resultados están congelados con la etiqueta `resultados-v1` (Puerta G4,
 > 2026-11-10); si se corrige un error en alguna salida, el texto cambia solo al volver a compilar.
@@ -192,7 +193,7 @@ tabla(estado, caption = "Hipótesis preregistradas y su estado (leído de salida
 
 ## Fuente y muestra analítica
 
-La única fuente es la base pública de PISA 2022 de la OCDE, consultada el 4 de octubre de 2026 [@oecd2023pisadb] **[VERIFICAR]**, bloque de Colombia (D-01):
+La única fuente es la base pública de PISA 2022 de la OCDE, consultada el 4 de octubre de 2026 [@oecd2023pisadb], bloque de Colombia (D-01):
 cuestionario del estudiante, archivo de ítems cognitivos (respuesta calificada y tiempo por ítem) y archivo de colegios.
 La muestra analítica son los estudiantes con ESCS y al menos 10 ítems de matemáticas **vistos**, es decir, respondidos u
 omitidos (D-14).
@@ -278,7 +279,7 @@ NSE general, muy parecido a HOMEPOS; el segundo factor es el de libros en el hog
 
 **Método.** Se probó si el modelo del NSE mide lo mismo en cada grupo con la secuencia configural → umbrales → cargas →
 interceptos, con la identificación de @wu2016identification y los cortes de ΔCFI (0,01) y ΔRMSEA (0,015)
-de Chen (2007), citado en @sokolov2019sensitivity [p. 8] **[VERIFICAR]**, en sus versiones *scaled*, porque `lavaan` no calcula las *robust* con
+de Chen (2007), citado en @sokolov2019sensitivity [p. 8], en sus versiones *scaled*, porque `lavaan` no calcula las *robust* con
 restricciones de igualdad (D-25). Cada variable de grupo se analizó por separado en la muestra analítica completa. H2 se
 decide con el contraste rural frente a urbana.
 

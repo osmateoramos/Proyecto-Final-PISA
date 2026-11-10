@@ -12,8 +12,8 @@ bloque: Antecedente de K2 (búsqueda de novedad 7.2)
 estado: verificado
 lectura: "Claude: texto completo del PDF público del BID (50 págs.), 2026-11-10; las páginas son las impresas (la tabla 7 está en la página 21 impresa, 24 del PDF)"
 pdf_en_zotero: sí (agregado por Claude a pedido de Mateo, 2026-11-10; grupo «Proyecto Final PISA», colección «Proyecto PISA»; clave de Better BibTeX comprobada)
-verificado_por:
-fecha_verificacion:
+verificado_por: Mateo Ramos
+fecha_verificacion: 2026-11-10
 ---
 
 # ¿Enseñan mejor las escuelas privadas en América Latina? (Duarte, Bos y Moreno, 2010)
@@ -36,13 +36,13 @@ cambia según el tipo de gestión: la misma pregunta de nuestro K2, en otra pobl
 
 ## Afirmaciones que usamos en el proyecto
 
-| # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
-|---|---|---|---|---|
-| 1 | Para América Latina en conjunto, la interacción gestión × NSE del estudiante es pequeña y no significativa en lectura de 3.º y en lectura y matemáticas de 6.º; solo es significativa (al 5 %) en matemáticas de 3.º, con relación más fuerte en las privadas (+7,08 puntos) | 20 y 21 (tabla 7) | «La diferencia es significativa (al 5%) en el caso de matemáticas para tercer grado» | por_verificar · origen: Claude, texto completo |
-| 2 | Para **Colombia**, ninguno de los 4 coeficientes de la interacción es significativo (−6,63; 1,69; 7,13; −1,47) | 21 (tabla 7) | — (cifras de la tabla 7) | por_verificar · origen: Claude, texto completo |
-| 3 | Los autores concluyen que el tipo de gestión es, en general, neutro frente a la asociación NSE–aprendizaje | 20 | «el carácter público o privado de la gestión escolar es en general neutro» | por_verificar · origen: Claude, texto completo |
-| 4 | Descriptivamente, la pendiente **entre escuelas** es más pronunciada en las privadas, y la pendiente **dentro** de la escuela es más plana en las privadas | 19 | «las pendiente entre-escuelas son mucho más pronunciadas en las de gestión privada» | por_verificar · origen: Claude, texto completo |
-| 5 | La ventaja de las privadas deja de ser significativa al controlar las condiciones familiares y la composición de la escuela, en la región y en la mayoría de países | 1 (resumen) | «disminuyen drásticamente y dejan de ser estadísticamente significativas» | por_verificar · origen: Claude, texto completo |
+| #   | Afirmación (como la usamos)                                                                                                                                                                                                                                                  | Página            | Cita textual (< 15 palabras)                                                         | Estado                                          |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------- |
+| 1   | Para América Latina en conjunto, la interacción gestión × NSE del estudiante es pequeña y no significativa en lectura de 3.º y en lectura y matemáticas de 6.º; solo es significativa (al 5 %) en matemáticas de 3.º, con relación más fuerte en las privadas (+7,08 puntos) | 20 y 21 (tabla 7) | «La diferencia es significativa (al 5%) en el caso de matemáticas para tercer grado» | verificado (Mateo, 2026-11-10) · origen: Claude |
+| 2   | Para **Colombia**, ninguno de los 4 coeficientes de la interacción es significativo (−6,63; 1,69; 7,13; −1,47)                                                                                                                                                               | 21 (tabla 7)      | — (cifras de la tabla 7)                                                             | verificado (Mateo, 2026-11-10) · origen: Claude |
+| 3   | Los autores concluyen que el tipo de gestión es, en general, neutro frente a la asociación NSE–aprendizaje                                                                                                                                                                   | 20                | «el carácter público o privado de la gestión escolar es en general neutro»           | verificado (Mateo, 2026-11-10) · origen: Claude |
+| 4   | Descriptivamente, la pendiente **entre escuelas** es más pronunciada en las privadas, y la pendiente **dentro** de la escuela es más plana en las privadas                                                                                                                   | 19                | «las pendiente entre-escuelas son mucho más pronunciadas en las de gestión privada»  | verificado (Mateo, 2026-11-10) · origen: Claude |
+| 5   | La ventaja de las privadas deja de ser significativa al controlar las condiciones familiares y la composición de la escuela, en la región y en la mayoría de países                                                                                                          | 1 (resumen)       | «disminuyen drásticamente y dejan de ser estadísticamente significativas»            | verificado (Mateo, 2026-11-10) · origen: Claude |
 
 ## Cómo se relaciona con K2 (interpretación de Claude, por discutir)
 - **Es el antecedente más cercano a K2:** misma pregunta (¿cambia la pendiente del NSE entre públicas y privadas?), en

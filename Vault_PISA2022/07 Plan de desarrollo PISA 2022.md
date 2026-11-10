@@ -492,14 +492,13 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
   - umbrales de omisión rápida NT10, NT15 y 5 s;
   - con y sin corrección por comparaciones múltiples.
   - con los pesos ajustados por no respuesta dentro de cada colegio (D-38), por la exclusión no aleatoria de D-14.
-- [x] **7.2 Búsqueda formal de novedad** *(hecha por Claude el 2026-11-09 en buscador web, SciELO y Redalyc: [[Literatura/Búsqueda de novedad F7]]; falta Scopus y Google Scholar, que hace el equipo)* en Scopus / Google Scholar / Scielo / Redalyc para cada hallazgo;
+- [x] **7.2 Búsqueda formal de novedad** *(hecha por Claude el 2026-11-09 en buscador web, SciELO y Redalyc, y el 2026-11-10 en Scopus con el acceso del CRAI de Mateo y en Google Académico, que corrió Mateo: [[Literatura/Búsqueda de novedad F7]]; falta leer los antecedentes más cercanos)* en Scopus / Google Scholar / Scielo / Redalyc para cada hallazgo;
   actualizar la [[Literatura/Matriz estado del arte|matriz]] (pasar las † a ✓ o corregir).
 - [x] **7.3 Aplicar el criterio de hallazgo innovador** *(borrador en [[Hallazgos]], 2026-11-10; las frases las aprueba el equipo)* de [[08 Rúbrica de desarrollo]] y redactar cada hallazgo en
   una frase para Colombia.
 - **Salida:** `salidas/robustez.csv`, matriz actualizada, nota `Hallazgos.md`.
-- *Estado de la G4 (2026-11-10):* acta en [[Reuniones/2026-11-10 Puerta G4]]. El PR #14 (rama `Vanessa`) ya está en
-  `main`; falta el PR de la rama `Mateo` (D-48 y reproducción en otro equipo) con la aprobación de Vanessa o Brayan, y
-  después la etiqueta `resultados-v1` sobre `main` (D-45 punto 6).
+- *Estado de la G4 (2026-11-10):* ✅ **pasa.** Los PR #14 y #15 están en `main` y los resultados quedaron congelados
+  con la etiqueta `resultados-v1` (commit `e176fb5`). Acta en [[Reuniones/2026-11-10 Puerta G4]] (falta firmarla).
 - **Listo cuando:** **Puerta G4** — resultados congelados (etiqueta Git `resultados-v1`); a partir de aquí solo se
   cambian si hay un error.
 
@@ -513,7 +512,8 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 > `salidas/`, endpoint de predicción con Singleton, 33 pruebas que pasan, Dockerfile e integración continua. Falta:
 > tablero (8.4), despliegue en Render, RAG opcional (8.5) y congelar los resultados (G4) antes de la versión final.
 
-- [ ] **8.1 Exportar** todos los resultados congelados a `salidas/*.csv|json` (la API solo lee; nunca estima).
+- [x] **8.1 Exportar** todos los resultados congelados a `salidas/*.csv|json` (la API solo lee; nunca estima).
+  *(Hecho: la API de la etiqueta `resultados-v1` carga los 28 archivos del catálogo, 2026-11-10.)*
   *(Avance: la carga lee 8 archivos de `salidas/` directamente; falta repetirla con los resultados congelados de la G4.)*
   *(2026-11-10, equipo de Mateo: con las salidas de `main` más D-48, la carga valida 28 archivos del catálogo y las
   pruebas pasan en `python:3.11.9-slim`: 65 de la API y 22 del tablero contra la API real. Se marca hecho cuando exista
@@ -550,8 +550,8 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
     - que el equipo revise cada sección y la asuma como propia;
     - completar el reparto del trabajo (9.2);
     - verificar las fuentes marcadas;
-    - congelar con la etiqueta `resultados-v1`.
-- [ ] **9.2 Declaración de uso de IA** y reparto del trabajo (igual que en el anteproyecto). *(Borrador de la
-  declaración dentro del informe, 2026-11-10; el reparto del trabajo lo completa el equipo.)*
+    - ✅ congelar con la etiqueta `resultados-v1` (hecho el 2026-11-10).
+- [x] **9.2 Declaración de uso de IA** y reparto del trabajo (igual que en el anteproyecto). *(Declaración dentro del
+  informe, 2026-11-10. El equipo decidió mantener el reparto del anteproyecto; lo comunicó Mateo el 2026-11-10.)*
 - [ ] **9.3 Ensayo cruzado:** cada uno expone una parte que no hizo; los otros dos preguntan con las autoevaluaciones de
   esta guía.

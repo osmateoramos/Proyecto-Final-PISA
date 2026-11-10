@@ -3,18 +3,18 @@ tipo: fuente
 clave_bib: okubo2022theoretical
 zotero-key: 5WQPHSSIg6703955
 clave_provisional: no
-titulo: "Theoretical considerations on scaling methodology in PISA"
-autores: "Okubo, Tomoya"
+titulo: Theoretical considerations on scaling methodology in PISA
+autores: Okubo, Tomoya
 año: "2022"
-publicacion: "OECD Education Working Papers (número por verificar), OECD Publishing"
+publicacion: OECD Education Working Papers (número por verificar), OECD Publishing
 doi_url: https://doi.org/10.1787/c224dbeb-en
-bloque: "C. Matemáticas por proceso / dimensionalidad"
-metadatos: "Crossref (sin autores) y OpenAlex (autor), consultados 2026-10-05"
-estado: por_verificar
+bloque: C. Matemáticas por proceso / dimensionalidad
+metadatos: Crossref (sin autores) y OpenAlex (autor), consultados 2026-10-05
+estado: verificado
 lectura: "IA: solo resumen (OpenAlex)"
 pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
-verificado_por:
-fecha_verificacion:
+verificado_por: Mateo Ramos
+fecha_verificacion: 2026-11-10
 ---
 
 # Theoretical considerations on scaling methodology in PISA
@@ -30,10 +30,10 @@ Revisa desde la matemática el escalamiento de PISA: TRI, regresión latente e i
 
 ## Afirmaciones que usamos en el proyecto
 
-| # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
-|---|---|---|---|---|
-| 1 | Revisa la TRI del escalamiento, la regresión latente y la imputación múltiple de PISA | resumen | "the latent regression model employed in the student prior estimation phase" | por_verificar · origen: IA, solo resumen (2026-10-05) |
-| 2 | Recomienda evaluar el ajuste y estudiar estructuras residuales por subpoblaciones | resumen | "investigating residual structures by sub-populations" | por_verificar · origen: IA, solo resumen (2026-10-05) |
+| #   | Afirmación (como la usamos)                                                           | Página  | Cita textual (< 15 palabras)                                                 | Estado                                          |
+| --- | ------------------------------------------------------------------------------------- | ------- | ---------------------------------------------------------------------------- | ----------------------------------------------- |
+| 1 | Revisa la TRI del escalamiento, la regresión latente y la imputación múltiple de PISA | resumen | "the latent regression model employed in the student prior estimation phase" | verificado (Mateo, 2026-11-10) · origen: IA, solo resumen (2026-10-05) |
+| 2 | Recomienda evaluar el ajuste y estudiar estructuras residuales por subpoblaciones | resumen | "investigating residual structures by sub-populations" | verificado (Mateo, 2026-11-10) · origen: IA, solo resumen (2026-10-05) |
 
 ## Qué NO dice (para no citarlo mal)
 No analiza datos de un país ni el NSE.

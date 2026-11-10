@@ -467,7 +467,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - H1 con los dos CFI;
   - el resto tal cual.
 
-  Mateo y Brayan la revisan en el PR.
+  Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 
 ### D-17 · 2026-10-17 · Versiones de R y de los paquetes, mientras se arma Docker
 - **Problema:** los scripts se corren en máquinas con versiones distintas, y una diferencia de versión puede cambiar
@@ -581,8 +581,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
      reportan tal cual y se resuelven con una decisión registrada.
 - **Salidas previstas:** `scripts/03_nse_afc.R` → `salidas/nse_ajuste_afc.csv`, `salidas/nse_cargas_afc.csv` y
   `salidas/nse_omega_afc.csv`.
-- **Estado:** ✅ aceptada por Vanessa (2026-10-18): H1 con los modelos puros y la sensibilidad (b). Mateo la revisa en
-  el PR.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-18): H1 con los modelos puros y la sensibilidad (b). Mateo la revisa en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 - **Resultado del 3.4** (`scripts/03_nse_afc.R` → `salidas/nse_ajuste_afc.csv`, `nse_h1_afc.csv`,
   `nse_cargas_afc.csv`, `nse_omega_afc.csv` y `nse_residuos_afc.csv`; mitad de confirmación, n = 3.441;
   2026-10-18; los 7 modelos convergieron y `lavaan` no dio avisos):
@@ -728,7 +727,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
       no tienen libros quedan todos en el piso;
     - el factor económico es el que mide en un rango más amplio, también el NSE bajo.
 - **Estado:** ✅ aceptada por Vanessa (2026-10-17), tal cual: S-X² en casos completos e incluido el modelo exploratorio
-  del AFE. Mateo la revisa en el PR.
+  del AFE. Revisada por Mateo (2026-11-10): de acuerdo.
 
 ### D-20 · 2026-10-17 · Los saltos del cuestionario en los indicadores del NSE valen 0, no faltante: tipos de libros (ST256) y dispositivos (ST254) (F3)
 - **Problema:** D-12 convierte en `NA` todo faltante de usuario, incluido el «Valid Skip» (código 95). El cuestionario
@@ -770,7 +769,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - el resultado del 3.2 en D-16 se actualiza y se deja constancia del anterior;
   - **los puntos 7 y 8 de D-16 (estructura y regla de H1) no cambian**;
   - Mateo corre el 3.4 con los datos ya corregidos.
-- **Estado:** ✅ aceptada por Vanessa (2026-10-17). Mateo la revisa en el PR (afecta los datos de su 3.4).
+- **Estado:** ✅ aceptada por Vanessa (2026-10-17). Mateo la revisa en el PR (afecta los datos de su 3.4). Revisada por Mateo (2026-11-10): de acuerdo.
 
 ### D-21 · 2026-10-18 · Mejoras P1–P6 de la nota 14 y dependencia local en la TRI del NSE (P1, F3)
 - **Problema:** [[14 Libros de TRI y SEM]] propuso el 2026-10-05 siete mejoras al plan (P1–P7) y nadie las había
@@ -805,7 +804,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
      *testlet* o sumar los ítems dependientes como un solo ítem politómico, como dice P1), que necesitaría una
      decisión nueva.
 - **Salida prevista:** `scripts/03_nse_tri.R` (sección 3.3b) → `salidas/nse_q3_tri.csv`.
-- **Estado:** ✅ aceptada por Vanessa (2026-10-18).
+- **Estado:** ✅ aceptada por Vanessa (2026-10-18). Revisada por Mateo (2026-11-10): de acuerdo.
 - **Resultado del 3.3b** (`scripts/03_nse_tri.R` → `salidas/nse_q3_tri.csv`; 6.886 estudiantes, sin pesos;
   2026-10-18; 406 pares por modelo):
 
@@ -883,7 +882,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     *m* (*m* = 1…10), por competencia. No se promedian los PV por estudiante ni se corrige por atenuación. La segunda
     parte de H7 (más alta con la propia competencia que con las otras) se calcula igual.
 - **Estado:** ✅ aceptada por Vanessa (2026-10-18), salvo los dos puntos marcados «por decidir» y «propuesta». Se
-  copian como anexo en [[09 Hipótesis preregistradas]].
+  copian como anexo en [[09 Hipótesis preregistradas]]. Revisada por Mateo (2026-11-10): de acuerdo.
 
 ### D-23 · 2026-10-18 · Pendientes de la F5 y la F6 detectados en la revisión del 2026-10-18
 - **Problema:** la revisión de tutor del 2026-10-18 encontró puntos del plan que hay que decidir antes de que
@@ -911,7 +910,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   6. **Criterios ΔCFI y ΔRMSEA de la F4.** Si D-10 queda en (b), Chen (2007) sale del proyecto y hace falta otra
      fuente de acceso abierto.
 - **Estado:** propuesta. Cada punto se decide antes de su fase: el 6, antes de la F4; del 1 al 4, antes de la F5; el
-  5, antes de la F6.
+  5, antes de la F6. Revisada por Mateo (2026-11-10): de acuerdo.
   - *2026-10-18:* el punto 6 quedó cerrado en D-25 y los puntos 1 a 4, en D-27. ~~Sigue abierto el 5 (errores
     estándar de la F6).~~ *2026-11-08:* el punto 5 se cierra en D-34 (BRR en las cifras finales).
 
@@ -959,7 +958,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 - **Propuesta (por confirmar):** repetir en la F7 los resultados principales con la estructura de D-16, como
   robustez.
 - **Estado:** ✅ **la Puerta G2 pasa con el desajuste documentado** (Vanessa, 2026-10-18). Mateo y Brayan revisan y
-  firman el acta ([[Reuniones/2026-10-18 Puerta G2]]).
+  firman el acta ([[Reuniones/2026-10-18 Puerta G2]]). Revisada por Mateo (2026-11-10): de acuerdo.
 
 ### D-25 · 2026-10-18 · Cómo se prueba la invarianza del NSE (F4, O2, H2)
 - **Problema:** el plan (F4) y D-22/D-23 dejan abiertos varios puntos que cambian los resultados de la invarianza:
@@ -1056,7 +1055,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - categorías con menos de 10 respuestas unidas;
   - lo demás como está propuesto.
 
-  Mateo y Brayan la revisan en el PR.
+  Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 - *El punto 7 se corrige en D-26:* la prueba TRI del DIF va sin pesos.
 
 ### D-26 · 2026-10-18 · La prueba TRI del DIF va sin pesos (corrige D-25 punto 7)
@@ -1078,7 +1077,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - *Por qué:* con pesos, la verosimilitud es una pseudo-verosimilitud y compararla es descriptivo, no una prueba
     (D-19 punto 4). Las pruebas de Wald necesitarían errores estándar que con pesos no reflejan el diseño (D-16
     punto 5).
-- **Estado:** ✅ aceptada por Vanessa (2026-10-18). Mateo y Brayan la revisan en el PR.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-18). Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 - **Resultado del 4.4 y de H2** (`scripts/04_invarianza.R` → `salidas/nse_dif_posesiones.csv` e `inv_h2.csv`,
   2026-10-18; 116 pruebas en 8 análisis, 4 contrastes por 2 factores; todos los X² positivos):
 
@@ -1224,7 +1223,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     - `MHRM` sigue descartado: no admite pesos en `mirt` 1.46.1.
     - El caché del modelo guarda una huella de los datos y de esta configuración, como en la F3 y la F4 (observación 2
       de Brayan, PR #12): si cambia alguna de las dos, se reestima.
-    - Mateo y Brayan la revisan en el PR.
+    - Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
   - ✅ **Puntajes del 5.4 con regresión latente (Vanessa, 2026-10-20), antes de programar.**
     - *Verificación técnica (2026-10-20, scripts de prueba del scratchpad, no del proyecto):*
       - con `mirt` 1.46.1, la regresión latente se estima con los ítems **fijos** en los parámetros del modelo de 4
@@ -1339,7 +1338,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     anterior.
   - Costo: el caché `COL_inv_cfa.rds` guarda solo las tablas, no los modelos ajustados, así que hay que rehacer el
     AFC una vez (unos 11 minutos, `REHACER_INV = 1`). El DIF no se toca.
-- **Estado:** ✅ (b) aceptada por Vanessa (2026-10-19). Mateo y Brayan la revisan en el PR.
+- **Estado:** ✅ (b) aceptada por Vanessa (2026-10-19). Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
   - Para que los cachés anteriores se rehagan solos en cualquier máquina, la huella del caché del AFC incluye la
     marca «D-28» (observaciones 2 y 4 de Brayan, PR #12).
   - **Resultado (2026-10-19, `salidas/invarianza_tabla.csv`):** la prueba de diferencia sale significativa en 10 de
@@ -1449,7 +1448,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - se continúa con el paso 5.4 y el modelo de 4 competencias, verificando su ajuste, convergencia y precisión, y
     reconociendo las limitaciones de las correlaciones altas.
 - **Estado:** ✅ (d) aceptada por Vanessa (2026-10-20), con la operacionalización y sus ajustes; los cortes de V2 y V3
-  se fijan antes de estimar el bifactor. Mateo y Brayan la revisan en el PR.
+  se fijan antes de estimar el bifactor. Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 
 ### D-30 · 2026-10-20 · Estrategia de integración adaptativa para la posterior del 5.4 (posterior al resultado de V1)
 - **Contexto:** V1 no se cumplió (D-27, 2026-10-20). El diagnóstico apunta a la integración en las colas: los
@@ -1477,7 +1476,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   validarlas sin depender de la aproximación que falla. La generación definitiva de puntajes queda detenida hasta
   resolver la validación.
 - **Estado:** ✅ aceptada por Vanessa (2026-10-20); la estrategia concreta está por decidir. Mateo y Brayan la revisan
-  en el PR.
+  en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 
 ### D-31 · 2026-10-20 · Métodos, referencia independiente y contingencias para la posterior del 5.4 (posterior al resultado de V1)
 - **Contexto:** sigue de D-30. Se decide **después** de conocer el fallo de V1, y así se declara. Ningún código de esta
@@ -1562,7 +1561,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - *Precisión de Vanessa:* cuatro cadenas y ESS ≥ 1.000 no garantizan por sí solos la calidad de E3. Se evalúan juntos
     la convergencia, la mezcla, el error Monte Carlo de las EAP y la cobertura de la posterior. Si E3 no se puede
     validar, no se convierte en referencia: se documenta el fallo y se revisa el diseño antes de producir puntajes.
-- **Estado:** ✅ aceptada por Vanessa (2026-10-20), con los pendientes resueltos; falta elegir el paquete de MCMC. Mateo y Brayan la revisan en el PR.
+- **Estado:** ✅ aceptada por Vanessa (2026-10-20), con los pendientes resueltos; falta elegir el paquete de MCMC. Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
   - *Modificada por D-33 (2026-11-08):* solo E1, con plazo; E2, E3 y el paquete de MCMC no se hacen.
 
 ### D-32 · 2026-11-08 · Con qué puntajes se responde O4 después de rechazar H8 (F5–F6; desviación del preregistro)
@@ -1605,7 +1604,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   de la revisión del 2026-09-29 sobre los 7.804 estudiantes, que incluyen a la mitad de confirmación, así que ninguna
   parte de estos datos es independiente de su origen. La nota de H5 en la nota 09 ya la llama «exploratoria en origen».
 - **Estado:** ✅ (a) aceptada por Vanessa (2026-11-08). ~~La propuesta sobre H5, por confirmar.~~ *H5 exploratoria:
-  confirmada por Vanessa el mismo día.* Mateo y Brayan la revisan en el PR.
+  confirmada por Vanessa el mismo día.* Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 
 ### D-33 · 2026-11-08 · El 5.4 sigue solo con E1 y con plazo (modifica D-31)
 - **Contexto:** V1 no se cumple (`salidas/mat_posterior_V1.csv`: diferencia máxima de 0,206 a 0,254 DE). D-31 preveía
@@ -1630,7 +1629,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - *Orden:* (1) E1 sin covariables frente a la referencia en los 277; (2) V2 y V3 en los 6.886; (3) solo si se
     cumplen, la regresión latente de D-27 punto 4 con los ítems fijos, y E1 con covariables.
 - **Estado:** ✅ aceptada por Vanessa (2026-11-08); detalles de implementación por confirmar. Mateo y Brayan la revisan
-  en el PR.
+  en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 - **Reproducción previa (2026-11-08, en este equipo, donde no estaban los cachés de la F5):** `05_tri_competencias.R`
   (sin el bifactor) re-estimó los modelos de 1 y 4 dimensiones y V1. `mat_matriz_resumen.csv`, `mat_ajuste.csv` y
   `mat_posterior_V1.csv` salieron idénticos a los del commit, salvo los minutos de cálculo.
@@ -1672,7 +1671,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
      modelo), combinados con Rubin.
   3. Lo demás (AFC, TRI, DIF) queda como estimación puntual descriptiva, con el aviso de que sus errores no reflejan el
      diseño.
-- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 - **Resultado del punto 1 (2026-11-09, `04_medias_brr.R` → `salidas/nse_medias_latentes_brr.csv`):** las 80 réplicas
   convergieron en los cuatro análisis (ninguna exclusión).
 
@@ -1719,7 +1718,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     - De paso se corrige que la vuelta 2 del DIF aplicaba Benjamini-Hochberg solo a los ítems probados, mientras las
       anclas conservaban el valor de la vuelta 1 (`04_invarianza.R`, líneas 278–283): se recalcula sobre los valores p
       finales de cada análisis y factor, como una sola familia.
-- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 - **Resultado de S1** (`scripts/03_nse_sens_d20.R` → `salidas/nse_sens_d20_resumen.csv` y `nse_sens_d20_items.csv`;
   2026-11-08; 1.002 estudiantes sin libros y 182 sin dispositivos con los saltos como faltantes; el EM convergió):
 
@@ -1764,7 +1763,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - La magnitud no cambia (D-22): Mantel-Haenszel en los dicotómicos, estratificado por deciles de la EAP **del modelo
     multigrupo** (D-35, S2), y ΔR² ≥ 0,035 en los de crédito parcial.
   - La segunda parte de H3 (Fisher, interpretar + formular frente a emplear) no cambia.
-- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 
 ### D-37 · 2026-11-08 · Interacciones en la regresión latente de los puntajes propios (modifica D-27 punto 4)
 - **Problema:** el modelo de condicionamiento de D-27 punto 4 solo tiene efectos principales (NSE, sexo, grado, zona y
@@ -1774,7 +1773,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 - **Decisión (Vanessa, 2026-11-08):** si E1 se valida (D-33), la regresión latente incluye además **NSE económico ×
   zona y NSE económico × sector** (con las categorías «sin dato» de D-27). Solo afecta a los puntajes propios, que son
   secundarios (D-32). Con los VP de la OCDE no se puede cambiar el condicionamiento: se declara como límite de H6.
-- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 
 ### D-38 · 2026-11-08 · Sensibilidad de la F7 a la exclusión no aleatoria: reponderación por colegio (D-14)
 - **Problema:** los 918 excluidos de la muestra analítica rinden 14,6 puntos menos (EE 3,0; z = −4,86;
@@ -1786,7 +1785,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   se reportan aparte.
   - *Por qué así:* es simple y sigue la lógica del ajuste de no respuesta dentro de las celdas del diseño; corrige la
     parte de la exclusión que se explica por el colegio, no la que ocurre dentro de él (interpretación).
-- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 
 ### D-39 · 2026-11-08 · Cómo se estima la regresión latente del 5.4 (paso 3 de D-33)
 - **Problema:** con E1 validado (D-33), falta estimar la regresión latente de D-27 punto 4 (con las interacciones de
@@ -1819,7 +1818,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     la covarianza de las EAP más la covarianza posterior media).
   - Los coeficientes de Γ se reportan sin errores estándar: son parámetros del modelo de imputación, no estimaciones
     para interpretar (las inferencias van en la F6 con BRR, D-34).
-- **Estado:** ✅ aceptada por Vanessa (2026-11-08): EM propio y `GRADE` categórico. Mateo y Brayan la revisan en el PR.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08): EM propio y `GRADE` categórico. Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 - **Resultado (2026-11-09, `05_puntajes_rl.R`; log de la corrida en el scratchpad de Claude, no en el repositorio):**
   - **Convergencia:** el EM convergió en 45 iteraciones (último paso: cambio de Γ 0,0000948 y de Σ 0,0000266). Los
     530,8 minutos de `minutos_EM_esta_corrida` incluyen unas 6 horas en que el equipo estuvo suspendido; no es el
@@ -1872,7 +1871,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   pueden probar con el modelo multigrupo (punto 2): `CM948Q03S`, `CM955Q03S`, `CMA152Q02S`, `DM949Q03C`, `DMA136Q02C`,
   `DMA142Q02C`, `CM464Q01S`, `CM943Q02S`, `DM462Q01C`, `DMA146Q03C` y `DMA156Q01C`. Se prueban 154.
 - **Estado:** ✅ aceptada por Vanessa (2026-11-08): Fisher de una cola, pesos como en la F4 e ítems con todas sus
-  categorías en los dos grupos. Mateo y Brayan la revisan en el PR.
+  categorías en los dos grupos. Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 - **Resultado (2026-11-09, `05_dif_matematicas.R` → `salidas/mat_dif.csv`, `mat_dif_resumen.csv` y `mat_h3.csv`):**
   - Vuelta 1: 14 de 154 significativos con BH; vuelta 2 con 199 anclas depuradas. Media latente de Q1 frente a Q4 en el
     modelo de la vuelta 1: −1,207 DE.
@@ -1921,7 +1920,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 - **Salidas previstas:** `scripts/05_h4_h7.R` → `salidas/mat_h4_brechas.csv`, `mat_h4.csv`, `mat_h7_correlaciones.csv`,
   `mat_h7.csv` y `mat_p3_enlace.csv`.
 - **Estado:** ✅ aceptada por Vanessa (2026-11-08): regresión latente fija, números comunes y P3 con los dicotómicos.
-  Mateo y Brayan la revisan en el PR.
+  Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 - **Resultado (2026-11-09, `05_h4_h7.R`, con los puntajes validados de D-39):**
   - **H4 se rechaza** (`salidas/mat_h4_brechas.csv` y `mat_h4.csv`). La brecha Q4 − Q1 con la calificación (a) es de
     1,17 a 1,23 DE. Tratar las omisiones rápidas como faltantes la reduce solo **0,0073 a 0,0075 DE** (EE ≈ 0,004),
@@ -1978,7 +1977,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 - **Salidas previstas:** `scripts/06_sem_competencias.R` → `salidas/sem_coeficientes.csv`, `sem_igualdad.csv`,
   `sem_h5.csv`, `sem_h6.csv` y `sem_robustez_latente.csv`.
 - **Estado:** ✅ aceptada por Vanessa (2026-11-08): dos pasos con SEM de robustez, Wald conjunto por variable con Holm y
-  grado categórico. Mateo y Brayan la revisan en el PR.
+  grado categórico. Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 - **Resultado del análisis principal** (`scripts/06_sem_competencias.R` → `salidas/sem_coeficientes.csv`, `sem_igualdad.csv`,
   `sem_h5.csv`, `sem_h6.csv` y `sem_h6_interacciones.csv`; 2026-11-08; 10 VP de la OCDE × 81 pesos; 6.886 estudiantes):
 
@@ -2032,7 +2031,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 - **Salidas previstas:** `scripts/05_p3_robusto.R` → `salidas/mat_p3_robusto.csv` (por competencia) y
   `mat_p3_baja_discriminacion.csv` (ítems con a < 0,3; parámetros de ítems, sin datos de estudiantes).
 - **Estado:** ✅ aceptada por Vanessa (2026-11-09): Spearman como principal, media–sigma con a ≥ 0,3 y la lista de
-  ítems de baja discriminación. Mateo y Brayan la revisan en el PR.
+  ítems de baja discriminación. Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 - **Resultado (2026-11-09, `05_p3_robusto.R`):**
 
   | Competencia | Spearman (todos) | Ítems con a ≥ 0,3 / excluidos | Pearson (a ≥ 0,3) | Pendiente A | Intercepto B | RMSD |
@@ -2079,7 +2078,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   `sem_ajuste_latente.csv` y `sem_diagrama.png`. Las salidas del análisis principal no deben cambiar (se comprueba con
   `git diff`).
 - **Estado:** ⏳ aplicada por encargo de Vanessa («cierra la F6»); falta que confirme los puntos 1 a 5. Mateo y Brayan la
-  revisan en el PR.
+  revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 - **Resultado de los puntos 1 a 3 (2026-11-09, `06_sem_competencias.R` → `salidas/sem_comparacion_fuentes.csv` y
   `sem_propios_*.csv`):** las salidas del análisis principal no cambiaron (`git status` sin cambios en ellas).
 
@@ -2155,7 +2154,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   `scripts/05_dif_matematicas.R` con la variable de entorno `F7_VARIANTE` (`escs`, `sin_lineal`, `d38`) →
   `salidas/f7_dif_<variante>.csv` y `f7_h3_<variante>.csv`; nota `Vault_PISA2022/Hallazgos.md`; acta de la G4.
 - **Estado:** ✅ aceptada por Vanessa (2026-11-09): 5 candidatos con regla del 75 %, DIF con TRI completo, búsqueda
-  documentada por Claude y etiqueta después del PR. Mateo y Brayan la revisan en el PR.
+  documentada por Claude y etiqueta después del PR. Mateo y Brayan la revisan en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 - *Al programar (2026-11-09, antes de ver resultados):* en S-E, los cuartiles de H4 se recalculan con el peso final
   ajustado. `wls81()`, `rubin_vec()` y `wald()` pasan de `06_sem_competencias.R` a `utilidades_pisa.R` (las salidas de la
   F6 no cambian). Variantes del DIF también en `f7_dif_resumen_<variante>.csv`.
@@ -2208,6 +2207,23 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - *Qué se congela (propuesta de Claude, 2026-11-10; el equipo la confirma en el PR):* `salidas/` conserva los archivos
     de la primera corrida (los de `main`), porque son los que citan D-39, D-42, D-44 y el informe. La reproducción
     queda como evidencia de que la cadena es reproducible; sus archivos no se suben.
+- **Puerta G4 (punto 6), 2026-11-10:** el PR #14 (rama `Vanessa`) lo fusionó Mateo y el PR #15 (rama `Mateo`) lo
+  fusionó Vanessa, con la integración continua en verde; ninguno registra una revisión aprobada en GitHub. Mateo pidió
+  crear la etiqueta, y Claude creó y subió `resultados-v1` sobre `main` (commit `e176fb5`). Desde aquí `salidas/` solo
+  cambia si se corrige un error.
+- **Punto 4 en Scopus (2026-11-10):** con el acceso del CRAI USTA de Mateo, Claude corrió las 10 cadenas en Scopus a su
+  pedido: 7 dieron 0 resultados y 3 dieron 1 documento cada una, ninguno sobre Colombia ni antecedente de K1, K2, K4 o K5
+  ([[Literatura/Búsqueda de novedad F7]]). La búsqueda no cambia ningún resultado congelado.
+  - *Google Académico (2026-11-10):* Mateo corrió las 10 cadenas desde otro computador (en el suyo Google bloqueó las
+    consultas) y Claude revisó la página 1 de cada una: ningún antecedente para Colombia. Hay análisis parecidos en otros
+    países o poblaciones. El más cercano a K2 es Duarte, Bos y Moreno (2010, BID), que Claude leyó en texto completo
+    ([[Literatura/duarte2010ensenan]], por verificar): con el SERCE de 2006 en primaria, la interacción gestión × NSE
+    no fue significativa para Colombia. Los otros 3 posibles antecedentes (Wu 2025, Woitschach y Ortiz 2019, Salinas
+    2014) se revisaron el mismo día y no lo son. Mateo verificó la nota de Duarte et al. y Claude la agregó a Zotero.
+  - **Decisión del equipo (2026-11-10):** el criterio 4 deja de ser provisional para K1, K2, K4 y K5. La comunicó Mateo,
+    que dijo estar hablando con Vanessa y Brayan y que ellos la aprueban. Con eso, K2 queda como hallazgo (citando a
+    Duarte et al. como antecedente en otra población) y K5 como hallazgo parcial; K1 sigue exploratorio, K3 réplica y K4
+    nulo. El informe declara que no encontrar un antecedente no prueba que no exista.
 
 ### D-46 · 2026-11-09 · Diseño de la API (F8, paso 8.2): stack, persistencia y endpoint de predicción
 - **Problema:** la F8 debe cumplir las buenas prácticas del curso de Python (documento del curso que Vanessa dio a
@@ -2230,7 +2246,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   4. **Rama:** `Vanessa`, en el mismo PR; Brayan la revisa y la continúa (la API y el tablero son su área según el reparto
      de [[17 Plan de trabajo Brayan]], línea 18).
 - **Estado:** ✅ aceptada por Vanessa (2026-11-09): 3.11.9, SQLite desde `salidas/`, endpoint de predicción y rama
-  `Vanessa`. Brayan la revisa en el PR.
+  `Vanessa`. Brayan la revisa en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 - **Resultado (2026-11-09):** `Proyecto_PISA/api/` con 11 endpoints, carga validada de 8 archivos de `salidas/` a SQLite
   (29 + 234 + 16 + 10 + 154 + 32 + 12 + 5 filas y las 8 hipótesis) y 33 pruebas con pytest que pasan en Python 3.11.9.
   El servidor real (uvicorn) responde: con NSE económico 1 y lo demás en la referencia, emplear da 410,1 = 384,62 +
@@ -2264,7 +2280,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
      coeficientes de la F6 (D-42); al pasar el cursor se ve el valor y la etiqueta oficial de cada indicador.
   - *Regla de los textos:* las cifras que aparecen en los textos se leen de la API, no se escriben a mano; las
     interpretaciones repiten las del registro (D-xx) y se marcan como tales.
-- **Estado:** ✅ pedido por Vanessa (2026-11-09). Brayan lo revisa en el PR.
+- **Estado:** ✅ pedido por Vanessa (2026-11-09). Brayan lo revisa en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
 
 ### D-48 · 2026-11-10 · Análisis confirmatorio de los ítems por competencia (exploratorio; sugerencia del profesor de SEM)
 - **Contexto:** en la clase de Modelación de Ecuaciones Estructurales, el profesor sugirió un análisis factorial

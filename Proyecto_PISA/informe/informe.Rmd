@@ -84,11 +84,13 @@ p_igual_sl <- as.numeric(sub("^igualdad p = ([0-9.]+);.*", "\\1", k1_sl))
 
 > **Estado del borrador.** Borrador completo redactado por Claude el 2026-11-10 con las salidas de las fases F1 a F7,
 > para que el equipo lo revise sección por sección (paso 9.1 del plan). Todas las cifras del texto y de las tablas se
-> leen de `Proyecto_PISA/salidas/` al compilar; ninguna se escribió a mano. Las citas marcadas **[VERIFICAR]** remiten a
-> fuentes cuya nota en `Vault_PISA2022/Literatura/` sigue `por_verificar`. Los párrafos marcados *(interpretación, por
+> leen de `Proyecto_PISA/salidas/` al compilar; ninguna se escribió a mano. Todas las fuentes citadas las verificó el
+> equipo contra el original (notas en `Vault_PISA2022/Literatura/`, 2026-11-10); los cortes de Chen (2007) se citan a
+> través de Sokolov (2019) porque el equipo no consiguió el artículo original. Los párrafos marcados *(interpretación, por
 > discutir)* son lecturas propuestas, no resultados. El diseño es transversal: se escribe «asociación» o «coeficiente»,
-> nunca «efecto causal» (plan, paso 9.1). Los resultados se congelan con la etiqueta `resultados-v1` (Puerta G4), que se
-> crea sobre `main` al cerrar la puerta; si alguna salida cambia antes, el texto cambia solo al volver a compilar.
+> nunca «efecto causal» (plan, paso 9.1). El anexo final explica las siglas, los códigos del proyecto (O, H, F, G, D,
+> K, S…) y los 29 indicadores del NSE. Los resultados están congelados con la etiqueta `resultados-v1` (Puerta G4,
+> 2026-11-10); si se corrige un error en alguna salida, el texto cambia solo al volver a compilar.
 
 # Resumen
 
@@ -126,23 +128,22 @@ cuyo dominio principal fue matemáticas, la muestra de Colombia fue de `r ent(n_
 `r num(g1[cifra %like% "Varianza", estimacion])` % de la variación del desempeño en matemáticas y la diferencia entre el
 cuartil más alto y el más bajo del índice oficial es de `r num(g1[cifra %like% "Brecha", estimacion])` puntos
 (cálculo propio, `02_validacion_ocde.R`, que reproduce las cifras publicadas: 16 % y 79 puntos en la nota de país de
-Colombia de la OCDE, p. 5). El informe nacional también reporta el 16 % [@icfes2024pisa, p. 46] **[VERIFICAR]**.
+Colombia de la OCDE, p. 5). El informe nacional también reporta el 16 % [@icfes2024pisa, p. 46].
 
 Que el NSE se asocie con el desempeño no es lo que el proyecto busca redescubrir. El problema está en dos decisiones de
 medición que suelen tomarse sin discusión y que determinan la magnitud de la brecha que se reporta (anteproyecto,
 sección 1):
 
 1. **Cómo se mide el NSE.** El índice oficial de PISA (ESCS) combina ocupación y educación de los padres y posesiones del
-   hogar; la OCDE evalúa su comparabilidad entre países y grupos de idioma [@oecd2024pisa2022tr] **[VERIFICAR]**, pero no
+   hogar; la OCDE evalúa su comparabilidad entre países y grupos de idioma [@oecd2024pisa2022tr], pero no
    dentro de un país, entre zonas, sectores o sexos. La propia OCDE reconoce que su índice de posesiones se escala como
    una medida unidimensional [@avvisati2024measurement, pp. 11, 48]. En Colombia, el INSE del Icfes también asume una
-   sola dimensión [@icfes2019inse] **[VERIFICAR]**, mientras que la literatura internacional distingue al menos una
-   dimensión económica y otra cultural [@hernandez2011modelo; @eriksson2021socioeconomic] **[VERIFICAR]**.
+   sola dimensión [@icfes2019inse], mientras que la literatura internacional distingue al menos una
+   dimensión económica y otra cultural [@hernandez2011modelo; @eriksson2021socioeconomic].
 2. **Cómo se califica el desempeño.** El seguimiento público de las brechas se hace sobre puntajes agregados
-   [@lee2024decada] **[VERIFICAR]**. PISA 2022 define cuatro procesos matemáticos —formular, emplear, interpretar y
-   razonar—, pero el informe nacional los reporta solo como promedios del país, sin cruzarlos con el NSE [@icfes2024pisa]
-   **[VERIFICAR]**. Además, PISA califica como incorrectas las respuestas omitidas, y el desenganche en la prueba puede
-   variar con el NSE [@rios2022investigation] **[VERIFICAR]**.
+   [@lee2024decada]. PISA 2022 define cuatro procesos matemáticos —formular, emplear, interpretar y
+   razonar—, pero el informe nacional los reporta solo como promedios del país, sin cruzarlos con el NSE [@icfes2024pisa]. Además, PISA califica como incorrectas las respuestas omitidas, y el desenganche en la prueba puede
+   variar con el NSE [@rios2022investigation].
 
 En este informe llamamos **competencias** a esos cuatro procesos.
 
@@ -152,13 +153,11 @@ de las cuatro competencias matemáticas de PISA 2022, y cuánto de la brecha obs
 desempeño?
 
 **Antecedentes y vacío** (anteproyecto, sección 2). Los estudios colombianos relacionan puntajes observados con
-covariables socioeconómicas sin modelar el error de medición del NSE [@collazos2021determinantes; @rodriguez2024rural]
-**[VERIFICAR]**. El único antecedente encontrado que prueba invarianza del NSE entre grupos de estudiantes dentro de un
-país lo hace por origen inmigrante en Noruega y Suecia [@mittal2022assessing] **[VERIFICAR]**. El DIF por NSE en
+covariables socioeconómicas sin modelar el error de medición del NSE [@collazos2021determinantes; @rodriguez2024rural]. El único antecedente encontrado que prueba invarianza del NSE entre grupos de estudiantes dentro de un
+país lo hace por origen inmigrante en Noruega y Suecia [@mittal2022assessing]. El DIF por NSE en
 matemáticas está documentado en México [@garcia2016analisis] y, con PISA 2022, en Corea con dos subpruebas
-[@goh2024detection] **[VERIFICAR]**, pero no en Colombia ni por competencia. Y ningún estudio revisado cuantifica cuánto
-cambia la brecha socioeconómica de Colombia según cómo se califiquen las omisiones [@pohl2014dealing; @kohler2015taking]
-(Pohl et al. **[VERIFICAR]**).
+[@goh2024detection], pero no en Colombia ni por competencia. Y ningún estudio revisado cuantifica cuánto
+cambia la brecha socioeconómica de Colombia según cómo se califiquen las omisiones [@pohl2014dealing; @kohler2015taking].
 
 # Objetivos e hipótesis
 
@@ -195,7 +194,7 @@ tabla(estado, caption = "Hipótesis preregistradas y su estado (leído de salida
 
 ## Fuente y muestra analítica
 
-La única fuente es la base pública de PISA 2022 de la OCDE [@oecd2023pisadb] **[VERIFICAR]**, bloque de Colombia (D-01):
+La única fuente es la base pública de PISA 2022 de la OCDE, consultada el 4 de octubre de 2026 [@oecd2023pisadb], bloque de Colombia (D-01):
 cuestionario del estudiante, archivo de ítems cognitivos (respuesta calificada y tiempo por ítem) y archivo de colegios.
 La muestra analítica son los estudiantes con ESCS y al menos 10 ítems de matemáticas **vistos**, es decir, respondidos u
 omitidos (D-14).
@@ -216,7 +215,7 @@ la fase de robustez repite los resultados principales con un ajuste de no respue
 ## Validación del diseño (Puerta G1)
 
 Antes de cualquier modelo se reprodujeron tres cifras publicadas con los 10 valores plausibles, el peso final y las 80
-réplicas BRR con Fay 0,5 [@oecd2024pisa2022tr, p. 198, fórmula 10.9; reglas de Rubin, p. 226] **[VERIFICAR]**. Las tres
+réplicas BRR con Fay 0,5 [@oecd2024pisa2022tr, p. 198, fórmula 10.9; reglas de Rubin, p. 226]. Las tres
 coinciden con lo publicado dentro del redondeo, lo que confirma que el procesamiento de pesos, réplicas y valores
 plausibles es correcto.
 
@@ -234,8 +233,8 @@ pregunta por una respuesta anterior (por ejemplo, los tipos de libros a quien no
 como 0 y no como faltante (D-20). La muestra se dividió en dos mitades por colegio
 (`r ent(mit[mitad == "exploracion", n])` y `r ent(mit[mitad == "confirmacion", n])` estudiantes; `salidas/nse_mitades.csv`):
 en la de exploración se hizo un análisis factorial exploratorio (AFE) y en la de confirmación un análisis factorial
-confirmatorio (AFC) con WLSMV en `lavaan` [@rosseel2012lavaan] **[VERIFICAR]**. Luego se calibraron los ítems con TRI
-(2PL y crédito parcial generalizado) en `mirt` [@chalmers2012mirt] **[VERIFICAR]** sobre la muestra analítica completa.
+confirmatorio (AFC) con WLSMV en `lavaan` [@rosseel2012lavaan]. Luego se calibraron los ítems con TRI
+(2PL y crédito parcial generalizado) en `mirt` [@chalmers2012mirt] sobre la muestra analítica completa.
 
 **Resultado (H1).** El modelo de dos factores mejora claramente al de uno: el CFI *scaled* sube
 `r num(h1[1, dCFI_scaled], 3)` y la prueba de diferencia lo confirma (Δχ² = `r num(h1[1, LRT_dif_chi2])` con
@@ -280,8 +279,8 @@ NSE general, muy parecido a HOMEPOS; el segundo factor es el de libros en el hog
 # Invarianza del NSE (O2, F4)
 
 **Método.** Se probó si el modelo del NSE mide lo mismo en cada grupo con la secuencia configural → umbrales → cargas →
-interceptos, con la identificación de @wu2016identification **[VERIFICAR]** y los cortes de ΔCFI (0,01) y ΔRMSEA (0,015)
-de @chen2007sensitivity **[VERIFICAR]**, en sus versiones *scaled*, porque `lavaan` no calcula las *robust* con
+interceptos, con la identificación de @wu2016identification y los cortes de ΔCFI (0,01) y ΔRMSEA (0,015)
+de Chen (2007), citado en @sokolov2019sensitivity [p. 8], en sus versiones *scaled*, porque `lavaan` no calcula las *robust* con
 restricciones de igualdad (D-25). Cada variable de grupo se analizó por separado en la muestra analítica completa. H2 se
 decide con el contraste rural frente a urbana.
 
@@ -450,7 +449,7 @@ fijado en D-41 quedaba dominado por ítems con discriminación casi nula, un err
 
 **Método (D-42).** Análisis principal en dos pasos: para cada competencia y cada uno de los 10 VP de la OCDE, regresión
 ponderada sobre las puntuaciones del NSE económico y de libros (G2), con sexo y grado como covariables; errores con las
-80 réplicas BRR y reglas de Rubin [@rubin1987multiple] **[VERIFICAR]** (810 ajustes por modelo). Los coeficientes se
+80 réplicas BRR y reglas de Rubin [@rubin1987multiple] (810 ajustes por modelo). Los coeficientes se
 reportan en puntos PISA por unidad de la puntuación del NSE y por desviación estándar (DE). Como robustez se estimó un
 SEM con el NSE latente (WLSMV, 29 indicadores) y se repitió todo con los puntajes propios (D-44).
 
@@ -558,9 +557,18 @@ Cada candidato se clasificó con los cinco criterios de la rúbrica (`Vault_PISA
 4. ausencia de antecedente para Colombia;
 5. explicable en una frase.
 
-La clasificación es un **borrador** del equipo (`Vault_PISA2022/Hallazgos.md`). El criterio 4 es **provisional**: la
-búsqueda de novedad del paso 7.2 no cubrió Scopus ni Google Scholar, y los 9 antecedentes nuevos que encontró no se han
-leído (`Vault_PISA2022/Literatura/Búsqueda de novedad F7.md`).
+La clasificación es un **borrador** del equipo (`Vault_PISA2022/Hallazgos.md`). Para el criterio 4, la búsqueda de
+novedad del paso 7.2 cubrió un buscador web general, SciELO, Redalyc, Scopus y Google Académico (primera
+página de cada cadena), y en ninguno apareció un antecedente para Colombia de K1, K2, K4 ni K5. En Scopus, 7 de las 10
+cadenas dieron cero resultados y las otras 3, un documento cada una, ninguno sobre Colombia. Sí aparecieron análisis
+parecidos en otros países o poblaciones: el informe nacional de Inglaterra, que según su resumen revisa si la brecha por
+NSE cambia entre procesos matemáticos (K1), el efecto del tratamiento de las omisiones en comparaciones entre grupos (K4) y, en primaria
+de América Latina con el SERCE de 2006, un estudio del BID que probó la misma interacción de K2 y no la encontró
+significativa para Colombia en ninguna de sus cuatro pruebas [@duarte2010ensenan, pp. 20–21]. Los otros tres posibles
+antecedentes que aparecieron se revisaron y no lo son: uno usa el puntaje total de matemáticas, otro busca DIF por sexo
+en el TERCE y el tercero estudia Chile y México (`Vault_PISA2022/Literatura/Búsqueda de novedad F7.md`). Con esa
+búsqueda, el equipo da por cumplido el criterio 4 para K1, K2, K4 y K5. No haber encontrado un antecedente no prueba que
+no exista: la búsqueda tiene la cobertura y la fecha que se documentan.
 
 ```{r hallazgos}
 hz <- data.table(
@@ -588,7 +596,10 @@ tabla(hz, caption = "Clasificación de los candidatos (borrador; Hallazgos.md). 
    empíricamente (H8, H7). Por eso K1 se reporta como exploratorio.
 3. **El sector importa más que la zona.** La pendiente del NSE es más empinada en los colegios privados (K2). Esto no
    dice que los colegios privados «causen» desigualdad: puede reflejar cómo se reparten los estudiantes entre colegios
-   (composición y selección), algo que este diseño no separa.
+   (composición y selección), algo que este diseño no separa. En primaria, con el SERCE de 2006, la misma interacción
+   no fue significativa para Colombia, aunque la pendiente del NSE entre escuelas era más pronunciada en las privadas
+   en América Latina [@duarte2010ensenan, pp. 19–21]. La diferencia con nuestro resultado puede deberse
+   a la edad, al año o al modelo, y no se puede separar con estos datos.
 4. **La medición del NSE es la parte más débil.** Dos dimensiones se sostienen (H1), pero el ajuste no llega a los cortes
    y la invarianza no se demostró (D-35). Las conclusiones sobre el NSE económico son estables con el ESCS oficial (S-A),
    lo que da algo de tranquilidad.
@@ -631,8 +642,8 @@ tabla(hz, caption = "Clasificación de los candidatos (borrador; Hallazgos.md). 
    exploratoria), D-33 (E1 después del fallo de V1), D-43 (enlace robusto de P3) y D-48 (análisis confirmatorio por
    competencia, exploratorio).
 8. **Pendientes que no se hicieron** (D-21, D-45): la revisión de contenido de los ítems con DIF (P4), la calibración sin
-   los ítems con menos de 500 respuestas (P2), un tercer tratamiento de las omisiones (P5), la búsqueda en Scopus y Google
-   Scholar, y la verificación de la mayoría de las fuentes citadas.
+   los ítems con menos de 500 respuestas (P2), un tercer tratamiento de las omisiones (P5), la lectura en texto completo
+   de los antecedentes encontrados en la búsqueda de novedad y la verificación de la mayoría de las fuentes citadas.
 
 # Productos: API y tablero (O5, F8)
 
@@ -660,8 +671,9 @@ tablero en Streamlit que la consume (`Proyecto_PISA/tablero/`, D-47).
 4. Las cuatro competencias se distinguen poco con los ítems que ve cada estudiante en el diseño adaptativo. Para
    analizarlas por separado conviene usar los VP de la OCDE y tratar con cautela cualquier puntaje propio por
    competencia.
-5. Los cinco resultados principales se mantienen en las sensibilidades de la fase de robustez. Su novedad para Colombia
-   queda por confirmar con una búsqueda en Scopus y Google Scholar.
+5. Los cinco resultados principales se mantienen en las sensibilidades de la fase de robustez. En Scopus, Google
+   Académico, SciELO y Redalyc no apareció un antecedente para Colombia de K1, K2, K4 ni K5. Los antecedentes más
+   cercanos son de otros países o poblaciones; el de K2, en primaria, no encontró la interacción para Colombia.
 
 # Declaración de uso de IA y reparto del trabajo
 
@@ -694,9 +706,118 @@ verificación.md`) detectó errores propios de la IA, que quedaron registrados:
 - infinitos no tratados en una salida del DIF (D-40);
 - conclusiones de la F4 redactadas con más fuerza de la que daban los datos (D-35).
 
-**Reparto del trabajo. [POR COMPLETAR POR EL EQUIPO]** Cada integrante describe su aporte real por fase. La propuesta del
-anteproyecto era: Vanessa, planteamiento y calificación por competencias; Mateo, estado del arte, NSE e invarianza;
-Brayan, modelo estructural, API y tablero; los tres, objetivos y verificación de fuentes. Hay que confirmarla o
-corregirla con lo que pasó.
+**Reparto del trabajo.** El equipo mantiene el reparto del anteproyecto: cada fase tuvo un responsable principal y otro
+integrante la revisó, y los tres participaron en los objetivos, en las decisiones del registro y en la verificación de
+fuentes.
+
+```{r tabla-reparto}
+reparto <- data.frame(
+  `Sección / fase` = c("Planteamiento del problema", "Estado del arte", "Objetivos",
+                       "Datos, NSE e invarianza (objetivos 1–2)", "Calificación por competencias y DIF (objetivo 3)",
+                       "Modelo estructural (objetivo 4)", "API y tablero (objetivo 5)",
+                       "Gestión de la información y verificación de fuentes"),
+  `Responsable principal` = c("Vanessa Acosta", "Mateo Ramos", "Los tres", "Mateo Ramos", "Vanessa Acosta",
+                              "Brayan David Barreto", "Brayan David Barreto", "Los tres"),
+  `Revisión cruzada` = c("Mateo Ramos", "Brayan David Barreto", "—", "Brayan David Barreto", "Mateo Ramos",
+                         "Vanessa Acosta", "Mateo Ramos", "—"),
+  check.names = FALSE)
+knitr::kable(reparto, caption = "Reparto del trabajo (el del anteproyecto, confirmado por el equipo).")
+```
+
+# Anexo: glosario de siglas, códigos e indicadores
+
+Este anexo explica las siglas y los códigos que usa el informe. Las definiciones de los códigos del proyecto vienen del
+plan (`Vault_PISA2022/07 Plan de desarrollo PISA 2022.md`), de la rúbrica (`08 Rúbrica de desarrollo.md`) y del registro
+de decisiones (`03 Registro de decisiones.md`).
+
+## Códigos del proyecto
+
+| Código | Qué es |
+|----|------------------------------|
+| **O1–O5** | Objetivos específicos (sección «Objetivos e hipótesis»): O1 medir el NSE; O2 verificar su invarianza; O3 calificar por competencias y verificar la equidad de la calificación; O4 explicar el desempeño por competencia con un modelo estructural; O5 publicar los resultados en una API y un tablero |
+| **H1–H8** | Hipótesis preregistradas antes de analizar los datos (tabla de la sección «Objetivos e hipótesis») |
+| **F1–F9** | Fases del plan de trabajo: F1 datos y depuración; F2 validación del diseño muestral; F3 medición del NSE (O1); F4 invarianza del NSE (O2); F5 calificación por competencias (O3); F6 modelo estructural (O4); F7 robustez y verificación de novedad; F8 API y tablero (O5); F9 informe y sustentación |
+| **G1–G4** | Puertas de fase: condiciones que deben cumplirse para pasar a la siguiente fase. **G1** (al cerrar la F2): la media, la brecha y el porcentaje de varianza coinciden con los de la OCDE (±1). **G2** (F3): el modelo del NSE tiene un ajuste aceptable o un desajuste documentado, y H1 está resuelta. **G3** (F5): los ítems con pocas respuestas están excluidos y listados, y H3 y H4 están resueltas. **G4** (F7): los resultados están congelados con una etiqueta en Git (`resultados-v1`) |
+| **D-01, D-02…** | Decisiones del registro, numeradas en orden. Cada una dice el problema, las alternativas, lo que se decidió, quién lo decidió y cuándo, y se registró **antes** de programarla |
+| **K1–K5** | Candidatos a hallazgo evaluados en la F7: K1, el NSE económico se asocia más con interpretar que con emplear; K2, la pendiente del NSE es mayor en los colegios privados; K3, el NSE se asocia con las 4 competencias; K4, tratar las omisiones rápidas como faltantes no reduce la brecha; K5, el DIF por NSE es escaso |
+| **S-A a S-E** | Sensibilidades de la F7 (D-45): S-A, el ESCS oficial en lugar del NSE latente; S-B, sin los estudiantes de la ruta lineal; S-C, otro umbral de omisión rápida (NT15 y 5 segundos); S-D, sin corrección por comparaciones múltiples; S-E, reponderación por la no respuesta dentro del colegio (D-38) |
+| **S1, S2** | Sensibilidades de las F3 y F4 (D-35): S1, las preguntas saltadas cuentan como faltantes y no como 0 (D-20); S2, el DIF de las posesiones se empareja con un modelo multigrupo |
+| **P2–P5** | Mejoras metodológicas aprobadas en D-21: P2, calibrar sin los ítems con menos de 500 respuestas; P3, comparar las dificultades de los ítems con las internacionales; P4, un análisis del DIF más completo, con la revisión del contenido de los ítems marcados; P5, un tercer tratamiento de las omisiones |
+| **E1** | Método de integración de los puntajes propios: cuadratura de Gauss-Hermite adaptativa (D-31, D-33) |
+| **V1–V3** | Criterios para aceptar los puntajes propios (D-27): V1, coinciden con los de `mirt` sin covariables; V2, las EAP no cambian al duplicar los puntos de integración; V3, los errores estándar tampoco cambian |
+| **NT10, NT15** | Umbrales de omisión rápida: una omisión es rápida si se hizo en menos del 10 % (NT10) o del 15 % (NT15) del tiempo medio que dedicaron al ítem quienes lo vieron |
+| **Q1, Q4** | Cuartil más bajo y más alto del NSE económico |
+| **VP, VP1** | Valores plausibles; VP1 es el primero de los diez |
+
+## Siglas y términos estadísticos
+
+| Sigla | Significado |
+|-------|------------------------------|
+| **NSE** | Nivel socioeconómico. En este informe es una variable latente con dos dimensiones: económica y de libros en el hogar |
+| **ESCS** | Índice oficial de PISA de estatus económico, social y cultural |
+| **HOMEPOS** | Índice de PISA de posesiones del hogar |
+| **HISEI / HISCED** | Ocupación más alta de los padres (índice ISEI) y educación más alta de los padres (clasificación ISCED) |
+| **INSE** | Índice de nivel socioeconómico del Icfes |
+| **TRI** | Teoría de respuesta al ítem. **2PL**: modelo logístico de dos parámetros, para ítems de sí o no; **GPCM**: modelo de crédito parcial generalizado, para ítems con más de dos categorías |
+| **AFE / AFC** | Análisis factorial exploratorio / confirmatorio |
+| **SEM** | Modelos de ecuaciones estructurales |
+| **WLSMV** | Estimador de mínimos cuadrados ponderados con media y varianza ajustadas, para datos ordinales |
+| **CFI, RMSEA, SRMR** | Índices de ajuste: índice de ajuste comparativo, error cuadrático medio de aproximación y residuo cuadrático medio estandarizado. *Scaled* y *robust* son dos correcciones para datos no normales; ΔCFI y ΔRMSEA son sus cambios entre dos modelos |
+| **BIC** | Criterio de información bayesiano: entre dos modelos, el de menor BIC equilibra mejor ajuste y complejidad |
+| **DIF** | Funcionamiento diferencial del ítem: estudiantes con el mismo nivel en la competencia tienen distinta probabilidad de acertar el ítem según su grupo |
+| **ΔMH, ETS (A, B, C)** | Magnitud del DIF por Mantel-Haenszel y su clasificación del Educational Testing Service: A despreciable, B moderado, C grande |
+| **BH, Holm** | Correcciones por comparaciones múltiples (Benjamini-Hochberg y Holm) |
+| **EAP** | Puntaje estimado como la media de la distribución posterior de cada estudiante |
+| **VP** | Valores plausibles: puntajes simulados que PISA entrega para estimar promedios y asociaciones con su incertidumbre |
+| **BRR** | Réplicas repetidas balanceadas (con el ajuste de Fay): el método de PISA para calcular errores estándar con el diseño muestral |
+| **EM** | Algoritmo de esperanza-maximización |
+| **DE, EE, IC** | Desviación estándar, error estándar e intervalo de confianza |
+| **PISA, OCDE** | Programa para la Evaluación Internacional de Estudiantes, de la Organización para la Cooperación y el Desarrollo Económicos |
+| **SERCE, TERCE** | Segundo y Tercer Estudio Regional Comparativo y Explicativo de la UNESCO (primaria, América Latina) |
+| **API** | Interfaz de programación: el servicio web que publica los resultados del proyecto |
+
+## Los 29 indicadores del NSE
+
+Los indicadores salen del cuestionario del estudiante de PISA 2022. Las descripciones son traducciones de las etiquetas
+del libro de códigos (`salidas/nse_items_frecuencias.csv`). El factor es el del análisis factorial exploratorio que eligió
+la Puerta G2 (D-24; `salidas/nse_estructura_afe.csv`); el factor «cultural» es el que el informe llama de libros.
+
+```{r indicadores-nse}
+estr <- leer("nse_estructura_afe.csv")
+descripcion <- c(
+  ST250Q01JA = "Una habitación propia",
+  ST250Q02JA = "Un computador (portátil, de escritorio o tableta) para las tareas escolares",
+  ST250Q03JA = "Software o aplicaciones educativas",
+  ST250Q04JA = "Un celular propio con acceso a internet",
+  ST250Q05JA = "Acceso a internet en el hogar (sin contar el del celular)",
+  ST251Q01JA = "Carros, camionetas o camiones (cuántos)",
+  ST251Q02JA = "Motos o ciclomotores (cuántos)",
+  ST251Q03JA = "Cuartos con baño o ducha (cuántos)",
+  ST251Q04JA = "Cuartos con sanitario (cuántos)",
+  ST251Q06JA = "Instrumentos musicales (cuántos)",
+  ST251Q07JA = "Obras de arte (cuántas)",
+  ST253Q01JA = "Dispositivos digitales con pantalla en el hogar (cuántos)",
+  ST254Q01JA = "Televisores (cuántos)",
+  ST254Q02JA = "Computadores de escritorio (cuántos)",
+  ST254Q03JA = "Computadores portátiles (cuántos)",
+  ST254Q04JA = "Tabletas (cuántas)",
+  ST254Q05JA = "Lectores de libros electrónicos, como Kindle (cuántos)",
+  ST254Q06JA = "Celulares con acceso a internet (cuántos)",
+  ST255Q01JA = "Libros en el hogar (cuántos)",
+  ST256Q01JA = "Libros religiosos",
+  ST256Q02JA = "Literatura clásica",
+  ST256Q03JA = "Literatura contemporánea",
+  ST256Q06JA = "Libros de ciencia",
+  ST256Q07JA = "Libros de arte, música o diseño",
+  ST256Q08JA = "Libros técnicos de consulta",
+  ST256Q09JA = "Diccionarios",
+  ST256Q10JA = "Libros para ayudar con las tareas escolares",
+  HISEI_q    = "Ocupación más alta de los padres (índice HISEI, en cuartiles)",
+  HISCED_c   = "Educación más alta de los padres (ISCED, en categorías)")
+if (is.null(estr)) pendiente("nse_estructura_afe.csv") else
+  tabla(estr[, .(`Código del indicador` = item, `Descripción` = unname(descripcion[item]), `Factor (AFE)` = factor_AFE,
+                 `Carga` = carga_principal)][order(`Factor (AFE)`, `Código del indicador`)], digits = 3,
+        caption = "Los 29 indicadores del NSE, su factor en el AFE y su carga principal (D-24).")
+```
 
 # Referencias

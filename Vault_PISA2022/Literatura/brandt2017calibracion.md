@@ -3,18 +3,18 @@ tipo: fuente
 clave_bib: brandt2017calibracion
 zotero-key: T23VN3UPg6703955
 clave_provisional: no
-titulo: "Calibración concurrente unidimensional y multidimensional dentro de la teoría de respuesta del Ítem"
-autores: "Brandt, Steffen"
+titulo: Calibración concurrente unidimensional y multidimensional dentro de la teoría de respuesta del Ítem
+autores: Brandt, Steffen
 año: "2017"
-publicacion: "Pensamiento Educativo, Revista de Investigación Educacional Latinoamericana, 54(2), 1–16"
+publicacion: Pensamiento Educativo, Revista de Investigación Educacional Latinoamericana, 54(2), 1–16
 doi_url: https://doi.org/10.7764/pel.54.2.2017.4
-bloque: "C. Matemáticas por proceso / dimensionalidad"
+bloque: C. Matemáticas por proceso / dimensionalidad
 metadatos: "Crossref y página de la revista (consultados 2026-10-05): Vol. 54 Núm. 2 (2017); publicado en línea el 2020-12-02"
-estado: por_verificar
+estado: verificado
 lectura: "IA: solo resumen (OpenAlex); acceso abierto"
 pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
-verificado_por:
-fecha_verificacion:
+verificado_por: Mateo Ramos
+fecha_verificacion: 2026-11-10
 ---
 
 # Calibración concurrente unidimensional y multidimensional dentro de la teoría de respuesta del Ítem
@@ -30,10 +30,10 @@ Discute que PISA use a la vez un modelo TRI unidimensional para la escala total 
 
 ## Afirmaciones que usamos en el proyecto
 
-| # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
-|---|---|---|---|---|
-| 1 | PISA usa un modelo unidimensional para matemáticas y uno multidimensional para sus cuatro subescalas, lo que contradice un supuesto básico de la TRI | resumen | "applies a multidimensional IRT-model for the analysis of the four subscales" | por_verificar · origen: IA, solo resumen (2026-10-05) |
-| 2 | Propone el modelo generalizado de subdimensiones para obtener un puntaje promedio ponderado dentro de la TRI | resumen | "the generalized subdimension model (GSM)" | por_verificar · origen: IA, solo resumen (2026-10-05) |
+| #   | Afirmación (como la usamos)                                                                                                                          | Página  | Cita textual (< 15 palabras)                                                  | Estado                                          |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ----------------------------------------------------------------------------- | ----------------------------------------------- |
+| 1 | PISA usa un modelo unidimensional para matemáticas y uno multidimensional para sus cuatro subescalas, lo que contradice un supuesto básico de la TRI | resumen | "applies a multidimensional IRT-model for the analysis of the four subscales" | verificado (Mateo, 2026-11-10) · origen: IA, solo resumen (2026-10-05) |
+| 2 | Propone el modelo generalizado de subdimensiones para obtener un puntaje promedio ponderado dentro de la TRI | resumen | "the generalized subdimension model (GSM)" | verificado (Mateo, 2026-11-10) · origen: IA, solo resumen (2026-10-05) |
 
 ## Qué NO dice (para no citarlo mal)
 Por el resumen no sabemos de qué ciclo de PISA habla ni si las cuatro subescalas son de proceso o de contenido.

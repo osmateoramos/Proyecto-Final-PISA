@@ -3,17 +3,17 @@ tipo: fuente
 clave_bib: collazos2021determinantes
 zotero-key: PJYUHET4g6703955
 clave_provisional: no
-titulo: "Determinantes del rendimiento académico de la prueba Saber 11 en Colombia durante el periodo 2014-2019"
-autores: "Collazos Valenzuela, A. C.; Quintero Medina, M. V.; Trujillo Caicedo, K. N."
+titulo: Determinantes del rendimiento académico de la prueba Saber 11 en Colombia durante el periodo 2014-2019
+autores: Collazos Valenzuela, A. C.; Quintero Medina, M. V.; Trujillo Caicedo, K. N.
 año: "2021"
-publicacion: "Panorama, 15(29)"
+publicacion: Panorama, 15(29)
 doi_url: https://www.redalyc.org/journal/3439/343967896009/html/
-bloque: "A. Enfoque econométrico"
-estado: por_verificar
+bloque: A. Enfoque econométrico
+estado: verificado
 lectura: "equipo: texto completo"
 pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
-verificado_por:
-fecha_verificacion:
+verificado_por: Mateo Ramos
+fecha_verificacion: 2026-11-10
 ---
 
 # Determinantes del rendimiento académico de la prueba Saber 11 en Colombia durante el periodo 2014-2019
@@ -29,11 +29,11 @@ Estima determinantes del puntaje de Saber 11 con variables socioeconómicas obse
 
 ## Afirmaciones que usamos en el proyecto
 
-| # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
-|---|---|---|---|---|
-| 1 | Usa MCO sobre 3.247.429 estudiantes evaluados entre 2014 y 2019 | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
-| 2 | Efecto neto de estrato medio frente a bajo: +0,81 puntos en matemáticas | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
-| 3 | Educación materna: hasta +7,44 puntos (posgrado); computador +1,42; internet +1,14 | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| #   | Afirmación (como la usamos)                                                        | Página    | Cita textual (< 15 palabras) | Estado                                          |
+| --- | ---------------------------------------------------------------------------------- | --------- | ---------------------------- | ----------------------------------------------- |
+| 1 | Usa MCO sobre 3.247.429 estudiantes evaluados entre 2014 y 2019 | 11 (PDF de Redalyc) | «una muestra total de 3.247.429 observaciones» | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) · página y cita ubicadas por Claude en el PDF (2026-11-10) |
+| 2 | Efecto neto de estrato medio frente a bajo: +0,81 puntos en matemáticas | 14 (PDF de Redalyc) | «estrato medio para matemáticas obtienen en promedio 0,81 puntos más» | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) · página y cita ubicadas por Claude en el PDF (2026-11-10) |
+| 3 | Educación materna: hasta +7,44 puntos (posgrado); computador +1,42; internet +1,14 | 14–15 (PDF de Redalyc) | «madre con educación de postgrado obtiene en promedio 7,44 puntos más» | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) · página y cita ubicadas por Claude en el PDF (2026-11-10) |
 
 ## Qué NO dice (para no citarlo mal)
 No modela el error de medición del NSE ni prueba invarianza entre grupos.

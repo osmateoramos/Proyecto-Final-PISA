@@ -2,18 +2,18 @@
 tipo: fuente
 clave_bib: gomezbenito2010sesgo
 zotero-key: JZ62TSFJg6703955
-titulo: "El sesgo de los instrumentos de medición. Tests justos"
-autores: "Gómez-Benito, Juana; Hidalgo, M. Dolores; Guilera, Georgina"
+titulo: El sesgo de los instrumentos de medición. Tests justos
+autores: Gómez-Benito, Juana; Hidalgo, M. Dolores; Guilera, Georgina
 año: "2010"
-publicacion: "Papeles del Psicólogo, 31(1), 75–84 (portada de Redalyc del PDF; anotado por Claude, 2026-10-18)"
+publicacion: Papeles del Psicólogo, 31(1), 75–84 (portada de Redalyc del PDF; anotado por Claude, 2026-10-18)
 doi_url: http://www.redalyc.org/articulo.oa?id=77812441008
-bloque: "D. Equidad de la prueba (DIF)"
-metadatos: "Proyecto_PISA/nada_sin_fuente/corpus/procedencia.csv (fila agregada por Vanessa el 2026-10-12)"
-estado: por_verificar
+bloque: D. Equidad de la prueba (DIF)
+metadatos: Proyecto_PISA/nada_sin_fuente/corpus/procedencia.csv (fila agregada por Vanessa el 2026-10-12)
+estado: verificado
 lectura: "equipo: descrita por Vanessa en procedencia.csv (2026-10-12); Claude no ha leído el documento"
 pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
-verificado_por:
-fecha_verificacion:
+verificado_por: Mateo Ramos
+fecha_verificacion: 2026-11-10
 ---
 
 # El sesgo de los instrumentos de medición. Tests justos
@@ -31,9 +31,9 @@ Según la descripción de Vanessa en `procedencia.csv`: revisión teórica de se
 
 Ninguna por ahora: la fuente no está citada en el anteproyecto ni en `referencias.bib` (comprobado el 2026-10-13).
 
-| # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
-|---|---|---|---|---|
-| 1 | | | | por_verificar |
+| #   | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado     |
+| --- | --------------------------- | ------ | ---------------------------- | ---------- |
+| 1   |                             |        |                              | verificado |
 
 ## Qué NO dice (para no citarlo mal)
 Según `procedencia.csv`: no trata PISA, NSE ni matemáticas específicamente. No es un antecedente directo de la consulta

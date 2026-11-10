@@ -1,9 +1,9 @@
 ---
 tipo: guia
-estado: por_verificar
-lectura: "construida por Claude con las notas de cada fuente"
-verificado_por:
-fecha_verificacion:
+estado: verificado
+lectura: construida por Claude con las notas de cada fuente
+verificado_por: Mateo Ramos
+fecha_verificacion: 2026-11-10
 ---
 
 # Matriz del estado del arte vs este proyecto
@@ -55,15 +55,20 @@ Cuando se lea una fuente †: crear su nota en `Literatura/` (ZotLit), cambiar �
 | [[Literatura/pohl2014dealing\|Pohl, Gräfe y Rose (2014)]] | † | Pruebas de competencias (no PISA) | — | — | — | ✓ | ✗ | ✓ (omitidos y no alcanzados) | ✗ | ✗ |
 | [[Literatura/kohler2015taking\|Köhler, Pohl y Carstensen (2015)]] | † | NEPS; 15.396 escolares y 7.256 adultos | — | — | — | ✓ (propensión latente a omitir) | ✗ | ✓ (omisiones, con modelo) | ✗ | ✗ |
 | **F. Encontrados en la búsqueda 7.2 (2026-11-09; sin nota todavía, ver [[Literatura/Búsqueda de novedad F7]])** | | | | | | | | | | |
-| ACER, informe PISA 2022 de Australia | † | PISA 2022 Australia | NSE | ✗ | Subescalas de contenido y proceso | ? | ✗ | ? | ✗ | ✗ |
-| Documento de Oxford (ORA) sobre subdominios de proceso (título no verificado) | † | PISA 2022 (países ?) | ? | ? | **Procesos** | ? | ? | ? | ? | ? |
+| De Bortoli y Underwood (2025), ACER, informe PISA 2022 de Australia (autores según Google Académico, 2026-11-10) | † | PISA 2022 Australia | NSE | ✗ | Subescalas de contenido y proceso | ? | ✗ | ? | ✗ | ✗ |
+| Ingram, Stiff, Cadwallader, Lee y Kayton (2023), informe nacional PISA 2022 de Inglaterra (el documento de Oxford ORA; según Google Académico) | † | PISA 2022 Inglaterra | NSE | ✗ | **Procesos** (si las brechas por NSE y género cambian por subescala, según el fragmento) | ? | ✗ | ? | ✗ | ✗ |
 | Preprint Research Square, PISA 2025 Colombia (autores no verificados) | † | PISA 2025 Colombia | ESCS dentro y entre colegios | ✗ | Bajo desempeño simultáneo | ✗ | ✗ | ✗ | ✗ | ✓ |
 | Estudio longitudinal PISA 2009–2022, JOSPOE (título no verificado) | † | PISA 2009–2022 | ? | ✗ | Brecha público–privado | ✗ | ✗ | ✗ | ✗ | ✓ |
-| Quiroz, Dari y Cervini (2018, no verificado) | † | PISA 2015 Argentina | Indicadores socioeconómicos | ✗ | Brecha público–privado (multinivel) | ✗ | ✗ | ✗ | ✗ | ✗ |
-| OCDE, *Education Working Paper* 279 | † | PISA | NSE (grupo) | ✗ | Medidas de desenganche | ? | ✗ | ✓ | ✗ | ? |
-| Robitzsch (2021, no verificado), omisiones en PISA 2018 | † | PISA 2018 matemáticas | — | — | Medias de país según el tratamiento de omisiones | ✓ | ✗ | ✓ (omisiones) | ✗ | ? |
-| Jerrim et al. (UCL, año no verificado) | † | PISA | — | — | Robustez al modelo de escalamiento | ✓ | ✗ | ◐ (no alcanzados) | ✗ | ? |
-| *Psicothema*, DIF con TERCE (año no verificado) | † | TERCE, 15 países ALC | Desarrollo humano del país | ✗ | Ciencias | ✓ | ◐ (entre países) | ✗ | ✗ | ? |
+| Quiroz, Dari y Cervini (2018), *REICE*, 16(4), 79–97 (confirmado en Scopus) | † | PISA 2015 Argentina | Indicadores socioeconómicos | ✗ | Brecha público–privado (multinivel) | ✗ | ✗ | ✗ | ✗ | ✗ |
+| Buchholz, Cignetti y Piacentini (2022), OCDE, *Education Working Paper* 279 (autores según Google Académico) | † | PISA | NSE (grupo) | ✗ | Medidas de desenganche | ? | ✗ | ✓ | ✗ | ? |
+| Robitzsch (2021), *Eur. J. Investig. Health Psychol. Educ.*, 11(4), 1653–1687, omisiones en PISA 2018 (confirmado en Scopus) | † | PISA 2018 matemáticas | — | — | Medias de país según el tratamiento de omisiones | ✓ | ✗ | ✓ (omisiones) | ✗ | ? |
+| Jerrim, Parker, Choi et al. (2018), *Educ. Meas. Issues Pract.*, 37(4), 28–39 (confirmado en Scopus) | † | PISA | — | — | Robustez al modelo de escalamiento | ✓ | ✗ | ◐ (no alcanzados) | ✗ | ? |
+| Woitschach, Zumbo y Fernández-Alonso (2019), *Psicothema*, 31(2), 194–203, DIF con TERCE (confirmado en Scopus) | † | TERCE, 15 países ALC | Desarrollo humano del país | ✗ | Ciencias | ✓ | ◐ (entre países) | ✗ | ✗ | ? |
+| **G. Encontrados en Scopus y Google Académico (2026-11-10; ver [[Literatura/Búsqueda de novedad F7]])** | | | | | | | | | | |
+| [[Literatura/duarte2010ensenan\|Duarte, Bos y Moreno (2010, BID)]] | ✓ (Claude) | SERCE 2006, 3.º y 6.º grado; 14 países ALC | ISEC del estudiante | ✗ | Lectura y matemáticas; **interacción gestión × NSE** (no significativa para Colombia) | ✗ | ✗ | ✗ | ✗ (multinivel) | ✓ |
+| Castro Aristizabal, Giménez y Pérez Ximénez-de-Embún (2017), *Revista de Educación*, 376 | † | PISA 2012, 8 países ALC | Características familiares | ✗ | Brecha público–privado (Oaxaca-Blinder) | ✗ | ✗ | ✗ | ✗ | ✓ |
+| De Jorge-Moreno, Castro, Vega y Gutiérrez (2018), *Desarrollo y Sociedad*, 80 | † | PISA 2012 Colombia | Variables observadas | ✗ | Eficiencia público–privado | ✗ | ✗ | ✗ | ✗ | ✓ |
+| Sachse, Mahler y Pohl (2019), *Educ. Psychol. Meas.* | † | Evaluaciones internacionales | Grupos (incl. NSE) | ✗ | Comparaciones entre grupos según el tratamiento de la no respuesta | ✓ | ✗ | ✓ (omisiones) | ✗ | ? |
 | **ESTE PROYECTO** | | **PISA 2022 Colombia; 7.804** | **Latente 1 vs 2 dim. (TRI + AFC)** | **✓ zona, sexo, sector** | **4 procesos** | **✓ calibración propia** | **✓ Q1 vs Q4** | **✓ omisiones rápidas (tiempos)** | **✓ NSE → procesos, PV + pesos** | **✓** |
 
 > Nota: las filas de los bloques A y B marcadas ✓ las leyó el equipo en texto completo; las del bloque C–E

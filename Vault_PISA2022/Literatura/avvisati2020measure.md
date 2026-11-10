@@ -10,11 +10,11 @@ publicacion: Large-scale Assessments in Education, 8(1), 8
 doi_url: https://doi.org/10.1186/s40536-020-00086-x
 bloque: B. Medición del NSE
 metadatos: Crossref (consultado 2026-10-05)
-estado: por_verificar
+estado: verificado
 lectura: "IA: solo resumen (OpenAlex); PDF en acceso abierto"
 pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
-verificado_por:
-fecha_verificacion:
+verificado_por: Mateo Ramos
+fecha_verificacion: 2026-11-10
 ---
 
 # The measure of socio-economic status in PISA: a review and some suggested improvements
@@ -30,9 +30,9 @@ Revisa la historia y los fundamentos teóricos del índice ESCS de PISA y propon
 
 ## Afirmaciones que usamos en el proyecto
 
-| # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
-|---|---|---|---|---|
-| 1 | Documenta múltiples cambios en los instrumentos y el escalamiento del ESCS a lo largo de los ciclos | resumen | "highlights multiple changes in the instruments and scaling methods used by PISA" | por_verificar · origen: IA, solo resumen (2026-10-05) |
+| #   | Afirmación (como la usamos)                                                                         | Página  | Cita textual (< 15 palabras)                                                      | Estado                                          |
+| --- | --------------------------------------------------------------------------------------------------- | ------- | --------------------------------------------------------------------------------- | ----------------------------------------------- |
+| 1 | Documenta múltiples cambios en los instrumentos y el escalamiento del ESCS a lo largo de los ciclos | resumen | "highlights multiple changes in the instruments and scaling methods used by PISA" | verificado (Mateo, 2026-11-10) · origen: IA, solo resumen (2026-10-05) |
 
 ## Qué NO dice (para no citarlo mal)
 No trata PISA 2022 ni Colombia.

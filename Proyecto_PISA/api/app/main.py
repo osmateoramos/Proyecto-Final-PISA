@@ -27,7 +27,7 @@ from app.db import Base, obtener_motor, obtener_sesion
 from app.esquemas import SaludRespuesta
 from app.prediccion import ModeloF6
 from app.registro import configurar_registro, registro
-from app.rutas import hipotesis, matematicas, modelo, nse
+from app.rutas import hipotesis, matematicas, modelo, nse, resultados
 from app.tablas import Metadato                                   # importar app.tablas registra todas las tablas
 
 PREFIJO_VERSION = "/v1"
@@ -61,7 +61,7 @@ app = FastAPI(
     version=__version__,
     lifespan=ciclo_de_vida,
 )
-for modulo in (nse, matematicas, modelo, hipotesis):
+for modulo in (nse, matematicas, modelo, hipotesis, resultados):
     app.include_router(modulo.enrutador, prefix=PREFIJO_VERSION)
 
 

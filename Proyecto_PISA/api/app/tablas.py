@@ -3,7 +3,9 @@
 Cada tabla guarda un archivo agregado de ``salidas/``; ninguna tiene filas por estudiante (Ley 1581 de 2012).
 """
 
-from sqlalchemy import String
+from typing import Any
+
+from sqlalchemy import JSON, String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db import Base
@@ -143,3 +145,13 @@ class Robustez(Base):
     se_mantiene_en: Mapped[int]
     requerido: Mapped[int]
     robusto: Mapped[str] = mapped_column(String(30))
+
+
+class ResultadoFila(Base):
+    """Fila validada de un archivo del catálogo de resultados (D-47); ``datos`` guarda la fila ya validada."""
+
+    __tablename__ = "resultado_filas"
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    archivo: Mapped[str] = mapped_column(String(60), index=True)
+    orden: Mapped[int]
+    datos: Mapped[dict[str, Any]] = mapped_column(JSON)

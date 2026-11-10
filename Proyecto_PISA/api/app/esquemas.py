@@ -9,7 +9,7 @@ Dos familias:
 Un vacío del CSV se guarda como ``None`` (dato ausente), nunca como 0: un 0 falso sesgaría cualquier promedio.
 """
 
-from typing import Annotated, Any, Literal
+from typing import Annotated, Any, ClassVar, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -30,10 +30,14 @@ class FilaCSV(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True, extra="ignore", str_strip_whitespace=True, allow_inf_nan=False)
 
+    NO_CALCULABLE_COMO_NULO: ClassVar[frozenset[str]] = frozenset()
+    """Columnas del CSV donde ``Inf`` significa «R no pudo calcularlo» y se guarda como ``None``. En el resto, un
+    infinito sigue siendo un error de carga."""
+
     @model_validator(mode="before")
     @classmethod
     def vacios_a_none(cls, datos: Any) -> Any:
-        """Convierte las celdas vacías o ``NA`` del CSV en ``None``.
+        """Convierte las celdas vacías o ``NA`` (y los ``Inf`` de las columnas declaradas) en ``None``.
 
         Args:
             datos: La fila tal como la entrega ``csv.DictReader``.
@@ -42,7 +46,14 @@ class FilaCSV(BaseModel):
             La misma fila con ``None`` en los vacíos.
         """
         if isinstance(datos, dict):
-            return {k: (None if isinstance(v, str) and v.strip() in VACIOS else v) for k, v in datos.items()}
+            def limpio(k: str, v: Any) -> Any:
+                if not isinstance(v, str):
+                    return v
+                texto = v.strip()
+                if texto in VACIOS or (k in cls.NO_CALCULABLE_COMO_NULO and texto in {"Inf", "-Inf"}):
+                    return None
+                return v
+            return {k: limpio(k, v) for k, v in datos.items()}
         return datos
 
 

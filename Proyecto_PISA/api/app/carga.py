@@ -17,6 +17,7 @@ from pydantic import ValidationError
 from sqlalchemy import Engine
 from sqlalchemy.orm import Session
 
+from app.catalogo import RECURSOS
 from app.config import obtener_configuracion
 from app.db import Base, obtener_motor
 from app.esquemas import (
@@ -41,6 +42,7 @@ from app.tablas import (
     MediaLatente,
     Metadato,
     PasoInvarianza,
+    ResultadoFila,
     Robustez,
 )
 
@@ -157,6 +159,7 @@ class CargadorSalidas:
             Número de filas guardadas por tabla.
         """
         filas = {tabla: self.validar(archivo, esquema) for tabla, archivo, esquema in TABLAS}
+        catalogo = {r.archivo: self.validar(r.archivo, r.esquema) for r in RECURSOS}          # D-47
         hipotesis = self.decisiones_hipotesis()
         Base.metadata.drop_all(self.motor)
         Base.metadata.create_all(self.motor)
@@ -164,12 +167,17 @@ class CargadorSalidas:
             for tabla, validas in filas.items():
                 sesion.add_all(tabla(**fila.model_dump()) for fila in validas)
             sesion.add_all(hipotesis)
+            for archivo, validas in catalogo.items():
+                sesion.add_all(ResultadoFila(archivo=archivo, orden=i, datos=fila.model_dump(mode="json"))
+                               for i, fila in enumerate(validas))
             sesion.add_all([
                 Metadato(clave="fecha_carga", valor=datetime.now(timezone.utc).isoformat(timespec="seconds")),
-                Metadato(clave="archivos", valor=", ".join(archivo for _, archivo, _ in TABLAS)),
+                Metadato(clave="archivos", valor=", ".join([a for _, a, _ in TABLAS] + list(catalogo))),
             ])
         conteo = {tabla.__tablename__: len(validas) for tabla, validas in filas.items()}
         conteo["hipotesis"] = len(hipotesis)
+        conteo["catalogo (archivos)"] = len(catalogo)
+        conteo["catalogo (filas)"] = sum(len(v) for v in catalogo.values())
         return conteo
 
 

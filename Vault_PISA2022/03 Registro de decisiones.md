@@ -2215,3 +2215,22 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   gráfico; el validador de paleta no se pudo correr (no hay Node.js en el equipo), así que la validación es la que
   documenta la paleta. 16 pruebas pasan contra la API real; los gráficos se revisaron a ojo exportados a PNG (se
   corrigió el del DIF: rótulos encimados y cortes del ETS confundidos con la cuadrícula).
+
+### D-47 · 2026-11-09 · Tablero explicativo de todo el proyecto y catálogo de resultados en la API (F8)
+- **Problema:** Vanessa pidió (2026-11-09) que el tablero explique lo que muestra, que incluya los modelos estructurales
+  con sus cargas y que recorra **todo** lo avanzado del proyecto para explicarlo de forma fácil e interactiva. La API
+  de D-46 solo sirve 8 archivos de `salidas/`, y el tablero no puede leer archivos (D-46).
+- **Decisión (Vanessa, 2026-11-09, al pedirlo; los detalles técnicos los propone Claude):**
+  1. **Catálogo de resultados en la API:** cada archivo agregado de `salidas/` que el tablero necesita se declara una
+     vez (ruta, archivo, esquema Pydantic de sus filas, título, decisión del registro) y una sola función crea su
+     endpoint `GET /v1/...` con su contrato en `/docs`. Las filas se validan al cargar, como en D-46, y se guardan en una
+     tabla genérica de SQLite. `GET /v1/catalogo` lista qué hay y de dónde sale.
+  2. **Tablero como recorrido por fases** (F1-F2 datos y diseño, F3 NSE, F4 invarianza, F5 competencias, F6 modelo
+     estructural, F7 robustez y hallazgos, más el puntaje esperado). Cada sección tiene tres textos: qué se hizo, cómo
+     se lee y qué significa, con la decisión del registro que lo sostiene.
+  3. **Diagrama del modelo estructural interactivo:** el NSE de 2 dimensiones del AFE (D-24) con las cargas
+     estandarizadas de sus 29 indicadores, la correlación entre factores y las rutas hacia las 4 competencias con los
+     coeficientes de la F6 (D-42); al pasar el cursor se ve el valor y la etiqueta oficial de cada indicador.
+  - *Regla de los textos:* las cifras que aparecen en los textos se leen de la API, no se escriben a mano; las
+    interpretaciones repiten las del registro (D-xx) y se marcan como tales.
+- **Estado:** ✅ pedido por Vanessa (2026-11-09). Brayan lo revisa en el PR.

@@ -1,17 +1,17 @@
 ---
 tipo: fuente
 clave_bib: duarte2010ensenan
-zotero-key:
-clave_provisional: sí
-titulo: "¿Enseñan mejor las escuelas privadas en América Latina? Estudio comparativo usando los resultados del SERCE"
-autores: "Duarte, J.; Bos, M. S.; Moreno, M."
+zotero-key: RCRS47FGg6703955
+clave_provisional: no
+titulo: ¿Enseñan mejor las escuelas privadas en América Latina? Estudio comparativo usando los resultados del SERCE
+autores: Duarte, J.; Bos, M. S.; Moreno, M.
 año: "2010"
-publicacion: "Banco Interamericano de Desarrollo, División de Educación (SCL/EDU), Notas Técnicas n.º 5 (febrero de 2010)"
+publicacion: Banco Interamericano de Desarrollo, División de Educación (SCL/EDU), Notas Técnicas n.º 5 (febrero de 2010)
 doi_url: https://webimages.iadb.org/publications/spanish/document/%C2%BFEnse%C3%B1an-mejor-las-escuelas-privadas-en-Am%C3%A9rica-Latina-Estudio-comparativo-usando-los-resultados-del-SERCE.pdf
-bloque: "Antecedente de K2 (búsqueda de novedad 7.2)"
-estado: por_verificar
+bloque: Antecedente de K2 (búsqueda de novedad 7.2)
+estado: verificado
 lectura: "Claude: texto completo del PDF público del BID (50 págs.), 2026-11-10; las páginas son las impresas (la tabla 7 está en la página 21 impresa, 24 del PDF)"
-pdf_en_zotero: no
+pdf_en_zotero: sí (agregado por Claude a pedido de Mateo, 2026-11-10; grupo «Proyecto Final PISA», colección «Proyecto PISA»; clave de Better BibTeX comprobada)
 verificado_por:
 fecha_verificacion:
 ---
@@ -66,5 +66,5 @@ cambia según el tipo de gestión: la misma pregunta de nuestro K2, en otra pobl
 
 ## Dónde se usa
 Búsqueda de novedad 7.2 (K2), [[Hallazgos]] e informe (criterio 4 y lectura de conjunto, con **[VERIFICAR]**).
-Agregada a `Proyecto_PISA/anteproyecto/referencias.bib` el 2026-11-10 con los metadatos del propio PDF; falta
-agregarla a Zotero (la clave `duarte2010ensenan` es provisional).
+Agregada a `Proyecto_PISA/anteproyecto/referencias.bib` el 2026-11-10 con los metadatos del propio PDF, y a Zotero el
+mismo día con su PDF (Better BibTeX le asigna la misma clave, `duarte2010ensenan`).

@@ -114,16 +114,16 @@ el contenido sigue por verificar en el texto completo):
 
 | # | Candidato | Cadena en Google Académico | Resultados (aprox.) | Lo relevante en la página 1 |
 |---|---|---|---|---|
-| 1 | K1, K3 | `PISA Colombia socioeconomic mathematics "formulating" "employing" "interpreting"` | 134 | Wu (2025), *International Electronic Journal of Mathematics Education* (ERIC): PISA 2022, las 4 subescalas de proceso; el fragmento nombra a Colombia y a «students from wealthier» hogares. **Por leer** (no se encontró su resumen). De Bortoli y Underwood (2025), ACER, Australia |
+| 1 | K1, K3 | `PISA Colombia socioeconomic mathematics "formulating" "employing" "interpreting"` | 134 | Wu (2025), *International Electronic Journal of Mathematics Education* (ERIC): PISA 2022, las 4 subescalas de proceso; el fragmento nombra a Colombia y a «students from wealthier» hogares. Revisado el 2026-11-10: **no es antecedente** (ver abajo). De Bortoli y Underwood (2025), ACER, Australia |
 | 2 | K1, K3 | `PISA Colombia "nivel socioeconómico" matemáticas "formular" "emplear" "interpretar"` | 938 | Tesis y documentos que citan la definición de PISA («formular, emplear e interpretar»); ninguno compara la brecha por NSE entre procesos |
 | 3 | K1 | `PISA "process subscales" mathematics socioeconomic gap` | 45 | Informes nacionales de PISA 2022 de Inglaterra e Irlanda del Norte (Ingram et al., 2023): según el fragmento, revisan «whether gender and socioeconomic gaps are bigger» en algunas subescalas de proceso, **pero en esos países**. Informes de Inglaterra de PISA 2012 y 2018 y Cantillas et al. (2026), Filipinas, sobre NSE y subescalas |
 | 4 | K2 | `PISA Colombia "socioeconomic gradient" "private schools"` | 34 | Carneiro y Toppeta (2022, CAF): brechas por educación de la madre en 3.º y 6.º grado, ligadas a la segregación entre colegios (no la pendiente por sector). Duarte, Bos y Moreno (2010, BID), análisis multinivel del SERCE. Willms (2006) |
 | 5 | K2 | `PISA Colombia "nivel socioeconómico" "colegios privados" "colegios públicos" matemáticas` | 459 | Estudios de la brecha público–privado en Colombia (Castro Aristizábal et al., 2017 y 2020; Uribe, 2012; Correa-Fonnegra y Orejuela-Ríos, 2017): explican la brecha, no prueban si la pendiente del NSE cambia entre sectores |
-| 6 | K2 | `PISA "Latin America" "socioeconomic gradient" "private schools" interaction` | 38 | Salinas-Contador (2014), tesis sobre sector escolar y estratificación en América Latina con PISA 2009; el fragmento menciona «a significant interaction effect». **Por leer** (no se encontró su resumen) |
+| 6 | K2 | `PISA "Latin America" "socioeconomic gradient" "private schools" interaction` | 38 | Salinas-Contador (2014), tesis sobre sector escolar y estratificación en América Latina con PISA 2009; el fragmento menciona «a significant interaction effect». Revisado el 2026-11-10: **no es antecedente** (ver abajo) |
 | 7 | K4 | `PISA "rapid guessing" OR "rapid omissions" socioeconomic gap mathematics` | 99 | Rios y Soland (2022), ya en la matriz. Buchholz, Cignetti y Piacentini (2022), *OECD Education Working Paper*, «Developing measures of engagement in PISA»: el fragmento, sin contexto, dice «effort magnify the socio-economic gap in performance». Ninguno trata Colombia |
 | 8 | K4 | `PISA "omitted responses" "treated as missing" OR "scored as incorrect" socioeconomic` | 16 | Sachse, Mahler y Pohl (2019), *Educational and Psychological Measurement*: cómo el tratamiento de la no respuesta afecta las comparaciones entre grupos (incluido el NSE) en evaluaciones internacionales. Köhler, Pohl y Carstensen (2017). Antecedentes del método, no de Colombia |
 | 9 | K5 | `PISA "differential item functioning" mathematics "socioeconomic status"` | 944 | Chen y Zumbo (2017), DIF multinivel con datos de PISA; Rutkowski y Rutkowski (2013) y Pokropek et al. (2017), sobre la medición del NSE en PISA (más cerca de la F4 que de K5). Ninguno trata Colombia |
-| 10 | K5 | `"funcionamiento diferencial" ítems "nivel socioeconómico" matemáticas Colombia` | 93 | Woitschach y Ortiz (2019), «Funcionamiento diferencial del ítem en la evaluación educativa a nivel América Latina y el Caribe» (icso.org.py): el fragmento menciona PISA 2012, matemáticas y el índice socioeconómico. **Por leer** (no se encontró su resumen). Pardo Adames et al. (2023), *Interdisciplinaria*, 40(1): TERCE y procesamiento cognitivo, no DIF por NSE |
+| 10 | K5 | `"funcionamiento diferencial" ítems "nivel socioeconómico" matemáticas Colombia` | 93 | Woitschach y Ortiz (2019), «Funcionamiento diferencial del ítem en la evaluación educativa a nivel América Latina y el Caribe» (icso.org.py): el fragmento menciona PISA 2012, matemáticas y el índice socioeconómico. Revisado el 2026-11-10: **no es antecedente** (ver abajo). Pardo Adames et al. (2023), *Interdisciplinaria*, 40(1): TERCE y procesamiento cognitivo, no DIF por NSE |
 
 **Antecedente que aparece al revisar la cadena 4, leído en texto completo el 2026-11-10:** Duarte, Bos y Moreno
 (2010), «¿Enseñan mejor las escuelas privadas en América Latina? Estudio comparativo usando los resultados del SERCE»,
@@ -144,8 +144,30 @@ pregunta, pero en primaria y en 2006.
 **Conclusión (interpretación de Claude, por discutir):** ninguna fuente de la página 1 prueba para Colombia K1, K2, K4
 o K5. Hay antecedentes **del mismo análisis en otros países o poblaciones**: K1 en Inglaterra, K2 en primaria de
 América Latina (Duarte et al., 2010, leído: sin interacción significativa para Colombia en el SERCE de 2006) y K4 en el
-método. Esto no quita la novedad para Colombia, pero el informe debe citarlos. Faltan por leer 3 posibles antecedentes:
-Wu (2025), Salinas-Contador (2014) y Woitschach y Ortiz (2019).
+método. Esto no quita la novedad para Colombia, pero el informe debe citarlos.
+
+**Los 3 posibles antecedentes que quedaban, revisados el 2026-11-10 (Claude, a pedido de Mateo): ninguno lo es.**
+
+- **Wu (2025)**, *International Electronic Journal of Mathematics Education*, 20(2), em0817
+  (https://doi.org/10.29333/iejme/15900; texto completo en ERIC, EJ1469671). Usa PISA 2022 de 6 economías, entre ellas
+  Colombia (7.804 estudiantes, pág. 6). Las subescalas de proceso solo aparecen como medias descriptivas (tabla 3,
+  pág. 8). Las regresiones usan el puntaje **total** de matemáticas con ESCS como predictor (pág. 10). No compara la
+  asociación del NSE entre procesos, así que **no es antecedente de K1**: para K3 confirma lo ya conocido para el total.
+- **Woitschach y Ortiz (2019)**, «Funcionamiento diferencial del ítem en la evaluación educativa a nivel América Latina
+  y el Caribe», ICSO (Paraguay), Documento de Trabajo n.º 3, informe preliminar del proyecto CONACYT PINV15-1150 (texto
+  completo, 30 págs.). Usa el **TERCE** (6.º grado, ciencias y lectura) y busca DIF **por sexo** (el ítem 26 de lectura
+  favorece a los varones, pág. 21 del PDF). El NSE entra como variable explicativa del logro, no como grupo del DIF
+  (pág. 22). PISA 2012 solo se menciona como antecedente de la evaluación por computador (pág. 4). **No es antecedente
+  de K5.**
+- **Salinas (2014)**, «Educational Expansion, School Sector and Social Stratification: Changing Mechanisms of
+  Educational Inequality in Latin America», tesis doctoral, Pennsylvania State University (autor: Daniel R. Salinas;
+  resumen leído en el catálogo ETDA, https://etda.libraries.psu.edu/catalog/22383). Estudia la estratificación entre
+  colegios públicos y privados en **Chile y México** con encuestas de movilidad social de hombres adultos (CSMS 2001 y
+  EMOVI-2011). **No trata Colombia ni prueba la interacción de K2 con PISA.** *Corrección:* en la tabla de arriba
+  figuraba como «Salinas-Contador»; el catálogo da «Salinas, Daniel R».
+
+Con esto, la búsqueda 7.2 cubrió las cuatro fuentes del plan y se revisaron todos los posibles antecedentes que
+aparecieron. *Propuesta de Claude:* que el equipo decida si el criterio 4 deja de ser «provisional» para K1, K2, K4 y K5.
 
 ## Fuentes de los resultados de búsqueda (URL tal como aparecieron)
 
@@ -164,9 +186,9 @@ Wu (2025), Salinas-Contador (2014) y Woitschach y Ortiz (2019).
 ## Qué falta (equipo)
 1. ✅ Scopus y Google Académico (2026-11-10, arriba). Si se quiere más cobertura, revisar también la página 2 de
    Google Académico.
-1b. Leer los 3 posibles antecedentes que faltan: Wu (2025), Salinas-Contador (2014) y Woitschach y Ortiz (2019).
-   Duarte, Bos y Moreno (2010, BID) ya se leyó (2026-11-10, [[Literatura/duarte2010ensenan]]); falta que un integrante
-   verifique sus afirmaciones y lo agregue a Zotero.
+1b. ✅ (2026-11-10) Revisados los posibles antecedentes: Duarte, Bos y Moreno (2010) en texto completo
+   ([[Literatura/duarte2010ensenan]], verificado por Mateo y agregado a Zotero); Wu (2025) y Woitschach y Ortiz (2019)
+   en texto completo; Salinas (2014) por su resumen. Solo Duarte et al. es antecedente (de K2, en otra población).
 2. Abrir los 9 antecedentes nuevos (ACER, Oxford, Research Square, JOSPOE, Quiroz et al., OCDE WP 279, Robitzsch,
    Jerrim et al. y *Psicothema*), crear su nota en `Literatura/` (ZotLit) y corregir esta tabla.
 3. Con eso, confirmar o corregir el criterio 4 de cada candidato en [[Hallazgos]].

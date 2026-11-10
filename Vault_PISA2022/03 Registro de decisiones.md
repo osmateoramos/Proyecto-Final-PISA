@@ -2218,7 +2218,9 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     consultas) y Claude revisó la página 1 de cada una: ningún antecedente para Colombia. Hay análisis parecidos en otros
     países o poblaciones. El más cercano a K2 es Duarte, Bos y Moreno (2010, BID), que Claude leyó en texto completo
     ([[Literatura/duarte2010ensenan]], por verificar): con el SERCE de 2006 en primaria, la interacción gestión × NSE
-    no fue significativa para Colombia. El criterio 4 sigue provisional hasta leer los 3 antecedentes que faltan.
+    no fue significativa para Colombia. Los otros 3 posibles antecedentes (Wu 2025, Woitschach y Ortiz 2019, Salinas
+    2014) se revisaron el mismo día y no lo son. Mateo verificó la nota de Duarte et al. y Claude la agregó a Zotero. Si
+    el criterio 4 deja de ser provisional lo decide el equipo.
 
 ### D-46 · 2026-11-09 · Diseño de la API (F8, paso 8.2): stack, persistencia y endpoint de predicción
 - **Problema:** la F8 debe cumplir las buenas prácticas del curso de Python (documento del curso que Vanessa dio a

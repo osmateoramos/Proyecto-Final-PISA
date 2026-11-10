@@ -17,10 +17,11 @@ Novedad en [[Literatura/Búsqueda de novedad F7]]
 >   aplican, mínimo 3); (4) no está en la matriz para Colombia; (5) se explica en una frase.
 > - El criterio 4 es **provisional**: la búsqueda 7.2 cubrió las cuatro fuentes del plan (buscador web con SciELO y
 >   Redalyc, **Scopus** y **Google Académico**, 2026-11-10) y ninguna encontró un antecedente para Colombia de K1, K2,
->   K4 ni K5. Pero hay estudios del mismo análisis en otros países o poblaciones, y 4 posibles antecedentes siguen sin
->   leerse ([[Literatura/Búsqueda de novedad F7]]).
+>   K4 ni K5. Hay estudios del mismo análisis en otros países o poblaciones. Los 4 posibles antecedentes que aparecieron
+>   se revisaron el 2026-11-10 y solo uno lo es, el de K2 (abajo) ([[Literatura/Búsqueda de novedad F7]]). Queda en
+>   manos del equipo quitar «provisional».
 > - **K2:** el antecedente más cercano es Duarte, Bos y Moreno (2010, BID; [[Literatura/duarte2010ensenan]], leído por
->   Claude en texto completo, por verificar). Con el SERCE de 2006 (primaria) probaron la misma interacción: **para
+>   Claude en texto completo y verificado por Mateo el 2026-11-10). Con el SERCE de 2006 (primaria) probaron la misma interacción: **para
 >   Colombia no fue significativa** en ninguna de las 4 pruebas (pág. 21), y en América Latina solo en matemáticas de
 >   3.º, en la misma dirección que K2. K2 sigue siendo nuevo para Colombia con PISA y en secundaria, pero el informe
 >   debe citarlo.

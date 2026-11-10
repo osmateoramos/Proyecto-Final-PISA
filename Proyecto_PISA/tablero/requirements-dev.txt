@@ -1,0 +1,6 @@
+# Dependencias de desarrollo y pruebas (incluye las de ejecución). Generado con pip freeze.
+-r requirements.txt
+colorama==0.4.6
+iniconfig==2.3.1
+pluggy==1.7.0
+pytest==8.3.4

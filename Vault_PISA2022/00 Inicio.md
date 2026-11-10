@@ -7,22 +7,32 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 
 1. [[11 Protocolo de verificación]] — cómo se marca qué está verificado y qué no (leer primero).
 2. [[06 Objetivos PISA 2022]] — pregunta, objetivo general y O1–O5.
-3. [[07 Plan de desarrollo PISA 2022]] — paso a paso por semanas. **Estamos en la semana 3 (19–25 oct):** F0, F1 y
-   F2 cerradas (la Puerta G1 pasa). En la F3 están hechos el 3.1 (en `main`), el 3.2, el 3.3 y el 3.5 (rama `Vanessa`,
-   PR #12), el 3.3b (dependencia local) y el 3.4 (AFC: H1 se acepta). **La Puerta G2 pasa** con el desajuste
-   documentado (D-24). **F4 (invarianza):** la invarianza escalar se sostiene en los 4 análisis (D-25); DIF hecho: solo motos tiene DIF no despreciable (zona) y **H2 se rechaza** (D-26). **F5 (al 2026-10-20):** 5.1 a 5.3 hechos; **H8 se rechaza** (D-27); el bifactor exploratorio no es viable (D-29); el 5.4 está **detenido** porque la validación V1 de los puntajes no se cumplió, y se evalúa una integración adaptativa (D-30 y D-31).
+3. [[07 Plan de desarrollo PISA 2022]] — paso a paso por semanas. **Al 2026-11-09 (inicio de la semana 6):** la F5
+   cerró y la Puerta G3 pasa (acta por firmar); la F6 también cerró (D-42 y D-44). Lo que sigue: F7 y Puerta G4
+   (resultados congelados), F8 (API) y F9 (informe), y la revisión del PR por Mateo y Brayan.
+   *Al 2026-11-08 (fin de la semana 5):* después de la
+   evaluación del 08/11 se registraron D-32 a D-39. O4 usa los VP de la OCDE como principal (D-32); el 5.4 se destrabó
+   con E1, que cumple V1–V3 (D-33), y la regresión latente está en curso (D-39); errores con BRR (D-34); conclusiones de
+   la F4 corregidas y dos sensibilidades (D-35); H5 exploratoria. Lo que sigue: terminar el 5.4, el 5.5 a 5.7 y la F6.
+   *Estado anterior (semana 3, 19–25 oct):* F0, F1 y
+   F2 cerradas (la Puerta G1 pasa). La F3 está completa en `main` (PR #12, fusionado el 2026-10-21): 3.1 a 3.5, con el
+   3.3b (dependencia local) y el 3.4 (AFC: H1 se acepta). **La Puerta G2 pasa** con el desajuste
+   documentado (D-24). **F4 (invarianza):** ~~la invarianza escalar se sostiene en los 4 análisis (D-25)~~ con ΔCFI/ΔRMSEA *scaled* no se detectó no invarianza relevante en los 4 análisis (D-25), pero la prueba χ² la rechaza en 10 de 12 pasos y el ajuste de partida es pobre: no es invarianza demostrada (D-35); DIF hecho: solo motos tiene DIF no despreciable (zona) y **H2 se rechaza** (D-26). **F5 (al 2026-10-20):** 5.1 a 5.3 hechos; **H8 se rechaza** (D-27); el bifactor exploratorio no es viable (D-29); el 5.4 está **detenido** porque la validación V1 de los puntajes no se cumplió, y se evalúa una integración adaptativa (D-30 y D-31).
 
-## Estado del proyecto (al 2026-10-20)
+## Estado del proyecto (al 2026-11-09)
 
 | Fase | Estado | Scripts | Evidencia |
 |---|---|---|---|
 | F0 Organización | ✅ cerrada | — | hipótesis congeladas el 2026-10-12, commit `f53054d` ([[09 Hipótesis preregistradas]]) |
 | F1 Datos y ETL | ✅ cerrada | `01a_etl_cognitivo.R` → `01b_etl_cuestionario.R` → `01c_muestra_analitica.R` | muestra analítica de 6.886 estudiantes (`salidas/conteos_muestra.csv`); D-12, D-13 y D-14 |
 | F2 Validación del diseño | ✅ cerrada, **G1 pasa** | `02_validacion_ocde.R` + `utilidades_pisa.R` | `salidas/validacion_ocde.csv`; D-15 |
-| F3 O1: medición del NSE | ✅ cerrada, **G2 pasa** con desajuste documentado (D-24); 3.1 en `main` y el resto en el PR #12 | `03_explorar_items_nse.R`, `03_explorar_saltos.R`, `03_nse_medicion.R` (3.1 y 3.2) y `03_nse_tri.R` (3.3, 3.3b y 3.5) y `03_nse_afc.R` (3.4) | `salidas/nse_*.csv`; H1 aceptada (D-18); modelo para la F4–F6: 2D del AFE (D-24); acta en [[Reuniones/2026-10-18 Puerta G2]] |
-| F4 O2: invarianza | ✅ cerrada: escalar total en zona, rural–urbana, sexo y sector; H2 rechazada | `04_explorar_grupos.R` y `04_invarianza.R` | `salidas/invarianza_tabla.csv`, `nse_medias_latentes.csv`; D-25 y D-26 |
-| F5 O3: competencias | en curso: 5.1 a 5.3 hechos; H8 rechazada; bifactor no viable (D-29); 5.4 detenido: V1 no se cumple y falta validar una integración adaptativa (D-30, D-31) | `05_explorar_items.R`, `05_tri_competencias.R` | `salidas/items_competencia.csv`, `mat_matriz_resumen.csv`, `mat_ajuste.csv`, `mat_bifactor_*.csv`, `mat_posterior_V1.csv`; D-27, D-29 a D-31 |
-| F6–F9 | pendientes | — | — |
+| F3 O1: medición del NSE | ✅ cerrada, **G2 pasa** con desajuste documentado (D-24); todo en `main` desde el 2026-10-21 (PR #12) | `03_explorar_items_nse.R`, `03_explorar_saltos.R`, `03_nse_medicion.R` (3.1 y 3.2) y `03_nse_tri.R` (3.3, 3.3b y 3.5) y `03_nse_afc.R` (3.4) | `salidas/nse_*.csv`; H1 aceptada (D-18); modelo para la F4–F6: 2D del AFE (D-24); acta en [[Reuniones/2026-10-18 Puerta G2]] |
+| F4 O2: invarianza | ✅ cerrada: ningún paso pasa los cortes ΔCFI/ΔRMSEA *scaled* en zona, rural–urbana, sexo y sector, pero el χ² rechaza en 10 de 12 (no es invarianza demostrada, D-35); H2 rechazada | `04_explorar_grupos.R` y `04_invarianza.R` | `salidas/invarianza_tabla.csv`, `nse_medias_latentes.csv`, `nse_medias_latentes_brr.csv` (EE BRR, 2026-11-09); D-25, D-26 y D-34 |
+| F5 O3: competencias | ✅ cerrada, **G3 pasa** (acta en borrador, falta firmar): puntajes propios válidos con regresión latente (D-39); H3 solo primera parte (D-40); H4, H7 y H8 rechazadas (D-41, D-27); P3 con enlace robusto (D-43) | `05_explorar_items.R`, `05_tri_competencias.R`, `05_puntajes_e1.R`, `05_puntajes_rl.R`, `05_dif_matematicas.R`, `05_h4_h7.R`, `05_p3_robusto.R` | `salidas/mat_*.csv`; D-27, D-29 a D-33, D-36 a D-41, D-43; acta en [[Reuniones/2026-11-09 Puerta G3]] |
+| F6 O4: SEM | ✅ cerrada (2026-11-09): H5 cumple su regla pero es exploratoria; H6 aceptada por sector; robustez latente y con puntajes propios concordantes salvo H6 por zona (D-44) | `06_sem_competencias.R` | `salidas/sem_*.csv`, `sem_diagrama.png`; D-42 y D-44 |
+| F7 Robustez y novedad | ✅ 7.1-7.3 hechos (2026-11-10): los 5 candidatos son robustos; búsqueda de novedad provisional (falta Scopus); hallazgos en borrador. **G4**: acta en borrador, etiqueta `resultados-v1` al fusionar el PR | `07_sensibilidad.R`, `05_dif_matematicas.R` (`F7_VARIANTE`) | `salidas/f7_*.csv`; D-45; [[Hallazgos]]; [[Reuniones/2026-11-10 Puerta G4]] |
+| F8 Producto | API (37 rutas en `/v1`) y tablero de 8 páginas en Python 3.11.9, con integración continua en verde; falta desplegar en Render | `api/`, `tablero/` | D-46, D-47 |
+| F9 Informe | borrador completo (2026-11-10), por revisar | `informe/informe.Rmd` | texto y tablas leídos de `salidas/`; falta revisión del equipo y reparto del trabajo |
 
 Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarrollo PISA 2022]]; las razones, en
 [[03 Registro de decisiones]].
@@ -36,7 +46,7 @@ Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarroll
   fusionada en el #9).
 - **Flujo:** cada rama llega a `main` por *Pull Request*; quien abre el PR no lo fusiona hasta que otro integrante
   lo apruebe. *Pull* antes de empezar (ver `README.md`).
-- **Estado al 2026-10-17** (se actualiza al fusionar cada PR):
+- **Estado al 2026-10-23** (se actualiza al fusionar cada PR):
   - PR #1 a #6 fusionados en `main`: «Nada sin fuente» y la F1 de los pasos 1.2 a 1.4 (`01a` y `01b`).
   - PR #7 (`Vanessa` → `main`), fusionado el 2026-10-17: F1 pasos 1.1 y 1.5 (`01c`) y F2 completa (`02`,
     `utilidades_pisa.R`).
@@ -45,12 +55,14 @@ Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarroll
     `03_nse_medicion.R`) y D-16.
   - PR #10 (`Mateo` → `main`), fusionado el 2026-10-17: versiones de R y de los paquetes (D-17) y repositorio
     público.
-  - PR #12 (`Vanessa` → `main`), abierto desde el 2026-10-17: F3 (3.2 a 3.5), F4 completa, F5 (5.1 a 5.4 en curso),
-    D-18 a D-31, firmas de fuentes del 18/10 y la corrección de la revisión de tutor del 2026-10-18.
-    - Brayan publicó dos revisiones (2026-10-18); el 2026-10-19 Vanessa atendió todas sus observaciones, de texto y
-      de código. Espera la segunda revisión de Brayan, la del paso 4.4 y la aprobación de Mateo.
-  - PR #13 (`Brayan` → `main`), abierto el 2026-10-18 y sin revisor: notas 17 y 18 y la presentación de «Nada sin
-    fuente».
+  - PR #12 (`Vanessa` → `main`), **fusionado el 2026-10-21** por Mateo: F3 (3.2 a 3.5), F4 completa, F5 (5.1 a 5.3 y
+    el 5.4 detenido), D-18 a D-31, firmas de fuentes del 18/10 y la corrección de la revisión de tutor del 2026-10-18.
+    - Brayan publicó dos revisiones como comentario (2026-10-18); el 2026-10-19 Vanessa atendió todas sus
+      observaciones, de texto y de código.
+    - En la API pública de GitHub no hay ninguna revisión de aprobación registrada (consulta del 2026-10-23).
+  - PR #13 (`Brayan` → `main`), **fusionado el 2026-10-21** por Mateo, también sin aprobación registrada: notas 17 y
+    18 y la presentación de «Nada sin fuente».
+  - Desde el 2026-10-21, `main` tiene todo el trabajo del equipo; las ramas `Vanessa` y `Brayan` parten de ahí.
 
 ## Equipo y reparto (propuesta, por confirmar)
 
@@ -72,8 +84,8 @@ que no hizo (paso 9.3).
 
 - **Anteproyecto vigente:** `Proyecto_PISA/anteproyecto/anteproyecto_VanessaAcosta_MateoRamos.pdf`
   (fuente `.Rmd` y `referencias.bib` en la misma carpeta; 4 marcas [VERIFICAR] por revisar antes de entregar; ver [[13 Revisión de literatura]])
-- [[03 Registro de decisiones]] — toda decisión, con fecha y razón (D-01 a D-25: en `main` hasta D-17; D-18 a D-25
-  en la rama `Vanessa`, PR #12; D-16 y D-17 aún sin todas las firmas)
+- [[03 Registro de decisiones]] — toda decisión, con fecha y razón (D-01 a D-31, todas en `main` desde el
+  2026-10-21; D-16 y D-17 aún sin todas las firmas)
 - **Versiones de R y de los paquetes:** `Proyecto_PISA/scripts/versiones_paquetes.csv` (D-17). Al abrir
   `Proyecto_PISA.Rproj` en RStudio, la consola avisa si alguna no coincide; para instalarlas, paso 3 de «Primera vez»
   del `README.md`.

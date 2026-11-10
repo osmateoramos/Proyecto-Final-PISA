@@ -1,0 +1,668 @@
+---
+title: "Nivel socioeconómico latente y desempeño matemático por competencias en PISA 2022 (Colombia)"
+subtitle: "Informe final — Consultoría Estadística (borrador completo del 2026-11-10, por revisar)"
+author: "Vanessa Acosta, Mateo Ramos y Brayan David Barreto"
+date: "Universidad Santo Tomás · 2026-II"
+lang: es
+bibliography: ../anteproyecto/referencias.bib
+csl: ../anteproyecto/apa.csl
+link-citations: true
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, results = "asis")
+suppressPackageStartupMessages(library(data.table))
+# Toda cifra del informe sale de un archivo de salidas/ (regla 2 del README); ninguna se escribe a mano.
+SALIDAS <- normalizePath(file.path("..", "salidas"), mustWork = FALSE)
+leer <- function(f) { p <- file.path(SALIDAS, f); if (file.exists(p)) fread(p, encoding = "UTF-8") else NULL }
+pendiente <- function(f) cat("\n\n*Pendiente: falta `salidas/", f, "`.*\n\n", sep = "")
+# Redondeo «mitad hacia arriba» (formatC solo redondea la representación binaria)
+num <- function(x, d = 1) { x <- as.numeric(x); x <- round(x + sign(x) * 1e-9, d)
+  formatC(x, format = "f", digits = d, big.mark = ".", decimal.mark = ",") }
+ent <- function(x) formatC(as.numeric(x), format = "d", big.mark = ".", decimal.mark = ",")
+pv <- function(p, d = 3) { p <- as.numeric(p); if (is.na(p)) "p no calculable" else if (p < 0.001) "p < 0,001" else paste0("p = ", num(p, d)) }
+rango <- function(x, d = 1, sep = " a ") paste0(num(min(x), d), sep, num(max(x), d))
+rango_y <- function(x, d = 1) rango(x, d, " y ")  # para «entre X y Y»
+tabla <- function(x, ...) knitr::kable(x, format.args = list(big.mark = ".", decimal.mark = ","), ...)
+```
+
+```{r cargar, include=FALSE}
+# Salidas que cita el texto (todas agregadas: ninguna tiene filas por estudiante, Ley 1581 de 2012)
+cm <- leer("conteos_muestra.csv");          ce <- leer("comparacion_incluidos_excluidos.csv")
+g1 <- leer("validacion_ocde.csv");          mit <- leer("nse_mitades.csv")
+h1 <- leer("nse_h1_afc.csv");               af <- leer("nse_ajuste_afc.csv")
+va <- leer("nse_validez.csv");              ctri <- leer("nse_confiabilidad_tri.csv")
+s1 <- leer("nse_sens_d20_resumen.csv");     ih2 <- leer("inv_h2.csv")
+it <- leer("invarianza_tabla.csv");         ml <- leer("nse_medias_latentes_brr.csv")
+dpos <- leer("nse_dif_sens_emparejamiento.csv")
+ma <- leer("mat_ajuste.csv");               mm <- leer("mat_matriz_resumen.csv")
+bf <- leer("mat_bifactor_viabilidad.csv");  e1 <- leer("mat_e1_validacion.csv")
+rlv <- leer("mat_rl_validacion.csv");       rla <- leer("mat_rl_ajuste.csv")
+ccomp <- leer("mat_confiabilidad_competencias.csv"); p3 <- leer("mat_p3_robusto.csv")
+dr <- leer("mat_dif_resumen.csv");          md <- leer("mat_dif.csv")
+h4b <- leer("mat_h4_brechas.csv");          h4 <- leer("mat_h4.csv")
+h7 <- leer("mat_h7.csv");                   sc <- leer("sem_coeficientes.csv")
+si <- leer("sem_igualdad.csv");             h5 <- leer("sem_h5.csv")
+h6 <- leer("sem_h6.csv");                   h6i <- leer("sem_h6_interacciones.csv")
+rl <- leer("sem_robustez_latente.csv");     cfu <- leer("sem_comparacion_fuentes.csv")
+aj <- leer("sem_ajuste_latente.csv");       rb <- leer("f7_robustez.csv")
+dt <- leer("f7_sensibilidad_detalle.csv")
+fesc <- leer("f7_dif_resumen_escs.csv");    fsl <- leer("f7_dif_resumen_sin_lineal.csv")
+v1 <- leer("mat_posterior_V1.csv")
+
+# Cifras derivadas que el texto usa varias veces
+n_total <- cm[conjunto == "Total Colombia", n]
+n_anal  <- cm[conjunto %like% "^Muestra analítica", n]
+pct_anal <- cm[conjunto %like% "^Muestra analítica", pct_poblacion]
+excl <- ce[grupo == "excluidos (todos)"]
+m2afe <- af[modelo == "M2_AFE"]
+eco <- sc[coeficiente == "eco"];  lib <- sc[coeficiente == "libros"]
+lrt <- it[!is.na(LRT_p)]
+n_dif <- sum(dr$con_DIF); n_eleg <- sum(dr$elegibles)
+items_dif <- md[DIF == TRUE]
+h5c <- h5[muestra %like% "^completa"]; h5m <- h5[muestra %like% "^mitad"]
+h6s <- h6[variable %like% "^sector"];  h6z <- h6[variable %like% "^zona"]
+r_eco <- function(col) va[puntuacion == "eap_AFE_ECO", get(col)]
+# K1 en la F7: se extraen del texto de detalle de 07_sensibilidad.R (no se escriben a mano)
+k1_escs <- dt[candidato == "K1" & sensibilidad %like% "ESCS", detalle]
+k1_sl   <- dt[candidato == "K1" & sensibilidad %like% "sin ruta", detalle]
+h5_escs <- as.numeric(sub(".*H5 completa ([0-9.]+).*", "\\1", k1_escs))
+p_igual_sl <- as.numeric(sub("^igualdad p = ([0-9.]+);.*", "\\1", k1_sl))
+```
+
+> **Estado del borrador.** Borrador completo redactado por Claude el 2026-11-10 con las salidas de las fases F1 a F7,
+> para que el equipo lo revise sección por sección (paso 9.1 del plan). Todas las cifras del texto y de las tablas se
+> leen de `Proyecto_PISA/salidas/` al compilar; ninguna se escribió a mano. Las citas marcadas **[VERIFICAR]** remiten a
+> fuentes cuya nota en `Vault_PISA2022/Literatura/` sigue `por_verificar`. Los párrafos marcados *(interpretación, por
+> discutir)* son lecturas propuestas, no resultados. El diseño es transversal: se escribe «asociación» o «coeficiente»,
+> nunca «efecto causal» (plan, paso 9.1). Los resultados se congelan con la etiqueta `resultados-v1` (Puerta G4), que se
+> crea al fusionar el PR #14; si alguna salida cambia antes, el texto cambia solo al volver a compilar.
+
+# Resumen
+
+**Problema.** En Colombia la brecha socioeconómica en matemáticas se reporta con un índice de nivel socioeconómico (NSE)
+de una sola dimensión y con un puntaje global. Este proyecto pregunta cuánto se asocia el NSE con cada una de las cuatro
+competencias matemáticas de PISA 2022 (formular, emplear, interpretar y razonar) y cuánto de la brecha depende de cómo se
+mide el NSE y de cómo se califica la prueba.
+
+**Datos y métodos.** Se usan los `r ent(n_anal)` estudiantes colombianos de PISA 2022 con índice socioeconómico y al menos
+10 ítems de matemáticas vistos (`r num(pct_anal)` % de la población ponderada). El NSE se mide como constructo latente
+con análisis factorial y Teoría de Respuesta al Ítem (TRI); su invarianza se prueba por zona, sexo y sector; las
+matemáticas se calibran con un modelo TRI de cuatro competencias y se generan puntajes propios con una regresión latente;
+el funcionamiento diferencial de los ítems (DIF) por NSE y el tratamiento de las omisiones se evalúan con hipótesis
+preregistradas. Toda inferencia final usa los 10 valores plausibles, el peso final y las 80 réplicas BRR.
+
+**Resultados.** El NSE tiene dos dimensiones, una económica y otra de libros en el hogar (H1), aunque el ajuste no llega
+a los cortes usuales. Las cuatro competencias correlacionan entre `r rango_y(c(ma[modelo == "4D", correlacion_min], ma[modelo == "4D", correlacion_max]), 3)`
+y un modelo de una dimensión ajusta mejor según el BIC (H8 se rechaza). Por cada desviación estándar del NSE económico,
+el desempeño es entre `r rango_y(eco$por_DE_de_la_EAP)` puntos PISA mayor según la competencia, más en *interpretar*; la
+igualdad entre competencias se rechaza (`r pv(si$p)`), pero la diferencia es pequeña (`r num(h5c$diferencia_interpretar_menos_emplear, 2)`
+puntos entre interpretar y emplear, resultado exploratorio). La pendiente del NSE es mayor en los colegios privados
+(H6, `r pv(h6s$p_Holm)` con Holm). Solo `r n_dif` de `r n_eleg` ítems tienen DIF por NSE, y tratar las omisiones rápidas
+como faltantes reduce la brecha apenas `r rango(h4b$reduccion_b, 3)` desviaciones estándar. Los cinco resultados
+principales se mantienen en las sensibilidades de la fase de robustez.
+
+**Conclusión.** En estos datos, la brecha socioeconómica en matemáticas no es un artefacto de la calificación: casi no
+cambia con el tratamiento de las omisiones y no la explican ítems sesgados. Lo que sí queda limitado es la posibilidad
+de separar las cuatro competencias con los ítems que ve cada estudiante.
+
+# Planteamiento del problema
+
+Colombia participa en PISA, el programa de la OCDE que evalúa a estudiantes de 15 años escolarizados. En el ciclo 2022,
+cuyo dominio principal fue matemáticas, la muestra de Colombia fue de `r ent(n_total)` estudiantes
+(`salidas/conteos_muestra.csv`). El estatus socioeconómico explica el
+`r num(g1[cifra %like% "Varianza", estimacion])` % de la variación del desempeño en matemáticas y la diferencia entre el
+cuartil más alto y el más bajo del índice oficial es de `r num(g1[cifra %like% "Brecha", estimacion])` puntos
+(cálculo propio, `02_validacion_ocde.R`, que reproduce las cifras publicadas: 16 % y 79 puntos en la nota de país de
+Colombia de la OCDE, p. 5). El informe nacional también reporta el 16 % [@icfes2024pisa, p. 46] **[VERIFICAR]**.
+
+Que el NSE se asocie con el desempeño no es lo que el proyecto busca redescubrir. El problema está en dos decisiones de
+medición que suelen tomarse sin discusión y que determinan la magnitud de la brecha que se reporta (anteproyecto,
+sección 1):
+
+1. **Cómo se mide el NSE.** El índice oficial de PISA (ESCS) combina ocupación y educación de los padres y posesiones del
+   hogar; la OCDE evalúa su comparabilidad entre países y grupos de idioma [@oecd2024pisa2022tr] **[VERIFICAR]**, pero no
+   dentro de un país, entre zonas, sectores o sexos. La propia OCDE reconoce que su índice de posesiones se escala como
+   una medida unidimensional [@avvisati2024measurement, pp. 11, 48]. En Colombia, el INSE del Icfes también asume una
+   sola dimensión [@icfes2019inse] **[VERIFICAR]**, mientras que la literatura internacional distingue al menos una
+   dimensión económica y otra cultural [@hernandez2011modelo; @eriksson2021socioeconomic] **[VERIFICAR]**.
+2. **Cómo se califica el desempeño.** El seguimiento público de las brechas se hace sobre puntajes agregados
+   [@lee2024decada] **[VERIFICAR]**. PISA 2022 define cuatro procesos matemáticos —formular, emplear, interpretar y
+   razonar—, pero el informe nacional los reporta solo como promedios del país, sin cruzarlos con el NSE [@icfes2024pisa]
+   **[VERIFICAR]**. Además, PISA califica como incorrectas las respuestas omitidas, y el desenganche en la prueba puede
+   variar con el NSE [@rios2022investigation] **[VERIFICAR]**.
+
+En este informe llamamos **competencias** a esos cuatro procesos.
+
+**Pregunta de investigación** (`Vault_PISA2022/06 Objetivos PISA 2022.md`): ¿en qué medida el NSE, modelado como
+constructo latente cuya medición es igual entre grupos, explica el desempeño de los estudiantes colombianos en cada una
+de las cuatro competencias matemáticas de PISA 2022, y cuánto de la brecha observada depende de cómo se califica el
+desempeño?
+
+**Antecedentes y vacío** (anteproyecto, sección 2). Los estudios colombianos relacionan puntajes observados con
+covariables socioeconómicas sin modelar el error de medición del NSE [@collazos2021determinantes; @rodriguez2024rural]
+**[VERIFICAR]**. El único antecedente encontrado que prueba invarianza del NSE entre grupos de estudiantes dentro de un
+país lo hace por origen inmigrante en Noruega y Suecia [@mittal2022assessing] **[VERIFICAR]**. El DIF por NSE en
+matemáticas está documentado en México [@garcia2016analisis] y, con PISA 2022, en Corea con dos subpruebas
+[@goh2024detection] **[VERIFICAR]**, pero no en Colombia ni por competencia. Y ningún estudio revisado cuantifica cuánto
+cambia la brecha socioeconómica de Colombia según cómo se califiquen las omisiones [@pohl2014dealing; @kohler2015taking]
+(Pohl et al. **[VERIFICAR]**).
+
+# Objetivos e hipótesis
+
+**Objetivo general.** Determinar en qué medida el NSE, medido como constructo latente con invarianza verificada entre
+grupos, explica el desempeño de los estudiantes colombianos en las cuatro competencias matemáticas de PISA 2022, y en
+qué medida la brecha socioeconómica depende del funcionamiento de los ítems y del tratamiento de las omisiones.
+
+**Objetivos específicos.** O1, medir el NSE; O2, verificar su invarianza por zona, sexo y sector; O3, calificar por
+competencias y verificar la equidad de la calificación (DIF y omisiones); O4, explicar el desempeño por competencia con
+un modelo estructural; O5, poner los resultados a disposición en una API y un tablero.
+
+Las hipótesis se congelaron el 2026-10-12 (commit `f53054d`; nota *09 Hipótesis preregistradas* del vault). Las
+desviaciones posteriores están en el registro de decisiones y se declaran donde aplican. Las dos principales son:
+
+- **D-32:** al rechazarse H8, la F6 (O4, H5 y H6) se estima con los valores plausibles (VP) de la OCDE como análisis
+  principal y los puntajes propios pasan a robustez; el preregistro decía lo contrario. Por la misma decisión, **H5 se
+  presenta como exploratoria**: salió de una revisión de los mismos datos.
+- **D-22:** definiciones operativas de H2 a H7 fijadas antes de estimar; las hipótesis no cambiaron.
+
+```{r hipotesis}
+estado <- data.table(
+  Hipotesis = paste0("H", 1:8),
+  Objetivo = c("O1", "O2", "O3", "O3", "O4", "O4", "O3", "O3"),
+  Enunciado = c("NSE de dos dimensiones", "Sin invarianza escalar rural-urbana", "DIF por NSE en interpretar y formular",
+                "Tratar omisiones rápidas como faltantes reduce la brecha", "Asociación del NSE mayor en interpretar que en emplear (exploratoria)",
+                "La asociación del NSE difiere entre zonas o sectores", "Puntajes propios válidos frente a la OCDE", "Matemáticas multidimensional"))
+res <- function(f, col) { x <- leer(f); if (is.null(x) || !col %in% names(x)) "pendiente" else as.character(x[[col]][1]) }
+estado[, Resultado := c(res("nse_h1_afc.csv", "H1"), res("inv_h2.csv", "H2"), res("mat_h3.csv", "H3"), res("mat_h4.csv", "H4"),
+                        res("sem_h5.csv", "H5"), res("sem_h6.csv", "H6"), res("mat_h7.csv", "H7"), "se rechaza (D-27)")]
+tabla(estado, caption = "Hipótesis preregistradas y su estado (leído de salidas/).")
+```
+
+# Datos y diseño muestral
+
+## Fuente y muestra analítica
+
+La única fuente es la base pública de PISA 2022 de la OCDE [@oecd2023pisadb] **[VERIFICAR]**, bloque de Colombia (D-01):
+cuestionario del estudiante, archivo de ítems cognitivos (respuesta calificada y tiempo por ítem) y archivo de colegios.
+La muestra analítica son los estudiantes con ESCS y al menos 10 ítems de matemáticas **vistos**, es decir, respondidos u
+omitidos (D-14).
+
+```{r muestra}
+if (is.null(cm)) pendiente("conteos_muestra.csv") else
+  tabla(cm[, .(Conjunto = conjunto, n, `% ponderado` = pct_poblacion)], caption = "Conteos de la muestra (01c_muestra_analitica.R).")
+if (!is.null(ce)) tabla(ce[, .(Grupo = grupo, n, Media = media_mat, EE = ee, `Dif. con incluidos` = dif_vs_incluidos, `EE dif.` = ee_dif, z)],
+                        caption = "Media de matemáticas de incluidos y excluidos (10 VP, BRR; 01c_muestra_analitica.R).")
+```
+
+La exclusión **no es aleatoria**. Los `r ent(excl$n)` excluidos rinden `r num(-excl$dif_vs_incluidos)` puntos menos que
+los incluidos (EE `r num(excl$ee_dif)`; z = `r num(excl$z, 2)`), y la diferencia es mayor entre quienes no tienen ESCS
+(`r num(-ce[grupo == "excluido: sin ESCS", dif_vs_incluidos])` puntos). Los análisis describen, por tanto, a la
+población analítica (`r num(pct_anal)` % de la ponderada) y no a todos los estudiantes. Para medir cuánto importa esto,
+la fase de robustez repite los resultados principales con un ajuste de no respuesta por colegio (D-38, sección 8).
+
+## Validación del diseño (Puerta G1)
+
+Antes de cualquier modelo se reprodujeron tres cifras publicadas con los 10 valores plausibles, el peso final y las 80
+réplicas BRR con Fay 0,5 [@oecd2024pisa2022tr, p. 198, fórmula 10.9; reglas de Rubin, p. 226] **[VERIFICAR]**. Las tres
+coinciden con lo publicado dentro del redondeo, lo que confirma que el procesamiento de pesos, réplicas y valores
+plausibles es correcto.
+
+```{r g1}
+if (is.null(g1)) pendiente("validacion_ocde.csv") else
+  tabla(g1[, .(Paso = paso, Cifra = cifra, Estimacion = estimacion, EE = ee, Publicado = publicado, Cumple = cumple_G1, Fuente = fuente)],
+        caption = "Puerta G1: cifras propias frente a las publicadas (02_validacion_ocde.R).")
+```
+
+# Medición del NSE (O1, F3)
+
+**Indicadores y estrategia.** Se usaron 29 indicadores ordinales: posesiones del hogar (ST250 a ST256, incluidos 8
+tipos de libros), educación de los padres (`HISCED`) y ocupación (`HISEI`) (D-16). Cuando el cuestionario salta una
+pregunta por una respuesta anterior (por ejemplo, los tipos de libros a quien no tiene libros), el salto se codificó
+como 0 y no como faltante (D-20). La muestra se dividió en dos mitades por colegio
+(`r ent(mit[mitad == "exploracion", n])` y `r ent(mit[mitad == "confirmacion", n])` estudiantes; `salidas/nse_mitades.csv`):
+en la de exploración se hizo un análisis factorial exploratorio (AFE) y en la de confirmación un análisis factorial
+confirmatorio (AFC) con WLSMV en `lavaan` [@rosseel2012lavaan] **[VERIFICAR]**. Luego se calibraron los ítems con TRI
+(2PL y crédito parcial generalizado) en `mirt` [@chalmers2012mirt] **[VERIFICAR]** sobre la muestra analítica completa.
+
+**Resultado (H1).** El modelo de dos factores mejora claramente al de uno: el CFI *scaled* sube
+`r num(h1[1, dCFI_scaled], 3)` y la prueba de diferencia lo confirma (Δχ² = `r num(h1[1, LRT_dif_chi2])` con
+`r h1[1, LRT_gl]` gl). Los dos factores correlacionan `r num(h1[1, correlacion_factores], 3)`: están relacionados, pero
+no son lo mismo. **H1 se acepta** (`salidas/nse_h1_afc.csv`).
+
+**Modelo elegido (Puerta G2, D-24).** Pasó a las fases siguientes la estructura de dos dimensiones del AFE: un factor
+**económico** (19 indicadores: bienes, educación y ocupación de los padres) y un factor de **libros** (10 indicadores).
+En la mitad de confirmación ajusta mejor que la estructura teórica de D-16 (CFI *scaled* `r num(m2afe$cfi.scaled, 3)`
+frente a `r num(af[modelo == "M2" & version == "principal", cfi.scaled], 3)`; SRMR `r num(m2afe$srmr, 3)` frente a
+`r num(af[modelo == "M2" & version == "principal", srmr], 3)`).
+
+```{r afc}
+if (is.null(af)) pendiente("nse_ajuste_afc.csv") else
+  tabla(af[version %in% c("principal", "exploratoria (AFE)"), .(Modelo = modelo, CFI_scaled = cfi.scaled, CFI_robust = cfi.robust,
+          RMSEA_scaled = rmsea.scaled, RMSEA_robust = rmsea.robust, SRMR = srmr, r_factores = correlacion_factores)],
+        digits = 3, caption = "AFC en la mitad de confirmación (03_nse_afc.R). H1 compara M1 con M2; la G2 eligió M2-AFE (D-24).")
+if (!is.null(va)) tabla(va[, .(Puntuacion = puntuacion, r_HOMEPOS, r_ESCS)], digits = 3, caption = "Validez: correlación ponderada con los índices oficiales (03_nse_tri.R).")
+if (!is.null(s1)) tabla(s1[, .(Medida = medida, `Saltos = 0 (D-20)` = D20, `Saltos = faltante (S1)` = S1)],
+                        caption = "Sensibilidad S1 (D-35): con los saltos de D-20 como 0 o como faltante (03_nse_sens_d20.R).")
+```
+
+**Validez y precisión.** El factor económico correlaciona `r num(r_eco("r_HOMEPOS"), 3)` con el índice oficial de
+posesiones (HOMEPOS) y `r num(r_eco("r_ESCS"), 3)` con el ESCS, y su confiabilidad empírica es
+`r num(ctri[modelo == "2D_AFE" & dimension == "ECO", confiabilidad], 3)` (`salidas/nse_confiabilidad_tri.csv`).
+*(Interpretación del equipo, D-24:)* como junta bienes, educación y ocupación, en la práctica el factor «económico» es un
+NSE general, muy parecido a HOMEPOS; el segundo factor es el de libros en el hogar.
+
+**Limitaciones que hay que declarar.**
+
+- El ajuste no llega a los cortes usuales en las versiones *robust*: CFI *robust* `r num(m2afe$cfi.robust, 3)` y RMSEA
+  *robust* `r num(m2afe$rmsea.robust, 3)` en el modelo elegido (D-18, D-24). Las fuentes del desajuste son la educación y
+  la ocupación de los padres, la separación entre lo digital y la vivienda, y algunos ítems con cargas bajas.
+- La sensibilidad S1 (D-35) muestra que los ceros de D-20 **inflan la precisión del factor libros**: con los saltos como
+  faltantes, su confiabilidad baja de
+  `r num(as.numeric(s1[medida == "confiabilidad empírica, libros", D20]), 3)` a
+  `r num(as.numeric(s1[medida == "confiabilidad empírica, libros", S1]), 3)`. El factor económico, que es el que deciden
+  H5, H6 y los cuartiles de H3 y H4, casi no cambia
+  (`r num(as.numeric(s1[medida == "confiabilidad empírica, económico", D20]), 3)` frente a
+  `r num(as.numeric(s1[medida == "confiabilidad empírica, económico", S1]), 3)`).
+
+# Invarianza del NSE (O2, F4)
+
+**Método.** Se probó si el modelo del NSE mide lo mismo en cada grupo con la secuencia configural → umbrales → cargas →
+interceptos, con la identificación de @wu2016identification **[VERIFICAR]** y los cortes de ΔCFI (0,01) y ΔRMSEA (0,015)
+de @chen2007sensitivity **[VERIFICAR]**, en sus versiones *scaled*, porque `lavaan` no calcula las *robust* con
+restricciones de igualdad (D-25). Cada variable de grupo se analizó por separado en la muestra analítica completa. H2 se
+decide con el contraste rural frente a urbana.
+
+```{r invarianza}
+it2 <- copy(it)
+if (!is.null(it2)) it2[, LRT_p := ifelse(is.na(LRT_p), NA_character_, formatC(as.numeric(LRT_p), format = "e", digits = 2))]
+if (is.null(it2)) pendiente("invarianza_tabla.csv") else
+  tabla(it2[, .(Analisis = analisis, Paso = paso, CFI = cfi.scaled, RMSEA = rmsea.scaled, dCFI, dRMSEA, Se_sostiene = se_sostiene,
+               Dchi2 = LRT_dif_chi2, gl = LRT_gl, p = LRT_p)], digits = 4, caption = "Secuencia de invarianza (04_invarianza.R, D-25 y D-28).")
+if (is.null(ml)) pendiente("nse_medias_latentes_brr.csv") else
+  tabla(ml[, .(Analisis = analisis, Factor = factor, Grupo = grupo, Referencia = referencia, Diferencia = diferencia,
+               EE_BRR = ee_BRR, IC_inf = ic95_inf_BRR, IC_sup = ic95_sup_BRR)], digits = 3,
+        caption = "Diferencias de medias latentes del NSE con error BRR (04_medias_brr.R, D-34). Unidades: DE del grupo de referencia.")
+```
+
+**Resultado (H2).** En el contraste rural–urbana, el paso escalar no empeora el ajuste (ΔCFI
+`r num(ih2$dCFI_escalar, 4)`, ΔRMSEA `r num(ih2$dRMSEA_escalar, 4)`), así que **H2 se rechaza** por su regla
+(`salidas/inv_h2.csv`). Ningún paso de ningún grupo supera los cortes preregistrados.
+
+**Cómo se redacta (D-35).** Con el criterio preregistrado no se detectó no invarianza de magnitud relevante, pero **eso
+no demuestra la invarianza**:
+
+- la prueba de diferencia χ² escalada la rechaza en `r sum(lrt$LRT_p < 0.05)` de `r nrow(lrt)` pasos (D-28);
+- el CFI *scaled* **mejora** al restringir las cargas (de `r rango(it[paso == "cargas", dCFI], 3, " a ")`), así que no se
+  comporta como una medida de ajuste;
+- el ajuste de partida es pobre en las versiones *robust* (`salidas/invarianza_por_grupo.csv`).
+
+**DIF de las posesiones.** Con TRI multigrupo (sin pesos en la prueba, D-26) y magnitud por ΔR² de Nagelkerke ≥ 0,035,
+solo un indicador tiene DIF: motos (`ST251Q02JA`) por zona, y también por sector con el emparejamiento multigrupo de la
+sensibilidad S2 (`r paste(dpos[DIF_S2 == TRUE, paste0(analisis, ", ΔR² = ", num(dR2_multigrupo, 4))], collapse = "; ")`;
+`salidas/nse_dif_sens_emparejamiento.csv`). Es un ítem poco informativo que se mantuvo en el modelo (D-24).
+
+**Diferencias de medias latentes.** Con la invarianza que se sostiene por el criterio preregistrado, los estudiantes
+rurales tienen un NSE económico `r num(-ml[analisis == "H2_rural_urbana" & factor == "ECO", diferencia], 2)` DE menor
+que los urbanos, y los de colegios privados uno `r num(ml[analisis == "sector" & factor == "ECO", diferencia], 2)` DE
+mayor que los de públicos. Los errores BRR son entre `r rango_y(ml$razon_ee, 2)` veces los de `lavaan`, sobre todo en zona
+y sector, que se agrupan por colegio (D-34).
+
+# Calificación por competencias (O3, F5)
+
+## Una o cuatro dimensiones (H8)
+
+El diseño adaptativo hace que cada estudiante vea una mediana de `r mm[competencia == "total", items_por_estudiante_mediana]`
+de los `r mm[competencia == "total", items]` ítems calibrados (`r num(mm[competencia == "total", pct_celdas_con_dato_a])`
+% de las celdas con dato), y entre `r rango_y(mm[competencia != "total", items_por_estudiante_mediana], 0)` por
+competencia (`salidas/mat_matriz_resumen.csv`). Con esos datos se compararon un modelo TRI de una dimensión y uno de
+cuatro competencias en el que cada ítem carga solo en la suya.
+
+```{r f5}
+if (!is.null(ma)) tabla(ma[, .(Modelo = modelo, Convergio = convergio, logLik, Parametros = parametros, AIC, BIC,
+                               r_min = correlacion_min, r_max = correlacion_max)],
+                        caption = "H8: modelos de 1 y 4 dimensiones (05_tri_competencias.R).")
+```
+
+El modelo de cuatro dimensiones solo agrega las 6 correlaciones entre competencias, y estas van de
+`r num(ma[modelo == "4D", correlacion_min], 3)` a `r num(ma[modelo == "4D", correlacion_max], 3)`. El BIC es menor con una
+dimensión (`r num(ma[modelo == "1D", BIC])` frente a `r num(ma[modelo == "4D", BIC])`), así que **H8 se rechaza** (D-27).
+Un modelo bifactor exploratorio, con criterios de viabilidad fijados antes de estimarlo (D-29), **no fue viable**: no
+convergió en 2.000 ciclos y no se pudo calcular ningún error estándar (`salidas/mat_bifactor_viabilidad.csv`). Por eso no
+se interpreta el aporte propio de cada competencia.
+
+*(Consecuencia para el análisis, D-32.)* Con tan pocos ítems por competencia y correlaciones tan altas, un puntaje propio
+de cada competencia depende mucho de las demás y del modelo de condicionamiento. Por eso el modelo estructural (O4) usa
+como principal los VP de proceso de la OCDE, y los puntajes propios quedan para H4, H7 y la robustez.
+
+## Puntajes propios por competencia
+
+Los puntajes propios se generaron con una regresión latente sobre el modelo de cuatro competencias (D-39): un algoritmo
+EM propio con integración de Gauss-Hermite adaptativa centrada en la moda de cada estudiante (E1, D-33), con las
+covariables de la F6 y las interacciones NSE × zona y NSE × sector (D-37). La integración se validó contra una malla fina:
+la diferencia máxima de la EAP fue de `r num(max(rlv$V1_dif_max), 4)` DE con covariables (`salidas/mat_rl_validacion.csv`),
+frente a `r rango(v1$dif_abs_max_EAP, 2, "–")` DE con la integración inicial (`salidas/mat_posterior_V1.csv`, D-27). Las cuatro competencias cumplen los tres criterios de validación.
+
+```{r e1}
+if (!is.null(ccomp)) tabla(ccomp[, .(Competencia = competencia, `Con covariables` = confiabilidad_empirica_con_covariables,
+                                     `Sin covariables` = confiabilidad_empirica_sin_covariables, `EE posterior mediano` = ee_posterior_mediano)],
+                           digits = 3, caption = "Confiabilidad empírica de los puntajes propios (05_puntajes_rl.R).")
+```
+
+La confiabilidad con covariables va de `r rango(ccomp$confiabilidad_empirica_con_covariables, 3)`, y la regresión
+latente explica entre `r rango_y(rla$R2_latente, 3)` de la varianza de cada competencia (`salidas/mat_rl_ajuste.csv`).
+
+## DIF por NSE (H3)
+
+**Método (D-36, D-40).** Se calibraron los ítems en una dimensión con dos grupos —cuartil bajo (Q1) y alto (Q4) del
+NSE económico— con medias y varianzas libres, y se probaron los ítems con al menos 100 respuestas en cada cuartil y
+todas sus categorías en los dos grupos. Un ítem tiene DIF si su prueba TRI es significativa después de
+Benjamini-Hochberg **y** su magnitud no es despreciable: categoría B o C del ETS por Mantel-Haenszel en los dicotómicos,
+o ΔR² ≥ 0,035 en los de crédito parcial.
+
+```{r h3}
+if (is.null(dr)) pendiente("mat_dif_resumen.csv") else
+  tabla(dr[, .(Competencia = competencia, Elegibles = elegibles, `Signif. BH` = significativos_BH, `No despreciables` = no_despreciables,
+               `Con DIF` = con_DIF, `% con DIF` = pct_DIF)], caption = "DIF por NSE dentro de cada competencia (05_dif_matematicas.R, D-36 y D-40).")
+if (nrow(items_dif) > 0) tabla(items_dif[, .(Item = item, Competencia = competencia, `Delta MH` = delta_MH, ETS = categoria_ETS, Favorece = favorece)],
+                               digits = 2, caption = "Ítems con DIF por NSE (parámetros de ítems, sin datos de estudiantes).")
+```
+
+**Resultado.** `r n_dif` de `r n_eleg` ítems tienen DIF, todos en *emplear*;
+`r sum(items_dif$favorece %like% "Q1")` de ellos favorecen al cuartil bajo. **H3 se acepta solo en su primera parte**
+(hay ítems con DIF); la segunda se rechaza, porque interpretar y formular no concentran más DIF que emplear (prueba de
+Fisher de una cola, `salidas/mat_h3.csv`). *(Interpretación, por discutir:)* con efectos en los dos sentidos, el DIF es
+escaso y no apunta a un sesgo sistemático contra el cuartil bajo. `CMA131Q02S` tiene discriminación casi nula en Colombia
+(`salidas/mat_p3_baja_discriminacion.csv`), así que su DIF puede reflejar un mal funcionamiento general del ítem.
+**Salvedad:** dos ítems (`DM446Q02C` y `CM00GQ01S`) tienen ΔMH infinito; su categoría A no es una magnitud observada,
+aunque no cambian H3 porque su prueba TRI no es significativa (D-40).
+
+## Omisiones (H4)
+
+Se recalificaron las respuestas omitidas en menos tiempo que el umbral NT10 («omisiones rápidas»:
+`r ent(h4$omisiones_rapidas)` de `r ent(h4$omisiones)` omisiones) como faltantes, con el mismo modelo y los mismos números
+aleatorios (D-41), y se comparó la brecha Q4 − Q1 en desviaciones estándar.
+
+```{r h4}
+if (is.null(h4b)) pendiente("mat_h4_brechas.csv") else
+  tabla(h4b[, .(Competencia = competencia, `Brecha (a)` = brecha_a, `Brecha (b)` = brecha_b, `Reducción (b)` = reduccion_b,
+                `EE reducción` = ee_reduccion_b, `p Holm` = p_b_Holm, `Reducción (c)` = reduccion_c)], digits = 4,
+        caption = "Brecha Q4 - Q1 en DE: (a) omisión = incorrecta; (b) omisión rápida = faltante; (c) toda omisión = faltante (05_h4_h7.R, D-41).")
+```
+
+La brecha es de `r rango(h4b$brecha_a, 2)` DE. Tratar las omisiones rápidas como faltantes la reduce solo
+`r rango(h4b$reduccion_b, 4)` DE, lejos del umbral de 0,05 y sin significancia (p con Holm = `r num(max(h4b$p_b_Holm), 3)`).
+Incluso tratando **toda** omisión como faltante, la reducción es de `r rango(h4b$reduccion_c, 3)` DE. **H4 se rechaza**: es
+un resultado nulo bien medido.
+
+## Validez frente a la OCDE (H7) y concordancia de los ítems
+
+```{r h7}
+h7c <- leer("mat_h7_correlaciones.csv")
+if (is.null(h7c)) pendiente("mat_h7_correlaciones.csv") else tabla(h7c, digits = 3, caption = "Correlación de los VP propios (filas) con los de la OCDE (columnas) (05_h4_h7.R).")
+if (!is.null(p3)) tabla(p3[, .(Competencia = competencia, Items = items, `Spearman (todos)` = r_spearman_todos, `Ítems a >= 0,3` = items_a_min,
+                               `Pearson (a >= 0,3)` = r_b_a_min, `Pendiente A` = pendiente_A, `Intercepto B` = intercepto_B, RMSD = RMSD_b_enlazado)],
+                        digits = 3, caption = "Concordancia de las dificultades con las internacionales (P3; 05_p3_robusto.R, D-43, posterior a ver resultados).")
+```
+
+La correlación de cada puntaje propio con la misma competencia de la OCDE va de `r rango(h7$r_misma_competencia, 3)`:
+ninguna llega a 0,80, y en formular y razonar la correlación es mayor con el VP de *emplear* de la OCDE que con el propio.
+**H7 se rechaza** (`salidas/mat_h7.csv`). *(Interpretación, por discutir, D-41:)* es coherente con que las competencias
+casi no se distinguen (H8); además, con confiabilidades de `r rango(ccomp$confiabilidad_empirica_con_covariables, 2)` en
+los puntajes propios, el umbral de 0,80 era difícil de alcanzar aun si los constructos coincidieran.
+
+El orden de dificultad de los ítems en Colombia sí concuerda con el internacional (Spearman de
+`r rango(p3$r_spearman_todos, 2)`; razonar es la que menos). Este análisis (P3) se rehízo después de ver que el enlace
+fijado en D-41 quedaba dominado por ítems con discriminación casi nula, un error de diseño declarado en D-41 y D-43.
+
+# Modelo estructural (O4, F6)
+
+**Método (D-42).** Análisis principal en dos pasos: para cada competencia y cada uno de los 10 VP de la OCDE, regresión
+ponderada sobre las puntuaciones del NSE económico y de libros (G2), con sexo y grado como covariables; errores con las
+80 réplicas BRR y reglas de Rubin [@rubin1987multiple] **[VERIFICAR]** (810 ajustes por modelo). Los coeficientes se
+reportan en puntos PISA por unidad de la puntuación del NSE y por desviación estándar (DE). Como robustez se estimó un
+SEM con el NSE latente (WLSMV, 29 indicadores) y se repitió todo con los puntajes propios (D-44).
+
+```{r f6}
+if (is.null(sc)) pendiente("sem_coeficientes.csv") else
+  tabla(sc[coeficiente %in% c("eco", "libros"), .(Competencia = competencia, NSE = ifelse(coeficiente == "eco", "económico", "libros"),
+           Coef = estimacion, EE = ee_BRR, IC_inf = ic95_inf, IC_sup = ic95_sup, Por_DE = por_DE_de_la_EAP, R2 = R2_medio)],
+        caption = "Coeficientes del NSE por competencia, en puntos PISA (06_sem_competencias.R, 10 VP de la OCDE, BRR + Rubin).")
+```
+
+```{r f6-diagrama, out.width = "100%", fig.cap = "Modelo de la F6 y coeficientes del NSE en puntos PISA por DE (diagrama de la carpeta de salidas, D-44)."}
+# Se copia a la carpeta de figuras de knitr: LaTeX no acepta la ruta absoluta (espacios y tildes de OneDrive)
+src <- file.path(SALIDAS, "sem_diagrama.png")
+if (file.exists(src)) { dst <- paste0(knitr::opts_current$get("fig.path"), "1.png"); dir.create(dirname(dst), recursive = TRUE, showWarnings = FALSE)
+  file.copy(src, dst, overwrite = TRUE); knitr::include_graphics(dst) } else pendiente("sem_diagrama.png")
+```
+
+**Asociación con cada competencia.** El NSE económico se asocia positivamente con las cuatro competencias: entre
+`r rango_y(eco$por_DE_de_la_EAP)` puntos por DE, con el valor más alto en
+*`r eco[which.max(por_DE_de_la_EAP), competencia]`*. El factor de libros agrega entre `r rango_y(lib$por_DE_de_la_EAP)`
+puntos por DE. El modelo explica entre `r rango_y(eco$R2_medio, 3)` de la varianza.
+
+**Igualdad entre competencias.** La prueba de Wald de que el coeficiente del NSE económico es igual en las cuatro
+competencias se rechaza (χ² = `r num(si$chi2, 2)` con `r si$gl` gl, `r pv(si$p)`).
+
+**H5 (exploratoria).** La diferencia interpretar − emplear es de `r num(h5c$diferencia_interpretar_menos_emplear, 2)`
+puntos (EE `r num(h5c$ee_BRR, 2)`; IC 95 % `r num(h5c$ic95_inf, 2)` a `r num(h5c$ic95_sup, 2)`; `r pv(h5c$p)`) en la
+muestra completa y de `r num(h5m$diferencia_interpretar_menos_emplear, 2)` puntos (`r pv(h5m$p)`) en la mitad de
+confirmación. Cumple la regla preregistrada en las dos, pero se presenta como **exploratoria** (D-32).
+
+**H6 (zona y sector).** La interacción NSE × sector es significativa (χ² = `r num(h6s$chi2, 2)` con `r h6s$gl` gl;
+`r pv(h6s$p_Holm)` con Holm): en los colegios privados, la pendiente del NSE es entre
+`r rango_y(h6i[interaccion %like% "privado", estimacion])` puntos mayor por unidad, según la competencia. La de zona no lo es
+(`r pv(h6z$p_Holm)`). **H6 se acepta por sector.**
+
+```{r f6-robustez}
+if (is.null(rl)) pendiente("sem_robustez_latente.csv") else
+  tabla(rl[, .(Competencia = competencia, NSE = ifelse(coeficiente == "eco", "económico", "libros"), `SEM latente (por DE)` = coef_latente_por_DE,
+               `Dos pasos (por DE)` = dos_pasos_por_DE_de_la_EAP, Razon = razon_dos_pasos_sobre_latente)], digits = 3,
+        caption = "Robustez: SEM con NSE latente frente al enfoque en dos pasos (D-42, punto 4).")
+if (is.null(cfu)) pendiente("sem_comparacion_fuentes.csv") else
+  tabla(cfu[, .(Prueba = prueba, Unidad = unidad, OCDE = ocde_estimacion, `p OCDE` = formatC(ocde_p, format = "e", digits = 1),
+                Propios = propios_estimacion, `p propios` = formatC(propios_p, format = "e", digits = 1), Coincide = coincide)],
+        digits = 3, caption = "Robustez con los puntajes propios: concordancia con los VP de la OCDE (D-44).")
+```
+
+**Robustez de la F6.**
+
+- *NSE latente:* el SEM con el NSE latente da casi los mismos coeficientes del NSE económico (el enfoque en dos pasos
+  queda entre `r rango_y((rl[coeficiente == "eco", razon_dos_pasos_sobre_latente] - 1) * 100)` % por encima), y el orden de
+  las competencias se mantiene.
+- *Puntajes propios (D-44):* se repiten el orden de las competencias, el rechazo de la igualdad, H5 y H6 por sector. La
+  única discrepancia es NSE × zona, muy significativa con los propios y no con los de la OCDE. *(Interpretación, por
+  discutir:)* hay dos sesgos posibles en sentidos opuestos —los VP propios pueden dar valores p demasiado pequeños y los
+  de la OCDE pueden atenuar la interacción si su modelo de condicionamiento no la incluye, lo que no se ha verificado en
+  el Technical Report—, así que **H6 por zona queda sin resolver**.
+- *Ajuste del SEM latente* (descriptivo, solo con el VP1): CFI *scaled* `r num(aj$cfi.scaled, 3)`, RMSEA *scaled*
+  `r num(aj$rmsea.scaled, 3)` y SRMR `r num(aj$srmr, 3)`. `lavaan` no pudo calcular las versiones *robust*, y las
+  *scaled* tienden a ser optimistas, así que no se puede afirmar que el ajuste sea bueno.
+
+# Robustez (F7)
+
+**Diseño (D-45, fijado antes de correr).** Se pusieron a prueba cinco resultados candidatos con cinco sensibilidades:
+
+- **S-A:** usar el ESCS oficial en lugar del NSE latente.
+- **S-B:** excluir a los estudiantes de la ruta lineal de la prueba.
+- **S-C:** cambiar el umbral de omisión rápida (NT15 y 5 segundos).
+- **S-D:** no corregir por comparaciones múltiples.
+- **S-E:** reponderar por la exclusión no aleatoria dentro del colegio (D-38).
+
+Cada sensibilidad se aplica solo a los candidatos donde tiene sentido. Un candidato es **robusto** si su conclusión se
+mantiene en al menos el 75 % de las sensibilidades que le aplican, con un mínimo de 3.
+
+```{r f7}
+if (is.null(rb)) pendiente("f7_robustez.csv") else
+  print(tabla(rb[, .(Candidato = candidato, Conclusion = conclusion, Aplicables = aplicables, Se_mantiene = se_mantiene_en,
+                     Requerido = requerido, Robusto = robusto)], caption = "Robustez de los candidatos (07_sensibilidad.R, D-45)."))
+if (is.null(dt)) pendiente("f7_sensibilidad_detalle.csv") else
+  print(tabla(dt[, .(Candidato = candidato, Sensibilidad = sensibilidad, Se_mantiene = se_mantiene)],
+              caption = "Resultado de cada sensibilidad; el detalle numérico está en salidas/f7_sensibilidad_detalle.csv."))
+```
+
+**Resultado.** Los `r nrow(rb)` candidatos son robustos (`r sum(rb$robusto == "sí")` de `r nrow(rb)`). Hay tres matices
+que se declaran (D-45):
+
+- **K1 queda cerca del límite.** Con ESCS, la diferencia interpretar − emplear baja a `r num(h5_escs, 2)` puntos, y sin
+  la ruta lineal la igualdad sale con `r pv(p_igual_sl)` (`salidas/f7_sensibilidad_detalle.csv`).
+- **NSE × zona con ESCS.** Con el ESCS oficial, la interacción NSE × zona también sale significativa; no lo es en la base.
+- **El DIF varía poco entre variantes.** Con cuartiles de ESCS hay `r sum(fesc$con_DIF)` ítems con DIF y sin la ruta
+  lineal, `r sum(fsl$con_DIF)`. En ningún caso se concentra en interpretar y formular. `CMA135Q04S` tiene DIF en todas
+  las variantes y siempre favorece al cuartil bajo.
+
+# Hallazgos y discusión
+
+Cada candidato se clasificó con los cinco criterios de la rúbrica (`Vault_PISA2022/08 Rúbrica de desarrollo.md`):
+
+1. hipótesis preregistrada o exploratoria declarada;
+2. efecto relevante según el umbral fijado antes;
+3. robustez según D-45;
+4. ausencia de antecedente para Colombia;
+5. explicable en una frase.
+
+La clasificación es un **borrador** del equipo (`Vault_PISA2022/Hallazgos.md`). El criterio 4 es **provisional**: la
+búsqueda de novedad del paso 7.2 no cubrió Scopus ni Google Scholar, y los 9 antecedentes nuevos que encontró no se han
+leído (`Vault_PISA2022/Literatura/Búsqueda de novedad F7.md`).
+
+```{r hallazgos}
+hz <- data.table(
+  Candidato = c("K1", "K2", "K3", "K4", "K5"),
+  Resultado = c("El NSE económico se asocia más con interpretar que con emplear",
+                "La pendiente del NSE es mayor en los colegios privados",
+                "El NSE económico se asocia con las 4 competencias",
+                "Tratar las omisiones rápidas como faltantes no reduce la brecha",
+                "DIF por NSE escaso y no concentrado en interpretar y formular"),
+  `Clasificación` = c("Hallazgo exploratorio (requiere confirmación en otra muestra o ciclo)", "Hallazgo",
+                    "Réplica, extendida a las 4 competencias", "Resultado nulo bien medido",
+                    "Hallazgo parcial: la primera parte de H3 se sostiene; el patrón por competencia, no"))
+hz[, Robusto := rb[match(hz$Candidato, candidato), paste0(se_mantiene_en, " de ", aplicables)]]
+tabla(hz, caption = "Clasificación de los candidatos (borrador; Hallazgos.md). Robustez leída de f7_robustez.csv.")
+```
+
+**Lectura de conjunto** *(interpretación, por discutir)*:
+
+1. **La brecha no es un artefacto de la calificación.** Ni el tratamiento de las omisiones (K4) ni el funcionamiento de
+   los ítems (K5) cambian la brecha de forma relevante: el desenganche rápido no la explica y los pocos ítems con DIF van
+   en los dos sentidos. Esto responde la segunda parte de la pregunta de investigación: en estos datos, la brecha casi no
+   depende de esas decisiones de calificación.
+2. **Las competencias se distinguen poco.** La asociación con el NSE es algo mayor en interpretar (K1), pero la
+   diferencia es pequeña frente al tamaño de la asociación (K3) y descansa en competencias que casi no se separan
+   empíricamente (H8, H7). Por eso K1 se reporta como exploratorio.
+3. **El sector importa más que la zona.** La pendiente del NSE es más empinada en los colegios privados (K2). Esto no
+   dice que los colegios privados «causen» desigualdad: puede reflejar cómo se reparten los estudiantes entre colegios
+   (composición y selección), algo que este diseño no separa.
+4. **La medición del NSE es la parte más débil.** Dos dimensiones se sostienen (H1), pero el ajuste no llega a los cortes
+   y la invarianza no se demostró (D-35). Las conclusiones sobre el NSE económico son estables con el ESCS oficial (S-A),
+   lo que da algo de tranquilidad.
+
+**Frases para el Ministerio de Educación** (borradores, criterio 5; las aprueba el equipo):
+
+- **K1 (exploratorio):** «En Colombia, la ventaja de los estudiantes de hogares con más recursos es algo mayor cuando
+  deben interpretar resultados matemáticos que cuando deben aplicar procedimientos.»
+- **K2:** «En los colegios privados, la diferencia de desempeño en matemáticas entre estudiantes de hogares con más y con
+  menos recursos es mayor que en los públicos.»
+- **K3:** «Los estudiantes de hogares con más recursos rinden más en las cuatro formas de usar las matemáticas que mide
+  PISA, no solo en el puntaje total.»
+- **K4:** «Las respuestas dejadas en blanco muy rápido no explican la brecha socioeconómica en matemáticas.»
+- **K5:** «Muy pocas preguntas de matemáticas de PISA funcionan distinto según los recursos del hogar, y las que lo
+  hacen no favorecen de forma sistemática a los de más recursos.»
+
+**Riesgos de mal uso.**
+
+- **K1 y K3** describen promedios condicionados, no capacidades individuales. Si se reportan sin esa salvedad, hay riesgo
+  de estigmatizar a los estudiantes de NSE bajo.
+- **K5** no dice que la prueba sea «justa» en todo. Un ítem con DIF no es necesariamente injusto, y la revisión de
+  contenido de los ítems marcados sigue pendiente.
+
+# Limitaciones
+
+1. **Diseño transversal** de un solo ciclo y un solo país: todas las relaciones son asociaciones, no efectos causales.
+2. **Ajuste del NSE** por debajo de los cortes en las versiones *robust* (D-18, D-24). El factor de libros es menos
+   preciso de lo que indica el modelo principal (S1, D-35).
+3. **Invarianza no demostrada:** el criterio preregistrado no detecta no invarianza relevante, pero la prueba χ² la
+   rechaza y el ajuste de partida es pobre (D-35).
+4. **Exclusión no aleatoria:** los excluidos rinden menos (D-14). La reponderación por colegio (S-E) no cambia las
+   conclusiones, pero solo corrige la parte de la exclusión que se explica por el colegio.
+5. **Competencias muy correlacionadas** y pocos ítems por estudiante en cada una (D-27, D-29). Esto limita los puntajes
+   propios y obligó a usar los VP de la OCDE como principales (D-32). Falta verificar en el Technical Report qué
+   variables usa la OCDE para condicionar sus VP, lo que afecta la lectura de H6 por zona.
+6. **Errores de diseño solo en las cifras finales** (D-34). El AFC, la TRI y el DIF son estimaciones puntuales cuyos
+   errores no reflejan el muestreo por colegios.
+7. **Decisiones posteriores a ver resultados**, declaradas como tales: D-32 (orden de las fuentes de O4 y H5
+   exploratoria), D-33 (E1 después del fallo de V1) y D-43 (enlace robusto de P3).
+8. **Pendientes que no se hicieron** (D-21, D-45): la revisión de contenido de los ítems con DIF (P4), la calibración sin
+   los ítems con menos de 500 respuestas (P2), un tercer tratamiento de las omisiones (P5), la búsqueda en Scopus y Google
+   Scholar, y la verificación de la mayoría de las fuentes citadas.
+
+# Productos: API y tablero (O5, F8)
+
+Los resultados agregados se publican en una API REST (FastAPI, Python 3.11.9; `Proyecto_PISA/api/`, D-46) y en un
+tablero en Streamlit que la consume (`Proyecto_PISA/tablero/`, D-47).
+
+- **API:** solo lee los archivos de `salidas/`, no estima nada y nunca entrega datos por estudiante. Tiene documentación
+  OpenAPI en `/docs`, versión `/v1` y un endpoint de predicción con los coeficientes de la F6.
+- **Tablero:** recorre el proyecto fase por fase, con textos que explican cada resultado y el diagrama interactivo del
+  modelo estructural.
+- **Calidad:** los dos tienen pruebas automáticas (`pytest`), Dockerfile e integración continua en GitHub Actions.
+- **[PENDIENTE]:** el despliegue en Render y la URL pública.
+
+# Conclusiones
+
+1. El NSE de los estudiantes colombianos de PISA 2022 se mide mejor con dos dimensiones (económica y de libros) que con
+   una. Con el criterio preregistrado no se detectaron diferencias relevantes en su medición entre zonas, sexos y
+   sectores, aunque la invarianza no queda demostrada.
+2. El NSE económico se asocia con las cuatro competencias matemáticas con una magnitud similar, entre
+   `r rango_y(eco$por_DE_de_la_EAP)` puntos PISA por DE. La asociación es algo mayor en interpretar, como resultado
+   exploratorio, y es más fuerte dentro de los colegios privados.
+3. La brecha socioeconómica casi no depende de cómo se califican las omisiones y no la explican ítems con DIF: en estos
+   datos no es un artefacto de la calificación.
+4. Las cuatro competencias se distinguen poco con los ítems que ve cada estudiante en el diseño adaptativo. Para
+   analizarlas por separado conviene usar los VP de la OCDE y tratar con cautela cualquier puntaje propio por
+   competencia.
+5. Los cinco resultados principales se mantienen en las sensibilidades de la fase de robustez. Su novedad para Colombia
+   queda por confirmar con una búsqueda en Scopus y Google Scholar.
+
+# Declaración de uso de IA y reparto del trabajo
+
+**Uso de inteligencia artificial.** El equipo usó un asistente de IA generativa (Claude, de Anthropic, mediante Claude
+Code) durante todo el proyecto, como se registra fila por fila en `Vault_PISA2022/15 Bitácora de uso de IA.md`. Según
+esa bitácora, la IA se usó para:
+
+1. revisar la base de PISA 2022 y escribir los scripts en R de las fases F1 a F7;
+2. buscar antecedentes y verificar metadatos bibliográficos;
+3. redactar como propuestas buena parte de las decisiones del registro, con alternativas para que el equipo eligiera;
+4. programar la API y el tablero siguiendo el documento de buenas prácticas del curso de Python;
+5. redactar borradores, entre ellos **este informe**, que Claude escribió el 2026-11-10 a partir de las salidas y del
+   vault, y que el equipo revisa sección por sección.
+
+**Qué no hizo la IA.** Según el registro y la bitácora:
+
+- No tomó las decisiones metodológicas: las aceptó o modificó un integrante, casi siempre Vanessa, y Mateo y Brayan las
+  revisan en los PR.
+- No marcó ninguna fuente como verificada.
+- No decidió qué se reporta como hallazgo.
+
+**Errores de la IA detectados y corregidos.** El protocolo de verificación (`Vault_PISA2022/11 Protocolo de
+verificación.md`) detectó errores propios de la IA, que quedaron registrados:
+
+- números de página del Technical Report mal leídos (F2);
+- códigos de no respuesta que un script propio contaba como faltantes (F1);
+- cargas en 0 en una salida propia por un comportamiento de `mirt` que no se había revisado (F3);
+- un conteo de omisiones mal hecho (F5);
+- un diseño de enlace de dificultades que no anticipó ítems con discriminación casi nula (D-41 y D-43);
+- infinitos no tratados en una salida del DIF (D-40);
+- conclusiones de la F4 redactadas con más fuerza de la que daban los datos (D-35).
+
+**Reparto del trabajo. [POR COMPLETAR POR EL EQUIPO]** Cada integrante describe su aporte real por fase. La propuesta del
+anteproyecto era: Vanessa, planteamiento y calificación por competencias; Mateo, estado del arte, NSE e invarianza;
+Brayan, modelo estructural, API y tablero; los tres, objetivos y verificación de fuentes. Hay que confirmarla o
+corregirla con lo que pasó.
+
+# Referencias

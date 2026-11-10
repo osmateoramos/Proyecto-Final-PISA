@@ -912,8 +912,8 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
      fuente de acceso abierto.
 - **Estado:** propuesta. Cada punto se decide antes de su fase: el 6, antes de la F4; del 1 al 4, antes de la F5; el
   5, antes de la F6.
-  - *2026-10-18:* el punto 6 quedó cerrado en D-25 y los puntos 1 a 4, en D-27. Sigue abierto el 5 (errores
-    estándar de la F6).
+  - *2026-10-18:* el punto 6 quedó cerrado en D-25 y los puntos 1 a 4, en D-27. ~~Sigue abierto el 5 (errores
+    estándar de la F6).~~ *2026-11-08:* el punto 5 se cierra en D-34 (BRR en las cifras finales).
 
 ### D-24 · 2026-10-18 · Puerta G2: modelo del NSE que pasa a la F4–F6
 - **Problema:** según D-16 (punto 9), las puntuaciones del NSE que se usan en la F4–F6 salen del modelo que se elija en
@@ -1099,6 +1099,9 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - **H2 se rechaza** (regla del preregistro con D-22 y D-25): en rural–urbana, el paso escalar empeora el CFI 0,003
     y el RMSEA 0,001 (no más de 0,01 ni de 0,015), y ningún ítem tiene DIF no despreciable. Fallan las dos
     condiciones.
+  - *Corrección (2026-11-08, D-35):* el párrafo siguiente dice más de lo que muestran los datos. Con el criterio
+    preregistrado no se detectó no invarianza relevante; no es invarianza demostrada (el χ² la rechaza en 10 de 12 pasos
+    y el ajuste de partida es pobre). Las comparaciones de medias y efectos entre grupos se hacen declarando ese límite.
   - **Qué implica para la F6:** el NSE entra con invarianza escalar total entre zonas, sexos y sectores, así que sus
     medias y sus efectos se pueden comparar entre grupos (H6). Motos se reporta como el único ítem con DIF no
     despreciable, en zona.
@@ -1286,7 +1289,11 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
       - Tamaño efectivo de los puntos (código propio, 5.000): mediana 1.812, mínimo 6. Errores estándar, solo como
         información: correlación con `mirt` de 0,997 a 0,999 y diferencia máxima de 0,07 a 0,13.
       - Por la regla de Vanessa no se continuó con V2, V3 ni la estimación definitiva.
-    - **Diagnóstico (2026-10-20; script de prueba del scratchpad, no del proyecto):** diferencia máxima de las EAP por
+    - **Diagnóstico (2026-10-20; script de prueba del scratchpad, no del proyecto):** *Aviso de trazabilidad
+      (2026-11-08):* las cifras de este diagnóstico, las del piloto de tiempos y las de la «verificación técnica» de
+      arriba salieron de scripts que no están en el repositorio (se corrieron en otro equipo), así que **no se pueden
+      reproducir** y no deben ir al informe tal cual (regla 2 del `README.md`). Los conteos de tamaño efectivo (< 50 y
+      < 100) los recalcula `scripts/05_puntajes_e1.R` (D-33). Diferencia máxima de las EAP por
       competencia (emplear, formular, interpretar, razonar):
 
       | Comparación | Diferencia máxima (DE) |
@@ -1556,3 +1563,685 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     la convergencia, la mezcla, el error Monte Carlo de las EAP y la cobertura de la posterior. Si E3 no se puede
     validar, no se convierte en referencia: se documenta el fallo y se revisa el diseño antes de producir puntajes.
 - **Estado:** ✅ aceptada por Vanessa (2026-10-20), con los pendientes resueltos; falta elegir el paquete de MCMC. Mateo y Brayan la revisan en el PR.
+  - *Modificada por D-33 (2026-11-08):* solo E1, con plazo; E2, E3 y el paquete de MCMC no se hacen.
+
+### D-32 · 2026-11-08 · Con qué puntajes se responde O4 después de rechazar H8 (F5–F6; desviación del preregistro)
+- **Contexto:** evaluación del avance del 2026-11-08 (Claude, en el papel de profesor de doctorado; pedida por
+  Vanessa). Se decide **después** de conocer el rechazo de H8 y el fallo de V1, y así se declara.
+- **Lo que muestran los datos:**
+  - H8 rechazada: correlaciones entre competencias de 0,897 a 0,976 (`salidas/mat_ajuste.csv`, D-27);
+  - el modelo de 4 competencias tiene solo 6 parámetros más que el de 1 (532 frente a 526: las 6 correlaciones) y
+    mejora la log-pseudoverosimilitud en 12,9 (−99.797,3 frente a −99.810,2; `salidas/mat_ajuste.csv`);
+  - mediana de ítems por estudiante: emplear 9, formular 5, interpretar 7 y razonar 6
+    (`salidas/mat_matriz_resumen.csv`);
+  - el 5.4 está detenido desde el 2026-10-20 (V1 no se cumple; D-27, D-30 y D-31);
+  - la bitácora de la rama `Vanessa` (fila del 2026-10-23, borrador, scripts del scratchpad) anota que con
+    integración exacta la correlación emplear–razonar llega a la frontera (ρ → 1). **No está en el repositorio ni se
+    ha verificado.**
+- **Problema (interpretación de Claude):** con tan pocos ítems por competencia y correlaciones tan altas, el puntaje
+  propio de cada competencia depende sobre todo de las otras competencias y del modelo de condicionamiento. Con esos
+  puntajes, H5 (que compara interpretar con emplear, r = 0,951) y la segunda parte de H7 (correlación mayor con la
+  propia competencia) casi no se pueden identificar.
+- **Alternativas:**
+  - (a) la F6 con los valores plausibles (VP) de proceso de la OCDE como análisis principal y los puntajes propios como
+    secundarios;
+  - (b) mantener el plan: puntajes propios como principal y VP de la OCDE como robustez;
+  - (c) un puntaje global propio (modelo de 1 dimensión) y las competencias solo con los VP de la OCDE.
+- **Decisión (Vanessa, 2026-11-08): (a).**
+  1. La F6 (O4, H5 y H6) se estima con los 10 VP de proceso de la OCDE (`PV1MPEM`–`PV10MPEM`, `MPFS`, `MPIN` y
+     `MPRE`, que ya están en `datos/COL_cuestionario.rds`: `01b_etl_cuestionario.R`, línea 61), con `W_FSTUWT`, las 80
+     réplicas y las reglas de Rubin (D-34).
+  2. Los puntajes propios, si el 5.4 se valida (D-33), pasan a análisis secundario: robustez de la F6 y base de H4 y H7.
+  3. **Desviación del preregistro:** [[09 Hipótesis preregistradas]] dice que H5 se prueba «puntajes propios y PV
+     OCDE», y [[06 Objetivos PISA 2022]] pone los puntajes de O3 como principales en O4. Se invierte el orden. Las
+     reglas de decisión de H5 y H6 no cambian. Se anota en la nota 09.
+  4. **Lo que no cambia:** H3 (DIF; no usa puntajes), H4 (necesita la recalificación propia y depende de D-33) y H7
+     (depende de D-33).
+- **Límites que hay que declarar (interpretación, por verificar en el Technical Report):** los VP de la OCDE están
+  condicionados con el modelo de población de la OCDE, no con el NSE latente de la G2. Si ese modelo no incluye
+  interacciones del NSE con la zona o el sector, las diferencias de pendiente que busca H6 salen atenuadas hacia la
+  igualdad. Falta la página del Technical Report que describe el condicionamiento.
+- **Propuesta de Claude (por confirmar por Vanessa):** declarar **H5 exploratoria** en el informe. La hipótesis salió
+  de la revisión del 2026-09-29 sobre los 7.804 estudiantes, que incluyen a la mitad de confirmación, así que ninguna
+  parte de estos datos es independiente de su origen. La nota de H5 en la nota 09 ya la llama «exploratoria en origen».
+- **Estado:** ✅ (a) aceptada por Vanessa (2026-11-08). ~~La propuesta sobre H5, por confirmar.~~ *H5 exploratoria:
+  confirmada por Vanessa el mismo día.* Mateo y Brayan la revisan en el PR.
+
+### D-33 · 2026-11-08 · El 5.4 sigue solo con E1 y con plazo (modifica D-31)
+- **Contexto:** V1 no se cumple (`salidas/mat_posterior_V1.csv`: diferencia máxima de 0,206 a 0,254 DE). D-31 preveía
+  tres métodos (E1, E2 y E3) y un paquete de MCMC que obligaba a cambiar D-17. Con D-32, los puntajes propios son
+  secundarios. Se decide **después** de conocer el fallo de V1.
+- **Decisión (Vanessa, 2026-11-08):**
+  1. **Solo E1:** cuadratura de Gauss-Hermite adaptativa programada en el proyecto, centrada en la moda de la posterior
+     de cada estudiante y escalada con su curvatura (D-31 punto 1). No se instalan paquetes nuevos; E2 y E3 no se hacen.
+  2. **Validación contra una malla fina** en la submuestra de D-31 punto 2 (los 77 estudiantes con tamaño efectivo
+     menor que 100 en V1 y 200 al azar con `set.seed(2026)`).
+  3. **Plazo: 2026-11-12.** Si para esa fecha E1 no cumple V1 a V3 (umbrales de D-27, sin cambios), se documenta, el 5.4
+     se suspende y H4 y H7 se reportan como **no evaluables**.
+- **Detalles de implementación (propuestos por Claude y fijados antes de correr; Vanessa puede ajustarlos):**
+  - *Moda:* `optim()` con BFGS desde la media latente del estudiante; se acepta si la norma infinita del gradiente es
+    ≤ 10⁻⁵ y la Hessiana negativa es definida positiva (D-31 punto 4). Si no, se reintenta desde el origen y desde la
+    EAP sin covariables; si sigue fallando, el estudiante queda como **no validado** (D-31 punto 4.4).
+  - *E1:* malla producto de Gauss-Hermite con 5 puntos por dimensión (625) en las coordenadas de la moda y de la
+    Cholesky de la inversa de la Hessiana; resolución duplicada para V2 y V3: 7 puntos por dimensión (2.401).
+  - *Referencia (V1):* regla del rectángulo en una malla de 21 puntos por dimensión sobre ± 6 desviaciones posteriores
+    alrededor de la moda (194.481 puntos). No supone que la posterior sea normal y es determinista. Se comprueba que
+    ampliar a ± 8 no cambia la EAP en más de 0,005 DE.
+  - *Orden:* (1) E1 sin covariables frente a la referencia en los 277; (2) V2 y V3 en los 6.886; (3) solo si se
+    cumplen, la regresión latente de D-27 punto 4 con los ítems fijos, y E1 con covariables.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08); detalles de implementación por confirmar. Mateo y Brayan la revisan
+  en el PR.
+- **Reproducción previa (2026-11-08, en este equipo, donde no estaban los cachés de la F5):** `05_tri_competencias.R`
+  (sin el bifactor) re-estimó los modelos de 1 y 4 dimensiones y V1. `mat_matriz_resumen.csv`, `mat_ajuste.csv` y
+  `mat_posterior_V1.csv` salieron idénticos a los del commit, salvo los minutos de cálculo.
+- **Resultado de E1 sin covariables** (`scripts/05_puntajes_e1.R` → `salidas/mat_e1_validacion.csv` y
+  `mat_e1_resumen.csv`; 2026-11-08): **se cumplen V1, V2, V3 y la cobertura.**
+  - Moda aceptada en los 6.886 (gradiente máximo 1,0 · 10⁻¹⁰; hasta 13 iteraciones de Newton). Las probabilidades
+    programadas coinciden con `probtrace()` (diferencia máxima 2,2 · 10⁻¹⁶).
+  - La submuestra reproduce los conteos de V1: 36 estudiantes con tamaño efectivo < 50 y **77 con < 100** (D-27), más
+    200 al azar.
+
+  | Competencia | V1: dif. máx. con la referencia (277 / solo los 77) | V2: dif. media / P95 (5 vs 7 puntos) | V3: dif. relativa del EE, mediana / P95 |
+  |---|---|---|---|
+  | Emplear | 0,0019 / 0,0012 | 0,0003 / 0,0009 | 0,05 % / 0,25 % |
+  | Formular | 0,0016 / 0,0010 | 0,0002 / 0,0008 | 0,04 % / 0,16 % |
+  | Interpretar | 0,0016 / 0,0011 | 0,0002 / 0,0008 | 0,04 % / 0,20 % |
+  | Razonar | 0,0019 / 0,0011 | 0,0003 / 0,0009 | 0,04 % / 0,22 % |
+
+  - La correlación con la referencia y entre resoluciones redondea a 1,000000. Ampliar la referencia de ± 6 a ± 8
+    cambia la EAP como máximo en 0,00001 DE.
+  - **Lectura (dato):** con la integración centrada en la moda, la diferencia máxima baja de 0,21–0,25 DE (V1 original)
+    a menos de 0,002 DE, también en los 77 casos extremos. El fallo de V1 venía de integrar con puntos de la previa,
+    como anticipaba el diagnóstico de D-27; E1 lo resuelve.
+  - Sigue el paso 3 de D-33: la regresión latente con los ítems fijos y E1 con covariables (con las interacciones de
+    D-37).
+
+### D-34 · 2026-11-08 · Errores estándar con BRR para las cifras finales (cierra D-23 punto 5)
+- **Problema:** después de la F2 ninguna cifra tiene un error estándar que refleje el diseño por colegios (D-16
+  punto 5). `salidas/nse_medias_latentes.csv` lo advierte en cada fila, y las correlaciones entre competencias no
+  tienen error estándar (`SE = FALSE`).
+- **Alternativas:** (a) BRR con las 80 réplicas y Fay 0,5 solo en las cifras finales; (b) *bootstrap* por colegio;
+  (c) declarar la limitación sin corregirla.
+- **Decisión (Vanessa, 2026-11-08): (a).**
+  1. **Medias latentes de la F4:** en cada réplica se re-estima el modelo escalar de cada análisis (zona, rural–urbana,
+     sexo y sector) con el peso replicado normalizado y las mismas restricciones, partiendo de la solución de la
+     muestra completa. Varianza con la fórmula de `utilidades_pisa.R`: 0,05 · Σ (θ_t − θ)².
+     - Si una réplica no converge se excluye y se reporta. Si fallan más de 4 de 80 (5 %), ese análisis no tiene error
+       BRR y se dice.
+  2. **Coeficientes de la F6:** cada modelo con cada uno de los 10 VP de la OCDE y los 81 pesos (810 ajustes por
+     modelo), combinados con Rubin.
+  3. Lo demás (AFC, TRI, DIF) queda como estimación puntual descriptiva, con el aviso de que sus errores no reflejan el
+     diseño.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+- **Resultado del punto 1 (2026-11-09, `04_medias_brr.R` → `salidas/nse_medias_latentes_brr.csv`):** las 80 réplicas
+  convergieron en los cuatro análisis (ninguna exclusión).
+
+  | Contraste | Económico: diferencia (EE BRR) | IC 95 % BRR | Libros: diferencia (EE BRR) | IC 95 % BRR |
+  |---|---|---|---|---|
+  | Pueblo − urbana | −0,630 (0,108) | −0,841 a −0,419 | −0,194 (0,077) | −0,344 a −0,044 |
+  | Rural − urbana (H2) | −0,950 (0,142) | −1,230 a −0,671 | −0,173 (0,088) | −0,346 a 0,000 |
+  | Hombre − mujer | 0,052 (0,033) | −0,014 a 0,117 | −0,123 (0,037) | −0,195 a −0,051 |
+  | Privado − público | 1,433 (0,161) | 1,118 a 1,748 | 0,604 (0,103) | 0,402 a 0,806 |
+
+  - **Lectura (dato):** el EE BRR es de 1,16 a 3,66 veces el de `lavaan` (columna `razon_ee`); la subestimación es
+    mayor en zona y sector, que se agrupan por colegio, y casi nula en sexo, que varía dentro del colegio.
+  - **Qué cambia frente a la F4:** las diferencias económicas por zona y sector y la de libros por sector, pueblo y sexo
+    siguen excluyendo el 0. La de **libros rural − urbana pasa a estar en el límite** (el IC toca 0), así que ya no se
+    puede afirmar con el 95 %. La económica por sexo no excluía el 0 ni con el EE de `lavaan` (z ≈ 1,86).
+  - Los minutos de la tabla incluyen la suspensión del equipo de esa noche en el análisis rural–urbana (496,5); no son
+    tiempo de cálculo.
+  - Las cifras puntuales coinciden con `nse_medias_latentes.csv` (lo que cambia es el error).
+
+### D-35 · 2026-11-08 · Conclusiones de la F3–F4 corregidas y dos sensibilidades exploratorias
+- **Problema (errores de redacción de Claude en el vault):**
+  - «La invarianza escalar total se sostiene» ([[00 Inicio]], [[07 Plan de desarrollo PISA 2022]]) dice más de lo que
+    muestran los datos. Con ΔCFI y ΔRMSEA *scaled* (D-25) ningún paso pasa los cortes, pero:
+    - la prueba de diferencia escalada rechaza en 10 de 12 pasos (D-28; rural–urbana escalar: Δχ² = 273,4 con 21 gl);
+    - el CFI *scaled* **mejora** al restringir las cargas, de +0,004 a +0,006, así que no se comporta como medida de
+      ajuste (`salidas/invarianza_tabla.csv`);
+    - el ajuste configural es pobre en las versiones *robust*: CFI de 0,68 a 0,71 donde se pudo calcular, y no sale en
+      4 de los 7 grupos (`salidas/invarianza_por_grupo.csv`).
+  - H1 se acepta por su regla, pero los dos modelos desajustan en las versiones *robust* (CFI 0,514 con 1 factor y
+    0,731 con 2; `salidas/nse_ajuste_afc.csv`).
+- **Redacción corregida (se aplica en las notas 00, 07 y 09):** «Con el criterio preregistrado (ΔCFI/ΔRMSEA *scaled*)
+  no se detectó no invarianza de magnitud relevante. No equivale a demostrar la invarianza: la prueba χ² la rechaza y
+  el ajuste de partida es pobre». H2 sigue rechazada por su regla.
+- **Sensibilidades exploratorias (decisión de Vanessa, 2026-11-08; no cambian el modelo de la G2, H1 ni H2):**
+  - **S1, ceros de D-20.** Se re-estima la TRI de 2 dimensiones del AFE con los saltos de ST256 y ST254 como
+    faltantes, como antes de D-20. Esa falta depende solo de ST255 y ST253, que están observados, así que es ignorable
+    en una TRI por verosimilitud (interpretación). Se comparan: cargas de los libros (hoy 0,92 a 0,98,
+    `salidas/nse_tri_cargas_2d.csv`), información máxima, confiabilidad, validez con HOMEPOS y ESCS, correlación entre
+    las EAP de las dos versiones y los Q3 negativos ST255–ST256 (hoy −0,21 a −0,27, `salidas/nse_q3_tri.csv`).
+  - **S2, emparejamiento del DIF.** El ΔR² del DIF de posesiones se calcula con EAP de un modelo de un solo grupo, que
+    contrae a todos hacia una media común aunque los grupos difieren hasta 1,4 DE (`salidas/nse_medias_latentes.csv`).
+    Se repite el ΔR² con EAP de un modelo multigrupo con todos los ítems iguales y medias y varianzas libres por grupo
+    (`mirt::multipleGroup`, con pesos), con el mismo corte (0,035).
+    - De paso se corrige que la vuelta 2 del DIF aplicaba Benjamini-Hochberg solo a los ítems probados, mientras las
+      anclas conservaban el valor de la vuelta 1 (`04_invarianza.R`, líneas 278–283): se recalcula sobre los valores p
+      finales de cada análisis y factor, como una sola familia.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+- **Resultado de S1** (`scripts/03_nse_sens_d20.R` → `salidas/nse_sens_d20_resumen.csv` y `nse_sens_d20_items.csv`;
+  2026-11-08; 1.002 estudiantes sin libros y 182 sin dispositivos con los saltos como faltantes; el EM convergió):
+
+  | Medida | Con D-20 (saltos = 0) | S1 (saltos = faltante) |
+  |---|---|---|
+  | Información máxima del factor libros (θ) | 33,1 (1,4) | 13,2 (1,6) |
+  | Rango con información ≥ 4, libros | −1,5 a 2,6 | −0,9 a 2,9 |
+  | Confiabilidad empírica, libros / económico | 0,902 / 0,898 | 0,813 / 0,894 |
+  | Correlación entre factores | 0,483 | 0,569 |
+  | Libros: r con HOMEPOS / ESCS | 0,618 / 0,473 | 0,748 / 0,581 |
+  | Económico: r con HOMEPOS / ESCS | 0,962 / 0,809 | 0,969 / 0,821 |
+  | Q3 ST255–ST256: mínimo / pares con \|Q3\| > 0,2 | −0,266 / 5 | −0,217 / 3 |
+
+  - Las cargas de los tipos de libros bajan: de 0,918 a 0,668 en `ST256Q01JA` (religiosos) y entre 0,03 y 0,11 en los
+    demás. Las EAP de las dos versiones correlacionan 0,995 (económico) y 0,923 (libros).
+  - **Lectura (dato):** los ceros de D-20 **inflaban la precisión del factor libros** (la información máxima baja a
+    menos de la mitad y la confiabilidad de 0,90 a 0,81) y achicaban su relación con el NSE oficial. El factor
+    económico, el que deciden H5, H6 y los cuartiles de H3 y H4 (D-22, D-24), **casi no cambia**.
+  - *Interpretación (Claude, por discutir):* para el factor económico, D-20 no importa. El factor libros es más
+    impreciso de lo reportado en la G2. Si se usa en el informe, conviene reportarlo con la versión S1 o con las dos.
+    No cambia nada sin una decisión nueva.
+- **Resultado de S2** (`scripts/04_dif_emparejamiento.R` → `salidas/nse_dif_sens_emparejamiento.csv`; 2026-11-08; los
+  8 modelos multigrupo convergieron):
+  - Las EAP multigrupo correlacionan de 0,9955 a 0,9979 con las de la G2, y el ΔR² cambia como máximo en la tercera
+    cifra decimal.
+  - Motos (`ST251Q02JA`) sigue con DIF por zona (ΔR² 0,0416 → 0,0435) y **pasa el corte por sector** (0,0329 → 0,0350).
+    Ningún otro ítem cambia de clasificación.
+  - Benjamini-Hochberg como una sola familia no cambia la significancia de ningún ítem (0 de 116).
+  - **H2 no cambia:** se rechaza por la primera condición (`salidas/inv_h2.csv`).
+  - *Lectura:* la contracción de las EAP no fabricaba ni tapaba DIF de magnitud relevante, salvo motos por sector,
+    que queda en el límite. Se reporta motos con DIF por zona y, con el emparejamiento multigrupo, también por sector.
+
+### D-36 · 2026-11-08 · El DIF de H3 se calibra con el modelo conjunto de 1 dimensión (corrige D-27 punto 7)
+- **Problema (evaluación del 2026-11-08):** D-27 punto 7 hace el DIF de matemáticas con «un modelo unidimensional por
+  competencia», pero D-27 (al final) y D-29 (c) descartan calibrar por competencia porque la ruta adaptativa depende de
+  ítems de otras competencias y la falta de datos solo es ignorable si se calibran todos juntos. Son incompatibles.
+- **Decisión (Vanessa, 2026-11-08):** el DIF del paso 5.6 usa `multipleGroup()` con **los 232 ítems en 1 dimensión**
+  (el modelo que gana por BIC en `salidas/mat_ajuste.csv`), cuartil bajo frente al alto del NSE económico, con medias y
+  varianzas libres por grupo y sin pesos (lógica de D-26).
+  - Se prueban los ítems elegibles de cada competencia (165, D-27) con anclas depuradas en 2 vueltas; Benjamini-Hochberg
+    al 5 % dentro de cada competencia, como **una sola familia** por competencia (D-35).
+  - La magnitud no cambia (D-22): Mantel-Haenszel en los dicotómicos, estratificado por deciles de la EAP **del modelo
+    multigrupo** (D-35, S2), y ΔR² ≥ 0,035 en los de crédito parcial.
+  - La segunda parte de H3 (Fisher, interpretar + formular frente a emplear) no cambia.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+
+### D-37 · 2026-11-08 · Interacciones en la regresión latente de los puntajes propios (modifica D-27 punto 4)
+- **Problema:** el modelo de condicionamiento de D-27 punto 4 solo tiene efectos principales (NSE, sexo, grado, zona y
+  sector). Si las pendientes del NSE difieren por zona o sector (H6), unos valores plausibles generados sin esas
+  interacciones las atenúan hacia la igualdad (interpretación; la regla general es que el modelo de imputación incluya
+  lo que va a analizarse).
+- **Decisión (Vanessa, 2026-11-08):** si E1 se valida (D-33), la regresión latente incluye además **NSE económico ×
+  zona y NSE económico × sector** (con las categorías «sin dato» de D-27). Solo afecta a los puntajes propios, que son
+  secundarios (D-32). Con los VP de la OCDE no se puede cambiar el condicionamiento: se declara como límite de H6.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+
+### D-38 · 2026-11-08 · Sensibilidad de la F7 a la exclusión no aleatoria: reponderación por colegio (D-14)
+- **Problema:** los 918 excluidos de la muestra analítica rinden 14,6 puntos menos (EE 3,0; z = −4,86;
+  `salidas/comparacion_incluidos_excluidos.csv`), y los análisis usan `W_FSTUWT` sin ajustar: describen la población
+  analítica (87,5 % de la ponderada), no a todos los estudiantes.
+- **Decisión (Vanessa, 2026-11-08):** en la F7 (paso 7.1) se repiten los resultados principales con un **ajuste de no
+  respuesta por colegio**: el peso de cada incluido (y cada réplica) se multiplica por la suma de los pesos de todos los
+  estudiantes de su colegio entre la suma de los pesos de los incluidos de ese colegio. Los colegios sin ningún incluido
+  se reportan aparte.
+  - *Por qué así:* es simple y sigue la lógica del ajuste de no respuesta dentro de las celdas del diseño; corrige la
+    parte de la exclusión que se explica por el colegio, no la que ocurre dentro de él (interpretación).
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08). Mateo y Brayan la revisan en el PR.
+
+### D-39 · 2026-11-08 · Cómo se estima la regresión latente del 5.4 (paso 3 de D-33)
+- **Problema:** con E1 validado (D-33), falta estimar la regresión latente de D-27 punto 4 (con las interacciones de
+  D-37) con los ítems fijos en el modelo de 4 competencias. D-27 preveía `covdata` y `formula` de `mirt`, pero esa vía
+  integra con puntos de la previa, la misma que falló en V1 en los casos extremos.
+- **Decisión (Vanessa, 2026-11-08):**
+  1. **EM propio con E1.** Paso E: la posterior de cada estudiante con E1 (5 puntos por dimensión), con media
+     x_i'Γ y covarianza Σ. Paso M: Γ por mínimos cuadrados ponderados de las EAP sobre las covariables, y Σ = promedio
+     ponderado de (EAP − x_i'Γ)(EAP − x_i'Γ)' + covarianza posterior. Pesos `W_FSTUWT` normalizados. Es el algoritmo
+     clásico de los valores plausibles condicionados (interpretación; falta la fuente: el capítulo de escalamiento del
+     Technical Report, por ubicar).
+  2. **Covariables** (18 columnas por competencia): intercepto; EAP económico y de libros de la G2 (D-24); sexo;
+     **`GRADE` categórico** (5 niveles, el modal como referencia); zona (pueblo, rural y sin dato; referencia urbana);
+     sector (privado y sin dato; referencia público); NSE económico × zona y NSE económico × sector (D-37).
+- **Detalles de implementación (propuestos por Claude, fijados antes de correr):**
+  - Inicio: ~~Γ = 0~~ Γ de la regresión ponderada de las EAP sin covariables (`05_puntajes_e1.R`) sobre las
+    covariables (cambiado antes de correr, el mismo día: es el mismo algoritmo y el mismo punto de llegada, pero
+    converge en menos iteraciones) y Σ = la covarianza latente del modelo de 4 competencias. Convergencia: el cambio máximo de Γ y de
+    Σ entre iteraciones ≤ 10⁻⁴, con un máximo de 300 iteraciones; cada iteración se guarda en un caché para retomar.
+  - *Aceleración (2026-11-08, durante la corrida):* el EM convergía con una razón de ~0,93 por iteración (cambio de Γ
+    0,0133 → 0,0123 en las iteraciones 8 y 9), lo que suponía unas 6 horas más. Desde la iteración 9 se acelera con
+    **SQUAREM** (esquema S3; Varadhan y Roland, 2008, referencia que no está en el vault y que hay que verificar): dos
+    pasos del EM, una extrapolación y un paso de estabilización por ciclo. Llega al mismo punto fijo que el EM, y el
+    criterio de convergencia no cambia (un paso del EM ≤ 10⁻⁴). Si la extrapolación deja una Σ no definida positiva, se
+    usa el paso del EM sin acelerar.
+  - Con los parámetros finales: V2 y V3 con covariables (5 frente a 7 puntos, los 6.886) y V1 con covariables (E1
+    frente a la malla fina en los mismos 277), con los umbrales de D-27.
+  - Valores plausibles: 10 por estudiante de la normal con la EAP y la covarianza posterior (D-27, detalle 3),
+    `set.seed(2026)`, con los controles de D-27 (media de los VP frente a la media de las EAP; covarianza total frente a
+    la covarianza de las EAP más la covarianza posterior media).
+  - Los coeficientes de Γ se reportan sin errores estándar: son parámetros del modelo de imputación, no estimaciones
+    para interpretar (las inferencias van en la F6 con BRR, D-34).
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08): EM propio y `GRADE` categórico. Mateo y Brayan la revisan en el PR.
+- **Resultado (2026-11-09, `05_puntajes_rl.R`; log de la corrida en el scratchpad de Claude, no en el repositorio):**
+  - **Convergencia:** el EM convergió en 45 iteraciones (último paso: cambio de Γ 0,0000948 y de Σ 0,0000266). Los
+    530,8 minutos de `minutos_EM_esta_corrida` incluyen unas 6 horas en que el equipo estuvo suspendido; no es el
+    tiempo de cálculo. *Nota de Claude:* el criterio mide un paso del EM, no la distancia al punto fijo; con la razón
+    de ~0,93 observada antes de acelerar, esa distancia puede ser ~14 veces el último paso (≈ 0,0013 DE en Γ), que es
+    despreciable frente a coeficientes de 0,1 a 0,3 (interpretación).
+  - **Validación con covariables** (`salidas/mat_rl_validacion.csv`): las cuatro competencias cumplen V1, V2 y V3.
+    Diferencia máxima de V1 entre 0,00135 y 0,00156 DE; diferencia media de V2 ≤ 0,00016 DE; los casos extremos quedan
+    cubiertos (diferencia 0).
+  - **Ajuste** (`salidas/mat_rl_ajuste.csv`): R² latente entre 0,360 (razonar) y 0,386 (emplear); varianza residual
+    entre 0,599 y 0,622.
+  - **Confiabilidad empírica** (`salidas/mat_confiabilidad_competencias.csv`): con covariables, entre 0,760 (formular) y
+    0,817 (emplear); sin covariables, entre 0,741 y 0,793.
+  - **Controles de los VP** (`salidas/mat_pv_controles.csv`): diferencia de medias VP − EAP ≤ 0,0034 y razón de
+    varianzas entre 0,9987 y 1,0014; las correlaciones totales de los VP coinciden con las esperadas al tercer decimal.
+  - **Coeficientes** (`salidas/mat_rl_coeficientes.csv`, sin EE por el punto anterior): NSE económico entre 0,256 y
+    0,315 DE, el mayor en interpretar, como en la F6 (D-42); libros entre 0,103 y 0,162.
+  - Las correlaciones entre competencias siguen muy altas (emplear–razonar 0,979 entre VP), coherente con el rechazo de
+    H8 (D-27).
+  - **Conclusión:** los puntajes propios son **válidos según V1–V3** y el paso 5.4 queda cerrado antes del plazo de
+    D-33 (2026-11-12). H4 y H7 pasan a ser evaluables (`05_h4_h7.R`).
+
+### D-40 · 2026-11-08 · Detalles del DIF de matemáticas y de H3 (paso 5.6; completa D-22, D-27 punto 7 y D-36)
+- **Problema:** D-22, D-27 y D-36 fijan el método del DIF de H3, pero dejan abiertos el sentido de la prueba de Fisher,
+  los pesos y qué ítems entran a la calibración. Se fijan **antes de correrlo**.
+- **Decisión (Vanessa, 2026-11-08):**
+  1. **Grupos:** cuartil bajo (Q1, focal) y alto (Q4, referencia) del NSE económico de la G2 (`eap_AFE_ECO`), con los
+     cuartiles ponderados de `05_explorar_items.R` (línea 88). Solo entran los estudiantes de Q1 y Q4.
+  2. **Ítems de la calibración:** los de la versión (a) de la matriz (D-27) con todas sus categorías observadas en Q1 y en
+     Q4. Se **prueban** solo los 165 elegibles (≥ 100 respuestas en cada cuartil, `salidas/items_respuestas.csv`); los
+     demás son siempre anclas. Se reporta cuántos quedan fuera.
+  3. **Modelo y prueba (D-36):** `multipleGroup()` de 1 dimensión, 2PL y GPCM, **sin pesos** (D-26), con medias y
+     varianzas libres. Vuelta 1: todos los ítems como anclas y `DIF(scheme = "drop")`. Vuelta 2: anclas = los que no
+     salieron significativos y `DIF(scheme = "add")` para los significativos. Benjamini-Hochberg al 5 % como **una sola
+     familia por competencia** sobre los valores p finales (D-35).
+  4. **Magnitud, como en la F4: con pesos** (`W_FSTUWT` normalizado). Emparejamiento: EAP del modelo multigrupo de la
+     vuelta 1, con la media de cada grupo (D-35, S2).
+     - Dicotómicos: ΔMH = −2,35 ln(α_MH), con α_MH ponderado y 10 estratos por deciles de esa EAP (Q4 de referencia: un
+       ΔMH negativo favorece al cuartil alto). La prueba χ² de Mantel-Haenszel va **sin pesos**. Categorías del ETS
+       (D-22): A si la prueba MH no es significativa o |ΔMH| ≤ 1; B si es significativa y 1 < |ΔMH| ≤ 1,5; C si es
+       significativa y |ΔMH| > 1,5.
+     - Crédito parcial: ΔR² de Nagelkerke ≥ 0,035 (la misma función que la F4).
+  5. **Un ítem tiene DIF** si su prueba TRI es significativa con BH **y** su efecto es no despreciable (B o C, o
+     ΔR² ≥ 0,035).
+  6. **H3, primera parte:** se acepta si al menos 1 ítem tiene DIF. **Segunda parte:** prueba exacta de Fisher de **una
+     cola** («mayor»), con los ítems elegibles: proporción con DIF en interpretar + formular frente a emplear, α = 0,05.
+- **Salidas previstas:** `scripts/05_dif_matematicas.R` → `salidas/mat_dif.csv`, `mat_dif_resumen.csv` y `mat_h3.csv`.
+- *Al correrlo (2026-11-08):* en Q1 quedan 1.473 estudiantes y en Q4, 1.975 (los cuartiles son ponderados). Entran a la
+  calibración 213 de los 232 ítems. **11 de los 165 elegibles no tienen todas sus categorías en los dos grupos** y no se
+  pueden probar con el modelo multigrupo (punto 2): `CM948Q03S`, `CM955Q03S`, `CMA152Q02S`, `DM949Q03C`, `DMA136Q02C`,
+  `DMA142Q02C`, `CM464Q01S`, `CM943Q02S`, `DM462Q01C`, `DMA146Q03C` y `DMA156Q01C`. Se prueban 154.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08): Fisher de una cola, pesos como en la F4 e ítems con todas sus
+  categorías en los dos grupos. Mateo y Brayan la revisan en el PR.
+- **Resultado (2026-11-09, `05_dif_matematicas.R` → `salidas/mat_dif.csv`, `mat_dif_resumen.csv` y `mat_h3.csv`):**
+  - Vuelta 1: 14 de 154 significativos con BH; vuelta 2 con 199 anclas depuradas. Media latente de Q1 frente a Q4 en el
+    modelo de la vuelta 1: −1,207 DE.
+  - Por competencia (elegibles probados / significativos con BH / con DIF): emplear 57 / 6 / **3**; formular 29 / 0 / 0;
+    interpretar 37 / 3 / 0; razonar 31 / 1 / 0.
+  - **Ítems con DIF** (los tres de emplear, dicotómicos): `CMA113Q03S` (ΔMH 1,13, B, favorece a Q1), `CMA131Q02S`
+    (ΔMH −1,33, B, favorece a Q4) y `CMA135Q04S` (ΔMH 2,07, C, favorece a Q1).
+  - **H3 se acepta solo en su primera parte:** hay 3 de 154 ítems con DIF. La segunda se rechaza: interpretar +
+    formular tienen 0 de 66 frente a 3 de 57 en emplear (Fisher de una cola, p = 1). El DIF que hay va **en contra**
+    de lo que planteaba H3, y dos de los tres ítems favorecen al cuartil bajo.
+  - *Interpretación de Claude (por discutir):* (i) con 3 de 154 (≈ 2 %) y efectos en dos sentidos, el DIF por NSE es
+    escaso y no apunta a un sesgo sistemático contra el cuartil bajo; (ii) `CMA131Q02S` es el ítem con discriminación
+    casi nula en el modelo de 4 competencias (a = 0,002, D-41), así que su DIF puede reflejar un mal funcionamiento
+    general del ítem en Colombia más que un sesgo por NSE; (iii) el error de la prueba no refleja el diseño por
+    colegios (D-34 punto 3).
+  - *Salvedad encontrada por Claude al construir la API (2026-11-09):* en `mat_dif.csv`, `DM446Q02C` (formular) y
+    `CM00GQ01S` (razonar) tienen ΔMH infinito (`Inf`) y la prueba MH no se pudo calcular (`p_MH` vacío),
+    probablemente por celdas vacías en algún estrato. `05_dif_matematicas.R` los clasifica como A porque trata un MH no
+    calculable como no significativo. No cambia H3 (su prueba TRI no es significativa: p_BH 0,155 y 0,596), pero su
+    categoría A no es una magnitud observada y así debe decirse. En la API quedan con `delta_mh = null` y
+    `mh_calculable = false` (D-46).
+
+### D-41 · 2026-11-08 · Detalles de H4 (paso 5.7) y de H7 con el enlace P3 (paso 5.5)
+- **Problema:** D-22 y D-27 fijan H4 y H7, pero dejan abiertos qué parte del modelo se mantiene fija al recalificar, cómo
+  se generan los VP de las tres calificaciones y qué ítems entran al enlace con los parámetros internacionales (P3). Se
+  fijan **antes de correrlos**, con los puntajes de D-39.
+- **Decisión (Vanessa, 2026-11-08):**
+  1. **H4, modelo fijo:** las calificaciones (b) omisión rápida = faltante y (c) toda omisión = faltante usan los mismos
+     ítems **y la misma regresión latente** (Γ y Σ) que la (a) (D-27 punto 5): solo cambian los datos. La posterior de
+     cada versión se calcula con E1.
+  2. **H4, números aleatorios comunes:** los 10 VP de (a), (b) y (c) salen de las mismas extracciones normales
+     (`set.seed(2026)`, en el mismo orden que en `05_puntajes_rl.R`), para que la diferencia refleje la calificación y no
+     el ruido de Monte Carlo.
+  3. **H4, cálculo (D-22, D-27 punto 6):** cuartiles del NSE económico como en H3 (D-40). Brecha = (media ponderada de Q4 −
+     media de Q1) / DE ponderada del puntaje (a), en cada VP; reducción = brecha (a) − brecha (b). Error con las 80
+     réplicas BRR (cuartiles fijos, la DE se recalcula en cada réplica) y Rubin. Se acepta si en al menos una competencia
+     la reducción es ≥ 0,05 DE y significativa después de Holm sobre las 4 (p bilateral). (c) se reporta como
+     sensibilidad.
+  4. **H7 (D-22):** promedio de las 10 correlaciones ponderadas VP propio *m* – VP de la OCDE *m* (emplear `MPEM`,
+     formular `MPFS`, interpretar `MPIN`, razonar `MPRE`), en una matriz de 4 × 4. Primera parte: ≥ 0,80 en las cuatro.
+     Segunda: en cada competencia propia, la correlación con la misma competencia de la OCDE es mayor que con las otras
+     tres.
+  5. **P3:** enlace media–sigma por competencia **solo con los ítems dicotómicos**: b propio = −d / a (modelo de 4
+     competencias) frente a `b_int` del anexo A (`salidas/items_competencia.csv`). Se reportan la correlación y la
+     diferencia cuadrática media después del enlace. Los de crédito parcial se reportan aparte, sin enlazar.
+- **Salidas previstas:** `scripts/05_h4_h7.R` → `salidas/mat_h4_brechas.csv`, `mat_h4.csv`, `mat_h7_correlaciones.csv`,
+  `mat_h7.csv` y `mat_p3_enlace.csv`.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08): regresión latente fija, números comunes y P3 con los dicotómicos.
+  Mateo y Brayan la revisan en el PR.
+- **Resultado (2026-11-09, `05_h4_h7.R`, con los puntajes validados de D-39):**
+  - **H4 se rechaza** (`salidas/mat_h4_brechas.csv` y `mat_h4.csv`). La brecha Q4 − Q1 con la calificación (a) es de
+    1,17 a 1,23 DE. Tratar las omisiones rápidas como faltantes la reduce solo **0,0073 a 0,0075 DE** (EE ≈ 0,004),
+    lejos de 0,05 y no significativa (p de 0,059 a 0,063; Holm 0,237 en las cuatro; todos los IC 95 % incluyen 0).
+    Sensibilidad (c), con toda omisión como faltante: reducción de 0,015 a 0,020 DE, también < 0,05. Se recalificaron
+    4.852 omisiones rápidas de 12.490 omisiones (conteos de respuestas, no de estudiantes).
+  - **H7 se rechaza** (`salidas/mat_h7_correlaciones.csv` y `mat_h7.csv`). La correlación con la misma competencia de
+    la OCDE va de 0,653 (formular) a 0,752 (emplear): ninguna llega a 0,80. Además, en formular y razonar la
+    correlación es mayor con el VP de **emplear** de la OCDE (0,717 y 0,740) que con el propio (0,653 y 0,680).
+  - *Interpretación de Claude (para discutir en el informe, no cambia la regla):* (i) la columna de la OCDE manda más
+    que la fila propia (la de emplear de la OCDE es la más alta en las cuatro filas), coherente con que las competencias
+    casi no se distinguen (H8, D-27); (ii) aun si los constructos coincidieran del todo, la correlación entre dos VP
+    con errores independientes queda acotada, de forma aproximada, por la raíz del producto de las confiabilidades;
+    con 0,76–0,82 en los propios (D-39), el umbral de 0,80 era difícil de alcanzar. La confiabilidad de los VP de proceso
+    de la OCDE para Colombia **no está en el vault / no la he verificado**. D-22 fijó la correlación sin corregir por
+    atenuación; cualquier versión corregida sería **exploratoria y posterior a los resultados**.
+  - **P3** (`salidas/mat_p3_enlace.csv`), con el método fijado: correlación de las dificultades de 0,909 (formular) y
+    0,918 (interpretar), pero de 0,296 (emplear) y −0,003 (razonar), con pendientes del enlace de 0,011 a 0,503.
+  - ⚠️ **Error de diseño de Claude en el punto 5:** el enlace media–sigma con b = −d/a no anticipó ítems con
+    discriminación casi nula en Colombia (25 dicotómicos con a ≤ 0,3; el mínimo es 0,002 en CMA131Q02S, con b = 460).
+    Esos ítems dominan las DE y la correlación de Pearson. Diagnóstico (script en el scratchpad de Claude, no en el
+    repositorio): la correlación de Spearman es 0,703 (razonar), 0,877 (formular), 0,932 (interpretar) y 0,932
+    (emplear), y la de Pearson sin los ítems con a ≤ 0,3 es de 0,776 a 0,976. **El resultado de P3 tal como se fijó no
+    sirve para concluir que las dificultades no concuerdan**; un enlace robusto queda como propuesta (D-43).
+
+### D-42 · 2026-11-08 · Cómo se estima la F6 (O4, H5 y H6)
+- **Problema:** con D-32 (VP de la OCDE como principal) y D-34 (BRR), un SEM completo con WLSMV costaría 10 VP × 81 pesos
+  = 810 ajustes por modelo (más de 13 h cada uno en este equipo). Hay que fijar el enfoque, las covariables y cómo se
+  prueban H5 y H6 **antes de programar la F6**.
+- **Decisión (Vanessa, 2026-11-08):**
+  1. **Enfoque en dos pasos (plan 6.2) como análisis principal.** Para cada competencia y cada VP de la OCDE
+     (`PV1–10 MPEM`, `MPFS`, `MPIN`, `MPRE`), regresión lineal ponderada sobre las EAP del NSE de la G2 (`eap_AFE_ECO` y
+     `eap_AFE_CUL`, D-24) y las covariables. Errores con las 80 réplicas BRR (Fay 0,5) y Rubin (D-34). Muestra: los
+     6.886 de la muestra analítica (D-14).
+     - *Límite que hay que declarar (interpretación):* usar la EAP del NSE como predictor es una calibración de
+       regresión. Con confiabilidad de ~0,90 (`salidas/nse_confiabilidad_tri.csv`), la atenuación esperada es pequeña,
+       pero la EAP no se calculó condicionando en las demás covariables. Por eso va la robustez del punto 4.
+  2. **Covariables (plan 6.1):** sexo y **grado categórico** (5 niveles, el modal de referencia), como en D-39.
+  3. **Pruebas:**
+     - *Igualdad de efectos entre competencias (6.4):* prueba de Wald conjunta de que el coeficiente del NSE económico es
+       igual en las 4 competencias (3 gl).
+     - *H5 (exploratoria, D-32):* diferencia entre los coeficientes del NSE económico en interpretar y en emplear, con su
+       error BRR + Rubin. Se reporta con la regla preregistrada (positiva y significativa, α = 0,05, bilateral) en la
+       muestra completa y en la mitad de confirmación.
+     - *H6 (6.5):* el multigrupo se reemplaza por interacciones en la regresión, que es equivalente para las pendientes
+       (interpretación). Modelo con zona, sector, NSE económico × zona y NSE económico × sector, sin los estudiantes sin
+       dato de zona (212) o de sector (90). **Una prueba de Wald conjunta por variable** en las 4 competencias (zona 8 gl,
+       sector 4 gl), con la covarianza BRR + Rubin; **Holm sobre las 2**. H6 se acepta si al menos una es significativa.
+       La prueba χ² con la covarianza de Rubin es una aproximación, y así se declara.
+  4. **Robustez del punto 1 (no decide hipótesis):** SEM con el NSE latente (estructura del AFE, D-24; WLSMV con los 29
+     indicadores ordinales) que predice las 4 competencias con las mismas covariables, solo con el peso final, una vez
+     por cada VP. Se promedian los coeficientes y se comparan con los del punto 1. Sin errores BRR (costo).
+  5. **Unidades:** coeficientes en puntos de PISA por unidad de la EAP y por desviación estándar ponderada de la EAP.
+- **Salidas previstas:** `scripts/06_sem_competencias.R` → `salidas/sem_coeficientes.csv`, `sem_igualdad.csv`,
+  `sem_h5.csv`, `sem_h6.csv` y `sem_robustez_latente.csv`.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-08): dos pasos con SEM de robustez, Wald conjunto por variable con Holm y
+  grado categórico. Mateo y Brayan la revisan en el PR.
+- **Resultado del análisis principal** (`scripts/06_sem_competencias.R` → `salidas/sem_coeficientes.csv`, `sem_igualdad.csv`,
+  `sem_h5.csv`, `sem_h6.csv` y `sem_h6_interacciones.csv`; 2026-11-08; 10 VP de la OCDE × 81 pesos; 6.886 estudiantes):
+
+  | Competencia | NSE económico: puntos por unidad de EAP (EE BRR) | Libros (EE) | R² medio |
+  |---|---|---|---|
+  | Emplear | 25,5 (1,9) | 7,3 (1,9) | 0,298 |
+  | Formular | 26,2 (3,1) | 12,8 (2,5) | 0,244 |
+  | Interpretar | 31,0 (2,3) | 8,5 (1,8) | 0,310 |
+  | Razonar | 25,6 (2,8) | 9,9 (2,1) | 0,238 |
+
+  - **Igualdad entre competencias (6.4):** se rechaza; Wald χ² = 11,32 con 3 gl, p = 0,010.
+  - **H5 (exploratoria, D-32):** interpretar − emplear = 5,57 puntos (EE 1,70; IC 95 % 2,24 a 8,89) en la muestra completa
+    y 6,33 (EE 1,78) en la mitad de confirmación (3.441). Cumple la regla en las dos, pero se presenta como exploratoria.
+  - **H6 se acepta**, por sector: Wald χ² = 15,58 con 4 gl, p = 0,0036 (Holm 0,0073). Por zona no: χ² = 13,99 con 8 gl,
+    p = 0,082 (Holm 0,082). La pendiente del NSE es entre 12,3 y 20,3 puntos mayor en los colegios privados, según la
+    competencia (6.674 estudiantes con zona y sector).
+  - *Interpretación (Claude, por discutir):* el NSE se asocia más con interpretar que con emplear, y su asociación es
+    más fuerte dentro del sector privado. No son efectos causales (diseño transversal) y descansan en el límite de
+    invarianza de D-35.
+- **Resultado de la robustez (punto 4)** (`salidas/sem_robustez_latente.csv`; 2026-11-09; los 10 SEM convergieron):
+
+  | Competencia | NSE económico: latente / dos pasos (puntos por DE) | Libros: latente / dos pasos |
+  |---|---|---|
+  | Emplear | 23,20 / 24,15 | 7,82 / 6,96 |
+  | Formular | 23,59 / 24,84 | 13,79 / 12,10 |
+  | Interpretar | 28,69 / 29,43 | 8,68 / 8,06 |
+  | Razonar | 23,12 / 24,27 | 10,89 / 9,38 |
+
+  - **Lectura (dato):** en el NSE económico los dos enfoques casi coinciden (el de dos pasos queda entre 2,6 % y 5,3 %
+    por encima), así que la calibración de regresión no atenúa el coeficiente principal, y el orden de las competencias
+    (interpretar la más alta) se mantiene. En libros, el de dos pasos queda entre 7 % y 14 % por debajo del latente.
+  - *Aviso de `lavaan` en los 10 ajustes:* la correlación entre `ST254Q03JA` (portátiles) y `ST250Q02JA` (computador
+    para tareas) es casi 1 en el modelo con covariables. Es el par más alto de la policórica del 3.2 (0,836).
+  - *Matiz:* las unidades no son idénticas (DE de la EAP frente a DE del factor latente); la comparación es aproximada.
+
+### D-43 · 2026-11-09 · Enlace robusto para P3 (corrige el punto 5 de D-41)
+- **Problema:** el enlace media–sigma de D-41 punto 5 queda dominado por los ítems dicotómicos con discriminación casi
+  nula en Colombia (b = −d/a se dispara). Ver el resultado de D-41. Es un error de diseño de Claude, detectado después
+  de correr; el resultado de D-41 se conserva y se reporta tal como se fijó.
+- **Propuesta de Claude (no programada):**
+  1. Reportar como análisis principal de P3 la correlación de **Spearman** de las dificultades por competencia (no
+     depende de la escala y no la dominan los valores extremos).
+  2. Repetir el enlace media–sigma **solo con los ítems con a ≥ 0,3** en el modelo propio, y reportar cuántos quedan
+     por competencia y cuáles se excluyen.
+  3. Reportar aparte, como hallazgo de calidad de los ítems, los dicotómicos con a < 0,3 en Colombia y compararlos con
+     su `a_int`.
+  - Alternativa: enlace de Stocking-Lord con las curvas características, que pondera los ítems por su información. Es
+    más estándar, pero más largo de programar y de explicar.
+  - Todo esto es **posterior a ver los resultados** y debe declararse así en el informe. P3 no tiene regla de decisión
+    preregistrada; es un análisis descriptivo del paso 5.5.
+- **Salidas previstas:** `scripts/05_p3_robusto.R` → `salidas/mat_p3_robusto.csv` (por competencia) y
+  `mat_p3_baja_discriminacion.csv` (ítems con a < 0,3; parámetros de ítems, sin datos de estudiantes).
+- **Estado:** ✅ aceptada por Vanessa (2026-11-09): Spearman como principal, media–sigma con a ≥ 0,3 y la lista de
+  ítems de baja discriminación. Mateo y Brayan la revisan en el PR.
+- **Resultado (2026-11-09, `05_p3_robusto.R`):**
+
+  | Competencia | Spearman (todos) | Ítems con a ≥ 0,3 / excluidos | Pearson (a ≥ 0,3) | Pendiente A | Intercepto B | RMSD |
+  |---|---|---|---|---|---|---|
+  | Emplear | 0,932 | 52 / 10 | 0,888 | 0,440 | −0,934 | 0,269 |
+  | Formular | 0,877 | 27 / 8 | 0,794 | 0,548 | −0,978 | 0,373 |
+  | Interpretar | 0,932 | 36 / 2 | 0,976 | 0,565 | −0,922 | 0,211 |
+  | Razonar | 0,703 | 30 / 5 | 0,776 | 0,416 | −0,682 | 0,543 |
+
+  - **Dato:** el orden de dificultad de los ítems en Colombia concuerda con el internacional (Spearman de 0,70 a
+    0,93), y las discriminaciones también (Spearman de a propio con `a_int` = 0,812). Razonar es la que menos
+    concuerda. 25 dicotómicos tienen a < 0,3 en Colombia (`salidas/mat_p3_baja_discriminacion.csv`); en todos, la
+    `a_int` es mayor.
+  - *Interpretación de Claude (no verificada contra la métrica del anexo A):* si el b propio está en DE de Colombia, A
+    y B estiman, de forma aproximada, la DE y la media de Colombia en la métrica internacional (A ≈ 0,4–0,6 y
+    B ≈ −0,7 a −1,0), lo que sería coherente con un desempeño por debajo y menos disperso que el internacional. No he
+    verificado en qué métrica están `a_int` y `b_int` en el anexo A, así que esta lectura queda por confirmar.
+
+### D-44 · 2026-11-09 · Robustez de la F6 con los puntajes propios, ajuste y diagrama (cierra el 6.3 y la F6)
+- **Problema:** D-32 deja los puntajes propios como robustez de O4 si el 5.4 se valida, y se validó (D-39). D-42 no fija
+  cómo se hace. El «Listo cuando» de la F6 pide además el ajuste con los dos tipos de puntaje y un diagrama del modelo.
+- **Propuesta de Claude, aplicada por encargo de Vanessa («cierra la F6», 2026-11-09); falta que ella la confirme:**
+  1. **Mismo análisis, otra variable de respuesta.** Se repiten los puntos 1 a 3 de D-42 (coeficientes, igualdad entre
+     competencias, H5 en la muestra completa y en la mitad de confirmación, H6 con Wald por variable y Holm) cambiando
+     los 10 VP de la OCDE por los 10 VP propios de cada competencia (`datos/COL_puntajes_competencia.rds`, D-39). Mismas
+     covariables, misma muestra (6.886), los 81 pesos y Rubin.
+     - *Límites que hay que declarar (interpretación):* (i) los VP propios se generaron con la regresión latente de la
+       muestra completa, no re-estimada en cada réplica, así que el error BRR puede quedar algo corto (la OCDE hace lo
+       mismo con sus VP); (ii) el modelo de condicionamiento incluye todas las variables de la F6, con NSE × zona y NSE ×
+       sector (D-37), así que los coeficientes no quedan atenuados por omitirlas.
+  2. **Unidades y comparación.** Los VP propios están en DE latentes de Colombia; los de la OCDE, en puntos PISA. Para
+     comparar se agrega el **coeficiente estandarizado** del NSE: coeficiente × DE ponderada de la EAP del NSE / DE
+     ponderada de la competencia (promedio de los 10 VP), en las dos fuentes. Es una estimación puntual, sin EE.
+  3. **Criterio de concordancia (fijado antes de correr):** la conclusión es robusta si coinciden el signo y la decisión
+     (p < 0,05 o no) en la igualdad entre competencias, en H5 (las dos muestras) y en H6 (cada variable, después de
+     Holm). La robustez **no cambia** la decisión de ninguna hipótesis (D-32).
+  4. **Ajuste.** De la regresión en dos pasos: R² medio con las dos fuentes. Del SEM latente de D-42 punto 4: CFI, TLI y
+     RMSEA (*scaled* y *robust*, donde se puedan calcular) y SRMR, **solo con el VP1 de la OCDE** y el peso final
+     (costo: un ajuste con estadístico de prueba). Es descriptivo y no decide nada.
+  5. **Diagrama** del modelo en `salidas/sem_diagrama.png`, dibujado con R base (sin paquetes nuevos).
+- **Salidas previstas:** `scripts/06_sem_competencias.R` → `salidas/sem_propios_coeficientes.csv`,
+  `sem_propios_igualdad.csv`, `sem_propios_h5.csv`, `sem_propios_h6.csv`, `sem_propios_h6_interacciones.csv`
+  (agregada al programar), `sem_comparacion_fuentes.csv`,
+  `sem_ajuste_latente.csv` y `sem_diagrama.png`. Las salidas del análisis principal no deben cambiar (se comprueba con
+  `git diff`).
+- **Estado:** ⏳ aplicada por encargo de Vanessa («cierra la F6»); falta que confirme los puntos 1 a 5. Mateo y Brayan la
+  revisan en el PR.
+- **Resultado de los puntos 1 a 3 (2026-11-09, `06_sem_competencias.R` → `salidas/sem_comparacion_fuentes.csv` y
+  `sem_propios_*.csv`):** las salidas del análisis principal no cambiaron (`git status` sin cambios en ellas).
+
+  | Prueba | VP de la OCDE | VP propios | ¿Coincide? |
+  |---|---|---|---|
+  | NSE económico, coeficiente estandarizado (emplear / formular / interpretar / razonar) | 0,327 / 0,280 / 0,350 / 0,283 | 0,335 / 0,322 / 0,367 / 0,315 | sí (todos p < 10⁻¹⁶) |
+  | R² medio (mismo orden) | 0,298 / 0,244 / 0,310 / 0,238 | 0,364 / 0,338 / 0,350 / 0,337 | — |
+  | Igualdad entre competencias (6.4) | χ² = 11,32; p = 0,010 | χ² = 38,08; p = 2,7 · 10⁻⁸ | sí: se rechaza |
+  | H5, muestra completa | 5,57 puntos; p = 0,001 | 0,035 DE latentes; p = 8,5 · 10⁻⁶ | sí |
+  | H5, mitad de confirmación | 6,33 puntos; p = 0,0004 | 0,039 DE latentes; p = 0,0007 | sí |
+  | H6, sector (Holm) | p = 0,0073 | p = 4,6 · 10⁻¹⁴ | sí: se acepta |
+  | H6, zona (Holm) | p = 0,082 | p = 1,9 · 10⁻¹⁴ | **no** |
+
+  - **Lectura (dato):** con los puntajes propios se repiten el orden de las competencias (interpretar la más alta),
+    el rechazo de la igualdad, H5 y H6 por sector. La única discrepancia es la interacción NSE × zona, que con los
+    propios es muy significativa y con los de la OCDE no.
+  - *Interpretación de Claude (por discutir; no cambia ninguna decisión, D-32):* hay dos sesgos posibles, en sentidos
+    opuestos. (i) Los VP propios se condicionaron con NSE × zona (D-37) y con Γ fija en todas las réplicas, así que su
+    error BRR no recoge la incertidumbre de Γ y con ~5 a 9 ítems por competencia la previa pesa mucho: su valor p
+    queda **demasiado pequeño** (límite (i) del punto 1). (ii) Si el modelo de condicionamiento de la OCDE no incluye
+    esa interacción, sus VP la **atenúan** hacia 0; **no he verificado** en el Technical Report qué variables usa la
+    OCDE para condicionar. Con esto, H6 por zona queda **sin resolver** entre fuentes y así se reporta; H6 se sigue
+    aceptando por sector, que coincide en las dos.
+  - Los R² con los propios son más altos en parte por el mismo condicionamiento (interpretación).
+- **Resultado de los puntos 4 y 5 (2026-11-09, `salidas/sem_ajuste_latente.csv` y `sem_diagrama.png`):** el SEM latente
+  con el VP1 convergió (n = 6.886; 5 min). χ² *scaled* = 11.352,1 con 629 gl (p < 0,001); CFI *scaled* 0,927; TLI
+  *scaled* 0,939; RMSEA *scaled* 0,050; SRMR 0,070. `lavaan` **no pudo calcular** los índices *robust* (salen vacíos),
+  como ya pasó en partes de la F3–F4.
+  - *Interpretación de Claude:* los índices *scaled* con WLSMV tienden a ser optimistas, y el AFC del NSE tuvo CFI
+    *robust* de 0,753 (D-24); el ajuste de este SEM no se puede leer como bueno sin los *robust*. Se reporta como
+    descriptivo, con esa salvedad. Se repite el aviso de `lavaan` de correlación casi 1 entre `ST254Q03JA` y
+    `ST250Q02JA` (D-42).
+
+### D-45 · 2026-11-09 · Diseño de la F7: candidatos, sensibilidades, regla de robustez, búsqueda de novedad y G4
+- **Problema:** el paso 7.1 lista cinco sensibilidades y la rúbrica (criterio 3) pide que un hallazgo se mantenga «en al
+  menos 3 de los 4 análisis de sensibilidad». No está fijado qué resultados son candidatos, qué sensibilidad aplica a
+  cada uno ni cómo se cuenta cuando aplican menos de 4. Se fija **antes de correr**, el 2026-11-09.
+- **Decisión (Vanessa, 2026-11-09):**
+  1. **Candidatos** (cada uno con la conclusión que se pone a prueba):
+     - **K1 (O4, H5 exploratoria):** la igualdad del NSE económico entre competencias se rechaza **y** H5 cumple su regla
+       (interpretar − emplear > 0 con p < 0,05) en la muestra completa y en la mitad de confirmación.
+     - **K2 (O4, H6):** la interacción NSE × sector es significativa (Wald, 4 gl; Holm sobre zona y sector).
+     - **K3 (O4):** el coeficiente del NSE es positivo y significativo (p < 0,05) en las 4 competencias.
+     - **K4 (O3, H4):** H4 se rechaza: ninguna competencia tiene reducción ≥ 0,05 DE y significativa (Holm).
+     - **K5 (O3, H3):** misma decisión de H3: primera parte aceptada y segunda rechazada.
+  2. **Sensibilidades** (plan 7.1) y a qué candidato aplican:
+
+     | Sensibilidad | Qué cambia | K1 | K2 | K3 | K4 | K5 |
+     |---|---|---|---|---|---|---|
+     | S-A ESCS | ESCS oficial en lugar de las EAP del NSE de la G2 (como predictor en la F6; para formar los cuartiles en H3 y H4) | ✓ | ✓ | ✓ | ✓ | ✓ (TRI completo) |
+     | S-B Sin ruta lineal | Se excluyen los 1.699 estudiantes con `MPATH` = *Linear*; los cuartiles de H3 y H4 se mantienen fijos (los de la muestra completa) | ✓ | ✓ | ✓ | ✓ | ✓ (TRI completo) |
+     | S-C Umbral de omisión | Omisión rápida con NT15 y con 5 s fijos; vale si se mantiene con **los dos** | — | — | — | ✓ | — |
+     | S-D Sin corrección múltiple | Valores p sin Holm (H4, H6) ni BH (H3) | — | ✓ | — | ✓ | ✓ |
+     | S-E Reponderación (D-38) | Pesos y réplicas ajustados por no respuesta dentro del colegio | ✓ | ✓ | ✓ | ✓ | ✓ (solo la magnitud: la prueba TRI va sin pesos, D-26) |
+
+     - En S-A, la F6 usa ESCS en lugar de las dos EAP (ESCS es de 1 dimensión, así que no hay coeficiente de libros), y en
+       H6 las interacciones son ESCS × zona y ESCS × sector.
+     - En H3 (S-A y S-B) se prueban los mismos 165 elegibles, salvo los que pierdan alguna categoría en un grupo, que se
+       listan. El DIF se re-estima con el método de D-40 completo, en segundo plano (~5 h por corrida).
+     - En H4 se usan los mismos ítems, la misma regresión latente y los mismos números aleatorios de D-41; los VP de las
+       versiones NT15 y 5 s se calculan con E1.
+  3. **Regla de robustez (criterio 3 de la rúbrica, definición operativa):** un candidato es robusto si su conclusión se
+     mantiene en al menos el **75 % de las sensibilidades que le aplican, con un mínimo de 3**: K1 y K3, 3 de 3; K2 y K5,
+     3 de 4; K4, 4 de 5.
+  4. **Paso 7.2:** Claude hace una búsqueda web documentada (Google Scholar, SciELO, Redalyc y buscador general; fecha y
+     cadenas por candidato). Scopus no está disponible desde la herramienta: lo completa el equipo. Los antecedentes nuevos
+     entran a la matriz como † y `por_verificar`, solo con lo que muestre la búsqueda.
+  5. **Paso 7.3:** cada candidato se clasifica con los 5 criterios de la rúbrica como hallazgo, réplica o resultado nulo
+     o frágil; la frase para el Ministerio queda como borrador de Claude para que el equipo la apruebe.
+  6. **Puerta G4:** el acta se deja lista; la etiqueta `resultados-v1` se crea **sobre `main` cuando Mateo o Brayan aprueben
+     y fusionen el PR**, no antes.
+- **Salidas previstas:** `scripts/07_sensibilidad.R` → `salidas/f7_sensibilidad_detalle.csv` y `f7_robustez.csv`;
+  `scripts/05_dif_matematicas.R` con la variable de entorno `F7_VARIANTE` (`escs`, `sin_lineal`, `d38`) →
+  `salidas/f7_dif_<variante>.csv` y `f7_h3_<variante>.csv`; nota `Vault_PISA2022/Hallazgos.md`; acta de la G4.
+- **Estado:** ✅ aceptada por Vanessa (2026-11-09): 5 candidatos con regla del 75 %, DIF con TRI completo, búsqueda
+  documentada por Claude y etiqueta después del PR. Mateo y Brayan la revisan en el PR.
+- *Al programar (2026-11-09, antes de ver resultados):* en S-E, los cuartiles de H4 se recalculan con el peso final
+  ajustado. `wls81()`, `rubin_vec()` y `wald()` pasan de `06_sem_competencias.R` a `utilidades_pisa.R` (las salidas de la
+  F6 no cambian). Variantes del DIF también en `f7_dif_resumen_<variante>.csv`.
+- **Resultado de K1 a K4 (2026-11-09, `07_sensibilidad.R` → `salidas/f7_sensibilidad_detalle.csv` y
+  `f7_robustez.csv`):** la versión base reproduce `sem_h5.csv`, `sem_h6.csv` y `mat_h4_brechas.csv` (comprobado en el
+  script). Ruta lineal: 1.699 estudiantes de la muestra analítica. Factor de D-38 sobre el peso final: de 1 a 11,7.
+  Omisiones rápidas: 4.852 con NT10, 5.677 con NT15 y 3.083 con 5 s.
+
+  | Candidato | Base | S-A ESCS | S-B sin ruta lineal | S-C NT15 / 5 s | S-D sin corrección | S-E D-38 | Robusto |
+  |---|---|---|---|---|---|---|---|
+  | K1 igualdad + H5 | igualdad p = 0,010; H5 5,57 (p = 0,001) y 6,33 (p < 0,001) | p = 0,042; 3,72 (p = 0,016) y 3,79 (p = 0,021) | p = 0,049; 5,19 (p = 0,005) y 5,60 (p = 0,008) | — | — | p = 0,010; 5,48 y 6,09 (p = 0,001) | **sí, 3 de 3** |
+  | K2 NSE × sector | Holm p = 0,0073 | 0,0007 | 0,0041 | — | sin Holm 0,0036 | 0,0097 | **sí, 4 de 4** |
+  | K3 NSE > 0 en las 4 | 25,5 a 31,0 puntos por unidad de EAP | 19,1 a 22,8 por unidad de ESCS | 25,1 a 30,3 | — | — | 25,6 a 31,1 | **sí, 3 de 3** |
+  | K4 H4 nulo | reducción 0,007 DE; Holm p = 0,24 | 0,003–0,004; p = 1 | 0,007; p = 0,35 | NT15 0,008 (p = 0,18); 5 s 0,004 (p = 0,47) | 0,007; p 0,059–0,063 | 0,006; p = 0,52 | **sí, 5 de 5** |
+  | K5 H3 (parte 1 sí, 2 no) | 3 de 154 con DIF | 6 de 155 (4 emplear, 1 formular, 1 interpretar); Fisher p = 0,929; se mantiene | 2 de 152 (los 2 en emplear); p = 1; se mantiene | — | sin BH: 8 de 154 (6 emplear, 1 formular, 1 interpretar); se mantiene | 3 de 154; se mantiene | **sí, 4 de 4** |
+
+  - *Lectura (dato):* K1 queda cerca del límite en dos sensibilidades: con ESCS la diferencia H5 baja a ~3,7 puntos, y
+    sin la ruta lineal la igualdad sale con p = 0,049. Con ESCS, la interacción NSE × zona también sale significativa
+    (p = 0,0045), a diferencia de la base (0,082).
+  - *Interpretación de Claude:* el factor máximo de 11,7 en D-38 viene de colegios con pocos incluidos; S-E da casi los
+    mismos resultados, así que esos pesos grandes no mueven las conclusiones.
+- **Resultado de K5 (2026-11-10, DIF con TRI completo, `05_dif_matematicas.R` con `F7_VARIANTE` →
+  `salidas/f7_dif_*.csv` y `f7_h3_*.csv`; `07_sensibilidad.R` repetido → `f7_robustez.csv`):** las dos corridas largas se
+  cortaron una vez por un apagado del equipo (2026-11-09) y se relanzaron desde cero (229 y 243 min). **Los cinco
+  candidatos son robustos.**
+  - Con cuartiles de ESCS: 6 de 155 ítems con DIF; de los 5 dicotómicos, los 5 favorecen al cuartil bajo
+    (`CMA117Q03S`, de crédito parcial, se lee en sus curvas). Media latente de Q1 frente a Q4: −1,024.
+  - Sin la ruta lineal: 2 de 152 ítems con DIF (`CMA131Q02S` favorece al cuartil alto y `CMA135Q04S` al bajo).
+    Elegibles sin todas sus categorías en los dos grupos: 10 con ESCS y 13 sin la ruta lineal (listados en el log; no
+    se prueban, D-45 punto 2).
+  - *Interpretación de Claude:* `CMA135Q04S` tiene DIF en todas las variantes y siempre favorece al cuartil bajo; es el
+    candidato más claro para la revisión de contenido de P4 que sigue pendiente.
+
+### D-46 · 2026-11-09 · Diseño de la API (F8, paso 8.2): stack, persistencia y endpoint de predicción
+- **Problema:** la F8 debe cumplir las buenas prácticas del curso de Python (documento del curso que Vanessa dio a
+  Claude, que **no** se sube al repositorio): Python 3.11.9, FastAPI, Pydantic v2, SQLAlchemy con SQLite, pytest con
+  TestClient, Docker, integración continua y un endpoint de predicción con Singleton. La API del plan 8.2 solo lee
+  resultados y nunca estima.
+- **Decisión (Vanessa, 2026-11-09):**
+  1. **Python 3.11.9** en un `.venv` propio de `Proyecto_PISA/api/` (instalado junto a 3.13); dependencias fijadas en
+     `requirements.txt`.
+  2. **Persistencia:** un script de carga lee los CSV **agregados** de `salidas/`, valida cada fila con Pydantic y la
+     guarda en SQLite con SQLAlchemy 2.0; la API consulta esa base. Nunca datos por estudiante (Ley 1581 de 2012).
+  3. **Predicción:** `POST /v1/modelo/prediccion` devuelve el **puntaje esperado** de las 4 competencias para un perfil
+     (EAP del NSE económico y de libros, sexo y grado) con los coeficientes del modelo principal de la F6
+     (`salidas/sem_coeficientes.csv`, D-42). El modelo se carga una vez al iniciar (Singleton).
+     - *Lo que es y lo que no es (interpretación):* es una media condicional estimada, no el puntaje de una persona ni un
+       efecto causal; no lleva intervalo porque la covarianza de los coeficientes no se exporta. Así se dice en la
+       respuesta.
+     - *Validación de la entrada:* NSE entre −4 y 4 (métrica de la EAP, media 0 y DE ≈ 0,95, D-42), sexo `Mujer` u
+       `Hombre`, grado relativo al modal (−3, −2, −1, 0 o 1). Fuera de eso: error 422.
+  4. **Rama:** `Vanessa`, en el mismo PR; Brayan la revisa y la continúa (la API y el tablero son su área según el reparto
+     de [[17 Plan de trabajo Brayan]], línea 18).
+- **Estado:** ✅ aceptada por Vanessa (2026-11-09): 3.11.9, SQLite desde `salidas/`, endpoint de predicción y rama
+  `Vanessa`. Brayan la revisa en el PR.
+- **Resultado (2026-11-09):** `Proyecto_PISA/api/` con 11 endpoints, carga validada de 8 archivos de `salidas/` a SQLite
+  (29 + 234 + 16 + 10 + 154 + 32 + 12 + 5 filas y las 8 hipótesis) y 33 pruebas con pytest que pasan en Python 3.11.9.
+  El servidor real (uvicorn) responde: con NSE económico 1 y lo demás en la referencia, emplear da 410,1 = 384,62 +
+  25,47 (`sem_coeficientes.csv`). La validación encontró dos cosas: los ΔMH infinitos de D-40 y que un `NaN` en la
+  entrada producía un error 500 en lugar de 422 (corregido con un manejador propio). Docker no está instalado en este
+  equipo: la imagen se prueba en la integración continua (`.github/workflows/api.yml`). El primer run falló porque
+  `ubuntu-latest` (Ubuntu 26.04) no trae Python 3.11.9; con las pruebas dentro de `python:3.11.9-slim`, el run
+  42743515918 pasó completo: 33 pruebas y construcción de la imagen.
+- **Tablero (paso 8.4, 2026-11-09):** `Proyecto_PISA/tablero/` en Streamlit 1.40.2 sobre la API, con Python 3.11.9 y su
+  propio `.venv`: 5 páginas (resumen de H1-H8 y robustez, NSE e invarianza, DIF, modelo estructural y puntaje
+  esperado). No lee archivos: todo por HTTP, con contrato Pydantic, reintentos y caché de 5 min. Gráficos con la paleta
+  de referencia de la guía de visualización de Claude (azul = NSE económico, naranja = libros) y tabla al lado de cada
+  gráfico; el validador de paleta no se pudo correr (no hay Node.js en el equipo), así que la validación es la que
+  documenta la paleta. 16 pruebas pasan contra la API real; los gráficos se revisaron a ojo exportados a PNG (se
+  corrigió el del DIF: rótulos encimados y cortes del ETS confundidos con la cuadrícula).
+
+### D-47 · 2026-11-09 · Tablero explicativo de todo el proyecto y catálogo de resultados en la API (F8)
+- **Problema:** Vanessa pidió (2026-11-09) que el tablero explique lo que muestra, que incluya los modelos estructurales
+  con sus cargas y que recorra **todo** lo avanzado del proyecto para explicarlo de forma fácil e interactiva. La API
+  de D-46 solo sirve 8 archivos de `salidas/`, y el tablero no puede leer archivos (D-46).
+- **Decisión (Vanessa, 2026-11-09, al pedirlo; los detalles técnicos los propone Claude):**
+  1. **Catálogo de resultados en la API:** cada archivo agregado de `salidas/` que el tablero necesita se declara una
+     vez (ruta, archivo, esquema Pydantic de sus filas, título, decisión del registro) y una sola función crea su
+     endpoint `GET /v1/...` con su contrato en `/docs`. Las filas se validan al cargar, como en D-46, y se guardan en una
+     tabla genérica de SQLite. `GET /v1/catalogo` lista qué hay y de dónde sale.
+  2. **Tablero como recorrido por fases** (F1-F2 datos y diseño, F3 NSE, F4 invarianza, F5 competencias, F6 modelo
+     estructural, F7 robustez y hallazgos, más el puntaje esperado). Cada sección tiene tres textos: qué se hizo, cómo
+     se lee y qué significa, con la decisión del registro que lo sostiene.
+  3. **Diagrama del modelo estructural interactivo:** el NSE de 2 dimensiones del AFE (D-24) con las cargas
+     estandarizadas de sus 29 indicadores, la correlación entre factores y las rutas hacia las 4 competencias con los
+     coeficientes de la F6 (D-42); al pasar el cursor se ve el valor y la etiqueta oficial de cada indicador.
+  - *Regla de los textos:* las cifras que aparecen en los textos se leen de la API, no se escriben a mano; las
+    interpretaciones repiten las del registro (D-xx) y se marcan como tales.
+- **Estado:** ✅ pedido por Vanessa (2026-11-09). Brayan lo revisa en el PR.

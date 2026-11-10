@@ -247,6 +247,8 @@ con `GPArotation` para la rotación oblimin).
     `nse_cargas_afc.csv`, `nse_omega_afc.csv` y `nse_residuos_afc.csv` (n = 3.441).
     - **H1 se acepta:** el CFI sube 0,107 (*scaled*) y 0,218 (*robust*) de 1 a 2 factores, y la correlación entre
       factores es 0,559.
+      *Salvedad (2026-11-08, D-35):* la regla compara dos modelos que desajustan en las versiones *robust* (CFI 0,514
+      con 1 factor y 0,731 con 2): dice que 2 factores es mejor que 1, no que el de 2 factores sea adecuado.
     - **El ajuste no llega a los cortes de la G2.** M2 (D-16): CFI 0,921 / 0,731, RMSEA 0,071 / 0,119, SRMR 0,087.
       La estructura del AFE ajusta mejor (CFI 0,943 / 0,753, RMSEA 0,060 / 0,114, SRMR 0,071).
     - El desajuste viene sobre todo de educación–ocupación de los padres y de lo digital frente a la vivienda. Detalle
@@ -312,7 +314,10 @@ Script: `04_invarianza.R`.
       grupo. En 4 de los 7 grupos (urbana, rural, mujer y privado) `lavaan` no da el CFI ni el RMSEA *robust*,
       aunque el 4.1 no tiene restricciones de igualdad. Donde sí salen, el CFI *robust* va de 0,68 a 0,71 y el
       RMSEA *robust* de 0,12 a 0,14 (`salidas/invarianza_por_grupo.csv`), tan lejos de los cortes como en la G2.
-  - **4.2:** la invarianza **escalar total** se sostiene en zona, rural–urbana, sexo y sector. El peor cambio es del
+  - *Corrección (2026-11-08, D-35):* «se sostiene» decía más de lo que muestran los datos. Con el criterio preregistrado
+    no se detectó no invarianza relevante, pero la prueba χ² la rechaza en 10 de 12 pasos, el CFI *scaled* mejora al
+    restringir las cargas y el CFI *robust* configural es de 0,68 a 0,71 donde se pudo calcular.
+  - **4.2:** ~~la invarianza **escalar total** se sostiene~~ ningún paso pasa los cortes ΔCFI/ΔRMSEA *scaled* en zona, rural–urbana, sexo y sector. El peor cambio es del
     sector: ΔCFI −0,007 y ΔRMSEA +0,002, dentro de los cortes.
   - **4.3:** no hizo falta liberar ningún parámetro.
   - **Prueba de diferencia escalada (D-28, 2026-10-19):** complemento que no decide. Sale significativa en 10 de los 12
@@ -326,6 +331,9 @@ Script: `04_invarianza.R`.
     - **Ojo** (revisión de Brayan, PR #12, 2026-10-18; anotado el 2026-10-19): los `ee` y los IC 95 % de `nse_medias_latentes.csv` son los de
       `lavaan` y no reflejan el diseño por colegios (D-16 punto 5; D-25 punto 9). No se leen como intervalos
       válidos hasta tener errores con BRR.
+    - *Actualización 2026-11-09 (D-34):* ya hay errores BRR (`salidas/nse_medias_latentes_brr.csv`); son de 1,2 a
+      3,7 veces los de `lavaan`. Todo sigue excluyendo el 0 salvo libros rural − urbana, que queda en el límite (IC
+      −0,346 a 0,000), y el económico por sexo, que tampoco lo excluía antes.
   - **4.4 (DIF, D-26):** solo motos tiene DIF no despreciable, por zona (ΔR² = 0,042). **H2 se rechaza**: el paso
     escalar rural–urbana no empeora y ningún ítem tiene DIF no despreciable en ese contraste. F4 cerrada (2026-10-18).
   - *Antes:* la primera corrida del DIF fue inválida (D-26); la corregida estaba en curso al
@@ -387,17 +395,24 @@ Script: `05_tri_competencias.R` · `mirt`.
       pudo calcular ningún error estándar; `mirt` advirtió que el modelo podría no estar identificado empíricamente.
     - No se interpretan sus cargas específicas ni se reportan el ECV ni el omega. Las explicaciones plausibles y la
       interpretación del equipo están en D-29.
-- [ ] **5.4 Calificar:** *(en curso, 2026-10-20: V1 de la posterior propia no se cumple; diagnóstico en D-27)* puntajes por competencia para cada estudiante (EAP y 10 valores plausibles con
+- [x] **5.4 Calificar:** *(Hecho, 2026-11-09: regresión latente con E1, 45 iteraciones; V1–V3 se cumplen en las cuatro
+  competencias; confiabilidad 0,760–0,817; D-39, `salidas/mat_rl_validacion.csv`. Antes, 2026-10-20: V1 de la posterior propia no se cumplía; diagnóstico en D-27)* puntajes por competencia para cada estudiante (EAP y 10 valores plausibles con
   `fscores(..., plausible.draws = 10)`); confiabilidad empírica por competencia.
   - **Riesgo (D-23 punto 1):** sin condicionar en el NSE, los PV propios atenúan el efecto del NSE en la F6. Propuesta:
     regresión latente (`covdata` y `formula` de `mirt`) sobre el NSE de la G2 y las covariables del SEM. Decidirlo
     antes de la F5.
-- [ ] **5.5 Validar contra la OCDE:** correlación ponderada entre el puntaje propio y los PV oficiales de la misma
+  - *Cambio (2026-11-08, D-32 y D-33):* los puntajes propios pasan a análisis **secundario**. El 5.4 sigue solo con E1
+    (cuadratura de Gauss-Hermite adaptativa, validada contra una malla fina en 277 estudiantes) y con **plazo al
+    2026-11-12**; si no cumple V1–V3, se suspende y H4 y H7 quedan como no evaluables.
+    Si se valida, la regresión latente incluye NSE × zona y NSE × sector (D-37).
+- [x] **5.5 Validar contra la OCDE:** *(Hecho, 2026-11-09: **H7 se rechaza**, correlaciones de 0,653 a 0,752, D-41;
+  P3 con el enlace robusto de D-43: Spearman de las dificultades de 0,70 a 0,93.)* correlación ponderada entre el puntaje propio y los PV oficiales de la misma
   competencia (`MPFS`, `MPEM`, `MPIN`, `MPRE`) → **H7**, calculada como en D-22 (promedio de las 10 correlaciones PV a
   PV). Comparar dificultades propias con los parámetros internacionales de la tabla A.3.
   - *P3 (D-21):* antes de comparar dificultades, llevar la métrica propia a la de la OCDE (enlace). La correlación de H7
     no necesita enlace.
-- [ ] **5.6 DIF por NSE dentro de cada competencia:** cuartil bajo vs alto del NSE elegido en la G2 (con ESCS como
+- [x] **5.6 DIF por NSE dentro de cada competencia:** *(Hecho, 2026-11-09: **H3 se acepta solo en su primera parte**,
+  3 de 154 ítems con DIF, los tres en emplear, D-40. Sin hacer: la robustez con ESCS y la revisión de contenido de P4.)* cuartil bajo vs alto del NSE elegido en la G2 (con ESCS como
   robustez; D-22); solo ítems con ≥100 respuestas por grupo (175 en la revisión del 29/09: recontar, D-23 punto 3);
   `multipleGroup` con anclas + `DIF()`; Benjamini-Hochberg; tamaño del efecto. ¿En qué competencia se concentra? →
   **H3**.
@@ -405,7 +420,10 @@ Script: `05_tri_competencias.R` · `mirt`.
     parcial; emparejando con el θ de la TRI.
   - *P4 (D-21):* DIF uniforme y no uniforme, depuración de anclas, segundo método y revisión del contenido antes de
     hablar de sesgo.
-- [ ] **5.7 Omisiones (D-05):** calificar dos veces — (a) omitida = 0 (criterio OCDE); (b) omisión rápida (NT10) = `NA`
+  - *Cambio (2026-11-08, D-36):* el DIF se calibra con el modelo conjunto de 1 dimensión (232 ítems, medias libres
+    por grupo), no con un modelo por competencia; BH como una sola familia dentro de cada competencia.
+- [x] **5.7 Omisiones (D-05):** *(Hecho, 2026-11-09: **H4 se rechaza**, la brecha baja 0,007 DE, D-41. La versión (c),
+  toda omisión faltante, se reportó como sensibilidad; el tercer tratamiento de P5 no se hizo.)* calificar dos veces — (a) omitida = 0 (criterio OCDE); (b) omisión rápida (NT10) = `NA`
   — y comparar la brecha Q4–Q1 por competencia en desviaciones estándar → **H4**, con la prueba de D-22.
   - *P5 (D-21):* un tercer tratamiento como sensibilidad (crédito fraccional 1/m, o la omisión como categoría en un
     modelo nominal). H4 no cambia.
@@ -413,6 +431,8 @@ Script: `05_tri_competencias.R` · `mirt`.
   (no va a Git), `salidas/validacion_ocde_competencias.csv`, `salidas/mat_dif.csv`, `salidas/brecha_omisiones.csv`.
 - **Listo cuando:** **Puerta G3** — modelo de 4 competencias elegido o descartado con argumento; ítems con n
   insuficiente excluidos y documentados; H3, H4, H7 y H8 resueltas.
+  - *Estado (2026-11-09):* condiciones cumplidas; acta en [[Reuniones/2026-11-09 Puerta G3]], pendiente de las firmas de
+    Mateo y Brayan.
 - **Autoevaluación:** ¿Qué gana la calificación por competencias frente a un puntaje único? ¿Por qué un ítem con DIF
   no significa automáticamente que sea injusto?
 
@@ -424,19 +444,41 @@ Script: `05_tri_competencias.R` · `mirt`.
 
 Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 
-- [ ] **6.1 Modelo:** NSE latente (estructura y restricciones de F3–F4) → las 4 competencias calificadas en F5, con
+> [!success] Decidido en D-42 (2026-11-08, antes de programar)
+> - Principal: enfoque en dos pasos. Regresión de cada competencia (10 VP de la OCDE, D-32) sobre las EAP del NSE de la
+>   G2, el sexo y el grado categórico, con los 80 pesos BRR y Rubin (D-34).
+> - 6.4: Wald conjunta de igualdad del efecto del NSE económico entre competencias; H5 (exploratoria) como diferencia
+>   interpretar − emplear, en la muestra completa y en la mitad de confirmación.
+> - 6.5 / H6: interacciones NSE × zona y NSE × sector en lugar del multigrupo; Wald conjunta por variable y Holm sobre las 2.
+> - Robustez: SEM con NSE latente, solo con el peso final, por cada VP. `lavaan.mi` no hace falta.
+
+> [!success] F6 cerrada (2026-11-09, D-42 y D-44)
+> - Principal (VP de la OCDE): NSE económico de 24,2 a 29,4 puntos por DE de la EAP; igualdad entre competencias
+>   rechazada (p = 0,010); H5 cumple su regla (exploratoria); H6 aceptada por sector (`salidas/sem_*.csv`).
+> - Robustez: el SEM con NSE latente da coeficientes casi iguales (D-42 punto 4) y los VP propios repiten todas las
+>   conclusiones salvo H6 por zona, que queda sin resolver entre fuentes (`salidas/sem_comparacion_fuentes.csv`, D-44).
+> - Ajuste: R² medio con las dos fuentes y ajuste del SEM latente con el VP1 (`salidas/sem_ajuste_latente.csv`).
+>   Diagrama en `salidas/sem_diagrama.png`.
+
+- [x] **6.1 Modelo:** *(hecho en dos pasos, D-42; los residuos entre competencias quedan libres porque cada
+  competencia tiene su regresión con los mismos predictores, y el SEM latente es la robustez)* NSE latente (estructura y restricciones de F3–F4) → las 4 competencias calificadas en F5, con
   residuos correlacionados entre competencias; covariables: sexo, grado.
-- [ ] **6.2 Estimación por cada conjunto de puntajes plausibles** (los 10 propios de F5) con
+- [x] **6.2 Estimación por cada conjunto de puntajes plausibles** *(hecho: 10 VP × 81 pesos y Rubin, D-42)* (los 10 propios de F5) con
   `sampling.weights = "W_FSTUWT"` y `cluster = "CNTSCHID"`; combinar con `lavaan.mi` (Rubin). **Verificar** que
   `lavaan` acepta pesos con WLSMV; si no: **alternativa en dos pasos** (puntuaciones del NSE + regresiones con BRR).
   - *Comprobado con datos simulados (D-18, 2026-10-18):* `lavaan` 0.7-3 acepta WLSMV con `sampling.weights` y
     faltantes por pares.
-  - *Por decidir antes de la F6 (D-23 punto 5):* errores estándar con BRR completo (≈ 810 ajustes) o cluster-robustos.
-- [ ] **6.3 Robustez:** repetir con los PV oficiales de la OCDE (`MPEM`, `MPFS`, `MPIN`, `MPRE`).
-- [ ] **6.4 Igualdad de efectos** entre competencias (prueba de Wald o modelo restringido vs libre). Contrastar con el
+  - ~~*Por decidir antes de la F6 (D-23 punto 5):* errores estándar con BRR completo (≈ 810 ajustes) o cluster-robustos.~~
+    *Decidido en D-34 (2026-11-08):* BRR completo, 10 PV × 81 pesos por modelo, con Rubin.
+  - *Cambio (2026-11-08, D-32):* el análisis **principal** usa los 10 VP de proceso de la OCDE (`MPEM`, `MPFS`, `MPIN`,
+    `MPRE`), no los puntajes propios.
+- [x] **6.3 Robustez:** *(hecho, D-44: concuerdan todas las conclusiones salvo H6 por zona)* ~~repetir con los PV oficiales de la OCDE (`MPEM`, `MPFS`, `MPIN`, `MPRE`).~~ repetir con los
+  puntajes propios del 5.4, si se validan (D-32, D-33).
+- [x] **6.4 Igualdad de efectos** *(hecho: se rechaza con las dos fuentes; H5 cumple su regla, exploratoria)* entre competencias (prueba de Wald o modelo restringido vs libre). Contrastar con el
   resultado exploratorio: interpretar − emplear = 3,9 (z = 2,61, PV OCDE) → H5. Si la G2 elige 2 dimensiones, H5 y H6
   se deciden con el factor económico y el de libros es secundario (D-22).
-- [ ] **6.5 Multigrupo** por zona o sector si F4 lo permite → H6.
+- [x] **6.5 Multigrupo** por zona o sector si F4 lo permite → H6. *(hecho con interacciones, D-42: H6 aceptada por
+  sector)*
 - **Salida:** `salidas/sem_coeficientes.csv`, `salidas/sem_igualdad.csv`, diagrama del modelo.
 - **Listo cuando:** coeficientes con EE, prueba de igualdad y ajuste reportados con ambos tipos de puntaje; H5 y H6
   resueltas.
@@ -444,16 +486,18 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 
 ## F7 — Robustez y verificación de novedad (semana 7)  `[CONS]`
 
-- [ ] **7.1 Sensibilidad** de cada hallazgo candidato:
+- [x] **7.1 Sensibilidad** de cada hallazgo candidato: *(Hecho, 2026-11-10, D-45: los 5 candidatos son robustos; `salidas/f7_robustez.csv`.)*
   - NSE latente vs ESCS oficial;
   - con y sin estudiantes de la ruta lineal (1.793);
   - umbrales de omisión rápida NT10, NT15 y 5 s;
   - con y sin corrección por comparaciones múltiples.
-- [ ] **7.2 Búsqueda formal de novedad** en Scopus / Google Scholar / Scielo / Redalyc para cada hallazgo;
+  - con los pesos ajustados por no respuesta dentro de cada colegio (D-38), por la exclusión no aleatoria de D-14.
+- [x] **7.2 Búsqueda formal de novedad** *(hecha por Claude el 2026-11-09 en buscador web, SciELO y Redalyc: [[Literatura/Búsqueda de novedad F7]]; falta Scopus y Google Scholar, que hace el equipo)* en Scopus / Google Scholar / Scielo / Redalyc para cada hallazgo;
   actualizar la [[Literatura/Matriz estado del arte|matriz]] (pasar las † a ✓ o corregir).
-- [ ] **7.3 Aplicar el criterio de hallazgo innovador** de [[08 Rúbrica de desarrollo]] y redactar cada hallazgo en
+- [x] **7.3 Aplicar el criterio de hallazgo innovador** *(borrador en [[Hallazgos]], 2026-11-10; las frases las aprueba el equipo)* de [[08 Rúbrica de desarrollo]] y redactar cada hallazgo en
   una frase para Colombia.
 - **Salida:** `salidas/robustez.csv`, matriz actualizada, nota `Hallazgos.md`.
+- *Estado de la G4 (2026-11-10):* acta en [[Reuniones/2026-11-10 Puerta G4]]; la etiqueta `resultados-v1` se crea sobre `main` cuando se apruebe el PR (D-45 punto 6).
 - **Listo cuando:** **Puerta G4** — resultados congelados (etiqueta Git `resultados-v1`); a partir de aquí solo se
   cambian si hay un error.
 
@@ -462,12 +506,19 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 > [!info] Teoría previa
 > FastAPI, pydantic, pruebas con pytest; RAG (fragmentación, embeddings, recuperación, generación con citas).
 
+> [!info] Avance del 2026-11-09 (D-46; código de Claude para que Brayan lo revise y continúe)
+> `Proyecto_PISA/api/`: FastAPI + Pydantic v2 + SQLAlchemy/SQLite con Python 3.11.9, 11 endpoints, carga validada desde
+> `salidas/`, endpoint de predicción con Singleton, 33 pruebas que pasan, Dockerfile e integración continua. Falta:
+> tablero (8.4), despliegue en Render, RAG opcional (8.5) y congelar los resultados (G4) antes de la versión final.
+
 - [ ] **8.1 Exportar** todos los resultados congelados a `salidas/*.csv|json` (la API solo lee; nunca estima).
-- [ ] **8.2 API** en `Proyecto_PISA/api/`: `/nse/items`, `/matematicas/items`, `/invarianza/{grupo}`, `/dif`,
+  *(Avance: la carga lee 8 archivos de `salidas/` directamente; falta repetirla con los resultados congelados de la G4.)*
+- [x] **8.2 API** *(primera versión, 2026-11-09, D-46; las rutas siguen el plan con el prefijo `/v1`)* en `Proyecto_PISA/api/`: `/nse/items`, `/matematicas/items`, `/invarianza/{grupo}`, `/dif`,
   `/modelo/procesos?grupo=`, `/docs`. Esquemas pydantic; respuestas agregadas por grupo (nunca por estudiante:
   Ley 1581 de 2012).
-- [ ] **8.3 Pruebas** con `pytest` (un test por endpoint con datos reales).
-- [ ] **8.4 Tablero** (Streamlit) que consume la API.
+- [x] **8.3 Pruebas** con `pytest` (un test por endpoint con datos reales). *(33 pruebas, 2026-11-09.)*
+- [x] **8.4 Tablero** (Streamlit) que consume la API. *(Primera versión, 2026-11-09: `Proyecto_PISA/tablero/`, 5 páginas,
+  16 pruebas que pasan contra la API real, Dockerfile e integración continua; falta desplegarlo.)*
 - [ ] **8.5 RAG (opcional, D-04):** LlamaIndex + Chroma; corpus = notas del vault + PDF de Zotero + Technical Report;
   embeddings locales; endpoint `/preguntar` que responde citando la fuente; evaluación con 15 preguntas cuya
   respuesta ya conocen.
@@ -477,6 +528,21 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 
 - [ ] **9.1 Informe** en `Proyecto_PISA/informe/informe.Rmd` con citas de `referencias.bib`; cada cifra con su
   script y salida.
-- [ ] **9.2 Declaración de uso de IA** y reparto del trabajo (igual que en el anteproyecto).
+  - *Redacción (evaluación del 2026-11-08):* el diseño es transversal. «Explica» se usa solo como «varianza
+    explicada», y el «efecto del NSE» se escribe «asociación» o «coeficiente», como ya declara el anteproyecto
+    (línea 285 del `.Rmd`). Las conclusiones de la F4 se redactan como en D-35.
+  - *Esqueleto creado (2026-11-08):* `Proyecto_PISA/informe/informe.Rmd` con todas las secciones; cada tabla se lee de
+    `salidas/` (ninguna cifra a mano) y lo que falta dice «Pendiente». Compila a PDF con XeLaTeX. Para compilarlo fuera
+    de RStudio hay que apuntar `RSTUDIO_PANDOC` al pandoc de RStudio. Los textos **[POR REDACTAR]** son del equipo.
+  - *Borrador completo (Claude, 2026-11-10, pedido por Vanessa):* las 10 secciones **[POR REDACTAR]** quedaron
+    redactadas, y se agregaron «Hallazgos y discusión», «Limitaciones», «Productos: API y tablero» y «Conclusiones».
+    Todas las cifras del texto se calculan al compilar desde `salidas/`. Las citas de fuentes `por_verificar` llevan
+    **[VERIFICAR]**, y las interpretaciones dicen «por discutir». Compila sin errores a PDF (18 páginas). Falta:
+    - que el equipo revise cada sección y la asuma como propia;
+    - completar el reparto del trabajo (9.2);
+    - verificar las fuentes marcadas;
+    - congelar con la etiqueta `resultados-v1`.
+- [ ] **9.2 Declaración de uso de IA** y reparto del trabajo (igual que en el anteproyecto). *(Borrador de la
+  declaración dentro del informe, 2026-11-10; el reparto del trabajo lo completa el equipo.)*
 - [ ] **9.3 Ensayo cruzado:** cada uno expone una parte que no hizo; los otros dos preguntan con las autoevaluaciones de
   esta guía.

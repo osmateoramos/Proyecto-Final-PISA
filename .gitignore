@@ -51,3 +51,9 @@ Vault_PISA2022/.obsidian/cache
 Vault_PISA2022/.trash/
 # Si Obsidian se abre sobre la raíz del repositorio (y no sobre Vault_PISA2022) crea esta carpeta
 /.obsidian/
+
+# --- API (F8): base generada, configuracion local y entorno ----------------------
+Proyecto_PISA/api/*.db
+.env
+!.env.example
+.pytest_cache/

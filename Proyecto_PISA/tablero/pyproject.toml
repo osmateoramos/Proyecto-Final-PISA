@@ -1,0 +1,10 @@
+[project]
+name = "pisa-tablero"
+version = "0.1.0"
+description = "Tablero (Streamlit) del Proyecto PISA 2022 Colombia; consume la API (F8, paso 8.4)"
+requires-python = "==3.11.9"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q"

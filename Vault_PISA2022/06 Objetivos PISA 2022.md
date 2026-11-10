@@ -78,6 +78,8 @@ competencias calificadas en O3**, y probar si su efecto es igual entre competenc
   conglomerado por colegio; prueba de igualdad de efectos entre competencias; multigrupo si O2 lo permite.
 - **Cumplido cuando:** coeficientes por competencia con su error estándar, prueba de igualdad e índices de ajuste,
   con ambos tipos de puntaje.
+- *Cambio (2026-11-08, D-32):* tras rechazar H8, el análisis principal de O4 usa los valores plausibles de proceso de
+  la OCDE, y los puntajes propios de O3 quedan como robustez (si el 5.4 se valida, D-33). Errores con BRR (D-34).
 
 ### O5. Poner los resultados a disposición — `[PY]`
 **Desarrollar una API REST en FastAPI y un tablero** que permitan consultar los parámetros TRI (O1, O3), los

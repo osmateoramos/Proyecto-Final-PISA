@@ -1,0 +1,5 @@
+competencia,items,r_spearman_todos,items_a_min,excluidos,r_b_a_min,r_spearman_a_min,pendiente_A,intercepto_B,RMSD_b_enlazado,umbral_a
+razonar,35,0.703,30,5,0.776,0.882,0.416,-0.682,0.543,0.3
+formular,35,0.877,27,8,0.794,0.854,0.548,-0.978,0.373,0.3
+interpretar,38,0.932,36,2,0.976,0.968,0.565,-0.922,0.211,0.3
+emplear,62,0.932,52,10,0.888,0.921,0.44,-0.934,0.269,0.3

@@ -1,0 +1,3 @@
+variable,chi2,gl,p,n,p_Holm,H6
+zona (NSE x pueblo y NSE x rural),13.99,8,0.082,6674,0.082,se acepta
+sector (NSE x privado),15.58,4,0.00363,6674,0.00727,se acepta

@@ -2213,8 +2213,11 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   cambia si se corrige un error.
 - **Punto 4 en Scopus (2026-11-10):** con el acceso del CRAI USTA de Mateo, Claude corrió las 10 cadenas en Scopus a su
   pedido: 7 dieron 0 resultados y 3 dieron 1 documento cada una, ninguno sobre Colombia ni antecedente de K1, K2, K4 o K5
-  ([[Literatura/Búsqueda de novedad F7]]). Falta Google Scholar; el criterio 4 sigue provisional. La búsqueda no cambia
-  ningún resultado congelado.
+  ([[Literatura/Búsqueda de novedad F7]]). La búsqueda no cambia ningún resultado congelado.
+  - *Google Académico (2026-11-10):* Mateo corrió las 10 cadenas desde otro computador (en el suyo Google bloqueó las
+    consultas) y Claude revisó la página 1 de cada una: ningún antecedente para Colombia. Hay análisis parecidos en otros
+    países o poblaciones; el más cercano a K2, según su resumen, es Duarte, Bos y Moreno (2010, BID), con el SERCE en
+    primaria y el resultado contrario (por verificar). El criterio 4 sigue provisional hasta leer esos antecedentes.
 
 ### D-46 · 2026-11-09 · Diseño de la API (F8, paso 8.2): stack, persistencia y endpoint de predicción
 - **Problema:** la F8 debe cumplir las buenas prácticas del curso de Python (documento del curso que Vanessa dio a

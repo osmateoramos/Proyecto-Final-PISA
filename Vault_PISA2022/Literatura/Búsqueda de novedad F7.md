@@ -1,7 +1,7 @@
 ---
 tipo: guia
 estado: por_verificar
-lectura: "búsqueda hecha por Claude con la herramienta de búsqueda web (2026-11-09) y en Scopus con el acceso del CRAI USTA de Mateo, a su pedido (2026-11-10); de las fuentes nuevas solo se leyeron resúmenes, ninguna en texto completo"
+lectura: "búsqueda hecha por Claude con la herramienta de búsqueda web (2026-11-09) y en Scopus con el acceso del CRAI USTA de Mateo, a su pedido (2026-11-10); Google Académico lo corrió Mateo (2026-11-10, página 1) y Claude leyó los resultados; de las fuentes nuevas solo se leyeron resúmenes o fragmentos, ninguna en texto completo"
 verificado_por:
 fecha_verificacion:
 ---
@@ -13,7 +13,8 @@ Volver a [[Literatura/Matriz estado del arte]] · Decisión en [[03 Registro de 
 > [!warning] Alcance real de esta búsqueda
 > - **Herramienta:** buscador web general de Claude Code (2026-11-09), con filtros de dominio para SciELO
 >   (`scielo.org`, `scielo.org.co`, `scielo.org.mx`) y Redalyc (`redalyc.org`). **Scopus** se consultó el 2026-11-10
->   (sección «Búsqueda en Scopus» abajo). **Google Scholar no se ha consultado**: falta repetir ahí las cadenas.
+>   (sección «Búsqueda en Scopus» abajo) y **Google Académico** el mismo día, solo la página 1 de cada cadena (sección
+>   «Búsqueda en Google Académico»).
 > - Cinco páginas no se pudieron abrir (errores de red o PDF sin texto legible). De los antecedentes nuevos solo se
 >   conoce lo que mostró el resultado de búsqueda: **autores, años y hallazgos están por verificar** contra el original.
 > - Un resultado de búsqueda que no encuentra antecedentes **no prueba** que no existan.
@@ -102,6 +103,49 @@ el contenido sigue por verificar en el texto completo):
 - No están en Scopus (o no aparecieron): el informe de ACER, el documento de Oxford, el preprint de Research Square, el
   artículo de JOSPOE y el *Working Paper* 279 de la OCDE.
 
+## Búsqueda en Google Académico (2026-11-10)
+
+- **Cómo:** Mateo corrió las 10 cadenas en Google Académico desde otro computador (en el suyo Google bloqueó las
+  consultas por «tráfico automatizado»), con «Cualquier momento», orden por relevancia y cualquier idioma, y copió la
+  **página 1** de cada búsqueda (10 resultados) en un Word. Claude leyó los títulos y fragmentos. Para los posibles
+  antecedentes buscó el resumen público en la web el mismo día; ninguno se leyó en texto completo.
+- Google Académico busca en el texto completo, así que el número de resultados es aproximado y sirve poco; lo que cuenta
+  es si entre los primeros aparece un estudio con el mismo resultado para Colombia.
+
+| # | Candidato | Cadena en Google Académico | Resultados (aprox.) | Lo relevante en la página 1 |
+|---|---|---|---|---|
+| 1 | K1, K3 | `PISA Colombia socioeconomic mathematics "formulating" "employing" "interpreting"` | 134 | Wu (2025), *International Electronic Journal of Mathematics Education* (ERIC): PISA 2022, las 4 subescalas de proceso; el fragmento nombra a Colombia y a «students from wealthier» hogares. **Por leer** (no se encontró su resumen). De Bortoli y Underwood (2025), ACER, Australia |
+| 2 | K1, K3 | `PISA Colombia "nivel socioeconómico" matemáticas "formular" "emplear" "interpretar"` | 938 | Tesis y documentos que citan la definición de PISA («formular, emplear e interpretar»); ninguno compara la brecha por NSE entre procesos |
+| 3 | K1 | `PISA "process subscales" mathematics socioeconomic gap` | 45 | Informes nacionales de PISA 2022 de Inglaterra e Irlanda del Norte (Ingram et al., 2023): según el fragmento, revisan «whether gender and socioeconomic gaps are bigger» en algunas subescalas de proceso, **pero en esos países**. Informes de Inglaterra de PISA 2012 y 2018 y Cantillas et al. (2026), Filipinas, sobre NSE y subescalas |
+| 4 | K2 | `PISA Colombia "socioeconomic gradient" "private schools"` | 34 | Carneiro y Toppeta (2022, CAF): brechas por educación de la madre en 3.º y 6.º grado, ligadas a la segregación entre colegios (no la pendiente por sector). Duarte, Bos y Moreno (2010, BID), análisis multinivel del SERCE. Willms (2006) |
+| 5 | K2 | `PISA Colombia "nivel socioeconómico" "colegios privados" "colegios públicos" matemáticas` | 459 | Estudios de la brecha público–privado en Colombia (Castro Aristizábal et al., 2017 y 2020; Uribe, 2012; Correa-Fonnegra y Orejuela-Ríos, 2017): explican la brecha, no prueban si la pendiente del NSE cambia entre sectores |
+| 6 | K2 | `PISA "Latin America" "socioeconomic gradient" "private schools" interaction` | 38 | Salinas-Contador (2014), tesis sobre sector escolar y estratificación en América Latina con PISA 2009; el fragmento menciona «a significant interaction effect». **Por leer** (no se encontró su resumen) |
+| 7 | K4 | `PISA "rapid guessing" OR "rapid omissions" socioeconomic gap mathematics` | 99 | Rios y Soland (2022), ya en la matriz. Buchholz, Cignetti y Piacentini (2022), *OECD Education Working Paper*, «Developing measures of engagement in PISA»: el fragmento, sin contexto, dice «effort magnify the socio-economic gap in performance». Ninguno trata Colombia |
+| 8 | K4 | `PISA "omitted responses" "treated as missing" OR "scored as incorrect" socioeconomic` | 16 | Sachse, Mahler y Pohl (2019), *Educational and Psychological Measurement*: cómo el tratamiento de la no respuesta afecta las comparaciones entre grupos (incluido el NSE) en evaluaciones internacionales. Köhler, Pohl y Carstensen (2017). Antecedentes del método, no de Colombia |
+| 9 | K5 | `PISA "differential item functioning" mathematics "socioeconomic status"` | 944 | Chen y Zumbo (2017), DIF multinivel con datos de PISA; Rutkowski y Rutkowski (2013) y Pokropek et al. (2017), sobre la medición del NSE en PISA (más cerca de la F4 que de K5). Ninguno trata Colombia |
+| 10 | K5 | `"funcionamiento diferencial" ítems "nivel socioeconómico" matemáticas Colombia` | 93 | Woitschach y Ortiz (2019), «Funcionamiento diferencial del ítem en la evaluación educativa a nivel América Latina y el Caribe» (icso.org.py): el fragmento menciona PISA 2012, matemáticas y el índice socioeconómico. **Por leer** (no se encontró su resumen). Pardo Adames et al. (2023), *Interdisciplinaria*, 40(1): TERCE y procesamiento cognitivo, no DIF por NSE |
+
+**Antecedente que aparece al revisar la cadena 4 (por verificar en el original):** Duarte, Bos y Moreno (2010),
+«¿Enseñan mejor las escuelas privadas en América Latina? Estudio comparativo usando los resultados del SERCE», nota
+técnica del BID. Según el resumen que mostró la búsqueda web, con el SERCE de 2006 (primaria, América Latina) la
+asociación entre el NSE y los aprendizajes **no cambia** entre escuelas públicas y privadas. Es lo más cercano a K2: otra
+población (primaria, 2006) y el resultado contrario al nuestro (en PISA 2022 la pendiente es mayor en los privados). No
+se ha leído; falta confirmar si incluye a Colombia y cómo se probó.
+
+**Documentos de la búsqueda del 2026-11-09 que Google Académico identifica** (según los resultados, por verificar):
+
+- El documento de Oxford (ORA) que no se pudo leer es el informe nacional de Inglaterra: Ingram, Stiff, Cadwallader,
+  Lee y Kayton (2023), «PISA 2022: National report for England».
+- El informe de ACER es De Bortoli y Underwood (2025), «PISA 2022. A closer look at mathematics in Australia».
+- El *Working Paper* 279 de la OCDE es Buchholz, Cignetti y Piacentini (2022), «Developing measures of engagement in
+  PISA».
+
+**Conclusión (interpretación de Claude, por discutir):** ninguna fuente de la página 1 prueba para Colombia K1, K2, K4
+o K5. Hay antecedentes **del mismo análisis en otros países o poblaciones**: K1 en Inglaterra y Australia, K2 en primaria
+de América Latina (con el resultado contrario) y K4 en el método. Esto no quita la novedad para Colombia, pero el
+informe debería citarlos. Faltan por leer 4 posibles antecedentes: Wu (2025), Salinas-Contador (2014), Woitschach y
+Ortiz (2019) y Duarte et al. (2010).
+
 ## Fuentes de los resultados de búsqueda (URL tal como aparecieron)
 
 - OCDE, nota de país de Colombia PISA 2022: https://www.oecd.org/en/publications/pisa-2022-results-volume-i-and-ii-country-notes_ed6fbcc5-en/colombia_dd5f34d9-en.html
@@ -117,8 +161,10 @@ el contenido sigue por verificar en el texto completo):
 - *Psicothema*, DIF con TERCE: https://www.psicothema.com/pi?pii=4533
 
 ## Qué falta (equipo)
-1. ✅ Scopus (2026-11-10, arriba). Falta repetir las 10 cadenas en **Google Scholar** y anotar fecha y número de
-   resultados.
+1. ✅ Scopus y Google Académico (2026-11-10, arriba). Si se quiere más cobertura, revisar también la página 2 de
+   Google Académico.
+1b. Leer los 4 posibles antecedentes nuevos: Wu (2025), Salinas-Contador (2014), Woitschach y Ortiz (2019) y Duarte,
+   Bos y Moreno (2010, BID).
 2. Abrir los 9 antecedentes nuevos (ACER, Oxford, Research Square, JOSPOE, Quiroz et al., OCDE WP 279, Robitzsch,
    Jerrim et al. y *Psicothema*), crear su nota en `Literatura/` (ZotLit) y corregir esta tabla.
 3. Con eso, confirmar o corregir el criterio 4 de cada candidato en [[Hallazgos]].

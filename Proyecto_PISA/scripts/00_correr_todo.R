@@ -43,6 +43,7 @@ CADENA <- c(
   "04_medias_brr.R",               # F4, medias latentes con BRR (D-34; ~6 h sin caché)
   "05_explorar_items.R",           # F5, paso 5.1 y conteos previos a D-27
   "05_tri_competencias.R",         # F5, pasos 5.2 a 5.3b (D-27, D-29)
+  "05_afc_competencias.R",         # F5, AFC por competencia, exploratorio (D-48)
   "05_puntajes_e1.R",              # F5, paso 5.4: E1 sin covariables (D-33)
   "05_puntajes_rl.R",              # F5, paso 5.4: regresión latente (D-39; horas sin caché)
   "05_dif_matematicas.R",          # F5, paso 5.6, H3 (D-40; horas sin caché)

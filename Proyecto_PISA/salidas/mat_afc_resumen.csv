@@ -1,0 +1,6 @@
+competencia,items,carga_mediana,carga_p10,carga_min,carga_max,carga_menor_030,pct_menor_030
+emplear,75,0.477,0.139,-0.207,0.912,22,29.3
+formular,47,0.501,0.101,-0.065,0.928,17,36.2
+interpretar,57,0.53,0.294,0.016,0.919,6,10.5
+razonar,53,0.63,0.177,-0.011,0.974,11,20.8
+total,232,0.522,0.166,-0.207,0.974,56,24.1

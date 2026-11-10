@@ -2234,3 +2234,43 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - *Regla de los textos:* las cifras que aparecen en los textos se leen de la API, no se escriben a mano; las
     interpretaciones repiten las del registro (D-xx) y se marcan como tales.
 - **Estado:** ✅ pedido por Vanessa (2026-11-09). Brayan lo revisa en el PR.
+
+### D-48 · 2026-11-10 · Análisis confirmatorio de los ítems por competencia (exploratorio; sugerencia del profesor de SEM)
+- **Contexto:** en la clase de Modelación de Ecuaciones Estructurales, el profesor sugirió un análisis factorial
+  confirmatorio de los ítems de cada competencia, para ver si cada ítem representa su competencia y no otra. Se decide
+  **después** de conocer H8 (D-27) y el resto de la F5, y así se declara: es **exploratorio** y no cambia ninguna
+  hipótesis.
+- **Lo que muestran los datos** (`scripts/05_afc_competencias.R` → `salidas/mat_pares_cobertura.csv`; versión (a) de la
+  matriz, 6.886 estudiantes × 232 ítems): de 26.796 pares de ítems, **5.719 (21,3 %) nunca los respondió el mismo
+  estudiante** y 12.303 (45,9 %) los respondieron juntos menos de 50; mediana de 59 estudiantes por par. Pasa igual
+  dentro de una misma competencia (21,5 % y 46,3 %).
+- **Alternativas:**
+  - (a) AFC con WLSMV en `lavaan` por competencia: parte de las correlaciones policóricas por pares, que no existen para
+    el 21 % de los pares y son muy inestables para casi la mitad. **No se puede estimar** con la prueba adaptativa.
+  - (b) Usar el modelo de 4 competencias del 5.3, que **ya es un AFC a nivel de ítem con información completa** (cada
+    ítem carga solo en su competencia; `mirt`, QMCEM con 1.000 puntos y pesos; D-27), y reportar sus cargas y su matriz
+    de correlaciones sin volver a estimar.
+  - (c) Además, un modelo exploratorio de 4 factores con rotación hacia la estructura teórica (horas de cálculo, sin
+    garantía de convergencia).
+  - (d) Probar cada ítem en las otras competencias (unos 700 modelos): no cabe en el calendario.
+- **Decisión (Mateo, 2026-11-10): (b).** (c) y (d) quedan como trabajo futuro.
+  1. Cargas estandarizadas de cada ítem en su competencia con `cargas_mirt()` (la falla de `summary()` de `mirt`
+     1.46.1 con los GPCM, D-19), la matriz completa Φ y la cobertura de pares.
+  2. Se marcan los ítems con carga < 0,30, el criterio operativo de D-29 (V3). Solo se reporta: no se excluye ningún
+     ítem ni se recalibra.
+  3. En el informe se contrasta con el análisis de dimensionalidad de la OCDE (Technical Report, pp. 228–230 impresas:
+     modelo de 2 dimensiones con los ítems de tendencia y los nuevos; el AIC prefiere 2 y el BIC 1, el modelo de 1
+     dimensión logra el 99,8 % de la mejora y las correlaciones entre los dos conjuntos van de 0,91 a 0,99). Leído por
+     Claude en el texto completo el 2026-11-10; **por verificar** por el equipo.
+- **Resultado** (`salidas/mat_afc_cargas.csv`, `mat_afc_resumen.csv` y `mat_afc_phi.csv`; 2026-11-10):
+  - Cada ítem carga en la competencia que le asigna el anexo A (el script lo comprueba).
+  - Mediana de las cargas: 0,48 (emplear), 0,50 (formular), 0,53 (interpretar), 0,63 (razonar); 0,52 en total.
+  - **56 de 232 ítems (24,1 %) tienen carga < 0,30**, todos dicotómicos: 22 de emplear, 17 de formular, 6 de interpretar
+    y 11 de razonar. **5 tienen carga negativa** (la mínima, −0,21 en emplear).
+  - Φ: emplear–formular 0,940, emplear–interpretar 0,951, emplear–razonar 0,976, formular–interpretar 0,897,
+    formular–razonar 0,945 e interpretar–razonar 0,906 (las mismas de H8).
+  - *Interpretación (Claude, por discutir):* los ítems sí cargan en su competencia, pero las competencias casi no se
+    separan (Φ) y una cuarta parte de los ítems discrimina poco en Colombia. Es coherente con D-43, que encontró 25
+    ítems dicotómicos con discriminación < 0,3 y dificultades muy altas (`salidas/mat_p3_baja_discriminacion.csv`):
+    ítems que casi nadie responde bien en Colombia informan poco (efecto piso).
+- **Estado:** ✅ (b) aceptada por Mateo (2026-11-10, en la sesión con Claude). Vanessa y Brayan la revisan en el PR.

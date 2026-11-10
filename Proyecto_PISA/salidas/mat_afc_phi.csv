@@ -1,0 +1,5 @@
+competencia,emplear,formular,interpretar,razonar
+emplear,1,0.94,0.951,0.976
+formular,0.94,1,0.897,0.945
+interpretar,0.951,0.897,1,0.906
+razonar,0.976,0.945,0.906,1

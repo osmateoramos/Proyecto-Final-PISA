@@ -289,6 +289,36 @@ def competencias() -> None:
                                     "items_por_estudiante_mediana": "Ítems por estudiante (mediana)"})
         fuente("mat_ajuste.csv y mat_matriz_resumen.csv", "05_tri_competencias.R")
 
+        st.subheader("¿Cada ítem representa su competencia? (exploratorio)")
+        cargas = datos.tabla("/matematicas/cargas-competencia")
+        pares = datos.tabla("/matematicas/cobertura-pares")
+        total = cargas[cargas["competencia"] == "total"].iloc[0]
+        todos = pares[pares["pares"] == "todos"].iloc[0]
+        explicar(
+            que="Por sugerencia del curso de Ecuaciones Estructurales se revisó si cada ítem carga en la competencia que "
+                "le asigna PISA. Un **análisis factorial confirmatorio** clásico no se puede hacer: con la prueba "
+                f"adaptativa, el {numero(float(todos['pct_nunca_juntos']), 1)} % de los pares de ítems nunca lo respondió "
+                "el mismo estudiante. Por eso se leen las cargas del modelo de 4 competencias, que ya es un análisis "
+                "confirmatorio con toda la información. Se decidió después de conocer H8 y así se declara.",
+            como="La **carga** dice cuánto refleja el ítem su competencia (de 0 a 1). Por debajo de **0,30** el ítem "
+                 "informa poco (criterio de D-29). La segunda tabla dice cuántos estudiantes respondieron juntos cada "
+                 "par de ítems.",
+            significa=f"Cada ítem carga en su competencia, pero {int(total['carga_menor_030'])} de "
+                      f"{int(total['items'])} tienen carga menor que 0,30. Junto con las correlaciones de H8, confirma "
+                      "que las competencias casi no se separan en Colombia. Es exploratorio: no cambia ninguna "
+                      "hipótesis.",
+            decisiones="D-27, D-29, D-48")
+        st.dataframe(cargas, hide_index=True, use_container_width=True,
+                     column_config={"items": "Ítems", "carga_mediana": "Carga mediana", "carga_p10": "Percentil 10",
+                                    "carga_min": "Carga mínima", "carga_max": "Carga máxima",
+                                    "carga_menor_030": "Ítems con carga < 0,30", "pct_menor_030": "% con carga < 0,30"})
+        st.dataframe(pares, hide_index=True, use_container_width=True,
+                     column_config={"n_pares": "Pares", "nunca_juntos": "Nunca juntos", "pct_nunca_juntos": "% nunca juntos",
+                                    "menos_de_50": "Menos de 50 estudiantes", "pct_menos_de_50": "% menos de 50",
+                                    "mediana_estudiantes": "Estudiantes por par (mediana)",
+                                    "p90_estudiantes": "Estudiantes por par (percentil 90)"})
+        fuente("mat_afc_resumen.csv y mat_pares_cobertura.csv", "05_afc_competencias.R")
+
     with pestanas[1]:
         conf = datos.tabla("/matematicas/confiabilidad")
         explicar(

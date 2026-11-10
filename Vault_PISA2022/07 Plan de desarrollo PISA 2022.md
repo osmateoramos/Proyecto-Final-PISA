@@ -486,17 +486,20 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 
 ## F7 — Robustez y verificación de novedad (semana 7)  `[CONS]`
 
-- [ ] **7.1 Sensibilidad** de cada hallazgo candidato:
+- [x] **7.1 Sensibilidad** de cada hallazgo candidato: *(Hecho, 2026-11-10, D-45: los 5 candidatos son robustos; `salidas/f7_robustez.csv`.)*
   - NSE latente vs ESCS oficial;
   - con y sin estudiantes de la ruta lineal (1.793);
   - umbrales de omisión rápida NT10, NT15 y 5 s;
   - con y sin corrección por comparaciones múltiples.
   - con los pesos ajustados por no respuesta dentro de cada colegio (D-38), por la exclusión no aleatoria de D-14.
-- [ ] **7.2 Búsqueda formal de novedad** en Scopus / Google Scholar / Scielo / Redalyc para cada hallazgo;
+- [x] **7.2 Búsqueda formal de novedad** *(hecha por Claude el 2026-11-09 en buscador web, SciELO y Redalyc: [[Literatura/Búsqueda de novedad F7]]; falta Scopus y Google Scholar, que hace el equipo)* en Scopus / Google Scholar / Scielo / Redalyc para cada hallazgo;
   actualizar la [[Literatura/Matriz estado del arte|matriz]] (pasar las † a ✓ o corregir).
-- [ ] **7.3 Aplicar el criterio de hallazgo innovador** de [[08 Rúbrica de desarrollo]] y redactar cada hallazgo en
+- [x] **7.3 Aplicar el criterio de hallazgo innovador** *(borrador en [[Hallazgos]], 2026-11-10; las frases las aprueba el equipo)* de [[08 Rúbrica de desarrollo]] y redactar cada hallazgo en
   una frase para Colombia.
 - **Salida:** `salidas/robustez.csv`, matriz actualizada, nota `Hallazgos.md`.
+- *Estado de la G4 (2026-11-10):* acta en [[Reuniones/2026-11-10 Puerta G4]]. El PR #14 (rama `Vanessa`) ya está en
+  `main`; falta el PR de la rama `Mateo` (D-48 y reproducción en otro equipo) con la aprobación de Vanessa o Brayan, y
+  después la etiqueta `resultados-v1` sobre `main` (D-45 punto 6).
 - **Listo cuando:** **Puerta G4** — resultados congelados (etiqueta Git `resultados-v1`); a partir de aquí solo se
   cambian si hay un error.
 
@@ -512,12 +515,18 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 
 - [ ] **8.1 Exportar** todos los resultados congelados a `salidas/*.csv|json` (la API solo lee; nunca estima).
   *(Avance: la carga lee 8 archivos de `salidas/` directamente; falta repetirla con los resultados congelados de la G4.)*
+  *(2026-11-10, equipo de Mateo: con las salidas de `main` más D-48, la carga valida 28 archivos del catálogo y las
+  pruebas pasan en `python:3.11.9-slim`: 65 de la API y 22 del tablero contra la API real. Se marca hecho cuando exista
+  la etiqueta `resultados-v1`.)*
 - [x] **8.2 API** *(primera versión, 2026-11-09, D-46; las rutas siguen el plan con el prefijo `/v1`)* en `Proyecto_PISA/api/`: `/nse/items`, `/matematicas/items`, `/invarianza/{grupo}`, `/dif`,
   `/modelo/procesos?grupo=`, `/docs`. Esquemas pydantic; respuestas agregadas por grupo (nunca por estudiante:
   Ley 1581 de 2012).
 - [x] **8.3 Pruebas** con `pytest` (un test por endpoint con datos reales). *(33 pruebas, 2026-11-09.)*
 - [x] **8.4 Tablero** (Streamlit) que consume la API. *(Primera versión, 2026-11-09: `Proyecto_PISA/tablero/`, 5 páginas,
   16 pruebas que pasan contra la API real, Dockerfile e integración continua; falta desplegarlo.)*
+  *(2026-11-10: las imágenes de la API y del tablero se construyeron y se corrieron juntas con Docker en el equipo de
+  Mateo; el despliegue en Render queda configurado en `render.yaml` (raíz del repositorio) y lo hace un integrante con
+  su cuenta, según `Proyecto_PISA/api/README.md`.)*
 - [ ] **8.5 RAG (opcional, D-04):** LlamaIndex + Chroma; corpus = notas del vault + PDF de Zotero + Technical Report;
   embeddings locales; endpoint `/preguntar` que responde citando la fuente; evaluación con 15 preguntas cuya
   respuesta ya conocen.
@@ -533,6 +542,16 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
   - *Esqueleto creado (2026-11-08):* `Proyecto_PISA/informe/informe.Rmd` con todas las secciones; cada tabla se lee de
     `salidas/` (ninguna cifra a mano) y lo que falta dice «Pendiente». Compila a PDF con XeLaTeX. Para compilarlo fuera
     de RStudio hay que apuntar `RSTUDIO_PANDOC` al pandoc de RStudio. Los textos **[POR REDACTAR]** son del equipo.
-- [ ] **9.2 Declaración de uso de IA** y reparto del trabajo (igual que en el anteproyecto).
+  - *Borrador completo (Claude, 2026-11-10, pedido por Vanessa):* las 10 secciones **[POR REDACTAR]** quedaron
+    redactadas, y se agregaron «Hallazgos y discusión», «Limitaciones», «Productos: API y tablero» y «Conclusiones».
+    Todas las cifras del texto se calculan al compilar desde `salidas/`. Las citas de fuentes `por_verificar` llevan
+    **[VERIFICAR]**, y las interpretaciones dicen «por discutir». Compila sin errores a PDF (18 páginas; 19 desde
+    que se agregó D-48 al unir la rama `Mateo`, 2026-11-10). Falta:
+    - que el equipo revise cada sección y la asuma como propia;
+    - completar el reparto del trabajo (9.2);
+    - verificar las fuentes marcadas;
+    - congelar con la etiqueta `resultados-v1`.
+- [ ] **9.2 Declaración de uso de IA** y reparto del trabajo (igual que en el anteproyecto). *(Borrador de la
+  declaración dentro del informe, 2026-11-10; el reparto del trabajo lo completa el equipo.)*
 - [ ] **9.3 Ensayo cruzado:** cada uno expone una parte que no hizo; los otros dos preguntan con las autoevaluaciones de
   esta guía.

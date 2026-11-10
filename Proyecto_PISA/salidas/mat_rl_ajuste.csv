@@ -1,5 +1,5 @@
 competencia,varianza_residual,R2_latente,r_residual_con,r_total_PV_con,iteraciones_EM,convergio,minutos_EM_esta_corrida,puntajes_validos
-emplear,0.5988,0.386,formular 0.905 | interpretar 0.916 | razonar 0.975,formular 0.934 | interpretar 0.945 | razonar 0.979,39,TRUE,24.1,TRUE
-formular,0.615,0.362,emplear 0.905 | interpretar 0.819 | razonar 0.913,emplear 0.934 | interpretar 0.880 | razonar 0.941,39,TRUE,24.1,TRUE
-interpretar,0.6222,0.368,emplear 0.916 | formular 0.819 | razonar 0.884,emplear 0.945 | formular 0.880 | razonar 0.922,39,TRUE,24.1,TRUE
-razonar,0.6175,0.361,emplear 0.975 | formular 0.913 | interpretar 0.884,emplear 0.979 | formular 0.941 | interpretar 0.922,39,TRUE,24.1,TRUE
+emplear,0.5988,0.386,formular 0.904 | interpretar 0.917 | razonar 0.974,formular 0.934 | interpretar 0.946 | razonar 0.979,45,TRUE,530.8,TRUE
+formular,0.6146,0.362,emplear 0.904 | interpretar 0.821 | razonar 0.913,emplear 0.934 | interpretar 0.880 | razonar 0.941,45,TRUE,530.8,TRUE
+interpretar,0.6218,0.368,emplear 0.917 | formular 0.821 | razonar 0.882,emplear 0.946 | formular 0.880 | razonar 0.922,45,TRUE,530.8,TRUE
+razonar,0.6179,0.36,emplear 0.974 | formular 0.913 | interpretar 0.882,emplear 0.979 | formular 0.941 | interpretar 0.922,45,TRUE,530.8,TRUE

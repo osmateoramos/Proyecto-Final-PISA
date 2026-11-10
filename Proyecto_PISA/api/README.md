@@ -78,7 +78,7 @@ todos los errores.
 ## Pruebas, imagen e integración continua
 
 ```powershell
-python -m pytest                                  # 34 pruebas con los datos reales de salidas/
+python -m pytest                                  # 65 pruebas con los datos reales de salidas/
 docker build -f api/Dockerfile -t pisa-api .      # desde Proyecto_PISA/
 docker run -p 8000:8000 pisa-api
 ```
@@ -86,13 +86,28 @@ docker run -p 8000:8000 pisa-api
 `.github/workflows/api.yml` corre las pruebas con Python 3.11.9 y construye la imagen en cada push que toque la API o
 `salidas/`. La imagen solo recibe `api/app`, `api/requirements.txt` y `salidas/*.csv` (ver `Dockerfile.dockerignore`).
 
+## Despliegue en Render
+
+El archivo `render.yaml` de la raíz del repositorio define los dos servicios (API y tablero) con sus imágenes de
+Docker, en el plan gratuito. Para desplegar (lo hace un integrante con su cuenta de Render):
+
+1. En Render, **New > Blueprint**, conectar el repositorio de GitHub y elegir la rama `main`.
+2. Render pide el valor de `PISA_API_URL` para el tablero: la URL pública de la API, sin `/v1` (por ejemplo,
+   `https://pisa-api.onrender.com`; si el nombre ya está tomado, Render le agrega un sufijo y hay que copiar la URL
+   que muestre). En el plan gratuito un servicio no recibe tráfico de la red privada de Render, así que el tablero
+   llama a la API por su URL pública.
+3. Al terminar, abrir `<URL de la API>/docs` y `<URL del tablero>`, y anotar las dos URL en el informe (sección
+   «Productos») y en `Vault_PISA2022/00 Inicio.md`.
+
+En el plan gratuito los servicios se duermen después de un rato sin uso; la primera visita tarda en despertarlos.
+
 ## Pendiente (F8)
 
-- Tablero (Streamlit) que consuma esta API (paso 8.4).
-- Despliegue en Render con la imagen de Docker y URL pública.
+- Desplegar en Render con `render.yaml` (requiere la cuenta de un integrante) y anotar las URL públicas.
 - RAG opcional (paso 8.5, D-04 y D-06).
-- Docker no está instalado en el equipo de Vanessa: la imagen se construye en la integración continua, donde pasó por
-  primera vez el 2026-11-09 (run 42743515918); falta correrla localmente.
+- *Hecho el 2026-11-10 en el equipo de Mateo:* las dos imágenes (`pisa-api` y `pisa-tablero`) se construyeron y se
+  corrieron localmente con Docker; la API respondió en `/health` y el tablero cargó sus páginas contra ella. Las
+  pruebas pasaron en `python:3.11.9-slim`: 65 de la API y 22 del tablero contra la API real.
 
 ## Uso de herramientas de IA
 

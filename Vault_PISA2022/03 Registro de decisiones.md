@@ -2205,4 +2205,6 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   El servidor real (uvicorn) responde: con NSE económico 1 y lo demás en la referencia, emplear da 410,1 = 384,62 +
   25,47 (`sem_coeficientes.csv`). La validación encontró dos cosas: los ΔMH infinitos de D-40 y que un `NaN` en la
   entrada producía un error 500 en lugar de 422 (corregido con un manejador propio). Docker no está instalado en este
-  equipo: la imagen se prueba por primera vez en la integración continua (`.github/workflows/api.yml`).
+  equipo: la imagen se prueba en la integración continua (`.github/workflows/api.yml`). El primer run falló porque
+  `ubuntu-latest` (Ubuntu 26.04) no trae Python 3.11.9; con las pruebas dentro de `python:3.11.9-slim`, el run
+  42743515918 pasó completo: 33 pruebas y construcción de la imagen.

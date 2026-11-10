@@ -85,8 +85,8 @@ docker run -p 8000:8000 pisa-api
 - Tablero (Streamlit) que consuma esta API (paso 8.4).
 - Despliegue en Render con la imagen de Docker y URL pública.
 - RAG opcional (paso 8.5, D-04 y D-06).
-- La imagen de Docker no se ha construido en este equipo (Docker no está instalado); su primera prueba es la
-  integración continua.
+- Docker no está instalado en el equipo de Vanessa: la imagen se construye en la integración continua, donde pasó por
+  primera vez el 2026-11-09 (run 42743515918); falta correrla localmente.
 
 ## Uso de herramientas de IA
 

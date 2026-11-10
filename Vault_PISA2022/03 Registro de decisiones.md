@@ -2208,6 +2208,10 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - *Qué se congela (propuesta de Claude, 2026-11-10; el equipo la confirma en el PR):* `salidas/` conserva los archivos
     de la primera corrida (los de `main`), porque son los que citan D-39, D-42, D-44 y el informe. La reproducción
     queda como evidencia de que la cadena es reproducible; sus archivos no se suben.
+- **Puerta G4 (punto 6), 2026-11-10:** el PR #14 (rama `Vanessa`) lo fusionó Mateo y el PR #15 (rama `Mateo`) lo
+  fusionó Vanessa, con la integración continua en verde; ninguno registra una revisión aprobada en GitHub. Mateo pidió
+  crear la etiqueta, y Claude creó y subió `resultados-v1` sobre `main` (commit `e176fb5`). Desde aquí `salidas/` solo
+  cambia si se corrige un error.
 
 ### D-46 · 2026-11-09 · Diseño de la API (F8, paso 8.2): stack, persistencia y endpoint de predicción
 - **Problema:** la F8 debe cumplir las buenas prácticas del curso de Python (documento del curso que Vanessa dio a

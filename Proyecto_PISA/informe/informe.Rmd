@@ -87,8 +87,8 @@ p_igual_sl <- as.numeric(sub("^igualdad p = ([0-9.]+);.*", "\\1", k1_sl))
 > leen de `Proyecto_PISA/salidas/` al compilar; ninguna se escribió a mano. Las citas marcadas **[VERIFICAR]** remiten a
 > fuentes cuya nota en `Vault_PISA2022/Literatura/` sigue `por_verificar`. Los párrafos marcados *(interpretación, por
 > discutir)* son lecturas propuestas, no resultados. El diseño es transversal: se escribe «asociación» o «coeficiente»,
-> nunca «efecto causal» (plan, paso 9.1). Los resultados se congelan con la etiqueta `resultados-v1` (Puerta G4), que se
-> crea sobre `main` al cerrar la puerta; si alguna salida cambia antes, el texto cambia solo al volver a compilar.
+> nunca «efecto causal» (plan, paso 9.1). Los resultados están congelados con la etiqueta `resultados-v1` (Puerta G4,
+> 2026-11-10); si se corrige un error en alguna salida, el texto cambia solo al volver a compilar.
 
 # Resumen
 

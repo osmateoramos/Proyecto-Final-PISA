@@ -192,7 +192,7 @@ tabla(estado, caption = "Hipótesis preregistradas y su estado (leído de salida
 
 ## Fuente y muestra analítica
 
-La única fuente es la base pública de PISA 2022 de la OCDE [@oecd2023pisadb] **[VERIFICAR]**, bloque de Colombia (D-01):
+La única fuente es la base pública de PISA 2022 de la OCDE, consultada el 4 de octubre de 2026 [@oecd2023pisadb] **[VERIFICAR]**, bloque de Colombia (D-01):
 cuestionario del estudiante, archivo de ítems cognitivos (respuesta calificada y tiempo por ítem) y archivo de colegios.
 La muestra analítica son los estudiantes con ESCS y al menos 10 ítems de matemáticas **vistos**, es decir, respondidos u
 omitidos (D-14).

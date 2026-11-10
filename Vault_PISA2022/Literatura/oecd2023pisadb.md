@@ -36,7 +36,7 @@ Base pública de PISA 2022 con los archivos de estudiantes, ítems cognitivos, c
 | #   | Afirmación (como la usamos)                                                                   | Página    | Cita textual (< 15 palabras) | Estado                                            |
 | --- | --------------------------------------------------------------------------------------------- | --------- | ---------------------------- | ------------------------------------------------- |
 | 1 | Colombia tiene 7.804 estudiantes en filas contiguas de los archivos de estudiantes y de ítems | no aplica (dato de la base; salidas/conteos_muestra.csv) |  | verificado · dato de `revision_pisa2022_col.R` · página escrita por Claude a pedido de Mateo (2026-11-10) |
-| 2   | Las condiciones de uso de la base se consultan en la página oficial                           | pendiente |                              | **sin_origen** hasta leer los términos de la OCDE |
+| 2 | Los términos de la OCDE permiten descargar, copiar, adaptar y compartir los datos para cualquier fin, citando a la OCDE con la cita del conjunto de datos y la fecha de consulta | Terms & Conditions de la OCDE, sección 3 «Data», «Permitted Use» (https://www.oecd.org/en/about/terms-conditions.html) | «you can extract from, download, copy, adapt, print, distribute, share and embed Data» | por_verificar · origen: texto de la página oficial de la OCDE que Mateo copió en la sesión con Claude (2026-11-10); Claude escribió la afirmación y la ubicación |
 
 ## Dónde se usa
 Toda la sección de datos del anteproyecto y los scripts de `Proyecto_PISA/datos/`.

@@ -17,7 +17,7 @@ from typing import Annotated, Any
 from fastapi import Depends, FastAPI, HTTPException, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 from sqlalchemy import inspect
 from sqlalchemy.orm import Session
 
@@ -91,6 +91,12 @@ async def error_de_validacion(_: Request, error: RequestValidationError) -> JSON
     """
     detalle = jsonable_encoder(_sin_no_finitos(error.errors()))
     return JSONResponse(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, content={"detail": detalle})
+
+
+@app.get("/", include_in_schema=False)
+def raiz() -> RedirectResponse:
+    """Quien abre la URL base en el navegador llega a la documentación interactiva en lugar de un 404."""
+    return RedirectResponse(url="/docs")
 
 
 @app.get("/health", response_model=SaludRespuesta, tags=["Servicio"], summary="Estado del servicio")

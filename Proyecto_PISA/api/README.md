@@ -41,6 +41,12 @@ uvicorn app.main:app --reload       # desarrollo: http://127.0.0.1:8000/docs
 
 Si `salidas/` cambia (por ejemplo, después de correr `scripts/00_correr_todo.R`), hay que repetir `python -m app.carga`.
 
+Qué se abre en el navegador:
+
+- `http://127.0.0.1:8000/` → redirige a `/docs`, la documentación interactiva de la **API** (no es el tablero).
+- `http://localhost:8501` → el **tablero**, que se levanta aparte con `streamlit run app.py` desde `../tablero`
+  (ver `../tablero/README.md`) y necesita la API corriendo.
+
 ## Endpoints (v1)
 
 | Método | Ruta | Qué devuelve | Fuente |
@@ -72,7 +78,7 @@ todos los errores.
 ## Pruebas, imagen e integración continua
 
 ```powershell
-python -m pytest                                  # 33 pruebas con los datos reales de salidas/
+python -m pytest                                  # 34 pruebas con los datos reales de salidas/
 docker build -f api/Dockerfile -t pisa-api .      # desde Proyecto_PISA/
 docker run -p 8000:8000 pisa-api
 ```

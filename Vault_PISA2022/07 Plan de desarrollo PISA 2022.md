@@ -486,17 +486,18 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 
 ## F7 — Robustez y verificación de novedad (semana 7)  `[CONS]`
 
-- [ ] **7.1 Sensibilidad** de cada hallazgo candidato:
+- [x] **7.1 Sensibilidad** de cada hallazgo candidato: *(Hecho, 2026-11-10, D-45: los 5 candidatos son robustos; `salidas/f7_robustez.csv`.)*
   - NSE latente vs ESCS oficial;
   - con y sin estudiantes de la ruta lineal (1.793);
   - umbrales de omisión rápida NT10, NT15 y 5 s;
   - con y sin corrección por comparaciones múltiples.
   - con los pesos ajustados por no respuesta dentro de cada colegio (D-38), por la exclusión no aleatoria de D-14.
-- [ ] **7.2 Búsqueda formal de novedad** en Scopus / Google Scholar / Scielo / Redalyc para cada hallazgo;
+- [x] **7.2 Búsqueda formal de novedad** *(hecha por Claude el 2026-11-09 en buscador web, SciELO y Redalyc: [[Literatura/Búsqueda de novedad F7]]; falta Scopus y Google Scholar, que hace el equipo)* en Scopus / Google Scholar / Scielo / Redalyc para cada hallazgo;
   actualizar la [[Literatura/Matriz estado del arte|matriz]] (pasar las † a ✓ o corregir).
-- [ ] **7.3 Aplicar el criterio de hallazgo innovador** de [[08 Rúbrica de desarrollo]] y redactar cada hallazgo en
+- [x] **7.3 Aplicar el criterio de hallazgo innovador** *(borrador en [[Hallazgos]], 2026-11-10; las frases las aprueba el equipo)* de [[08 Rúbrica de desarrollo]] y redactar cada hallazgo en
   una frase para Colombia.
 - **Salida:** `salidas/robustez.csv`, matriz actualizada, nota `Hallazgos.md`.
+- *Estado de la G4 (2026-11-10):* acta en [[Reuniones/2026-11-10 Puerta G4]]; la etiqueta `resultados-v1` se crea sobre `main` cuando se apruebe el PR (D-45 punto 6).
 - **Listo cuando:** **Puerta G4** — resultados congelados (etiqueta Git `resultados-v1`); a partir de aquí solo se
   cambian si hay un error.
 

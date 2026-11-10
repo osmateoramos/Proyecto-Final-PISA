@@ -2170,13 +2170,24 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   | K2 NSE × sector | Holm p = 0,0073 | 0,0007 | 0,0041 | — | sin Holm 0,0036 | 0,0097 | **sí, 4 de 4** |
   | K3 NSE > 0 en las 4 | 25,5 a 31,0 puntos por unidad de EAP | 19,1 a 22,8 por unidad de ESCS | 25,1 a 30,3 | — | — | 25,6 a 31,1 | **sí, 3 de 3** |
   | K4 H4 nulo | reducción 0,007 DE; Holm p = 0,24 | 0,003–0,004; p = 1 | 0,007; p = 0,35 | NT15 0,008 (p = 0,18); 5 s 0,004 (p = 0,47) | 0,007; p 0,059–0,063 | 0,006; p = 0,52 | **sí, 5 de 5** |
-  | K5 H3 (parte 1 sí, 2 no) | 3 de 154 con DIF | en curso | en curso | — | sin BH: 8 de 154 (6 emplear, 1 formular, 1 interpretar); se mantiene | 3 de 154; se mantiene | pendiente (2 de 4 evaluadas) |
+  | K5 H3 (parte 1 sí, 2 no) | 3 de 154 con DIF | 6 de 155 (4 emplear, 1 formular, 1 interpretar); Fisher p = 0,929; se mantiene | 2 de 152 (los 2 en emplear); p = 1; se mantiene | — | sin BH: 8 de 154 (6 emplear, 1 formular, 1 interpretar); se mantiene | 3 de 154; se mantiene | **sí, 4 de 4** |
 
   - *Lectura (dato):* K1 queda cerca del límite en dos sensibilidades: con ESCS la diferencia H5 baja a ~3,7 puntos, y
     sin la ruta lineal la igualdad sale con p = 0,049. Con ESCS, la interacción NSE × zona también sale significativa
     (p = 0,0045), a diferencia de la base (0,082).
   - *Interpretación de Claude:* el factor máximo de 11,7 en D-38 viene de colegios con pocos incluidos; S-E da casi los
     mismos resultados, así que esos pesos grandes no mueven las conclusiones.
+- **Resultado de K5 (2026-11-10, DIF con TRI completo, `05_dif_matematicas.R` con `F7_VARIANTE` →
+  `salidas/f7_dif_*.csv` y `f7_h3_*.csv`; `07_sensibilidad.R` repetido → `f7_robustez.csv`):** las dos corridas largas se
+  cortaron una vez por un apagado del equipo (2026-11-09) y se relanzaron desde cero (229 y 243 min). **Los cinco
+  candidatos son robustos.**
+  - Con cuartiles de ESCS: 6 de 155 ítems con DIF; de los 5 dicotómicos, los 5 favorecen al cuartil bajo
+    (`CMA117Q03S`, de crédito parcial, se lee en sus curvas). Media latente de Q1 frente a Q4: −1,024.
+  - Sin la ruta lineal: 2 de 152 ítems con DIF (`CMA131Q02S` favorece al cuartil alto y `CMA135Q04S` al bajo).
+    Elegibles sin todas sus categorías en los dos grupos: 10 con ESCS y 13 sin la ruta lineal (listados en el log; no
+    se prueban, D-45 punto 2).
+  - *Interpretación de Claude:* `CMA135Q04S` tiene DIF en todas las variantes y siempre favorece al cuartil bajo; es el
+    candidato más claro para la revisión de contenido de P4 que sigue pendiente.
 
 ### D-46 · 2026-11-09 · Diseño de la API (F8, paso 8.2): stack, persistencia y endpoint de predicción
 - **Problema:** la F8 debe cumplir las buenas prácticas del curso de Python (documento del curso que Vanessa dio a

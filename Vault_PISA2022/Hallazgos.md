@@ -27,7 +27,7 @@ Novedad en [[Literatura/Búsqueda de novedad F7]]
 | **K2** La pendiente del NSE es mayor en los colegios privados | H6 preregistrada | Cumple la regla de H6 (Holm p = 0,007); la pendiente es entre 12,3 y 20,3 puntos mayor por unidad de EAP según la competencia (D-42) | 4 de 4; coincide con los puntajes propios (D-44) | No se encontró antecedente que pruebe la interacción en Colombia | **Hallazgo** (criterio 4 provisional) |
 | **K3** El NSE económico se asocia con las 4 competencias | No es una hipótesis: es el punto de partida de O4 | 24,2 a 29,4 puntos por DE de la EAP (D-42) | 3 de 3 | Ya se sabe para matemáticas en total (OCDE; Icfes, 2024) | **Réplica** en Colombia, extendida a las 4 competencias |
 | **K4** Tratar las omisiones rápidas como faltantes no reduce la brecha Q4 − Q1 | H4 preregistrada | **No**: reducción de 0,007 DE frente al umbral de 0,05 | 5 de 5 | No se encontró antecedente para Colombia | **Resultado nulo bien medido** (falla el criterio 2, es robusto) |
-| **K5** DIF por NSE escaso (3 de 154 ítems) y no concentrado en interpretar y formular | H3 preregistrada | Primera parte sí (efectos B y C del ETS); segunda parte no | **pendiente** (2 de 4 evaluadas; faltan ESCS y sin ruta lineal) | No se encontró DIF por NSE con ítems de PISA en Colombia | pendiente |
+| **K5** DIF por NSE escaso (3 de 154 ítems) y no concentrado en interpretar y formular | H3 preregistrada | Primera parte sí (efectos B y C del ETS); segunda parte no | 4 de 4 (2 a 6 ítems con DIF según la variante; nunca concentrado en interpretar y formular) | No se encontró DIF por NSE con ítems de PISA en Colombia | **Hallazgo parcial**: la primera parte de H3 se sostiene; el patrón por competencia que planteaba H3 no aparece (nulo en esa parte) |
 
 ## Frases para el Ministerio de Educación (borradores de Claude, criterio 5)
 
@@ -39,6 +39,8 @@ Novedad en [[Literatura/Búsqueda de novedad F7]]
   matemáticas que mide PISA, no solo en el puntaje total.»
 - **K4 (nulo):** «Las respuestas dejadas en blanco muy rápido no explican la brecha socioeconómica en matemáticas: la
   brecha es real y no un efecto de desgano en la prueba.»
+- **K5 (parcial):** «Muy pocas preguntas de matemáticas de PISA funcionan distinto para estudiantes de hogares con más
+  o con menos recursos, y las que lo hacen no favorecen de forma sistemática a los de más recursos.»
 
 ## Lectura para política y riesgos de mal uso (criterio C7)
 
@@ -48,6 +50,8 @@ Novedad en [[Literatura/Búsqueda de novedad F7]]
 - **K1 y K3** no deben leerse como que los estudiantes de NSE bajo «no pueden» interpretar: describen promedios
   condicionados, no capacidades individuales. Riesgo de estigmatización si se reportan sin esa salvedad.
 - **K4** no autoriza a ignorar el desenganche: dice que no explica la brecha por NSE en esta muestra.
+- **K5** no dice que la prueba sea «justa» en todo: un ítem con DIF no es necesariamente injusto, y la revisión de
+  contenido de los ítems marcados (P4, D-21) sigue pendiente; `CMA135Q04S` aparece en todas las variantes (D-45).
 
 ## Resultados que no fueron candidatos (se reportan igual)
 - H1 aceptada (2 dimensiones del NSE, D-18); H2 rechazada, sin demostrar la invarianza (D-35); H7 y H8 rechazadas

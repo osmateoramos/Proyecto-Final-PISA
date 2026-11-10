@@ -19,7 +19,7 @@ K4,S-C umbral de omisión (NT15 y 5 s),TRUE,NT15 (5677 omisiones rápidas): empl
 K4,S-D sin corrección múltiple,TRUE,emplear 0.0075 (p = 0.06); formular 0.0073 (p = 0.059); interpretar 0.0075 (p = 0.063); razonar 0.0074 (p = 0.063)
 K4,S-E reponderación D-38,TRUE,emplear 0.0063 (p Holm = 0.52); formular 0.0057 (p Holm = 0.52); interpretar 0.0060 (p Holm = 0.52); razonar 0.0061 (p Holm = 0.52)
 K5,base (análisis principal),TRUE,"3 de 154 ítems con DIF (CMA113Q03S, CMA131Q02S, CMA135Q04S)"
-K5,S-A ESCS,,pendiente: falta salidas/f7_h3_escs.csv
-K5,S-B sin ruta lineal,,pendiente: falta salidas/f7_h3_sin_lineal.csv
+K5,S-A ESCS,TRUE,"6 de 155 ítems elegibles con DIF | interpretar + formular 2 de 67; emplear 4 de 57; OR 0.41; p = 0.929 | ítems con DIF: CM906Q01S, CMA113Q03S, CMA117Q03S, CMA135Q04S, CM953Q03S, CMA132Q02S"
+K5,S-B sin ruta lineal,TRUE,"2 de 152 ítems elegibles con DIF | interpretar + formular 0 de 65; emplear 2 de 57; OR 0.00; p = 1 | ítems con DIF: CMA131Q02S, CMA135Q04S"
 K5,S-D sin corrección múltiple,TRUE,"sin BH: 8 de 154 ítems con DIF (CM982Q01S emplear, CMA113Q03S emplear, CMA117Q03S emplear, CMA131Q02S emplear, CMA135Q02S emplear, CMA135Q04S emplear, CMA153Q02S formular, CMA132Q02S interpretar)"
 K5,S-E reponderación D-38,TRUE,"3 de 154 ítems elegibles con DIF | interpretar + formular 0 de 66; emplear 3 de 57; OR 0.00; p = 1 | ítems con DIF: CMA113Q03S, CMA131Q02S, CMA135Q04S"

@@ -1,0 +1,3 @@
+parte,dato,se_acepta,H3
+1: al menos 1 ítem con DIF (BH 5 % y efecto no despreciable),6 de 155 ítems elegibles con DIF,TRUE,se acepta solo la primera parte
+"2: más DIF en interpretar + formular que en emplear (Fisher, una cola)",interpretar + formular 2 de 67; emplear 4 de 57; OR 0.41; p = 0.929,FALSE,se acepta solo la primera parte

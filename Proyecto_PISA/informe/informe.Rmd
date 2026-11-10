@@ -278,7 +278,7 @@ NSE general, muy parecido a HOMEPOS; el segundo factor es el de libros en el hog
 
 **Método.** Se probó si el modelo del NSE mide lo mismo en cada grupo con la secuencia configural → umbrales → cargas →
 interceptos, con la identificación de @wu2016identification y los cortes de ΔCFI (0,01) y ΔRMSEA (0,015)
-de @chen2007sensitivity **[VERIFICAR]**, en sus versiones *scaled*, porque `lavaan` no calcula las *robust* con
+de Chen (2007), citado en @sokolov2019sensitivity [p. 8] **[VERIFICAR]**, en sus versiones *scaled*, porque `lavaan` no calcula las *robust* con
 restricciones de igualdad (D-25). Cada variable de grupo se analizó por separado en la muestra analítica completa. H2 se
 decide con el contraste rural frente a urbana.
 

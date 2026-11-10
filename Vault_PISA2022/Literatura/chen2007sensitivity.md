@@ -21,6 +21,11 @@ fecha_verificacion: 2026-11-10
 
 Volver a [[Literatura/Matriz estado del arte]] · Protocolo en [[11 Protocolo de verificación]] · Revisión en [[13 Revisión de literatura]]
 
+> [!note] Cómo se cita (2026-11-10)
+> El equipo no tiene el texto completo (en Taylor & Francis solo se ve el resumen, que no trae los valores de los cortes).
+> El informe cita los cortes de ΔCFI y ΔRMSEA como **cita secundaria**: «Chen (2007), citado en Sokolov (2019, p. 8)»
+> ([[Literatura/sokolov2019sensitivity]]).
+
 ## Qué hace
 Sensibilidad de los índices de ajuste a la falta de invarianza.
 

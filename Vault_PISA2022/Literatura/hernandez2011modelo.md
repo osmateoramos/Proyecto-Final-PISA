@@ -31,8 +31,8 @@ Modela estatus cultural y económico como factores latentes y su relación con e
 
 | #   | Afirmación (como la usamos)                                                         | Página    | Cita textual (< 15 palabras) | Estado                                          |
 | --- | ----------------------------------------------------------------------------------- | --------- | ---------------------------- | ----------------------------------------------- |
-| 1 | Estatus cultural y económico: dos factores latentes correlacionados pero distintos | pendiente |  | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) |
-| 2 | El factor cultural (0,28–0,34) pesa más sobre el logro que el económico (0,22–0,31) | pendiente |  | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) |
+| 1 | Estatus cultural y económico: dos factores latentes correlacionados pero distintos | 194 y 197 | «las posesiones materiales (NSE) y las culturales (CCE) se encuentran relacionadas» | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) · afirmación precisada y página ubicadas por Claude en el PDF, a pedido de Mateo (2026-11-10) |
+| 2 | En Lenguaje y comunicación, el factor cultural (0,28–0,34) pesa más que el económico (0,22–0,31) | 197 | «coeficientes que oscilan entre 0.28 a 0.34» | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) · afirmación precisada y página ubicadas por Claude en el PDF, a pedido de Mateo (2026-11-10) |
 
 ## Qué NO dice (para no citarlo mal)
 No es PISA ni Colombia; no prueba invarianza.

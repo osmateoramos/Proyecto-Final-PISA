@@ -137,7 +137,7 @@ sección 1):
    dentro de un país, entre zonas, sectores o sexos. La propia OCDE reconoce que su índice de posesiones se escala como
    una medida unidimensional [@avvisati2024measurement, pp. 11, 48]. En Colombia, el INSE del Icfes también asume una
    sola dimensión [@icfes2019inse], mientras que la literatura internacional distingue al menos una
-   dimensión económica y otra cultural [@hernandez2011modelo; @eriksson2021socioeconomic] **[VERIFICAR]**.
+   dimensión económica y otra cultural [@hernandez2011modelo; @eriksson2021socioeconomic].
 2. **Cómo se califica el desempeño.** El seguimiento público de las brechas se hace sobre puntajes agregados
    [@lee2024decada]. PISA 2022 define cuatro procesos matemáticos —formular, emplear, interpretar y
    razonar—, pero el informe nacional los reporta solo como promedios del país, sin cruzarlos con el NSE [@icfes2024pisa]. Además, PISA califica como incorrectas las respuestas omitidas, y el desenganche en la prueba puede

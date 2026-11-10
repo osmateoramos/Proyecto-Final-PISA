@@ -32,7 +32,7 @@ Descompone el NSE en seis dimensiones como predictores simultáneos del logro en
 | #   | Afirmación (como la usamos)                                                                            | Página    | Cita textual (< 15 palabras) | Estado                                          |
 | --- | ------------------------------------------------------------------------------------------------------ | --------- | ---------------------------- | ----------------------------------------------- |
 | 1 | Solo dos dimensiones predicen sustantivamente: libros en casa (mayor efecto) y ocupación de los padres | 1 (resumen) | «two predictors (books at home and parents' highest occupational status) clearly outperform» | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) · página y cita ubicadas por Claude en el PDF (2026-11-10) |
-| 2 | Colapsar el NSE en un índice puede diluir las dimensiones que importan | pendiente |  | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) |
+| 2 | Recomiendan un índice de dos componentes (libros en casa y ocupación de los padres) en lugar del índice de PISA | 8 (PDF) | «we recommend the two-item index over the index provided by PISA» | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) · afirmación precisada y página ubicadas por Claude en el PDF, a pedido de Mateo (2026-11-10) |
 
 ## Qué NO dice (para no citarlo mal)
 No es un modelo de medición latente ni se enfoca en Colombia.

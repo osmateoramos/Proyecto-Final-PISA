@@ -3,17 +3,17 @@ tipo: fuente
 clave_bib: cruz2016construccion
 zotero-key: 8UTA28TIg6703955
 clave_provisional: no
-titulo: "Construcción de un índice socioeconómico familiar para los estudiantes que presentan la prueba Saber 11"
-autores: "Cruz Castro, L. M.; Ortiz, F.; Lemus Polanía, D. F."
+titulo: Construcción de un índice socioeconómico familiar para los estudiantes que presentan la prueba Saber 11
+autores: Cruz Castro, L. M.; Ortiz, F.; Lemus Polanía, D. F.
 año: "2016"
-publicacion: "Comunicaciones en Estadística, 9(1), 79–92"
+publicacion: Comunicaciones en Estadística, 9(1), 79–92
 doi_url: https://dialnet.unirioja.es/servlet/articulo?codigo=7396911
-bloque: "B. Medición del NSE"
-estado: por_verificar
+bloque: B. Medición del NSE
+estado: verificado
 lectura: "equipo: texto completo"
 pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
-verificado_por:
-fecha_verificacion:
+verificado_por: Mateo Ramos
+fecha_verificacion: 2026-11-10
 ---
 
 # Construcción de un índice socioeconómico familiar para los estudiantes que presentan la prueba Saber 11
@@ -29,10 +29,10 @@ Construye un índice socioeconómico familiar para Saber 11.
 
 ## Afirmaciones que usamos en el proyecto
 
-| # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
-|---|---|---|---|---|
-| 1 | Índice por ACP sobre variables categóricas, unidimensional por construcción | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
-| 2 | Correlación positiva significativa entre el índice y el desempeño | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| #   | Afirmación (como la usamos)                                                 | Página    | Cita textual (< 15 palabras) | Estado                                          |
+| --- | --------------------------------------------------------------------------- | --------- | ---------------------------- | ----------------------------------------------- |
+| 1 | Índice por ACP sobre variables categóricas, unidimensional por construcción | 79 | «análisis de componentes principales (ACP)… en un solo componente» | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) · página y cita ubicadas por Claude en el PDF (2026-11-10) |
+| 2 | Correlación positiva significativa entre el índice y el desempeño | 79 | «correlación alta entre el puntaje obtenido y el índice construido» | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) · página y cita ubicadas por Claude en el PDF (2026-11-10) |
 
 ## Qué NO dice (para no citarlo mal)
 No prueba invarianza entre subgrupos ni estructura multidimensional.

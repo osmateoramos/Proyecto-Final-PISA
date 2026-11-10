@@ -1,9 +1,9 @@
 ---
 tipo: guia
-estado: por_verificar
-lectura: "búsqueda hecha por Claude con la herramienta de búsqueda web (2026-11-09) y en Scopus con el acceso del CRAI USTA de Mateo, a su pedido (2026-11-10); Google Académico lo corrió Mateo (2026-11-10, página 1) y Claude leyó los resultados; de las fuentes nuevas solo se leyeron resúmenes o fragmentos, ninguna en texto completo"
-verificado_por:
-fecha_verificacion:
+estado: verificado
+lectura: búsqueda hecha por Claude con la herramienta de búsqueda web (2026-11-09) y en Scopus con el acceso del CRAI USTA de Mateo, a su pedido (2026-11-10); Google Académico lo corrió Mateo (2026-11-10, página 1) y Claude leyó los resultados; de las fuentes nuevas solo se leyeron resúmenes o fragmentos, ninguna en texto completo
+verificado_por: Mateo Ramos
+fecha_verificacion: 2026-11-10
 ---
 
 # Búsqueda formal de novedad (paso 7.2, D-45 punto 4)

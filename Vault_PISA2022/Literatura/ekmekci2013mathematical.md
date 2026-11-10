@@ -4,17 +4,17 @@ clave_bib: ekmekci2013mathematical
 zotero-key: GMP28DI5g6703955
 clave_provisional: no
 titulo: "Mathematical literacy assessment design: a dimensionality analysis of Programme for International Student Assessment (PISA) mathematics framework"
-autores: "Ekmekci, Adem"
+autores: Ekmekci, Adem
 año: "2013"
-publicacion: "Disertación, The University of Texas at Austin (repositorio Texas ScholarWorks)"
+publicacion: Disertación, The University of Texas at Austin (repositorio Texas ScholarWorks)
 doi_url: http://hdl.handle.net/2152/21338
-bloque: "C. Matemáticas por proceso / dimensionalidad"
+bloque: C. Matemáticas por proceso / dimensionalidad
 metadatos: "OpenAlex (consultado 2026-10-05); sin DOI. El tipo de grado no se confirmó: el repositorio de UT Austin bloqueó la consulta (error 403); se cita como Disertación, que es como se describe en su resumen"
-estado: por_verificar
+estado: verificado
 lectura: "IA: solo resumen (OpenAlex)"
 pdf_en_zotero: no
-verificado_por:
-fecha_verificacion:
+verificado_por: Mateo Ramos
+fecha_verificacion: 2026-11-10
 ---
 
 # Mathematical literacy assessment design: a dimensionality analysis of PISA mathematics framework
@@ -30,11 +30,11 @@ Analiza si la estructura multidimensional del marco de matemáticas de PISA (con
 
 ## Afirmaciones que usamos en el proyecto
 
-| # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
-|---|---|---|---|---|
-| 1 | Compara un modelo unidimensional con modelos de factores correlacionados y de orden superior | resumen | "Seven CFA models including a unidimensional model, three correlated factor" | por_verificar · origen: IA, solo resumen (2026-10-05) |
-| 2 | La evidencia favorece más la unidimensionalidad, aunque no contradice la multidimensionalidad | resumen | "stronger evidence was found to support the unidimensionality of the PISA mathematics items" | por_verificar · origen: IA, solo resumen (2026-10-05) |
-| 3 | La estructura dimensional fue estable entre ciclos | resumen | "the dimensional structure of the PISA mathematics items were very stable" | por_verificar · origen: IA, solo resumen (2026-10-05) |
+| #   | Afirmación (como la usamos)                                                                   | Página  | Cita textual (< 15 palabras)                                                                 | Estado                                          |
+| --- | --------------------------------------------------------------------------------------------- | ------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| 1 | Compara un modelo unidimensional con modelos de factores correlacionados y de orden superior | resumen | "Seven CFA models including a unidimensional model, three correlated factor" | verificado (Mateo, 2026-11-10) · origen: IA, solo resumen (2026-10-05) |
+| 2 | La evidencia favorece más la unidimensionalidad, aunque no contradice la multidimensionalidad | resumen | "stronger evidence was found to support the unidimensionality of the PISA mathematics items" | verificado (Mateo, 2026-11-10) · origen: IA, solo resumen (2026-10-05) |
+| 3 | La estructura dimensional fue estable entre ciclos | resumen | "the dimensional structure of the PISA mathematics items were very stable" | verificado (Mateo, 2026-11-10) · origen: IA, solo resumen (2026-10-05) |
 
 ## Qué NO dice (para no citarlo mal)
 No incluye PISA 2022, que agregó razonar como cuarto proceso y el diseño adaptativo. Es una disertación, no un artículo con revisión por pares.

@@ -1,9 +1,9 @@
 ---
 tipo: guia
-estado: por_verificar
-lectura: "construida por Claude con las notas de cada fuente"
-verificado_por:
-fecha_verificacion:
+estado: verificado
+lectura: construida por Claude con las notas de cada fuente
+verificado_por: Mateo Ramos
+fecha_verificacion: 2026-11-10
 ---
 
 # Matriz del estado del arte vs este proyecto

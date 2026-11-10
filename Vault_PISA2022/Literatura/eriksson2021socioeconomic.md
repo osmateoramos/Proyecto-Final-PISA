@@ -3,17 +3,17 @@ tipo: fuente
 clave_bib: eriksson2021socioeconomic
 zotero-key: G5BKIMWAg6703955
 clave_provisional: no
-titulo: "Socioeconomic status as a multidimensional predictor of student achievement in 77 societies"
-autores: "Eriksson, K.; Lindvall, J.; Helenius, O.; Ryve, A."
+titulo: Socioeconomic status as a multidimensional predictor of student achievement in 77 societies
+autores: Eriksson, K.; Lindvall, J.; Helenius, O.; Ryve, A.
 año: "2021"
-publicacion: "Frontiers in Education, 6, 731634"
+publicacion: Frontiers in Education, 6, 731634
 doi_url: https://doi.org/10.3389/feduc.2021.731634
-bloque: "B. Medición del NSE"
-estado: por_verificar
+bloque: B. Medición del NSE
+estado: verificado
 lectura: "equipo: texto completo"
 pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
-verificado_por:
-fecha_verificacion:
+verificado_por: Mateo Ramos
+fecha_verificacion: 2026-11-10
 ---
 
 # Socioeconomic status as a multidimensional predictor of student achievement in 77 societies
@@ -29,10 +29,10 @@ Descompone el NSE en seis dimensiones como predictores simultáneos del logro en
 
 ## Afirmaciones que usamos en el proyecto
 
-| # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
-|---|---|---|---|---|
-| 1 | Solo dos dimensiones predicen sustantivamente: libros en casa (mayor efecto) y ocupación de los padres | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
-| 2 | Colapsar el NSE en un índice puede diluir las dimensiones que importan | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| #   | Afirmación (como la usamos)                                                                            | Página    | Cita textual (< 15 palabras) | Estado                                          |
+| --- | ------------------------------------------------------------------------------------------------------ | --------- | ---------------------------- | ----------------------------------------------- |
+| 1 | Solo dos dimensiones predicen sustantivamente: libros en casa (mayor efecto) y ocupación de los padres | 1 (resumen) | «two predictors (books at home and parents' highest occupational status) clearly outperform» | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) · página y cita ubicadas por Claude en el PDF (2026-11-10) |
+| 2 | Colapsar el NSE en un índice puede diluir las dimensiones que importan | pendiente |  | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) |
 
 ## Qué NO dice (para no citarlo mal)
 No es un modelo de medición latente ni se enfoca en Colombia.

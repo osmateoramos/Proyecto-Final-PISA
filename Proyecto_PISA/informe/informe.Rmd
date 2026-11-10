@@ -136,13 +136,13 @@ sección 1):
    hogar; la OCDE evalúa su comparabilidad entre países y grupos de idioma [@oecd2024pisa2022tr] **[VERIFICAR]**, pero no
    dentro de un país, entre zonas, sectores o sexos. La propia OCDE reconoce que su índice de posesiones se escala como
    una medida unidimensional [@avvisati2024measurement, pp. 11, 48]. En Colombia, el INSE del Icfes también asume una
-   sola dimensión [@icfes2019inse] **[VERIFICAR]**, mientras que la literatura internacional distingue al menos una
+   sola dimensión [@icfes2019inse], mientras que la literatura internacional distingue al menos una
    dimensión económica y otra cultural [@hernandez2011modelo; @eriksson2021socioeconomic] **[VERIFICAR]**.
 2. **Cómo se califica el desempeño.** El seguimiento público de las brechas se hace sobre puntajes agregados
-   [@lee2024decada] **[VERIFICAR]**. PISA 2022 define cuatro procesos matemáticos —formular, emplear, interpretar y
+   [@lee2024decada]. PISA 2022 define cuatro procesos matemáticos —formular, emplear, interpretar y
    razonar—, pero el informe nacional los reporta solo como promedios del país, sin cruzarlos con el NSE [@icfes2024pisa]
    **[VERIFICAR]**. Además, PISA califica como incorrectas las respuestas omitidas, y el desenganche en la prueba puede
-   variar con el NSE [@rios2022investigation] **[VERIFICAR]**.
+   variar con el NSE [@rios2022investigation].
 
 En este informe llamamos **competencias** a esos cuatro procesos.
 
@@ -154,11 +154,10 @@ desempeño?
 **Antecedentes y vacío** (anteproyecto, sección 2). Los estudios colombianos relacionan puntajes observados con
 covariables socioeconómicas sin modelar el error de medición del NSE [@collazos2021determinantes; @rodriguez2024rural]
 **[VERIFICAR]**. El único antecedente encontrado que prueba invarianza del NSE entre grupos de estudiantes dentro de un
-país lo hace por origen inmigrante en Noruega y Suecia [@mittal2022assessing] **[VERIFICAR]**. El DIF por NSE en
+país lo hace por origen inmigrante en Noruega y Suecia [@mittal2022assessing]. El DIF por NSE en
 matemáticas está documentado en México [@garcia2016analisis] y, con PISA 2022, en Corea con dos subpruebas
-[@goh2024detection] **[VERIFICAR]**, pero no en Colombia ni por competencia. Y ningún estudio revisado cuantifica cuánto
-cambia la brecha socioeconómica de Colombia según cómo se califiquen las omisiones [@pohl2014dealing; @kohler2015taking]
-(Pohl et al. **[VERIFICAR]**).
+[@goh2024detection], pero no en Colombia ni por competencia. Y ningún estudio revisado cuantifica cuánto
+cambia la brecha socioeconómica de Colombia según cómo se califiquen las omisiones [@pohl2014dealing; @kohler2015taking].
 
 # Objetivos e hipótesis
 
@@ -234,8 +233,8 @@ pregunta por una respuesta anterior (por ejemplo, los tipos de libros a quien no
 como 0 y no como faltante (D-20). La muestra se dividió en dos mitades por colegio
 (`r ent(mit[mitad == "exploracion", n])` y `r ent(mit[mitad == "confirmacion", n])` estudiantes; `salidas/nse_mitades.csv`):
 en la de exploración se hizo un análisis factorial exploratorio (AFE) y en la de confirmación un análisis factorial
-confirmatorio (AFC) con WLSMV en `lavaan` [@rosseel2012lavaan] **[VERIFICAR]**. Luego se calibraron los ítems con TRI
-(2PL y crédito parcial generalizado) en `mirt` [@chalmers2012mirt] **[VERIFICAR]** sobre la muestra analítica completa.
+confirmatorio (AFC) con WLSMV en `lavaan` [@rosseel2012lavaan]. Luego se calibraron los ítems con TRI
+(2PL y crédito parcial generalizado) en `mirt` [@chalmers2012mirt] sobre la muestra analítica completa.
 
 **Resultado (H1).** El modelo de dos factores mejora claramente al de uno: el CFI *scaled* sube
 `r num(h1[1, dCFI_scaled], 3)` y la prueba de diferencia lo confirma (Δχ² = `r num(h1[1, LRT_dif_chi2])` con
@@ -280,7 +279,7 @@ NSE general, muy parecido a HOMEPOS; el segundo factor es el de libros en el hog
 # Invarianza del NSE (O2, F4)
 
 **Método.** Se probó si el modelo del NSE mide lo mismo en cada grupo con la secuencia configural → umbrales → cargas →
-interceptos, con la identificación de @wu2016identification **[VERIFICAR]** y los cortes de ΔCFI (0,01) y ΔRMSEA (0,015)
+interceptos, con la identificación de @wu2016identification y los cortes de ΔCFI (0,01) y ΔRMSEA (0,015)
 de @chen2007sensitivity **[VERIFICAR]**, en sus versiones *scaled*, porque `lavaan` no calcula las *robust* con
 restricciones de igualdad (D-25). Cada variable de grupo se analizó por separado en la muestra analítica completa. H2 se
 decide con el contraste rural frente a urbana.
@@ -450,7 +449,7 @@ fijado en D-41 quedaba dominado por ítems con discriminación casi nula, un err
 
 **Método (D-42).** Análisis principal en dos pasos: para cada competencia y cada uno de los 10 VP de la OCDE, regresión
 ponderada sobre las puntuaciones del NSE económico y de libros (G2), con sexo y grado como covariables; errores con las
-80 réplicas BRR y reglas de Rubin [@rubin1987multiple] **[VERIFICAR]** (810 ajustes por modelo). Los coeficientes se
+80 réplicas BRR y reglas de Rubin [@rubin1987multiple] (810 ajustes por modelo). Los coeficientes se
 reportan en puntos PISA por unidad de la puntuación del NSE y por desviación estándar (DE). Como robustez se estimó un
 SEM con el NSE latente (WLSMV, 29 indicadores) y se repitió todo con los puntajes propios (D-44).
 

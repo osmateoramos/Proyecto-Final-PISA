@@ -4,16 +4,16 @@ clave_bib: rolfe2021tailoring
 zotero-key: YU325ACYg6703955
 clave_provisional: no
 titulo: "Tailoring a measurement model of socioeconomic status: Applying the alignment optimization method to 15 years of PISA"
-autores: "Rolfe, V."
+autores: Rolfe, V.
 año: "2021"
-publicacion: "International Journal of Educational Research, 106, 101723"
+publicacion: International Journal of Educational Research, 106, 101723
 doi_url: https://doi.org/10.1016/j.ijer.2020.101723
-bloque: "B. Medición del NSE"
-estado: por_verificar
+bloque: B. Medición del NSE
+estado: verificado
 lectura: "equipo: solo resumen (Mateo, 2026-10-13); sin PDF, el texto completo no se ha leído"
 pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
-verificado_por:
-fecha_verificacion:
+verificado_por: Mateo Ramos
+fecha_verificacion: 2026-11-10
 ---
 
 # Tailoring a measurement model of socioeconomic status: Applying the alignment optimization method to 15 years of PISA
@@ -29,9 +29,9 @@ Construye un modelo de medición del NSE con AFC y prueba invarianza a lo largo 
 
 ## Afirmaciones que usamos en el proyecto
 
-| # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
-|---|---|---|---|---|
-| 1 | La invarianza métrica es alcanzable pero debe verificarse, no suponerse | pendiente | | por_verificar · origen: sin confirmar (no hay PDF; el 2026-10-13 Mateo solo vio el resumen) |
+| #   | Afirmación (como la usamos)                                             | Página    | Cita textual (< 15 palabras) | Estado                                          |
+| --- | ----------------------------------------------------------------------- | --------- | ---------------------------- | ----------------------------------------------- |
+| 1 | La invarianza métrica es alcanzable pero debe verificarse, no suponerse | 7 y 10 | «model M3, was found to possess metric invariance» | verificado (Mateo, 2026-11-10) · origen: sin confirmar (no hay PDF; el 2026-10-13 Mateo solo vio el resumen) · página y cita ubicadas por Claude en el PDF (2026-11-10) |
 
 ## Qué NO dice (para no citarlo mal)
 No compara grupos dentro de una cohorte (zona, sexo).

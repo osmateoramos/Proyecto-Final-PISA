@@ -1,7 +1,7 @@
 ---
 tipo: guia
-estado: por_verificar
-lectura: "lista armada por Claude el 2026-11-10 a partir de las notas de Literatura/ y del informe; Claude no marca nada como verificado"
+estado: verificado
+lectura: lista armada por Claude el 2026-11-10 a partir de las notas de Literatura/ y del informe; Claude no marca nada como verificado
 ---
 
 # Lista de verificación de fuentes (antes de la entrega)

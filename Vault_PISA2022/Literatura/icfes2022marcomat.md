@@ -3,17 +3,17 @@ tipo: fuente
 clave_bib: icfes2022marcomat
 zotero-key: XU6MKZR5g6703955
 clave_provisional: no
-titulo: "Marco de referencia de la prueba de matemáticas. Saber 11.°"
-autores: "ICFES"
+titulo: Marco de referencia de la prueba de matemáticas. Saber 11.°
+autores: ICFES
 año: "2022"
-publicacion: "ICFES"
+publicacion: ICFES
 doi_url: https://www.icfes.gov.co/wp-content/uploads/2024/11/Marco-de-referencia-Prueba-de-matematicas-saber-11-1.pdf
-bloque: "C. Matemáticas por competencia"
-estado: por_verificar
+bloque: C. Matemáticas por competencia
+estado: verificado
 lectura: "equipo: texto completo"
 pdf_en_zotero: sí (comprobado por Claude en Zotero, 2026-10-18)
-verificado_por:
-fecha_verificacion:
+verificado_por: Mateo Ramos
+fecha_verificacion: 2026-11-10
 ---
 
 # Marco de referencia de la prueba de matemáticas. Saber 11.°
@@ -29,10 +29,10 @@ Define qué evalúa la prueba de matemáticas de Saber 11.
 
 ## Afirmaciones que usamos en el proyecto
 
-| # | Afirmación (como la usamos) | Página | Cita textual (< 15 palabras) | Estado |
-|---|---|---|---|---|
-| 1 | Tres competencias: interpretación y representación; formulación y ejecución; argumentación | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
-| 2 | Aproximadamente cincuenta ítems de selección múltiple | pendiente | | por_verificar · origen: lectura del equipo (texto completo) |
+| #   | Afirmación (como la usamos)                                                                | Página    | Cita textual (< 15 palabras) | Estado                                          |
+| --- | ------------------------------------------------------------------------------------------ | --------- | ---------------------------- | ----------------------------------------------- |
+| 1 | Tres competencias: interpretación y representación; formulación y ejecución; argumentación | 6 (PDF) | «Interpretación y representación. Formulación y ejecución. Argumentación.» | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) · página y cita ubicadas por Claude en el PDF (2026-11-10) |
+| 2 | Aproximadamente cincuenta ítems de selección múltiple | 38 (PDF) | «compuesta por aproximadamente 50 preguntas» | verificado (Mateo, 2026-11-10) · origen: lectura del equipo (texto completo) · página y cita ubicadas por Claude en el PDF (2026-11-10) |
 
 ## Qué NO dice (para no citarlo mal)
 Los resultados por competencia no se publican por estudiante.

@@ -133,7 +133,7 @@ medición que suelen tomarse sin discusión y que determinan la magnitud de la b
 sección 1):
 
 1. **Cómo se mide el NSE.** El índice oficial de PISA (ESCS) combina ocupación y educación de los padres y posesiones del
-   hogar; la OCDE evalúa su comparabilidad entre países y grupos de idioma [@oecd2024pisa2022tr] **[VERIFICAR]**, pero no
+   hogar; la OCDE evalúa su comparabilidad entre países y grupos de idioma [@oecd2024pisa2022tr], pero no
    dentro de un país, entre zonas, sectores o sexos. La propia OCDE reconoce que su índice de posesiones se escala como
    una medida unidimensional [@avvisati2024measurement, pp. 11, 48]. En Colombia, el INSE del Icfes también asume una
    sola dimensión [@icfes2019inse], mientras que la literatura internacional distingue al menos una
@@ -213,7 +213,7 @@ la fase de robustez repite los resultados principales con un ajuste de no respue
 ## Validación del diseño (Puerta G1)
 
 Antes de cualquier modelo se reprodujeron tres cifras publicadas con los 10 valores plausibles, el peso final y las 80
-réplicas BRR con Fay 0,5 [@oecd2024pisa2022tr, p. 198, fórmula 10.9; reglas de Rubin, p. 226] **[VERIFICAR]**. Las tres
+réplicas BRR con Fay 0,5 [@oecd2024pisa2022tr, p. 198, fórmula 10.9; reglas de Rubin, p. 226]. Las tres
 coinciden con lo publicado dentro del redondeo, lo que confirma que el procesamiento de pesos, réplicas y valores
 plausibles es correcto.
 

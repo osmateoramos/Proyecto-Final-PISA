@@ -15,26 +15,26 @@ on:
 
 jobs:
   pruebas:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    # Misma imagen base que el Dockerfile: garantiza Python 3.11.9 sin depender de la versión de Ubuntu del runner
+    # (setup-python no trae 3.11.9 para Ubuntu 26.04, que es el ubuntu-latest desde octubre de 2026).
+    container: python:3.11.9-slim
     defaults:
       run:
         working-directory: Proyecto_PISA/api
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11.9"
-          cache: pip
-          cache-dependency-path: Proyecto_PISA/api/requirements-dev.txt
+      - uses: actions/checkout@v5
+      - name: Versión de Python
+        run: python --version
       - name: Instalar dependencias
-        run: pip install -r requirements-dev.txt
+        run: pip install --no-cache-dir -r requirements-dev.txt
       - name: Pruebas (pytest + TestClient sobre los salidas/ reales)
         run: python -m pytest
 
   imagen:
     needs: pruebas
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Construir la imagen (la carga valida todas las salidas)
         run: docker build -f Proyecto_PISA/api/Dockerfile -t pisa-api Proyecto_PISA

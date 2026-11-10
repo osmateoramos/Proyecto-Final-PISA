@@ -558,8 +558,8 @@ Cada candidato se clasificó con los cinco criterios de la rúbrica (`Vault_PISA
 4. ausencia de antecedente para Colombia;
 5. explicable en una frase.
 
-La clasificación es un **borrador** del equipo (`Vault_PISA2022/Hallazgos.md`). El criterio 4 es **provisional**: la
-búsqueda de novedad del paso 7.2 cubrió un buscador web general, SciELO, Redalyc, Scopus y Google Académico (primera
+La clasificación es un **borrador** del equipo (`Vault_PISA2022/Hallazgos.md`). Para el criterio 4, la búsqueda de
+novedad del paso 7.2 cubrió un buscador web general, SciELO, Redalyc, Scopus y Google Académico (primera
 página de cada cadena), y en ninguno apareció un antecedente para Colombia de K1, K2, K4 ni K5. En Scopus, 7 de las 10
 cadenas dieron cero resultados y las otras 3, un documento cada una, ninguno sobre Colombia. Sí aparecieron análisis
 parecidos en otros países o poblaciones: el informe nacional de Inglaterra, que según su resumen revisa si la brecha por
@@ -567,7 +567,9 @@ NSE cambia entre procesos matemáticos (K1), el efecto del tratamiento de las om
 de América Latina con el SERCE de 2006, un estudio del BID que probó la misma interacción de K2 y no la encontró
 significativa para Colombia en ninguna de sus cuatro pruebas [@duarte2010ensenan, pp. 20–21]. Los otros tres posibles
 antecedentes que aparecieron se revisaron y no lo son: uno usa el puntaje total de matemáticas, otro busca DIF por sexo
-en el TERCE y el tercero estudia Chile y México (`Vault_PISA2022/Literatura/Búsqueda de novedad F7.md`).
+en el TERCE y el tercero estudia Chile y México (`Vault_PISA2022/Literatura/Búsqueda de novedad F7.md`). Con esa
+búsqueda, el equipo da por cumplido el criterio 4 para K1, K2, K4 y K5. No haber encontrado un antecedente no prueba que
+no exista: la búsqueda tiene la cobertura y la fecha que se documentan.
 
 ```{r hallazgos}
 hz <- data.table(
@@ -671,8 +673,8 @@ tablero en Streamlit que la consume (`Proyecto_PISA/tablero/`, D-47).
    analizarlas por separado conviene usar los VP de la OCDE y tratar con cautela cualquier puntaje propio por
    competencia.
 5. Los cinco resultados principales se mantienen en las sensibilidades de la fase de robustez. En Scopus, Google
-   Académico, SciELO y Redalyc no apareció un antecedente para Colombia de K1, K2, K4 ni K5; su novedad para Colombia
-   queda por confirmar con la lectura de los antecedentes más cercanos, que son de otros países o poblaciones.
+   Académico, SciELO y Redalyc no apareció un antecedente para Colombia de K1, K2, K4 ni K5. Los antecedentes más
+   cercanos son de otros países o poblaciones; el de K2, en primaria, no encontró la interacción para Colombia.
 
 # Declaración de uso de IA y reparto del trabajo
 

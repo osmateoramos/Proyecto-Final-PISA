@@ -167,7 +167,7 @@ método. Esto no quita la novedad para Colombia, pero el informe debe citarlos.
   figuraba como «Salinas-Contador»; el catálogo da «Salinas, Daniel R».
 
 Con esto, la búsqueda 7.2 cubrió las cuatro fuentes del plan y se revisaron todos los posibles antecedentes que
-aparecieron. *Propuesta de Claude:* que el equipo decida si el criterio 4 deja de ser «provisional» para K1, K2, K4 y K5.
+aparecieron. **Decisión del equipo (2026-11-10):** el criterio 4 deja de ser «provisional» para K1, K2, K4 y K5 (D-45).
 
 ## Fuentes de los resultados de búsqueda (URL tal como aparecieron)
 

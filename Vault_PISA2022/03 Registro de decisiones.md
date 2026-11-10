@@ -2219,8 +2219,11 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     países o poblaciones. El más cercano a K2 es Duarte, Bos y Moreno (2010, BID), que Claude leyó en texto completo
     ([[Literatura/duarte2010ensenan]], por verificar): con el SERCE de 2006 en primaria, la interacción gestión × NSE
     no fue significativa para Colombia. Los otros 3 posibles antecedentes (Wu 2025, Woitschach y Ortiz 2019, Salinas
-    2014) se revisaron el mismo día y no lo son. Mateo verificó la nota de Duarte et al. y Claude la agregó a Zotero. Si
-    el criterio 4 deja de ser provisional lo decide el equipo.
+    2014) se revisaron el mismo día y no lo son. Mateo verificó la nota de Duarte et al. y Claude la agregó a Zotero.
+  - **Decisión del equipo (2026-11-10):** el criterio 4 deja de ser provisional para K1, K2, K4 y K5. La comunicó Mateo,
+    que dijo estar hablando con Vanessa y Brayan y que ellos la aprueban. Con eso, K2 queda como hallazgo (citando a
+    Duarte et al. como antecedente en otra población) y K5 como hallazgo parcial; K1 sigue exploratorio, K3 réplica y K4
+    nulo. El informe declara que no encontrar un antecedente no prueba que no exista.
 
 ### D-46 · 2026-11-09 · Diseño de la API (F8, paso 8.2): stack, persistencia y endpoint de predicción
 - **Problema:** la F8 debe cumplir las buenas prácticas del curso de Python (documento del curso que Vanessa dio a

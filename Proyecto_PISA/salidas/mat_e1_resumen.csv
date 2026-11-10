@@ -3,7 +3,7 @@ estudiantes,6886
 modas aceptadas (gradiente <= 1e-5 y Hessiana definida),6886
 gradiente máximo de la moda,0.0000000000998
 iteraciones de Newton (máximo),13
-minutos de E1 (5 y 7 puntos),5.9
+minutos de E1 (5 y 7 puntos),2
 diferencia máxima probabilidades propias vs probtrace,0.000000000000000222
 tamaño efectivo V1 < 50,36
 tamaño efectivo V1 < 100,77

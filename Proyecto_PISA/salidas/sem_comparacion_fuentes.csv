@@ -1,14 +1,14 @@
 prueba,unidad,ocde_estimacion,ocde_p,propios_estimacion,propios_p,coincide
-"NSE económico, emplear",coeficiente estandarizado,0.327,3.50e-41,0.335,3.11e-54,TRUE
-"NSE económico, formular",coeficiente estandarizado,0.28,6.07e-17,0.322,3.22e-45,TRUE
-"NSE económico, interpretar",coeficiente estandarizado,0.35,5.47e-40,0.367,1.99e-69,TRUE
-"NSE económico, razonar",coeficiente estandarizado,0.283,2.04e-19,0.315,3.65e-47,TRUE
+"NSE económico, emplear",coeficiente estandarizado,0.327,3.50e-41,0.335,3.12e-54,TRUE
+"NSE económico, formular",coeficiente estandarizado,0.28,6.07e-17,0.322,3.00e-45,TRUE
+"NSE económico, interpretar",coeficiente estandarizado,0.35,5.47e-40,0.366,2.30e-69,TRUE
+"NSE económico, razonar",coeficiente estandarizado,0.283,2.04e-19,0.315,3.30e-47,TRUE
 "R² medio, emplear",proporción de varianza,0.298,,0.364,,
 "R² medio, formular",proporción de varianza,0.244,,0.338,,
 "R² medio, interpretar",proporción de varianza,0.31,,0.35,,
 "R² medio, razonar",proporción de varianza,0.238,,0.337,,
-Igualdad del NSE económico entre competencias (6.4),"chi2 de Wald, 3 gl",11.32,1.01e-02,38.08,2.72e-08,TRUE
-"H5, interpretar - emplear, completa (6.886)",puntos PISA (OCDE) / DE latentes (propios),5.57,1.04e-03,0.0352,8.46e-06,TRUE
-"H5, interpretar - emplear, mitad de confirmación (3441)",puntos PISA (OCDE) / DE latentes (propios),6.33,3.73e-04,0.0392,6.79e-04,TRUE
-"H6, zona (NSE x pueblo y NSE x rural)",chi2 de Wald; p con Holm,13.99,8.20e-02,83.58,1.86e-14,FALSE
-"H6, sector (NSE x privado)",chi2 de Wald; p con Holm,15.58,7.27e-03,68.54,4.62e-14,TRUE
+Igualdad del NSE económico entre competencias (6.4),"chi2 de Wald, 3 gl",11.32,1.01e-02,38.47,2.25e-08,TRUE
+"H5, interpretar - emplear, completa (6.886)",puntos PISA (OCDE) / DE latentes (propios),5.57,1.04e-03,0.0352,9.30e-06,TRUE
+"H5, interpretar - emplear, mitad de confirmación (3441)",puntos PISA (OCDE) / DE latentes (propios),6.33,3.73e-04,0.0393,7.00e-04,TRUE
+"H6, zona (NSE x pueblo y NSE x rural)",chi2 de Wald; p con Holm,13.99,8.20e-02,84.99,9.61e-15,FALSE
+"H6, sector (NSE x privado)",chi2 de Wald; p con Holm,15.58,7.27e-03,69.39,3.06e-14,TRUE

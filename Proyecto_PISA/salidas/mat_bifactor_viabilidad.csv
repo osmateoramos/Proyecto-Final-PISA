@@ -1,5 +1,5 @@
 criterio,cumple,detalle
-V1 convergencia (<= 2.000 ciclos),FALSE,2000 ciclos; 174.6 min
+V1 convergencia (<= 2.000 ciclos),FALSE,2000 ciclos; 98.1 min
 V2a parámetros finitos,TRUE,0 no finitos
 V2b errores estándar calculados y finitos,FALSE,232 de 232 EE no finitos o sin calcular
 "V2c comunalidad < 0,99",TRUE,comunalidad máxima 0.981

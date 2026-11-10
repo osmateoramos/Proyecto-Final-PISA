@@ -2211,6 +2211,10 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   fusionó Vanessa, con la integración continua en verde; ninguno registra una revisión aprobada en GitHub. Mateo pidió
   crear la etiqueta, y Claude creó y subió `resultados-v1` sobre `main` (commit `e176fb5`). Desde aquí `salidas/` solo
   cambia si se corrige un error.
+- **Punto 4 en Scopus (2026-11-10):** con el acceso del CRAI USTA de Mateo, Claude corrió las 10 cadenas en Scopus a su
+  pedido: 7 dieron 0 resultados y 3 dieron 1 documento cada una, ninguno sobre Colombia ni antecedente de K1, K2, K4 o K5
+  ([[Literatura/Búsqueda de novedad F7]]). Falta Google Scholar; el criterio 4 sigue provisional. La búsqueda no cambia
+  ningún resultado congelado.
 
 ### D-46 · 2026-11-09 · Diseño de la API (F8, paso 8.2): stack, persistencia y endpoint de predicción
 - **Problema:** la F8 debe cumplir las buenas prácticas del curso de Python (documento del curso que Vanessa dio a

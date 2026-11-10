@@ -559,8 +559,10 @@ Cada candidato se clasificó con los cinco criterios de la rúbrica (`Vault_PISA
 5. explicable en una frase.
 
 La clasificación es un **borrador** del equipo (`Vault_PISA2022/Hallazgos.md`). El criterio 4 es **provisional**: la
-búsqueda de novedad del paso 7.2 no cubrió Scopus ni Google Scholar, y los 9 antecedentes nuevos que encontró no se han
-leído (`Vault_PISA2022/Literatura/Búsqueda de novedad F7.md`).
+búsqueda de novedad del paso 7.2 cubrió un buscador web general, SciELO, Redalyc y Scopus, y en ninguno apareció un
+antecedente para Colombia de K1, K2, K4 ni K5. En Scopus, 7 de las 10 cadenas dieron cero resultados y las otras 3, un
+documento cada una, ninguno sobre Colombia. Pero no cubrió Google Scholar, y los 9 antecedentes nuevos que encontró no se
+han leído en texto completo (`Vault_PISA2022/Literatura/Búsqueda de novedad F7.md`).
 
 ```{r hallazgos}
 hz <- data.table(
@@ -631,8 +633,8 @@ tabla(hz, caption = "Clasificación de los candidatos (borrador; Hallazgos.md). 
    exploratoria), D-33 (E1 después del fallo de V1), D-43 (enlace robusto de P3) y D-48 (análisis confirmatorio por
    competencia, exploratorio).
 8. **Pendientes que no se hicieron** (D-21, D-45): la revisión de contenido de los ítems con DIF (P4), la calibración sin
-   los ítems con menos de 500 respuestas (P2), un tercer tratamiento de las omisiones (P5), la búsqueda en Scopus y Google
-   Scholar, y la verificación de la mayoría de las fuentes citadas.
+   los ítems con menos de 500 respuestas (P2), un tercer tratamiento de las omisiones (P5), la búsqueda en Google Scholar,
+   la lectura en texto completo de los antecedentes nuevos y la verificación de la mayoría de las fuentes citadas.
 
 # Productos: API y tablero (O5, F8)
 
@@ -660,8 +662,9 @@ tablero en Streamlit que la consume (`Proyecto_PISA/tablero/`, D-47).
 4. Las cuatro competencias se distinguen poco con los ítems que ve cada estudiante en el diseño adaptativo. Para
    analizarlas por separado conviene usar los VP de la OCDE y tratar con cautela cualquier puntaje propio por
    competencia.
-5. Los cinco resultados principales se mantienen en las sensibilidades de la fase de robustez. Su novedad para Colombia
-   queda por confirmar con una búsqueda en Scopus y Google Scholar.
+5. Los cinco resultados principales se mantienen en las sensibilidades de la fase de robustez. En Scopus, SciELO y
+   Redalyc no apareció un antecedente para Colombia de K1, K2, K4 ni K5; su novedad queda por confirmar con Google
+   Scholar y con la lectura de los antecedentes más cercanos.
 
 # Declaración de uso de IA y reparto del trabajo
 

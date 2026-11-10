@@ -1,7 +1,7 @@
 ---
 tipo: guia
 estado: por_verificar
-lectura: "búsqueda hecha por Claude con la herramienta de búsqueda web (2026-11-09); ninguna fuente nueva se leyó en texto completo"
+lectura: "búsqueda hecha por Claude con la herramienta de búsqueda web (2026-11-09) y en Scopus con el acceso del CRAI USTA de Mateo, a su pedido (2026-11-10); de las fuentes nuevas solo se leyeron resúmenes, ninguna en texto completo"
 verificado_por:
 fecha_verificacion:
 ---
@@ -12,9 +12,8 @@ Volver a [[Literatura/Matriz estado del arte]] · Decisión en [[03 Registro de 
 
 > [!warning] Alcance real de esta búsqueda
 > - **Herramienta:** buscador web general de Claude Code (2026-11-09), con filtros de dominio para SciELO
->   (`scielo.org`, `scielo.org.co`, `scielo.org.mx`) y Redalyc (`redalyc.org`). **Google Scholar y Scopus no se
->   consultaron directamente**: el buscador no da acceso a ellos. El equipo debe repetir las cadenas en Scopus y en
->   Google Scholar y anotar aquí lo que encuentre.
+>   (`scielo.org`, `scielo.org.co`, `scielo.org.mx`) y Redalyc (`redalyc.org`). **Scopus** se consultó el 2026-11-10
+>   (sección «Búsqueda en Scopus» abajo). **Google Scholar no se ha consultado**: falta repetir ahí las cadenas.
 > - Cinco páginas no se pudieron abrir (errores de red o PDF sin texto legible). De los antecedentes nuevos solo se
 >   conoce lo que mostró el resultado de búsqueda: **autores, años y hallazgos están por verificar** contra el original.
 > - Un resultado de búsqueda que no encuentra antecedentes **no prueba** que no existan.
@@ -44,6 +43,65 @@ Volver a [[Literatura/Matriz estado del arte]] · Decisión en [[03 Registro de 
 | **K4** tratar las omisiones rápidas como faltantes no cambia la brecha por NSE | **No se encontró** un análisis que descomponga la brecha por NSE según el tratamiento de las omisiones | OCDE, *Education Working Paper* n.º 279, «Developing measures of engagement in PISA»: los estudiantes de NSE bajo muestran más desenganche (autores no verificados). Un estudio sobre PISA 2018 matemáticas que compara omitida = incorrecta frente a modelos de faltantes y encuentra medias de país que cambian (atribuido a Robitzsch, *European Journal of Investigation in Health, Psychology and Education*, 2021, 11(4), 117; no verificado). Jerrim y coautores sobre la robustez de PISA al modelo de escalamiento (UCL Discovery; título completo y año no verificados) |
 | **K5** DIF por NSE escaso y no concentrado en interpretar y formular | **No se encontró** un DIF por NSE con ítems de PISA en Colombia ni en América Latina | García-Medina et al. (2016), Excale de México: 18 de 100 ítems con DIF severo por NSE (ya en la matriz). Un estudio en *Psicothema* con TERCE (15 países, ciencias): DIF en el 32 % de los ítems, ligado al desarrollo humano del país (título y año no verificados) |
 
+## Búsqueda en Scopus (2026-11-10)
+
+- **Cómo:** Mateo entró a Scopus con su usuario por el CRAI de la USTA y pidió a Claude correr las cadenas en su
+  navegador. Se usó la búsqueda avanzada con `TITLE-ABS-KEY` (título, resumen y palabras clave). Se leyeron los títulos
+  de todos los resultados y los resúmenes de los relevantes; ningún texto completo.
+- **Prueba de la sintaxis:** `TITLE-ABS-KEY ( pisa AND "mathematical process*" )` da 14 documentos y la misma frase sin
+  comodín, 13: los comodines dentro de comillas funcionan, así que los ceros de abajo son ceros reales.
+- **Búsquedas de control:** `TITLE-ABS-KEY ( pisa AND colombia )` da **43 documentos** (se revisaron los 43 títulos)
+  y `TITLE-ABS-KEY ( pisa AND colombia AND mathematic* AND socioeconomic )` da 1 (Ortega et al., 2026, sobre brechas
+  de género en matemáticas en América Latina). Por sus títulos, y por el resumen en los dos que comparan colegios
+  públicos y privados, ninguno de los 43 prueba alguno de los 5 resultados para Colombia. *Por leer:* Flores-Mendoza et
+  al. (2021), *Frontiers in Education*, 6, 632289, que usa ítems de PISA con inteligencia y NSE en América Latina; por
+  el título no parece DIF, pero no se leyó su resumen.
+
+| # | Candidato | Cadena en Scopus | Resultados | Qué apareció |
+|---|---|---|---|---|
+| 1 | K1, K3 | `TITLE-ABS-KEY ( pisa AND colombia AND mathematic* AND ( socioeconomic OR "socio-economic" OR escs ) AND ( formulat* OR interpret* OR "mathematical process*" OR subscale* ) )` | 0 | — |
+| 2 | K1, K3 | `TITLE-ABS-KEY ( pisa AND colombia AND matematic* AND ( socioeconomic* OR "nivel socioeconomico" ) AND ( formular OR interpretar OR emplear OR "procesos matematicos" ) )` | 0 | — |
+| 3 | K1 | `TITLE-ABS-KEY ( pisa AND mathematic* AND ( "process subscale*" OR "mathematical process*" OR ( formulat* AND interpret* ) ) AND ( socioeconomic OR "socio-economic" OR escs ) AND ( gap OR gradient OR inequalit* ) )` | 0 | — (sin país: tampoco hay un estudio internacional de la brecha por NSE entre procesos) |
+| 4 | K2 | `TITLE-ABS-KEY ( pisa AND colombia AND ( socioeconomic OR escs ) AND ( "private school*" OR "public school*" OR "school type" OR "school sector" ) )` | 0 | — |
+| 5 | K2 | `TITLE-ABS-KEY ( pisa AND colombia AND ( "colegios privados" OR "colegios publicos" OR "sector privado" OR "tipo de colegio" ) AND ( socioeconomic* OR "nivel socioeconomico" ) )` | 0 | — |
+| 6 | K2 | `TITLE-ABS-KEY ( pisa AND ( "latin america*" OR colombia OR chile OR mexico OR argentina OR peru OR brazil ) AND ( "socioeconomic gradient" OR "socioeconomic slope" OR ( socioeconomic W/5 interaction ) ) AND ( "private school*" OR "school type" OR "school sector" ) )` | 0 | — |
+| 7 | K4 | `TITLE-ABS-KEY ( pisa AND ( "rapid guessing" OR "rapid omission*" OR disengagement OR "response time*" ) AND ( socioeconomic OR escs ) AND ( gap OR achievement ) )` | 1 | Costa y Chen (2023), *Large-scale Assessments in Education*, 11(1), 5: datos de proceso y variables de contexto en estudiantes escandinavos, PISA 2012 (solo título; no es Colombia ni trata las omisiones) |
+| 8 | K4 | `TITLE-ABS-KEY ( pisa AND ( "omitted response*" OR "missing response*" OR omission* ) AND ( "scored as incorrect" OR "treated as missing" OR "missing data" OR scoring ) AND ( socioeconomic OR escs OR gap ) )` | 1 | Marôco y von Davier (2026), *International Journal of Testing*, 26(1), 38–53: imputación del NSE en PIRLS (no es el tema) |
+| 9 | K5 | `TITLE-ABS-KEY ( "differential item functioning" AND ( socioeconomic OR "socio-economic" OR escs ) AND ( pisa OR "large-scale assessment*" ) AND mathematic* )` | 0 | — |
+| 10 | K5 | `TITLE-ABS-KEY ( "funcionamiento diferencial" AND ( socioeconomic* OR "nivel socioeconomico" ) AND matematic* )` | 1 | García-Medina, Martínez Rizo y Cordero Arroyo (2016), *Revista Mexicana de Investigación Educativa*, 21(71), 1191–1220: el Excale de México, ya en la matriz |
+
+Una versión más amplia de la 9 (DIF por NSE en matemáticas con América Latina, TERCE o PISA, sin exigir «large-scale»)
+también da 1 documento: el mismo de García-Medina et al. (2016).
+
+**Lo más cercano a K2 que tiene Scopus** (resúmenes leídos en Scopus; ninguno prueba si la pendiente del NSE cambia
+entre sectores):
+
+- Castro Aristizabal, Giménez y Pérez Ximénez-de-Embún (2017), *Revista de Educación*, 376, 33–59: descomponen con
+  Oaxaca-Blinder la brecha público–privado en 8 países de América Latina con PISA 2012; según el resumen, Colombia y
+  México tienen la brecha más baja y la explican sobre todo las características individuales y familiares.
+- De Jorge-Moreno, Castro, Vega y Gutiérrez (2018), *Desarrollo y Sociedad*, 80, 89–118: eficiencia de colegios
+  públicos y privados en Colombia con PISA 2012 (fronteras order-m y metafrontera).
+- Quiroz, Dari y Cervini (2018), *REICE*, 16(4), 79–97: en Argentina, con PISA 2015, la brecha público–privado
+  desaparece al controlar el origen social del estudiante y la composición del colegio.
+- Delprato y Antequera (2021), *International Journal of Educational Development*, 84, 102404: eficiencia de colegios
+  públicos y privados con PISA para el Desarrollo (Ecuador, Guatemala, Honduras y Paraguay).
+
+**Antecedentes nuevos de la tabla de arriba que Scopus confirma** (autores, año y revista según el registro de Scopus;
+el contenido sigue por verificar en el texto completo):
+
+- Quiroz, Dari y Cervini (2018): confirmado (ver arriba).
+- Robitzsch (2021), «On the treatment of missing item responses in educational large-scale assessment data: An
+  illustrative simulation study and a case study using PISA 2018 mathematics data», *European Journal of Investigation
+  in Health, Psychology and Education*, 11(4), 1653–1687. *Corrección:* «117» era el número del artículo en la URL de
+  MDPI, no la página.
+- Jerrim, Parker, Choi y coautores (2018), «How robust are cross-country comparisons of PISA scores to the scaling
+  model used?», *Educational Measurement: Issues and Practice*, 37(4), 28–39.
+- El estudio de *Psicothema* con TERCE es Woitschach, Zumbo y Fernández-Alonso (2019), *Psicothema*, 31(2), 194–203.
+  Su resumen dice que el 32 % de los ítems de ciencias tienen DIF y que la fuente principal es el nivel de desarrollo
+  humano del país (entre países, no por NSE del estudiante).
+- No están en Scopus (o no aparecieron): el informe de ACER, el documento de Oxford, el preprint de Research Square, el
+  artículo de JOSPOE y el *Working Paper* 279 de la OCDE.
+
 ## Fuentes de los resultados de búsqueda (URL tal como aparecieron)
 
 - OCDE, nota de país de Colombia PISA 2022: https://www.oecd.org/en/publications/pisa-2022-results-volume-i-and-ii-country-notes_ed6fbcc5-en/colombia_dd5f34d9-en.html
@@ -59,7 +117,8 @@ Volver a [[Literatura/Matriz estado del arte]] · Decisión en [[03 Registro de 
 - *Psicothema*, DIF con TERCE: https://www.psicothema.com/pi?pii=4533
 
 ## Qué falta (equipo)
-1. Repetir las 10 cadenas en **Scopus** y **Google Scholar** y anotar fecha y número de resultados.
+1. ✅ Scopus (2026-11-10, arriba). Falta repetir las 10 cadenas en **Google Scholar** y anotar fecha y número de
+   resultados.
 2. Abrir los 9 antecedentes nuevos (ACER, Oxford, Research Square, JOSPOE, Quiroz et al., OCDE WP 279, Robitzsch,
    Jerrim et al. y *Psicothema*), crear su nota en `Literatura/` (ZotLit) y corregir esta tabla.
 3. Con eso, confirmar o corregir el criterio 4 de cada candidato en [[Hallazgos]].

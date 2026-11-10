@@ -492,7 +492,7 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
   - umbrales de omisión rápida NT10, NT15 y 5 s;
   - con y sin corrección por comparaciones múltiples.
   - con los pesos ajustados por no respuesta dentro de cada colegio (D-38), por la exclusión no aleatoria de D-14.
-- [x] **7.2 Búsqueda formal de novedad** *(hecha por Claude el 2026-11-09 en buscador web, SciELO y Redalyc: [[Literatura/Búsqueda de novedad F7]]; falta Scopus y Google Scholar, que hace el equipo)* en Scopus / Google Scholar / Scielo / Redalyc para cada hallazgo;
+- [x] **7.2 Búsqueda formal de novedad** *(hecha por Claude el 2026-11-09 en buscador web, SciELO y Redalyc, y el 2026-11-10 en Scopus con el acceso del CRAI de Mateo: [[Literatura/Búsqueda de novedad F7]]; falta Google Scholar)* en Scopus / Google Scholar / Scielo / Redalyc para cada hallazgo;
   actualizar la [[Literatura/Matriz estado del arte|matriz]] (pasar las † a ✓ o corregir).
 - [x] **7.3 Aplicar el criterio de hallazgo innovador** *(borrador en [[Hallazgos]], 2026-11-10; las frases las aprueba el equipo)* de [[08 Rúbrica de desarrollo]] y redactar cada hallazgo en
   una frase para Colombia.

@@ -15,8 +15,9 @@ Novedad en [[Literatura/Búsqueda de novedad F7]]
 > - Cada candidato se clasifica con los 5 criterios de la rúbrica: (1) hipótesis preregistrada o exploratoria declarada;
 >   (2) efecto relevante según el umbral fijado antes; (3) robusto según D-45 (≥ 75 % de las sensibilidades que le
 >   aplican, mínimo 3); (4) no está en la matriz para Colombia; (5) se explica en una frase.
-> - El criterio 4 es **provisional**: la búsqueda 7.2 no cubrió Scopus ni Google Scholar y los antecedentes nuevos no se
->   han leído.
+> - El criterio 4 es **provisional**: la búsqueda 7.2 cubrió el buscador web, SciELO, Redalyc y **Scopus** (2026-11-10:
+>   ninguna de las 10 cadenas encontró un antecedente para Colombia de K1, K2, K4 ni K5), pero no Google Scholar, y los
+>   antecedentes nuevos no se han leído en texto completo.
 > - El diseño es transversal: «asociación», no «efecto» (plan 9.1). Las frases son **borradores** de Claude.
 
 ## Resumen

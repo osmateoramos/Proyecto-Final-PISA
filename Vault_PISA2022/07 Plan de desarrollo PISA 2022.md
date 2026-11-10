@@ -534,6 +534,15 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
   - *Esqueleto creado (2026-11-08):* `Proyecto_PISA/informe/informe.Rmd` con todas las secciones; cada tabla se lee de
     `salidas/` (ninguna cifra a mano) y lo que falta dice «Pendiente». Compila a PDF con XeLaTeX. Para compilarlo fuera
     de RStudio hay que apuntar `RSTUDIO_PANDOC` al pandoc de RStudio. Los textos **[POR REDACTAR]** son del equipo.
-- [ ] **9.2 Declaración de uso de IA** y reparto del trabajo (igual que en el anteproyecto).
+  - *Borrador completo (Claude, 2026-11-10, pedido por Vanessa):* las 10 secciones **[POR REDACTAR]** quedaron
+    redactadas, y se agregaron «Hallazgos y discusión», «Limitaciones», «Productos: API y tablero» y «Conclusiones».
+    Todas las cifras del texto se calculan al compilar desde `salidas/`. Las citas de fuentes `por_verificar` llevan
+    **[VERIFICAR]**, y las interpretaciones dicen «por discutir». Compila sin errores a PDF (18 páginas). Falta:
+    - que el equipo revise cada sección y la asuma como propia;
+    - completar el reparto del trabajo (9.2);
+    - verificar las fuentes marcadas;
+    - congelar con la etiqueta `resultados-v1`.
+- [ ] **9.2 Declaración de uso de IA** y reparto del trabajo (igual que en el anteproyecto). *(Borrador de la
+  declaración dentro del informe, 2026-11-10; el reparto del trabajo lo completa el equipo.)*
 - [ ] **9.3 Ensayo cruzado:** cada uno expone una parte que no hizo; los otros dos preguntan con las autoevaluaciones de
   esta guía.

@@ -32,7 +32,7 @@ Proyecto integrador: Teoría de Respuesta al Ítem · Ecuaciones Estructurales �
 | F6 O4: SEM | ✅ cerrada (2026-11-09): H5 cumple su regla pero es exploratoria; H6 aceptada por sector; robustez latente y con puntajes propios concordantes salvo H6 por zona (D-44) | `06_sem_competencias.R` | `salidas/sem_*.csv`, `sem_diagrama.png`; D-42 y D-44 |
 | F7 Robustez y novedad | ✅ 7.1-7.3 hechos (2026-11-10): los 5 candidatos son robustos; búsqueda de novedad provisional (falta Scopus); hallazgos en borrador. **G4**: acta en borrador, etiqueta `resultados-v1` al fusionar el PR | `07_sensibilidad.R`, `05_dif_matematicas.R` (`F7_VARIANTE`) | `salidas/f7_*.csv`; D-45; [[Hallazgos]]; [[Reuniones/2026-11-10 Puerta G4]] |
 | F8 Producto | API (37 rutas en `/v1`) y tablero de 8 páginas en Python 3.11.9, con integración continua en verde; falta desplegar en Render | `api/`, `tablero/` | D-46, D-47 |
-| F9 Informe | esqueleto | `informe/informe.Rmd` | tablas leídas de `salidas/` |
+| F9 Informe | borrador completo (2026-11-10), por revisar | `informe/informe.Rmd` | texto y tablas leídos de `salidas/`; falta revisión del equipo y reparto del trabajo |
 
 Los pasos, las cifras y quién hizo cada script están en [[07 Plan de desarrollo PISA 2022]]; las razones, en
 [[03 Registro de decisiones]].

@@ -88,7 +88,8 @@ p_igual_sl <- as.numeric(sub("^igualdad p = ([0-9.]+);.*", "\\1", k1_sl))
 > equipo contra el original (notas en `Vault_PISA2022/Literatura/`, 2026-11-10); los cortes de Chen (2007) se citan a
 > través de Sokolov (2019) porque el equipo no consiguió el artículo original. Los párrafos marcados *(interpretación, por
 > discutir)* son lecturas propuestas, no resultados. El diseño es transversal: se escribe «asociación» o «coeficiente»,
-> nunca «efecto causal» (plan, paso 9.1). Los resultados están congelados con la etiqueta `resultados-v1` (Puerta G4,
+> nunca «efecto causal» (plan, paso 9.1). El anexo final explica las siglas, los códigos del proyecto (O, H, F, G, D,
+> K, S…) y los 29 indicadores del NSE. Los resultados están congelados con la etiqueta `resultados-v1` (Puerta G4,
 > 2026-11-10); si se corrige un error en alguna salida, el texto cambia solo al volver a compilar.
 
 # Resumen
@@ -721,6 +722,102 @@ reparto <- data.frame(
                          "Vanessa Acosta", "Mateo Ramos", "—"),
   check.names = FALSE)
 knitr::kable(reparto, caption = "Reparto del trabajo (el del anteproyecto, confirmado por el equipo).")
+```
+
+# Anexo: glosario de siglas, códigos e indicadores
+
+Este anexo explica las siglas y los códigos que usa el informe. Las definiciones de los códigos del proyecto vienen del
+plan (`Vault_PISA2022/07 Plan de desarrollo PISA 2022.md`), de la rúbrica (`08 Rúbrica de desarrollo.md`) y del registro
+de decisiones (`03 Registro de decisiones.md`).
+
+## Códigos del proyecto
+
+| Código | Qué es |
+|----|------------------------------|
+| **O1–O5** | Objetivos específicos (sección «Objetivos e hipótesis»): O1 medir el NSE; O2 verificar su invarianza; O3 calificar por competencias y verificar la equidad de la calificación; O4 explicar el desempeño por competencia con un modelo estructural; O5 publicar los resultados en una API y un tablero |
+| **H1–H8** | Hipótesis preregistradas antes de analizar los datos (tabla de la sección «Objetivos e hipótesis») |
+| **F1–F9** | Fases del plan de trabajo: F1 datos y depuración; F2 validación del diseño muestral; F3 medición del NSE (O1); F4 invarianza del NSE (O2); F5 calificación por competencias (O3); F6 modelo estructural (O4); F7 robustez y verificación de novedad; F8 API y tablero (O5); F9 informe y sustentación |
+| **G1–G4** | Puertas de fase: condiciones que deben cumplirse para pasar a la siguiente fase. **G1** (al cerrar la F2): la media, la brecha y el porcentaje de varianza coinciden con los de la OCDE (±1). **G2** (F3): el modelo del NSE tiene un ajuste aceptable o un desajuste documentado, y H1 está resuelta. **G3** (F5): los ítems con pocas respuestas están excluidos y listados, y H3 y H4 están resueltas. **G4** (F7): los resultados están congelados con una etiqueta en Git (`resultados-v1`) |
+| **D-01, D-02…** | Decisiones del registro, numeradas en orden. Cada una dice el problema, las alternativas, lo que se decidió, quién lo decidió y cuándo, y se registró **antes** de programarla |
+| **K1–K5** | Candidatos a hallazgo evaluados en la F7: K1, el NSE económico se asocia más con interpretar que con emplear; K2, la pendiente del NSE es mayor en los colegios privados; K3, el NSE se asocia con las 4 competencias; K4, tratar las omisiones rápidas como faltantes no reduce la brecha; K5, el DIF por NSE es escaso |
+| **S-A a S-E** | Sensibilidades de la F7 (D-45): S-A, el ESCS oficial en lugar del NSE latente; S-B, sin los estudiantes de la ruta lineal; S-C, otro umbral de omisión rápida (NT15 y 5 segundos); S-D, sin corrección por comparaciones múltiples; S-E, reponderación por la no respuesta dentro del colegio (D-38) |
+| **S1, S2** | Sensibilidades de las F3 y F4 (D-35): S1, las preguntas saltadas cuentan como faltantes y no como 0 (D-20); S2, el DIF de las posesiones se empareja con un modelo multigrupo |
+| **P2–P5** | Mejoras metodológicas aprobadas en D-21: P2, calibrar sin los ítems con menos de 500 respuestas; P3, comparar las dificultades de los ítems con las internacionales; P4, un análisis del DIF más completo, con la revisión del contenido de los ítems marcados; P5, un tercer tratamiento de las omisiones |
+| **E1** | Método de integración de los puntajes propios: cuadratura de Gauss-Hermite adaptativa (D-31, D-33) |
+| **V1–V3** | Criterios para aceptar los puntajes propios (D-27): V1, coinciden con los de `mirt` sin covariables; V2, las EAP no cambian al duplicar los puntos de integración; V3, los errores estándar tampoco cambian |
+| **NT10, NT15** | Umbrales de omisión rápida: una omisión es rápida si se hizo en menos del 10 % (NT10) o del 15 % (NT15) del tiempo medio que dedicaron al ítem quienes lo vieron |
+| **Q1, Q4** | Cuartil más bajo y más alto del NSE económico |
+| **VP, VP1** | Valores plausibles; VP1 es el primero de los diez |
+
+## Siglas y términos estadísticos
+
+| Sigla | Significado |
+|-------|------------------------------|
+| **NSE** | Nivel socioeconómico. En este informe es una variable latente con dos dimensiones: económica y de libros en el hogar |
+| **ESCS** | Índice oficial de PISA de estatus económico, social y cultural |
+| **HOMEPOS** | Índice de PISA de posesiones del hogar |
+| **HISEI / HISCED** | Ocupación más alta de los padres (índice ISEI) y educación más alta de los padres (clasificación ISCED) |
+| **INSE** | Índice de nivel socioeconómico del Icfes |
+| **TRI** | Teoría de respuesta al ítem. **2PL**: modelo logístico de dos parámetros, para ítems de sí o no; **GPCM**: modelo de crédito parcial generalizado, para ítems con más de dos categorías |
+| **AFE / AFC** | Análisis factorial exploratorio / confirmatorio |
+| **SEM** | Modelos de ecuaciones estructurales |
+| **WLSMV** | Estimador de mínimos cuadrados ponderados con media y varianza ajustadas, para datos ordinales |
+| **CFI, RMSEA, SRMR** | Índices de ajuste: índice de ajuste comparativo, error cuadrático medio de aproximación y residuo cuadrático medio estandarizado. *Scaled* y *robust* son dos correcciones para datos no normales; ΔCFI y ΔRMSEA son sus cambios entre dos modelos |
+| **BIC** | Criterio de información bayesiano: entre dos modelos, el de menor BIC equilibra mejor ajuste y complejidad |
+| **DIF** | Funcionamiento diferencial del ítem: estudiantes con el mismo nivel en la competencia tienen distinta probabilidad de acertar el ítem según su grupo |
+| **ΔMH, ETS (A, B, C)** | Magnitud del DIF por Mantel-Haenszel y su clasificación del Educational Testing Service: A despreciable, B moderado, C grande |
+| **BH, Holm** | Correcciones por comparaciones múltiples (Benjamini-Hochberg y Holm) |
+| **EAP** | Puntaje estimado como la media de la distribución posterior de cada estudiante |
+| **VP** | Valores plausibles: puntajes simulados que PISA entrega para estimar promedios y asociaciones con su incertidumbre |
+| **BRR** | Réplicas repetidas balanceadas (con el ajuste de Fay): el método de PISA para calcular errores estándar con el diseño muestral |
+| **EM** | Algoritmo de esperanza-maximización |
+| **DE, EE, IC** | Desviación estándar, error estándar e intervalo de confianza |
+| **PISA, OCDE** | Programa para la Evaluación Internacional de Estudiantes, de la Organización para la Cooperación y el Desarrollo Económicos |
+| **SERCE, TERCE** | Segundo y Tercer Estudio Regional Comparativo y Explicativo de la UNESCO (primaria, América Latina) |
+| **API** | Interfaz de programación: el servicio web que publica los resultados del proyecto |
+
+## Los 29 indicadores del NSE
+
+Los indicadores salen del cuestionario del estudiante de PISA 2022. Las descripciones son traducciones de las etiquetas
+del libro de códigos (`salidas/nse_items_frecuencias.csv`). El factor es el del análisis factorial exploratorio que eligió
+la Puerta G2 (D-24; `salidas/nse_estructura_afe.csv`); el factor «cultural» es el que el informe llama de libros.
+
+```{r indicadores-nse}
+estr <- leer("nse_estructura_afe.csv")
+descripcion <- c(
+  ST250Q01JA = "Una habitación propia",
+  ST250Q02JA = "Un computador (portátil, de escritorio o tableta) para las tareas escolares",
+  ST250Q03JA = "Software o aplicaciones educativas",
+  ST250Q04JA = "Un celular propio con acceso a internet",
+  ST250Q05JA = "Acceso a internet en el hogar (sin contar el del celular)",
+  ST251Q01JA = "Carros, camionetas o camiones (cuántos)",
+  ST251Q02JA = "Motos o ciclomotores (cuántos)",
+  ST251Q03JA = "Cuartos con baño o ducha (cuántos)",
+  ST251Q04JA = "Cuartos con sanitario (cuántos)",
+  ST251Q06JA = "Instrumentos musicales (cuántos)",
+  ST251Q07JA = "Obras de arte (cuántas)",
+  ST253Q01JA = "Dispositivos digitales con pantalla en el hogar (cuántos)",
+  ST254Q01JA = "Televisores (cuántos)",
+  ST254Q02JA = "Computadores de escritorio (cuántos)",
+  ST254Q03JA = "Computadores portátiles (cuántos)",
+  ST254Q04JA = "Tabletas (cuántas)",
+  ST254Q05JA = "Lectores de libros electrónicos, como Kindle (cuántos)",
+  ST254Q06JA = "Celulares con acceso a internet (cuántos)",
+  ST255Q01JA = "Libros en el hogar (cuántos)",
+  ST256Q01JA = "Libros religiosos",
+  ST256Q02JA = "Literatura clásica",
+  ST256Q03JA = "Literatura contemporánea",
+  ST256Q06JA = "Libros de ciencia",
+  ST256Q07JA = "Libros de arte, música o diseño",
+  ST256Q08JA = "Libros técnicos de consulta",
+  ST256Q09JA = "Diccionarios",
+  ST256Q10JA = "Libros para ayudar con las tareas escolares",
+  HISEI_q    = "Ocupación más alta de los padres (índice HISEI, en cuartiles)",
+  HISCED_c   = "Educación más alta de los padres (ISCED, en categorías)")
+if (is.null(estr)) pendiente("nse_estructura_afe.csv") else
+  tabla(estr[, .(`Código del indicador` = item, `Descripción` = unname(descripcion[item]), `Factor (AFE)` = factor_AFE,
+                 `Carga` = carga_principal)][order(`Factor (AFE)`, `Código del indicador`)], digits = 3,
+        caption = "Los 29 indicadores del NSE, su factor en el AFE y su carga principal (D-24).")
 ```
 
 # Referencias

@@ -30,16 +30,26 @@ def correr(pagina: str) -> AppTest:
     return AppTest.from_string(f"from pisa_tablero import paginas\npaginas.{pagina}()", default_timeout=60).run()
 
 
-@pytest.mark.parametrize("pagina", ["resumen", "nse", "competencias", "modelo"])
+PAGINAS = ["inicio", "datos_diseno", "medicion_nse", "invarianza", "competencias", "modelo_estructural", "robustez"]
+
+
+@pytest.mark.parametrize("pagina", PAGINAS)
 def test_pagina_se_dibuja_sin_errores(pagina: str) -> None:
     app = correr(pagina)
     assert not app.exception
     assert not app.error
 
 
-def test_resumen_muestra_las_ocho_hipotesis() -> None:
-    tabla = correr("resumen").dataframe[0].value
-    assert list(tabla["codigo"]) == [f"H{i}" for i in range(1, 9)]
+def test_inicio_muestra_las_ocho_hipotesis() -> None:
+    texto = " ".join(m.value for m in correr("inicio").markdown)
+    assert all(f"**H{i}**" in texto for i in range(1, 9))
+
+
+def test_modelo_cambia_de_enfoque_y_resalta() -> None:
+    app = correr("modelo_estructural")
+    app.radio[0].set_value("NSE latente (robustez)").run()
+    app.selectbox[0].set_value("interpretar").run()
+    assert not app.exception and not app.error
 
 
 def test_prediccion_al_enviar_el_formulario() -> None:

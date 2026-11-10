@@ -113,6 +113,19 @@ class ClienteAPI:
         """Interacciones NSE x zona y NSE x sector (H6)."""
         return self._validar(list[Interaccion], self._pedir("GET", f"{PREFIJO}/modelo/interacciones"))
 
+    def recurso(self, ruta: str) -> list[dict[str, Any]]:
+        """Filas de un recurso del catálogo de resultados (D-47), por ejemplo ``/nse/cargas``.
+
+        El contrato de cada recurso lo valida la API; aquí se comprueba que llegue una lista de registros.
+
+        Args:
+            ruta: Ruta del recurso sin el prefijo ``/v1``.
+
+        Returns:
+            Las filas como diccionarios.
+        """
+        return self._validar(list[dict[str, Any]], self._pedir("GET", f"{PREFIJO}{ruta}"))
+
     def predecir(self, perfil: Perfil) -> Prediccion:
         """Puntaje esperado de las 4 competencias para un perfil."""
         return self._validar(Prediccion, self._pedir("POST", f"{PREFIJO}/modelo/prediccion", json=perfil.model_dump()))

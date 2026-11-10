@@ -107,3 +107,126 @@ def puntajes_esperados(df: pd.DataFrame) -> alt.LayerChart:
     rotulos = alt.Chart(df).mark_text(align="left", dx=12, fontSize=12).encode(
         x=x, y=y, text=alt.Text("puntaje_esperado:Q", format=".1f"))   # color del texto: el del tema
     return alt.layer(puntos, rotulos).properties(height=alt.Step(40))
+
+
+RAMPA_AZUL = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"]
+"""Rampa secuencial de un solo tono (azul) de la paleta de referencia, para magnitudes."""
+
+
+def cargas_nse(df: pd.DataFrame, etiquetas: dict[str, str]) -> alt.Chart:
+    """Carga estandarizada de cada indicador en su factor (un punto por indicador; color = factor).
+
+    Args:
+        df: Columnas ``item``, ``factor`` (``ECO`` o ``CUL``) y ``carga_std``.
+        etiquetas: Etiqueta oficial de cada indicador (va en el tooltip).
+
+    Returns:
+        El gráfico.
+    """
+    df = df.assign(serie=df["factor"].map({"ECO": "económico", "CUL": "libros"}),
+                   etiqueta=df["item"].map(etiquetas).fillna(""))
+    orden = df.sort_values(["serie", "carga_std"], ascending=[True, False])["item"].tolist()
+    series = [s for s in SERIES_NSE if s in set(df["serie"])]
+    return alt.Chart(df).mark_point(filled=True, size=TAMANO_PUNTO, opacity=1).encode(
+        x=alt.X("carga_std:Q", title="Carga estandarizada", scale=alt.Scale(domain=[0, 1])),
+        y=alt.Y("item:N", title=None, sort=orden),
+        color=alt.Color("serie:N", title="Factor del NSE",
+                        scale=alt.Scale(domain=series, range=[SERIES_NSE[s] for s in series])),
+        tooltip=[alt.Tooltip("item:N", title="Indicador"), alt.Tooltip("etiqueta:N", title="Pregunta"),
+                 alt.Tooltip("serie:N", title="Factor"), alt.Tooltip("carga_std:Q", title="Carga", format=".2f")],
+    ).properties(height=alt.Step(16))
+
+
+def intervalo_simple(df: pd.DataFrame, *, eje_y: str, titulo_x: str, referencias: dict[str, float] | None = None,
+                     orden_y: list[str] | None = None) -> alt.LayerChart:
+    """Estimación con su IC 95 % para una sola serie, con líneas de referencia rotuladas (por ejemplo 0 y un umbral).
+
+    Args:
+        df: Columnas ``eje_y``, ``estimacion``, ``ic95_inf`` e ``ic95_sup``.
+        eje_y: Columna de las categorías.
+        titulo_x: Título del eje horizontal, con unidades.
+        referencias: Nombre y posición de cada línea de referencia.
+        orden_y: Orden de las categorías.
+
+    Returns:
+        El gráfico de capas.
+    """
+    y = alt.Y(f"{eje_y}:N", title=None, sort=orden_y or list(dict.fromkeys(df[eje_y])))
+    tooltip = [alt.Tooltip(f"{eje_y}:N", title="Categoría"),
+               alt.Tooltip("estimacion:Q", title="Estimación", format=".3f"),
+               alt.Tooltip("ic95_inf:Q", title="IC 95 % inf.", format=".3f"),
+               alt.Tooltip("ic95_sup:Q", title="IC 95 % sup.", format=".3f")]
+    base = alt.Chart(df).encode(y=y)
+    # El dominio incluye las referencias con margen a la derecha, para que su línea y su rótulo no queden en el borde
+    valores = [*df["ic95_inf"], *df["ic95_sup"], *(referencias or {}).values()]
+    bajo, alto = min(valores), max(valores)
+    rango = (alto - bajo) or 1.0
+    escala = alt.Scale(domain=[bajo - 0.05 * rango, alto + 0.3 * rango], nice=False)
+    capas: list[alt.Chart] = []
+    if referencias:
+        ref = pd.DataFrame({"nombre": list(referencias), "x": list(referencias.values())})
+        capas += [alt.Chart(ref).mark_rule(color=REGLA, strokeWidth=1).encode(x=alt.X("x:Q", scale=escala)),
+                  alt.Chart(ref).mark_text(align="left", dx=4, dy=-6, fontSize=10, opacity=0.8).encode(
+                      x=alt.X("x:Q", scale=escala), y=alt.value(0), text="nombre:N")]
+    capas += [base.mark_rule(strokeWidth=ANCHO_LINEA, color=AZUL).encode(
+                  x=alt.X("ic95_inf:Q", title=titulo_x, scale=escala), x2="ic95_sup:Q", tooltip=tooltip),
+              base.mark_point(filled=True, size=TAMANO_PUNTO, color=AZUL, opacity=1).encode(
+                  x="estimacion:Q", tooltip=tooltip)]
+    return alt.layer(*capas).properties(height=alt.Step(34))
+
+
+def mapa_correlaciones(df: pd.DataFrame, *, fila: str, columna: str, valor: str, titulo_fila: str,
+                       titulo_columna: str) -> alt.LayerChart:
+    """Mapa de calor de una matriz de correlaciones con el valor escrito en cada celda (rampa de un solo tono).
+
+    Args:
+        df: Formato largo: una fila por celda.
+        fila, columna, valor: Columnas de la fila, la columna y el valor.
+        titulo_fila, titulo_columna: Títulos de los ejes.
+
+    Returns:
+        El gráfico de capas (celdas y valores).
+    """
+    orden = ["emplear", "formular", "interpretar", "razonar"]
+    minimo, maximo = float(df[valor].min()), float(df[valor].max())
+    corte = minimo + 0.55 * (maximo - minimo)
+    base = alt.Chart(df).encode(x=alt.X(f"{columna}:N", title=titulo_columna, sort=orden, axis=alt.Axis(labelAngle=0)),
+                                y=alt.Y(f"{fila}:N", title=titulo_fila, sort=orden))
+    celdas = base.mark_rect(stroke="white", strokeWidth=2).encode(
+        color=alt.Color(f"{valor}:Q", title="r", scale=alt.Scale(range=RAMPA_AZUL[1:], domain=[minimo, maximo])),
+        tooltip=[alt.Tooltip(f"{fila}:N", title=titulo_fila), alt.Tooltip(f"{columna}:N", title=titulo_columna),
+                 alt.Tooltip(f"{valor}:Q", title="r", format=".3f")])
+    textos = base.mark_text(fontSize=12).encode(
+        text=alt.Text(f"{valor}:Q", format=".2f"),
+        color=alt.condition(alt.datum[valor] >= corte, alt.value("white"), alt.value("#0b0b0b")))
+    return alt.layer(celdas, textos).properties(height=alt.Step(44), width=alt.Step(110))
+
+
+def comparacion_enfoques(df: pd.DataFrame) -> alt.LayerChart:
+    """Coeficiente con NSE latente frente al de dos pasos, unidos por una línea (uno por competencia y factor).
+
+    Args:
+        df: Columnas ``competencia``, ``serie`` (``económico`` o ``libros``), ``latente`` y ``dos_pasos``.
+
+    Returns:
+        El gráfico de capas.
+    """
+    largo = df.melt(id_vars=["competencia", "serie"], value_vars=["latente", "dos_pasos"], var_name="enfoque",
+                    value_name="valor").replace({"enfoque": {"latente": "NSE latente (SEM)", "dos_pasos": "Dos pasos"}})
+    series = [s for s in SERIES_NSE if s in set(df["serie"])]
+    color = alt.Color("serie:N", title="Factor del NSE",
+                      scale=alt.Scale(domain=series, range=[SERIES_NSE[s] for s in series]))
+    y = alt.Y("competencia:N", title=None, sort=["emplear", "formular", "interpretar", "razonar"])
+    tooltip = [alt.Tooltip("competencia:N", title="Competencia"), alt.Tooltip("serie:N", title="Factor"),
+               alt.Tooltip("enfoque:N", title="Enfoque"), alt.Tooltip("valor:Q", title="Puntos por DE", format=".2f")]
+    lineas = alt.Chart(df).mark_rule(strokeWidth=ANCHO_LINEA, opacity=0.6).encode(
+        x=alt.X("latente:Q", title="Puntos PISA por DE del NSE"), x2="dos_pasos:Q", y=y,
+        yOffset=alt.YOffset("serie:N", sort=series), color=color)
+    # Dos pasos: círculo relleno. NSE latente: rombo hueco (la forma, no solo el color, distingue el enfoque).
+    dos_pasos = alt.Chart(largo[largo["enfoque"] == "Dos pasos"]).mark_point(
+        filled=True, shape="circle", size=TAMANO_PUNTO, opacity=1).encode(
+        x="valor:Q", y=y, yOffset=alt.YOffset("serie:N", sort=series), color=color, tooltip=tooltip)
+    latente = alt.Chart(largo[largo["enfoque"] != "Dos pasos"]).mark_point(
+        filled=False, shape="diamond", size=TAMANO_PUNTO * 1.3, strokeWidth=2, opacity=1).encode(
+        x="valor:Q", y=y, yOffset=alt.YOffset("serie:N", sort=series), color=color, tooltip=tooltip)
+    return alt.layer(lineas, dos_pasos, latente).properties(height=alt.Step(30))

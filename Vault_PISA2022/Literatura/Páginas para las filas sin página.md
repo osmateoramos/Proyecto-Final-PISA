@@ -70,3 +70,7 @@ Son **45 filas** marcadas `verificado` cuya página seguía en «pendiente». Cl
 *2026-11-10:* Claude copió la página y la cita de las 27 filas «encontradas» a sus notas (marcadas «página y cita ubicadas por Claude en el PDF») y restauró el origen de 87 filas que un reemplazo había cambiado a «Claude». Después escribió la página de las 7 filas de tipo «no aplica», «afirmación negativa» y «dato propio». Faltan las 7 parciales y las 4 no encontradas.
 
 Cuando termines, avísale a Claude: revisa que cada nota quede completa, quita **[VERIFICAR]** del informe en las fuentes cuyas filas tengan página y lo sube al PR.
+
+## Cierre (2026-11-10)
+
+Mateo da por cerrada la verificación. Por decisión suya quedan como están, y sus citas conservan **[VERIFICAR]** en el informe: Hernández y González (2011) y Eriksson et al. (2021) (filas sin precisar) y la base de datos de la OCDE (fila 2 sin_origen). También conservan la marca el *Technical Report* (filas 1 y 8 parciales) y Chen (2007), que el informe cita por los cortes de ΔCFI y ΔRMSEA y que no tiene página ni PDF en Zotero. En odriguez2024rural, la fila 1 está verificada pero mantiene la nota de inconsistencia interna (el 40 % de colegio frente a colegio y familia); la cita del informe no depende de esa cifra.

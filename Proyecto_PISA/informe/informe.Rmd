@@ -126,7 +126,7 @@ cuyo dominio principal fue matemáticas, la muestra de Colombia fue de `r ent(n_
 `r num(g1[cifra %like% "Varianza", estimacion])` % de la variación del desempeño en matemáticas y la diferencia entre el
 cuartil más alto y el más bajo del índice oficial es de `r num(g1[cifra %like% "Brecha", estimacion])` puntos
 (cálculo propio, `02_validacion_ocde.R`, que reproduce las cifras publicadas: 16 % y 79 puntos en la nota de país de
-Colombia de la OCDE, p. 5). El informe nacional también reporta el 16 % [@icfes2024pisa, p. 46] **[VERIFICAR]**.
+Colombia de la OCDE, p. 5). El informe nacional también reporta el 16 % [@icfes2024pisa, p. 46].
 
 Que el NSE se asocie con el desempeño no es lo que el proyecto busca redescubrir. El problema está en dos decisiones de
 medición que suelen tomarse sin discusión y que determinan la magnitud de la brecha que se reporta (anteproyecto,
@@ -140,8 +140,7 @@ sección 1):
    dimensión económica y otra cultural [@hernandez2011modelo; @eriksson2021socioeconomic] **[VERIFICAR]**.
 2. **Cómo se califica el desempeño.** El seguimiento público de las brechas se hace sobre puntajes agregados
    [@lee2024decada]. PISA 2022 define cuatro procesos matemáticos —formular, emplear, interpretar y
-   razonar—, pero el informe nacional los reporta solo como promedios del país, sin cruzarlos con el NSE [@icfes2024pisa]
-   **[VERIFICAR]**. Además, PISA califica como incorrectas las respuestas omitidas, y el desenganche en la prueba puede
+   razonar—, pero el informe nacional los reporta solo como promedios del país, sin cruzarlos con el NSE [@icfes2024pisa]. Además, PISA califica como incorrectas las respuestas omitidas, y el desenganche en la prueba puede
    variar con el NSE [@rios2022investigation].
 
 En este informe llamamos **competencias** a esos cuatro procesos.
@@ -152,8 +151,7 @@ de las cuatro competencias matemáticas de PISA 2022, y cuánto de la brecha obs
 desempeño?
 
 **Antecedentes y vacío** (anteproyecto, sección 2). Los estudios colombianos relacionan puntajes observados con
-covariables socioeconómicas sin modelar el error de medición del NSE [@collazos2021determinantes; @rodriguez2024rural]
-**[VERIFICAR]**. El único antecedente encontrado que prueba invarianza del NSE entre grupos de estudiantes dentro de un
+covariables socioeconómicas sin modelar el error de medición del NSE [@collazos2021determinantes; @rodriguez2024rural]. El único antecedente encontrado que prueba invarianza del NSE entre grupos de estudiantes dentro de un
 país lo hace por origen inmigrante en Noruega y Suecia [@mittal2022assessing]. El DIF por NSE en
 matemáticas está documentado en México [@garcia2016analisis] y, con PISA 2022, en Corea con dos subpruebas
 [@goh2024detection], pero no en Colombia ni por competencia. Y ningún estudio revisado cuantifica cuánto

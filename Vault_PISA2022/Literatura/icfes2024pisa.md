@@ -10,7 +10,7 @@ publicacion: "Informe nacional de resultados para Colombia 2022 (Bogotá, mayo d
 doi_url: https://www.mineducacion.gov.co/1780/articles-421217_recurso_03.pdf
 bloque: "A. Descriptivo Colombia"
 metadatos: "portada y página de créditos del propio informe ("Cite este documento así")"
-estado: Verficado
+estado: verificado
 lectura: "IA: texto extraído; leídas solo las secciones de subescalas y ESCS"
 pdf_en_zotero: sí (dos copias en el grupo desde el 2026-10-12; comprobado por Claude con Better BibTeX, 2026-10-18)
 verificado_por:Mateo Ramos

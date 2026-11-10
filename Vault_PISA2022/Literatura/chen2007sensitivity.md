@@ -28,7 +28,7 @@ Sensibilidad de los índices de ajuste a la falta de invarianza.
 
 | #   | Afirmación (como la usamos)                                              | Página | Cita textual (< 15 palabras) | Estado                                                  |
 | --- | ------------------------------------------------------------------------ | ------ | ---------------------------- | ------------------------------------------------------- |
-| 1   | Referencia del método o del software; no se le atribuye ningún resultado | —      | —                            | Verificado · origen: metadatos de Crossref (2026-10-05) |
+| 1   | Referencia del método o del software; no se le atribuye ningún resultado | —      | —                            | verificado · origen: metadatos de Crossref (2026-10-05) |
 
 ## Dónde se usa
 Criterios de cambio en CFI y RMSEA para O2 (§4). Los umbrales concretos se toman del artículo al verificarlo.

@@ -292,12 +292,12 @@ if (file.exists(src)) { dst <- paste0(knitr::opts_current$get("fig.path"), "1.pn
 
 # Robustez (F7)
 
-*[Borrador de Claude, 2026-11-10; se actualiza cuando terminen las sensibilidades de K5.]* Cada resultado candidato a
+*[Borrador de Claude, 2026-11-10, con todas las sensibilidades corridas.]* Cada resultado candidato a
 hallazgo se repitió con las sensibilidades que le aplican (D-45): el ESCS oficial en lugar del NSE latente (S-A), sin los
 estudiantes de la ruta lineal de la prueba (S-B), otros umbrales de omisión rápida (S-C), sin corrección por comparaciones
 múltiples (S-D) y con pesos ajustados por la no respuesta dentro de cada colegio (S-E, D-38). Un candidato es robusto si su
 conclusión se mantiene en al menos el 75 % de las sensibilidades que le aplican, con un mínimo de tres. Son robustos
-`r x1(c_rb, sum(robusto == "sí"), 0)` de `r x1(c_rb, length(robusto), 0)` candidatos; el que falta se marca en la tabla.
+`r x1(c_rb, sum(robusto == "sí"), 0)` de `r x1(c_rb, length(robusto), 0)` candidatos (tabla siguiente).
 
 ```{r f7}
 rb <- leer("f7_robustez.csv")
@@ -326,6 +326,10 @@ el equipo.]*
 - **Réplica:** el NSE económico se asocia con las cuatro competencias, no solo con el puntaje total.
 - **Resultado nulo bien medido:** tratar las omisiones rápidas como faltantes reduce la brecha apenas
   `r x1(c_h4b, max(reduccion_b), 4)` desviaciones estándar (H4); la brecha socioeconómica no es un efecto del desgano en la prueba.
+- **Hallazgo parcial sobre la prueba:** a igual nivel en matemáticas, casi ningún ítem funciona distinto según el NSE:
+  `r x1(c_dr, sum(con_DIF), 0)` de `r x1(c_dr, sum(elegibles), 0)` ítems tienen DIF (primera parte de H3), y no se
+  concentran en *interpretar* y *formular* (la segunda parte se rechaza). Se mantiene en las cuatro sensibilidades
+  (D-45). El DIF compara cada ítem con el resto de la prueba, así que no descarta un sesgo común a todos los ítems.
 - **Medición:** el NSE tiene dos dimensiones, una general y otra de libros en casa (H1), y las cuatro competencias de PISA
   casi no se distinguen en Colombia (H8, D-48), igual que en el análisis de dimensionalidad de la OCDE. Por eso los
   puntajes propios por competencia correlacionan con los de la OCDE entre `r x1(c_h7, min(r_misma_competencia), 2)` y
@@ -337,7 +341,7 @@ invarianza se sostiene con un criterio poco sensible y no queda demostrada (D-35
 estudiantes de menor desempeño (D-14). Las competencias están tan correlacionadas que sus diferencias son frágiles (D-27,
 D-29, D-48). Los errores con el diseño muestral completo se calcularon solo para las cifras finales (D-34). Varias
 decisiones se tomaron después de ver resultados y así se declaran (D-32, D-33, D-43, D-48). El diseño es transversal: se
-habla de asociaciones, no de efectos causales. La búsqueda de novedad no cubrió Scopus.
+habla de asociaciones, no de efectos causales. La búsqueda de novedad no cubrió Scopus ni Google Scholar.
 
 # Declaración de uso de IA
 

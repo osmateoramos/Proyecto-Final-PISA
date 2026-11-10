@@ -1,0 +1,10 @@
+[project]
+name = "pisa-api"
+version = "0.1.0"
+description = "API de resultados agregados del Proyecto PISA 2022 Colombia (F8, D-46)"
+requires-python = "==3.11.9"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q"

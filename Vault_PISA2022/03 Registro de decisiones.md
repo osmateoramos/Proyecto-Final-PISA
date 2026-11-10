@@ -1888,6 +1888,12 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     casi nula en el modelo de 4 competencias (a = 0,002, D-41), así que su DIF puede reflejar un mal funcionamiento
     general del ítem en Colombia más que un sesgo por NSE; (iii) el error de la prueba no refleja el diseño por
     colegios (D-34 punto 3).
+  - *Salvedad encontrada por Claude al construir la API (2026-11-09):* en `mat_dif.csv`, `DM446Q02C` (formular) y
+    `CM00GQ01S` (razonar) tienen ΔMH infinito (`Inf`) y la prueba MH no se pudo calcular (`p_MH` vacío),
+    probablemente por celdas vacías en algún estrato. `05_dif_matematicas.R` los clasifica como A porque trata un MH no
+    calculable como no significativo. No cambia H3 (su prueba TRI no es significativa: p_BH 0,155 y 0,596), pero su
+    categoría A no es una magnitud observada y así debe decirse. En la API quedan con `delta_mh = null` y
+    `mh_calculable = false` (D-46).
 
 ### D-41 · 2026-11-08 · Detalles de H4 (paso 5.7) y de H7 con el enlace P3 (paso 5.5)
 - **Problema:** D-22 y D-27 fijan H4 y H7, pero dejan abiertos qué parte del modelo se mantiene fija al recalificar, cómo
@@ -2171,3 +2177,32 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     (p = 0,0045), a diferencia de la base (0,082).
   - *Interpretación de Claude:* el factor máximo de 11,7 en D-38 viene de colegios con pocos incluidos; S-E da casi los
     mismos resultados, así que esos pesos grandes no mueven las conclusiones.
+
+### D-46 · 2026-11-09 · Diseño de la API (F8, paso 8.2): stack, persistencia y endpoint de predicción
+- **Problema:** la F8 debe cumplir las buenas prácticas del curso de Python (documento del curso que Vanessa dio a
+  Claude, que **no** se sube al repositorio): Python 3.11.9, FastAPI, Pydantic v2, SQLAlchemy con SQLite, pytest con
+  TestClient, Docker, integración continua y un endpoint de predicción con Singleton. La API del plan 8.2 solo lee
+  resultados y nunca estima.
+- **Decisión (Vanessa, 2026-11-09):**
+  1. **Python 3.11.9** en un `.venv` propio de `Proyecto_PISA/api/` (instalado junto a 3.13); dependencias fijadas en
+     `requirements.txt`.
+  2. **Persistencia:** un script de carga lee los CSV **agregados** de `salidas/`, valida cada fila con Pydantic y la
+     guarda en SQLite con SQLAlchemy 2.0; la API consulta esa base. Nunca datos por estudiante (Ley 1581 de 2012).
+  3. **Predicción:** `POST /v1/modelo/prediccion` devuelve el **puntaje esperado** de las 4 competencias para un perfil
+     (EAP del NSE económico y de libros, sexo y grado) con los coeficientes del modelo principal de la F6
+     (`salidas/sem_coeficientes.csv`, D-42). El modelo se carga una vez al iniciar (Singleton).
+     - *Lo que es y lo que no es (interpretación):* es una media condicional estimada, no el puntaje de una persona ni un
+       efecto causal; no lleva intervalo porque la covarianza de los coeficientes no se exporta. Así se dice en la
+       respuesta.
+     - *Validación de la entrada:* NSE entre −4 y 4 (métrica de la EAP, media 0 y DE ≈ 0,95, D-42), sexo `Mujer` u
+       `Hombre`, grado relativo al modal (−3, −2, −1, 0 o 1). Fuera de eso: error 422.
+  4. **Rama:** `Vanessa`, en el mismo PR; Brayan la revisa y la continúa (la API y el tablero son su área según el reparto
+     de [[17 Plan de trabajo Brayan]], línea 18).
+- **Estado:** ✅ aceptada por Vanessa (2026-11-09): 3.11.9, SQLite desde `salidas/`, endpoint de predicción y rama
+  `Vanessa`. Brayan la revisa en el PR.
+- **Resultado (2026-11-09):** `Proyecto_PISA/api/` con 11 endpoints, carga validada de 8 archivos de `salidas/` a SQLite
+  (29 + 234 + 16 + 10 + 154 + 32 + 12 + 5 filas y las 8 hipótesis) y 33 pruebas con pytest que pasan en Python 3.11.9.
+  El servidor real (uvicorn) responde: con NSE económico 1 y lo demás en la referencia, emplear da 410,1 = 384,62 +
+  25,47 (`sem_coeficientes.csv`). La validación encontró dos cosas: los ΔMH infinitos de D-40 y que un `NaN` en la
+  entrada producía un error 500 en lugar de 422 (corregido con un manejador propio). Docker no está instalado en este
+  equipo: la imagen se prueba por primera vez en la integración continua (`.github/workflows/api.yml`).

@@ -505,11 +505,17 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 > [!info] Teoría previa
 > FastAPI, pydantic, pruebas con pytest; RAG (fragmentación, embeddings, recuperación, generación con citas).
 
+> [!info] Avance del 2026-11-09 (D-46; código de Claude para que Brayan lo revise y continúe)
+> `Proyecto_PISA/api/`: FastAPI + Pydantic v2 + SQLAlchemy/SQLite con Python 3.11.9, 11 endpoints, carga validada desde
+> `salidas/`, endpoint de predicción con Singleton, 33 pruebas que pasan, Dockerfile e integración continua. Falta:
+> tablero (8.4), despliegue en Render, RAG opcional (8.5) y congelar los resultados (G4) antes de la versión final.
+
 - [ ] **8.1 Exportar** todos los resultados congelados a `salidas/*.csv|json` (la API solo lee; nunca estima).
-- [ ] **8.2 API** en `Proyecto_PISA/api/`: `/nse/items`, `/matematicas/items`, `/invarianza/{grupo}`, `/dif`,
+  *(Avance: la carga lee 8 archivos de `salidas/` directamente; falta repetirla con los resultados congelados de la G4.)*
+- [x] **8.2 API** *(primera versión, 2026-11-09, D-46; las rutas siguen el plan con el prefijo `/v1`)* en `Proyecto_PISA/api/`: `/nse/items`, `/matematicas/items`, `/invarianza/{grupo}`, `/dif`,
   `/modelo/procesos?grupo=`, `/docs`. Esquemas pydantic; respuestas agregadas por grupo (nunca por estudiante:
   Ley 1581 de 2012).
-- [ ] **8.3 Pruebas** con `pytest` (un test por endpoint con datos reales).
+- [x] **8.3 Pruebas** con `pytest` (un test por endpoint con datos reales). *(33 pruebas, 2026-11-09.)*
 - [ ] **8.4 Tablero** (Streamlit) que consume la API.
 - [ ] **8.5 RAG (opcional, D-04):** LlamaIndex + Chroma; corpus = notas del vault + PDF de Zotero + Technical Report;
   embeddings locales; endpoint `/preguntar` que responde citando la fuente; evaluación con 15 preguntas cuya

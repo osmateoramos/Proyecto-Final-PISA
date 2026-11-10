@@ -1,0 +1,40 @@
+# Integración continua de la API (F8, D-46): pruebas con Python 3.11.9 y construcción de la imagen de Docker.
+name: API PISA (F8)
+
+on:
+  push:
+    paths:
+      - "Proyecto_PISA/api/**"
+      - "Proyecto_PISA/salidas/**"
+      - ".github/workflows/api.yml"
+  pull_request:
+    paths:
+      - "Proyecto_PISA/api/**"
+      - "Proyecto_PISA/salidas/**"
+      - ".github/workflows/api.yml"
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Proyecto_PISA/api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.9"
+          cache: pip
+          cache-dependency-path: Proyecto_PISA/api/requirements-dev.txt
+      - name: Instalar dependencias
+        run: pip install -r requirements-dev.txt
+      - name: Pruebas (pytest + TestClient sobre los salidas/ reales)
+        run: python -m pytest
+
+  imagen:
+    needs: pruebas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Construir la imagen (la carga valida todas las salidas)
+        run: docker build -f Proyecto_PISA/api/Dockerfile -t pisa-api Proyecto_PISA

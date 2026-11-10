@@ -1,0 +1,6 @@
+# Contexto de construcción = Proyecto_PISA/. Se excluye todo y solo se deja pasar lo que la imagen necesita.
+**
+!api/app/**
+!api/requirements.txt
+!salidas/*.csv
+**/__pycache__

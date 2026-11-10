@@ -551,7 +551,7 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
     - completar el reparto del trabajo (9.2);
     - verificar las fuentes marcadas;
     - ✅ congelar con la etiqueta `resultados-v1` (hecho el 2026-11-10).
-- [ ] **9.2 Declaración de uso de IA** y reparto del trabajo (igual que en el anteproyecto). *(Borrador de la
-  declaración dentro del informe, 2026-11-10; el reparto del trabajo lo completa el equipo.)*
+- [x] **9.2 Declaración de uso de IA** y reparto del trabajo (igual que en el anteproyecto). *(Declaración dentro del
+  informe, 2026-11-10. El equipo decidió mantener el reparto del anteproyecto; lo comunicó Mateo el 2026-11-10.)*
 - [ ] **9.3 Ensayo cruzado:** cada uno expone una parte que no hizo; los otros dos preguntan con las autoevaluaciones de
   esta guía.

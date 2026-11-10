@@ -704,9 +704,22 @@ verificación.md`) detectó errores propios de la IA, que quedaron registrados:
 - infinitos no tratados en una salida del DIF (D-40);
 - conclusiones de la F4 redactadas con más fuerza de la que daban los datos (D-35).
 
-**Reparto del trabajo. [POR COMPLETAR POR EL EQUIPO]** Cada integrante describe su aporte real por fase. La propuesta del
-anteproyecto era: Vanessa, planteamiento y calificación por competencias; Mateo, estado del arte, NSE e invarianza;
-Brayan, modelo estructural, API y tablero; los tres, objetivos y verificación de fuentes. Hay que confirmarla o
-corregirla con lo que pasó.
+**Reparto del trabajo.** El equipo mantiene el reparto del anteproyecto: cada fase tuvo un responsable principal y otro
+integrante la revisó, y los tres participaron en los objetivos, en las decisiones del registro y en la verificación de
+fuentes.
+
+```{r tabla-reparto}
+reparto <- data.frame(
+  `Sección / fase` = c("Planteamiento del problema", "Estado del arte", "Objetivos",
+                       "Datos, NSE e invarianza (objetivos 1–2)", "Calificación por competencias y DIF (objetivo 3)",
+                       "Modelo estructural (objetivo 4)", "API y tablero (objetivo 5)",
+                       "Gestión de la información y verificación de fuentes"),
+  `Responsable principal` = c("Vanessa Acosta", "Mateo Ramos", "Los tres", "Mateo Ramos", "Vanessa Acosta",
+                              "Brayan David Barreto", "Brayan David Barreto", "Los tres"),
+  `Revisión cruzada` = c("Mateo Ramos", "Brayan David Barreto", "—", "Brayan David Barreto", "Mateo Ramos",
+                         "Vanessa Acosta", "Mateo Ramos", "—"),
+  check.names = FALSE)
+knitr::kable(reparto, caption = "Reparto del trabajo (el del anteproyecto, confirmado por el equipo).")
+```
 
 # Referencias

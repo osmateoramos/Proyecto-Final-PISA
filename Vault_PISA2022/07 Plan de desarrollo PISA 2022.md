@@ -516,7 +516,8 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
   `/modelo/procesos?grupo=`, `/docs`. Esquemas pydantic; respuestas agregadas por grupo (nunca por estudiante:
   Ley 1581 de 2012).
 - [x] **8.3 Pruebas** con `pytest` (un test por endpoint con datos reales). *(33 pruebas, 2026-11-09.)*
-- [ ] **8.4 Tablero** (Streamlit) que consume la API.
+- [x] **8.4 Tablero** (Streamlit) que consume la API. *(Primera versión, 2026-11-09: `Proyecto_PISA/tablero/`, 5 páginas,
+  16 pruebas que pasan contra la API real, Dockerfile e integración continua; falta desplegarlo.)*
 - [ ] **8.5 RAG (opcional, D-04):** LlamaIndex + Chroma; corpus = notas del vault + PDF de Zotero + Technical Report;
   embeddings locales; endpoint `/preguntar` que responde citando la fuente; evaluación con 15 preguntas cuya
   respuesta ya conocen.

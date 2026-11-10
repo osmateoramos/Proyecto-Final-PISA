@@ -1,0 +1,50 @@
+# Integración continua del tablero (F8, paso 8.4): pruebas contra la API real levantada en el mismo trabajo.
+name: Tablero PISA (F8)
+
+on:
+  push:
+    paths:
+      - "Proyecto_PISA/tablero/**"
+      - "Proyecto_PISA/api/**"
+      - "Proyecto_PISA/salidas/**"
+      - ".github/workflows/tablero.yml"
+  pull_request:
+    paths:
+      - "Proyecto_PISA/tablero/**"
+      - "Proyecto_PISA/api/**"
+      - "Proyecto_PISA/salidas/**"
+      - ".github/workflows/tablero.yml"
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-24.04
+    container: python:3.11.9-slim        # misma versión exigida (3.11.9) sin depender del runner
+    steps:
+      - uses: actions/checkout@v5
+      - name: Entornos separados para la API y el tablero
+        run: |
+          python -m venv /opt/api && /opt/api/bin/pip install --no-cache-dir -r Proyecto_PISA/api/requirements.txt
+          python -m venv /opt/tablero && /opt/tablero/bin/pip install --no-cache-dir -r Proyecto_PISA/tablero/requirements-dev.txt
+      - name: Levantar la API y probar el tablero contra ella
+        run: |
+          cd Proyecto_PISA/api
+          /opt/api/bin/python -m app.carga
+          /opt/api/bin/python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 &
+          /opt/api/bin/python -c "import time, urllib.request as u
+          for _ in range(30):
+              try:
+                  u.urlopen('http://127.0.0.1:8000/health'); break
+              except Exception:
+                  time.sleep(1)
+          else:
+              raise SystemExit('la API no arrancó')"
+          cd ../tablero
+          PISA_EXIGIR_API=1 /opt/tablero/bin/python -m pytest -rs
+
+  imagen:
+    needs: pruebas
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - name: Construir la imagen del tablero
+        run: docker build -t pisa-tablero Proyecto_PISA/tablero

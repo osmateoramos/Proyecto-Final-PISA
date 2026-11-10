@@ -2208,3 +2208,10 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   equipo: la imagen se prueba en la integración continua (`.github/workflows/api.yml`). El primer run falló porque
   `ubuntu-latest` (Ubuntu 26.04) no trae Python 3.11.9; con las pruebas dentro de `python:3.11.9-slim`, el run
   42743515918 pasó completo: 33 pruebas y construcción de la imagen.
+- **Tablero (paso 8.4, 2026-11-09):** `Proyecto_PISA/tablero/` en Streamlit 1.40.2 sobre la API, con Python 3.11.9 y su
+  propio `.venv`: 5 páginas (resumen de H1-H8 y robustez, NSE e invarianza, DIF, modelo estructural y puntaje
+  esperado). No lee archivos: todo por HTTP, con contrato Pydantic, reintentos y caché de 5 min. Gráficos con la paleta
+  de referencia de la guía de visualización de Claude (azul = NSE económico, naranja = libros) y tabla al lado de cada
+  gráfico; el validador de paleta no se pudo correr (no hay Node.js en el equipo), así que la validación es la que
+  documenta la paleta. 16 pruebas pasan contra la API real; los gráficos se revisaron a ojo exportados a PNG (se
+  corrigió el del DIF: rótulos encimados y cortes del ETS confundidos con la cuadrícula).

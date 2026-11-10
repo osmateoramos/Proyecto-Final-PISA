@@ -29,6 +29,7 @@ pv <- function(p, d = 3) { p <- as.numeric(p); if (is.na(p)) "p no calculable" e
 rango <- function(x, d = 1, sep = " a ") paste0(num(min(x), d), sep, num(max(x), d))
 rango_y <- function(x, d = 1) rango(x, d, " y ")  # para «entre X y Y»
 tabla <- function(x, ...) knitr::kable(x, format.args = list(big.mark = ".", decimal.mark = ","), ...)
+options(knitr.kable.NA = "")  # celdas sin valor en blanco, no «NA»
 ```
 
 ```{r cargar, include=FALSE}
@@ -54,6 +55,8 @@ aj <- leer("sem_ajuste_latente.csv");       rb <- leer("f7_robustez.csv")
 dt <- leer("f7_sensibilidad_detalle.csv")
 fesc <- leer("f7_dif_resumen_escs.csv");    fsl <- leer("f7_dif_resumen_sin_lineal.csv")
 v1 <- leer("mat_posterior_V1.csv")
+afcr <- leer("mat_afc_resumen.csv");        afcc <- leer("mat_afc_cargas.csv")
+afcp <- leer("mat_afc_phi.csv");            pco <- leer("mat_pares_cobertura.csv")
 
 # Cifras derivadas que el texto usa varias veces
 n_total <- cm[conjunto == "Total Colombia", n]
@@ -68,6 +71,10 @@ items_dif <- md[DIF == TRUE]
 h5c <- h5[muestra %like% "^completa"]; h5m <- h5[muestra %like% "^mitad"]
 h6s <- h6[variable %like% "^sector"];  h6z <- h6[variable %like% "^zona"]
 r_eco <- function(col) va[puntuacion == "eap_AFE_ECO", get(col)]
+# D-48: cobertura de pares, cargas bajas y correlaciones entre competencias (fuera de la diagonal)
+pco_t <- pco[pares == "todos"]; afct <- afcr[competencia == "total"]
+n_baja_2pl <- afcc[carga < 0.30 & tipo == "2PL", .N]
+phi_m <- as.matrix(afcp[, -1]); phi_fuera <- phi_m[upper.tri(phi_m)]
 # K1 en la F7: se extraen del texto de detalle de 07_sensibilidad.R (no se escriben a mano)
 k1_escs <- dt[candidato == "K1" & sensibilidad %like% "ESCS", detalle]
 k1_sl   <- dt[candidato == "K1" & sensibilidad %like% "sin ruta", detalle]
@@ -81,7 +88,7 @@ p_igual_sl <- as.numeric(sub("^igualdad p = ([0-9.]+);.*", "\\1", k1_sl))
 > fuentes cuya nota en `Vault_PISA2022/Literatura/` sigue `por_verificar`. Los párrafos marcados *(interpretación, por
 > discutir)* son lecturas propuestas, no resultados. El diseño es transversal: se escribe «asociación» o «coeficiente»,
 > nunca «efecto causal» (plan, paso 9.1). Los resultados se congelan con la etiqueta `resultados-v1` (Puerta G4), que se
-> crea al fusionar el PR #14; si alguna salida cambia antes, el texto cambia solo al volver a compilar.
+> crea sobre `main` al cerrar la puerta; si alguna salida cambia antes, el texto cambia solo al volver a compilar.
 
 # Resumen
 
@@ -336,6 +343,25 @@ Un modelo bifactor exploratorio, con criterios de viabilidad fijados antes de es
 convergió en 2.000 ciclos y no se pudo calcular ningún error estándar (`salidas/mat_bifactor_viabilidad.csv`). Por eso no
 se interpreta el aporte propio de cada competencia.
 
+**Análisis confirmatorio de los ítems por competencia (exploratorio, D-48).** Por sugerencia del curso de Ecuaciones
+Estructurales se revisó si cada ítem representa su competencia. Se decidió después de conocer H8 y así se declara. Un
+análisis factorial confirmatorio con `lavaan` no se puede estimar: con la prueba adaptativa, el
+`r num(pco_t$pct_nunca_juntos)` % de los pares de ítems nunca lo respondió el mismo estudiante y el
+`r num(pco_t$pct_menos_de_50)` % lo respondieron menos de 50 (`salidas/mat_pares_cobertura.csv`), así que sus
+correlaciones policóricas no existen o son muy inestables. El modelo de cuatro competencias ya es ese análisis, con
+información completa: cada ítem carga en su competencia, pero `r ent(afct$carga_menor_030)` de `r ent(afct$items)` ítems
+tienen carga menor que 0,30 (`r if (n_baja_2pl == afct$carga_menor_030) "todos dicotómicos" else paste(ent(n_baja_2pl), "de ellos dicotómicos")`), y las competencias correlacionan entre
+`r rango_y(phi_fuera, 3)` (`salidas/mat_afc_resumen.csv`, `mat_afc_cargas.csv` y `mat_afc_phi.csv`). No cambia ninguna
+hipótesis. *(Interpretación, por discutir:)* es coherente con los ítems muy difíciles y poco discriminantes en Colombia
+que encontró el enlace con los parámetros internacionales (D-43).
+
+```{r afc-competencias}
+if (is.null(afcr)) pendiente("mat_afc_resumen.csv") else
+  tabla(afcr[, .(Competencia = competencia, Items = items, `Carga mediana` = carga_mediana, `Carga mínima` = carga_min,
+                 `Carga máxima` = carga_max, `Carga < 0,30` = carga_menor_030, `%` = pct_menor_030)], digits = 3,
+        caption = "Cargas de los ítems en su competencia, modelo de 4 competencias (05_afc_competencias.R, D-48).")
+```
+
 *(Consecuencia para el análisis, D-32.)* Con tan pocos ítems por competencia y correlaciones tan altas, un puntaje propio
 de cada competencia depende mucho de las demás y del modelo de condicionamiento. Por eso el modelo estructural (O4) usa
 como principal los VP de proceso de la OCDE, y los puntajes propios quedan para H4, H7 y la robustez.
@@ -466,8 +492,8 @@ if (is.null(rl)) pendiente("sem_robustez_latente.csv") else
                `Dos pasos (por DE)` = dos_pasos_por_DE_de_la_EAP, Razon = razon_dos_pasos_sobre_latente)], digits = 3,
         caption = "Robustez: SEM con NSE latente frente al enfoque en dos pasos (D-42, punto 4).")
 if (is.null(cfu)) pendiente("sem_comparacion_fuentes.csv") else
-  tabla(cfu[, .(Prueba = prueba, Unidad = unidad, OCDE = ocde_estimacion, `p OCDE` = formatC(ocde_p, format = "e", digits = 1),
-                Propios = propios_estimacion, `p propios` = formatC(propios_p, format = "e", digits = 1), Coincide = coincide)],
+  tabla(cfu[, .(Prueba = prueba, Unidad = unidad, OCDE = ocde_estimacion, `p OCDE` = ifelse(is.na(ocde_p), "", formatC(ocde_p, format = "e", digits = 1)),
+                Propios = propios_estimacion, `p propios` = ifelse(is.na(propios_p), "", formatC(propios_p, format = "e", digits = 1)), Coincide = coincide)],
         digits = 3, caption = "Robustez con los puntajes propios: concordancia con los VP de la OCDE (D-44).")
 ```
 
@@ -516,6 +542,11 @@ que se declaran (D-45):
 - **El DIF varía poco entre variantes.** Con cuartiles de ESCS hay `r sum(fesc$con_DIF)` ítems con DIF y sin la ruta
   lineal, `r sum(fsl$con_DIF)`. En ningún caso se concentra en interpretar y formular. `CMA135Q04S` tiene DIF en todas
   las variantes y siempre favorece al cuartil bajo.
+
+**Reproducción en otro equipo.** La cadena completa (`scripts/00_correr_todo.R`) y las dos variantes largas del DIF se
+volvieron a correr desde cero en un segundo computador. Ninguna conclusión cambió: las variantes del DIF marcan los
+mismos ítems, y las demás salidas difieren solo en decimales o en los minutos de cómputo (D-45). Las tablas de este
+informe usan los archivos de la primera corrida.
 
 # Hallazgos y discusión
 
@@ -579,7 +610,8 @@ tabla(hz, caption = "Clasificación de los candidatos (borrador; Hallazgos.md). 
 - **K1 y K3** describen promedios condicionados, no capacidades individuales. Si se reportan sin esa salvedad, hay riesgo
   de estigmatizar a los estudiantes de NSE bajo.
 - **K5** no dice que la prueba sea «justa» en todo. Un ítem con DIF no es necesariamente injusto, y la revisión de
-  contenido de los ítems marcados sigue pendiente.
+  contenido de los ítems marcados sigue pendiente. Tampoco descarta un sesgo común a todos los ítems: el DIF compara
+  cada ítem con el resto de la prueba.
 
 # Limitaciones
 
@@ -596,7 +628,8 @@ tabla(hz, caption = "Clasificación de los candidatos (borrador; Hallazgos.md). 
 6. **Errores de diseño solo en las cifras finales** (D-34). El AFC, la TRI y el DIF son estimaciones puntuales cuyos
    errores no reflejan el muestreo por colegios.
 7. **Decisiones posteriores a ver resultados**, declaradas como tales: D-32 (orden de las fuentes de O4 y H5
-   exploratoria), D-33 (E1 después del fallo de V1) y D-43 (enlace robusto de P3).
+   exploratoria), D-33 (E1 después del fallo de V1), D-43 (enlace robusto de P3) y D-48 (análisis confirmatorio por
+   competencia, exploratorio).
 8. **Pendientes que no se hicieron** (D-21, D-45): la revisión de contenido de los ítems con DIF (P4), la calibración sin
    los ítems con menos de 500 respuestas (P2), un tercer tratamiento de las omisiones (P5), la búsqueda en Scopus y Google
    Scholar, y la verificación de la mayoría de las fuentes citadas.
@@ -611,7 +644,8 @@ tablero en Streamlit que la consume (`Proyecto_PISA/tablero/`, D-47).
 - **Tablero:** recorre el proyecto fase por fase, con textos que explican cada resultado y el diagrama interactivo del
   modelo estructural.
 - **Calidad:** los dos tienen pruebas automáticas (`pytest`), Dockerfile e integración continua en GitHub Actions.
-- **[PENDIENTE]:** el despliegue en Render y la URL pública.
+- **[PENDIENTE]:** el despliegue en Render (configurado en `render.yaml`, en la raíz del repositorio) y las URL
+  públicas.
 
 # Conclusiones
 

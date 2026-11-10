@@ -238,6 +238,36 @@ class FilaEnlaceP3(FilaCSV):
     intercepto_b: Annotated[float, Field(alias="intercepto_B")]
 
 
+class FilaCargasCompetencia(FilaCSV):
+    """Cargas de los ítems en su competencia, modelo de 4 competencias (mat_afc_resumen.csv, D-48).
+
+    ``competencia`` incluye la fila ``total``; una carga < 0,30 es el criterio operativo de D-29 (V3).
+    """
+
+    competencia: str
+    items: Conteo
+    carga_mediana: float
+    carga_p10: float
+    carga_min: float
+    carga_max: float
+    carga_menor_030: Conteo
+    pct_menor_030: Annotated[float, Field(ge=0, le=100)]
+
+
+class FilaCoberturaPares(FilaCSV):
+    """Cuántos estudiantes respondieron juntos cada par de ítems en la prueba adaptativa (mat_pares_cobertura.csv,
+    D-48): explica por qué no se puede hacer un AFC con correlaciones policóricas."""
+
+    pares: str
+    n_pares: Conteo
+    nunca_juntos: Conteo
+    pct_nunca_juntos: Annotated[float, Field(ge=0, le=100)]
+    menos_de_50: Conteo
+    pct_menos_de_50: Annotated[float, Field(ge=0, le=100)]
+    mediana_estudiantes: float
+    p90_estudiantes: float
+
+
 class FilaResumenDIF(FilaCSV):
     """Resumen del DIF por competencia (mat_dif_resumen.csv, D-40)."""
 

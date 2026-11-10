@@ -2170,7 +2170,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   | K2 NSE × sector | Holm p = 0,0073 | 0,0007 | 0,0041 | — | sin Holm 0,0036 | 0,0097 | **sí, 4 de 4** |
   | K3 NSE > 0 en las 4 | 25,5 a 31,0 puntos por unidad de EAP | 19,1 a 22,8 por unidad de ESCS | 25,1 a 30,3 | — | — | 25,6 a 31,1 | **sí, 3 de 3** |
   | K4 H4 nulo | reducción 0,007 DE; Holm p = 0,24 | 0,003–0,004; p = 1 | 0,007; p = 0,35 | NT15 0,008 (p = 0,18); 5 s 0,004 (p = 0,47) | 0,007; p 0,059–0,063 | 0,006; p = 0,52 | **sí, 5 de 5** |
-  | K5 H3 (parte 1 sí, 2 no) | 3 de 154 con DIF | 6 de 155 (4 emplear, 1 formular, 1 interpretar); Fisher p = 0,929; se mantiene | 2 de 152 (los 2 en emplear); p = 1; se mantiene | — | sin BH: 8 de 154 (6 emplear, 1 formular, 1 interpretar); se mantiene | 3 de 154; se mantiene | **sí, 4 de 4** |
+  | K5 H3 (parte 1 sí, 2 no) | 3 de 154 con DIF | 6 de 155 (4 emplear, 1 formular, 1 interpretar); Fisher p = 0,929; se mantiene | 2 de 152 (los 2 en emplear); p = 1; se mantiene | — | sin BH: 8 de 154 (6 emplear, 1 formular, 1 interpretar); se mantiene | 3 de 154; se mantiene | **sí, 4 de 4** (2026-11-10) |
 
   - *Lectura (dato):* K1 queda cerca del límite en dos sensibilidades: con ESCS la diferencia H5 baja a ~3,7 puntos, y
     sin la ruta lineal la igualdad sale con p = 0,049. Con ESCS, la interacción NSE × zona también sale significativa
@@ -2186,8 +2186,28 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - Sin la ruta lineal: 2 de 152 ítems con DIF (`CMA131Q02S` favorece al cuartil alto y `CMA135Q04S` al bajo).
     Elegibles sin todas sus categorías en los dos grupos: 10 con ESCS y 13 sin la ruta lineal (listados en el log; no
     se prueban, D-45 punto 2).
+  - *Lectura (dato):* con ESCS el número de ítems con DIF se duplica (6) y aparece uno de formular y otro de
+    interpretar; aun así, la proporción en interpretar + formular (2 de 67) es menor que en emplear (4 de 57).
   - *Interpretación de Claude:* `CMA135Q04S` tiene DIF en todas las variantes y siempre favorece al cuartil bajo; es el
     candidato más claro para la revisión de contenido de P4 que sigue pendiente.
+- **Reproducción independiente (2026-11-10, equipo de Mateo):** las dos variantes se corrieron otra vez desde cero, en
+  otro equipo y sin sus cachés (84 a 94 min cada una, las dos a la vez; cuartiles Q1 1.502 y Q4 1.896 con ESCS, Q1 1.118
+  y Q4 1.505 sin la ruta lineal). Marcan los **mismos ítems con DIF** (6 y 2) y ninguna columna de decisión
+  (`DIF`, `TRI_significativo`, `no_despreciable`, `categoria_ETS`, `favorece`) difiere en los 155 y 152 ítems; `f7_dif_d38.csv`
+  tampoco. Solo cambian decimales (p. ej., X² 1,6 frente a 1,61).
+- **Reproducción completa (2026-11-10):** `00_correr_todo.R` corrió los 29 scripts en el equipo de Mateo (02:17 a
+  06:47, código 0). Reestimó sin caché las medias con BRR de la F4, E1, la regresión latente, el DIF y el SEM de la F6.
+  Los modelos TRI de la F3 y del 5.3 y las variantes del DIF de esa noche se leyeron del caché. Frente a las salidas
+  del repositorio (las de la rama `Vanessa`, hoy en `main`), 23 salidas cambiaron solo en decimales o en columnas de
+  minutos, y **ninguna conclusión cambió** (ninguna columna lógica de decisión cambió).
+  - Las diferencias mayores están en los puntajes propios: χ² de H6 83,58 → 84,99 (zona) y 68,54 → 69,39 (sector), e
+    igualdad entre competencias 38,08 → 38,47.
+  - La regresión latente convergió en 39 iteraciones de EM, frente a 45 en la primera corrida. Sus correlaciones
+    residuales cambian como máximo 0,002 y sus coeficientes 0,0035. En las demás salidas, las estimaciones cambian como
+    máximo 0,0011 y los valores p 0,003.
+  - *Qué se congela (propuesta de Claude, 2026-11-10; el equipo la confirma en el PR):* `salidas/` conserva los archivos
+    de la primera corrida (los de `main`), porque son los que citan D-39, D-42, D-44 y el informe. La reproducción
+    queda como evidencia de que la cadena es reproducible; sus archivos no se suben.
 
 ### D-46 · 2026-11-09 · Diseño de la API (F8, paso 8.2): stack, persistencia y endpoint de predicción
 - **Problema:** la F8 debe cumplir las buenas prácticas del curso de Python (documento del curso que Vanessa dio a
@@ -2245,3 +2265,43 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - *Regla de los textos:* las cifras que aparecen en los textos se leen de la API, no se escriben a mano; las
     interpretaciones repiten las del registro (D-xx) y se marcan como tales.
 - **Estado:** ✅ pedido por Vanessa (2026-11-09). Brayan lo revisa en el PR.
+
+### D-48 · 2026-11-10 · Análisis confirmatorio de los ítems por competencia (exploratorio; sugerencia del profesor de SEM)
+- **Contexto:** en la clase de Modelación de Ecuaciones Estructurales, el profesor sugirió un análisis factorial
+  confirmatorio de los ítems de cada competencia, para ver si cada ítem representa su competencia y no otra. Se decide
+  **después** de conocer H8 (D-27) y el resto de la F5, y así se declara: es **exploratorio** y no cambia ninguna
+  hipótesis.
+- **Lo que muestran los datos** (`scripts/05_afc_competencias.R` → `salidas/mat_pares_cobertura.csv`; versión (a) de la
+  matriz, 6.886 estudiantes × 232 ítems): de 26.796 pares de ítems, **5.719 (21,3 %) nunca los respondió el mismo
+  estudiante** y 12.303 (45,9 %) los respondieron juntos menos de 50; mediana de 59 estudiantes por par. Pasa igual
+  dentro de una misma competencia (21,5 % y 46,3 %).
+- **Alternativas:**
+  - (a) AFC con WLSMV en `lavaan` por competencia: parte de las correlaciones policóricas por pares, que no existen para
+    el 21 % de los pares y son muy inestables para casi la mitad. **No se puede estimar** con la prueba adaptativa.
+  - (b) Usar el modelo de 4 competencias del 5.3, que **ya es un AFC a nivel de ítem con información completa** (cada
+    ítem carga solo en su competencia; `mirt`, QMCEM con 1.000 puntos y pesos; D-27), y reportar sus cargas y su matriz
+    de correlaciones sin volver a estimar.
+  - (c) Además, un modelo exploratorio de 4 factores con rotación hacia la estructura teórica (horas de cálculo, sin
+    garantía de convergencia).
+  - (d) Probar cada ítem en las otras competencias (unos 700 modelos): no cabe en el calendario.
+- **Decisión (Mateo, 2026-11-10): (b).** (c) y (d) quedan como trabajo futuro.
+  1. Cargas estandarizadas de cada ítem en su competencia con `cargas_mirt()` (la falla de `summary()` de `mirt`
+     1.46.1 con los GPCM, D-19), la matriz completa Φ y la cobertura de pares.
+  2. Se marcan los ítems con carga < 0,30, el criterio operativo de D-29 (V3). Solo se reporta: no se excluye ningún
+     ítem ni se recalibra.
+  3. En el informe se contrasta con el análisis de dimensionalidad de la OCDE (Technical Report, pp. 228–230 impresas:
+     modelo de 2 dimensiones con los ítems de tendencia y los nuevos; el AIC prefiere 2 y el BIC 1, el modelo de 1
+     dimensión logra el 99,8 % de la mejora y las correlaciones entre los dos conjuntos van de 0,91 a 0,99). Leído por
+     Claude en el texto completo el 2026-11-10; **por verificar** por el equipo.
+- **Resultado** (`salidas/mat_afc_cargas.csv`, `mat_afc_resumen.csv` y `mat_afc_phi.csv`; 2026-11-10):
+  - Cada ítem carga en la competencia que le asigna el anexo A (el script lo comprueba).
+  - Mediana de las cargas: 0,48 (emplear), 0,50 (formular), 0,53 (interpretar), 0,63 (razonar); 0,52 en total.
+  - **56 de 232 ítems (24,1 %) tienen carga < 0,30**, todos dicotómicos: 22 de emplear, 17 de formular, 6 de interpretar
+    y 11 de razonar. **5 tienen carga negativa** (la mínima, −0,21 en emplear).
+  - Φ: emplear–formular 0,940, emplear–interpretar 0,951, emplear–razonar 0,976, formular–interpretar 0,897,
+    formular–razonar 0,945 e interpretar–razonar 0,906 (las mismas de H8).
+  - *Interpretación (Claude, por discutir):* los ítems sí cargan en su competencia, pero las competencias casi no se
+    separan (Φ) y una cuarta parte de los ítems discrimina poco en Colombia. Es coherente con D-43, que encontró 25
+    ítems dicotómicos con discriminación < 0,3 y dificultades muy altas (`salidas/mat_p3_baja_discriminacion.csv`):
+    ítems que casi nadie responde bien en Colombia informan poco (efecto piso).
+- **Estado:** ✅ (b) aceptada por Mateo (2026-11-10, en la sesión con Claude). Vanessa y Brayan la revisan en el PR.

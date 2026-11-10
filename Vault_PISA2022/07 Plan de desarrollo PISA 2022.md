@@ -497,7 +497,9 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 - [x] **7.3 Aplicar el criterio de hallazgo innovador** *(borrador en [[Hallazgos]], 2026-11-10; las frases las aprueba el equipo)* de [[08 Rúbrica de desarrollo]] y redactar cada hallazgo en
   una frase para Colombia.
 - **Salida:** `salidas/robustez.csv`, matriz actualizada, nota `Hallazgos.md`.
-- *Estado de la G4 (2026-11-10):* acta en [[Reuniones/2026-11-10 Puerta G4]]; la etiqueta `resultados-v1` se crea sobre `main` cuando se apruebe el PR (D-45 punto 6).
+- *Estado de la G4 (2026-11-10):* acta en [[Reuniones/2026-11-10 Puerta G4]]. El PR #14 (rama `Vanessa`) ya está en
+  `main`; falta el PR de la rama `Mateo` (D-48 y reproducción en otro equipo) con la aprobación de Vanessa o Brayan, y
+  después la etiqueta `resultados-v1` sobre `main` (D-45 punto 6).
 - **Listo cuando:** **Puerta G4** — resultados congelados (etiqueta Git `resultados-v1`); a partir de aquí solo se
   cambian si hay un error.
 
@@ -513,12 +515,18 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 
 - [ ] **8.1 Exportar** todos los resultados congelados a `salidas/*.csv|json` (la API solo lee; nunca estima).
   *(Avance: la carga lee 8 archivos de `salidas/` directamente; falta repetirla con los resultados congelados de la G4.)*
+  *(2026-11-10, equipo de Mateo: con las salidas de `main` más D-48, la carga valida 28 archivos del catálogo y las
+  pruebas pasan en `python:3.11.9-slim`: 65 de la API y 22 del tablero contra la API real. Se marca hecho cuando exista
+  la etiqueta `resultados-v1`.)*
 - [x] **8.2 API** *(primera versión, 2026-11-09, D-46; las rutas siguen el plan con el prefijo `/v1`)* en `Proyecto_PISA/api/`: `/nse/items`, `/matematicas/items`, `/invarianza/{grupo}`, `/dif`,
   `/modelo/procesos?grupo=`, `/docs`. Esquemas pydantic; respuestas agregadas por grupo (nunca por estudiante:
   Ley 1581 de 2012).
 - [x] **8.3 Pruebas** con `pytest` (un test por endpoint con datos reales). *(33 pruebas, 2026-11-09.)*
 - [x] **8.4 Tablero** (Streamlit) que consume la API. *(Primera versión, 2026-11-09: `Proyecto_PISA/tablero/`, 5 páginas,
   16 pruebas que pasan contra la API real, Dockerfile e integración continua; falta desplegarlo.)*
+  *(2026-11-10: las imágenes de la API y del tablero se construyeron y se corrieron juntas con Docker en el equipo de
+  Mateo; el despliegue en Render queda configurado en `render.yaml` (raíz del repositorio) y lo hace un integrante con
+  su cuenta, según `Proyecto_PISA/api/README.md`.)*
 - [ ] **8.5 RAG (opcional, D-04):** LlamaIndex + Chroma; corpus = notas del vault + PDF de Zotero + Technical Report;
   embeddings locales; endpoint `/preguntar` que responde citando la fuente; evaluación con 15 preguntas cuya
   respuesta ya conocen.
@@ -537,7 +545,8 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
   - *Borrador completo (Claude, 2026-11-10, pedido por Vanessa):* las 10 secciones **[POR REDACTAR]** quedaron
     redactadas, y se agregaron «Hallazgos y discusión», «Limitaciones», «Productos: API y tablero» y «Conclusiones».
     Todas las cifras del texto se calculan al compilar desde `salidas/`. Las citas de fuentes `por_verificar` llevan
-    **[VERIFICAR]**, y las interpretaciones dicen «por discutir». Compila sin errores a PDF (18 páginas). Falta:
+    **[VERIFICAR]**, y las interpretaciones dicen «por discutir». Compila sin errores a PDF (18 páginas; 19 desde
+    que se agregó D-48 al unir la rama `Mateo`, 2026-11-10). Falta:
     - que el equipo revise cada sección y la asuma como propia;
     - completar el reparto del trabajo (9.2);
     - verificar las fuentes marcadas;

@@ -1,0 +1,28 @@
+# Despliegue en Render (F8): la API y el tablero como dos servicios web con sus imágenes de Docker.
+# Se usa como «Blueprint»: en Render, New > Blueprint, elegir este repositorio y la rama main.
+# Ver Proyecto_PISA/api/README.md, sección «Despliegue en Render».
+services:
+  - type: web
+    name: pisa-api
+    runtime: docker
+    plan: free
+    branch: main
+    dockerfilePath: ./Proyecto_PISA/api/Dockerfile
+    dockerContext: ./Proyecto_PISA        # la imagen necesita salidas/*.csv
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+
+  - type: web
+    name: pisa-tablero
+    runtime: docker
+    plan: free
+    branch: main
+    dockerfilePath: ./Proyecto_PISA/tablero/Dockerfile
+    dockerContext: ./Proyecto_PISA/tablero
+    healthCheckPath: /_stcore/health
+    autoDeployTrigger: commit
+    envVars:
+      # URL pública de la API, sin /v1 (por ejemplo https://pisa-api.onrender.com). En el plan gratuito un servicio
+      # no recibe tráfico de la red privada de Render, así que el tablero llama a la API por su URL pública.
+      - key: PISA_API_URL
+        sync: false

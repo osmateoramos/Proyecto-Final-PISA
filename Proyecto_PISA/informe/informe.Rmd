@@ -1,6 +1,6 @@
 ---
 title: "Nivel socioeconómico latente y desempeño matemático por competencias en PISA 2022 (Colombia)"
-subtitle: "Informe final — Consultoría Estadística (borrador completo del 2026-11-10, por revisar)"
+subtitle: "Informe final — Consultoría Estadística, Teoría de Respuesta al Ítem, Ecuaciones Estructurales y Python para APIs e IA"
 author: "Vanessa Acosta, Mateo Ramos y Brayan David Barreto"
 date: "Universidad Santo Tomás · 2026-II"
 lang: es
@@ -82,15 +82,15 @@ h5_escs <- as.numeric(sub(".*H5 completa ([0-9.]+).*", "\\1", k1_escs))
 p_igual_sl <- as.numeric(sub("^igualdad p = ([0-9.]+);.*", "\\1", k1_sl))
 ```
 
-> **Estado del borrador.** Borrador completo redactado por Claude el 2026-11-10 con las salidas de las fases F1 a F7,
-> para que el equipo lo revise sección por sección (paso 9.1 del plan). Todas las cifras del texto y de las tablas se
+> **Cómo se construyó este informe.** Lo redactó Claude el 2026-11-10 con las salidas de las fases F1 a F7, y el
+> equipo cerró esta versión para la entrega (paso 9.1 del plan). Todas las cifras del texto y de las tablas se
 > leen de `Proyecto_PISA/salidas/` al compilar; ninguna se escribió a mano. El equipo verificó todas las fuentes
 > citadas (notas en `Vault_PISA2022/Literatura/`, 2026-11-10), con tres salvedades: de @goh2024detection y
 > @pohl2014dealing solo se cotejó el resumen, no el texto completo; de @kohler2015taking y @mittal2022assessing, el
 > resumen dentro del PDF; y las referencias de software y de método (mirt, lavaan, Rubin y Wu) solo se cotejaron con sus
 > datos bibliográficos, porque no se les atribuye ningún resultado. Los cortes de Chen (2007) se citan a través de
-> Sokolov (2019) porque el equipo no consiguió el artículo original. Los párrafos marcados *(interpretación, por
-> discutir)* son lecturas propuestas, no resultados. El diseño es transversal: se escribe «asociación» o «coeficiente»,
+> Sokolov (2019) porque el equipo no consiguió el artículo original. Los párrafos marcados *(interpretación)* son
+> lecturas de los resultados, no resultados. El diseño es transversal: se escribe «asociación» o «coeficiente»,
 > nunca «efecto causal» (plan, paso 9.1). El anexo final explica las siglas, los códigos del proyecto (O, H, F, G, D,
 > K, S…) y los 29 indicadores del NSE. Los resultados están congelados con la etiqueta `resultados-v1` (Puerta G4,
 > 2026-11-10); si se corrige un error en alguna salida, el texto cambia solo al volver a compilar.
@@ -354,7 +354,7 @@ correlaciones policóricas no existen o son muy inestables. El modelo de cuatro 
 información completa: cada ítem carga en su competencia, pero `r ent(afct$carga_menor_030)` de `r ent(afct$items)` ítems
 tienen carga menor que 0,30 (`r if (n_baja_2pl == afct$carga_menor_030) "todos dicotómicos" else paste(ent(n_baja_2pl), "de ellos dicotómicos")`), y las competencias correlacionan entre
 `r rango_y(phi_fuera, 3)` (`salidas/mat_afc_resumen.csv`, `mat_afc_cargas.csv` y `mat_afc_phi.csv`). No cambia ninguna
-hipótesis. *(Interpretación, por discutir:)* es coherente con los ítems muy difíciles y poco discriminantes en Colombia
+hipótesis. *(Interpretación:)* es coherente con los ítems muy difíciles y poco discriminantes en Colombia
 que encontró el enlace con los parámetros internacionales (D-43).
 
 ```{r afc-competencias}
@@ -404,7 +404,7 @@ if (nrow(items_dif) > 0) tabla(items_dif[, .(Item = item, Competencia = competen
 **Resultado.** `r n_dif` de `r n_eleg` ítems tienen DIF, todos en *emplear*;
 `r sum(items_dif$favorece %like% "Q1")` de ellos favorecen al cuartil bajo. **H3 se acepta solo en su primera parte**
 (hay ítems con DIF); la segunda se rechaza, porque interpretar y formular no concentran más DIF que emplear (prueba de
-Fisher de una cola, `salidas/mat_h3.csv`). *(Interpretación, por discutir:)* con efectos en los dos sentidos, el DIF es
+Fisher de una cola, `salidas/mat_h3.csv`). *(Interpretación:)* con efectos en los dos sentidos, el DIF es
 escaso y no apunta a un sesgo sistemático contra el cuartil bajo. `CMA131Q02S` tiene discriminación casi nula en Colombia
 (`salidas/mat_p3_baja_discriminacion.csv`), así que su DIF puede reflejar un mal funcionamiento general del ítem.
 **Salvedad:** dos ítems (`DM446Q02C` y `CM00GQ01S`) tienen ΔMH infinito; su categoría A no es una magnitud observada,
@@ -440,7 +440,7 @@ if (!is.null(p3)) tabla(p3[, .(Competencia = competencia, Items = items, `Spearm
 
 La correlación de cada puntaje propio con la misma competencia de la OCDE va de `r rango(h7$r_misma_competencia, 3)`:
 ninguna llega a 0,80, y en formular y razonar la correlación es mayor con el VP de *emplear* de la OCDE que con el propio.
-**H7 se rechaza** (`salidas/mat_h7.csv`). *(Interpretación, por discutir, D-41:)* es coherente con que las competencias
+**H7 se rechaza** (`salidas/mat_h7.csv`). *(Interpretación, D-41:)* es coherente con que las competencias
 casi no se distinguen (H8); además, con confiabilidades de `r rango(ccomp$confiabilidad_empirica_con_covariables, 2)` en
 los puntajes propios, el umbral de 0,80 era difícil de alcanzar aun si los constructos coincidieran.
 
@@ -505,8 +505,8 @@ if (is.null(cfu)) pendiente("sem_comparacion_fuentes.csv") else
   queda entre `r rango_y((rl[coeficiente == "eco", razon_dos_pasos_sobre_latente] - 1) * 100)` % por encima), y el orden de
   las competencias se mantiene.
 - *Puntajes propios (D-44):* se repiten el orden de las competencias, el rechazo de la igualdad, H5 y H6 por sector. La
-  única discrepancia es NSE × zona, muy significativa con los propios y no con los de la OCDE. *(Interpretación, por
-  discutir:)* hay dos sesgos posibles en sentidos opuestos —los VP propios pueden dar valores p demasiado pequeños y los
+  única discrepancia es NSE × zona, muy significativa con los propios y no con los de la OCDE. *(Interpretación:)*
+  hay dos sesgos posibles en sentidos opuestos —los VP propios pueden dar valores p demasiado pequeños y los
   de la OCDE pueden atenuar la interacción si su modelo de condicionamiento no la incluye, lo que no se ha verificado en
   el Technical Report—, así que **H6 por zona queda sin resolver**.
 - *Ajuste del SEM latente* (descriptivo, solo con el VP1): CFI *scaled* `r num(aj$cfi.scaled, 3)`, RMSEA *scaled*
@@ -560,7 +560,7 @@ Cada candidato se clasificó con los cinco criterios de la rúbrica (`Vault_PISA
 4. ausencia de antecedente para Colombia;
 5. explicable en una frase.
 
-La clasificación es un **borrador** del equipo (`Vault_PISA2022/Hallazgos.md`). Para el criterio 4, la búsqueda de
+El detalle de la clasificación está en `Vault_PISA2022/Hallazgos.md`. Para el criterio 4, la búsqueda de
 novedad del paso 7.2 cubrió un buscador web general, SciELO, Redalyc, Scopus y Google Académico (primera
 página de cada cadena), y en ninguno apareció un antecedente para Colombia de K1, K2, K4 ni K5. En Scopus, 7 de las 10
 cadenas dieron cero resultados y las otras 3, un documento cada una, ninguno sobre Colombia. Sí aparecieron análisis
@@ -585,10 +585,10 @@ hz <- data.table(
                     "Réplica, extendida a las 4 competencias", "Resultado nulo bien medido",
                     "Hallazgo parcial: la primera parte de H3 se sostiene; el patrón por competencia, no"))
 hz[, Robusto := rb[match(hz$Candidato, candidato), paste0(se_mantiene_en, " de ", aplicables)]]
-tabla(hz, caption = "Clasificación de los candidatos (borrador; Hallazgos.md). Robustez leída de f7_robustez.csv.")
+tabla(hz, caption = "Clasificación de los candidatos (Hallazgos.md). Robustez leída de f7_robustez.csv.")
 ```
 
-**Lectura de conjunto** *(interpretación, por discutir)*:
+**Lectura de conjunto** *(interpretación)*:
 
 1. **La brecha no es un artefacto de la calificación.** Ni el tratamiento de las omisiones (K4) ni el funcionamiento de
    los ítems (K5) cambian la brecha de forma relevante: el desenganche rápido no la explica y los pocos ítems con DIF van
@@ -607,7 +607,7 @@ tabla(hz, caption = "Clasificación de los candidatos (borrador; Hallazgos.md). 
    y la invarianza no se demostró (D-35). Las conclusiones sobre el NSE económico son estables con el ESCS oficial (S-A),
    lo que da algo de tranquilidad.
 
-**Frases para el Ministerio de Educación** (borradores, criterio 5; las aprueba el equipo):
+**Frases para el Ministerio de Educación** (criterio 5):
 
 - **K1 (exploratorio):** «En Colombia, la ventaja de los estudiantes de hogares con más recursos es algo mayor cuando
   deben interpretar resultados matemáticos que cuando deben aplicar procedimientos.»
@@ -651,7 +651,8 @@ tabla(hz, caption = "Clasificación de los candidatos (borrador; Hallazgos.md). 
 # Productos: API y tablero (O5, F8)
 
 Los resultados agregados se publican en una API REST (FastAPI, Python 3.11.9; `Proyecto_PISA/api/`, D-46) y en un
-tablero en Streamlit que la consume (`Proyecto_PISA/tablero/`, D-47).
+tablero en Streamlit que la consume (`Proyecto_PISA/tablero/`, D-47). El código, las salidas agregadas, el vault con
+las decisiones y este informe están en el repositorio público <https://github.com/osmateoramos/Proyecto-Final-PISA>.
 
 - **API:** solo lee los archivos de `salidas/`, no estima nada y nunca entrega datos por estudiante. Tiene documentación
   OpenAPI en `/docs`, versión `/v1` y un endpoint de predicción con los coeficientes de la F6.
@@ -691,7 +692,7 @@ esa bitácora, la IA se usó para:
 3. redactar como propuestas buena parte de las decisiones del registro, con alternativas para que el equipo eligiera;
 4. programar la API y el tablero siguiendo el documento de buenas prácticas del curso de Python;
 5. redactar borradores, entre ellos **este informe**, que Claude escribió el 2026-11-10 a partir de las salidas y del
-   vault, y que el equipo revisa sección por sección.
+   vault, y cuya versión de entrega cerró el equipo ese mismo día.
 
 **Qué no hizo la IA.** Según el registro y la bitácora:
 

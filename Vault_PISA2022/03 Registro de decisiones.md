@@ -2377,7 +2377,9 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   2. Las salidas nuevas `mat_afc_*` no entran a la API ni a `00_correr_todo.R`. Como la G4 congeló lo que consume la
      API, no hace falta crear `resultados-v2`. Si el equipo las quiere en la API, se decide aparte.
   3. Brayan confirma los datos de la corrida al revisar esta decisión.
-- **Estado:** 🟡 propuesta (borrador de Claude, 2026-11-10). Decide el equipo.
+- **Estado:** 🟡 propuesta (borrador de Claude, 2026-11-10). **No se aplicó en el informe entregado:** por el plazo
+  de entrega, el informe se cerró el 2026-11-10 sin incorporar este análisis (Mateo, 2026-11-10). El análisis queda
+  en el repositorio (scripts, salidas y `Hallazgos.md`, del PR #17).
 
 ### D-50 · 2026-11-10 · Clasificación de K1 con el criterio 2 de la rúbrica (corrige el borrador de Hallazgos.md)
 > [!warning] Borrador de Claude (2026-11-10), a pedido de Mateo
@@ -2417,4 +2419,6 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   2. Junto a los 5,57 puntos, el informe da la diferencia en coeficientes estandarizados (0,023).
   3. La frase de K1 para el Ministerio dice que es un resultado preliminar.
   - No cambia ninguna salida ni `resultados-v1`. Tampoco la API ni el tablero, que no guardan la clasificación.
-- **Estado:** 🟡 propuesta (borrador de Claude, 2026-11-10). Decide el equipo.
+- **Estado:** 🟡 propuesta (borrador de Claude, 2026-11-10). **No se aplicó en el informe entregado:** por el plazo
+  de entrega, el informe se cerró el 2026-11-10 con la clasificación de `Hallazgos.md` («hallazgo exploratorio», que
+  requiere confirmación en otra muestra o ciclo) (Mateo, 2026-11-10).

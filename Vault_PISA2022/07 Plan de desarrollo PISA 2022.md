@@ -538,8 +538,10 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
 
 ## F9 — Informe y sustentación (semana 8)  `[CONS]`
 
-- [ ] **9.1 Informe** en `Proyecto_PISA/informe/informe.Rmd` con citas de `referencias.bib`; cada cifra con su
-  script y salida.
+- [x] **9.1 Informe** en `Proyecto_PISA/informe/informe.Rmd` con citas de `referencias.bib`; cada cifra con su
+  script y salida. *(Versión de entrega cerrada el 2026-11-10 (Mateo, por el plazo): sin marcas de borrador ni «por
+  discutir», con las salvedades de la verificación de fuentes y las URL de Render. Las propuestas D-49 y D-50 no se
+  aplicaron. El PDF queda en `Proyecto_PISA/informe/informe.pdf`.)*
   - *Redacción (evaluación del 2026-11-08):* el diseño es transversal. «Explica» se usa solo como «varianza
     explicada», y el «efecto del NSE» se escribe «asociación» o «coeficiente», como ya declara el anteproyecto
     (línea 285 del `.Rmd`). Las conclusiones de la F4 se redactan como en D-35.

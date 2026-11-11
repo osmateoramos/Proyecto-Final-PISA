@@ -84,9 +84,12 @@ p_igual_sl <- as.numeric(sub("^igualdad p = ([0-9.]+);.*", "\\1", k1_sl))
 
 > **Estado del borrador.** Borrador completo redactado por Claude el 2026-11-10 con las salidas de las fases F1 a F7,
 > para que el equipo lo revise sección por sección (paso 9.1 del plan). Todas las cifras del texto y de las tablas se
-> leen de `Proyecto_PISA/salidas/` al compilar; ninguna se escribió a mano. Todas las fuentes citadas las verificó el
-> equipo contra el original (notas en `Vault_PISA2022/Literatura/`, 2026-11-10); los cortes de Chen (2007) se citan a
-> través de Sokolov (2019) porque el equipo no consiguió el artículo original. Los párrafos marcados *(interpretación, por
+> leen de `Proyecto_PISA/salidas/` al compilar; ninguna se escribió a mano. El equipo verificó todas las fuentes
+> citadas (notas en `Vault_PISA2022/Literatura/`, 2026-11-10), con tres salvedades: de @goh2024detection y
+> @pohl2014dealing solo se cotejó el resumen, no el texto completo; de @kohler2015taking y @mittal2022assessing, el
+> resumen dentro del PDF; y las referencias de software y de método (mirt, lavaan, Rubin y Wu) solo se cotejaron con sus
+> datos bibliográficos, porque no se les atribuye ningún resultado. Los cortes de Chen (2007) se citan a través de
+> Sokolov (2019) porque el equipo no consiguió el artículo original. Los párrafos marcados *(interpretación, por
 > discutir)* son lecturas propuestas, no resultados. El diseño es transversal: se escribe «asociación» o «coeficiente»,
 > nunca «efecto causal» (plan, paso 9.1). El anexo final explica las siglas, los códigos del proyecto (O, H, F, G, D,
 > K, S…) y los 29 indicadores del NSE. Los resultados están congelados con la etiqueta `resultados-v1` (Puerta G4,

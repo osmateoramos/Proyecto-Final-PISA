@@ -32,6 +32,11 @@ ent <- function(x) formatC(as.numeric(x), format = "d", big.mark = ".", decimal.
 pv <- function(p, d = 3) { p <- as.numeric(p); if (is.na(p)) "p no calculable" else if (p < 0.001) "p < 0,001" else paste0("p = ", num(p, d)) }
 rango <- function(x, d = 1, sep = " a ") paste0(num(min(x), d), sep, num(max(x), d))
 rango_y <- function(x, d = 1) rango(x, d, " y ")  # para «entre X y Y»
+# Las mismas cifras con punto decimal, para el Abstract en inglés
+num_en <- function(x, d = 1) { x <- as.numeric(x); x <- round(x + sign(x) * 1e-9, d)
+  formatC(x, format = "f", digits = d, big.mark = ",", decimal.mark = ".") }
+ent_en <- function(x) formatC(as.numeric(x), format = "d", big.mark = ",")
+rango_en <- function(x, d = 1) paste0(num_en(min(x), d), " to ", num_en(max(x), d))
 # Tablas en LaTeX (booktabs y longtable): los encabezados y los números no se parten. Las columnas de texto largo
 # llevan un ancho fijo (argumento `anchos`, por nombre de columna) y ahí el texto sigue en la línea siguiente.
 # Solo las tablas de más de 15 filas pueden partirse entre páginas (longtable).
@@ -118,30 +123,54 @@ p_igual_sl <- as.numeric(sub("^igualdad p = ([0-9.]+);.*", "\\1", k1_sl))
 # Resumen
 
 **Problema.** En Colombia la brecha socioeconómica en matemáticas se reporta con un índice de nivel socioeconómico (NSE)
-de una sola dimensión y con un puntaje global. Este proyecto pregunta cuánto se asocia el NSE con cada una de las cuatro
-competencias matemáticas de PISA 2022 (formular, emplear, interpretar y razonar) y cuánto de la brecha depende de cómo se
-mide el NSE y de cómo se califica la prueba.
+unidimensional y un puntaje global. Se pregunta cuánto se asocia el NSE con cada competencia matemática de PISA 2022 y
+si la brecha depende de cómo se mide el NSE y se califica la prueba.
 
-**Datos y métodos.** Se usan los `r ent(n_anal)` estudiantes colombianos de PISA 2022 con índice socioeconómico y al menos
-10 ítems de matemáticas vistos (`r num(pct_anal)` % de la población ponderada). El NSE se mide como constructo latente
-con análisis factorial y Teoría de Respuesta al Ítem (TRI); su invarianza se prueba por zona, sexo y sector; las
-matemáticas se calibran con un modelo TRI de cuatro competencias y se generan puntajes propios con una regresión latente;
-el funcionamiento diferencial de los ítems (DIF) por NSE y el tratamiento de las omisiones se evalúan con hipótesis
-preregistradas. Toda inferencia final usa los 10 valores plausibles, el peso final y las 80 réplicas BRR.
+**Datos y métodos.** Se analizan `r ent(n_anal)` estudiantes colombianos con NSE y al menos 10 ítems de
+matemáticas (`r num(pct_anal)` % de la población ponderada). El NSE se mide como constructo latente con análisis factorial
+y Teoría de Respuesta al Ítem (TRI), y su invarianza se prueba por zona, sexo y sector. Las matemáticas se calibran con un
+modelo TRI de cuatro competencias; el funcionamiento diferencial de los ítems (DIF) y las omisiones se evalúan con
+hipótesis preregistradas. Se usan valores plausibles, pesos y réplicas BRR.
 
-**Resultados.** El NSE tiene dos dimensiones, una económica y otra de libros en el hogar (H1), aunque el ajuste no llega
-a los cortes usuales. Las cuatro competencias correlacionan entre `r rango_y(c(ma[modelo == "4D", correlacion_min], ma[modelo == "4D", correlacion_max]), 3)`
-y un modelo de una dimensión ajusta mejor según el BIC (H8 se rechaza). Por cada desviación estándar del NSE económico,
-el desempeño es entre `r rango_y(eco$por_DE_de_la_EAP)` puntos PISA mayor según la competencia, más en *interpretar*; la
-igualdad entre competencias se rechaza (`r pv(si$p)`), pero la diferencia es pequeña (`r num(h5c$diferencia_interpretar_menos_emplear, 2)`
-puntos entre interpretar y emplear, resultado exploratorio). La pendiente del NSE es mayor en los colegios privados
-(H6, `r pv(h6s$p_Holm)` con Holm). Solo `r n_dif` de `r n_eleg` ítems tienen DIF por NSE, y tratar las omisiones rápidas
-como faltantes reduce la brecha apenas `r rango(h4b$reduccion_b, 3)` desviaciones estándar. Los cinco resultados
-principales se mantienen en las sensibilidades de la fase de robustez.
+**Resultados.** El NSE tiene dos dimensiones (económica y libros en el hogar), con ajuste bajo los cortes usuales. Las
+competencias correlacionan entre `r rango_y(c(ma[modelo == "4D", correlacion_min], ma[modelo == "4D", correlacion_max]), 3)`,
+y el BIC prefiere una dimensión. Una desviación estándar del NSE económico se asocia con `r rango(eco$por_DE_de_la_EAP)`
+puntos PISA más, algo más en *interpretar* (`r num(h5c$diferencia_interpretar_menos_emplear, 2)` puntos sobre emplear;
+exploratorio). La pendiente del NSE es mayor en colegios privados. Solo `r n_dif` de `r n_eleg` ítems tienen DIF por NSE,
+y tratar las omisiones rápidas como faltantes reduce la brecha apenas `r rango(h4b$reduccion_b, 3)` desviaciones
+estándar.
 
-**Conclusión.** En estos datos, la brecha socioeconómica en matemáticas no es un artefacto de la calificación: casi no
-cambia con el tratamiento de las omisiones y no la explican ítems sesgados. Lo que sí queda limitado es la posibilidad
-de separar las cuatro competencias con los ítems que ve cada estudiante.
+**Conclusión.** La brecha no es un artefacto de la calificación, pero las competencias casi no se
+distinguen con los ítems que ve cada estudiante.
+
+**Palabras clave:** nivel socioeconómico, teoría de respuesta al ítem, ecuaciones estructurales, invarianza de
+medición, PISA 2022.
+
+## Abstract {-}
+
+**Problem.** In Colombia, the socioeconomic gap in mathematics is reported with a one-dimensional socioeconomic status
+(SES) index and a single score. We ask how strongly SES is associated with each of the four PISA 2022 mathematics
+processes, and whether the gap depends on how SES is measured and the test is scored.
+
+**Data and methods.** We analyze `r ent_en(n_anal)` Colombian PISA 2022 students with an SES index who saw at least 10
+mathematics items (`r num_en(pct_anal)` % of the weighted population). SES is measured as a latent construct with factor
+analysis and item response theory (IRT), and its invariance is tested by area, sex and school sector. Mathematics is
+calibrated with a four-dimensional IRT model; differential item functioning (DIF) and omissions are evaluated against
+preregistered hypotheses. Estimates use plausible values, weights and BRR replicates.
+
+**Results.** SES has two dimensions (economic and books at home), with fit below the usual cutoffs. The processes
+correlate between `r num_en(ma[modelo == "4D", correlacion_min], 3)` and
+`r num_en(ma[modelo == "4D", correlacion_max], 3)`, and the BIC favors one dimension. One standard deviation of
+economic SES is associated with `r rango_en(eco$por_DE_de_la_EAP)` more PISA points, slightly more in *interpreting*
+(`r num_en(h5c$diferencia_interpretar_menos_emplear, 2)` points above employing; exploratory). The SES slope is steeper
+in private schools. Only `r n_dif` of `r n_eleg` items show DIF by SES, and treating rapid omissions as missing reduces
+the gap by only `r rango_en(h4b$reduccion_b, 3)` standard deviations.
+
+**Conclusion.** The socioeconomic gap is not an artifact of scoring, but the processes can hardly be separated with the
+items each student sees.
+
+**Keywords:** socioeconomic status, item response theory, structural equation modeling, measurement invariance,
+PISA 2022.
 
 # Planteamiento del problema
 
@@ -233,7 +262,7 @@ La exclusión **no es aleatoria**. Los `r ent(excl$n)` excluidos rinden `r num(-
 los incluidos (EE `r num(excl$ee_dif)`; z = `r num(excl$z, 2)`), y la diferencia es mayor entre quienes no tienen ESCS
 (`r num(-ce[grupo == "excluido: sin ESCS", dif_vs_incluidos])` puntos). Los análisis describen, por tanto, a la
 población analítica (`r num(pct_anal)` % de la ponderada) y no a todos los estudiantes. Para medir cuánto importa esto,
-la fase de robustez repite los resultados principales con un ajuste de no respuesta por colegio (D-38, sección 8).
+la fase de robustez repite los resultados principales con un ajuste de no respuesta por colegio (D-38, sección \ref{robustez}).
 
 ## Validación del diseño (Puerta G1)
 
@@ -533,7 +562,7 @@ if (is.null(cfu)) pendiente("sem_comparacion_fuentes.csv") else
   `r num(aj$rmsea.scaled, 3)` y SRMR `r num(aj$srmr, 3)`. `lavaan` no pudo calcular las versiones *robust*, y las
   *scaled* tienden a ser optimistas, así que no se puede afirmar que el ajuste sea bueno.
 
-# Robustez (F7)
+# Robustez (F7) {#robustez}
 
 **Diseño (D-45, fijado antes de correr).** Se pusieron a prueba cinco resultados candidatos con cinco sensibilidades:
 

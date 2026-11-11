@@ -101,9 +101,14 @@ Docker, en el plan gratuito. Para desplegar (lo hace un integrante con su cuenta
 
 En el plan gratuito los servicios se duermen después de un rato sin uso; la primera visita tarda en despertarlos.
 
+**Desplegado el 2026-11-10** (cuenta de Mateo, rama `main`):
+
+- API: https://pisa-api-k2tn.onrender.com (documentación en `/docs`). Render le agregó el sufijo `-k2tn`,
+  probablemente porque el nombre `pisa-api` ya estaba tomado.
+- Tablero: https://pisa-tablero.onrender.com, con `PISA_API_URL=https://pisa-api-k2tn.onrender.com`.
+
 ## Pendiente (F8)
 
-- Desplegar en Render con `render.yaml` (requiere la cuenta de un integrante) y anotar las URL públicas.
 - RAG opcional (paso 8.5, D-04 y D-06).
 - *Hecho el 2026-11-10 en el equipo de Mateo:* las dos imágenes (`pisa-api` y `pisa-tablero`) se construyeron y se
   corrieron localmente con Docker; la API respondió en `/health` y el tablero cargó sus páginas contra ella. Las

@@ -527,6 +527,10 @@ Script: `06_sem_competencias.R` · `lavaan`, `lavaan.mi`, `semTools`.
   *(2026-11-10: las imágenes de la API y del tablero se construyeron y se corrieron juntas con Docker en el equipo de
   Mateo; el despliegue en Render queda configurado en `render.yaml` (raíz del repositorio) y lo hace un integrante con
   su cuenta, según `Proyecto_PISA/api/README.md`.)*
+  *(Desplegado el 2026-11-10 por Mateo con su cuenta de Render, como Blueprint de `render.yaml` sobre `main`
+  (`5a17d63`): API en https://pisa-api-k2tn.onrender.com y tablero en https://pisa-tablero.onrender.com. Claude
+  comprobó que `/health` responde, que `/v1/matematicas/cargas-competencia` devuelve datos y que el tablero carga las
+  hipótesis desde la API.)*
 - [ ] **8.5 RAG (opcional, D-04):** LlamaIndex + Chroma; corpus = notas del vault + PDF de Zotero + Technical Report;
   embeddings locales; endpoint `/preguntar` que responde citando la fuente; evaluación con 15 preguntas cuya
   respuesta ya conocen.

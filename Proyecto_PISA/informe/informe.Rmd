@@ -658,8 +658,10 @@ tablero en Streamlit que la consume (`Proyecto_PISA/tablero/`, D-47).
 - **Tablero:** recorre el proyecto fase por fase, con textos que explican cada resultado y el diagrama interactivo del
   modelo estructural.
 - **Calidad:** los dos tienen pruebas automáticas (`pytest`), Dockerfile e integración continua en GitHub Actions.
-- **[PENDIENTE]:** el despliegue en Render (configurado en `render.yaml`, en la raíz del repositorio) y las URL
-  públicas.
+- **Despliegue:** los dos están publicados en Render, en el plan gratuito, con la configuración de `render.yaml` (en
+  la raíz del repositorio). La API está en <https://pisa-api-k2tn.onrender.com> (documentación en
+  <https://pisa-api-k2tn.onrender.com/docs>) y el tablero en <https://pisa-tablero.onrender.com>. En el plan
+  gratuito los servicios se apagan cuando no se usan, así que la primera visita puede tardar 50 segundos o más.
 
 # Conclusiones
 

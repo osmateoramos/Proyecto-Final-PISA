@@ -74,11 +74,12 @@ def inicio() -> None:
         ("F3", "O1 · Medir el NSE", "AFE, AFC y TRI del NSE; H1", "Cerrada · Puerta G2"),
         ("F4", "O2 · Invarianza", "Invarianza por zona, sexo y sector; DIF de los bienes; H2", "Cerrada"),
         ("F5", "O3 · Competencias", "TRI de 1 y 4 dimensiones, puntajes propios, DIF, omisiones; H3, H4, H7 y H8",
-         "Cerrada · Puerta G3 (acta por firmar)"),
+         "Cerrada · Puerta G3 (faltan firmas del acta)"),
         ("F6", "O4 · Modelo estructural", "NSE → 4 competencias con VP de la OCDE y robustez; H5 y H6", "Cerrada"),
-        ("F7", "Robustez y novedad", "5 sensibilidades, búsqueda de antecedentes y hallazgos", "En curso"),
-        ("F8", "O5 · Producto", "API y tablero", "Primera versión"),
-    ], columns=["Fase", "Objetivo", "Qué se hizo", "Estado (2026-11-09)"]), hide_index=True, use_container_width=True)
+        ("F7", "Robustez y novedad", "5 sensibilidades, búsqueda de antecedentes y hallazgos",
+         "Cerrada · Puerta G4, resultados-v1 (faltan firmas del acta)"),
+        ("F8", "O5 · Producto", "API y tablero", "Funcionan en local; falta desplegarlos en Render"),
+    ], columns=["Fase", "Objetivo", "Qué se hizo", "Estado (2026-11-10)"]), hide_index=True, use_container_width=True)
 
     st.subheader("Hipótesis preregistradas")
     hip = datos.hipotesis()

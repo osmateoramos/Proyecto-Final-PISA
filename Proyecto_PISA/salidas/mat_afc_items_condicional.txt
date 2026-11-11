@@ -1,0 +1,65 @@
+Covarianza de los puntos frente a la del modelo (máx. dif.): 0.001 
+Control de probabilidades frente a mirt: correcto
+16:59:02 matriz de log-verosimilitud lista
+17:03:12 ítem 20 de 232
+17:07:32 ítem 40 de 232
+17:12:27 ítem 60 de 232
+17:16:38 ítem 80 de 232
+17:21:09 ítem 100 de 232
+17:25:24 ítem 120 de 232
+17:34:30 ítem 140 de 232
+17:47:40 ítem 160 de 232
+18:01:04 ítem 180 de 232
+18:14:30 ítem 200 de 232
+18:26:37 ítem 220 de 232
+
+=== A. ¿Mide su competencia? (carga propia >= 0,30 y límite inferior > 0) ===
+Clave <competencia>
+   competencia items cumple_A   pct carga_mediana carga_min
+        <char> <int>    <int> <num>         <num>     <num>
+1:     emplear    75       53  70.7          0.48     -0.21
+2:    formular    47       30  63.8          0.50     -0.07
+3: interpretar    57       51  89.5          0.53      0.02
+4:     razonar    53       39  73.6          0.63     -0.01
+Total A: 173 de 232 ( 74.6 %)
+Control: correlación carga condicional – carga del 5.3: 0.9989 
+Ítems que no cumplen A, por respuestas (<500 / >=500): 2 / 57 
+
+=== B. ¿Únicamente esa? (BH 5 % y alguna carga cruzada >= 0,30) ===
+Clave <competencia>
+   competencia items sig_BH cruzada_030 marcados   pct
+        <char> <int>  <int>       <int>    <int> <num>
+1:     emplear    75      5          73        5   6.7
+2:    formular    47      2          46        2   4.3
+3: interpretar    57      5          57        5   8.8
+4:     razonar    53      3          51        3   5.7
+Total B: 15 de 232 ( 6.5 %)
+Mediana de LR de las cruzadas (esperado con 3 gl si no hay cruzadas: 2,37): 3.62 
+Convergencia con avisos en 0 ítems
+
+=== C. ¿En cuál competencia encaja mejor? (azar: 25 %) ===
+Clave <competencia>
+   competencia items asignada_es_mejor   pct
+        <char> <int>             <int> <num>
+1:     emplear    75                20  26.7
+2:    formular    47                19  40.4
+3: interpretar    57                23  40.4
+4:     razonar    53                11  20.8
+Total C: 73 de 232 ( 31.5 %)
+Clave <asignada>
+      asignada emplear formular interpretar razonar
+        <char>   <int>    <int>       <int>   <int>
+1:     emplear      20       18          23      14
+2:    formular       7       19           8      13
+3: interpretar      11       15          23       8
+4:     razonar      12       18          12      11
+Mediana de ventaja en log-verosimilitud de la mejor frente a la asignada: 0.307 
+
+=== E. Residuos Q3, pares de unidades distintas con >= 200 estudiantes en común ===
+Clave <modelo, tipo>
+   modelo                   tipo pares Q3_medio Q3_mediana pct_marcados
+   <char>                 <char> <int>    <num>      <num>        <num>
+1:     1D competencias distintas  2512  -0.0242    -0.0212          1.1
+2:     1D      misma competencia   830  -0.0254    -0.0248          2.0
+3:     4D competencias distintas  2512  -0.0200    -0.0185          1.0
+4:     4D      misma competencia   830  -0.0348    -0.0337          3.4

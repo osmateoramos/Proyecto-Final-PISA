@@ -1,0 +1,45 @@
+=== Por qué falla A ===
+No cumplen A: 59 | carga propia < 0,30: 56 | carga >= 0,30 pero límite <= 0: 3 
+Carga propia < 0,20: 32 | < 0: 5 | límite inferior <= 0: 17 
+n de los que no cumplen (mín, mediana, máx): 491 702 1333 
+n de los que cumplen (mín, mediana, máx): 493 757 1517 
+
+=== ¿También son débiles con UNA sola dimensión? ===
+Correlación carga propia 4D - carga 1D: 0.9992 
+Diferencia absoluta carga propia - 1D (mediana, máx): 0.008 0.071 
+Clave <cumple_A, carga_1D_mayor_030>
+   cumple_A carga_1D_mayor_030     N
+     <lgcl>             <lgcl> <int>
+1:    FALSE              FALSE    56
+2:    FALSE               TRUE     3
+3:     TRUE              FALSE     1
+4:     TRUE               TRUE   172
+
+=== Dificultad y formato (proporción con puntaje > 0, sin pesos) ===
+Clave <A_ok>
+     A_ok items p_acierto_mediana p_min p_max
+   <lgcl> <int>             <num> <num> <num>
+1:  FALSE    59             0.285 0.003 0.671
+2:   TRUE   173             0.294 0.006 0.832
+Clave <formato>
+        formato items cumplen   pct
+         <char> <int>   <int> <num>
+1:     C humano    35      32  91.4
+2: S automatico   197     141  71.6
+Clave <tercio_dificultad>
+   tercio_dificultad items cumplen   pct
+              <fctr> <int>   <int> <num>
+1:           difícil    78      61  78.2
+2:             media    77      44  57.1
+3:             fácil    77      68  88.3
+
+=== Sobre B: ¿discrimina el criterio de magnitud? ===
+Ítems con cruzada >= 0,30: 227 de 232 
+Ítems con alguna carga libre mayor que 1 en valor absoluto: 197 
+Mediana del máximo valor absoluto de carga libre: 1.86 
+p de cruzadas < 0,05 sin corregir: 45 | BH 5 %: 15 
+
+=== Sobre C: ventaja de la mejor dimensión ===
+Ítems con ventaja >= 1,92 (equivale a LR 3,84): 33 de 232 
+Ítems asignados como mejores: 73 
+Permutando etiquetas dentro de formato: esperado 58.2 | percentiles 2,5 y 97,5: 46 71 | p: 0.0126 

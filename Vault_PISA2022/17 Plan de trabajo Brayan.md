@@ -2,7 +2,7 @@
 tipo: guia
 estado: por_verificar
 lectura: "redactado por Claude con Brayan; falta revisión del equipo"
-pendientes: "Equipo: aceptar o ajustar las propuestas de las secciones 2, 3.2 y 4. Brayan: revisar y asumir la revisión del PR #12 (sección 6) y decidir las firmas (sección 7)"
+pendientes: "Equipo: aceptar o ajustar las propuestas de las secciones 2, 3.2 y 4. Brayan: revisar la sección 9 (H8) y decidir si propone al equipo las pruebas de la 9.5 (sin número: D-32 ya existe). Brayan: revisar el AFC (sección 10 y la sección final de Hallazgos) y decidir si se propone como D-49. Brayan: firmar D-16 y D-18 a D-48 y las actas de la G2, la G3 y la G4 (acta de la G4, pendientes)"
 verificado_por:
 fecha_verificacion:
 ---
@@ -252,6 +252,10 @@ de esa tabla y las dos ediciones chocarían.
 | 2026-10-18 | Brayan | Crear el PR #13 y publicar la revisión en el PR #12 | Con la sesión de GitHub de Brayan en el navegador integrado, Claude llenó y creó el PR #13 (`Brayan` → `main`, listo para revisión) y publicó en el #12 un comentario con las secciones 6.4 y 6.5 y el veredicto. No aprobó el PR, a pedido de Brayan | El comentario dice que el siguiente número libre es D-26, pero Vanessa ya había usado D-26 y D-27 minutos antes: es un error de Claude, corregido en esta nota | borrador, sin confirmar |
 | 2026-10-18 | Brayan | Revisar la F4 de Vanessa (O2) y reproducirla con datos | Claude leyó `04_invarianza.R`, D-25, D-26 y la F4 del plan 07. Comprobó en el código de `mirt` la causa que da D-26 y reprodujo los pasos 4.1 a 4.5 en una copia aparte, con el script cortado en la línea 189: 4 de 5 salidas idénticas y 1 que difiere en el redondeo de una celda. Redactó la sección 8 | El 4.4 (DIF) no se revisó ni se corrió, porque sus salidas no están publicadas | borrador, sin confirmar |
 | 2026-10-18 | Brayan | Publicar la revisión de la F4 en el PR #12 | Con la sesión de GitHub de Brayan en el navegador integrado, Claude publicó la sección 8 como comentario (`issuecomment-6256805371`), sin aprobar el PR, a pedido de Brayan | Ninguna | borrador, sin confirmar |
+| 2026-10-23 | Brayan | Revisar H8: cada supuesto y cómo se construyen sus bases | Claude leyó el anexo A y las etiquetas del `.SAV` con lectores propios, reprodujo los pasos 5.1 a 5.3 en una copia aparte (5 salidas; solo cambian los minutos), revisó con datos la co-observación, las unidades y las omisiones, recalculó la verosimilitud con más puntos y corrió el Q3 dentro de las unidades. Redactó la sección 9 | El primer Q3 marcaba el 17,7 % de los pares entre unidades; antes de interpretarlo, Claude lo repitió con el número de estudiantes por par y vio que se concentra en pares con menos de 50 | borrador, sin confirmar |
+| 2026-10-23 | Brayan | Prueba R2: H8 con la omisión como faltante | A pedido de Brayan, Claude repitió en la copia aparte el 5.3 con la matriz (c), con la lectura fijada antes de correrla (sección 9.5), y anotó el resultado en la sección 9.7: la regla de H8 tampoco se cumple y las correlaciones cambian 0,007 como máximo | Claude había sugerido (sección 9.2) que la omisión como 0 podía subir las correlaciones: R2 no lo confirma, y queda anotado como error de interpretación | borrador, sin confirmar |
+| 2026-11-08 | Brayan | AFC de los ítems de matemáticas por competencia, antes del plan B de la F6 (sección 10) | Claude fijó la lectura antes de correr, reconstruyó los modelos de 1 y 4 dimensiones en una copia aparte, corrió las pruebas por ítem (A, B, C y E) y empezó el control D. Explicó la demora y comprobó que solo entran datos de Colombia (prefijo 170 en los 6.886 estudiantes) | Claude estimó de 2 a 5 minutos por ajuste del control y fueron unos 30; lo dijo y repartió el control en 3 procesos. Un cálculo directo más rápido no reprodujo el control de `mirt` (−99.814,11 frente a −99.810,19) y no se usó | borrador, sin confirmar |
+| 2026-11-10 | Brayan | Cerrar el AFC, revisar GitHub y agregar el AFC como hallazgo | Claude reanudó los procesos pausados, unió el control D y revisó GitHub: 66 commits nuevos en `main`, 0 PR abiertos y la etiqueta `resultados-v1`. Avanzó la rama local `Brayan` hasta `origin/main` (sin `push`). Copió 6 scripts y 5 salidas al proyecto, cambiando solo rutas y nombres, y probó 2 scripts con salidas idénticas. Redactó la sección final de [[Hallazgos]] y la sección 10 | Vio que D-32 ya existe (Vanessa, 2026-11-08) y quitó el número al borrador de la sección 9.5. Vio que D-48 de Mateo responde parte de la misma pregunta y presentó el AFC como complemento | borrador, sin confirmar |
 
 ## 6. Revisión del PR #12 (rama `Vanessa` → `main`): borrador para Brayan
 
@@ -575,3 +579,285 @@ resultado.
 - aprobable; las observaciones 1 a 4 son mejoras, y la 5 es de redacción;
 - el 4.4 se revisa cuando se publiquen sus salidas;
 - D-26 se puede firmar: su causa está comprobada.
+
+## 9. Revisión de H8 (F5, pasos 5.1 a 5.3): borrador para Brayan
+
+Borrador de Claude del 2026-10-23, a pedido de Brayan, para revisar cada supuesto de H8 y cómo se construyen sus
+bases. Cubre `05_explorar_items.R` y `05_tri_competencias.R` hasta la línea 148 (fin del 5.3) en `main` (`3dc44d3`),
+D-13, D-14, D-27, D-29, la F5 del plan 07 y la H8 de [[09 Hipótesis preregistradas]]. Los scripts de la revisión están
+en el scratchpad de Claude, no en el proyecto, y solo imprimen agregados (Ley 1581).
+
+> [!info] Qué es dato, qué es fuente y qué es interpretación
+> Las cifras salen de los datos o de las salidas que se indican. Las lecturas marcadas «interpretación de Claude» no
+> tienen fuente en el vault: son hipótesis para discutir, no resultados.
+
+### 9.1 Construcción de las bases: lo que se comprobó y cuadra
+
+| Pieza | Qué supone H8 | Cómo se comprobó | Resultado |
+|---|---|---|---|
+| Bloque de Colombia y estados de cada celda (D-13) | El omitido, el no alcanzado y el no administrado están bien separados | Cadena de `main` reproducida el 2026-10-18 (sección 5, fila de ese día); aquí se usa el mismo `COL_cognitivo.rds` | Sin cambios frente al repositorio |
+| Muestra de 6.886 (D-14 b, con ESCS) | Se calibra con la población del proyecto | Misma reproducción; hoy `mat_matriz_resumen.csv` vuelve a dar 6.886 | Cuadra |
+| Clasificación ítem → competencia | Cada ítem va a la competencia que le da la OCDE | Lectura propia del anexo A (hoja `Mathematics-CBA`, columna K «Process»), con un lector escrito aparte, sin el código del proyecto | 233 de 234 ítems coinciden en competencia, unidad, formato y parámetros internacionales; la excepción es el hallazgo 1 |
+| Regla de puntaje (D-27 punto 1) | El primer dígito es el crédito | La regla del script aplicada a las etiquetas oficiales del `.SAV` (solo la cabecera, sin respuestas) | 563 de 564 códigos coinciden con «No / Partial / Full credit»; la excepción es el hallazgo 2 |
+| Matrices (a), (b) y (c) del 5.2 y el NT10 | Omitida = 0 en (a), omisión rápida faltante en (b), toda omisión faltante en (c) | `05_explorar_items.R` y el 5.2 regenerados en una copia aparte | Las 4 salidas son **idénticas byte a byte**: `items_competencia.csv`, `items_respuestas.csv`, `items_resumen_competencia.csv` y `mat_matriz_resumen.csv` (12.490 omisiones, 4.852 rápidas, dato en el 11,66 % de las celdas) |
+| Pesos y BIC | `W_FSTUWT` normalizados a suma 6.886; BIC con N = 6.886 | Línea 103 y cuenta a mano: −2 · logLik + parámetros · ln 6.886 | 1D: 199.620,4 + 526 · 8,8373 = 204.268,8; 4D: 199.594,6 + 532 · 8,8373 = 204.296,0. Coinciden con `mat_ajuste.csv` |
+| Regla de H8 en el código (línea 146) | La misma de la nota 09 | Lectura | «Menor BIC y máximo ≤ 0,95» equivale a «ninguna correlación > 0,95» |
+
+- En el anexo, por proceso: emplear 75, interpretar 57, razonar 54 (con el retirado) y formular 48. Calibrables en
+  Colombia: 75, 57, 53 y 47, porque `CMA112Q02S` (razonar) está retirado y `CMA143Q01S` (formular) no tiene
+  respuestas (D-27).
+
+### 9.2 Supuestos revisados con los datos
+
+Script `revisar_supuestos_h8.R` sobre `COL_mat_respuestas.rds` de la copia (versión a, salvo que se diga otra cosa).
+
+1. **Las correlaciones se pueden estimar con el diseño adaptativo.** Cumplido.
+   - 6.832 de los 6.886 estudiantes tienen al menos un ítem de las 4 competencias, y 54 tienen de 3.
+   - Por par de competencias, entre 6.289 (formular–interpretar) y 6.621 (emplear–interpretar) estudiantes tienen al
+     menos 3 ítems en las dos.
+   - Ítems por estudiante (mediana): emplear 9, formular 5, interpretar 7 y razonar 6.
+   - Las correlaciones salen de estudiantes que respondieron las dos competencias, no de una extrapolación. Que haya
+     pocos ítems por competencia pesa en los puntajes individuales (5.4), no en la correlación latente.
+2. **Independencia local dentro de las unidades (estímulo común).** El proyecto no la comprobó (hallazgo 3). En la
+   copia, la dependencia sale baja (sección 9.4).
+   - De 99 unidades, 76 tienen 2 o más ítems y **57 de esas 76 mezclan competencias**: 166 de los 232 ítems están en
+     una unidad mixta.
+   - Dentro de una misma unidad hay 133 pares de ítems de competencias distintas y 68 de la misma. La mediana de
+     estudiantes que respondieron los dos ítems es 760 y 722,5 (`revisar_unidades_y_logLik.R`).
+   - *Interpretación de Claude:* si dos ítems de una unidad comparten algo además de su competencia (el estímulo), en
+     el modelo de 4 dimensiones esa covarianza extra solo la puede absorber la correlación entre factores cuando los
+     ítems son de competencias distintas, lo que la subiría. En los pares de la misma competencia pasaría lo
+     contrario. Como dos tercios de los pares son mixtos, el sesgo esperado es hacia arriba, pero hay que medirlo.
+3. **La omisión calificada como 0 (versión a).** Es el criterio de la OCDE (D-13, TR p. 211) y es correcto para el
+   análisis principal, pero puede no ser neutral para H8.
+   - Proporción media de omisiones: emplear 0,054, formular 0,077, interpretar 0,065 y razonar 0,085.
+   - La proporción de omisiones de un estudiante en una competencia se correlaciona con la de otra entre 0,37 y 0,44.
+     373 estudiantes omiten algo en las 4 competencias y 2.669 no omiten nada.
+   - *Interpretación de Claude:* la tendencia a omitir es en parte común a las 4 competencias. Calificada como 0,
+     entra en los 4 factores a la vez y podría subir sus correlaciones. H8 se decidió solo con la versión (a) (plan
+     07, 5.3).
+   - **R2 no confirma esa interpretación** (sección 9.7): con la omisión como faltante, las correlaciones cambian
+     0,007 como máximo. La hipótesis era de Claude, y queda descartada.
+4. **Con pesos, el BIC es descriptivo** (D-19 punto 4).
+   - La ganancia del modelo de 4 dimensiones es de 12,9 en la log-verosimilitud, con 6 parámetros más. Con
+     pseudo-verosimilitud, eso no es una prueba χ² válida.
+   - La regla preregistrada es la que manda, y se aplicó bien.
+5. **Precisión de las correlaciones.** El 5.3 se estima con `SE = FALSE` (línea 109), así que no hay intervalo para
+   ninguna correlación.
+   - Emplear–interpretar (0,951) está a 0,001 del corte: por sí sola no sería evidencia fuerte.
+   - La condición la sostiene emplear–razonar (0,976).
+
+### 9.3 Hallazgos (propuestas; las decide el equipo)
+
+1. **El retirado `CMA112Q02S` no queda marcado.**
+   - En `items_competencia.csv` tiene la competencia vacía y `retirado = FALSE`. La celda del anexo dice
+     «CMA112Q02⏎(Dropped)», con un salto de línea, y la expresión de la línea 64 de `05_explorar_items.R`
+     (`" *\\(Dropped\\)"`) solo admite espacios.
+   - No afecta a H8, porque el ítem no tiene respuestas y no es calibrable. Pero D-27 dice que está retirado y el
+     archivo no lo refleja.
+   - Propuesta: `"\\s*\\(Dropped\\)"`, y que el script se detenga si algún ítem queda sin competencia.
+2. **`DMA161Q04C` tiene dos códigos de crédito completo** (0 = *No credit*, 1 y 2 = *Full credit*, etiquetas del
+   `.SAV`).
+   - La regla daría 2 al código 2, pero en Colombia solo aparecen el 0 y el 1 (412 respuestas). Es latente: no cambia
+     nada aquí.
+   - Propuesta: anotarlo en D-27 junto a `DM462Q01C`.
+3. **La P1 (Q3 dentro de las unidades) no está programada.** D-27 punto 9 la incluye y el plan 07 la pone en el 5.3,
+   que está marcado como hecho. Ningún script de la F5 calcula el Q3; solo lo hace `03_nse_tri.R`, en la F3.
+   - Claude la corrió en la copia como revisión (sección 9.4): la dependencia es baja. Falta que quede en el script y
+     en `salidas/` del proyecto.
+4. **La matriz de correlaciones no queda en un archivo.**
+   - `mat_ajuste.csv` guarda solo la mínima y la máxima. El 0,951 de emplear–interpretar que citan el plan 07, la
+     nota 09 y D-29 sale de la consola, no de una salida.
+   - Propuesta: guardar `salidas/mat_correlaciones_4D.csv`.
+5. **Menor:** `correlaciones()` (línea 132) pone los nombres de las competencias sin comprobar el orden de los
+   factores que devuelve `mirt`. En esta corrida el orden es el correcto (sección 9.4); la propuesta es agregar un
+   `stopifnot()` para que siga así si cambia la sintaxis.
+
+### 9.4 Reproducción del 5.3 y pruebas numéricas (2026-10-23, de 19:35 a 19:59)
+
+- **Cómo se hizo:** copia aparte de `main` (`3dc44d3`), fuera del proyecto y de OneDrive, sin cachés de modelos.
+  - Entradas: `COL_cognitivo.rds` de `datos/`, y `COL_nse.rds` y `COL_nse_tri.rds` de la reproducción de la sección 6.3.
+    `03_nse_medicion.R` no cambia entre `152691a` y `3dc44d3`.
+  - Se corrieron `05_explorar_items.R` y `05_tri_competencias.R` **hasta la línea 148** (fin del 5.3), copiado sin
+    cambios, para no correr el 5.3b ni el 5.4.
+- **Resultado:** `mat_ajuste.csv` es igual al de `main` salvo en la columna de minutos (1D 3,1 frente a 7; 4D 20,8
+  frente a 45,3). Coinciden la convergencia, las iteraciones (123 y 258), la log-verosimilitud, los parámetros, el AIC,
+  el BIC y las correlaciones mínima y máxima. `mirt` repite el aviso de que la log-verosimilitud bajaba cerca de la
+  solución.
+- **Matriz completa de correlaciones del modelo 4D** (salida de consola del 5.3 en la copia; en el proyecto no queda
+  en ningún archivo, hallazgo 4):
+
+  | | Emplear | Formular | Interpretar | Razonar |
+  |---|---|---|---|---|
+  | Emplear | 1 | 0,940 | 0,951 | 0,976 |
+  | Formular | 0,940 | 1 | 0,897 | 0,945 |
+  | Interpretar | 0,951 | 0,897 | 1 | 0,906 |
+  | Razonar | 0,976 | 0,945 | 0,906 | 1 |
+
+  - El orden de los factores que devuelve `mirt` es `EMP FOR INT RAZ`, el mismo que asume `correlaciones()`: el
+    hallazgo 5 no produce un error aquí.
+- **Error de la integración con 1.000 puntos** (`revisar_unidades_y_logLik.R`): la log-verosimilitud de cada modelo,
+  con sus parámetros fijos en los estimados, se recalculó con más puntos QMC.
+
+  | Puntos QMC | 1D | 4D | Ganancia del 4D | Diferencia de BIC (4D − 1D) |
+  |---|---|---|---|---|
+  | 1.000 (los del 5.3) | −99.810,19 | −99.797,32 | 12,9 | +27,3 |
+  | 5.000 | −99.809,82 | −99.794,96 | 14,9 | +23,3 |
+  | 10.000 | −99.809,60 | −99.794,83 | 14,8 | +23,5 |
+  | 20.000 | −99.809,54 | −99.794,87 | 14,7 | +23,7 |
+
+  - Con 1.000 puntos, el modelo de 4 dimensiones subestima su log-verosimilitud en unos 2,5 puntos, y el de 1, en
+    unos 0,7. Entre 5.000 y 20.000 puntos, el de 4 dimensiones varía menos de 0,15 y el de 1, menos de 0,3.
+  - Con eso, el BIC sigue favoreciendo al de 1 dimensión, por 23,7 en vez de 27,3. Para invertirlo, la ganancia
+    tendría que llegar a 26,5 (= 6 · ln 6.886 / 2), y está en 14,7. El AIC favorece al de 4, por 17,3 en vez de 13,8.
+  - **Se confirma la interpretación de Vanessa** (plan 07, 5.3): el aviso de `mirt` es del tamaño del ruido de la
+    integración y no cambia la condición del BIC.
+  - *Límite:* los parámetros se dejaron fijos en los estimados con 1.000 puntos. Reestimar con más puntos podría
+    subir un poco la log-verosimilitud y mover las correlaciones; eso no se probó.
+- **Q3 dentro de las unidades (P1 de D-27 punto 9; `revisar_q3_unidades.R`):** como el 3.3b de la F3, sin pesos y con
+  el corte |Q3| > 0,2. En el modelo de 4 dimensiones, las EAP salen de integración QMC.
+
+  | Tipo de par | Pares | Mediana de estudiantes con los dos ítems | Q3 medio (1D / 4D) | Marcados 1D | Marcados 4D |
+  |---|---|---|---|---|---|
+  | Misma unidad, competencias distintas | 133 | 760 | 0,030 / 0,032 | 4 (3,0 %) | 4 (3,0 %) |
+  | Misma unidad, misma competencia | 68 | 722,5 | 0,027 / 0,012 | 2 (2,9 %) | 1 (1,5 %) |
+  | Unidades distintas, ≥ 200 estudiantes | 3.342 | 242 | — | 45 (1,3 %) | 52 (1,6 %) |
+  | Unidades distintas, de 50 a 199 | 10.950 | 104 | — | 923 (8,4 %) | 917 (8,4 %) |
+  | Unidades distintas, < 50 | 6.540 | 26 | — | 2.697 (41,2 %) | 2.711 (41,5 %) |
+
+  - Entre unidades distintas, el Q3 medio es −0,028 (1D) y −0,027 (4D), cerca del −1/28 = −0,036 que se espera bajo
+    independencia con 29 ítems por estudiante. Otros 5.763 pares no tienen ningún estudiante en común.
+  - Los pares marcados entre unidades distintas se concentran donde hay pocos estudiantes en común (41,5 % con menos de
+    50); con 200 estudiantes o más, la proporción baja al 1,6 %. *Interpretación de Claude:* es lo que se espera del
+    ruido de muestreo con pocos estudiantes por par, no una señal de dependencia.
+  - **Dentro de las unidades la dependencia es baja.** En el modelo de 4 dimensiones hay 5 pares marcados en **4 de
+    las 76 unidades**: *Triangular Pattern* (emplear–formular 0,354 y formular–razonar 0,213), *Chance of Rain*
+    (emplear–razonar 0,292), *Walk to School* (emplear–emplear 0,220) y *Cash Withdrawal* (emplear–formular 0,213).
+  - El modelo de 4 dimensiones baja el Q3 de los pares de la misma competencia (de 0,027 a 0,012) y no el de los
+    mixtos (de 0,030 a 0,032). Va en la dirección del supuesto 2, pero el tamaño es pequeño: unos 0,06 por encima de
+    la referencia entre unidades.
+  - *Interpretación de Claude:* una dependencia de este tamaño no parece capaz de explicar correlaciones de 0,90 a
+    0,98, aunque no se puede descartar que las suba un poco. Medirlo exigiría un modelo con factores por unidad, que
+    con estos datos tiene el mismo riesgo de no ser viable que el bifactor (D-29).
+
+### 9.5 Pruebas de robustez: borrador de decisión (propuesta de Claude; la decide el equipo)
+
+> [!note] Número (2026-11-10)
+> Este borrador se llamó «D-32» el 2026-10-23. Vanessa registró D-32 el 2026-11-08 para otra decisión (con qué puntajes
+> se responde O4 después de rechazar H8), así que esta propuesta queda **sin número**. Las menciones a «D-32» de las
+> secciones 9.5 a 9.7 se refieren a este borrador, no a la D-32 del registro.
+
+- **Marco:** H8 ya está decidida con la regla preregistrada, y eso no cambia. Lo que sigue es **exploratorio y
+  posterior a ver el resultado**. Si el equipo lo acepta, va a [[03 Registro de decisiones]] con el número libre que
+  toque, antes de programarlo, con la lectura de cada prueba fijada antes de correrla.
+- **Qué busca:** saber si la conclusión depende de los dos supuestos de la sección 9.2 que podrían subir las
+  correlaciones: la independencia local dentro de las unidades y la omisión calificada como 0.
+
+| Prueba | Qué se hace | Costo aproximado | Lectura fijada antes de correr (propuesta) |
+|---|---|---|---|
+| R1. P1 de D-27 | Q3 dentro de las unidades, en 1D y 4D, sin pesos y con el corte \|Q3\| > 0,2 (D-21). Ya está decidida; solo falta programarla en el proyecto | Minutos | Se informa cuántos pares se marcan, separando los de la misma competencia y los mixtos |
+| R2. Versión (c) | Calibrar 1D y 4D con toda omisión faltante y comparar el BIC y las correlaciones con la versión (a) | ~1 h | Si la máxima baja de 0,95, la conclusión depende del tratamiento de la omisión y se informa así; si no baja, es robusta a ese supuesto |
+| R3. Un ítem por unidad | Solo si R1 marca muchos pares mixtos: reestimar el 4D con un ítem por unidad (regla fija, por ejemplo, el primero), sin pares dentro de una misma unidad | Menos que el 4D completo (99 ítems) | La misma de R2 |
+| R4. Referencia externa | Comparar con las correlaciones entre subescalas de proceso que publique la OCDE, si las publica | Lectura | No está en el vault ni lo he verificado: hay que buscar la fuente y abrir su nota en `Literatura/` |
+
+- **No se propone:**
+  - cambiar la configuración del bifactor (D-29 lo prohíbe después de conocer el fallo);
+  - quitar los pesos: no hay indicio de que sean la causa.
+- **Orden recomendado:** R1 primero (ya está decidida y es barata), luego R2. R3 y R4 dependen de lo que salga.
+- *Actualización del 2026-10-23:* R1 ya se corrió en la copia como revisión (sección 9.4) y marca pocos pares mixtos
+  (4 de 133), así que **R3 no hace falta** por su propia condición. Falta pasar R1 al script del proyecto. La prueba
+  abierta que más importa es **R2**.
+- *Actualización del 2026-10-23, más tarde:* R2 se corrió en la copia, a pedido de Brayan, sin registrar D-32
+  (sección 9.7). La conclusión de H8 es robusta al tratamiento de la omisión.
+- **Error estándar de las correlaciones:** con las 80 réplicas BRR serían unas 60 horas (80 × 45 min), lo que es
+  inviable. Si el equipo quiere un intervalo, primero hay que ver qué admite `mirt` 1.46.1 con pesos. Por la regla
+  preregistrada, no es necesario.
+
+### 9.6 Propuesta de veredicto sobre H8 (la decide Brayan)
+
+- **El rechazo de H8 está bien hecho y se reproduce.** Las bases se construyen como dicen D-13, D-14 y D-27; la
+  clasificación y el puntaje coinciden con las fuentes oficiales; la regla del código es la preregistrada; y el 5.3 da
+  las mismas cifras en este equipo.
+- **Las dos condiciones de la regla se sostienen con lo revisado:**
+  - el BIC sigue favoreciendo al modelo de 1 dimensión al corregir el error de la integración (por 23,7);
+  - la dependencia dentro de las unidades es baja, así que difícilmente explica la correlación emplear–razonar de 0,976
+    (interpretación de Claude; no se puede descartar que la suba un poco).
+- **La omisión tampoco cambia el resultado** (R2, sección 9.7): con la omisión como faltante, la regla de H8 tampoco
+  se cumple y las correlaciones quedan entre 0,890 y 0,977. La conclusión se sostiene en los dos extremos: la omisión
+  como fallo seguro, que es el criterio de la OCDE, y como faltante ignorable.
+- **Lo que queda sin probar:** el modelo de propensión latente a omitir (Köhler et al., 2015), un supuesto intermedio
+  entre esos dos extremos.
+- **Cambios propuestos al proyecto**, ninguno de los cuales cambia H8: los hallazgos 1, 3, 4 y 5 (en el código) y el 2
+  (en D-27).
+
+### 9.7 Resultado de R2: la omisión como faltante (2026-10-23, de 21:09 a 21:50)
+
+- **Qué es:** prueba exploratoria posterior al resultado de H8, corrida en la copia aparte a pedido de Brayan y sin
+  registrar D-32 (Brayan lo pidió así). La lectura quedó fijada en la sección 9.5 antes de correrla.
+- **Cómo se hizo:** script `r2_version_c.R` (scratchpad de Claude) → `r2_ajuste_c.csv` y `r2_correlaciones_c.csv`, solo
+  agregados. Es el 5.3 con la matriz (c) y todo lo demás igual: 232 ítems, 2PL y GPCM, pesos normalizados, `QMCEM`
+  con 1.000 puntos y log-verosimilitud recalculada con 10.000.
+- **Controles previos:** ningún ítem cambia de categorías y ningún estudiante queda sin datos. Hay 173.724 celdas con
+  dato (12.490 menos que en (a): las omisiones). La mediana de ítems por estudiante es de 8 en emplear, 4 en
+  formular, 6 en interpretar y 6 en razonar.
+
+| | (a) omitida = 0 | (c) omitida = faltante |
+|---|---|---|
+| Convergencia (iteraciones 1D / 4D) | sí (123 / 258) | sí (1.389 / 294) |
+| Ganancia del 4D en log-verosimilitud (10.000 puntos) | 14,8 | 6,3 |
+| BIC, 4D − 1D (10.000 puntos) | +23,5 | +40,4 |
+| AIC, 4D − 1D (10.000 puntos) | −17,5 | −0,7 |
+| Correlación mínima / máxima | 0,897 / 0,976 | 0,890 / 0,977 |
+| Regla de H8 | no se cumple | no se cumple |
+
+- Correlaciones de (c), con las de (a) entre paréntesis:
+  - emplear–formular 0,935 (0,940);
+  - emplear–interpretar 0,952 (0,951);
+  - emplear–razonar 0,977 (0,976);
+  - formular–interpretar 0,890 (0,897);
+  - formular–razonar 0,941 (0,945);
+  - interpretar–razonar 0,908 (0,906).
+- Las cifras de (a) con 10.000 puntos salen de la sección 9.4; el AIC de (a) con 10.000 puntos se calculó a mano a
+  partir de ellas.
+- **Lectura fijada (sección 9.5):** la correlación máxima no baja de 0,95, así que **la conclusión de H8 es robusta al
+  tratamiento de la omisión**.
+- **Error de interpretación de Claude:** la sección 9.2 suponía que contar la omisión como 0 podía subir las
+  correlaciones. No es así: cambian 0,007 como máximo.
+- *Interpretación de Claude, por discutir:*
+  - sin las omisiones, la pequeña ventaja del modelo de 4 dimensiones baja a menos de la mitad (de 14,8 a 6,3) y el
+    AIC queda en empate;
+  - parte de esa ventaja en (a) parece venir de cómo se reparten las omisiones entre competencias (las preguntas
+    abiertas, con más omisión, se concentran en razonar), no de habilidades distintas.
+- **Observación:** el modelo de 1 dimensión con (c) necesitó 1.389 iteraciones, frente a 123 con (a). Convergió según
+  el criterio de `mirt`, pero no se investigó por qué tardó tanto.
+- **Límites:**
+  - (c) supone que la omisión es ignorable (MAR);
+  - (a) y (c) son los dos extremos, y el modelo de propensión latente no se probó;
+  - los parámetros y las correlaciones se estimaron con 1.000 puntos, igual que en el 5.3.
+
+## 10. AFC de los ítems de matemáticas (exploratorio, 2026-11-08 a 2026-11-10)
+
+- **Pedido:** Brayan, el 2026-11-08, antes de redactar el plan B de la F6: verificar que cada ítem de matemáticas mide
+  la competencia que dice medir, y solo esa. Se hizo en una copia aparte (scratchpad de Claude) y **sin registrar en el
+  03**. El 2026-11-10 se vio que Mateo ya había registrado D-48 con la misma pregunta (sugerencia del profesor de SEM),
+  leyendo las cargas del 5.3 sin reestimar.
+- **Dónde queda:**
+  - resultado completo en [[Hallazgos]], sección final (borrador);
+  - scripts `Proyecto_PISA/scripts/05_explorar_afc_0_lectura_viabilidad.R` a `05_explorar_afc_3_diagnostico.R`;
+  - salidas `salidas/mat_afc_items_condicional.csv` y `.txt`, `mat_afc_diagnostico.txt` y
+    `mat_afc_permutaciones.csv` y `.txt`.
+  Nada de esto está en `00_correr_todo.R` ni en `resultados-v1`.
+- **Resultado en una línea:** con la regla fijada antes de correr, el AFC **contradice** (A: 173 de 232, 74,6 %). La
+  asignación de la OCDE supera a las 19 asignaciones al azar (D), pero las competencias casi no se separan.
+- **Errores de Claude, declarados:**
+  - estimó de 2 a 5 minutos por ajuste del control D, y tardó unos 30 (32 el primero);
+  - la prueba A no distingue la competencia propia de la habilidad general, y el criterio de magnitud de B no filtra
+    nada (197 de 232 ítems con alguna carga libre mayor que 1). Los dos criterios se fijaron antes de correr y se
+    mantienen, pero no responden del todo la pregunta;
+  - un cálculo directo para acelerar el control no reprodujo el control de `mirt` y no se usó.
+- **Cómo se corrió:** pruebas por ítem en 106,8 min. El control D se repartió en 3 procesos desde el 2026-11-08 a las
+  19:34, con dos pausas pedidas por Brayan (del 08/11 a las 19:38 al 10/11 a las 14:48, y del 10/11 de 16:58 a 19:16).
+  Terminó el 2026-11-10 a las 19:54.
+- **Borrador de D-49 (propuesta; no registrada):** «Análisis confirmatorio condicional por ítem y control con
+  asignaciones al azar (exploratorio, posterior a la G4; complementa D-48 con su opción (d))». Si el equipo lo acepta,
+  se registra declarando que se corrió antes de registrarse.

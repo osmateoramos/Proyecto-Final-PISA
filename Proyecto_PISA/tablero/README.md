@@ -3,6 +3,9 @@
 Tablero en Streamlit que **consume la API** (`Proyecto_PISA/api`). No lee archivos ni estima nada: cada cifra viene de
 un endpoint, y cada página dice de qué archivo de `salidas/` y de qué decisión del registro sale.
 
+Publicado en Render (plan gratuito): https://pisa-tablero.onrender.com, con la API en
+https://pisa-api-k2tn.onrender.com. La primera visita después de un rato sin uso puede tardar 50 segundos o más.
+
 ## Páginas (recorrido por fases, D-47)
 
 Cada sección explica en tres pestañas **qué se hizo, cómo se lee y qué significa**, con las decisiones del registro que
@@ -68,7 +71,6 @@ Las pruebas de páginas necesitan la API en `PISA_API_URL`; si no está, se salt
 
 ## Pendiente
 
-- Despliegue en Render (un servicio para la API y otro para el tablero, con `PISA_API_URL` apuntando a la API).
 - Revisión de Brayan (responsable de la F8).
 
 ## Uso de herramientas de IA

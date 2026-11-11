@@ -1,0 +1,35 @@
+Archivos: afc_permutaciones.csv afc_permutaciones_08_13.csv afc_permutaciones_14_19.csv 
+Filas: 20 | asignaciones distintas: 20 
+Faltan:  
+    asignacion convergio iteraciones ganancia r_min r_max minutos  error
+        <char>    <lgcl>       <int>    <num> <num> <num>   <num> <lgcl>
+ 1:       OCDE      TRUE         250    10.24 0.924 0.979    32.0     NA
+ 2:     azar_1      TRUE         232    -9.29 0.949 0.979  2623.8     NA
+ 3:     azar_2      TRUE         225   -14.87 0.963 0.982    29.7     NA
+ 4:     azar_3      TRUE         225    -8.31 0.953 0.977    31.2     NA
+ 5:     azar_4      TRUE         238    -6.29 0.935 0.984    26.9     NA
+ 6:     azar_5      TRUE         207   -11.33 0.950 0.983    23.8     NA
+ 7:     azar_6      TRUE         273    -5.22 0.963 0.981   162.9     NA
+ 8:     azar_7      TRUE         221    -0.91 0.940 0.978    17.9     NA
+ 9:     azar_8      TRUE         217     0.62 0.927 0.978    30.8     NA
+10:     azar_9      TRUE         266     1.95 0.924 0.980    34.4     NA
+11:    azar_10      TRUE         233   -14.95 0.963 0.979    26.6     NA
+12:    azar_11      TRUE         240     2.89 0.923 0.977    27.2     NA
+13:    azar_12      TRUE         242   -12.88 0.956 0.983   162.0     NA
+14:    azar_13      TRUE         257    -8.43 0.949 0.979    21.8     NA
+15:    azar_14      TRUE         186    -0.48 0.949 0.982  2616.4     NA
+16:    azar_15      TRUE         205   -11.06 0.954 0.979    25.6     NA
+17:    azar_16      TRUE         238    -4.01 0.931 0.981    31.0     NA
+18:    azar_17      TRUE         244    -4.28 0.957 0.983    26.5     NA
+19:    azar_18      TRUE         251    -4.00 0.946 0.978   163.9     NA
+20:    azar_19      TRUE         238    -9.38 0.959 0.979    21.3     NA
+    asignacion convergio iteraciones ganancia r_min r_max minutos  error
+        <char>    <lgcl>       <int>    <num> <num> <num>   <num> <lgcl>
+No convergieron: 0 | con error: 0 
+
+=== D. Control con asignaciones al azar ===
+Ganancia OCDE: 10.24 | r máx.: 0.979 
+Azar ( 19 ): ganancia mínima -14.95 mediana -6.29 máxima 2.89 
+Azar: r máx. mediana 0.979 | r mín. mediana 0.949 
+Asignaciones al azar con ganancia igual o mayor que la OCDE: 0 de 19 
+p de permutación: 0.05 

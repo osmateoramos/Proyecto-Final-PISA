@@ -2321,3 +2321,100 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     ítems dicotómicos con discriminación < 0,3 y dificultades muy altas (`salidas/mat_p3_baja_discriminacion.csv`):
     ítems que casi nadie responde bien en Colombia informan poco (efecto piso).
 - **Estado:** ✅ (b) aceptada por Mateo (2026-11-10, en la sesión con Claude). Vanessa y Brayan la revisan en el PR.
+
+### D-49 · 2026-11-10 · AFC por ítem: cada ítem de matemáticas probado en las 4 competencias (exploratorio, posterior a la G4; completa D-48)
+> [!warning] Borrador de Claude (2026-11-10), a pedido de Mateo
+> Se registra **después** de programar y correr el análisis, en contra de la regla de este registro, y así se declara.
+> Falta que el equipo la acepte o la descarte.
+
+- **Contexto:** Brayan pidió comprobar que cada ítem de matemáticas mide la competencia que le asigna la OCDE, y solo
+  esa: la misma pregunta de D-48. D-48 leyó las cargas del 5.3 sin volver a estimar y dejó como trabajo futuro la opción
+  (d), probar cada ítem en las otras competencias. Brayan la corrió con Claude entre el 2026-11-08 y el 2026-11-10,
+  **después de la Puerta G4** (`resultados-v1`). Los scripts, las salidas y el detalle (sección final de
+  `Hallazgos.md`) llegan con el PR #17.
+- **Qué se hizo** (versión (a) de la matriz, 6.886 estudiantes × 232 ítems, pesos normalizados):
+  - Pruebas A, B y C (`scripts/05_explorar_afc_1_items.R` → `salidas/mat_afc_items_condicional.csv`): una versión
+    **condicional** de la opción (d). Cada ítem se vuelve a estimar solo, con el resto del modelo de 4 competencias del
+    5.3 fijo: cargando en cada una de las 4 competencias y con las 4 cargas libres.
+  - Prueba D (`05_explorar_afc_2_permutaciones.R`, `05_explorar_afc_2b_rango.R` y `05_explorar_afc_2c_unir.R` →
+    `salidas/mat_afc_permutaciones.csv`): la asignación de la OCDE frente a 19 asignaciones al azar dentro de cada
+    formato (semilla 2026), con los parámetros de los ítems fijos en los del modelo de 1 dimensión.
+  - Prueba E (mismo script que A): residuos Q3 en pares de unidades distintas.
+  - Diagnóstico hecho después de ver A (`05_explorar_afc_3_diagnostico.R` → `salidas/mat_afc_diagnostico.txt`).
+- **Regla de lectura** (según el PR #17, fijada antes de correr en la cabecera de
+  `scripts/05_explorar_afc_0_lectura_viabilidad.R`):
+  - **Confirma** si se cumplen las tres:
+    - A: al menos el 90 % de los ítems con carga propia ≥ 0,30 y límite inferior del IC 95 % > 0.
+    - B: como mucho el 10 % de los ítems con cargas cruzadas significativas (BH al 5 %) y alguna ≥ 0,30.
+    - D: la OCDE supera a las 19 asignaciones al azar.
+  - **Contradice** si A < 90 % o B > 10 %.
+  - **Los cortes son de Claude y no tienen fuente en el vault**, como los de D-29.
+- **Resultado** (A, B, C y D recalculados por Claude el 2026-11-10 desde los CSV del PR #17; los `.txt` no se
+  revisaron):
+  - **A:** 173 de 232 ítems (74,6 %): emplear 53 de 75, formular 30 de 47, interpretar 51 de 57 y razonar 39 de 53.
+    **No cumple.**
+  - **B:** 15 de 232 (6,5 %). Cumple, pero según el diagnóstico B no sirve para distinguir cargas cruzadas: con
+    correlaciones de 0,897 a 0,976, el modelo con las 4 cargas libres casi no se identifica.
+  - **C:** en 73 de 232 ítems, la competencia asignada es la que mejor encaja. Según el PR, al azar se esperan 58,2
+    (p = 0,013).
+  - **D:** frente al modelo de 1 dimensión, la asignación de la OCDE gana 10,24 y las 19 al azar, de −14,95 a 2,89. Los
+    20 ajustes convergieron.
+  - Los 56 ítems con carga < 0,30 son los mismos 56 de D-48. Según el PR, el cruce lo hizo Claude sin guardar un
+    script.
+  - **Con la regla fijada, el AFC contradice**, porque A quedó por debajo del 90 %.
+  - *Interpretación (Claude, por discutir):* la asignación de la OCDE no es arbitraria (C y D), pero en Colombia las
+    competencias casi no se separan. Lo que hace fallar A son ítems que discriminan poco, no ítems de otra competencia.
+    Es coherente con D-43 y D-48.
+- **Alternativas:**
+  - (a) Aceptarlo como **análisis exploratorio posterior a la G4**: se reporta en `Hallazgos.md` y en el informe junto
+    a D-48. No cambia `resultados-v1`, ninguna hipótesis ni la clasificación de K1 a K5. No es candidato a hallazgo,
+    porque no pasó por las sensibilidades de la F7 (D-45).
+  - (b) Dejarlo solo en el vault (`Hallazgos.md` y nota 17), sin llevarlo al informe.
+  - (c) No incorporarlo.
+- **Propuesta de Claude: (a)**, con tres condiciones:
+  1. El informe lo presenta en la sección de H8, después de D-48, con la regla, el resultado y dos salvedades: que se
+     registró después de correr y que 4 de los 6 scripts solo se revisaron en sintaxis desde la copia del proyecto.
+  2. Las salidas nuevas `mat_afc_*` no entran a la API ni a `00_correr_todo.R`. Como la G4 congeló lo que consume la
+     API, no hace falta crear `resultados-v2`. Si el equipo las quiere en la API, se decide aparte.
+  3. Brayan confirma los datos de la corrida al revisar esta decisión.
+- **Estado:** 🟡 propuesta (borrador de Claude, 2026-11-10). Decide el equipo.
+
+### D-50 · 2026-11-10 · Clasificación de K1 con el criterio 2 de la rúbrica (corrige el borrador de Hallazgos.md)
+> [!warning] Borrador de Claude (2026-11-10), a pedido de Mateo
+> Sale de la revisión crítica que Brayan hizo con IA el mismo día. Se decide **después** de ver todos los resultados, y
+> así se declara: cambia una clasificación, no una cifra ni una hipótesis.
+
+- **Contexto:** la rúbrica pide para un hallazgo un «efecto relevante, según el umbral definido en la hipótesis
+  *antes* de verlo» (`08 Rúbrica de desarrollo.md`, criterio 2). Si falla el criterio 2 o el 3, el resultado se
+  reporta como «resultado nulo o frágil». El borrador de `Hallazgos.md` clasificó K1 como «hallazgo exploratorio»,
+  aunque anota que H5 no fijó un umbral de magnitud. El informe usa la misma clasificación (chunk `hallazgos`).
+- **Lo que dicen los documentos del proyecto:**
+  - La regla de H5 (`09 Hipótesis preregistradas.md`) es de significancia: una diferencia positiva y significativa
+    (α = 0,05) en el modelo completo y en la mitad de confirmación. No fija magnitud.
+  - H5 es exploratoria en origen. La diferencia (3,9 puntos, z = 2,61) ya se había visto el 2026-09-29, antes de
+    congelar las hipótesis (nota «Sobre H5» del 09; D-32). Su regla se fijó **después** de ver el efecto.
+  - La regla de H6 (K2) también es solo de significancia, pero se fijó antes de ver el efecto. H4 (K4) y H3 (K5) sí
+    tienen umbral de magnitud: 0,05 DE y las categorías B y C del ETS.
+- **Lo que muestran los datos** (las cifras no cambian; comprobadas por Claude el 2026-11-10):
+  - `salidas/sem_h5.csv`: interpretar − emplear = 5,57 puntos (IC 95 %: 2,24 a 8,89; p = 0,001). En la mitad de
+    confirmación, 6,33.
+  - `salidas/sem_comparacion_fuentes.csv`: coeficientes estandarizados del NSE económico de 0,327 en emplear, 0,280 en
+    formular, 0,350 en interpretar y 0,283 en razonar. Interpretar − emplear = 0,023.
+  - `salidas/f7_sensibilidad_detalle.csv`: la prueba de igualdad entre competencias da p = 0,010 en la base, 0,042
+    con ESCS, 0,049 sin la ruta lineal y 0,010 con la reponderación.
+- **Alternativas:**
+  - (a) Leer el criterio 2 como «la regla de decisión de la hipótesis, fijada antes de ver el efecto». K1 **falla** el
+    criterio 2, porque la regla de H5 se fijó después de ver la diferencia, y pasa a **resultado frágil
+    (exploratorio)**. K2 a K5 no cambian.
+  - (b) Leer el criterio 2 como «un umbral de magnitud». Fallan K1 **y K2**, porque H5 y H6 solo piden significancia, y
+    los dos pasan a frágiles. K4 y K5 no cambian.
+  - (c) Mantener «hallazgo exploratorio» para K1 y declararlo como una desviación de la rúbrica.
+  - Queda descartado fijar ahora un umbral de magnitud para H5: sería decidirlo después de ver el resultado.
+- **Propuesta de Claude: (a).** Es la lectura con la que el borrador ya trató a K2 a K5, y lo único que distingue a K1
+  es el momento en que se fijó su regla. Si se acepta:
+  1. En `Hallazgos.md` y en la tabla del informe, K1 pasa a «Resultado frágil (exploratorio): cumple la regla de H5,
+     pero la regla se fijó después de ver el efecto, y la diferencia es pequeña».
+  2. Junto a los 5,57 puntos, el informe da la diferencia en coeficientes estandarizados (0,023).
+  3. La frase de K1 para el Ministerio dice que es un resultado preliminar.
+  - No cambia ninguna salida ni `resultados-v1`. Tampoco la API ni el tablero, que no guardan la clasificación.
+- **Estado:** 🟡 propuesta (borrador de Claude, 2026-11-10). Decide el equipo.

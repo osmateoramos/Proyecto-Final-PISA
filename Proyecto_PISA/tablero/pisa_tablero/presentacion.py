@@ -12,7 +12,7 @@ import pandas as pd
 import streamlit as st
 
 from pisa_tablero import datos, textos
-from pisa_tablero.componentes import contexto, numero, rango, siguiente
+from pisa_tablero.componentes import contexto, numero, rango, siguiente, tarjetas
 from pisa_tablero.config import obtener_configuracion
 
 REPOSITORIO = "https://github.com/osmateoramos/Proyecto-Final-PISA"
@@ -188,7 +188,15 @@ def resumen() -> None:
     st.caption(f"{textos.EQUIPO} · {textos.INSTITUCION} · Proyecto integrador de {CURSOS['tri']}, {CURSOS['sem']} y "
                f"{CURSOS['python']}.")
     c = _cifras()
-    with st.container(border=True):
+    _indicadores(c)
+    tarjetas([
+        ("Problema", "La brecha socioeconómica se reporta con un índice unidimensional y un puntaje global."),
+        ("Método", "NSE latente, invarianza, TRI de cuatro competencias, DIF, omisiones y modelo estructural."),
+        ("Resultados", f"{c['coef']} puntos PISA por DE del NSE; {c['dif']} ítems con DIF; omisiones sin efecto "
+                       "relevante."),
+        ("Conclusión", "La brecha no es un artefacto de la calificación; las competencias apenas se distinguen."),
+    ])
+    with st.expander("Resumen completo"):
         st.markdown(
             "**Problema.** En Colombia, la brecha socioeconómica en matemáticas se reporta con un índice de nivel "
             "socioeconómico (NSE) unidimensional y con un puntaje global. Este estudio examina la asociación del NSE "
@@ -214,14 +222,11 @@ def resumen() -> None:
             "invarianza de medición, PISA 2022.")
     st.caption(textos.NOTA_TRANSVERSAL)
 
-    st.subheader("Indicadores principales")
-    _indicadores(c)
-
-    st.subheader("Estructura de la presentación")
-    st.table(pd.DataFrame(textos.SECCIONES, columns=["Sección", "Contenido"]).set_index("Sección"))
-    st.caption("Las secciones siguen el orden cronológico del desarrollo del proyecto: cada una parte de lo que dejó "
-               "resuelto la anterior.")
-    siguiente("La sección 1 presenta el problema, la pregunta de investigación, los objetivos y las hipótesis.")
+    with st.expander("Estructura de la presentación"):
+        st.table(pd.DataFrame(textos.SECCIONES, columns=["Sección", "Contenido"]).set_index("Sección"))
+        st.caption("Orden cronológico del desarrollo del proyecto: cada sección parte de lo que dejó resuelto la "
+                   "anterior.")
+    siguiente("1. Introducción: el problema, la pregunta y las hipótesis.")
 
 
 # =====================================================================================================================
@@ -257,40 +262,32 @@ def conclusiones() -> None:
     """Sección 9: cumplimiento de los objetivos, conclusiones, hallazgos y limitaciones."""
     st.title("9. Conclusiones")
     st.caption("Fase F9 · Informe final")
-    contexto("Esta sección cierra el recorrido: contrasta los resultados con los objetivos planteados en la "
-             "introducción, resume las conclusiones y declara los alcances y las limitaciones del estudio.")
+    contexto("¿Qué responde el proyecto?")
     c = _cifras()
-    _indicadores(c)
+
+    st.subheader("Conclusiones")
+    tarjetas([
+        ("1. Dos dimensiones del NSE", "Económica y de libros en el hogar; invarianza no demostrada."),
+        ("2. Asociación en las cuatro competencias", f"{c['coef']} puntos PISA por DE; algo mayor en interpretar "
+                                                     "y en colegios privados."),
+        ("3. Calificación equitativa", "La brecha apenas cambia al recalificar omisiones y no la explican ítems con "
+                                       "DIF."),
+        ("4. Competencias poco diferenciadas", "Para separarlas conviene usar los valores plausibles de la OCDE."),
+        ("5. Resultados robustos", f"{c['robustos']} resultados; sin antecedentes para Colombia de K1, K2, K4 ni K5."),
+    ], columnas=3)
+    st.caption(textos.NOTA_TRANSVERSAL)
 
     st.subheader("Cumplimiento de los objetivos")
     st.table(_cumplimiento(c, datos.hipotesis().set_index("codigo")["decision"]))
 
-    st.subheader("Conclusiones")
-    st.markdown(
-        "1. **El NSE se representa mejor con dos dimensiones**, económica y de libros en el hogar. Su medición no "
-        "presenta diferencias relevantes entre zonas, sexos y sectores, aunque la invarianza no queda demostrada.\n"
-        f"2. **El NSE económico se asocia con las cuatro competencias** con una magnitud similar, entre "
-        f"{c['coef_entre']} puntos PISA por desviación estándar. La asociación es algo mayor en interpretar "
-        f"({c['h5']} puntos más que en emplear; resultado exploratorio) y más pronunciada en los colegios privados "
-        f"({c['h6']}, con corrección de Holm).\n"
-        "3. **La brecha no es un artefacto de la calificación**: apenas cambia al recalificar las omisiones y no la "
-        "explican ítems con funcionamiento diferencial.\n"
-        "4. **Las cuatro competencias apenas se distinguen** con los ítems que responde cada estudiante en la prueba "
-        "adaptativa; para analizarlas por separado conviene emplear los valores plausibles de la OCDE.\n"
-        f"5. **Los resultados principales son robustos** ({c['robustos']}), y la búsqueda en Scopus, Google "
-        "Académico, SciELO y Redalyc no identificó antecedentes para Colombia de K1, K2, K4 ni K5.")
-    st.caption(textos.NOTA_TRANSVERSAL)
-
     _hallazgos()
 
-    st.subheader("Limitaciones")
-    st.markdown("\n".join(f"- {texto}" for texto in LIMITACIONES))
-
-    st.subheader("Documentos de referencia")
+    with st.expander("Limitaciones"):
+        st.markdown("\n".join(f"- {texto}" for texto in LIMITACIONES))
     docs = f"{obtener_configuracion().api_url}/docs"
-    st.markdown(f"- [Informe final (PDF)]({INFORME_PDF})\n- [Repositorio del proyecto]({REPOSITORIO})\n"
-                f"- [Documentación de la API]({docs})")
-    siguiente("El anexo describe el aporte de cada curso integrado al proyecto.")
+    st.markdown(f"**Documentos:** [informe final (PDF)]({INFORME_PDF}) · [repositorio]({REPOSITORIO}) · "
+                f"[documentación de la API]({docs})")
+    siguiente("Anexo: el aporte de cada curso integrado.")
 
 
 def _hallazgos() -> None:
@@ -305,9 +302,8 @@ def _hallazgos() -> None:
             st.caption(f"{clasificacion} · se mantiene en {int(fila['se_mantiene_en'])} de "
                        f"{int(fila['aplicables'])} sensibilidades")
             st.markdown(f"*«{frase}»*")
-    st.caption("Clasificación del informe entregado. D-50 propone tratar K1 como resultado frágil, porque su regla se "
-               "fijó después de observar el efecto; no se aplicó en el informe. K1 y K3 describen promedios "
-               "condicionados, no capacidades individuales.")
+    st.caption("Clasificación del informe entregado (D-50 propone tratar K1 como resultado frágil; no se aplicó). K1 y "
+               "K3 describen promedios condicionados, no capacidades individuales.")
 
 
 # =====================================================================================================================
@@ -317,10 +313,7 @@ def _hallazgos() -> None:
 def materias() -> None:
     """Anexo: aporte de cada curso del proyecto integrador y sección del tablero donde se aplica."""
     st.title("Anexo. Materias integradas")
-    contexto("El proyecto integra tres cursos: la Teoría de Respuesta al Ítem aporta la medición, los Modelos de "
-             "Ecuaciones Estructurales la relación entre constructos y Python para APIs la publicación de los "
-             "resultados. Este anexo detalla el contenido de cada curso aplicado y la sección donde puede "
-             "consultarse.")
+    contexto("La TRI mide, las ecuaciones estructurales relacionan y Python publica.")
     pestanas = st.tabs([CURSOS["tri"], CURSOS["sem"], CURSOS["python"]])
     with pestanas[0]:
         _materia_tri()

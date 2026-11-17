@@ -78,8 +78,14 @@ def test_materias_tiene_una_pestana_por_curso_y_las_rutas_de_la_api() -> None:
 
 
 def test_inicio_muestra_las_ocho_hipotesis() -> None:
-    texto = " ".join(m.value for m in correr("inicio").markdown)
-    assert all(f"**H{i}**" in texto for i in range(1, 9))
+    hipotesis = correr("inicio").dataframe[0].value
+    assert list(hipotesis["Hipótesis"]) == [f"H{i}" for i in range(1, 9)]
+
+
+@pytest.mark.parametrize("pagina", ["datos_diseno", "medicion_nse", "invarianza", "competencias",
+                                    "modelo_estructural", "robustez", "prediccion"])
+def test_cada_fase_tiene_un_mensaje_clave(pagina: str) -> None:
+    assert any(i.value.startswith("**Mensaje clave.**") for i in correr(pagina).info)
 
 
 def test_modelo_cambia_de_enfoque_y_resalta() -> None:

@@ -22,7 +22,7 @@ def explicar(que: str, como: str, significa: str, decisiones: str) -> None:
         significa: Interpretación del resultado (las del equipo se marcan como tales).
         decisiones: Decisiones del registro (``Vault_PISA2022/03 Registro de decisiones.md``).
     """
-    with st.container(border=True):
+    with st.expander("Notas metodológicas (procedimiento, lectura e interpretación)"):
         p1, p2, p3 = st.tabs(["Procedimiento", "Lectura de los resultados", "Interpretación"])
         p1.markdown(que)
         p2.markdown(como)
@@ -31,24 +31,52 @@ def explicar(que: str, como: str, significa: str, decisiones: str) -> None:
 
 
 def contexto(texto: str) -> None:
-    """Recuadro inicial que sitúa la sección en el recorrido del proyecto (hilo de la presentación).
+    """Línea inicial que sitúa la sección en el recorrido del proyecto (hilo de la presentación).
 
     Args:
-        texto: Una o dos frases: de dónde viene la sección y qué pregunta responde.
+        texto: Una frase: qué pregunta responde la sección.
     """
-    with st.container(border=True):
-        st.caption("CONTEXTO")
-        st.markdown(texto)
+    st.markdown(f"##### {texto}")
+
+
+def clave(texto: str) -> None:
+    """Mensaje clave de la sección, en una frase, junto a las tablas y gráficos que lo sostienen.
+
+    Args:
+        texto: La conclusión de la sección, breve.
+    """
+    st.info(f"**Mensaje clave.** {texto}")
+
+
+def tarjetas(items: list[tuple[str, str]], columnas: int | None = None) -> None:
+    """Fila de tarjetas breves (título y una línea), al estilo de una diapositiva.
+
+    Args:
+        items: Pares (título, texto).
+        columnas: Número de columnas; por defecto, una por tarjeta.
+    """
+    filas = st.columns(columnas or len(items))
+    for i, (titulo, texto) in enumerate(items):
+        with filas[i % len(filas)].container(border=True):
+            st.markdown(f"**{titulo}**")
+            st.caption(texto)
 
 
 def siguiente(texto: str) -> None:
     """Cierre de la sección: anuncia la siguiente, para mantener la secuencia de la presentación.
 
     Args:
-        texto: Qué deja resuelto esta sección y qué aborda la siguiente.
+        texto: Qué aborda la siguiente sección, en una frase.
     """
     st.divider()
     st.markdown(f"**Siguiente sección.** {texto}")
+
+
+def icono_decision(decision: str) -> str:
+    """Icono de la decisión de una hipótesis: ✅ se acepta, ◐ en parte o exploratoria, ✖ se rechaza."""
+    if "solo" in decision or "exploratoria" in decision:
+        return "◐"
+    return "✅" if decision.startswith(("se acepta", "se cumple")) else "✖"
 
 
 def fuente(archivos: str, script: str | None = None) -> None:
@@ -65,11 +93,9 @@ def tarjeta_hipotesis(codigo: str, enunciado: str, hipotesis: pd.DataFrame) -> N
         hipotesis: Tabla de ``datos.hipotesis()``.
     """
     decision = hipotesis.set_index("codigo").loc[codigo, "decision"]
-    icono = "✅" if decision.startswith(("se acepta", "se cumple")) and "solo" not in decision else (
-        "◐" if "solo" in decision or "exploratoria" in decision else "✖")
     with st.container(border=True):
         st.markdown(f"**{codigo}** · {enunciado}")
-        st.markdown(f"{icono} **Decisión:** {decision}")
+        st.markdown(f"{icono_decision(decision)} **Decisión:** {decision}")
 
 
 def numero(valor: float, decimales: int = 2) -> str:

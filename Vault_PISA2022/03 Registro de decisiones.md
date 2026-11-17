@@ -2303,6 +2303,12 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
       a llamarse «Procedimiento», «Lectura de los resultados» e «Interpretación».
     - En la sección 6 se explica por qué las competencias entran como valores plausibles y no como factores
       latentes, con las razones de D-29, D-32, D-42 y D-48. Es interpretación del equipo y no cambia ninguna decisión.
+  - **Tercera ampliación (Vanessa, el mismo día): formato de diapositiva.**
+    - Cada sección queda con una pregunta de contexto, cifras, tablas y gráficos, un «mensaje clave» de una frase con
+      cifras leídas de la API, y el anuncio de la siguiente sección.
+    - Las explicaciones largas pasan a un desplegable de «notas metodológicas», cerrado por defecto.
+    - La introducción muestra el problema y los objetivos como tarjetas y las hipótesis como tabla.
+    - El texto completo del resumen, la estructura de la presentación y las limitaciones quedan en desplegables.
 
 ### D-48 · 2026-11-10 · Análisis confirmatorio de los ítems por competencia (exploratorio; sugerencia del profesor de SEM)
 - **Contexto:** en la clase de Modelación de Ecuaciones Estructurales, el profesor sugirió un análisis factorial

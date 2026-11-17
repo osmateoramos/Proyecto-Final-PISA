@@ -38,6 +38,24 @@ OBJETIVOS = [
     ("O5", "Poner los resultados a disposición en una API y un tablero, siempre en forma agregada."),
 ]
 
+PREGUNTA_BREVE = ("¿Cuánto se asocia el NSE latente con cada competencia matemática de PISA 2022 en Colombia, y cuánto "
+                  "de la brecha depende de cómo se califica el desempeño?")
+
+PROBLEMA_TARJETAS = [
+    ("Medición del NSE", "Índice oficial de una dimensión, no verificado dentro de Colombia."),
+    ("Calificación por competencias", "Cuatro procesos matemáticos reportados solo como promedios nacionales."),
+    ("Respuestas omitidas", "Se califican como incorrectas; el desenganche puede variar con el NSE."),
+]
+"""Las tres decisiones de medición que plantea el problema, en una línea cada una."""
+
+OBJETIVOS_BREVES = [
+    ("O1 · Medir", "NSE latente con TRI y análisis factorial"),
+    ("O2 · Verificar", "Invarianza por zona, sexo y sector"),
+    ("O3 · Calificar", "Cuatro competencias con TRI; DIF y omisiones"),
+    ("O4 · Relacionar", "Modelo estructural NSE → competencias"),
+    ("O5 · Publicar", "API y tablero con resultados agregados"),
+]
+
 SECCIONES = [
     ("Resumen", "Síntesis del problema, el método, los resultados y la conclusión"),
     ("1. Introducción", "Planteamiento del problema, pregunta, objetivos e hipótesis preregistradas"),

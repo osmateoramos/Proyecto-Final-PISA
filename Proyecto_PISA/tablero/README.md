@@ -8,9 +8,10 @@ https://pisa-api-k2tn.onrender.com. La primera visita después de un rato sin us
 
 ## Páginas (estructura de informe académico, D-47)
 
-El menú sigue el orden de un informe y el orden cronológico del proyecto. Cada sección de las fases abre con un recuadro
-de **contexto**, explica en tres pestañas el **procedimiento, la lectura de los resultados y su interpretación** (con las
-decisiones del registro que la sostienen) y cierra anunciando la **siguiente sección**.
+El menú sigue el orden de un informe y el orden cronológico del proyecto, con formato de diapositiva: cada sección abre
+con una pregunta de **contexto**, muestra cifras, tablas y gráficos con un **mensaje clave** de una frase y cierra
+anunciando la **siguiente sección**. Las explicaciones largas (procedimiento, lectura e interpretación, con las
+decisiones del registro) quedan en un desplegable de **notas metodológicas**, cerrado por defecto.
 
 | Grupo | Página | Qué muestra |
 |---|---|---|

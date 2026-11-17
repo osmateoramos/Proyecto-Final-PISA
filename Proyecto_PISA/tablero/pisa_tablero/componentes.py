@@ -1,5 +1,8 @@
 """Piezas de presentación que se repiten en las páginas: explicaciones, fuentes y tarjetas de hipótesis."""
 
+import math
+from decimal import ROUND_HALF_UP, Decimal
+
 import pandas as pd
 import streamlit as st
 
@@ -49,6 +52,36 @@ def tarjeta_hipotesis(codigo: str, enunciado: str, hipotesis: pd.DataFrame) -> N
 
 
 def numero(valor: float, decimales: int = 2) -> str:
-    """Número con coma decimal y punto de miles, como en el resto del proyecto."""
-    texto = f"{valor:,.{decimales}f}"
+    """Número con coma decimal y punto de miles, redondeado «mitad hacia arriba» como en el informe.
+
+    El formato de Python redondea la representación binaria (24,15 se vuelve 24,1); con ``Decimal`` sobre el texto del
+    número da 24,2, la misma cifra que imprime el informe en R.
+
+    Args:
+        valor: Número a mostrar.
+        decimales: Decimales que se muestran.
+
+    Returns:
+        El número formateado, o «—» si no es finito.
+    """
+    if not math.isfinite(float(valor)):
+        return "—"
+    redondeado = Decimal(str(valor)).quantize(Decimal(1).scaleb(-decimales), rounding=ROUND_HALF_UP)
+    texto = f"{redondeado:,.{decimales}f}"
     return texto.replace(",", "§").replace(".", ",").replace("§", ".")
+
+
+def rango(valores: pd.Series, decimales: int = 1, union: str = " a ") -> str:
+    """Mínimo y máximo de una serie como texto («24,2 a 29,4»); con ``union=" y "`` sirve para «entre X y Y».
+
+    Args:
+        valores: Serie numérica (los vacíos se ignoran).
+        decimales: Decimales de los dos extremos.
+        union: Texto entre el mínimo y el máximo.
+
+    Returns:
+        El rango con coma decimal, o un solo número si los dos extremos coinciden al redondear.
+    """
+    limpio = pd.to_numeric(valores, errors="coerce").dropna()
+    minimo, maximo = numero(float(limpio.min()), decimales), numero(float(limpio.max()), decimales)
+    return minimo if minimo == maximo else f"{minimo}{union}{maximo}"

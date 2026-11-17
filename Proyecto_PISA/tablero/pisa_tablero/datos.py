@@ -110,6 +110,12 @@ def etiquetas_nse() -> dict[str, str]:
     return tabla("/nse/frecuencias").drop_duplicates("item").set_index("item")["etiqueta"].to_dict()
 
 
+@st.cache_data(ttl=CACHE_S, show_spinner="Consultando la API…")
+def rutas_api() -> pd.DataFrame:
+    """Operaciones públicas de la API (de su contrato OpenAPI)."""
+    return pd.DataFrame([r.model_dump() for r in cliente().rutas()])
+
+
 def predecir(perfil: Perfil) -> Prediccion:
     """Puntaje esperado para un perfil (sin caché: cada envío es una consulta nueva)."""
     return cliente().predecir(perfil)

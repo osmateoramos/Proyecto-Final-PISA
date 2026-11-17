@@ -74,12 +74,13 @@ def inicio() -> None:
         ("F3", "O1 · Medir el NSE", "AFE, AFC y TRI del NSE; H1", "Cerrada · Puerta G2"),
         ("F4", "O2 · Invarianza", "Invarianza por zona, sexo y sector; DIF de los bienes; H2", "Cerrada"),
         ("F5", "O3 · Competencias", "TRI de 1 y 4 dimensiones, puntajes propios, DIF, omisiones; H3, H4, H7 y H8",
-         "Cerrada · Puerta G3 (faltan firmas del acta)"),
+         "Cerrada · Puerta G3"),
         ("F6", "O4 · Modelo estructural", "NSE → 4 competencias con VP de la OCDE y robustez; H5 y H6", "Cerrada"),
         ("F7", "Robustez y novedad", "5 sensibilidades, búsqueda de antecedentes y hallazgos",
-         "Cerrada · Puerta G4, resultados-v1 (faltan firmas del acta)"),
-        ("F8", "O5 · Producto", "API y tablero", "Funcionan en local; falta desplegarlos en Render"),
-    ], columns=["Fase", "Objetivo", "Qué se hizo", "Estado (2026-11-10)"]), hide_index=True, use_container_width=True)
+         "Cerrada · Puerta G4 (etiqueta resultados-v1)"),
+        ("F8", "O5 · Producto", "API y tablero", "Desplegados en Render"),
+        ("F9", "Informe", "Informe final y sustentación", "Informe entregado"),
+    ], columns=["Fase", "Objetivo", "Qué se hizo", "Estado (2026-11-16)"]), hide_index=True, use_container_width=True)
 
     st.subheader("Hipótesis preregistradas")
     hip = datos.hipotesis()
@@ -545,10 +546,10 @@ def robustez() -> None:
         como="En la matriz, ✓ = la conclusión se mantiene, ✗ = cambia, … = variante todavía en cálculo y — = no aplica. "
              "Un candidato es **robusto** si se mantiene en al menos el 75 % de las sensibilidades que le aplican "
              "(mínimo 3).",
-        significa="Los candidatos del modelo estructural (K1 a K3) y el nulo de las omisiones (K4) son robustos. La "
-                  "clasificación como hallazgo, réplica o resultado nulo (borrador del equipo en Hallazgos.md) además "
-                  "exige que no esté ya publicado para Colombia: la búsqueda de antecedentes es provisional (falta "
-                  "Scopus).",
+        significa="Los cinco candidatos son robustos. La clasificación como hallazgo, réplica o resultado nulo "
+                  "(Hallazgos.md e informe) además exige que no esté ya publicado para Colombia: en Scopus, Google "
+                  "Académico, SciELO y Redalyc no apareció un antecedente para Colombia de K1, K2, K4 ni K5. El resumen "
+                  "de los hallazgos está en «El proyecto en una página».",
         decisiones="D-38, D-45")
     det = datos.tabla("/robustez/detalle")
     simbolo = det["se_mantiene"].map({True: "✓", False: "✗"}).fillna("…")

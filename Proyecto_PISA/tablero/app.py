@@ -9,12 +9,16 @@ La URL de la API se toma de ``PISA_API_URL`` (por defecto, http://127.0.0.1:8000
 
 import streamlit as st
 
-from pisa_tablero import paginas
+from pisa_tablero import paginas, presentacion
 
 st.set_page_config(page_title="PISA 2022 Colombia", layout="wide")
 
 navegacion = st.navigation({
-    "Proyecto": [st.Page(paginas.inicio, title="Inicio y recorrido", url_path="inicio", default=True)],
+    "Presentación": [
+        st.Page(presentacion.proyecto, title="El proyecto en una página", url_path="proyecto", default=True),
+        st.Page(presentacion.materias, title="Materias integradas", url_path="materias"),
+    ],
+    "Proyecto": [st.Page(paginas.inicio, title="Hipótesis y recorrido", url_path="inicio")],
     "Fases": [
         st.Page(paginas.datos_diseno, title="F1-F2 · Datos y diseño", url_path="datos"),
         st.Page(paginas.medicion_nse, title="F3 · Medición del NSE", url_path="nse"),

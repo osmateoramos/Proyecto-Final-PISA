@@ -2281,6 +2281,19 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - *Regla de los textos:* las cifras que aparecen en los textos se leen de la API, no se escriben a mano; las
     interpretaciones repiten las del registro (D-xx) y se marcan como tales.
 - **Estado:** ✅ pedido por Vanessa (2026-11-09). Brayan lo revisa en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
+- **Ampliación (Vanessa, 2026-11-16): páginas de presentación.** Para presentar el proyecto completo en la sustentación,
+  el tablero agrega dos páginas al comienzo del menú.
+  1. **«El proyecto en una página»:** pregunta, objetivos O1 a O5 con lo que se hizo y lo que salió, conclusiones,
+     hallazgos K1 a K5 con su frase para el Ministerio y limitaciones, siguiendo el informe entregado. Tiene enlaces al
+     PDF del informe, al repositorio y a `/docs`.
+  2. **«Materias integradas»:** qué se usó de cada curso del proyecto integrador (Teoría de Respuesta al Ítem,
+     Ecuaciones Estructurales y Python para APIs) y dónde se ve en el tablero. La parte de Python sigue la teoría del
+     curso: las etapas script → contrato → servicio → contenedor → producto y sus criterios de ingeniería. La lista de
+     rutas de la API se lee de su `/openapi.json`.
+  - Se aplica la misma regla de los textos: las cifras se leen de la API. La clasificación de K1 es la del informe
+    entregado («hallazgo exploratorio»), y se anota que D-50 propone otra, sin aplicar.
+  - No cambia ningún resultado ni `resultados-v1`. También se ponen al día los estados de la página de inicio y de la
+    F7, que seguían en el 2026-11-10.
 
 ### D-48 · 2026-11-10 · Análisis confirmatorio de los ítems por competencia (exploratorio; sugerencia del profesor de SEM)
 - **Contexto:** en la clase de Modelación de Ecuaciones Estructurales, el profesor sugirió un análisis factorial

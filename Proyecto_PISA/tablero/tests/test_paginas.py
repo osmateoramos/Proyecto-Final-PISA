@@ -26,8 +26,8 @@ if not DISPONIBLE and os.environ.get("PISA_EXIGIR_API") == "1":
 pytestmark = pytest.mark.skipif(not DISPONIBLE, reason="La API no está corriendo (ver Proyecto_PISA/api/README.md)")
 
 
-def correr(pagina: str) -> AppTest:
-    return AppTest.from_string(f"from pisa_tablero import paginas\npaginas.{pagina}()", default_timeout=60).run()
+def correr(pagina: str, modulo: str = "paginas") -> AppTest:
+    return AppTest.from_string(f"from pisa_tablero import {modulo}\n{modulo}.{pagina}()", default_timeout=60).run()
 
 
 PAGINAS = ["inicio", "datos_diseno", "medicion_nse", "invarianza", "competencias", "modelo_estructural", "robustez"]
@@ -38,6 +38,28 @@ def test_pagina_se_dibuja_sin_errores(pagina: str) -> None:
     app = correr(pagina)
     assert not app.exception
     assert not app.error
+
+
+@pytest.mark.parametrize("pagina", ["proyecto", "materias"])
+def test_presentacion_se_dibuja_sin_errores(pagina: str) -> None:
+    app = correr(pagina, modulo="presentacion")
+    assert not app.exception
+    assert not app.error
+
+
+def test_proyecto_muestra_objetivos_conclusiones_y_hallazgos() -> None:
+    app = correr("proyecto", modulo="presentacion")
+    texto = " ".join(m.value for m in app.markdown)
+    assert "Conclusiones" in " ".join(s.value for s in app.subheader)
+    assert all(f"**K{i} ·" in texto for i in range(1, 6))
+    assert len(app.table[0].value) == 5                                   # O1 a O5
+
+
+def test_materias_tiene_una_pestana_por_curso_y_las_rutas_de_la_api() -> None:
+    app = correr("materias", modulo="presentacion")
+    assert len(app.tabs) == 3
+    rutas = next(m for m in app.metric if m.label == "Rutas publicadas en /v1")
+    assert int(rutas.value) > 0
 
 
 def test_inicio_muestra_las_ocho_hipotesis() -> None:

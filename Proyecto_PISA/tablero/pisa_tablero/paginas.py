@@ -17,6 +17,7 @@ from pisa_tablero.componentes import (
     icono_decision,
     numero,
     rango,
+    rotulo,
     siguiente,
     tarjeta_hipotesis,
     tarjetas,
@@ -63,20 +64,23 @@ def inicio() -> None:
     st.markdown(f"> **Pregunta de investigación.** {textos.PREGUNTA_BREVE}")
 
     st.subheader("Objetivos")
-    tarjetas(textos.OBJETIVOS_BREVES)
+    with st.container(border=True):
+        st.markdown(f"**Objetivo general.** {textos.OBJETIVO_GENERAL}")
+    st.markdown("**Objetivos específicos**")
+    tarjetas([(titulo, texto) for (titulo, _), (_, texto) in zip(textos.OBJETIVOS_BREVES, textos.OBJETIVOS,
+                                                                  strict=True)], columnas=3)
 
     st.subheader("Hipótesis preregistradas")
     hip = datos.hipotesis().set_index("codigo")["decision"]
+    rotulo("Las ocho hipótesis, su enunciado y la decisión que tomaron los datos.")
     st.dataframe(pd.DataFrame([(c, ENUNCIADOS[c], f"{icono_decision(hip[c])} {hip[c]}") for c in ENUNCIADOS],
                               columns=["Hipótesis", "Enunciado", "Decisión"]),
                  hide_index=True, use_container_width=True)
     st.caption("Congeladas el 2026-10-12, antes de estimar cualquier modelo (commit f53054d). ✅ se acepta · ◐ en "
                "parte o exploratoria · ✖ se rechaza.")
-    with st.expander("Planteamiento completo y objetivo general"):
+    with st.expander("Planteamiento completo del problema"):
         st.markdown(textos.PROBLEMA)
         st.markdown(f"**Pregunta de investigación.** {textos.PREGUNTA}")
-        st.markdown(f"**Objetivo general.** {textos.OBJETIVO_GENERAL}")
-        st.markdown("\n".join(f"- **{c}.** {t}" for c, t in textos.OBJETIVOS))
     siguiente("2. Datos y diseño muestral: la base de todo el análisis.")
 
 
@@ -122,15 +126,18 @@ def datos_diseno() -> None:
         decisiones="D-01, D-13, D-14, D-15, D-38")
 
     st.subheader("Cómo se llegó a la muestra analítica")
+    rotulo("Estudiantes que quedan en cada paso hasta la muestra analítica.")
     st.dataframe(muestra, hide_index=True, use_container_width=True,
                  column_config={"conjunto": "Conjunto", "n": "Estudiantes", "pct_poblacion": "% población ponderada"})
     fuente("conteos_muestra.csv", "01c_muestra_analitica.R")
     st.subheader("Incluidos frente a excluidos (media de matemáticas)")
+    rotulo("Puntaje medio en matemáticas de incluidos y excluidos, con su diferencia.")
     st.dataframe(excl, hide_index=True, use_container_width=True,
                  column_config={"grupo": "Grupo", "n": "n", "media_mat": "Media", "ee": "EE",
                                 "dif_vs_incluidos": "Diferencia con incluidos", "ee_dif": "EE de la diferencia"})
     fuente("comparacion_incluidos_excluidos.csv", "01c_muestra_analitica.R")
     st.subheader("Puerta G1: reproducir las cifras de la OCDE")
+    rotulo("Cifras propias frente a las publicadas por la OCDE: si coinciden, el diseño muestral está bien manejado.")
     st.dataframe(g1[["cifra", "estimacion", "ee", "publicado", "diferencia", "cumple_g1", "fuente"]],
                  hide_index=True, use_container_width=True,
                  column_config={"cifra": "Cifra", "estimacion": "Propia", "ee": "EE", "publicado": "OCDE",
@@ -180,11 +187,13 @@ def medicion_nse() -> None:
     with st.expander("Ver las cargas de los tres modelos"):
         ancho = cargas.pivot_table(index="item", columns=["modelo", "factor"], values="carga_std")
         ancho.columns = [f"{m} · {f}" for m, f in ancho.columns]
+        rotulo("Carga de cada indicador en cada factor, en los tres modelos comparados.")
         st.dataframe(ancho.assign(pregunta=ancho.index.map(_etiquetas())), use_container_width=True)
     fuente("nse_cargas_afc.csv", "03_nse_afc.R")
 
     st.subheader("Ajuste de los modelos (mitad de confirmación)")
     ajuste = datos.tabla("/nse/ajuste")
+    rotulo("Ajuste de cada modelo del NSE: mejor con CFI y TLI más altos y RMSEA y SRMR más bajos.")
     st.dataframe(ajuste[["modelo", "version", "n", "cfi_scaled", "cfi_robust", "tli_scaled", "rmsea_scaled",
                          "rmsea_robust", "srmr", "correlacion_factores"]],
                  hide_index=True, use_container_width=True,
@@ -198,11 +207,14 @@ def medicion_nse() -> None:
     c1, c2 = st.columns(2)
     with c1:
         st.subheader("Confiabilidad")
+        rotulo("Confiabilidad omega de cada factor (análisis factorial).")
         st.dataframe(datos.tabla("/nse/omega"), hide_index=True, use_container_width=True)
+        rotulo("Confiabilidad de las puntuaciones del NSE (TRI).")
         st.dataframe(datos.tabla("/nse/confiabilidad"), hide_index=True, use_container_width=True)
         fuente("nse_omega_afc.csv y nse_confiabilidad_tri.csv")
     with c2:
         st.subheader("Validez frente a la OCDE")
+        rotulo("Correlación de las puntuaciones propias del NSE con los índices oficiales de la OCDE.")
         st.dataframe(datos.tabla("/nse/validez"), hide_index=True, use_container_width=True,
                      column_config={"puntuacion": "Puntuación (EAP)", "r_homepos": "r con HOMEPOS",
                                     "r_escs": "r con ESCS"})
@@ -242,12 +254,14 @@ def invarianza() -> None:
         st.altair_chart(graficos.intervalos(medias, eje_y="contraste",
                                             titulo_x="Diferencia en DE del factor (IC 95 % con BRR)"),
                         use_container_width=True)
+        rotulo("Diferencia de NSE de cada grupo frente a su referencia, con su intervalo de confianza.")
         st.dataframe(medias[["contraste", "serie", "diferencia", "ee_brr", "ic95_inf", "ic95_sup"]],
                      hide_index=True, use_container_width=True,
                      column_config={"contraste": "Contraste", "serie": "Factor", "diferencia": "Diferencia",
                                     "ee_brr": "EE (BRR)", "ic95_inf": "IC 95 % inf.", "ic95_sup": "IC 95 % sup."})
     fuente("nse_medias_latentes_brr.csv", "04_medias_brr.R")
     st.subheader("Secuencia de invarianza")
+    rotulo("Cambio en el ajuste al igualar, paso a paso, los parámetros entre grupos.")
     st.dataframe(pasos, hide_index=True, use_container_width=True,
                  column_config={"paso": "Paso", "cfi_scaled": "CFI scaled", "rmsea_scaled": "RMSEA scaled",
                                 "dcfi": "ΔCFI", "drmsea": "ΔRMSEA", "se_sostiene": "Se sostiene"})
@@ -257,6 +271,7 @@ def invarianza() -> None:
     dif = dif[dif["analisis"] == analisis]
     st.metric("Bienes con DIF no despreciable en esta comparación", int(dif["dif"].sum()), help="D-26")
     with st.expander("Ver todos los bienes probados"):
+        rotulo("Prueba de DIF de cada bien del hogar en la comparación elegida.")
         st.dataframe(dif.assign(pregunta=dif["item"].map(_etiquetas())), hide_index=True, use_container_width=True)
     fuente("invarianza_tabla.csv y nse_dif_posesiones.csv", "04_invarianza.R")
     siguiente("5. Calificación por competencias: la segunda medida del proyecto.")
@@ -294,9 +309,11 @@ def competencias() -> None:
                       "encima de 0,95. No obstante, se calificó con el de 4 dimensiones (D-29), porque la pregunta es por "
                       "competencia, sabiendo que sus puntajes van a parecerse mucho.",
             decisiones="D-27, D-29")
+        rotulo("Ajuste de los modelos de una y cuatro dimensiones, y correlaciones entre competencias.")
         st.dataframe(dim, hide_index=True, use_container_width=True,
                      column_config={"loglik": "log-verosimilitud", "aic": "AIC", "bic": "BIC",
                                     "correlacion_min": "r mínima", "correlacion_max": "r máxima"})
+        rotulo("Ítems, respuestas y omisiones por competencia en la prueba adaptativa.")
         st.dataframe(datos.tabla("/matematicas/matriz"), hide_index=True, use_container_width=True,
                      column_config={"pct_celdas_con_dato_a": "% de celdas con dato",
                                     "items_por_estudiante_mediana": "Ítems por estudiante (mediana)"})
@@ -321,10 +338,12 @@ def competencias() -> None:
                       "que las competencias apenas se diferencian en Colombia. Es exploratorio: no cambia ninguna "
                       "hipótesis.",
             decisiones="D-27, D-29, D-48")
+        rotulo("Carga de los ítems en su competencia: mediana, extremos y cuántos quedan por debajo de 0,30.")
         st.dataframe(cargas, hide_index=True, use_container_width=True,
                      column_config={"items": "Ítems", "carga_mediana": "Carga mediana", "carga_p10": "Percentil 10",
                                     "carga_min": "Carga mínima", "carga_max": "Carga máxima",
                                     "carga_menor_030": "Ítems con carga < 0,30", "pct_menor_030": "% con carga < 0,30"})
+        rotulo("Cuántos estudiantes respondieron juntos cada par de ítems.")
         st.dataframe(pares, hide_index=True, use_container_width=True,
                      column_config={"n_pares": "Pares", "nunca_juntos": "Nunca juntos", "pct_nunca_juntos": "% nunca juntos",
                                     "menos_de_50": "Menos de 50 estudiantes", "pct_menos_de_50": "% menos de 50",
@@ -347,7 +366,9 @@ def competencias() -> None:
                       "medida, pero se usan como **robustez**: el análisis principal de la F6 usa los valores plausibles "
                       "de la OCDE (D-32).",
             decisiones="D-30, D-31, D-32, D-33, D-37, D-39")
+        rotulo("Puntajes propios frente a un cálculo de referencia (criterios V1 a V3).")
         st.dataframe(datos.tabla("/matematicas/validacion-puntajes"), hide_index=True, use_container_width=True)
+        rotulo("Confiabilidad de los puntajes propios de cada competencia.")
         st.dataframe(conf, hide_index=True, use_container_width=True)
         fuente("mat_rl_validacion.csv y mat_confiabilidad_competencias.csv", "05_puntajes_rl.R")
 
@@ -368,6 +389,7 @@ def competencias() -> None:
                                                     titulo_fila="Puntaje propio", titulo_columna="VP de la OCDE"),
                         use_container_width=False)
         st.subheader("P3: dificultades frente a las internacionales")
+        rotulo("Concordancia de las dificultades de los ítems con las publicadas por la OCDE.")
         st.dataframe(datos.tabla("/matematicas/enlace-ocde"), hide_index=True, use_container_width=True,
                      column_config={"r_spearman_todos": "Spearman (todos)", "r_b_a_min": "Pearson (a ≥ 0,3)"})
         fuente("mat_h7_correlaciones.csv y mat_p3_robusto.csv", "05_h4_h7.R y 05_p3_robusto.R")
@@ -391,6 +413,7 @@ def competencias() -> None:
                                                   titulo_x="Reducción de la brecha Q4 − Q1 (DE)",
                                                   referencias={"0": 0.0, "umbral de H4 (0,05)": 0.05}),
                         use_container_width=True)
+        rotulo("Brecha entre el cuartil alto y el bajo de NSE con cada forma de calificar las omisiones.")
         st.dataframe(om, hide_index=True, use_container_width=True,
                      column_config={"brecha_a": "Brecha (a)", "brecha_b": "Brecha (b)", "brecha_c": "Brecha (c)",
                                     "reduccion_b": "Reducción", "p_b_holm": "p (Holm)"})
@@ -427,8 +450,10 @@ def _dif_por_nse() -> None:
     dicotomicos = df[df["delta_mh"].notna()]
     if not dicotomicos.empty:
         st.altair_chart(graficos.dif_por_item(dicotomicos), use_container_width=True)
+    rotulo("Ítems con DIF por NSE y cuartil al que favorecen.")
     st.dataframe(df[df["dif"]][["item", "competencia", "tipo", "p_bh", "delta_mh", "categoria_ets", "favorece"]],
                  hide_index=True, use_container_width=True)
+    rotulo("DIF por competencia: ítems evaluados, significativos y con efecto no despreciable.")
     st.dataframe(datos.tabla("/matematicas/dif-resumen"), hide_index=True, use_container_width=True)
     fuente("mat_dif.csv y mat_dif_resumen.csv", "05_dif_matematicas.R")
 
@@ -499,6 +524,7 @@ def modelo_estructural() -> None:
     st.altair_chart(graficos.intervalos(coef, eje_y="competencia", orden_y=COMPETENCIAS,
                                         titulo_x="Puntos PISA por unidad de la EAP del NSE (IC 95 %, BRR y Rubin)"),
                     use_container_width=True)
+    rotulo("Coeficiente del NSE en cada competencia, con su error, intervalo y varianza explicada.")
     st.dataframe(coef[["competencia", "serie", "estimacion", "ee_brr", "ic95_inf", "ic95_sup", "por_de_eap",
                        "r2_medio"]], hide_index=True, use_container_width=True,
                  column_config={"serie": "Factor", "estimacion": "Coeficiente", "ee_brr": "EE",
@@ -513,6 +539,7 @@ def modelo_estructural() -> None:
     h5 = datos.tabla("/modelo/h5").rename(columns={"diferencia_interpretar_menos_emplear": "estimacion"})
     st.altair_chart(graficos.intervalo_simple(h5, eje_y="muestra", titulo_x="Interpretar − emplear (puntos PISA)",
                                               referencias={"0": 0.0}), use_container_width=True)
+    rotulo("Diferencia interpretar − emplear en la muestra completa y en la mitad de confirmación.")
     st.dataframe(h5, hide_index=True, use_container_width=True)
     fuente("sem_igualdad.csv y sem_h5.csv")
 
@@ -523,7 +550,9 @@ def modelo_estructural() -> None:
     tabla_inter.index = tabla_inter.index.map({"eco:zonapueblo": "Pueblo frente a urbana",
                                                "eco:zonarural": "Rural frente a urbana",
                                                "eco:sectorprivado": "Privado frente a público"})
+    rotulo("Cuánto más empinada es la pendiente del NSE en cada grupo frente a su referencia.")
     st.dataframe(tabla_inter, use_container_width=True)
+    rotulo("Prueba conjunta de las interacciones por zona y por sector.")
     st.dataframe(datos.tabla("/modelo/h6"), hide_index=True, use_container_width=True)
     st.caption("Diferencia en la pendiente del NSE económico frente a la referencia (puntos PISA por unidad de la EAP). "
                "Wald conjunta por variable con Holm (D-42).")
@@ -545,8 +574,11 @@ def modelo_estructural() -> None:
     df_lat = latente.assign(serie=latente["coeficiente"].map({"eco": "económico", "libros": "libros"}),
                             latente=latente["coef_latente_por_de"], dos_pasos=latente["dos_pasos_por_de"])
     st.altair_chart(graficos.comparacion_enfoques(df_lat), use_container_width=True)
+    rotulo("Coeficientes del NSE con el SEM latente frente al enfoque en dos pasos.")
     st.dataframe(latente, hide_index=True, use_container_width=True)
+    rotulo("Conclusiones con los valores plausibles de la OCDE frente a los puntajes propios.")
     st.dataframe(datos.tabla("/modelo/puntajes-propios"), hide_index=True, use_container_width=True)
+    rotulo("Índices de ajuste del SEM latente.")
     st.dataframe(datos.tabla("/modelo/ajuste"), hide_index=True, use_container_width=True)
     fuente("sem_robustez_latente.csv, sem_comparacion_fuentes.csv y sem_ajuste_latente.csv")
     siguiente("7. Robustez: ¿los resultados resisten otras decisiones de análisis?")
@@ -612,11 +644,14 @@ def robustez() -> None:
     det = datos.tabla("/robustez/detalle")
     simbolo = det["se_mantiene"].map({True: "✓", False: "✗"}).fillna("…")
     matriz = det.assign(estado=simbolo).pivot(index="candidato", columns="sensibilidad", values="estado").fillna("—")
+    rotulo("Si cada resultado se mantiene (✓) o cambia (✗) en cada sensibilidad.")
     st.dataframe(matriz, use_container_width=True)
+    rotulo("Sensibilidades que aplican a cada resultado y en cuántas se mantiene.")
     st.dataframe(datos.robustez(), hide_index=True, use_container_width=True,
                  column_config={"conclusion": "Conclusión", "aplicables": "Aplican", "se_mantiene_en": "Se mantiene en",
                                 "requerido": "Requerido", "robusto": "¿Robusto?"})
     with st.expander("Ver el detalle numérico de cada sensibilidad"):
+        rotulo("Detalle numérico de cada sensibilidad.")
         st.dataframe(det, hide_index=True, use_container_width=True)
     fuente("f7_sensibilidad_detalle.csv y f7_robustez.csv", "07_sensibilidad.R")
     siguiente("8. Producto: los resultados, disponibles en una API.")
@@ -653,6 +688,7 @@ def prediccion() -> None:
         respuesta = datos.predecir(Perfil(nse_economico=nse_eco, nse_libros=nse_libros, sexo=sexo, grado=grado))
         df = pd.DataFrame([p.model_dump() for p in respuesta.puntajes])
         st.altair_chart(graficos.puntajes_esperados(df), use_container_width=True)
+        rotulo("Puntaje esperado en cada competencia para el perfil elegido.")
         st.dataframe(df, hide_index=True, use_container_width=True,
                      column_config={"competencia": "Competencia", "puntaje_esperado": "Puntaje esperado"})
         st.warning(respuesta.advertencia)

@@ -77,6 +77,25 @@ def test_materias_tiene_una_pestana_por_curso_y_las_rutas_de_la_api() -> None:
     assert int(rutas.value) > 0
 
 
+def test_inicio_muestra_los_objetivos_completos() -> None:
+    app = correr("inicio")
+    texto = " ".join(m.value for m in app.markdown) + " ".join(c.value for c in app.caption)
+    assert "**Objetivo general.**" in texto
+    assert "equidad de la calificación" in texto                          # O3 con su enunciado completo
+
+
+def test_conclusiones_completas() -> None:
+    texto = " ".join(m.value for m in correr("conclusiones", modulo="presentacion").markdown)
+    assert all(f"**{i}.**" in texto for i in range(1, 6))
+    assert "puntos PISA por desviación estándar" in texto
+
+
+@pytest.mark.parametrize("pagina", ["inicio", "datos_diseno", "medicion_nse", "competencias", "modelo_estructural"])
+def test_las_tablas_tienen_su_frase(pagina: str) -> None:
+    app = correr(pagina)
+    assert sum(c.value.startswith("**Tabla.**") for c in app.caption) >= len(app.dataframe) - 1
+
+
 def test_inicio_muestra_las_ocho_hipotesis() -> None:
     hipotesis = correr("inicio").dataframe[0].value
     assert list(hipotesis["Hipótesis"]) == [f"H{i}" for i in range(1, 9)]

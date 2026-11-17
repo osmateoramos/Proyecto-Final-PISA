@@ -12,7 +12,7 @@ import pandas as pd
 import streamlit as st
 
 from pisa_tablero import datos, textos
-from pisa_tablero.componentes import contexto, numero, rango, siguiente, tarjetas
+from pisa_tablero.componentes import contexto, numero, rango, rotulo, siguiente, tarjetas
 from pisa_tablero.config import obtener_configuracion
 
 REPOSITORIO = "https://github.com/osmateoramos/Proyecto-Final-PISA"
@@ -223,6 +223,7 @@ def resumen() -> None:
     st.caption(textos.NOTA_TRANSVERSAL)
 
     with st.expander("Estructura de la presentación"):
+        rotulo("Secciones de la presentación y su contenido.")
         st.table(pd.DataFrame(textos.SECCIONES, columns=["Sección", "Contenido"]).set_index("Sección"))
         st.caption("Orden cronológico del desarrollo del proyecto: cada sección parte de lo que dejó resuelto la "
                    "anterior.")
@@ -266,18 +267,27 @@ def conclusiones() -> None:
     c = _cifras()
 
     st.subheader("Conclusiones")
-    tarjetas([
-        ("1. Dos dimensiones del NSE", "Económica y de libros en el hogar; invarianza no demostrada."),
-        ("2. Asociación en las cuatro competencias", f"{c['coef']} puntos PISA por DE; algo mayor en interpretar "
-                                                     "y en colegios privados."),
-        ("3. Calificación equitativa", "La brecha apenas cambia al recalificar omisiones y no la explican ítems con "
-                                       "DIF."),
-        ("4. Competencias poco diferenciadas", "Para separarlas conviene usar los valores plausibles de la OCDE."),
-        ("5. Resultados robustos", f"{c['robustos']} resultados; sin antecedentes para Colombia de K1, K2, K4 ni K5."),
-    ], columnas=3)
+    conclusiones_completas = [
+        "**El NSE se representa mejor con dos dimensiones**, económica y de libros en el hogar. Su medición no "
+        "presenta diferencias relevantes entre zonas, sexos y sectores, aunque la invarianza no queda demostrada.",
+        f"**El NSE económico se asocia con las cuatro competencias** con una magnitud similar, entre "
+        f"{c['coef_entre']} puntos PISA por desviación estándar. La asociación es algo mayor en interpretar "
+        f"({c['h5']} puntos más que en emplear; resultado exploratorio) y más pronunciada en los colegios privados "
+        f"({c['h6']}, con corrección de Holm).",
+        "**La brecha no es un artefacto de la calificación**: apenas cambia al recalificar las omisiones y no la "
+        "explican ítems con funcionamiento diferencial.",
+        "**Las cuatro competencias apenas se distinguen** con los ítems que responde cada estudiante en la prueba "
+        "adaptativa; para analizarlas por separado conviene emplear los valores plausibles de la OCDE.",
+        f"**Los resultados principales son robustos** ({c['robustos']}), y la búsqueda en Scopus, Google Académico, "
+        "SciELO y Redalyc no identificó antecedentes para Colombia de K1, K2, K4 ni K5.",
+    ]
+    for numero_conclusion, texto in enumerate(conclusiones_completas, start=1):
+        with st.container(border=True):
+            st.markdown(f"**{numero_conclusion}.** {texto}")
     st.caption(textos.NOTA_TRANSVERSAL)
 
     st.subheader("Cumplimiento de los objetivos")
+    rotulo("Cada objetivo, la metodología empleada y su resultado principal.")
     st.table(_cumplimiento(c, datos.hipotesis().set_index("codigo")["decision"]))
 
     _hallazgos()
@@ -325,6 +335,7 @@ def materias() -> None:
 
 def _tabla_teoria(filas: list[tuple[str, str, str]]) -> None:
     """Tabla «contenido del curso → aplicación en el proyecto → sección del tablero»."""
+    rotulo("Contenidos del curso, su aplicación en el proyecto y la sección donde se ven.")
     st.table(pd.DataFrame(filas, columns=["Contenido del curso", "Aplicación en el proyecto", "Sección"])
              .set_index("Contenido del curso"))
 
@@ -372,6 +383,7 @@ def _materia_python() -> None:
         with columna.container(border=True):
             st.markdown(f"**{i}. {etapa}**")
             st.caption(texto)
+    rotulo("Contenidos del curso aplicados en la API y el tablero.")
     st.table(pd.DataFrame(TEORIA_PYTHON, columns=["Contenido del curso", "Aplicación en el proyecto"])
              .set_index("Contenido del curso"))
 
@@ -382,6 +394,7 @@ def _materia_python() -> None:
     col[1].metric("Grupos de rutas", v1["grupo"].nunique(), help="Datos, NSE, matemáticas, modelo, hipótesis…")
     col[2].metric("Versión de la API", datos.salud()["version"])
     with st.expander("Rutas de la API"):
+        rotulo("Rutas que publica la API, leídas de su documentación.")
         st.dataframe(rutas, hide_index=True, use_container_width=True,
                      column_config={"metodo": "Método", "ruta": "Ruta", "grupo": "Grupo", "resumen": "Descripción"})
     docs = f"{obtener_configuracion().api_url}/docs"

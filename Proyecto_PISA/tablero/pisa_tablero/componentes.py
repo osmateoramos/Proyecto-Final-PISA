@@ -48,6 +48,15 @@ def clave(texto: str) -> None:
     st.info(f"**Mensaje clave.** {texto}")
 
 
+def rotulo(texto: str) -> None:
+    """Frase breve antes de una tabla que dice qué muestra.
+
+    Args:
+        texto: Qué contiene la tabla, en una frase.
+    """
+    st.caption(f"**Tabla.** {texto}")
+
+
 def tarjetas(items: list[tuple[str, str]], columnas: int | None = None) -> None:
     """Fila de tarjetas breves (título y una línea), al estilo de una diapositiva.
 

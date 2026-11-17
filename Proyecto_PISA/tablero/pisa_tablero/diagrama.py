@@ -140,7 +140,7 @@ def svg_modelo(cargas: pd.DataFrame, etiquetas: dict[str, str], correlacion: flo
             + "</text></g>")
 
     partes.append(f'<text x="{X_IND}" y="18" font-weight="600">Indicadores del NSE (carga estandarizada)</text>'
-                  f'<text x="{X_COMP}" y="18" font-weight="600">Competencias</text>'
+                  f'<text x="{X_COMP}" y="18" font-weight="600">Competencias (VP)</text>'
                   f'<text x="{ANCHO - 8}" y="{alto - 8}" text-anchor="end" opacity="0.7">Rutas: {escape(unidad_rutas)}</text>'
                   "</svg>")
     return "".join(partes)

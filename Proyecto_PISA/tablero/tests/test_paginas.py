@@ -40,19 +40,34 @@ def test_pagina_se_dibuja_sin_errores(pagina: str) -> None:
     assert not app.error
 
 
-@pytest.mark.parametrize("pagina", ["proyecto", "materias"])
+@pytest.mark.parametrize("pagina", ["resumen", "conclusiones", "materias"])
 def test_presentacion_se_dibuja_sin_errores(pagina: str) -> None:
     app = correr(pagina, modulo="presentacion")
     assert not app.exception
     assert not app.error
 
 
-def test_proyecto_muestra_objetivos_conclusiones_y_hallazgos() -> None:
-    app = correr("proyecto", modulo="presentacion")
+def test_resumen_tiene_las_partes_de_un_resumen_academico() -> None:
+    texto = " ".join(m.value for m in correr("resumen", modulo="presentacion").markdown)
+    assert all(parte in texto for parte in ("**Problema.**", "**Método.**", "**Resultados.**", "**Conclusión.**"))
+
+
+def test_conclusiones_muestran_objetivos_y_hallazgos() -> None:
+    app = correr("conclusiones", modulo="presentacion")
     texto = " ".join(m.value for m in app.markdown)
-    assert "Conclusiones" in " ".join(s.value for s in app.subheader)
     assert all(f"**K{i} ·" in texto for i in range(1, 6))
     assert len(app.table[0].value) == 5                                   # O1 a O5
+
+
+@pytest.mark.parametrize("pagina", PAGINAS + ["prediccion"])
+def test_cada_seccion_cierra_anunciando_la_siguiente(pagina: str) -> None:
+    texto = " ".join(m.value for m in correr(pagina).markdown)
+    assert "**Siguiente sección.**" in texto
+
+
+def test_modelo_explica_por_que_las_competencias_no_son_latentes() -> None:
+    app = correr("modelo_estructural")
+    assert any("variables latentes" in e.label for e in app.expander)
 
 
 def test_materias_tiene_una_pestana_por_curso_y_las_rutas_de_la_api() -> None:

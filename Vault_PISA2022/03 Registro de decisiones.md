@@ -2294,6 +2294,15 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
     entregado («hallazgo exploratorio»), y se anota que D-50 propone otra, sin aplicar.
   - No cambia ningún resultado ni `resultados-v1`. También se ponen al día los estados de la página de inicio y de la
     F7, que seguían en el 2026-11-10.
+  - **Segunda ampliación (Vanessa, el mismo día): estructura de informe académico y lenguaje institucional.**
+    - Menú en orden cronológico: «Informe» (Resumen y 1. Introducción), «Desarrollo del proyecto» (secciones 2 a 8,
+      una por fase) y «Cierre» (9. Conclusiones y Anexo. Materias integradas).
+    - «El proyecto en una página» se divide en el Resumen (problema, método, resultados, conclusión y palabras clave)
+      y la sección 9 (cumplimiento de los objetivos, conclusiones, hallazgos y limitaciones).
+    - Cada sección de las fases abre con un recuadro de contexto y cierra anunciando la siguiente. Las pestañas pasan
+      a llamarse «Procedimiento», «Lectura de los resultados» e «Interpretación».
+    - En la sección 6 se explica por qué las competencias entran como valores plausibles y no como factores
+      latentes, con las razones de D-29, D-32, D-42 y D-48. Es interpretación del equipo y no cambia ninguna decisión.
 
 ### D-48 · 2026-11-10 · Análisis confirmatorio de los ítems por competencia (exploratorio; sugerencia del profesor de SEM)
 - **Contexto:** en la clase de Modelación de Ecuaciones Estructurales, el profesor sugirió un análisis factorial

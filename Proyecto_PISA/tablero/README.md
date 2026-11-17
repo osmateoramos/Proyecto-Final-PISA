@@ -6,23 +6,25 @@ un endpoint, y cada página dice de qué archivo de `salidas/` y de qué decisi�
 Publicado en Render (plan gratuito): https://pisa-tablero.onrender.com, con la API en
 https://pisa-api-k2tn.onrender.com. La primera visita después de un rato sin uso puede tardar 50 segundos o más.
 
-## Páginas (recorrido por fases, D-47)
+## Páginas (estructura de informe académico, D-47)
 
-Cada sección explica en tres pestañas **qué se hizo, cómo se lee y qué significa**, con las decisiones del registro que
-la sostienen.
+El menú sigue el orden de un informe y el orden cronológico del proyecto. Cada sección de las fases abre con un recuadro
+de **contexto**, explica en tres pestañas el **procedimiento, la lectura de los resultados y su interpretación** (con las
+decisiones del registro que la sostienen) y cierra anunciando la **siguiente sección**.
 
-| Página | Qué muestra |
-|---|---|
-| El proyecto en una página | el informe resumido: pregunta, cifras clave, objetivos O1-O5 con lo que salió, conclusiones, hallazgos K1-K5 con su frase para el Ministerio, limitaciones y enlaces al PDF, al repositorio y a `/docs` |
-| Materias integradas | una pestaña por curso (Teoría de Respuesta al Ítem, Ecuaciones Estructurales, Python para APIs): teoría usada, dónde se ve y cifras clave; en Python, el recorrido script → contrato → servicio → contenedor → producto y las rutas vivas de la API (de su `/openapi.json`) |
-| Hipótesis y recorrido | pregunta, objetivos O1-O5, estado de cada fase y las 8 hipótesis con su decisión |
-| F1-F2 · Datos y diseño | muestra analítica, incluidos frente a excluidos y la Puerta G1 (réplica de cifras de la OCDE) |
-| F3 · Medición del NSE | H1, cargas de los 29 indicadores (con su pregunta), ajuste de los AFC, confiabilidad y validez |
-| F4 · Invarianza | H2, medias latentes con IC 95 % (BRR), secuencia de invarianza y DIF de los bienes por comparación |
-| F5 · Competencias | H8 (1 frente a 4 dimensiones), puntajes propios (V1-V3, confiabilidad), H7 (mapa de correlaciones), P3, H4 y DIF (H3) |
-| F6 · Modelo estructural | **diagrama interactivo** (indicadores con su carga → 2 factores con su correlación → 4 competencias), coeficientes, H5, H6 y robustez (SEM latente, puntajes propios, ajuste) |
-| F7 · Robustez y hallazgos | matriz candidato × sensibilidad y robustez de K1-K5 |
-| Puntaje esperado | formulario de perfil → puntaje esperado de las 4 competencias, con su advertencia |
+| Grupo | Página | Qué muestra |
+|---|---|---|
+| Informe | Resumen | resumen académico (problema, método, resultados, conclusión y palabras clave), indicadores principales y estructura de la presentación |
+| Informe | 1. Introducción | planteamiento del problema, pregunta, objetivos O1-O5, las 8 hipótesis con su decisión y el recorrido metodológico |
+| Desarrollo | 2. Datos y diseño muestral | muestra analítica, incluidos frente a excluidos y la Puerta G1 (réplica de cifras de la OCDE) |
+| Desarrollo | 3. Medición del NSE | H1, cargas de los 29 indicadores (con su pregunta), ajuste de los AFC, confiabilidad y validez |
+| Desarrollo | 4. Invarianza del NSE | H2, medias latentes con IC 95 % (BRR), secuencia de invarianza y DIF de los bienes por comparación |
+| Desarrollo | 5. Calificación por competencias | H8 (1 frente a 4 dimensiones), puntajes propios (V1-V3, confiabilidad), H7 (mapa de correlaciones), P3, H4 y DIF (H3) |
+| Desarrollo | 6. Modelo estructural | **diagrama interactivo** (indicadores con su carga → 2 factores latentes → 4 competencias como valores plausibles), por qué las competencias no son latentes, coeficientes, H5, H6 y robustez |
+| Desarrollo | 7. Robustez y hallazgos | matriz candidato × sensibilidad y robustez de K1-K5 |
+| Desarrollo | 8. Producto: puntaje esperado | formulario de perfil → puntaje esperado de las 4 competencias, con su advertencia |
+| Cierre | 9. Conclusiones | cumplimiento de los objetivos, conclusiones, hallazgos K1-K5 con su mensaje para el Ministerio, limitaciones y documentos |
+| Cierre | Anexo. Materias integradas | una pestaña por curso: contenido aplicado y sección donde se ve; en Python, las etapas script → contrato → servicio → contenedor → producto y las rutas vivas de la API (de su `/openapi.json`) |
 
 El diagrama del modelo permite resaltar una competencia y cambiar entre el enfoque en dos pasos (principal) y el SEM
 con NSE latente (robustez); al pasar el cursor se ve el detalle de cada indicador, factor y ruta.
@@ -56,8 +58,9 @@ tablero/
 │   ├── graficos.py        # gráficos de Altair como funciones puras
 │   ├── diagrama.py        # diagrama SVG del modelo estructural (función pura)
 │   ├── componentes.py     # explicaciones en pestañas, fuentes y tarjetas de hipótesis
-│   ├── paginas.py         # una función por página de las fases
-│   └── presentacion.py    # páginas de presentación: el proyecto en una página y materias integradas
+│   ├── paginas.py         # una función por sección de las fases (1 a 8)
+│   ├── presentacion.py    # resumen, conclusiones (sección 9) y anexo de materias integradas
+│   └── textos.py          # textos institucionales compartidos (título, pregunta, problema, objetivos, secciones)
 ├── tests/                 # pytest: cliente (transporte simulado), gráficos y páginas (AppTest contra la API)
 ├── Dockerfile             # python:3.11.9-slim
 └── .env.example

@@ -14,20 +14,41 @@ ETIQUETAS_DERIVADAS = {
 
 
 def explicar(que: str, como: str, significa: str, decisiones: str) -> None:
-    """Recuadro con tres pestañas: qué se hizo, cómo se lee y qué significa, más las decisiones que lo sostienen.
+    """Recuadro con tres pestañas: procedimiento, lectura e interpretación, más las decisiones que lo sostienen.
 
     Args:
-        que: Qué se hizo y por qué.
-        como: Cómo leer el gráfico o la tabla.
-        significa: Qué significa el resultado (las interpretaciones del equipo se marcan como tales).
+        que: Procedimiento: qué se hizo y por qué.
+        como: Lectura del gráfico o de la tabla.
+        significa: Interpretación del resultado (las del equipo se marcan como tales).
         decisiones: Decisiones del registro (``Vault_PISA2022/03 Registro de decisiones.md``).
     """
     with st.container(border=True):
-        p1, p2, p3 = st.tabs(["¿Qué se hizo?", "¿Cómo se lee?", "¿Qué significa?"])
+        p1, p2, p3 = st.tabs(["Procedimiento", "Lectura de los resultados", "Interpretación"])
         p1.markdown(que)
         p2.markdown(como)
         p3.markdown(significa)
         st.caption(f"Decisiones del registro: {decisiones}")
+
+
+def contexto(texto: str) -> None:
+    """Recuadro inicial que sitúa la sección en el recorrido del proyecto (hilo de la presentación).
+
+    Args:
+        texto: Una o dos frases: de dónde viene la sección y qué pregunta responde.
+    """
+    with st.container(border=True):
+        st.caption("CONTEXTO")
+        st.markdown(texto)
+
+
+def siguiente(texto: str) -> None:
+    """Cierre de la sección: anuncia la siguiente, para mantener la secuencia de la presentación.
+
+    Args:
+        texto: Qué deja resuelto esta sección y qué aborda la siguiente.
+    """
+    st.divider()
+    st.markdown(f"**Siguiente sección.** {texto}")
 
 
 def fuente(archivos: str, script: str | None = None) -> None:

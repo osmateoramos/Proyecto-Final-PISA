@@ -254,6 +254,35 @@ class FilaCargasCompetencia(FilaCSV):
     pct_menor_030: Annotated[float, Field(ge=0, le=100)]
 
 
+Correlacion = Annotated[float, Field(ge=-1, le=1)]
+
+
+class FilaCargaItem(FilaCSV):
+    """Carga estandarizada de cada ítem de matemáticas en su competencia, modelo de 4 competencias
+    (mat_afc_cargas.csv, D-48, D-51). Son parámetros de los ítems: no hay datos de estudiantes."""
+
+    item: str
+    competencia: Competencia
+    tipo: Annotated[str, Field(description="2PL (dicotómico) o gpcm (crédito parcial).")]
+    respuestas: Annotated[Conteo, Field(description="Estudiantes de Colombia que respondieron el ítem.")]
+    a: Annotated[float, Field(description="Discriminación en el modelo de 4 competencias.")]
+    carga: Correlacion
+    carga_baja: Annotated[bool, Field(description="Carga < 0,30, el criterio operativo de D-29.")]
+
+
+class FilaCorrelacionCompetencia(FilaCSV):
+    """Matriz Φ de correlaciones entre competencias del modelo de 4 competencias (mat_afc_phi.csv, D-48, D-51).
+
+    Son correlaciones entre las competencias latentes, sin controlar por el NSE; no son residuos del modelo estructural.
+    """
+
+    competencia: Competencia
+    emplear: Correlacion
+    formular: Correlacion
+    interpretar: Correlacion
+    razonar: Correlacion
+
+
 class FilaCoberturaPares(FilaCSV):
     """Cuántos estudiantes respondieron juntos cada par de ítems en la prueba adaptativa (mat_pares_cobertura.csv,
     D-48): explica por qué no se puede hacer un AFC con correlaciones policóricas."""

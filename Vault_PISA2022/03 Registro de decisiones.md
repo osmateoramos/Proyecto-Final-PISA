@@ -2072,6 +2072,11 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
      RMSEA (*scaled* y *robust*, donde se puedan calcular) y SRMR, **solo con el VP1 de la OCDE** y el peso final
      (costo: un ajuste con estadístico de prueba). Es descriptivo y no decide nada.
   5. **Diagrama** del modelo en `salidas/sem_diagrama.png`, dibujado con R base (sin paquetes nuevos).
+     - ⚠️ *Error de Claude, detectado el 2026-11-13:* la caja del NSE económico dice «19 indicadores (bienes del
+       hogar)», pero el factor incluye también `HISCED_c` y `HISEI_q`, que son la educación y la ocupación de los padres
+       (D-24). Debería decir «19 indicadores (bienes, educación y ocupación de los padres)». No cambia ninguna cifra.
+       Para corregirla hay que cambiar la etiqueta en `06_sem_competencias.R` y regenerar el PNG, que está congelado
+       en `resultados-v1`. Queda a decisión del equipo.
 - **Salidas previstas:** `scripts/06_sem_competencias.R` → `salidas/sem_propios_coeficientes.csv`,
   `sem_propios_igualdad.csv`, `sem_propios_h5.csv`, `sem_propios_h6.csv`, `sem_propios_h6_interacciones.csv`
   (agregada al programar), `sem_comparacion_fuentes.csv`,
@@ -2450,3 +2455,153 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
 - **Estado:** 🟡 propuesta (borrador de Claude, 2026-11-10). **No se aplicó en el informe entregado:** por el plazo
   de entrega, el informe se cerró el 2026-11-10 con la clasificación de `Hallazgos.md` («hallazgo exploratorio», que
   requiere confirmación en otra muestra o ciclo) (Mateo, 2026-11-10).
+
+### D-51 · 2026-11-18 · Diagrama del modelo final con las competencias como latentes y las cargas de sus ítems (tablero)
+- **Contexto:** el proyecto ya se presentó en Consultoría. Para presentarlo en Teoría de Respuesta al Ítem y en
+  Modelación de Ecuaciones Estructurales, el equipo pide que, en el diagrama del modelo final, las competencias
+  aparezcan como óvalos (variables latentes) y con las cargas de sus ítems. Es un cambio de **presentación**: no se
+  estima nada nuevo ni cambia ninguna cifra.
+- **Lo que hay:**
+  - las cargas de los 232 ítems en su competencia, del modelo de 4 competencias del 5.3 (`salidas/mat_afc_cargas.csv`)
+    y su resumen por competencia (`mat_afc_resumen.csv`), de D-48;
+  - la matriz Φ de correlaciones entre competencias (`mat_afc_phi.csv`), de 0,897 a 0,976.
+  - Con 232 ítems, dibujarlos uno por uno deja el diagrama ilegible.
+- **Alternativas** (Claude, 2026-11-18):
+  - (A) óvalos y una caja con el resumen de las cargas de cada competencia, más las correlaciones Φ;
+  - (B) lo de (A), más tres ítems reales por competencia: el de carga más alta, el de la mediana y el más bajo;
+  - (C) diagrama sin cargas de ítems y una gráfica aparte con las 232 cargas.
+- **Decisión (Mateo, 2026-11-18): (A), en el tablero.**
+  1. **Diagrama del tablero** (página del modelo estructural; `paginas.py` y `diagrama.py`):
+     - las 4 competencias pasan a óvalos;
+     - a la derecha de cada una va una caja con el número de ítems, la carga mediana, el rango y cuántos tienen carga
+       < 0,30 (criterio de D-29);
+     - una llave con el rango de Φ, y las 6 correlaciones en el detalle al pasar el cursor.
+  2. **Rutas:** no cambian. Siguen siendo las que ya muestra el tablero: dos pasos con los VP de la OCDE (principal,
+     D-42) o SEM con el NSE latente (robustez).
+  3. **API:** se agrega `GET /v1/matematicas/correlaciones-competencia` con `mat_afc_phi.csv`, una línea del catálogo
+     (D-47). No cambia ningún archivo de `salidas/` ni `resultados-v1`.
+  4. **El pie del diagrama declara que mezcla dos fuentes:**
+     - las cargas y Φ salen del modelo propio de 4 competencias de la F5, que no incluye el NSE;
+     - las rutas salen de la F6;
+     - Φ no son correlaciones entre residuos, sino entre competencias sin controlar por el NSE.
+  5. `salidas/sem_diagrama.png` está congelado y no cambia. Si el informe o un artículo necesitan la figura nueva, se
+     genera aparte (pendiente).
+     - *Ampliación (Mateo, 2026-11-18):* el informe incluye la figura nueva. Para que sea la misma del tablero, la
+       genera la misma función (`svg_modelo`) a partir de los CSV de `salidas/`, y se guarda como archivo nuevo, sin
+       tocar `sem_diagrama.png`.
+  6. *Ampliación (Mateo, 2026-11-18):* el tablero agrega aparte el **modelo de medición de las competencias**: cada
+     competencia con todos sus ítems y sus cargas (`mat_afc_cargas.csv`), y Φ. El diagrama del punto 1 se mantiene,
+     para verlos juntos. La API agrega el endpoint de las cargas por ítem (parámetros de ítems, sin datos de
+     estudiantes).
+  - *Alternativa más coherente, no elegida por ahora:* rutas con los VP propios (D-44), que salen del mismo modelo de
+    medición. Sus coeficientes están en DE latentes, no en puntos PISA.
+  7. *Unión con el tablero de Vanessa del 2026-11-16 (D-47, ampliaciones):* se conserva su desplegable de la sección 6
+     sobre por qué las competencias entran como valores plausibles. Se ajustan su título y su primera frase: en el
+     diagrama las competencias son óvalos (latentes), pero en las rutas entran por sus VP. El título del diagrama queda
+     «Competencias (latentes, VP)» y el pie explica las dos cosas.
+- **Estado:** ✅ (A) elegida por Mateo (2026-11-18, en la sesión con Claude). Vanessa y Brayan la revisan en el PR.
+
+### D-52 · 2026-11-18 · Complementos de TRI para la escala del NSE según el Taller 2 de TRI (propuesta, posterior a la G4)
+> [!warning] Borrador de Claude (2026-11-18), a pedido de Mateo
+> No se ha programado nada. Se decide **después** de la G4 y de ver todos los resultados, y así se declara: es un
+> análisis **descriptivo** de las propiedades de la escala. No cambia H1, H2, el NSE que usa la F6 ni `resultados-v1`.
+
+- **Contexto:** el Taller 2 de TRI (J. C. Rubriche, 2026-II; PDF del enunciado en la carpeta de descargas de Mateo, no
+  en el repositorio) pide, para una batería de ítems:
+  - al menos tres modelos;
+  - los supuestos de unidimensionalidad, independencia local y monotonicidad;
+  - ajuste global (M2), de ítems (S-X²) y de personas (lz o Zh);
+  - parámetros a y b con errores estándar;
+  - información y confiabilidad;
+  - mapa de Wright;
+  - EAP y un segundo método de puntaje;
+  - DIF en dos variables con dos métodos;
+  - un libro de resultados en xlsx.
+
+  El equipo quiere aplicar lo que falte a la escala del **NSE**.
+- **Por qué el NSE y no matemáticas (dato):** el NSE tiene 29 ítems y casi todos los estudiantes los respondieron. En
+  matemáticas solo el 11,7 % de las celdas tiene dato, por el diseño adaptativo (`salidas/mat_matriz_resumen.csv`), y
+  M2 y Mokken necesitan respuestas completas.
+- **Lo que ya está hecho en el NSE y no se repite:**
+  - 1D, 2D (D-16) y 2D (AFE) comparados con AIC y BIC (`salidas/nse_ajuste_tri.csv`, D-19);
+  - parámetros a y b del modelo de 1 dimensión, sin errores estándar (`nse_parametros_tri.csv`);
+  - Q3 con |Q3| > 0,2 (`nse_q3_tri.csv`, D-21);
+  - S-X² con BH y RMSEA (`nse_itemfit_tri.csv`), sin ítems problemáticos;
+  - curvas de información (`nse_informacion_tri.csv`);
+  - confiabilidad marginal de 0,919 y empírica de 0,916 en 1D, y empírica de 0,898 y 0,902 en 2D AFE
+    (`nse_confiabilidad_tri.csv`);
+  - ω (`nse_omega_afc.csv`);
+  - DIF por zona, sexo y sector, con regresión logística (ΔR² de Nagelkerke) y TRI multigrupo con purificación
+    (`nse_dif_posesiones.csv`, D-26).
+- **Propuesta (Claude):** un script nuevo, `scripts/08_nse_tri_propiedades.R`, con salidas `salidas/nse_propiedades_*`. El modelo
+  de referencia es el **2D del AFE**, el que usa la F6. Lo que solo tiene sentido en una dimensión se hace **por
+  subescala**: económica (19 ítems) y libros (10 ítems).
+  1. **Familias de modelos con la estructura del AFE:**
+     - Rasch/PCM (pendientes iguales);
+     - 2PL/GPCM (el actual);
+     - 2PL/GRM.
+
+     Razón de verosimilitudes para Rasch/PCM ⊂ 2PL/GPCM, y AIC, BIC y BIC ajustado para GPCM frente a GRM. Con pesos es
+     pseudo-verosimilitud, así que la comparación es descriptiva (como en D-19). El 3PL no aplica: es un cuestionario y
+     no hay adivinación.
+  2. **Ajuste absoluto:** M2 (tipo C2), RMSEA₂, SRMSR, CFI y TLI, con `impute` por los faltantes. Hay que comprobar si
+     M2 acepta pesos; si no, se calcula sin pesos, como el S-X² (D-19).
+  3. **Monotonicidad (Mokken):**
+     - H de Loevinger por ítem y por subescala, con el corte de 0,30 que da el taller;
+     - `check.monotonicity` en casos completos;
+     - requiere instalar el paquete `mokken` y registrar su versión.
+  4. **Unidimensionalidad, bifactor (opcional):** factor general con los dos específicos, ECV y ωh (cortes del taller:
+     0,70 y 0,80).
+  5. **Independencia local:** agregar el criterio Q3 − media(Q3) > 0,20 y el LD χ² de Chen y Thissen a los Q3 que ya
+     hay.
+  6. **Ajuste de personas:**
+     - Zh (`personfit`);
+     - se reporta **solo el porcentaje** de patrones aberrantes (Zh < −1,645), en total y por zona, sexo y sector;
+     - sensibilidad de los parámetros al excluirlos.
+  7. **Parámetros:**
+     - a y b (o b_k) del modelo final, con errores estándar de Oakes;
+     - aviso: esos errores **no** reflejan el diseño por colegios, que es la razón por la que D-19 no los calculó;
+     - clasificación de Baker y Kim y umbrales desordenados.
+  8. **Mapa de Wright** por subescala: la distribución ponderada de θ y los umbrales de los ítems.
+  9. **Puntajes:**
+     - EAP y MAP (o Warm) con su error;
+     - cuántos patrones extremos hay (todo en 0 o todo en el máximo);
+     - relación con el puntaje total, con un gráfico de densidad o hexágonos en lugar de un diagrama de puntos
+       individuales (Ley 1581);
+     - curva característica del test.
+  10. **Libro `nse_propiedades_resultados.xlsx`** con las 6 hojas del taller. **Conflicto:** la hoja `puntajes` pide θ y Zh
+      por estudiante, y la regla del proyecto prohíbe exportar datos individuales (Ley 1581). Propuesta: esa hoja va
+      con la distribución de θ, su error y Zh por percentiles y por grupo, y se explica por qué. Conviene consultarlo
+      con el profesor.
+- **Alternativas:**
+  - (a) todo lo anterior;
+  - (b) solo lo que pide la lista de verificación del taller: 1, 2, 6, 7 y el mapa de Wright;
+  - (c) no hacerlo y declararlo como limitación.
+- **Costo:** por medir. Los modelos del NSE convergieron en 40 a 811 iteraciones (`nse_ajuste_tri.csv`). M2 con
+  imputación y el bifactor son los pasos más lentos.
+- **Decisión (Mateo, 2026-11-18): alcance intermedio** (recomendación de Claude):
+  - **sí:** puntos 1 (familias de modelos), 2 (M2), 3 (Mokken), 6 (Zh, solo porcentajes; sin la sensibilidad al
+    excluir), 7 (parámetros con errores estándar y Baker y Kim), 8 (mapa de Wright), 9 (MAP, puntaje total y curva
+    característica) y 10 (xlsx con la hoja de puntajes en resúmenes);
+  - **no:** punto 4 (bifactor), el LD χ² del punto 5 y la sensibilidad del punto 6;
+  - **en lugar del artículo** en la plantilla USTA se presenta el **informe** del proyecto, con los resultados de
+    esta decisión y el diagrama de D-51.
+- **Ajuste de la presentación (Mateo, 2026-11-18, después de ver el informe):**
+  - **Redacción:** el informe presenta la sección 5.1 como una evaluación de las propiedades psicométricas de la
+    escala, con su propósito, y no menciona el taller.
+  - **Nombres:** los archivos pasan a ser `scripts/08_nse_tri_propiedades.R`, `salidas/nse_propiedades_*` y
+    `nse_propiedades_resultados.xlsx`. Las cifras no cambian; se volvieron a estimar y salieron idénticas.
+  - **Figuras:** se rehacen al tamaño en que se imprimen (6,5 pulgadas de ancho), para que el texto quede en unos 10
+    puntos. El mapa de Wright pasa a dos paneles, con los códigos de los ítems en el eje.
+  - **Origen de los puntos de corte:** RMSEA₂ y SRMSR ≤ 0,05; H ≥ 0,30; Q3 − media > 0,20; Zh < −1,645, y los cinco
+    niveles de discriminación. El enunciado del taller los atribuye a:
+    - Maydeu-Olivares y Joe (2014);
+    - Loevinger (1948) y Sijtsma y Molenaar (2002);
+    - Christensen, Makransky y Horton (2017);
+    - Drasgow, Levine y Williams (1985);
+    - Baker y Kim (2017).
+
+    Esas fuentes **no tienen nota en `Literatura/` ni se han verificado**. Por el protocolo de verificación, el informe
+    no las cita y presenta los cortes como criterios de esta decisión. Si el equipo las verifica, se pueden citar.
+- **Estado:** ✅ aceptada por Mateo (2026-11-18, en la sesión con Claude), con el alcance de arriba. Vanessa y Brayan la
+  revisan en el PR.

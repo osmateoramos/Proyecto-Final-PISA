@@ -26,8 +26,8 @@ if not DISPONIBLE and os.environ.get("PISA_EXIGIR_API") == "1":
 pytestmark = pytest.mark.skipif(not DISPONIBLE, reason="La API no está corriendo (ver Proyecto_PISA/api/README.md)")
 
 
-def correr(pagina: str) -> AppTest:
-    return AppTest.from_string(f"from pisa_tablero import paginas\npaginas.{pagina}()", default_timeout=60).run()
+def correr(pagina: str, modulo: str = "paginas") -> AppTest:
+    return AppTest.from_string(f"from pisa_tablero import {modulo}\n{modulo}.{pagina}()", default_timeout=60).run()
 
 
 PAGINAS = ["inicio", "datos_diseno", "medicion_nse", "invarianza", "competencias", "modelo_estructural", "robustez"]
@@ -40,9 +40,71 @@ def test_pagina_se_dibuja_sin_errores(pagina: str) -> None:
     assert not app.error
 
 
+@pytest.mark.parametrize("pagina", ["resumen", "conclusiones", "materias"])
+def test_presentacion_se_dibuja_sin_errores(pagina: str) -> None:
+    app = correr(pagina, modulo="presentacion")
+    assert not app.exception
+    assert not app.error
+
+
+def test_resumen_tiene_las_partes_de_un_resumen_academico() -> None:
+    texto = " ".join(m.value for m in correr("resumen", modulo="presentacion").markdown)
+    assert all(parte in texto for parte in ("**Problema.**", "**Método.**", "**Resultados.**", "**Conclusión.**"))
+
+
+def test_conclusiones_muestran_objetivos_y_hallazgos() -> None:
+    app = correr("conclusiones", modulo="presentacion")
+    texto = " ".join(m.value for m in app.markdown)
+    assert all(f"**K{i} ·" in texto for i in range(1, 6))
+    assert len(app.table[0].value) == 5                                   # O1 a O5
+
+
+@pytest.mark.parametrize("pagina", PAGINAS + ["prediccion"])
+def test_cada_seccion_cierra_anunciando_la_siguiente(pagina: str) -> None:
+    texto = " ".join(m.value for m in correr(pagina).markdown)
+    assert "**Siguiente sección.**" in texto
+
+
+def test_modelo_explica_por_que_las_competencias_no_son_latentes() -> None:
+    app = correr("modelo_estructural")
+    assert any("variables latentes" in e.label for e in app.expander)
+
+
+def test_materias_tiene_una_pestana_por_curso_y_las_rutas_de_la_api() -> None:
+    app = correr("materias", modulo="presentacion")
+    assert len(app.tabs) == 3
+    rutas = next(m for m in app.metric if m.label == "Rutas publicadas en /v1")
+    assert int(rutas.value) > 0
+
+
+def test_inicio_muestra_los_objetivos_completos() -> None:
+    app = correr("inicio")
+    texto = " ".join(m.value for m in app.markdown) + " ".join(c.value for c in app.caption)
+    assert "**Objetivo general.**" in texto
+    assert "equidad de la calificación" in texto                          # O3 con su enunciado completo
+
+
+def test_conclusiones_completas() -> None:
+    texto = " ".join(m.value for m in correr("conclusiones", modulo="presentacion").markdown)
+    assert all(f"**{i}.**" in texto for i in range(1, 6))
+    assert "puntos PISA por desviación estándar" in texto
+
+
+@pytest.mark.parametrize("pagina", ["inicio", "datos_diseno", "medicion_nse", "competencias", "modelo_estructural"])
+def test_las_tablas_tienen_su_frase(pagina: str) -> None:
+    app = correr(pagina)
+    assert sum(c.value.startswith("**Tabla.**") for c in app.caption) >= len(app.dataframe) - 1
+
+
 def test_inicio_muestra_las_ocho_hipotesis() -> None:
-    texto = " ".join(m.value for m in correr("inicio").markdown)
-    assert all(f"**H{i}**" in texto for i in range(1, 9))
+    hipotesis = correr("inicio").dataframe[0].value
+    assert list(hipotesis["Hipótesis"]) == [f"H{i}" for i in range(1, 9)]
+
+
+@pytest.mark.parametrize("pagina", ["datos_diseno", "medicion_nse", "invarianza", "competencias",
+                                    "modelo_estructural", "robustez", "prediccion"])
+def test_cada_fase_tiene_un_mensaje_clave(pagina: str) -> None:
+    assert any(i.value.startswith("**Mensaje clave.**") for i in correr(pagina).info)
 
 
 def test_modelo_cambia_de_enfoque_y_resalta() -> None:

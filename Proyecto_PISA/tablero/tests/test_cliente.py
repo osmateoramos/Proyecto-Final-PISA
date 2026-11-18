@@ -52,6 +52,21 @@ def test_respuesta_que_rompe_el_contrato() -> None:
         c.hipotesis()
 
 
+def test_rutas_se_leen_del_contrato_openapi() -> None:
+    contrato = {"paths": {"/health": {"get": {"tags": ["Servicio"], "summary": "Estado del servicio"}},
+                          "/v1/modelo/prediccion": {"post": {"tags": ["Modelo"], "summary": "Puntaje esperado"}}}}
+    c = cliente_con(httpx.MockTransport(lambda r: httpx.Response(200, json=contrato)))
+    rutas = c.rutas()
+    assert [(r.metodo, r.ruta, r.grupo) for r in rutas] == [("GET", "/health", "Servicio"),
+                                                             ("POST", "/v1/modelo/prediccion", "Modelo")]
+
+
+def test_contrato_sin_paths_da_error_claro() -> None:
+    c = cliente_con(httpx.MockTransport(lambda r: httpx.Response(200, json={"openapi": "3.1.0"})))
+    with pytest.raises(ErrorAPI, match="paths"):
+        c.rutas()
+
+
 def test_perfil_fuera_de_rango_no_sale_del_tablero() -> None:
     with pytest.raises(ValueError):
         Perfil(nse_economico=7, sexo="Mujer")

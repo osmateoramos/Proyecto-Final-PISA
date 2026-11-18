@@ -287,8 +287,9 @@ def svg_modelo(cargas: pd.DataFrame, etiquetas: dict[str, str], correlacion: flo
             + "</g>")
 
     partes.append(f'<text x="{X_IND}" y="18" font-weight="600">Indicadores del NSE (carga estandarizada)</text>'
-                  f'<text x="{X_COMP - RX_COMP}" y="18" font-weight="600">Competencias (latentes)</text>'
-                  + (f'<text x="{X_COMP + RX_COMP + 30}" y="18" font-weight="600">Φ entre competencias</text>'
+                  # Latentes, y en las rutas entran como valores plausibles (VP): las dos cosas se dicen en el título
+                  f'<text x="{X_COMP - RX_COMP}" y="18" font-weight="600">Competencias (latentes, VP)</text>'
+                  + (f'<text x="{X_COMP + RX_COMP + 40}" y="18" font-weight="600">Φ entre competencias</text>'
                      if phi is not None and not phi.empty else "")
                   + f'<text x="{ANCHO - 8}" y="{alto - 8}" text-anchor="end" opacity="0.7">'
                   f'Rutas: {escape(unidad_rutas)}</text></svg>')

@@ -17,6 +17,7 @@ from pisa_tablero.modelos import (
     Perfil,
     Prediccion,
     Robustez,
+    RutaAPI,
     Salud,
 )
 
@@ -125,6 +126,23 @@ class ClienteAPI:
             Las filas como diccionarios.
         """
         return self._validar(list[dict[str, Any]], self._pedir("GET", f"{PREFIJO}{ruta}"))
+
+    def rutas(self) -> list[RutaAPI]:
+        """Operaciones públicas de la API según su contrato OpenAPI (``/openapi.json``, el mismo que muestra ``/docs``).
+
+        Returns:
+            Una fila por método y ruta, con el grupo (etiqueta) y el resumen que declara la API.
+
+        Raises:
+            ErrorAPI: Si el contrato no trae la sección ``paths``.
+        """
+        contrato = self._pedir("GET", "/openapi.json")
+        if not isinstance(contrato, dict) or not isinstance(contrato.get("paths"), dict):
+            raise ErrorAPI("El contrato OpenAPI de la API no trae la sección «paths»")
+        filas = [{"metodo": metodo.upper(), "ruta": ruta, "grupo": (operacion.get("tags") or ["—"])[0],
+                  "resumen": operacion.get("summary", "")}
+                 for ruta, operaciones in contrato["paths"].items() for metodo, operacion in operaciones.items()]
+        return self._validar(list[RutaAPI], filas)
 
     def predecir(self, perfil: Perfil) -> Prediccion:
         """Puntaje esperado de las 4 competencias para un perfil."""

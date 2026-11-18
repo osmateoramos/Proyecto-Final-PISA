@@ -104,6 +104,15 @@ class Interaccion(Modelo):
     ee_brr: float
 
 
+class RutaAPI(Modelo):
+    """Una operación pública de la API, leída de su contrato OpenAPI."""
+
+    metodo: str
+    ruta: str
+    grupo: str
+    resumen: str
+
+
 class Perfil(BaseModel):
     """Perfil que se envía a la predicción (los límites repiten los de la API, D-46)."""
 

@@ -7,8 +7,21 @@ enunciados de las hipótesis, siempre con la decisión del registro que los sost
 import pandas as pd
 import streamlit as st
 
-from pisa_tablero import datos, graficos
-from pisa_tablero.componentes import ETIQUETAS_DERIVADAS, explicar, fuente, numero, tarjeta_hipotesis
+from pisa_tablero import datos, graficos, textos
+from pisa_tablero.componentes import (
+    ETIQUETAS_DERIVADAS,
+    clave,
+    contexto,
+    explicar,
+    fuente,
+    icono_decision,
+    numero,
+    rango,
+    rotulo,
+    siguiente,
+    tarjeta_hipotesis,
+    tarjetas,
+)
 from pisa_tablero.diagrama import Ruta, svg_medicion, svg_modelo
 from pisa_tablero.modelos import Perfil
 
@@ -17,7 +30,7 @@ ANALISIS = {"zona": "Zona (urbana, pueblo, rural)", "H2_rural_urbana": "Rural fr
             "sexo": "Sexo", "sector": "Sector (público, privado)"}
 GRADOS = {-3: "3 grados por debajo del modal", -2: "2 por debajo", -1: "1 por debajo", 0: "Grado modal",
           1: "1 por encima"}
-NOTA_TRANSVERSAL = "Diseño transversal: las cifras son asociaciones, no efectos causales."
+NOTA_TRANSVERSAL = textos.NOTA_TRANSVERSAL
 ENUNCIADOS = {
     "H1": "El NSE se representa mejor con dos dimensiones (económica y cultural) que con una.",
     "H2": "No hay invarianza escalar entre zona rural y urbana: al menos un bien del hogar funciona distinto.",
@@ -42,53 +55,33 @@ def _etiquetas() -> dict[str, str]:
 # =====================================================================================================================
 @datos.con_api
 def inicio() -> None:
-    """Pregunta, objetivos, recorrido por fases e hipótesis."""
-    st.title("PISA 2022 Colombia: nivel socioeconómico y competencias matemáticas")
-    s = datos.salud()
-    st.caption(f"Consultoría estadística USTA 2026-II · Vanessa Acosta, Mateo Ramos y Brayan David Barreto · "
-               f"datos de la API v{s['version']} (base cargada el {s['fecha_carga']}). {NOTA_TRANSVERSAL}")
+    """Sección 1: problema, pregunta, objetivos e hipótesis preregistradas, en formato de diapositiva."""
+    st.title("1. Introducción")
+    contexto("¿Depende la brecha socioeconómica en matemáticas de cómo se mide y de cómo se califica?")
 
-    st.markdown("> **Pregunta.** ¿En qué medida el nivel socioeconómico (NSE) —modelado como constructo latente cuya "
-                "medición es igual entre grupos— explica el desempeño de los estudiantes colombianos en cada una de las "
-                "cuatro competencias matemáticas de PISA 2022, calificadas con un modelo de TRI propio, y cuánto de la "
-                "brecha observada depende de cómo se califica el desempeño?")
-    explicar(
-        que="El proyecto se armó en cadena: **O1** construye una medida del NSE con TRI y análisis factorial; **O2** "
-            "comprueba que esa medida funciona igual en zonas, sexos y sectores; **O3** califica a cada estudiante en "
-            "cuatro competencias (formular, emplear, interpretar y razonar) con un modelo de TRI propio y revisa si "
-            "algún ítem favorece a un grupo socioeconómico; **O4** relaciona el NSE con cada competencia en un modelo "
-            "estructural; **O5** pone todo a disposición en esta API y este tablero. Antes de estimar cualquier modelo "
-            "se congelaron 8 hipótesis con su regla de decisión.",
-        como="El menú de la izquierda sigue las fases. Cada sección tiene estas tres pestañas: qué se hizo, cómo leer "
-             "el gráfico y qué significa. Al pasar el cursor por un gráfico se ven sus valores, y debajo está la tabla "
-             "con las mismas cifras. Las cifras salen de la API, que solo lee los resultados que produjo R.",
-        significa="Las decisiones de cada hipótesis están abajo. Las que se rechazan también son resultados: un "
-                  "resultado nulo bien medido dice algo sobre Colombia.",
-        decisiones="D-01 (fuente), D-07 (competencias), D-22 (definiciones de las hipótesis), D-46 y D-47 (API y "
-                   "tablero)")
+    st.subheader("Problema: tres decisiones de medición")
+    tarjetas(textos.PROBLEMA_TARJETAS)
+    st.markdown(f"> **Pregunta de investigación.** {textos.PREGUNTA_BREVE}")
 
-    st.subheader("Recorrido del proyecto")
-    st.dataframe(pd.DataFrame([
-        ("F1-F2", "Datos y diseño", "Muestra analítica, pesos y valores plausibles; réplica de cifras de la OCDE",
-         "Cerradas · Puerta G1"),
-        ("F3", "O1 · Medir el NSE", "AFE, AFC y TRI del NSE; H1", "Cerrada · Puerta G2"),
-        ("F4", "O2 · Invarianza", "Invarianza por zona, sexo y sector; DIF de los bienes; H2", "Cerrada"),
-        ("F5", "O3 · Competencias", "TRI de 1 y 4 dimensiones, puntajes propios, DIF, omisiones; H3, H4, H7 y H8",
-         "Cerrada · Puerta G3 (faltan firmas del acta)"),
-        ("F6", "O4 · Modelo estructural", "NSE → 4 competencias con VP de la OCDE y robustez; H5 y H6", "Cerrada"),
-        ("F7", "Robustez y novedad", "5 sensibilidades, búsqueda de antecedentes y hallazgos",
-         "Cerrada · Puerta G4, resultados-v1 (faltan firmas del acta)"),
-        ("F8", "O5 · Producto", "API y tablero", "Funcionan en local; falta desplegarlos en Render"),
-    ], columns=["Fase", "Objetivo", "Qué se hizo", "Estado (2026-11-10)"]), hide_index=True, use_container_width=True)
+    st.subheader("Objetivos")
+    with st.container(border=True):
+        st.markdown(f"**Objetivo general.** {textos.OBJETIVO_GENERAL}")
+    st.markdown("**Objetivos específicos**")
+    tarjetas([(titulo, texto) for (titulo, _), (_, texto) in zip(textos.OBJETIVOS_BREVES, textos.OBJETIVOS,
+                                                                  strict=True)], columnas=3)
 
     st.subheader("Hipótesis preregistradas")
-    hip = datos.hipotesis()
-    izquierda, derecha = st.columns(2)
-    for i, codigo in enumerate(ENUNCIADOS):
-        with izquierda if i % 2 == 0 else derecha:
-            tarjeta_hipotesis(codigo, ENUNCIADOS[codigo], hip)
-    st.caption("✅ se acepta · ◐ se acepta en parte o es exploratoria · ✖ se rechaza. Decisión tomada de su archivo de "
-               "salidas/ (endpoint /v1/hipotesis).")
+    hip = datos.hipotesis().set_index("codigo")["decision"]
+    rotulo("Las ocho hipótesis, su enunciado y la decisión que tomaron los datos.")
+    st.dataframe(pd.DataFrame([(c, ENUNCIADOS[c], f"{icono_decision(hip[c])} {hip[c]}") for c in ENUNCIADOS],
+                              columns=["Hipótesis", "Enunciado", "Decisión"]),
+                 hide_index=True, use_container_width=True)
+    st.caption("Congeladas el 2026-10-12, antes de estimar cualquier modelo (commit f53054d). ✅ se acepta · ◐ en "
+               "parte o exploratoria · ✖ se rechaza.")
+    with st.expander("Planteamiento completo del problema"):
+        st.markdown(textos.PROBLEMA)
+        st.markdown(f"**Pregunta de investigación.** {textos.PREGUNTA}")
+    siguiente("2. Datos y diseño muestral: la base de todo el análisis.")
 
 
 # =====================================================================================================================
@@ -97,7 +90,9 @@ def inicio() -> None:
 @datos.con_api
 def datos_diseno() -> None:
     """Muestra analítica, excluidos y validación contra la OCDE."""
-    st.title("Datos y diseño muestral (F1-F2)")
+    st.title("2. Datos y diseño muestral")
+    st.caption("Fases F1-F2 · Puerta G1")
+    contexto("¿Con qué estudiantes se trabaja y se maneja bien el diseño muestral de PISA?")
     muestra = datos.tabla("/datos/muestra")
     total = int(muestra.loc[muestra["conjunto"] == "Total Colombia", "n"].iloc[0])
     analitica = muestra[muestra["conjunto"].str.startswith("Muestra analítica")].iloc[0]
@@ -109,6 +104,10 @@ def datos_diseno() -> None:
     c2.metric("Muestra analítica", numero(int(analitica["n"]), 0),
               help=f"{numero(float(analitica['pct_poblacion']), 1)} % de la población ponderada")
     c3.metric("Excluidos", numero(total - int(analitica["n"]), 0))
+    g1 = datos.tabla("/datos/validacion-ocde")
+    clave(f"Se reproducen {int(g1['cumple_g1'].sum())} de {len(g1)} cifras publicadas por la OCDE (Puerta G1): el "
+          "diseño muestral está bien manejado. Los excluidos rinden menos, así que los resultados describen a la "
+          "población analítica.")
 
     explicar(
         que="Se usan solo los datos de Colombia de PISA 2022. Entran a la muestra analítica los estudiantes con índice "
@@ -127,21 +126,24 @@ def datos_diseno() -> None:
         decisiones="D-01, D-13, D-14, D-15, D-38")
 
     st.subheader("Cómo se llegó a la muestra analítica")
+    rotulo("Estudiantes que quedan en cada paso hasta la muestra analítica.")
     st.dataframe(muestra, hide_index=True, use_container_width=True,
                  column_config={"conjunto": "Conjunto", "n": "Estudiantes", "pct_poblacion": "% población ponderada"})
     fuente("conteos_muestra.csv", "01c_muestra_analitica.R")
     st.subheader("Incluidos frente a excluidos (media de matemáticas)")
+    rotulo("Puntaje medio en matemáticas de incluidos y excluidos, con su diferencia.")
     st.dataframe(excl, hide_index=True, use_container_width=True,
                  column_config={"grupo": "Grupo", "n": "n", "media_mat": "Media", "ee": "EE",
                                 "dif_vs_incluidos": "Diferencia con incluidos", "ee_dif": "EE de la diferencia"})
     fuente("comparacion_incluidos_excluidos.csv", "01c_muestra_analitica.R")
     st.subheader("Puerta G1: reproducir las cifras de la OCDE")
-    st.dataframe(datos.tabla("/datos/validacion-ocde")[["cifra", "estimacion", "ee", "publicado", "diferencia",
-                                                         "cumple_g1", "fuente"]],
+    rotulo("Cifras propias frente a las publicadas por la OCDE: si coinciden, el diseño muestral está bien manejado.")
+    st.dataframe(g1[["cifra", "estimacion", "ee", "publicado", "diferencia", "cumple_g1", "fuente"]],
                  hide_index=True, use_container_width=True,
                  column_config={"cifra": "Cifra", "estimacion": "Propia", "ee": "EE", "publicado": "OCDE",
                                 "diferencia": "Diferencia", "cumple_g1": "Cumple (±1)", "fuente": "Dónde la publica"})
     fuente("validacion_ocde.csv", "02_validacion_ocde.R")
+    siguiente("3. Medición del NSE: la primera medida del proyecto.")
 
 
 # =====================================================================================================================
@@ -150,10 +152,14 @@ def datos_diseno() -> None:
 @datos.con_api
 def medicion_nse() -> None:
     """AFE, AFC, H1, cargas, confiabilidad y validez del NSE."""
-    st.title("Medición del NSE (F3, objetivo O1)")
+    st.title("3. Medición del nivel socioeconómico")
+    st.caption("Fase F3 · Objetivo O1 · Hipótesis H1 · Puerta G2")
+    contexto("¿El nivel socioeconómico tiene una dimensión o dos?")
     h1 = datos.tabla("/nse/h1")
     decide = h1[h1["decide_h1"].str.startswith("sí")].iloc[0]
     tarjeta_hipotesis("H1", ENUNCIADOS["H1"], datos.hipotesis())
+    clave(f"Dos dimensiones, económica y de libros en el hogar (r = {numero(float(decide['correlacion_factores']), 2)}). "
+          "El ajuste queda por debajo de los cortes usuales y se declara como limitación.")
 
     explicar(
         que="El NSE no se observa directamente: se infiere de **29 indicadores** del cuestionario (bienes y "
@@ -171,7 +177,7 @@ def medicion_nse() -> None:
                   "relacionados pero distintos, y **H1 se acepta**. *Ninguno* de los modelos alcanza los cortes de buen "
                   "ajuste: el desajuste quedó documentado en la Puerta G2 (viene sobre todo de la educación y ocupación "
                   "de los padres y de lo digital frente a la vivienda). El factor económico es casi el índice de bienes "
-                  "de la OCDE (HOMEPOS); el de libros aporta algo distinto.",
+                  "de la OCDE (HOMEPOS); el de libros aporta información complementaria.",
         decisiones="D-16, D-18, D-19, D-20, D-21, D-24 y el acta de la Puerta G2")
 
     st.subheader("Cargas del modelo elegido (2 dimensiones del AFE)")
@@ -181,11 +187,13 @@ def medicion_nse() -> None:
     with st.expander("Ver las cargas de los tres modelos"):
         ancho = cargas.pivot_table(index="item", columns=["modelo", "factor"], values="carga_std")
         ancho.columns = [f"{m} · {f}" for m, f in ancho.columns]
+        rotulo("Carga de cada indicador en cada factor, en los tres modelos comparados.")
         st.dataframe(ancho.assign(pregunta=ancho.index.map(_etiquetas())), use_container_width=True)
     fuente("nse_cargas_afc.csv", "03_nse_afc.R")
 
     st.subheader("Ajuste de los modelos (mitad de confirmación)")
     ajuste = datos.tabla("/nse/ajuste")
+    rotulo("Ajuste de cada modelo del NSE: mejor con CFI y TLI más altos y RMSEA y SRMR más bajos.")
     st.dataframe(ajuste[["modelo", "version", "n", "cfi_scaled", "cfi_robust", "tli_scaled", "rmsea_scaled",
                          "rmsea_robust", "srmr", "correlacion_factores"]],
                  hide_index=True, use_container_width=True,
@@ -199,15 +207,19 @@ def medicion_nse() -> None:
     c1, c2 = st.columns(2)
     with c1:
         st.subheader("Confiabilidad")
+        rotulo("Confiabilidad omega de cada factor (análisis factorial).")
         st.dataframe(datos.tabla("/nse/omega"), hide_index=True, use_container_width=True)
+        rotulo("Confiabilidad de las puntuaciones del NSE (TRI).")
         st.dataframe(datos.tabla("/nse/confiabilidad"), hide_index=True, use_container_width=True)
         fuente("nse_omega_afc.csv y nse_confiabilidad_tri.csv")
     with c2:
         st.subheader("Validez frente a la OCDE")
+        rotulo("Correlación de las puntuaciones propias del NSE con los índices oficiales de la OCDE.")
         st.dataframe(datos.tabla("/nse/validez"), hide_index=True, use_container_width=True,
                      column_config={"puntuacion": "Puntuación (EAP)", "r_homepos": "r con HOMEPOS",
                                     "r_escs": "r con ESCS"})
         fuente("nse_validez.csv", "03_nse_tri.R")
+    siguiente("4. Invarianza: ¿la medida funciona igual en todos los grupos?")
 
 
 # =====================================================================================================================
@@ -216,8 +228,12 @@ def medicion_nse() -> None:
 @datos.con_api
 def invarianza() -> None:
     """O2: invarianza, medias latentes con BRR y DIF de los bienes."""
-    st.title("Invarianza del NSE (F4, objetivo O2)")
+    st.title("4. Invarianza del nivel socioeconómico")
+    st.caption("Fase F4 · Objetivo O2 · Hipótesis H2")
+    contexto("¿El NSE se mide igual en zonas, sexos y sectores?")
     tarjeta_hipotesis("H2", ENUNCIADOS["H2"], datos.hipotesis())
+    clave("No se detectan diferencias relevantes en la medición, aunque la invarianza no queda demostrada. El NSE "
+          "económico es menor en lo rural y mayor en los colegios privados.")
     explicar(
         que="Para comparar el NSE entre grupos hay que comprobar que **se mide igual** en todos. Se ajustó el modelo "
             "del NSE por zona, rural frente a urbana, sexo y sector, imponiendo igualdades paso a paso: **configural** "
@@ -238,12 +254,14 @@ def invarianza() -> None:
         st.altair_chart(graficos.intervalos(medias, eje_y="contraste",
                                             titulo_x="Diferencia en DE del factor (IC 95 % con BRR)"),
                         use_container_width=True)
+        rotulo("Diferencia de NSE de cada grupo frente a su referencia, con su intervalo de confianza.")
         st.dataframe(medias[["contraste", "serie", "diferencia", "ee_brr", "ic95_inf", "ic95_sup"]],
                      hide_index=True, use_container_width=True,
                      column_config={"contraste": "Contraste", "serie": "Factor", "diferencia": "Diferencia",
                                     "ee_brr": "EE (BRR)", "ic95_inf": "IC 95 % inf.", "ic95_sup": "IC 95 % sup."})
     fuente("nse_medias_latentes_brr.csv", "04_medias_brr.R")
     st.subheader("Secuencia de invarianza")
+    rotulo("Cambio en el ajuste al igualar, paso a paso, los parámetros entre grupos.")
     st.dataframe(pasos, hide_index=True, use_container_width=True,
                  column_config={"paso": "Paso", "cfi_scaled": "CFI scaled", "rmsea_scaled": "RMSEA scaled",
                                 "dcfi": "ΔCFI", "drmsea": "ΔRMSEA", "se_sostiene": "Se sostiene"})
@@ -253,8 +271,10 @@ def invarianza() -> None:
     dif = dif[dif["analisis"] == analisis]
     st.metric("Bienes con DIF no despreciable en esta comparación", int(dif["dif"].sum()), help="D-26")
     with st.expander("Ver todos los bienes probados"):
+        rotulo("Prueba de DIF de cada bien del hogar en la comparación elegida.")
         st.dataframe(dif.assign(pregunta=dif["item"].map(_etiquetas())), hide_index=True, use_container_width=True)
     fuente("invarianza_tabla.csv y nse_dif_posesiones.csv", "04_invarianza.R")
+    siguiente("5. Calificación por competencias: la segunda medida del proyecto.")
 
 
 # =====================================================================================================================
@@ -263,8 +283,14 @@ def invarianza() -> None:
 @datos.con_api
 def competencias() -> None:
     """O3: dimensionalidad, puntajes propios, validez, omisiones y DIF."""
-    st.title("Calificación por competencias (F5, objetivo O3)")
+    st.title("5. Calificación por competencias")
+    st.caption("Fase F5 · Objetivo O3 · Hipótesis H3, H4, H7 y H8 · Puerta G3")
+    contexto("¿Se pueden calificar las cuatro competencias por separado, y la calificación es equitativa?")
     hip = datos.hipotesis()
+    resumen_dif = datos.tabla("/matematicas/dif-resumen")
+    clave(f"Las competencias apenas se distinguen (H8 {hip.set_index('codigo').loc['H8', 'decision']}). La calificación "
+          f"es equitativa: {int(resumen_dif['con_dif'].sum())} de {int(resumen_dif['elegibles'].sum())} ítems con DIF, "
+          "y las omisiones no explican la brecha.")
     pestanas = st.tabs(["Dimensionalidad (H8)", "Puntajes propios", "Validez frente a la OCDE (H7)",
                         "Omisiones (H4)", "DIF por NSE (H3)"])
 
@@ -277,14 +303,17 @@ def competencias() -> None:
                 "competencia, cada ítem en la suya). La prueba es adaptativa: cada estudiante ve pocos ítems de cada "
                 "competencia.",
             como="Menor **BIC** = mejor equilibrio entre ajuste y complejidad. Las correlaciones entre competencias del "
-                 "modelo de 4 dimensiones dicen si de verdad son distintas: por encima de 0,95 casi no se distinguen.",
+                 "modelo de 4 dimensiones indican si son efectivamente distintas: por encima de 0,95 apenas se "
+                 "distinguen.",
             significa="H8 se rechaza: el BIC favorece al modelo de 1 dimensión y algunas competencias correlacionan por "
-                      "encima de 0,95. Aun así se calificó con el de 4 dimensiones (D-29), porque la pregunta es por "
+                      "encima de 0,95. No obstante, se calificó con el de 4 dimensiones (D-29), porque la pregunta es por "
                       "competencia, sabiendo que sus puntajes van a parecerse mucho.",
             decisiones="D-27, D-29")
+        rotulo("Ajuste de los modelos de una y cuatro dimensiones, y correlaciones entre competencias.")
         st.dataframe(dim, hide_index=True, use_container_width=True,
                      column_config={"loglik": "log-verosimilitud", "aic": "AIC", "bic": "BIC",
                                     "correlacion_min": "r mínima", "correlacion_max": "r máxima"})
+        rotulo("Ítems, respuestas y omisiones por competencia en la prueba adaptativa.")
         st.dataframe(datos.tabla("/matematicas/matriz"), hide_index=True, use_container_width=True,
                      column_config={"pct_celdas_con_dato_a": "% de celdas con dato",
                                     "items_por_estudiante_mediana": "Ítems por estudiante (mediana)"})
@@ -306,13 +335,15 @@ def competencias() -> None:
                  "par de ítems.",
             significa=f"Cada ítem carga en su competencia, pero {int(total['carga_menor_030'])} de "
                       f"{int(total['items'])} tienen carga menor que 0,30. Junto con las correlaciones de H8, confirma "
-                      "que las competencias casi no se separan en Colombia. Es exploratorio: no cambia ninguna "
+                      "que las competencias apenas se diferencian en Colombia. Es exploratorio: no cambia ninguna "
                       "hipótesis.",
             decisiones="D-27, D-29, D-48")
+        rotulo("Carga de los ítems en su competencia: mediana, extremos y cuántos quedan por debajo de 0,30.")
         st.dataframe(cargas, hide_index=True, use_container_width=True,
                      column_config={"items": "Ítems", "carga_mediana": "Carga mediana", "carga_p10": "Percentil 10",
                                     "carga_min": "Carga mínima", "carga_max": "Carga máxima",
                                     "carga_menor_030": "Ítems con carga < 0,30", "pct_menor_030": "% con carga < 0,30"})
+        rotulo("Cuántos estudiantes respondieron juntos cada par de ítems.")
         st.dataframe(pares, hide_index=True, use_container_width=True,
                      column_config={"n_pares": "Pares", "nunca_juntos": "Nunca juntos", "pct_nunca_juntos": "% nunca juntos",
                                     "menos_de_50": "Menos de 50 estudiantes", "pct_menos_de_50": "% menos de 50",
@@ -335,7 +366,9 @@ def competencias() -> None:
                       "medida, pero se usan como **robustez**: el análisis principal de la F6 usa los valores plausibles "
                       "de la OCDE (D-32).",
             decisiones="D-30, D-31, D-32, D-33, D-37, D-39")
+        rotulo("Puntajes propios frente a un cálculo de referencia (criterios V1 a V3).")
         st.dataframe(datos.tabla("/matematicas/validacion-puntajes"), hide_index=True, use_container_width=True)
+        rotulo("Confiabilidad de los puntajes propios de cada competencia.")
         st.dataframe(conf, hide_index=True, use_container_width=True)
         fuente("mat_rl_validacion.csv y mat_confiabilidad_competencias.csv", "05_puntajes_rl.R")
 
@@ -356,6 +389,7 @@ def competencias() -> None:
                                                     titulo_fila="Puntaje propio", titulo_columna="VP de la OCDE"),
                         use_container_width=False)
         st.subheader("P3: dificultades frente a las internacionales")
+        rotulo("Concordancia de las dificultades de los ítems con las publicadas por la OCDE.")
         st.dataframe(datos.tabla("/matematicas/enlace-ocde"), hide_index=True, use_container_width=True,
                      column_config={"r_spearman_todos": "Spearman (todos)", "r_b_a_min": "Pearson (a ≥ 0,3)"})
         fuente("mat_h7_correlaciones.csv y mat_p3_robusto.csv", "05_h4_h7.R y 05_p3_robusto.R")
@@ -379,6 +413,7 @@ def competencias() -> None:
                                                   titulo_x="Reducción de la brecha Q4 − Q1 (DE)",
                                                   referencias={"0": 0.0, "umbral de H4 (0,05)": 0.05}),
                         use_container_width=True)
+        rotulo("Brecha entre el cuartil alto y el bajo de NSE con cada forma de calificar las omisiones.")
         st.dataframe(om, hide_index=True, use_container_width=True,
                      column_config={"brecha_a": "Brecha (a)", "brecha_b": "Brecha (b)", "brecha_c": "Brecha (c)",
                                     "reduccion_b": "Reducción", "p_b_holm": "p (Holm)"})
@@ -387,6 +422,7 @@ def competencias() -> None:
     with pestanas[4]:
         tarjeta_hipotesis("H3", ENUNCIADOS["H3"], hip)
         _dif_por_nse()
+    siguiente("6. Modelo estructural: relacionar las dos medidas.")
 
 
 def _dif_por_nse() -> None:
@@ -394,7 +430,7 @@ def _dif_por_nse() -> None:
     todos = datos.dif()
     explicar(
         que="Un ítem tiene **DIF** si estudiantes con el mismo nivel de matemáticas pero distinto NSE tienen distinta "
-            "probabilidad de acertarlo: el ítem favorecería a un grupo por algo ajeno a lo que mide. Se compararon el "
+            "probabilidad de acertarlo: el ítem favorecería a un grupo por un factor ajeno a lo que mide. Se compararon el "
             "cuartil bajo y el alto del NSE con TRI (prueba significativa con corrección de Benjamini-Hochberg) y se "
             "midió el tamaño del efecto (categorías A, B y C del ETS).",
         como="Cada punto es un ítem dicotómico; su posición es el ΔMH (negativo = favorece al cuartil alto). Las líneas "
@@ -414,8 +450,10 @@ def _dif_por_nse() -> None:
     dicotomicos = df[df["delta_mh"].notna()]
     if not dicotomicos.empty:
         st.altair_chart(graficos.dif_por_item(dicotomicos), use_container_width=True)
+    rotulo("Ítems con DIF por NSE y cuartil al que favorecen.")
     st.dataframe(df[df["dif"]][["item", "competencia", "tipo", "p_bh", "delta_mh", "categoria_ets", "favorece"]],
                  hide_index=True, use_container_width=True)
+    rotulo("DIF por competencia: ítems evaluados, significativos y con efecto no despreciable.")
     st.dataframe(datos.tabla("/matematicas/dif-resumen"), hide_index=True, use_container_width=True)
     fuente("mat_dif.csv y mat_dif_resumen.csv", "05_dif_matematicas.R")
 
@@ -426,9 +464,14 @@ def _dif_por_nse() -> None:
 @datos.con_api
 def modelo_estructural() -> None:
     """O4: diagrama del modelo, coeficientes, H5, H6 y robustez."""
-    st.title("Modelo estructural: NSE y competencias (F6, objetivo O4)")
+    st.title("6. Modelo estructural")
+    st.caption("Fase F6 · Objetivo O4 · Hipótesis H5 y H6")
+    contexto("¿Cuánto se asocia el NSE con cada competencia, y cambia entre competencias o sectores?")
     hip = datos.hipotesis()
     coef = datos.coeficientes_nse()
+    eco = coef[coef["coeficiente"] == "eco"]
+    clave(f"Una DE de NSE económico se asocia con {rango(eco['por_de_eap'])} puntos PISA según la competencia; algo más "
+          f"en {eco.loc[eco['por_de_eap'].idxmax(), 'competencia']} y con mayor pendiente en los colegios privados.")
     latente = datos.tabla("/modelo/robustez-latente")
     cargas = datos.tabla("/nse/cargas")
     ajuste_nse = datos.tabla("/nse/ajuste")
@@ -452,7 +495,7 @@ def modelo_estructural() -> None:
         significa="El NSE económico se asocia con las cuatro competencias, más con **interpretar**. La asociación **no "
                   "es igual** entre competencias, la diferencia interpretar − emplear cumple la regla de H5 (que es "
                   "exploratoria) y la pendiente del NSE es mayor en los colegios **privados** (H6). El SEM latente da "
-                  f"casi lo mismo que los dos pasos. {NOTA_TRANSVERSAL}",
+                  f"resultados muy similares a los del enfoque en dos pasos. {NOTA_TRANSVERSAL}",
         decisiones="D-23, D-32, D-34, D-42, D-44, D-48, D-51")
 
     c1, c2 = st.columns([1, 1])
@@ -476,12 +519,16 @@ def modelo_estructural() -> None:
                      "puntos PISA por DE del NSE", None if resaltar == "todas" else resaltar,
                      cargas_competencia=cargas_comp[cargas_comp["competencia"] != "total"], phi=phi)
     st.markdown(svg, unsafe_allow_html=True)
-    st.caption("Sexo y grado están en el modelo como controles y no se dibujan. Correlación entre factores del NSE: AFC "
-               "del modelo del AFE en la mitad de confirmación. **El diagrama junta dos fuentes (D-51):** las cargas de "
-               "los ítems y Φ salen del modelo propio de 4 competencias de la F5, que no incluye el NSE; las rutas salen "
-               "de la F6. Por eso Φ son correlaciones entre competencias, no entre residuos. Fuentes: nse_cargas_afc.csv, "
-               "nse_ajuste_afc.csv, mat_afc_resumen.csv, mat_afc_phi.csv, sem_coeficientes.csv y "
-               "sem_robustez_latente.csv.")
+    st.caption("Notación usual de los modelos de ecuaciones estructurales: las elipses son variables latentes (los dos "
+               "factores del NSE y las cuatro competencias) y los rectángulos, variables observadas (los indicadores y el "
+               "resumen de los ítems). Las competencias son latentes, pero en las rutas entran como sus **valores "
+               "plausibles** (ver el desplegable de abajo). **El diagrama junta dos fuentes (D-51):** las cargas de los "
+               "ítems y Φ salen del modelo propio de 4 competencias de la F5, que no incluye el NSE; las rutas salen de "
+               "la F6. Por eso Φ son correlaciones entre competencias, no entre residuos. Sexo y grado están en el modelo "
+               "como controles y no se dibujan. Correlación entre factores del NSE: AFC del modelo del AFE en la mitad de "
+               "confirmación. Fuentes: nse_cargas_afc.csv, nse_ajuste_afc.csv, mat_afc_resumen.csv, mat_afc_phi.csv, "
+               "sem_coeficientes.csv y sem_robustez_latente.csv.")
+    _competencias_no_latentes()
 
     st.subheader("Modelo de medición de las competencias")
     items = datos.tabla("/matematicas/cargas-items")
@@ -509,6 +556,7 @@ def modelo_estructural() -> None:
     st.altair_chart(graficos.intervalos(coef, eje_y="competencia", orden_y=COMPETENCIAS,
                                         titulo_x="Puntos PISA por unidad de la EAP del NSE (IC 95 %, BRR y Rubin)"),
                     use_container_width=True)
+    rotulo("Coeficiente del NSE en cada competencia, con su error, intervalo y varianza explicada.")
     st.dataframe(coef[["competencia", "serie", "estimacion", "ee_brr", "ic95_inf", "ic95_sup", "por_de_eap",
                        "r2_medio"]], hide_index=True, use_container_width=True,
                  column_config={"serie": "Factor", "estimacion": "Coeficiente", "ee_brr": "EE",
@@ -523,6 +571,7 @@ def modelo_estructural() -> None:
     h5 = datos.tabla("/modelo/h5").rename(columns={"diferencia_interpretar_menos_emplear": "estimacion"})
     st.altair_chart(graficos.intervalo_simple(h5, eje_y="muestra", titulo_x="Interpretar − emplear (puntos PISA)",
                                               referencias={"0": 0.0}), use_container_width=True)
+    rotulo("Diferencia interpretar − emplear en la muestra completa y en la mitad de confirmación.")
     st.dataframe(h5, hide_index=True, use_container_width=True)
     fuente("sem_igualdad.csv y sem_h5.csv")
 
@@ -533,7 +582,9 @@ def modelo_estructural() -> None:
     tabla_inter.index = tabla_inter.index.map({"eco:zonapueblo": "Pueblo frente a urbana",
                                                "eco:zonarural": "Rural frente a urbana",
                                                "eco:sectorprivado": "Privado frente a público"})
+    rotulo("Cuánto más empinada es la pendiente del NSE en cada grupo frente a su referencia.")
     st.dataframe(tabla_inter, use_container_width=True)
+    rotulo("Prueba conjunta de las interacciones por zona y por sector.")
     st.dataframe(datos.tabla("/modelo/h6"), hide_index=True, use_container_width=True)
     st.caption("Diferencia en la pendiente del NSE económico frente a la referencia (puntos PISA por unidad de la EAP). "
                "Wald conjunta por variable con Holm (D-42).")
@@ -555,10 +606,48 @@ def modelo_estructural() -> None:
     df_lat = latente.assign(serie=latente["coeficiente"].map({"eco": "económico", "libros": "libros"}),
                             latente=latente["coef_latente_por_de"], dos_pasos=latente["dos_pasos_por_de"])
     st.altair_chart(graficos.comparacion_enfoques(df_lat), use_container_width=True)
+    rotulo("Coeficientes del NSE con el SEM latente frente al enfoque en dos pasos.")
     st.dataframe(latente, hide_index=True, use_container_width=True)
+    rotulo("Conclusiones con los valores plausibles de la OCDE frente a los puntajes propios.")
     st.dataframe(datos.tabla("/modelo/puntajes-propios"), hide_index=True, use_container_width=True)
+    rotulo("Índices de ajuste del SEM latente.")
     st.dataframe(datos.tabla("/modelo/ajuste"), hide_index=True, use_container_width=True)
     fuente("sem_robustez_latente.csv, sem_comparacion_fuentes.csv y sem_ajuste_latente.csv")
+    siguiente("7. Robustez: ¿los resultados resisten otras decisiones de análisis?")
+
+
+def _competencias_no_latentes() -> None:
+    """Explica por qué las competencias entran al modelo como valores plausibles y no como factores latentes."""
+    matriz = datos.tabla("/matematicas/matriz").query("competencia != 'total'")
+    pares = datos.tabla("/matematicas/cobertura-pares").query("pares == 'todos'").iloc[0]
+    cuatro = datos.tabla("/matematicas/dimensionalidad").query("modelo == '4D'").iloc[0]
+    with st.expander("¿Por qué las competencias, que son variables latentes, entran como valores plausibles?"):
+        st.markdown(
+            "En el diagrama, las competencias se dibujan como óvalos porque son variables latentes, medidas por sus ítems "
+            "en la TRI (D-51). Pero en la estimación de las rutas el NSE entra como latente, medido por sus 29 "
+            "indicadores, mientras que cada competencia entra por sus **10 valores plausibles**. Esto no ignora el "
+            "error de medición del "
+            "desempeño. Los valores plausibles son extracciones de la distribución del desempeño latente de cada "
+            "estudiante, y al combinar los 10 con las reglas de Rubin esa incertidumbre queda incluida en los errores "
+            "estándar. Es la forma en que PISA entrega el desempeño. Se optó por esta representación por tres "
+            "razones:\n\n"
+            f"1. **Diseño adaptativo de la prueba.** Cada estudiante responde una mediana de "
+            f"{rango(matriz['items_por_estudiante_mediana'], 0)} ítems por competencia, y el "
+            f"{numero(float(pares['pct_nunca_juntos']), 1)} % de los pares de ítems nunca los respondió el mismo "
+            "estudiante. Un modelo de medición de las competencias con sus ítems dentro del SEM (WLSMV) parte de "
+            "correlaciones entre pares de ítems que no existen o son muy inestables, y no es estimable (D-48).\n"
+            f"2. **Competencias casi indistinguibles.** Sus correlaciones latentes van de "
+            f"{rango(pd.Series([cuatro['correlacion_min'], cuatro['correlacion_max']]), 3)} (H8). Cuatro factores "
+            "latentes de desempeño tan correlacionados dejan el modelo al borde de la singularidad; la correlación "
+            "elevada es también una de las explicaciones de que el modelo bifactor no fuera viable (D-29).\n"
+            "3. **Costo computacional.** Con el peso final, las 80 réplicas BRR y los 10 valores plausibles, un SEM "
+            "completo requeriría 810 ajustes por modelo, más de 13 horas de cálculo en los equipos del proyecto "
+            "(D-42).\n\n"
+            "Las competencias sí se modelaron como latentes en la **sección 5**, con el modelo de TRI de cuatro "
+            "dimensiones que produjo los puntajes propios. Repetir el análisis con esos puntajes lleva a las mismas "
+            "conclusiones, salvo la interacción por zona (D-44).")
+        st.caption("Interpretación del equipo a partir de D-29, D-32, D-42 y D-48. Cifras: mat_matriz_resumen.csv, "
+                   "mat_pares_cobertura.csv y mat_ajuste.csv.")
 
 
 # =====================================================================================================================
@@ -567,7 +656,12 @@ def modelo_estructural() -> None:
 @datos.con_api
 def robustez() -> None:
     """Sensibilidades de la F7 y robustez de los candidatos."""
-    st.title("Robustez y hallazgos (F7)")
+    st.title("7. Robustez y hallazgos")
+    st.caption("Fase F7 · Puerta G4 · resultados congelados con la etiqueta resultados-v1")
+    contexto("¿Los cinco resultados principales se mantienen si cambian las decisiones de análisis?")
+    candidatos = datos.robustez()
+    clave(f"{int((candidatos['robusto'] == 'sí').sum())} de {len(candidatos)} resultados se mantienen en al menos el "
+          "75 % de las sensibilidades que les aplican.")
     explicar(
         que="Cinco resultados candidatos (K1 a K5) se repitieron cambiando una cosa a la vez: **S-A** el índice oficial "
             "ESCS en lugar del NSE propio; **S-B** sin los estudiantes de la ruta lineal de la prueba; **S-C** otros "
@@ -576,21 +670,25 @@ def robustez() -> None:
         como="En la matriz, ✓ = la conclusión se mantiene, ✗ = cambia, … = variante todavía en cálculo y — = no aplica. "
              "Un candidato es **robusto** si se mantiene en al menos el 75 % de las sensibilidades que le aplican "
              "(mínimo 3).",
-        significa="Los candidatos del modelo estructural (K1 a K3) y el nulo de las omisiones (K4) son robustos. La "
-                  "clasificación como hallazgo, réplica o resultado nulo (borrador del equipo en Hallazgos.md) además "
-                  "exige que no esté ya publicado para Colombia: la búsqueda de antecedentes es provisional (falta "
-                  "Scopus).",
+        significa="Los cinco candidatos son robustos. La clasificación como hallazgo, réplica o resultado nulo "
+                  "(Hallazgos.md e informe) además exige que no esté ya publicado para Colombia: en Scopus, Google "
+                  "Académico, SciELO y Redalyc no apareció un antecedente para Colombia de K1, K2, K4 ni K5. El resumen "
+                  "de los hallazgos está en «El proyecto en una página».",
         decisiones="D-38, D-45")
     det = datos.tabla("/robustez/detalle")
     simbolo = det["se_mantiene"].map({True: "✓", False: "✗"}).fillna("…")
     matriz = det.assign(estado=simbolo).pivot(index="candidato", columns="sensibilidad", values="estado").fillna("—")
+    rotulo("Si cada resultado se mantiene (✓) o cambia (✗) en cada sensibilidad.")
     st.dataframe(matriz, use_container_width=True)
+    rotulo("Sensibilidades que aplican a cada resultado y en cuántas se mantiene.")
     st.dataframe(datos.robustez(), hide_index=True, use_container_width=True,
                  column_config={"conclusion": "Conclusión", "aplicables": "Aplican", "se_mantiene_en": "Se mantiene en",
                                 "requerido": "Requerido", "robusto": "¿Robusto?"})
     with st.expander("Ver el detalle numérico de cada sensibilidad"):
+        rotulo("Detalle numérico de cada sensibilidad.")
         st.dataframe(det, hide_index=True, use_container_width=True)
     fuente("f7_sensibilidad_detalle.csv y f7_robustez.csv", "07_sensibilidad.R")
+    siguiente("8. Producto: los resultados, disponibles en una API.")
 
 
 # =====================================================================================================================
@@ -599,14 +697,18 @@ def robustez() -> None:
 @datos.con_api
 def prediccion() -> None:
     """Puntaje esperado por competencia para un perfil (D-46)."""
-    st.title("Puntaje esperado por competencia")
+    st.title("8. Producto: puntaje esperado por competencia")
+    st.caption("Fase F8 · Objetivo O5")
+    contexto("¿Cómo se usa el modelo publicado? Puntaje esperado por competencia para un perfil.")
+    clave("La API responde en el momento con el puntaje esperado según el modelo de la sección 6: una media "
+          "condicional, no el puntaje de una persona.")
     explicar(
         que="Con los coeficientes del modelo principal de la F6 se calcula el **puntaje esperado** de cada competencia "
             "para un perfil de NSE, sexo y grado.",
         como="Mueva los controles y pulse *Calcular*. El NSE está en la métrica de la EAP: 0 es el promedio y 1 es "
              "aproximadamente una desviación estándar por encima.",
         significa="Es una **media condicional**: el puntaje promedio que el modelo espera para estudiantes con ese "
-                  "perfil, no el puntaje de una persona ni el efecto de cambiar su NSE. Sirve para ver de un vistazo el "
+                  "perfil, no el puntaje de una persona ni el efecto de cambiar su NSE. Permite apreciar con rapidez el "
                   "tamaño de las asociaciones.",
         decisiones="D-42, D-46")
     with st.form("perfil"):
@@ -616,12 +718,13 @@ def prediccion() -> None:
         sexo = derecha.radio("Sexo", ["Mujer", "Hombre"], horizontal=True)
         grado = derecha.selectbox("Grado", list(GRADOS), index=3, format_func=GRADOS.get)
         enviado = st.form_submit_button("Calcular")
-    if not enviado:
-        return
-    respuesta = datos.predecir(Perfil(nse_economico=nse_eco, nse_libros=nse_libros, sexo=sexo, grado=grado))
-    df = pd.DataFrame([p.model_dump() for p in respuesta.puntajes])
-    st.altair_chart(graficos.puntajes_esperados(df), use_container_width=True)
-    st.dataframe(df, hide_index=True, use_container_width=True,
-                 column_config={"competencia": "Competencia", "puntaje_esperado": "Puntaje esperado"})
-    st.warning(respuesta.advertencia)
-    st.caption(f"Fuente: {respuesta.fuente}.")
+    if enviado:
+        respuesta = datos.predecir(Perfil(nse_economico=nse_eco, nse_libros=nse_libros, sexo=sexo, grado=grado))
+        df = pd.DataFrame([p.model_dump() for p in respuesta.puntajes])
+        st.altair_chart(graficos.puntajes_esperados(df), use_container_width=True)
+        rotulo("Puntaje esperado en cada competencia para el perfil elegido.")
+        st.dataframe(df, hide_index=True, use_container_width=True,
+                     column_config={"competencia": "Competencia", "puntaje_esperado": "Puntaje esperado"})
+        st.warning(respuesta.advertencia)
+        st.caption(f"Fuente: {respuesta.fuente}.")
+    siguiente("9. Conclusiones: qué responde el proyecto.")

@@ -2286,6 +2286,34 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - *Regla de los textos:* las cifras que aparecen en los textos se leen de la API, no se escriben a mano; las
     interpretaciones repiten las del registro (D-xx) y se marcan como tales.
 - **Estado:** ✅ pedido por Vanessa (2026-11-09). Brayan lo revisa en el PR. Revisada por Mateo (2026-11-10): de acuerdo.
+- **Ampliación (Vanessa, 2026-11-16): páginas de presentación.** Para presentar el proyecto completo en la sustentación,
+  el tablero agrega dos páginas al comienzo del menú.
+  1. **«El proyecto en una página»:** pregunta, objetivos O1 a O5 con lo que se hizo y lo que salió, conclusiones,
+     hallazgos K1 a K5 con su frase para el Ministerio y limitaciones, siguiendo el informe entregado. Tiene enlaces al
+     PDF del informe, al repositorio y a `/docs`.
+  2. **«Materias integradas»:** qué se usó de cada curso del proyecto integrador (Teoría de Respuesta al Ítem,
+     Ecuaciones Estructurales y Python para APIs) y dónde se ve en el tablero. La parte de Python sigue la teoría del
+     curso: las etapas script → contrato → servicio → contenedor → producto y sus criterios de ingeniería. La lista de
+     rutas de la API se lee de su `/openapi.json`.
+  - Se aplica la misma regla de los textos: las cifras se leen de la API. La clasificación de K1 es la del informe
+    entregado («hallazgo exploratorio»), y se anota que D-50 propone otra, sin aplicar.
+  - No cambia ningún resultado ni `resultados-v1`. También se ponen al día los estados de la página de inicio y de la
+    F7, que seguían en el 2026-11-10.
+  - **Segunda ampliación (Vanessa, el mismo día): estructura de informe académico y lenguaje institucional.**
+    - Menú en orden cronológico: «Informe» (Resumen y 1. Introducción), «Desarrollo del proyecto» (secciones 2 a 8,
+      una por fase) y «Cierre» (9. Conclusiones y Anexo. Materias integradas).
+    - «El proyecto en una página» se divide en el Resumen (problema, método, resultados, conclusión y palabras clave)
+      y la sección 9 (cumplimiento de los objetivos, conclusiones, hallazgos y limitaciones).
+    - Cada sección de las fases abre con un recuadro de contexto y cierra anunciando la siguiente. Las pestañas pasan
+      a llamarse «Procedimiento», «Lectura de los resultados» e «Interpretación».
+    - En la sección 6 se explica por qué las competencias entran como valores plausibles y no como factores
+      latentes, con las razones de D-29, D-32, D-42 y D-48. Es interpretación del equipo y no cambia ninguna decisión.
+  - **Tercera ampliación (Vanessa, el mismo día): formato de diapositiva.**
+    - Cada sección queda con una pregunta de contexto, cifras, tablas y gráficos, un «mensaje clave» de una frase con
+      cifras leídas de la API, y el anuncio de la siguiente sección.
+    - Las explicaciones largas pasan a un desplegable de «notas metodológicas», cerrado por defecto.
+    - La introducción muestra el problema y los objetivos como tarjetas y las hipótesis como tabla.
+    - El texto completo del resumen, la estructura de la presentación y las limitaciones quedan en desplegables.
 
 ### D-48 · 2026-11-10 · Análisis confirmatorio de los ítems por competencia (exploratorio; sugerencia del profesor de SEM)
 - **Contexto:** en la clase de Modelación de Ecuaciones Estructurales, el profesor sugirió un análisis factorial
@@ -2467,6 +2495,10 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
      estudiantes).
   - *Alternativa más coherente, no elegida por ahora:* rutas con los VP propios (D-44), que salen del mismo modelo de
     medición. Sus coeficientes están en DE latentes, no en puntos PISA.
+  7. *Unión con el tablero de Vanessa del 2026-11-16 (D-47, ampliaciones):* se conserva su desplegable de la sección 6
+     sobre por qué las competencias entran como valores plausibles. Se ajustan su título y su primera frase: en el
+     diagrama las competencias son óvalos (latentes), pero en las rutas entran por sus VP. El título del diagrama queda
+     «Competencias (latentes, VP)» y el pie explica las dos cosas.
 - **Estado:** ✅ (A) elegida por Mateo (2026-11-18, en la sesión con Claude). Vanessa y Brayan la revisan en el PR.
 
 ### D-52 · 2026-11-18 · Complementos de TRI para la escala del NSE según el Taller 2 de TRI (propuesta, posterior a la G4)

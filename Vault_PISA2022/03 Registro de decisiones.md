@@ -2533,7 +2533,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - ω (`nse_omega_afc.csv`);
   - DIF por zona, sexo y sector, con regresión logística (ΔR² de Nagelkerke) y TRI multigrupo con purificación
     (`nse_dif_posesiones.csv`, D-26).
-- **Propuesta (Claude):** un script nuevo, `scripts/08_nse_tri_taller.R`, con salidas `salidas/nse_taller_*`. El modelo
+- **Propuesta (Claude):** un script nuevo, `scripts/08_nse_tri_propiedades.R`, con salidas `salidas/nse_propiedades_*`. El modelo
   de referencia es el **2D del AFE**, el que usa la F6. Lo que solo tiene sentido en una dimensión se hace **por
   subescala**: económica (19 ítems) y libros (10 ítems).
   1. **Familias de modelos con la estructura del AFE:**
@@ -2569,7 +2569,7 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
      - relación con el puntaje total, con un gráfico de densidad o hexágonos en lugar de un diagrama de puntos
        individuales (Ley 1581);
      - curva característica del test.
-  10. **Libro `Taller2_TRI_resultados.xlsx`** con las 6 hojas del taller. **Conflicto:** la hoja `puntajes` pide θ y Zh
+  10. **Libro `nse_propiedades_resultados.xlsx`** con las 6 hojas del taller. **Conflicto:** la hoja `puntajes` pide θ y Zh
       por estudiante, y la regla del proyecto prohíbe exportar datos individuales (Ley 1581). Propuesta: esa hoja va
       con la distribución de θ, su error y Zh por percentiles y por grupo, y se explica por qué. Conviene consultarlo
       con el profesor.
@@ -2586,5 +2586,22 @@ Toda decisión metodológica se registra aquí **antes** de programarla.
   - **no:** punto 4 (bifactor), el LD χ² del punto 5 y la sensibilidad del punto 6;
   - **en lugar del artículo** en la plantilla USTA se presenta el **informe** del proyecto, con los resultados de
     esta decisión y el diagrama de D-51.
+- **Ajuste de la presentación (Mateo, 2026-11-18, después de ver el informe):**
+  - **Redacción:** el informe presenta la sección 5.1 como una evaluación de las propiedades psicométricas de la
+    escala, con su propósito, y no menciona el taller.
+  - **Nombres:** los archivos pasan a ser `scripts/08_nse_tri_propiedades.R`, `salidas/nse_propiedades_*` y
+    `nse_propiedades_resultados.xlsx`. Las cifras no cambian; se volvieron a estimar y salieron idénticas.
+  - **Figuras:** se rehacen al tamaño en que se imprimen (6,5 pulgadas de ancho), para que el texto quede en unos 10
+    puntos. El mapa de Wright pasa a dos paneles, con los códigos de los ítems en el eje.
+  - **Origen de los puntos de corte:** RMSEA₂ y SRMSR ≤ 0,05; H ≥ 0,30; Q3 − media > 0,20; Zh < −1,645, y los cinco
+    niveles de discriminación. El enunciado del taller los atribuye a:
+    - Maydeu-Olivares y Joe (2014);
+    - Loevinger (1948) y Sijtsma y Molenaar (2002);
+    - Christensen, Makransky y Horton (2017);
+    - Drasgow, Levine y Williams (1985);
+    - Baker y Kim (2017).
+
+    Esas fuentes **no tienen nota en `Literatura/` ni se han verificado**. Por el protocolo de verificación, el informe
+    no las cita y presenta los cortes como criterios de esta decisión. Si el equipo las verifica, se pueden citar.
 - **Estado:** ✅ aceptada por Mateo (2026-11-18, en la sesión con Claude), con el alcance de arriba. Vanessa y Brayan la
   revisan en el PR.

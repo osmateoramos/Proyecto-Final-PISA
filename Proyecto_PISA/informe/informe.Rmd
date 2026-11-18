@@ -84,13 +84,13 @@ fesc <- leer("f7_dif_resumen_escs.csv");    fsl <- leer("f7_dif_resumen_sin_line
 v1 <- leer("mat_posterior_V1.csv")
 afcr <- leer("mat_afc_resumen.csv");        afcc <- leer("mat_afc_cargas.csv")
 afcp <- leer("mat_afc_phi.csv");            pco <- leer("mat_pares_cobertura.csv")
-# D-52: complementos de TRI del NSE (08_nse_tri_taller.R; posterior a la G4, fuera de resultados-v1)
-tmod <- leer("nse_taller_modelos.csv");     tm2 <- leer("nse_taller_m2.csv")
-tmk <- leer("nse_taller_mokken_escalas.csv"); tmki <- leer("nse_taller_mokken_items.csv")
-tq3 <- leer("nse_taller_q3.csv");           tper <- leer("nse_taller_personas.csv")
-tpar <- leer("nse_taller_parametros.csv");  tpun <- leer("nse_taller_puntajes.csv")
-tcur <- leer("nse_taller_curvas.csv");      twr <- leer("nse_taller_wright.csv")
-tfit <- leer("nse_taller_itemfit.csv")
+# D-52: complementos de TRI del NSE (08_nse_tri_propiedades.R; posterior a la G4, fuera de resultados-v1)
+tmod <- leer("nse_propiedades_modelos.csv");     tm2 <- leer("nse_propiedades_m2.csv")
+tmk <- leer("nse_propiedades_mokken.csv"); tmki <- leer("nse_propiedades_mokken_items.csv")
+tq3 <- leer("nse_propiedades_q3.csv");           tper <- leer("nse_propiedades_personas.csv")
+tpar <- leer("nse_propiedades_parametros.csv");  tpun <- leer("nse_propiedades_puntajes.csv")
+tcur <- leer("nse_propiedades_curvas.csv");      twr <- leer("nse_propiedades_wright.csv")
+tfit <- leer("nse_propiedades_itemfit.csv")
 
 # Cifras derivadas que el texto usa varias veces
 n_total <- cm[conjunto == "Total Colombia", n]
@@ -336,7 +336,7 @@ NSE general, muy parecido a HOMEPOS; el segundo factor es el de libros en el hog
   (`r num(as.numeric(s1[medida == "confiabilidad empírica, económico", D20]), 3)` frente a
   `r num(as.numeric(s1[medida == "confiabilidad empírica, económico", S1]), 3)`).
 
-## Propiedades de la escala con TRI (complemento posterior, D-52) {#tri-nse}
+## Propiedades psicométricas de la escala con TRI (D-52) {#tri-nse}
 
 ```{r tri-nse-prep, include=FALSE}
 hay_d52 <- !is.null(tmod) && !is.null(tm2) && !is.null(tmk) && !is.null(tpun)
@@ -365,20 +365,31 @@ if (hay_d52) {
 }
 ```
 
-**Por qué y cómo.** El Taller 2 de Teoría de Respuesta al Ítem pide, para una batería de ítems, comparar familias de
-modelos, verificar los supuestos, el ajuste global, de ítems y de personas, la precisión, un mapa persona–ítem y dos
-métodos de puntaje. El proyecto ya tenía una parte para el NSE (sección anterior; D-19, D-21 y D-26). Lo que faltaba se
-hizo **después de la Puerta G4** (D-52), como análisis descriptivo: no cambia H1, H2, el NSE que usa la F6 ni
-`resultados-v1`. Como cada indicador carga en un solo factor del AFE, cada subescala, la económica
+**Propósito.** Las secciones anteriores fijaron la estructura del NSE (H1) y su validez frente a los índices oficiales.
+Como sus puntuaciones se usan después como medida, el equipo decidió evaluar también las propiedades psicométricas de
+la escala desde la TRI (D-52):
+
+- qué familia de modelos describe mejor las respuestas;
+- si se sostienen los supuestos de monotonicidad e independencia local;
+- cómo ajustan los ítems y las personas;
+- con qué precisión mide la escala a lo largo del continuo;
+- si sus ítems cubren el rango en que se ubica la población.
+
+El análisis se hizo después de la Puerta G4 y es descriptivo: no cambia H1, H2, el NSE que usa la F6 ni las salidas
+congeladas en `resultados-v1`.
+
+**Estrategia.** Cada indicador carga en un solo factor del AFE, así que cada subescala, la económica
 (`r if (hay_d52) mke$items` ítems) y la de libros (`r if (hay_d52) mkl$items` ítems), se calibró con un modelo de una
-dimensión, ponderado (`scripts/08_nse_tri_taller.R`). Con pesos, la verosimilitud es una pseudo-verosimilitud: las
-comparaciones entre modelos son descriptivas. Las tablas completas están en `salidas/Taller2_TRI_resultados.xlsx`.
+dimensión ponderado con los pesos del diseño (`scripts/08_nse_tri_propiedades.R`). Con pesos, la verosimilitud es una
+pseudo-verosimilitud, de modo que las comparaciones entre modelos son descriptivas y no pruebas formales. Los puntos de
+corte con que se leen los resultados se fijaron en D-52 y se indican en cada apartado. Las tablas completas están en
+`salidas/nse_propiedades_resultados.xlsx`.
 
 ```{r tri-nse-modelos}
-if (!hay_d52) pendiente("nse_taller_modelos.csv") else
+if (!hay_d52) pendiente("nse_propiedades_modelos.csv") else
   tabla(tmod[, .(Subescala = SUBN[subescala], Familia = familia, logLik, Parametros = parametros, AIC, BIC, SABIC,
                  G2 = G2_Rasch_vs_2PL, gl = gl_G2)], digits = 1,
-        caption = "Familias de modelos por subescala (08_nse_tri_taller.R, D-52). G2: razón de verosimilitudes de Rasch/PCM frente a 2PL/GPCM.")
+        caption = "Familias de modelos por subescala (08_nse_tri_propiedades.R, D-52). G2: razón de verosimilitudes de Rasch/PCM frente a 2PL/GPCM.")
 ```
 
 **Selección del modelo.** Liberar las pendientes mejora mucho el ajuste: Rasch/PCM es el peor en las dos subescalas
@@ -394,10 +405,10 @@ en las fases cerradas; D-52 es descriptivo y no cambia el modelo.
 ```{r tri-nse-m2}
 if (hay_d52) tabla(tm2[, .(Subescala = SUBN[subescala], M2 = M2, gl = df, RMSEA2 = RMSEA,
                            `IC 90 %` = paste0(num(RMSEA_5, 3), " a ", num(RMSEA_95, 3)), SRMSR, CFI, TLI)], digits = 3,
-                   caption = "Ajuste absoluto del 2PL/GPCM con M2 (tipo C2; faltantes imputados 10 veces; 08_nse_tri_taller.R).")
+                   caption = "Ajuste absoluto del 2PL/GPCM con M2 (tipo C2; faltantes imputados 10 veces; 08_nse_tri_propiedades.R).")
 ```
 
-**Ajuste absoluto.** Ninguna subescala llega al criterio de ajuste aproximado que da el enunciado del taller
+**Ajuste absoluto.** Ninguna subescala alcanza un ajuste aproximado adecuado según los cortes de D-52
 (RMSEA$_2 \le 0{,}05$ y SRMSR $\le 0{,}05$): en la económica, RMSEA$_2$ = `r if (hay_d52) num(m2e$RMSEA, 3)` y SRMSR =
 `r if (hay_d52) num(m2e$SRMSR, 3)`; en la de libros, `r if (hay_d52) num(m2l$RMSEA, 3)` y
 `r if (hay_d52) num(m2l$SRMSR, 3)`. El CFI es `r if (hay_d52) num(m2e$CFI, 3)` y `r if (hay_d52) num(m2l$CFI, 3)`.
@@ -409,21 +420,21 @@ if (hay_d52) tabla(tm2[, .(Subescala = SUBN[subescala], M2 = M2, gl = df, RMSEA2
 - *Monotonicidad y escalabilidad (Mokken, casos completos, sin pesos):* H de Loevinger =
   `r if (hay_d52) num(mke$H, 3)` en la económica (n = `r if (hay_d52) ent(mke$n_casos_completos)`) y
   `r if (hay_d52) num(mkl$H, 3)` en la de libros (n = `r if (hay_d52) ent(mkl$n_casos_completos)`), las dos por encima
-  de 0,30. Tienen Hj < 0,30 `r if (hay_d52) paste0(hj_bajos$item, " (", num(hj_bajos$Hj, 2), ")", collapse = ", ")`.
+  de 0,30, el corte de una escala aceptable (D-52). Tienen Hj < 0,30 `r if (hay_d52) paste0(hj_bajos$item, " (", num(hj_bajos$Hj, 2), ")", collapse = ", ")`.
   Solo `r if (hay_d52) paste(viol$item, collapse = ", ")` (motos) viola la monotonicidad
   (`r if (hay_d52) sum(viol$violaciones_significativas)` violaciones significativas; crit =
   `r if (hay_d52) num(max(viol$crit), 0)`). *(Interpretación:)* tener motos no ordena el NSE en Colombia; es el mismo
   indicador que tuvo DIF por zona (sección de invarianza).
-- *Independencia local:* con el criterio relativo del taller (Q3 menos el promedio de los Q3 > 0,20) se marcan
+- *Independencia local:* con un criterio relativo (Q3 menos el promedio de todos los Q3 > 0,20; D-52) se marcan
   `r if (hay_d52) nrow(q3r)` pares del modelo de dos dimensiones; el más alto es
   `r if (hay_d52) paste0(q3r$item1[1], "–", q3r$item2[1])` (Q3 = `r if (hay_d52) num(q3r$Q3[1], 3)`), y también
-  aparecen la ocupación y la educación de los padres (`salidas/nse_taller_q3.csv`; D-21).
+  aparecen la ocupación y la educación de los padres (`salidas/nse_propiedades_q3.csv`; D-21).
 
 **Ajuste de ítems y de personas.** Con el S-X² (casos completos, sin pesos, Benjamini-Hochberg) hay
-`r if (hay_d52) n_prob` ítems problemáticos (p ajustado < 0,05 y RMSEA > 0,05; `salidas/nse_taller_itemfit.csv`). En
+`r if (hay_d52) n_prob` ítems problemáticos (p ajustado < 0,05 y RMSEA > 0,05; `salidas/nse_propiedades_itemfit.csv`). En
 las personas (índice Zh), el `r if (hay_d52) num(pe$pct_ponderado)` % de los patrones de la subescala económica y el
-`r if (hay_d52) num(pl$pct_ponderado)` % de la de libros son aberrantes (Zh < −1,645, ponderado), algo más que el 5 % que
-se espera por azar. En la económica sube a `r if (hay_d52) num(per_rural$pct_ponderado)` % en la zona rural. Solo se
+`r if (hay_d52) num(pl$pct_ponderado)` % de la de libros son aberrantes (Zh < −1,645, corte de D-52; ponderado), algo más
+que el 5 % que se espera por azar. En la económica sube a `r if (hay_d52) num(per_rural$pct_ponderado)` % en la zona rural. Solo se
 reportan porcentajes (Ley 1581).
 
 ```{r tri-nse-personas}
@@ -432,11 +443,12 @@ if (hay_d52) {
               Variable + Grupo ~ subescala, value.var = "pct_ponderado")
   pp <- pp[order(match(Variable, c("total", "sexo", "zona", "sector")))]
   tabla(pp[, .(Variable, Grupo, `Económica (%)` = economico, `Libros (%)` = libros)], digits = 1,
-        caption = "Porcentaje ponderado de patrones aberrantes (Zh < -1,645) por grupo (08_nse_tri_taller.R).")
+        caption = "Patrones aberrantes (Zh < -1,645) por grupo, en % ponderado (08_nse_tri_propiedades.R).")
 }
 ```
 
-**Parámetros.** Con la clasificación de Baker y Kim (citada en el taller), la discriminación de los ítems es
+**Parámetros.** Clasificada en cinco niveles, de «muy baja» ($a < 0{,}35$) a «muy alta» ($a \ge 1{,}70$) (D-52), la
+discriminación de los ítems es
 `r if (hay_d52) paste0(bk[order(match(discriminacion_Baker_Kim, c("muy alta", "alta", "moderada", "baja", "muy baja")))][, paste(N, discriminacion_Baker_Kim)], collapse = ", ")`.
 En los ítems de crédito parcial la pendiente no es comparable con la de un 2PL (D-19), así que esa clasificación es solo
 de referencia. `r if (hay_d52) n_desord` ítems de crédito parcial tienen umbrales desordenados: alguna categoría nunca es
@@ -451,8 +463,8 @@ estándar condicional es menor que 0,40 (confiabilidad de alrededor de 0,84) ent
 en la económica y entre `r if (hay_d52) num(prec[subescala == "libros", desde], 2)` y
 `r if (hay_d52) num(prec[subescala == "libros", hasta], 2)` en la de libros.
 
-```{r tri-nse-curvas, out.width = "100%", fig.cap = "Información del test, error estándar condicional y curva característica por subescala (08\\_nse\\_tri\\_taller.R)."}
-if (hay_d52) figura("nse_taller_curvas.png", "curvas")
+```{r tri-nse-curvas, out.width = "100%", fig.cap = "Información del test, error estándar condicional y puntaje esperado (curva característica del test) por subescala, con el modelo 2PL/GPCM ponderado. Línea punteada: error estándar de 0,40, que equivale a una confiabilidad aproximada de 0,84. Fuente: 08\\_nse\\_tri\\_propiedades.R."}
+if (hay_d52) figura("nse_propiedades_curvas.png", "curvas")
 ```
 
 **Mapa persona–ítem.** En la económica, los umbrales cubren a la población: el 90 % central de $\theta$ va de
@@ -461,8 +473,8 @@ discriminan poco, como las motos. En la de libros, el umbral más bajo (`r if (h
 encima del percentil 5 de $\theta$ (`r if (hay_d52) num(wr_l$p05, 2)`): no hay ítems que distingan entre estudiantes con pocos o
 ningún libro. `r if (hay_d52) ent(pun_l$patrones_todo_minimo)` estudiantes responden todo en el mínimo (efecto piso).
 
-```{r tri-nse-wright, out.width = "80%", fig.cap = "Mapa de Wright por subescala: distribución ponderada de $\\theta$ (EAP) y umbrales de los ítems (08\\_nse\\_tri\\_taller.R)."}
-if (hay_d52) figura("nse_taller_wright.png", "wright")
+```{r tri-nse-wright, out.width = "100%", fig.cap = "Mapa de Wright por subescala. Barras: distribución ponderada de $\\theta$ (EAP) de los estudiantes. Puntos: umbrales de cada ítem ($b$ en los 2PL y $b_k$ en los de crédito parcial), unidos por una línea; los ítems van ordenados por su localización media. Fuente: 08\\_nse\\_tri\\_propiedades.R."}
+if (hay_d52) figura("nse_propiedades_wright.png", "wright")
 ```
 
 **Puntajes.** Las EAP y las MAP correlacionan al menos `r if (hay_d52) num(min(tpun[metodo == "MAP", r_con_EAP]), 4)`.
@@ -475,8 +487,8 @@ verosimilitud, los patrones con todo en el mínimo o todo en el máximo tendría
 valor finito gracias a la distribución previa. El DIF de los indicadores del NSE por zona, sexo y sector, con regresión
 logística y TRI multigrupo, está en la sección de invarianza (D-26).
 
-```{r tri-nse-total, out.width = "85%", fig.cap = "Puntaje total frente a $\\theta$ (EAP) por subescala, en celdas agregadas; se omiten las celdas con menos de 5 estudiantes (08\\_nse\\_tri\\_taller.R)."}
-if (hay_d52) figura("nse_taller_total.png", "total")
+```{r tri-nse-total, out.width = "100%", fig.cap = "Puntaje total frente a $\\theta$ (EAP) por subescala, en celdas ponderadas de 0,1 en $\\theta$; se omiten las celdas con menos de 5 estudiantes (Ley 1581 de 2012). Fuente: 08\\_nse\\_tri\\_propiedades.R."}
+if (hay_d52) figura("nse_propiedades_total.png", "total")
 ```
 
 # Invarianza del NSE (O2, F4)
@@ -1047,7 +1059,7 @@ if (is.null(estr)) pendiente("nse_estructura_afe.csv") else
 ## Parámetros de los ítems del NSE (D-52)
 
 ```{r anexo-parametros}
-if (is.null(tpar)) pendiente("nse_taller_parametros.csv") else {
+if (is.null(tpar)) pendiente("nse_propiedades_parametros.csv") else {
   cols_b <- grep("^b[0-9]*$", names(tpar), value = TRUE)
   umb <- tpar[, .(b_min = min(unlist(.SD), na.rm = TRUE), b_max = max(unlist(.SD), na.rm = TRUE)),
               by = .(subescala, item), .SDcols = cols_b]
@@ -1056,7 +1068,7 @@ if (is.null(tpar)) pendiente("nse_taller_parametros.csv") else {
   tabla(ap[, .(Subescala = SUBN[subescala], Item = item, Tipo = tipo, Cat = categorias, a, `EE(a)` = a_EE,
                `Baker y Kim` = discriminacion_Baker_Kim, `b mín` = b_min, `b máx` = b_max,
                Desordenados = umbrales_desordenados)], digits = 3, letra = 8,
-        caption = "Parámetros del 2PL/GPCM por subescala en la parametrización tradicional, con errores estándar de Oakes (no reflejan el diseño por colegios). b mín y b máx: el umbral más bajo y el más alto de cada ítem (08_nse_tri_taller.R, D-52).")
+        caption = "Parámetros del 2PL/GPCM por subescala en la parametrización tradicional, con errores estándar de Oakes (no reflejan el diseño por colegios). b mín y b máx: el umbral más bajo y el más alto de cada ítem (08_nse_tri_propiedades.R, D-52).")
 }
 ```
 

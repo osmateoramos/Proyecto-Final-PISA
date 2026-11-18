@@ -15,8 +15,8 @@ Proyecto_PISA/datos/*
 # --- Hojas de cálculo: fuera, salvo la documentación oficial de PISA ----------
 *.xlsx
 !Proyecto_PISA/documentacion/PISA2022_TechnicalReport_AnexoA_clasificacion_items.xlsx
-# Libro de resultados del Taller 2 de TRI: solo agregados (D-52)
-!Proyecto_PISA/salidas/Taller2_TRI_resultados.xlsx
+# Libro de resultados de las propiedades TRI del NSE: solo agregados (D-52)
+!Proyecto_PISA/salidas/nse_propiedades_resultados.xlsx
 
 # --- PDF y comprimidos: fuera (derechos de autor y peso), salvo los PDF propios -
 *.pdf

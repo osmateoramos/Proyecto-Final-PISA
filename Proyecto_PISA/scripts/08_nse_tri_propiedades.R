@@ -1,5 +1,5 @@
 # =============================================================================
-# 08 NSE TRI: complementos del Taller 2 de TRI - PISA 2022 Colombia (D-52)
+# 08 NSE TRI: propiedades de la escala del NSE con TRI - PISA 2022 Colombia (D-52)
 #
 # Decisión: D-52 (Vault_PISA2022/03 Registro de decisiones.md). Es POSTERIOR a la Puerta G4 y descriptivo: estudia las
 # propiedades de la escala del NSE. No cambia H1, H2, el NSE que usa la F6 ni las salidas de resultados-v1.
@@ -19,14 +19,15 @@
 #      Kim y umbrales desordenados.
 #   8. Mapa de Wright por subescala. Curvas de información, error estándar condicional y curva característica.
 #   9. EAP y MAP; patrones extremos; relación con el puntaje total.
-#  10. Libro Taller2_TRI_resultados.xlsx con las 6 hojas del taller. La hoja de puntajes va en resúmenes (percentiles y
+#  10. Libro nse_propiedades_resultados.xlsx con 6 hojas (ajuste de modelos, parámetros, ajuste de ítems,
+#      dependencia local, DIF y puntajes). La hoja de puntajes va en resúmenes (percentiles y
 #      por grupo), no por estudiante (Ley 1581 de 2012).
 #
-# Salidas (solo agregados): salidas/nse_taller_*.csv, nse_taller_*.png y Taller2_TRI_resultados.xlsx.
-# Caché (no va a Git): datos/COL_nse_taller_modelos.rds. Para reestimar: $env:REHACER_TALLER = "1".
+# Salidas (solo agregados): salidas/nse_propiedades_*.csv, nse_propiedades_*.png y nse_propiedades_resultados.xlsx.
+# Caché (no va a Git): datos/COL_nse_propiedades_modelos.rds. Para reestimar: $env:REHACER_PROPIEDADES = "1".
 #
 # Cómo correrlo (desde Proyecto_PISA/scripts/, después de 03_nse_tri.R y 04_invarianza.R):
-#   & "C:\Program Files\R\R-4.4.1\bin\Rscript.exe" 08_nse_tri_taller.R
+#   & "C:\Program Files\R\R-4.4.1\bin\Rscript.exe" 08_nse_tri_propiedades.R
 # =============================================================================
 
 options(stringsAsFactors = FALSE, scipen = 999, width = 160)
@@ -73,11 +74,11 @@ print(sapply(FILAS, function(f) nrow(nse) - length(f)))
 # =============================================================================
 ajustar <- function(X, tipos, SE, pesos) mirt(X, 1, itemtype = tipos, survey.weights = pesos, SE = SE,
                                               SE.type = "Oakes", verbose = FALSE, technical = list(NCYCLES = 3000))
-MODELOS <- file.path(DATOS, "COL_nse_taller_modelos.rds")
+MODELOS <- file.path(DATOS, "COL_nse_propiedades_modelos.rds")
 huella <- function(...) { f <- tempfile(); on.exit(unlink(f))
   writeBin(serialize(list(...), NULL, version = 3), f); unname(tools::md5sum(f)) }
 HUELLA <- huella(lapply(names(SUB), function(s) as.list(datos_sub(s))), w, SUB, names(FAMILIAS))
-modelos <- if (file.exists(MODELOS) && Sys.getenv("REHACER_TALLER") != "1") readRDS(MODELOS) else NULL
+modelos <- if (file.exists(MODELOS) && Sys.getenv("REHACER_PROPIEDADES") != "1") readRDS(MODELOS) else NULL
 if (is.null(modelos) || !identical(attr(modelos, "huella_datos"), HUELLA)) {
   t0 <- Sys.time()
   modelos <- list()
@@ -109,7 +110,7 @@ comparacion <- merge(comparacion, rv, by = "subescala", sort = FALSE)
 comparacion[familia != "Rasch/PCM", `:=`(G2_Rasch_vs_2PL = NA, gl_G2 = NA, p_G2 = NA)]
 comparacion[familia == "Rasch/PCM", nota_G2 := "frente a 2PL/GPCM; pseudo-verosimilitud ponderada: descriptivo (D-19)"]
 stopifnot(all(comparacion$convergio))
-fwrite(comparacion, file.path(SALIDAS, "nse_taller_modelos.csv"))
+fwrite(comparacion, file.path(SALIDAS, "nse_propiedades_modelos.csv"))
 
 # =============================================================================
 # 2. AJUSTE ABSOLUTO: M2 (tipo C2) del modelo de referencia, con los faltantes imputados
@@ -130,8 +131,8 @@ m2_de <- function(s) {
         nota = nota)
 }
 m2 <- rbindlist(lapply(names(SUB), m2_de), fill = TRUE)
-m2[, criterio := "RMSEA2 <= 0,05 y SRMSR <= 0,05: ajuste aproximado adecuado (Maydeu-Olivares y Joe, 2014, citado en el taller)"]
-fwrite(m2, file.path(SALIDAS, "nse_taller_m2.csv"))
+m2[, criterio := "RMSEA2 <= 0,05 y SRMSR <= 0,05: ajuste aproximado adecuado (criterio de D-52)"]
+fwrite(m2, file.path(SALIDAS, "nse_propiedades_m2.csv"))
 
 # =============================================================================
 # 3. MOKKEN: escalabilidad (H de Loevinger) y monotonicidad, en casos completos y sin pesos
@@ -153,9 +154,9 @@ mokken_de <- function(s) {
 }
 mk <- lapply(names(SUB), mokken_de)
 mk_items <- rbindlist(lapply(mk, `[[`, "items")); mk_escala <- rbindlist(lapply(mk, `[[`, "escala"))
-mk_escala[, criterio := "H >= 0,30: escala aceptable (Loevinger, 1948, citado en el taller); crit > 80: violación seria (convención de mokken)"]
-fwrite(mk_items, file.path(SALIDAS, "nse_taller_mokken_items.csv"))
-fwrite(mk_escala, file.path(SALIDAS, "nse_taller_mokken_escalas.csv"))
+mk_escala[, criterio := "H >= 0,30: escala aceptable (criterio de D-52); crit > 80: violación seria (convención de mokken)"]
+fwrite(mk_items, file.path(SALIDAS, "nse_propiedades_mokken_items.csv"))
+fwrite(mk_escala, file.path(SALIDAS, "nse_propiedades_mokken.csv"))
 
 # =============================================================================
 # 5. INDEPENDENCIA LOCAL: criterio relativo de Christensen et al. (2017) sobre los Q3 del 2D del AFE
@@ -164,7 +165,7 @@ q3 <- fread(file.path(SALIDAS, "nse_q3_tri.csv"), encoding = "UTF-8")[modelo == 
 media_q3 <- mean(q3$Q3)
 q3[, `:=`(media_Q3 = round(media_q3, 3), Q3_menos_media = round(Q3 - media_q3, 3))]
 q3[, marcado_relativo := Q3_menos_media > 0.20]
-fwrite(q3[marcado_relativo | marcado], file.path(SALIDAS, "nse_taller_q3.csv"))
+fwrite(q3[marcado_relativo | marcado], file.path(SALIDAS, "nse_propiedades_q3.csv"))
 cat("Q3 (2D del AFE): media", round(media_q3, 3), "; pares con Q3 - media > 0,20:", sum(q3$marcado_relativo),
     "; con |Q3| > 0,2 (D-21):", sum(q3$marcado), "de", nrow(q3), "\n")
 
@@ -189,7 +190,7 @@ parametros[, nota := fifelse(tipo == "2PL", "", "En los GPCM la pendiente no es 
 parametros[, nota_EE := "EE de Oakes con pesos normalizados: no reflejan el diseño por colegios (D-19, D-52)"]
 setcolorder(parametros, c("subescala", "item", "tipo", "categorias", "a", "a_EE", "discriminacion_Baker_Kim",
                           "umbrales_desordenados"))
-fwrite(parametros, file.path(SALIDAS, "nse_taller_parametros.csv"))
+fwrite(parametros, file.path(SALIDAS, "nse_propiedades_parametros.csv"))
 
 # --- Ajuste de ítems del modelo de referencia (S-X2 en casos completos, sin pesos: itemfit no los admite; D-19)
 itemfit_sub <- rbindlist(lapply(names(SUB), function(s) {
@@ -199,7 +200,7 @@ itemfit_sub <- rbindlist(lapply(names(SUB), function(s) {
 num <- names(itemfit_sub)[sapply(itemfit_sub, is.numeric)]
 itemfit_sub[, (num) := lapply(.SD, function(x) round(x, 4)), .SDcols = num]
 if ("p.S_X2" %in% names(itemfit_sub)) itemfit_sub[, problematico := p.S_X2 < 0.05 & RMSEA.S_X2 > 0.05]
-fwrite(itemfit_sub, file.path(SALIDAS, "nse_taller_itemfit.csv"))
+fwrite(itemfit_sub, file.path(SALIDAS, "nse_propiedades_itemfit.csv"))
 
 # --- Puntajes: EAP y MAP, ajuste de personas (Zh) y puntaje total. Lo individual queda en memoria; solo se guardan
 # resúmenes (Ley 1581).
@@ -247,10 +248,10 @@ w <- nse$W_FSTUWT * nrow(nse) / sum(nse$W_FSTUWT)                   # se restitu
 puntajes <- rbindlist(puntajes); num <- c("p05", "p25", "p50", "p75", "p95")
 puntajes[, (num) := lapply(.SD, round, 3), .SDcols = num]
 puntajes[, nota := "Patrones todo en el mínimo o todo en el máximo: la máxima verosimilitud daría theta infinito; EAP y MAP dan un valor finito gracias a la previa N(0, 1)"]
-fwrite(puntajes, file.path(SALIDAS, "nse_taller_puntajes.csv"))
+fwrite(puntajes, file.path(SALIDAS, "nse_propiedades_puntajes.csv"))
 personas <- rbindlist(personas)
-personas[, criterio := "Zh < -1,645: patrón aberrante (Drasgow et al., 1985, citado en el taller)"]
-fwrite(personas, file.path(SALIDAS, "nse_taller_personas.csv"))
+personas[, criterio := "Zh < -1,645: patrón aberrante (criterio de D-52)"]
+fwrite(personas, file.path(SALIDAS, "nse_propiedades_personas.csv"))
 
 # =============================================================================
 # 8. CURVAS: información del test, error estándar condicional y curva característica; mapa de Wright
@@ -261,26 +262,31 @@ curvas <- rbindlist(lapply(names(SUB), function(s) { m <- modelos[[s]][[REF]]
   data.table(subescala = s, theta = round(grilla[, 1], 2), informacion = round(info, 4),
              ee_condicional = round(1 / sqrt(info), 4), puntaje_esperado = round(expected.test(m, grilla), 4),
              puntaje_maximo = sum(apply(datos_sub(s), 2, max, na.rm = TRUE))) }))
-fwrite(curvas, file.path(SALIDAS, "nse_taller_curvas.csv"))
+fwrite(curvas, file.path(SALIDAS, "nse_propiedades_curvas.csv"))
 rango_preciso <- curvas[ee_condicional < 0.40, .(theta_min = min(theta), theta_max = max(theta)), by = subescala]
 cat("\nRegión con EE condicional < 0,40 (confiabilidad ~0,84):\n"); print(rango_preciso)
 
-etiqueta <- function(x) gsub(".", ",", format(x, decimal.mark = "."), fixed = TRUE)
+# Las figuras se guardan al tamaño en que se imprimen en el informe (6,5 pulgadas de ancho), para que la letra quede en
+# 9-10 puntos; las notas van en el pie de cada figura del informe, no dentro de la imagen.
+ANCHO_FIG <- 6.5
+COLORES <- c("NSE económico" = "#1F5FA8", "NSE libros" = "#D9622B")
+tema <- theme_minimal(base_size = 10) +
+  theme(panel.grid.minor = element_blank(), strip.text = element_text(face = "bold", size = 10),
+        legend.position = "bottom", legend.margin = margin(0, 0, 0, 0), plot.title = element_text(face = "bold", size = 11))
+etiqueta <- function(x) gsub(".", ",", format(x, decimal.mark = ".", trim = TRUE), fixed = TRUE)
 largo <- melt(curvas, id.vars = c("subescala", "theta"), measure.vars = c("informacion", "ee_condicional",
                                                                           "puntaje_esperado"))
 largo[, variable := factor(variable, c("informacion", "ee_condicional", "puntaje_esperado"),
-                           c("Información del test", "Error estándar condicional", "Curva característica (puntaje esperado)"))]
+                           c("Información del test", "Error estándar condicional", "Puntaje esperado"))]
 largo[, subescala := NOMBRE_SUB[subescala]]
-g <- ggplot(largo, aes(theta, value, colour = subescala)) + geom_line(linewidth = 0.8) +
+g <- ggplot(largo, aes(theta, value, colour = subescala)) + geom_line(linewidth = 0.9) +
   geom_hline(data = data.table(variable = factor("Error estándar condicional", levels(largo$variable)), y = 0.40),
-             aes(yintercept = y), linetype = 2, colour = "grey50") +
+             aes(yintercept = y), linetype = 2, colour = "grey45") +
   facet_wrap(~variable, scales = "free_y", nrow = 1) +
-  scale_colour_manual(values = c("NSE económico" = "#1F5FA8", "NSE libros" = "#D9622B")) +
-  scale_y_continuous(labels = etiqueta) + scale_x_continuous(labels = etiqueta) +
-  labs(x = expression(theta), y = NULL, colour = NULL,
-       caption = "Modelo 2PL/GPCM por subescala, ponderado. Línea punteada: EE = 0,40 (confiabilidad aproximada de 0,84).") +
-  theme_minimal(base_size = 10) + theme(legend.position = "bottom")
-ggsave(file.path(SALIDAS, "nse_taller_curvas.png"), g, width = 10, height = 3.6, dpi = 300, bg = "white")
+  scale_colour_manual(values = COLORES) +
+  scale_y_continuous(labels = etiqueta) + scale_x_continuous(labels = etiqueta, breaks = seq(-4, 4, 2)) +
+  labs(x = expression(theta), y = NULL, colour = NULL) + tema
+ggsave(file.path(SALIDAS, "nse_propiedades_curvas.png"), g, width = ANCHO_FIG, height = 2.9, dpi = 300, bg = "white")
 
 # --- Mapa de Wright: distribución ponderada de theta (EAP) y umbrales de los ítems en la misma escala
 umbrales <- melt(parametros[, c("subescala", "item", grep("^b[0-9]*$", names(parametros), value = TRUE)), with = FALSE],
@@ -288,27 +294,48 @@ umbrales <- melt(parametros[, c("subescala", "item", grep("^b[0-9]*$", names(par
 umbrales[, orden := frank(-sapply(item, function(i) mean(theta[item == i])), ties.method = "dense"), by = subescala]
 personas_th <- rbindlist(lapply(names(SUB), function(s)
   data.table(subescala = s, theta = fscores(modelos[[s]][[REF]], method = "EAP")[, 1], w = peso_sub(s))))
-paneles <- c("Estudiantes (EAP, ponderado)", "Umbrales de los ítems")
 nombre_sub <- function(s) factor(NOMBRE_SUB[s], NOMBRE_SUB)
-hist_th <- personas_th[, .(Subescala = nombre_sub(subescala), panel = factor(paneles[1], paneles), theta, w)]
-puntos  <- umbrales[, .(Subescala = nombre_sub(subescala), panel = factor(paneles[2], paneles), item, orden, theta)]
-rotulos <- puntos[, .(theta = min(theta) - 0.25), by = .(Subescala, panel, item, orden)]
-g <- ggplot() +
-  geom_histogram(data = hist_th, aes(y = theta, weight = w), binwidth = 0.2, orientation = "y", fill = "grey70",
-                 colour = "white") +
-  geom_point(data = puntos, aes(x = orden, y = theta), size = 1.2, colour = "#1F5FA8") +
-  geom_text(data = rotulos, aes(x = orden, y = theta, label = item), angle = 90, hjust = 1, size = 1.9) +
-  facet_grid(Subescala ~ panel, scales = "free_x") +
-  scale_y_continuous(labels = etiqueta, expand = expansion(add = c(2.8, 0.3))) +   # espacio para los rótulos
-  labs(x = NULL, y = expression(theta), caption = paste("Umbrales: b (2PL) o b_k (GPCM) del modelo 2PL/GPCM por",
-                                                        "subescala. Fuente: nse_taller_parametros.csv (08_nse_tri_taller.R).")) +
-  theme_minimal(base_size = 9) + theme(axis.text.x = element_blank(), panel.grid.major.x = element_blank())
-ggsave(file.path(SALIDAS, "nse_taller_wright.png"), g, width = 10, height = 7, dpi = 300, bg = "white")
+# Un panel por subescala, con la misma escala de theta: a la izquierda la distribución ponderada de los estudiantes
+# (barras proporcionales) y a la derecha los umbrales de cada ítem, ordenados por su localización media.
+lim_y <- range(c(umbrales$theta, personas_th$theta)) + c(-0.4, 0.4)
+ANCHO_PERSONAS <- 4                                                 # unidades del eje x para las barras
+wright_sub <- function(s) {
+  th <- personas_th[subescala == s]
+  cortes <- seq(floor(min(th$theta) * 4) / 4, ceiling(max(th$theta) * 4) / 4, by = 0.25)
+  h <- th[, .(peso = sum(w)), by = .(bin = findInterval(theta, cortes, rightmost.closed = TRUE))]
+  h[, `:=`(ymin = cortes[bin], ymax = cortes[bin + 1], xmin = -ANCHO_PERSONAS * peso / max(peso))]
+  u <- umbrales[subescala == s]
+  orden_items <- u[, .(m = mean(theta)), by = item][order(m), item]
+  u[, x := match(item, orden_items)]
+  tramo <- u[, .(lo = min(theta), hi = max(theta)), by = .(item, x)]
+  ggplot() +
+    geom_rect(data = h, aes(xmin = xmin, xmax = 0, ymin = ymin, ymax = ymax), fill = "grey65", colour = "white",
+              linewidth = 0.2) +
+    geom_vline(xintercept = 0.45, colour = "grey55", linewidth = 0.3) +
+    geom_segment(data = tramo, aes(x = x, xend = x, y = lo, yend = hi), colour = "#A9C1E3", linewidth = 0.7) +
+    geom_point(data = u, aes(x = x, y = theta), colour = "#1F5FA8", size = 1.5) +
+    annotate("text", x = -ANCHO_PERSONAS / 2, y = lim_y[2], label = "Estudiantes", size = 3, vjust = 1) +
+    annotate("text", x = (length(orden_items) + 1) / 2, y = lim_y[2], size = 3, vjust = 1,
+             label = if (length(orden_items) >= 15) "Umbrales de los ítems" else "Umbrales") +
+    scale_x_continuous(breaks = seq_along(orden_items), labels = orden_items, expand = expansion(add = 0.6)) +
+    scale_y_continuous(labels = etiqueta, breaks = seq(-6, 10, 2)) +
+    coord_cartesian(ylim = lim_y) +
+    labs(title = NOMBRE_SUB[[s]], x = NULL, y = expression(theta)) + tema +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 7.5),
+          panel.grid.major.x = element_blank())
+}
+png(file.path(SALIDAS, "nse_propiedades_wright.png"), width = ANCHO_FIG, height = 4.9, units = "in", res = 300,
+    bg = "white")
+grid::grid.newpage()
+grid::pushViewport(grid::viewport(layout = grid::grid.layout(1, 2, widths = grid::unit(c(1.5, 1), "null"))))
+print(wright_sub("economico"), vp = grid::viewport(layout.pos.row = 1, layout.pos.col = 1))
+print(wright_sub("libros"), vp = grid::viewport(layout.pos.row = 1, layout.pos.col = 2))
+invisible(dev.off())
 cobertura <- merge(umbrales[, .(umbral_min = min(theta), umbral_max = max(theta)), by = subescala],
                    personas_th[, .(p05 = wq(theta, 0.05, w), p95 = wq(theta, 0.95, w)), by = subescala], by = "subescala")
 cat("\nMapa de Wright: rango de los umbrales frente a los percentiles 5 y 95 de theta:\n"); print(cobertura)
 fwrite(cobertura[, lapply(.SD, function(x) if (is.numeric(x)) round(x, 3) else x)],
-       file.path(SALIDAS, "nse_taller_wright.csv"))
+       file.path(SALIDAS, "nse_propiedades_wright.csv"))
 
 # --- Puntaje total frente a theta: celdas agregadas (se omiten las de menos de 5 estudiantes, Ley 1581)
 celdas <- rbindlist(lapply(totales, function(d) d[, .(n = .N, n_pond = sum(w)),
@@ -318,10 +345,9 @@ g <- ggplot(celdas, aes(total, theta_c, fill = n_pond)) + geom_tile(height = 0.1
   facet_wrap(~Subescala, scales = "free_x") +
   scale_fill_gradient(low = "#C9D7EA", high = "#0B2E59", name = "Estudiantes\n(ponderado)") +
   scale_y_continuous(labels = etiqueta) +
-  labs(x = "Puntaje total (casos completos)", y = expression(theta ~ "(EAP)"),
-       caption = "Celdas de 0,1 en theta; se omiten las celdas con menos de 5 estudiantes (Ley 1581 de 2012).") +
-  theme_minimal(base_size = 10)
-ggsave(file.path(SALIDAS, "nse_taller_total.png"), g, width = 9, height = 4, dpi = 300, bg = "white")
+  labs(x = "Puntaje total (casos completos)", y = expression(theta ~ "(EAP)")) + tema +
+  theme(legend.position = "right", legend.key.height = unit(0.5, "cm"), legend.title = element_text(size = 9))
+ggsave(file.path(SALIDAS, "nse_propiedades_total.png"), g, width = ANCHO_FIG, height = 3, dpi = 300, bg = "white")
 
 # =============================================================================
 # 10. LIBRO DE RESULTADOS DEL TALLER (solo agregados)
@@ -341,19 +367,19 @@ libro <- list(
                                 p50 = zh_mediana, p75 = NA_real_, p95 = NA_real_, ee_mediano = NA_real_,
                                 pct_aberrantes = pct, pct_aberrantes_ponderado = pct_ponderado)], fill = TRUE),
   LEEME = data.table(nota = c(
-    "Libro de resultados del Taller 2 de TRI, aplicado a la escala del NSE (D-52). Lo genera 08_nse_tri_taller.R.",
+    "Propiedades de la escala del NSE con TRI (D-52). Lo genera 08_nse_tri_propiedades.R.",
     "Modelo de referencia: 2PL/GPCM por subescala (estructura del AFE, D-24), ponderado con W_FSTUWT normalizado.",
     "La hoja 'puntajes' va en resúmenes (percentiles y por grupo), no por estudiante: Ley 1581 de 2012.",
     "La hoja 'dif' es nse_dif_posesiones.csv (04_invarianza.R, D-26): regresión logística y TRI multigrupo.",
-    "La hoja 'dependencia_local' marca |Q3| > 0,2 (D-21) y Q3 - media > 0,20 (criterio del taller)."))
+    "La hoja 'dependencia_local' marca |Q3| > 0,2 (D-21) y Q3 - media > 0,20 (criterio de D-52)."))
 )
-write_xlsx(libro, file.path(SALIDAS, "Taller2_TRI_resultados.xlsx"))
+write_xlsx(libro, file.path(SALIDAS, "nse_propiedades_resultados.xlsx"))
 
-cat("\n--- Familias de modelos (nse_taller_modelos.csv) ---\n"); print(comparacion)
-cat("\n--- M2 (nse_taller_m2.csv) ---\n"); print(m2[, !c("criterio"), with = FALSE])
-cat("\n--- Mokken (nse_taller_mokken_escalas.csv) ---\n"); print(mk_escala[, !c("criterio"), with = FALSE])
-cat("\n--- Puntajes (nse_taller_puntajes.csv) ---\n"); print(puntajes[, !c("nota"), with = FALSE])
-cat("\n--- Personas, total (nse_taller_personas.csv) ---\n"); print(personas[variable == "total"])
+cat("\n--- Familias de modelos (nse_propiedades_modelos.csv) ---\n"); print(comparacion)
+cat("\n--- M2 (nse_propiedades_m2.csv) ---\n"); print(m2[, !c("criterio"), with = FALSE])
+cat("\n--- Mokken (nse_propiedades_mokken.csv) ---\n"); print(mk_escala[, !c("criterio"), with = FALSE])
+cat("\n--- Puntajes (nse_propiedades_puntajes.csv) ---\n"); print(puntajes[, !c("nota"), with = FALSE])
+cat("\n--- Personas, total (nse_propiedades_personas.csv) ---\n"); print(personas[variable == "total"])
 cat("\n--- Parámetros: discriminación y umbrales desordenados ---\n")
 print(parametros[, .N, by = .(subescala, discriminacion_Baker_Kim)])
 print(parametros[umbrales_desordenados == TRUE, .(subescala, item)])

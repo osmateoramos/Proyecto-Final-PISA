@@ -1,0 +1,3 @@
+subescala,imputaciones,M2,df,p,RMSEA,RMSEA_5,RMSEA_95,SRMSR,TLI,CFI,nota,criterio
+economico,10,7221.6355,152,0,0.0822,0.0806,0.0838,0.0561,0.9166,0.9258,modelo ponderado,"RMSEA2 <= 0,05 y SRMSR <= 0,05: ajuste aproximado adecuado (Maydeu-Olivares y Joe, 2014, citado en el taller)"
+libros,10,985.888,35,0,0.0628,0.0595,0.0662,0.129,0.9744,0.9801,modelo ponderado,"RMSEA2 <= 0,05 y SRMSR <= 0,05: ajuste aproximado adecuado (Maydeu-Olivares y Joe, 2014, citado en el taller)"

@@ -53,7 +53,8 @@ CADENA <- c(
   "05_dif_matematicas.R|F7_VARIANTE=escs",       # F7, S-A del DIF (D-45; horas sin caché)
   "05_dif_matematicas.R|F7_VARIANTE=sin_lineal", # F7, S-B del DIF (D-45; horas sin caché)
   "05_dif_matematicas.R|F7_VARIANTE=d38",        # F7, S-E del DIF (D-45)
-  "07_sensibilidad.R"              # F7, paso 7.1 (D-45)
+  "07_sensibilidad.R",             # F7, paso 7.1 (D-45)
+  "08_nse_tri_taller.R"            # posterior a la G4: complementos de TRI del NSE (D-52)
 )
 # Una entrada «script|VAR=valor» corre el script con esa variable de entorno (la hereda el proceso hijo).
 

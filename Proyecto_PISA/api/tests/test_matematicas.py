@@ -35,6 +35,28 @@ def test_dif_todos_los_probados(cliente: TestClient) -> None:
     assert len(cliente.get("/v1/dif").json()) == len(leer_salida("mat_dif.csv"))
 
 
+def test_cargas_items_coinciden_con_el_resumen(cliente: TestClient) -> None:
+    items = cliente.get("/v1/matematicas/cargas-items").json()
+    assert len(items) == len(leer_salida("mat_afc_cargas.csv"))
+    resumen = {f["competencia"]: f for f in leer_salida("mat_afc_resumen.csv")}
+    for comp in ["emplear", "formular", "interpretar", "razonar"]:
+        propios = [i for i in items if i["competencia"] == comp]
+        assert len(propios) == int(resumen[comp]["items"])
+        assert sum(i["carga_baja"] for i in propios) == int(resumen[comp]["carga_menor_030"])
+
+
+def test_correlaciones_competencia_simetricas(cliente: TestClient) -> None:
+    r = cliente.get("/v1/matematicas/correlaciones-competencia")
+    assert r.status_code == 200
+    phi = {f["competencia"]: f for f in r.json()}
+    competencias = ["emplear", "formular", "interpretar", "razonar"]
+    assert set(phi) == set(competencias)
+    for a in competencias:
+        assert phi[a][a] == 1
+        for b in competencias:
+            assert phi[a][b] == phi[b][a]
+
+
 def test_dif_mh_infinito_queda_marcado(cliente: TestClient) -> None:
     infinitos = {f["item"] for f in leer_salida("mat_dif.csv") if f["delta_MH"] in {"Inf", "-Inf"}}
     marcados = {i["item"] for i in cliente.get("/v1/dif").json() if not i["mh_calculable"]}

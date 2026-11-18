@@ -1,0 +1,7 @@
+subescala,familia,convergio,iteraciones,logLik,parametros,AIC,BIC,SABIC,dif_AIC,dif_BIC,dif_SABIC,G2_Rasch_vs_2PL,gl_G2,p_G2,nota_G2
+economico,Rasch/PCM,TRUE,25,-119405.7,55,238921.3,239297.4,239122.6,9336.5,9213.4,9270.6,8981.4,18,0,frente a 2PL/GPCM; pseudo-verosimilitud ponderada: descriptivo (D-19)
+economico,2PL/GPCM,TRUE,37,-114915,73,229976.1,230475.2,230243.2,391.3,391.2,391.2,,,,
+economico,2PL/GRM,TRUE,33,-114719.4,73,229584.8,230084,229852,0,0,0,,,,
+libros,Rasch/PCM,TRUE,53,-50545.4,31,101152.7,101364.7,101266.2,2273.7,2212.2,2240.8,1755.8,9,0,frente a 2PL/GPCM; pseudo-verosimilitud ponderada: descriptivo (D-19)
+libros,2PL/GPCM,TRUE,132,-49667.5,40,99415,99688.4,99561.3,536,535.9,535.9,,,,
+libros,2PL/GRM,TRUE,46,-49399.5,40,98879,99152.5,99025.4,0,0,0,,,,

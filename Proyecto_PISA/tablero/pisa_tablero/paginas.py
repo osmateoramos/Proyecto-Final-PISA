@@ -9,7 +9,7 @@ import streamlit as st
 
 from pisa_tablero import datos, graficos
 from pisa_tablero.componentes import ETIQUETAS_DERIVADAS, explicar, fuente, numero, tarjeta_hipotesis
-from pisa_tablero.diagrama import Ruta, svg_modelo
+from pisa_tablero.diagrama import Ruta, svg_medicion, svg_modelo
 from pisa_tablero.modelos import Perfil
 
 COMPETENCIAS = ["emplear", "formular", "interpretar", "razonar"]
@@ -433,22 +433,27 @@ def modelo_estructural() -> None:
     cargas = datos.tabla("/nse/cargas")
     ajuste_nse = datos.tabla("/nse/ajuste")
     r_fact = ajuste_nse.loc[ajuste_nse["modelo"] == "M2_AFE", "correlacion_factores"].dropna()
+    cargas_comp = datos.tabla("/matematicas/cargas-competencia")
+    phi = datos.tabla("/matematicas/correlaciones-competencia")
 
     explicar(
         que="El modelo une las dos medidas: el **NSE** (2 factores, medidos por sus 29 indicadores) se relaciona con "
-            "cada una de las **4 competencias**, controlando por sexo y grado. El análisis principal es **en dos "
-            "pasos**: primero la puntuación del NSE de cada estudiante (EAP) y luego una regresión con los **10 valores "
-            "plausibles de la OCDE**, los 81 pesos (BRR) y Rubin. Como robustez se estimó el **SEM completo** con el NSE "
-            "latente, y se repitió todo con los puntajes propios de la F5.",
-        como="En el diagrama, a la izquierda están los indicadores con su **carga** (grosor de la flecha); en el centro, "
-             "los dos factores y su **correlación**; a la derecha, las **rutas** a cada competencia con su coeficiente "
-             "(puntos PISA por cada DE de más en el NSE). Elija una competencia para resaltar sus rutas, o cambie al "
-             "enfoque del SEM latente. Al pasar el cursor se ve el detalle de cada elemento.",
+            "cada una de las **4 competencias**, que también son **variables latentes** (medidas por sus ítems en la "
+            "TRI de la F5), controlando por sexo y grado. El análisis principal es **en dos pasos**: primero la "
+            "puntuación del NSE de cada estudiante (EAP) y luego una regresión con los **10 valores plausibles de la "
+            "OCDE**, los 81 pesos (BRR) y Rubin. Como robustez se estimó el **SEM completo** con el NSE latente, y se "
+            "repitió todo con los puntajes propios de la F5.",
+        como="En el diagrama, a la izquierda están los indicadores del NSE con su **carga** (grosor de la flecha); en el "
+             "centro, los dos factores y su **correlación**; a la derecha, las 4 competencias en **óvalos**, con el "
+             "coeficiente de cada **ruta** adentro (puntos PISA por cada DE de más en el NSE: azul el económico, naranja "
+             "libros). Debajo de cada competencia está el **resumen de las cargas de sus ítems** y a la derecha, las "
+             "**correlaciones Φ** entre competencias. Elija una competencia para resaltarla, o cambie al enfoque del "
+             "SEM latente. Al pasar el cursor se ve el detalle de cada elemento.",
         significa="El NSE económico se asocia con las cuatro competencias, más con **interpretar**. La asociación **no "
                   "es igual** entre competencias, la diferencia interpretar − emplear cumple la regla de H5 (que es "
                   "exploratoria) y la pendiente del NSE es mayor en los colegios **privados** (H6). El SEM latente da "
                   f"casi lo mismo que los dos pasos. {NOTA_TRANSVERSAL}",
-        decisiones="D-23, D-32, D-34, D-42, D-44")
+        decisiones="D-23, D-32, D-34, D-42, D-44, D-48, D-51")
 
     c1, c2 = st.columns([1, 1])
     resaltar = c1.selectbox("Resaltar la competencia", ["todas", *COMPETENCIAS])
@@ -468,11 +473,37 @@ def modelo_estructural() -> None:
                  for f in latente.itertuples()]
     svg = svg_modelo(cargas[cargas["modelo"] == "M2_AFE"], _etiquetas(),
                      float(r_fact.iloc[0]) if not r_fact.empty else None, rutas,
-                     "puntos PISA por DE del NSE", None if resaltar == "todas" else resaltar)
+                     "puntos PISA por DE del NSE", None if resaltar == "todas" else resaltar,
+                     cargas_competencia=cargas_comp[cargas_comp["competencia"] != "total"], phi=phi)
     st.markdown(svg, unsafe_allow_html=True)
-    st.caption("Sexo y grado están en el modelo como controles y no se dibujan. Correlación entre factores: AFC del "
-               "modelo del AFE en la mitad de confirmación. Fuentes: nse_cargas_afc.csv, nse_ajuste_afc.csv, "
-               "sem_coeficientes.csv y sem_robustez_latente.csv.")
+    st.caption("Sexo y grado están en el modelo como controles y no se dibujan. Correlación entre factores del NSE: AFC "
+               "del modelo del AFE en la mitad de confirmación. **El diagrama junta dos fuentes (D-51):** las cargas de "
+               "los ítems y Φ salen del modelo propio de 4 competencias de la F5, que no incluye el NSE; las rutas salen "
+               "de la F6. Por eso Φ son correlaciones entre competencias, no entre residuos. Fuentes: nse_cargas_afc.csv, "
+               "nse_ajuste_afc.csv, mat_afc_resumen.csv, mat_afc_phi.csv, sem_coeficientes.csv y "
+               "sem_robustez_latente.csv.")
+
+    st.subheader("Modelo de medición de las competencias")
+    items = datos.tabla("/matematicas/cargas-items")
+    total = cargas_comp[cargas_comp["competencia"] == "total"].iloc[0]
+    explicar(
+        que="El diagrama de arriba resume las cargas de los ítems de cada competencia. Aquí se ve el **modelo de "
+            "medición completo** de una competencia: el óvalo es la competencia (variable latente) y cada flecha va a "
+            "uno de sus ítems, con su **carga estandarizada** en el modelo de 4 competencias de la F5 (TRI "
+            "multidimensional; cada ítem carga solo en la competencia que le asigna PISA). No se estimó nada nuevo: "
+            "son las cargas de D-48.",
+        como="Los ítems van de mayor a menor carga; el grosor de la flecha crece con la carga. La **línea punteada "
+             "gris** marca los ítems con carga menor que 0,30, que informan poco sobre la competencia. Al pasar el "
+             "cursor se ven el tipo de ítem (2PL o crédito parcial), su discriminación y cuántos estudiantes lo "
+             "respondieron.",
+        significa=f"Cada ítem carga en su competencia, pero {int(total['carga_menor_030'])} de {int(total['items'])} "
+                  "tienen carga menor que 0,30, todos dicotómicos (D-48); entre ellos están los ítems que casi nadie "
+                  "responde bien en Colombia (D-43). Junto con las correlaciones Φ, confirma que las competencias casi "
+                  "no se separan en Colombia (interpretación del equipo).",
+        decisiones="D-27, D-29, D-48, D-51")
+    competencia = st.selectbox("Competencia", COMPETENCIAS, key="medicion_competencia")
+    st.markdown(svg_medicion(items[items["competencia"] == competencia], competencia), unsafe_allow_html=True)
+    fuente("mat_afc_cargas.csv", "05_afc_competencias.R")
 
     st.subheader("Coeficiente del NSE por competencia")
     st.altair_chart(graficos.intervalos(coef, eje_y="competencia", orden_y=COMPETENCIAS,
